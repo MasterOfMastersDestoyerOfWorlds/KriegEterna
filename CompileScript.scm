@@ -20,6 +20,7 @@
 
   )
   (script-fu-menu-register "script-fu-compile-card" "<Image>/File/Create/Text")
+
   
   (define (script-fu-compile-card titleText effect flavor gradient strength file icon-file out-file)
     (let*
@@ -36,8 +37,10 @@
 		(effect-height 10)
 		(strength-width 10)
 		(strength-height 10)
+		(back-opacity 70)
 		(flavor-width 10)
 		(flavor-height 10)
+		(black-border-text FALSE)
 		(titleFont 	"Gargouille")
 		(descFont  	"Open Sans Semi-Bold")
 		(flavorFont "Open Sans Semi-Bold Italic")
@@ -57,9 +60,13 @@
 		(title-size)
 		(desc-size)
         (layer)
+		(title-back-layer)
 		(desc-layer)
+		(effect-back-layer)
 		(icon-layer)
+		(icon-back-layer)
 		(strength-layer)
+		(strength-back-layer)
 		(strength-size)
 		(strength-text)
       ) ;end of our local variables
@@ -143,7 +150,26 @@
 	  ;(gimp-image-raise-item-to-top image text)
 	  (script-fu-drop-shadow image icon-layer 12 12 4 '(0 0 0) 100 0)
 	  (gimp-image-raise-item-to-top image icon-layer)
-	  
+	;
+	
+			
+	(set! icon-back-layer (car (gimp-layer-new image (/ image-width 5.5) (/ image-width 5.5) 1 "icon background" back-opacity 0)))
+	
+	(gimp-image-insert-layer image icon-back-layer 0 (car (gimp-image-get-item-position image layer)))
+	(gimp-image-set-active-layer image icon-back-layer)
+	(gimp-layer-set-offsets icon-back-layer (- (- image-width (/ image-width 5.5))  (* 2 buffer)) (* 2 buffer))
+	(gimp-selection-all image)
+	(gimp-drawable-edit-fill icon-back-layer 1)
+	(gimp-selection-layer-alpha icon-back-layer)
+	(gimp-image-select-item image 2 icon-back-layer)
+	(gimp-drawable-edit-fill icon-back-layer 3)
+	(gimp-image-select-ellipse image 2 (- (- image-width (/ image-width 5.5))  (* 2 buffer)) (* 2 buffer) (/ image-width 5.5) (/ image-width 5.5))
+	(gimp-context-set-gradient gradient)
+	(gimp-drawable-edit-gradient-fill icon-back-layer GRADIENT-SHAPEBURST-SPHERICAL 85 FALSE 0 0 TRUE 0 0 100 100)
+	(gimp-drawable-brightness-contrast icon-back-layer -0.5 0)
+	(script-fu-drop-shadow image icon-back-layer 12 12 4 '(0 0 0) 70 0)
+	(gimp-image-raise-item-to-top image icon-layer)
+	
 	  
 	  ;;Title  formatting
 	  (gimp-message "Title")
@@ -167,7 +193,7 @@
 		(set! title-height (+ title-height buffer buffer) )
 		(set! title-width  (+ title-width  buffer buffer) )
 		(gimp-layer-resize layer title-width title-height 0 0)
-		(gimp-layer-set-offsets text (* 2 buffer) (* 2 buffer))
+		(gimp-layer-set-offsets text (* 2.2 buffer) (* 2.2 buffer))
 		(gimp-image-select-item image 0 text)
 		(script-fu-drop-shadow image text 12 12 4 '(0 0 0) 100 0)
 		(gimp-floating-sel-to-layer text)
@@ -191,6 +217,24 @@
 		
 		(gimp-context-pop)
 		(gimp-image-undo-enable image)
+		
+		
+		(set! title-back-layer (car (gimp-layer-new image (+ (/ buffer 2) (car (gimp-drawable-width  text) )) (* 0.11616161616 image-height) 1 "desc background" back-opacity 0)))
+		(gimp-image-insert-layer image title-back-layer 0 (car (gimp-image-get-item-position image layer)))
+		(gimp-image-set-active-layer image title-back-layer)
+		(gimp-layer-set-offsets title-back-layer (* 2 buffer) (* 2 buffer))
+		(gimp-selection-all image)
+		(gimp-drawable-edit-fill title-back-layer 1)
+		(gimp-selection-layer-alpha title-back-layer)
+		(gimp-image-select-item image 2 title-back-layer)
+		(gimp-drawable-edit-fill title-back-layer 3)
+		(script-fu-selection-rounded-rectangle image title-back-layer 30 FALSE)
+		(gimp-context-set-gradient gradient)
+		(gimp-drawable-edit-gradient-fill title-back-layer GRADIENT-SHAPEBURST-SPHERICAL 90 FALSE 0 0 TRUE 0 0 100 100)
+		(gimp-drawable-brightness-contrast title-back-layer -0.5 0)
+		(script-fu-drop-shadow image title-back-layer 12 12 4 '(0 0 0) 70 0)
+		
+		(gimp-image-raise-item-to-top image text)
 		
 		
 		
@@ -217,7 +261,7 @@
 		(set! strength-height (+ strength-height buffer buffer) )
 		(set! strength-width  (+ strength-width  buffer buffer) )
 		(gimp-layer-resize strength-layer strength-width strength-height 0 0)
-		(gimp-layer-set-offsets strength-text (- (- image-width (/ image-width 8))  buffer) (+ buffer (/ image-width 4)))
+		(gimp-layer-set-offsets strength-text (- (- image-width (/ image-width 6.2))  buffer) (+ buffer (/ image-width 4.3)))
 		
 		(script-fu-drop-shadow image strength-text 12 12 4 '(0 0 0) 100 0)
 		(gimp-floating-sel-to-layer strength-text)
@@ -235,9 +279,30 @@
 		(gimp-drawable-edit-fill strength-text 1)
 		
 		(gimp-context-pop)
-		(gimp-image-undo-enable image))
+		(gimp-image-undo-enable image)
+		
+		(set! strength-back-layer (car (gimp-layer-new image (* 0.52 strength-width) (* 0.8 strength-height) 1 "desc background" back-opacity 0)))
+		(gimp-image-insert-layer image strength-back-layer 0 (car (gimp-image-get-item-position image layer)))
+		(gimp-layer-set-offsets strength-back-layer (- (- image-width (/ image-width 5.85))  buffer) (+ buffer (/ image-width 5)))
+		(gimp-selection-all image)
+		(gimp-drawable-edit-fill strength-back-layer 1)
+		(gimp-selection-layer-alpha strength-back-layer)
+		(gimp-image-select-item image 2 strength-back-layer)
+		(gimp-drawable-edit-fill strength-back-layer 3)
+		(gimp-context-set-gradient gradient)
+		(script-fu-selection-rounded-rectangle image strength-back-layer 30 FALSE)
+		(gimp-drawable-edit-gradient-fill strength-back-layer GRADIENT-SHAPEBURST-SPHERICAL 75 FALSE 0 0 TRUE 0 0 100 100)
+		(gimp-drawable-brightness-contrast strength-back-layer -0.5 0)
+		(gimp-image-select-ellipse image 2 (- (- image-width (/ image-width 5.5))  (* 2 buffer)) (* 2 buffer) (/ image-width 5.5) (/ image-width 5.5))
+		(gimp-drawable-edit-fill strength-back-layer 3)
+		(gimp-image-select-item image 2 strength-back-layer)
+		(script-fu-drop-shadow image strength-back-layer 12 12 4 '(0 0 0) 70 0)
+
+		
+		)
 		(begin
         (gimp-message "no strength!")))
+
 		
 		
 		(gimp-message "Effect")
@@ -262,7 +327,7 @@
 		(set! effect-height  (car (gimp-drawable-height effect-text) ) )
 		(set! effect-height (+ effect-height buffer buffer) )
 		(set! effect-width  (+ effect-width  buffer buffer) )
-		(gimp-layer-set-offsets effect-text (+ buffer buffer) (- image-height (/ image-height 3)))
+		(gimp-layer-set-offsets effect-text (* 1.2 (+ buffer buffer)) (- image-height (/ image-height 3)))
 		(gimp-text-layer-set-color effect-text '(255 255 255))
 		(script-fu-drop-shadow image effect-text 12 12 6 '(0 0 0) 100 0)
 		(gimp-floating-sel-to-layer effect-text)
@@ -277,13 +342,50 @@
 		(gimp-selection-grow image 2)
 		(gimp-selection-border image 1)
 		(gimp-selection-grow image 2)
-		(gimp-drawable-edit-fill effect-text 0)
+		(if (=  TRUE black-border-text) (gimp-drawable-edit-fill effect-text 0) ())
 		
 		(gimp-context-pop)
-		(gimp-image-undo-enable image))
-		(begin
-        (gimp-message "no effect!")))
+		(gimp-image-undo-enable image)
 		
+		(set! effect-back-layer (car (gimp-layer-new image (- (- image-width (+ buffer buffer)) (+ buffer buffer)) (/ image-height 3.5) 1 "desc background" back-opacity 0)))
+		
+		(gimp-image-insert-layer image effect-back-layer 0 (car (gimp-image-get-item-position image layer)))
+		(gimp-image-set-active-layer image effect-back-layer)
+		(gimp-layer-set-offsets effect-back-layer (+ buffer buffer) (- image-height (/ image-height 2.8)))
+		(gimp-selection-all image)
+		(gimp-drawable-edit-fill effect-back-layer 1)
+		(gimp-selection-layer-alpha effect-back-layer)
+		(gimp-image-select-item image 2 effect-back-layer)
+		(gimp-drawable-edit-fill effect-back-layer 3)
+		(script-fu-selection-rounded-rectangle image effect-back-layer 15 FALSE)
+		(gimp-drawable-edit-gradient-fill effect-back-layer GRADIENT-SHAPEBURST-SPHERICAL 95 FALSE 0 0 TRUE 0 0 100 100)
+		(gimp-drawable-brightness-contrast effect-back-layer -0.5 0)
+		(script-fu-drop-shadow image effect-back-layer 12 12 4 '(0 0 0) 70 0)
+		
+		(gimp-image-raise-item-to-top image effect-text)
+		
+		)
+		(begin
+        (gimp-message "no effect!")
+		
+		(set! effect-back-layer (car (gimp-layer-new image (- (- image-width (+ buffer buffer)) (+ buffer buffer)) (/ image-height 7) 1 "desc background" back-opacity 0)))
+		
+		(gimp-image-insert-layer image effect-back-layer 0 (car (gimp-image-get-item-position image layer)))
+		(gimp-image-set-active-layer image effect-back-layer)
+		(gimp-layer-set-offsets effect-back-layer (+ buffer buffer) (- image-height (/ image-height 4.65)))
+		(gimp-selection-all image)
+		(gimp-drawable-edit-fill effect-back-layer 1)
+		(gimp-selection-layer-alpha effect-back-layer)
+		(gimp-image-select-item image 2 effect-back-layer)
+		(gimp-drawable-edit-fill effect-back-layer 3)
+		(script-fu-selection-rounded-rectangle image effect-back-layer 30 FALSE)
+		(gimp-drawable-edit-gradient-fill effect-back-layer GRADIENT-SHAPEBURST-SPHERICAL 90 FALSE 0 0 TRUE 0 0 100 100)
+		(gimp-drawable-brightness-contrast effect-back-layer -0.5 0)
+		(script-fu-drop-shadow image effect-back-layer 12 12 4 '(0 0 0) 70 0)
+		)
+		)
+		(set! flavor (unbreakupstr (strbreakup flavor "\`") "\""))
+		(gimp-message flavor)
 		(gimp-message "Flavor")
 		(set! flavor-text
                     (car
@@ -304,7 +406,7 @@
 		(set! flavor-height  (car (gimp-drawable-height flavor-text) ) )
 		(set! flavor-height (+ flavor-height buffer buffer) )
 		(set! flavor-width  (+ flavor-width  buffer buffer) )
-		(gimp-layer-set-offsets flavor-text (+ buffer buffer) (- image-height (/ image-height 5)))
+		(gimp-layer-set-offsets flavor-text (* 1.2 (+ buffer buffer)) (- image-height (/ image-height 5)))
 		(gimp-text-layer-set-color flavor-text '(255 255 255))
 		(script-fu-drop-shadow image flavor-text 12 12 10 '(0 0 0) 100 0)
 		(gimp-floating-sel-to-layer flavor-text)
@@ -319,7 +421,7 @@
 		(gimp-selection-grow image 2)
 		(gimp-selection-border image 1)
 		(gimp-selection-grow image 2)
-		(gimp-drawable-edit-fill flavor-text 0)
+		(if (=  TRUE black-border-text) (gimp-drawable-edit-fill flavor-text 0) ());(gimp-drawable-edit-fill flavor-text 0)
 		(gimp-context-pop)
 		(gimp-image-undo-enable image)
 		
