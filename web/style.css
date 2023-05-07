@@ -302,6 +302,7 @@ html {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 *,
@@ -1061,16 +1062,16 @@ img {
     margin-bottom: 1em
 }
 
-.css-XBbWN {
+.product-scroll-box {
     position: relative;
     margin: 48px 0
 }
 
-.css-XBbWN {
+.product-scroll-box {
     z-index: 3
 }
 
-.css-I1TKA {
+.product-box {
     display: flex;
     flex-direction: column;
     width: 380px;
@@ -1158,24 +1159,25 @@ img {
 }
 
 @media(max-width:750px) {
-    .css-XBbWN {
+    .product-scroll-box {
+        padding-bottom: 1em;
         overflow-x: scroll;
         overflow-y: hidden;
         max-width: 100%;
     }
-    .css-I1TKA  {
+    .product-box  {
         max-width: 200px;
     }
-    .css-XBbWN::-webkit-scrollbar {
+    .product-scroll-box::-webkit-scrollbar {
         width: 0em;
 
     }
-    .css-XBbWN::-webkit-scrollbar-track {
+    .product-scroll-box::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     max-width: 100%;
 
     }
-    .css-XBbWN::-webkit-scrollbar-thumb {
+    .product-scroll-box::-webkit-scrollbar-thumb {
     background-color: #000000;
     }
 }
@@ -1201,7 +1203,7 @@ img {
     font-weight: 900;
     text-shadow: 0 1px 3px rgba 0, 0, 0, .29, 0 1px 4px 0 var(--theme-primary-color--300);
     color: var(--white);
-    background: var(--theme-primary-color--200);
+    background: #000;
     padding: 0.55em 1em 0.4em;
 }
 
@@ -1244,7 +1246,7 @@ html[lang=zh-Hant] .css-lV1Vi {
     --button-font-size: 22px
 }
 
-.css-RFzv0 {
+.buy-product-button {
     background-color: var(--button-bg-color);
     border: 2px solid var(--button-border-color);
     border-radius: var(--button-border-radius);
@@ -1268,17 +1270,17 @@ html[lang=zh-Hant] .css-lV1Vi {
     outline: none
 }
 
-.css-RFzv0::-moz-focus-inner {
+.buy-product-button::-moz-focus-inner {
     border: none
 }
 
-.css-RFzv0:focus,
-.css-RFzv0:hover {
-    filter: drop-shadow(0 0 8px var(--theme-accent-color))
+.buy-product-button:focus,
+.buy-product-button:hover {
+    color: var(--theme-accent-color);
 }
 
-.css-RFzv0:active {
-    color: var(--theme-button-color);
+.buy-product-button:active {
+    color: var(--theme-accent-color);
     transform: translateY(1px)
 }
 
@@ -1334,7 +1336,7 @@ html[lang=zh-Hant] .css-lV1Vi {
     flex-direction: var(--container-flex-direction, column)
 }
 
-.css-YlWHr {
+.card-scroll-box {
     max-width: 1600px;
     margin: 0 auto;
     padding: var(--cards-padding);
@@ -1342,13 +1344,13 @@ html[lang=zh-Hant] .css-lV1Vi {
     overflow-x:scroll
 }
 
-.css-YlWHr::-webkit-scrollbar {
+.card-scroll-box::-webkit-scrollbar {
     width: 1em;
 }
-.css-YlWHr::-webkit-scrollbar-track {
+.card-scroll-box::-webkit-scrollbar-track {
 -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
-.css-YlWHr::-webkit-scrollbar-thumb {
+.card-scroll-box::-webkit-scrollbar-thumb {
 background-color: #000000;
 }
 
@@ -1783,10 +1785,10 @@ html[lang=zh-Hant] .css-4zJQw {
     height: var(--decor-line-height)
 }
 
-.css-7r4At {
-    --theme-link-color: #ffcc33;
-    --theme-link-color--active: #ffcc33;
-    --theme-accent-color: #ffcc33;
+.social-box{
+    --theme-link-color: #fecb33;
+    --theme-link-color--active: #fecb33;
+    --theme-accent-color: #fecb33;
     margin: 0 0 30px
 }
 
