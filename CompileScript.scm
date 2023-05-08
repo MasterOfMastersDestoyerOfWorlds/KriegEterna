@@ -14,9 +14,10 @@
 	SF-STRING      "Text"          "flavor text"  				;flavor			need
 	SF-GRADIENT    "Gradient" 	   "Weather"					;gradient		need
 	SF-STRING  	   "Text" 	   	   "0"							;strength		need
-	SF-FILENAME    "FILENAME" (string-append "C:\\Users\\Drew\\Documents\\Gimp\\cropped\\" "Frost.xcf") ;file
-	SF-FILENAME    "FILENAME" (string-append "C:\\Users\\Drew\\Documents\\Gimp\\icons\\" "Weather.xcf") ;icon-file
-	SF-FILENAME    "FILENAME" (string-append "C:\\Users\\Drew\\Documents\\Gimp\\out\\" "Frost.png") 	;out-file
+	SF-FILENAME    "FILENAME"     (string-append "C:\\Users\\Drew\\Documents\\Gimp\\cropped\\" "Frost.xcf") ;file
+	SF-FILENAME    "FILENAME"     (string-append "C:\\Users\\Drew\\Documents\\Gimp\\icons\\" "Weather.xcf") ;icon-file
+	SF-FILENAME    "FILENAME"     (string-append "C:\\Users\\Drew\\Documents\\Gimp\\out\\" "Frost.png") 	;out-file
+	SF-TOGGLE      "EXPORT"        TRUE 	;export to png flag
 
   )
   (script-fu-menu-register "script-fu-compile-card" "<Image>/File/Create/Text")
@@ -211,9 +212,11 @@
 		(gimp-message (number->string (string-length titleText)))
 		(gimp-message (number->string (- (* 5 (string-length titleText)) 10)))
 		(gimp-drawable-edit-gradient-fill text GRADIENT-LINEAR 0 FALSE 0 0 TRUE 0 0 (/ title-width (- (* 5 (string-length titleText)) 10)) (/ image-height 7.729))
+		(gimp-drawable-hue-saturation text 0 0 0 50 0)
 		(gimp-selection-grow image 2)
 		(gimp-selection-border image 2)
 		(gimp-drawable-edit-fill text 1)
+		
 		
 		(gimp-context-pop)
 		(gimp-image-undo-enable image)
@@ -274,6 +277,7 @@
 		(gimp-image-select-item image 0 strength-text)
 		(gimp-context-set-gradient gradient)
 		(gimp-drawable-edit-gradient-fill strength-text GRADIENT-LINEAR 0 FALSE 0 0 TRUE 0 0 (/ strength-width yfact) (* strength-height (/ 7 9)))
+		(gimp-drawable-hue-saturation strength-text 0 0 0 50 0)
 		(gimp-selection-grow image 2)
 		(gimp-selection-border image 2)
 		(gimp-drawable-edit-fill strength-text 1)
@@ -329,7 +333,7 @@
 		(set! effect-width  (+ effect-width  buffer buffer) )
 		(gimp-layer-set-offsets effect-text (* 1.2 (+ buffer buffer)) (- image-height (/ image-height 3)))
 		(gimp-text-layer-set-color effect-text '(255 255 255))
-		(script-fu-drop-shadow image effect-text 12 12 6 '(0 0 0) 100 0)
+		(script-fu-drop-shadow image effect-text 8 8 6 '(0 0 0) 100 0)
 		(gimp-floating-sel-to-layer effect-text)
 		(gimp-image-raise-item-to-top image effect-text)
 
@@ -408,7 +412,7 @@
 		(set! flavor-width  (+ flavor-width  buffer buffer) )
 		(gimp-layer-set-offsets flavor-text (* 1.2 (+ buffer buffer)) (- image-height (/ image-height 5)))
 		(gimp-text-layer-set-color flavor-text '(255 255 255))
-		(script-fu-drop-shadow image flavor-text 12 12 10 '(0 0 0) 100 0)
+		(script-fu-drop-shadow image flavor-text 8 8 6 '(0 0 0) 100 0)
 		(gimp-floating-sel-to-layer flavor-text)
 		(gimp-image-raise-item-to-top image flavor-text)
 
