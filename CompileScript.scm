@@ -16,7 +16,7 @@
 	SF-STRING  	   "Text" 	   	   "0"							;strength		need
 	SF-FILENAME    "FILENAME"     (string-append "C:\\Users\\Drew\\Documents\\Gimp\\cropped\\" "Frost.xcf") ;file
 	SF-FILENAME    "FILENAME"     (string-append "C:\\Users\\Drew\\Documents\\Gimp\\icons\\" "Weather.xcf") ;icon-file
-	SF-FILENAME    "FILENAME"     (string-append "C:\\Users\\Drew\\Documents\\Gimp\\out\\" "Frost.png") 	;out-file
+	SF-FILENAME    "FILENAME"     (string-append "C:\\Users\\Drew\\Documents\\Gimp\\out\\" "Frost") 	;out-file
 	SF-TOGGLE      "EXPORT"        TRUE 	;export to png flag
 
   )
@@ -495,6 +495,8 @@
 		(gimp-image-reorder-item image effect-shadow-layer effect-layer-group 0)
 		
 
+		; save xcf before merging down
+		(gimp-xcf-save 1 image layer (string-append out-file ".xcf") (string-append out-file ".xcf"))
 
 		(gimp-message "merging down")
 		(gimp-image-raise-item-to-top image effect-back-layer)
@@ -516,7 +518,7 @@
 		(gimp-layer-set-offsets effect-layer-group (+ buffer buffer) (+ (- image-height (/ image-height boxFac)) (/ (- (- (/ image-height boxFac) (* buffer 2)) (+ (* 2 buffer) real-flavor-height real-effect-height)) 2)))
 		
 		(set! layer   (car (gimp-image-merge-visible-layers image 1) ) )
-		(file-png-save 1 image layer out-file out-file 0 9 1 0 0 1 1)
+		(file-png-save 1 image layer (string-append out-file ".png") (string-append out-file ".png") 0 9 1 0 0 1 1)
 		(list image layer text effect-text flavor-text)
     )
   )
