@@ -12,7 +12,7 @@ if /i "%~1" equ "/O" (
 )
 
 :: Define the maximum number of parallel processes to run.
-set "maxProc=10"
+set "maxProc=5"
 
 :: Get a unique base lock name for this particular instantiation.
 :: Incorporate a timestamp from WMIC if possible, but don't fail if
@@ -47,8 +47,7 @@ set "maxProc=10"
     2>nul del %lock%!nextProc!
     %= Redirect the lock handle to the lock file. The CMD process will     =%
     %= maintain an exclusive lock on the lock file until the process ends. =%
-    start /b "" cmd /c %lockHandle%^>"%lock%!nextProc!" 2^>^&1 gimp-console-2.10.exe -i -b "(script-fu-compile-card \"%%B\" \"%%C\" \"%%D\" \"%%E\" \"%%F\" \"%WSPACE%cropped\\%%A.xcf\" \"%WSPACE%icons\\embossed\\%%E.xcf\" \"%WSPACE%out\\%%A.png\")" -b "(gimp-quit 0)"
-"
+    start /b "" cmd /c %lockHandle%^>"%lock%!nextProc!" 2^>^&1 gimp-console-2.10.exe -i -b "(script-fu-compile-card \"%%B\" \"%%C\" \"%%D\" \"%%E\" \"%%F\" \"%WSPACE%cropped\\%%A.xcf\" \"%WSPACE%icons\\embossed\\%%E.xcf\" \"%WSPACE%out\\%%A.png\")" -b "(gimp-quit 0)""
   )
   set "launch="
 
