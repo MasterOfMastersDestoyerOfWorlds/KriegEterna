@@ -22,7 +22,7 @@ OS2Version: 4
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
 CreationTime: 1587336329
-ModificationTime: 1683174896
+ModificationTime: 1685504215
 PfmFamily: 81
 TTFWeight: 400
 TTFWidth: 5
@@ -116,7 +116,7 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 16 16 4
+WinInfo: 80 16 4
 BeginPrivate: 0
 EndPrivate
 BeginChars: 65537 180
@@ -2399,24 +2399,19 @@ EndChar
 
 StartChar: l
 Encoding: 108 108 77
-Width: 222
+Width: 134
 GlyphClass: 1
 Flags: W
+VStem: 26 84
 LayerCount: 2
 Fore
 SplineSet
-190.815429688 48.48828125 m 1
- 231.561523438 24.4140625 l 1
- 189.859375 0.298828125 l 1
- 106.912109375 0.298828125 l 1
- 106.954101562 0.3408203125 l 1
- 27 0.548828125 l 1
- 27 700.174804688 l 1
- 110.404296875 700.174804688 l 1
- 110.404296875 2.3369140625 l 1
- 190.815429688 48.48828125 l 1
+110 652 m 5
+ 26 700.174804688 l 1
+ 26 0 l 1
+ 110 48 l 1
+ 110 652 l 5
 EndSplineSet
-Validated: 1
 Kerns2: 172 -36 "'kern' Horizontal Kerning in Latin lookup 0 per glyph data 0" 114 -48 "'kern' Horizontal Kerning in Latin lookup 0 per glyph data 0" 94 -17 "'kern' Horizontal Kerning in Latin lookup 0 per glyph data 0" 92 -40 "'kern' Horizontal Kerning in Latin lookup 0 per glyph data 0" 87 -53 "'kern' Horizontal Kerning in Latin lookup 0 per glyph data 0" 85 -26 "'kern' Horizontal Kerning in Latin lookup 0 per glyph data 0" 71 -34 "'kern' Horizontal Kerning in Latin lookup 0 per glyph data 0" 62 -42 "'kern' Horizontal Kerning in Latin lookup 0 per glyph data 0" 59 -50 "'kern' Horizontal Kerning in Latin lookup 0 per glyph data 0" 57 -6 "'kern' Horizontal Kerning in Latin lookup 0 per glyph data 0" 56 -51 "'kern' Horizontal Kerning in Latin lookup 0 per glyph data 0" 54 -60 "'kern' Horizontal Kerning in Latin lookup 0 per glyph data 0" 33 -40 "'kern' Horizontal Kerning in Latin lookup 0 per glyph data 0" 29 -33 "'kern' Horizontal Kerning in Latin lookup 0 per glyph data 0" 28 -33 "'kern' Horizontal Kerning in Latin lookup 0 per glyph data 0" 10 -17 "'kern' Horizontal Kerning in Latin lookup 0 per glyph data 0" 9 -34 "'kern' Horizontal Kerning in Latin lookup 0 per glyph data 0"
 EndChar
 
