@@ -45,6 +45,7 @@
 		(real-flavor-height 0)
 		(black-border-text FALSE)
 		(titleFont 	"Gargouille")
+		(strengthFont 	"Highlander Ultra-Heavy")
 		(descFont  	"Open Sans Semi-Bold")
 		(flavorFont "Open Sans Semi-Bold Italic")
 		(titleFontSize 500)
@@ -288,7 +289,7 @@
 							  0
 							  TRUE
 							  strength-size PIXELS
-							  titleFont)
+							  strengthFont)
 						  )
 			)
 		
