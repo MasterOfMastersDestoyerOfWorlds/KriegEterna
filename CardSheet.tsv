@@ -1,14 +1,14 @@
-Burden	Burden	Double the strength of your opponent's strongest\rrow. In the next round this card switches sides.	\`More weight^!\` His captors hoisted another stone\ronto his buckeling ribs.\r\`More weight^!\`	Power	
-Assassin	Assassin	Play in any of the opponent's rows and draw two\rcards. If the row has no other cards at the end of\rthe round, send any unit to the graveyard.	\`Et tu brute?\`	Spy	5
 Archer	Archer	 	\`Please just a little more^! This dream is too sweet for\rwaking^!\` Didn't you know all dreams end?	Ranged	2
 Archer2	Archer	 	\`He was a good outlaw, and did poor men much\rgood.\`	Ranged	2
 Armada	Armada	 	I will make thee a terror, and thou shall be no more:\rthough sought for, thou shall never be found again.	Siege	5
 Armada2	Armada	 	\`And they called it a fleet... Ha^! Nothing more than\ra heap of ash and squandered silver.\`	Siege	5
+Assassin	Assassin	Play in any of the opponent's rows and draw two\rcards. If the row has no other cards at the end of\rthe round, send any unit to the graveyard.	\`Et tu brute?\`	Spy	5
 Assault	Assault	 	Doomed to flames of woe;\rOur lady of sorrows.	Siege	3
 Assault2	Assault	 	A brave man dies but once,\rA coward daily.	Siege	3
 Assault3	Assault	 	The Kingdom of Heaven is spread out over the earth,\rand men cannot see it.	Siege	3
 Bowman	Bowman	 	They said he could hit an apple off her head,\rbut she was rude and he was peckish.	Ranged	2
 Bowman2	Bowman	 	Tick Tick Tick, Clunk, Thwap, Bullseye^!	Ranged	2
+Burden	Burden	Double the strength of your opponent's strongest\rrow. In the next round this card switches sides.	\`More weight^!\` His captors hoisted another stone\ronto his buckeling ribs.\r\`More weight^!\`	Power	
 Calvary	Cavalry	 	It is a victory which past centuries have never heard,\rinestimable riches have fallen into our hands and\rcountless of the enemy lie slain.	Melee	4
 Calvary2	Cavalry	 	Seven trumpets will sound before the end of the age\rand we will be chosen^!	Melee	4
 Calvary3	Cavalry	 	Fall in love dear maiden, while your lips are red,\rbefore you are cold, for there will be no tomorrow.	Melee	4
@@ -23,11 +23,11 @@ Crusader	Crusader	If drawn from the graveyard,\rdraw another unit from the grave
 Death	Death	Choose one unit in the opponent's field to send\rto the graveyard.	The dream fades, the curtain falls;\rThe first act as distant as the last.	Power	
 Death2	Death	Choose one unit in the opponent's field to send\rto the graveyard.	Remember that all men must die.	Power	
 EmperorDemise	Demise	If a King is on the field, set it aside until the start\rof the next round.	War is not a river, or a lake,\rbut an ocean of all that is evil.	Power	
-Enlightenment	Epiphany	Reveal two power cards in your opponent's hand.\rDraw a card.	Unless we love the truth, we cannot know it.	Power	
+Enlightenment	Epiphany	Reveal two power cards in your opponent's hand.\rDraw a unit card.	Unless we love the truth, we cannot know it.	Power	
 Execution	Execution	Send your King to the graveyard.\rIf your King was on the field, draw three units;\rif it was in your hand, draw four.	\`It is a far far better thing I do than I have ever done;\rit is a far far better rest I go to than I have ever\rknown.\`	Power	
 Famine	Famine	The strongest units from each player's hand are\rsent to the graveyard.	Gnawing, gnashing, tearing, cracking:\rThe bones of gods break too.	Power	
 Fate	Fate	Return the last card you played to your hand.	The die is cast. Or is it?	Power	
-Feast2	Feast	Attach to a unit; this unit now has plus two base\rstrength.	\`A Black Boar's head was set upon the table and \rall thoughts of matrimony turned to murder.\`	Power	
+Feast2	Feast	Attach to a unit; this unit now has plus two base\rstrength.	A Black Boar's head was set upon the table and \rall thoughts of matrimony turned to murder.	Power	
 Feast3	Feast	Attach to a unit; this unit now has plus two base\rstrength.	In the concert of Europe only the players change,\rthe instruments are forever death and cruelty.	Power	
 Feint	Feint	Send one of your units on the field to the\rgraveyard, return one of your units to your hand.\rYou can play this card after you've passed.	Let your plans be dark and impenetrable as the\rnight. When you move, fall like a thunderbolt.	Decoy	
 Fog	Fog	The Range row fights at half strength this round.	\`You can't see which way is up in here^!\`	Weather	
@@ -91,7 +91,7 @@ SunKing	Sun	Double the strength of a row.\rClear all weather effects, and draw a
 Telescope	Telescope	Add one base strength to two adjacent units\rin this row.	All truths are easy to understand once discovered;\rthe point is to discover them.	Ranged	1
 Square	Square	 	The walls of Sparta were its men, and its borders\rthe points of their spears.	Melee	3
 TerrorKing	Terror	Double the strength of a row.\rThe Siege row fights at half strength this round.\rSend a unit to the graveyard.	A life most simple and most ordinary and therefore\rmost terrible.	King	
-Tower	Tower	Add one base strength to two adjacent units in\rthis row.	\`It is said if a man acended the tower, he could\rbathe in the dew of heaven.\rHere is what remains of their arrogance.\`	Siege	1
+Tower	Tower	Add one base strength to two adjacent units in\rthis row.	\`It is said if a man ascended the tower, he could\rbathe in the dew of heaven.\rHere is what remains of their arrogance.\`	Siege	1
 TraitorKing	Traitor	Double the strength of a row.\rSwap one unit on the field with your opponent\rfor every King on the field.	\`It will have blood, they say. Blood will have blood.\`	King	
 Usury	Usury	Set aside one of your units on the field until the\rstart of the next round. Draw two cards at the\rend of this round.	\`What I have dreamed in an hour is worth more\rthan what you have done in four.\`	Power	
 Void	Void	The round ends after your next turn.	He wished they would shoot him quickly and have\rit done with.	Power	

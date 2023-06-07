@@ -17,7 +17,8 @@
 	SF-STRING  	   "Text" 	   	   "0"							;strength		need
 	SF-FILENAME    "FILENAME"     (string-append "C:\\Users\\Drew\\Documents\\Gimp\\cropped\\" "Frost.xcf") ;file
 	SF-FILENAME    "FILENAME"     (string-append "C:\\Users\\Drew\\Documents\\Gimp\\icons\\" "Weather.xcf") ;icon-file
-	SF-FILENAME    "FILENAME"     (string-append "C:\\Users\\Drew\\Documents\\Gimp\\out\\" "Frost") 	;out-file
+	SF-FILENAME    "FILENAME"     (string-append "C:\\Users\\Drew\\Documents\\Gimp\\out\\" "") 	;out-folder
+	SF-FILENAME    "FILENAME"     "Frost" 	;out-file
 	SF-TOGGLE      "EXPORT"        TRUE 	;export to png flag
 	SF-TOGGLE      "OutlineDark"       TRUE 	;outline dark (true) or Light(false flag
 
@@ -25,7 +26,7 @@
   (script-fu-menu-register "script-fu-compile-card" "<Image>/File/Create/Text")
 
   
-  (define (script-fu-compile-card titleText effect flavor gradient title-gradient strength file icon-file out-file outline-dark)
+  (define (script-fu-compile-card titleText effect flavor gradient title-gradient strength file icon-file out-folder out-file outline-dark)
     (let*
       (
         ; define our local variables
@@ -638,7 +639,7 @@
 		
 
 		; save xcf before merging down
-		(gimp-xcf-save 1 image layer (string-append out-file ".xcf") (string-append out-file ".xcf"))
+		(gimp-xcf-save 1 image layer (string-append (string-append out-folder "/xcf/unmerged/") (string-append out-file ".xcf")) (string-append (string-append out-folder "/xcf/unmerged/") (string-append out-file ".xcf")))
 
 		(gimp-message "merging down")
 		(gimp-image-raise-item-to-top image effect-back-layer)
@@ -657,11 +658,13 @@
 		)
 
 		(gimp-image-reorder-item image merge-layer effect-layer-group -1)
-		(gimp-layer-set-offsets effect-layer-group (+ buffer buffer) (+ (- image-height (/ image-height boxFac)) (/ (- (- (/ image-height boxFac) (* buffer 2)) (+ (* 2 buffer) real-flavor-height real-effect-height)) 2)))
-		
+		;(gimp-layer-set-offsets effect-layer-group (+ buffer buffer) (+ (- image-height (/ image-height boxFac)) (/ (- (- (/ image-height boxFac) (* buffer 2)) (+ (* 2 buffer) real-flavor-height real-effect-height)) 2)))
+		(gimp-layer-set-offsets effect-layer-group (+ buffer buffer) (- image-height (+ (* 2 buffer) (car (gimp-drawable-height merge-layer)))))
+
 		(set! layer   (car (gimp-image-merge-visible-layers image 1) ) )
+		(gimp-xcf-save 1 image layer (string-append (string-append out-folder "/xcf/") (string-append out-file ".xcf")) (string-append (string-append out-folder "/xcf/") (string-append out-file ".xcf")))
 		;uncomment to export pngs
-		(file-png-save 1 image layer (string-append out-file ".png") (string-append out-file ".png") 0 9 1 0 0 1 1)
+		(file-png-save 1 image layer (string-append (string-append out-folder "/png/") (string-append out-file ".png")) (string-append (string-append out-folder "/png/") (string-append out-file ".png")) 0 9 1 0 0 1 1)
 		(list image layer text effect-text flavor-text)
     )
   )
