@@ -300,7 +300,7 @@
 		(gimp-image-set-active-layer image title-second-outline-layer)
 		;Grow selection by another 6 pixels
 		;Fill with grey using bucket tool (color is black, with V = 15%)
-		(if (string=?  "TRUE" outline-dark) (gimp-context-set-foreground '(58 58 58)) (gimp-context-set-foreground '(191 191 191)))
+		(if (string=?  "TRUE" outline-dark) (gimp-context-set-foreground '(58 58 58)) (gimp-context-set-foreground '(140 140 140)))
 		
 		(gimp-context-set-line-width 24)
 		(gimp-drawable-edit-stroke-selection title-second-outline-layer)
@@ -435,7 +435,7 @@
 		(gimp-image-set-active-layer image strength-second-outline-layer)
 		;Grow selection by another 6 pixels
 		;Fill with grey using bucket tool (color is black, with V = 15%)
-		(if (string=?  "TRUE" outline-dark) (gimp-context-set-foreground '(58 58 58)) (gimp-context-set-foreground '(191 191 191)))
+		(if (string=?  "TRUE" outline-dark) (gimp-context-set-foreground '(58 58 58)) (gimp-context-set-foreground '(140 140 140)))
 		(gimp-context-set-line-width 24)
 		(gimp-drawable-edit-stroke-selection strength-second-outline-layer)
 		;Send to back of layers
