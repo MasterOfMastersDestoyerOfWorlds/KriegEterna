@@ -19,12 +19,13 @@
 	SF-FILENAME    "FILENAME"     (string-append "C:\\Users\\Drew\\Documents\\Gimp\\icons\\" "Weather.xcf") ;icon-file
 	SF-FILENAME    "FILENAME"     (string-append "C:\\Users\\Drew\\Documents\\Gimp\\out\\" "Frost") 	;out-file
 	SF-TOGGLE      "EXPORT"        TRUE 	;export to png flag
+	SF-TOGGLE      "OutlineDark"       TRUE 	;outline dark (true) or Light(false flag
 
   )
   (script-fu-menu-register "script-fu-compile-card" "<Image>/File/Create/Text")
 
   
-  (define (script-fu-compile-card titleText effect flavor gradient title-gradient strength file icon-file out-file)
+  (define (script-fu-compile-card titleText effect flavor gradient title-gradient strength file icon-file out-file outline-dark)
     (let*
       (
         ; define our local variables
@@ -90,7 +91,7 @@
 	  ;;Cropping
 	  ;Ratio is h px with 36px margin
 	  
-	  (gimp-message "no variable TEST!")
+	  (gimp-message  outline-dark)
 	  
 	  (set! image-width   (car (gimp-image-width  image) ) )
 	  (set! image-height  (car (gimp-image-height image) ) )
@@ -275,13 +276,13 @@
 		;Select all title text using “Alpha to selection”
 		(gimp-image-select-item image 0 text)
 		;Create new layer which is filled with transparency
-		(set! title-first-outline-layer (car (gimp-layer-new image (+ (/ buffer 2) (car (gimp-drawable-width  text) )) (* 0.11616161616 image-height) 1 "title-first-outline-layer" 100 0)))
-		(gimp-layer-set-offsets title-first-outline-layer  (* 2.2 buffer) (* 2.2 buffer))
+		(set! title-first-outline-layer (car (gimp-layer-new image title-width title-height 1 "title-first-outline-layer" 100 0)))
+		(gimp-layer-set-offsets title-first-outline-layer (* 2 buffer) (* 2 buffer))
 		(gimp-image-insert-layer image title-first-outline-layer 0 (car (gimp-image-get-item-position image layer)))
 		(gimp-image-set-active-layer image title-first-outline-layer)
 		;Grow selection by 6 pixels
 		;Fill with grey using bucket tool (color is black, with V = 25%)
-		(gimp-context-set-foreground '(74 74 74))
+		(if (string=?  "TRUE" outline-dark) (gimp-context-set-foreground '(74 74 74)) (gimp-context-set-foreground '(255 255 255)))
 		(gimp-context-set-stroke-method 0)
 		(gimp-context-set-line-width 12)
 		(gimp-context-set-line-join-style 1)
@@ -293,13 +294,14 @@
 		;Use current selection (from previous step)
 		(gimp-image-select-item image 0 text)
 		;Create new layer which is filled with transparency
-		(set! title-second-outline-layer (car (gimp-layer-new image (+ (/ buffer 2) (car (gimp-drawable-width  text) )) (* 0.11616161616 image-height) 1 "title-second-outline-layer" 100 0)))
-		(gimp-layer-set-offsets title-second-outline-layer  (* 2.2 buffer) (* 2.2 buffer))
+		(set! title-second-outline-layer (car (gimp-layer-new image title-width title-height 1 "title-second-outline-layer" 100 0)))
+		(gimp-layer-set-offsets title-second-outline-layer (* 2 buffer) (* 2 buffer))
 		(gimp-image-insert-layer image title-second-outline-layer 0 (car (gimp-image-get-item-position image layer)))
 		(gimp-image-set-active-layer image title-second-outline-layer)
 		;Grow selection by another 6 pixels
 		;Fill with grey using bucket tool (color is black, with V = 15%)
-		(gimp-context-set-foreground '(58 58 58))
+		(if (string=?  "TRUE" outline-dark) (gimp-context-set-foreground '(58 58 58)) (gimp-context-set-foreground '(191 191 191)))
+		
 		(gimp-context-set-line-width 24)
 		(gimp-drawable-edit-stroke-selection title-second-outline-layer)
 		;Send to back of layers
@@ -329,7 +331,7 @@
 		
 		;Render Title Box
 		(gimp-message "Title Box")
-		(set! title-back-layer (car (gimp-layer-new image (+ (/ buffer 2) (car (gimp-drawable-width  text) )) (* 0.11616161616 image-height) 1 "desc background" back-opacity 0)))
+		(set! title-back-layer (car (gimp-layer-new image (+ (/ buffer 2) (car (gimp-drawable-width  text) )) (* 0.11616161616 image-height) 1 "title background" back-opacity 0)))
 		(gimp-image-insert-layer image title-back-layer 0 (car (gimp-image-get-item-position image layer)))
 		(gimp-image-set-active-layer image title-back-layer)
 		(gimp-layer-set-offsets title-back-layer (* 2 buffer) (* 2 buffer))
@@ -409,13 +411,13 @@
 		;Select all strength text using “Alpha to selection”
 		(gimp-image-select-item image 0 strength-text)
 		;Create new layer which is filled with transparency
-		(set! strength-first-outline-layer (car (gimp-layer-new image (+ (/ buffer 2) (car (gimp-drawable-width  strength-text) )) (* 0.11616161616 image-height) 1 "strength-first-outline-layer" 100 0)))
-		(gimp-layer-set-offsets strength-first-outline-layer  (- (- image-width (/ image-width 6.2))  buffer) (+ buffer (/ image-width 4.3)))
+		(set! strength-first-outline-layer (car (gimp-layer-new image (* 0.52 strength-width) (* 0.8 strength-height) 1 "strength-first-outline-layer" 100 0)))
+		(gimp-layer-set-offsets strength-first-outline-layer  (- (- image-width (/ image-width 5.85))  buffer) (+ buffer (/ image-width 5)))
 		(gimp-image-insert-layer image strength-first-outline-layer 0 (car (gimp-image-get-item-position image layer)))
 		(gimp-image-set-active-layer image strength-first-outline-layer)
 		;Grow selection by 6 pixels
 		;Fill with grey using bucket tool (color is black, with V = 25%)
-		(gimp-context-set-foreground '(74 74 74))
+		(if (string=?  "TRUE" outline-dark) (gimp-context-set-foreground '(74 74 74)) (gimp-context-set-foreground '(216 216 216)))
 		(gimp-context-set-stroke-method 0)
 		(gimp-context-set-line-width 12)
 		(gimp-context-set-line-join-style 1)
@@ -427,13 +429,13 @@
 		;Use current selection (from previous step)
 		(gimp-image-select-item image 0 strength-text)
 		;Create new layer which is filled with transparency
-		(set! strength-second-outline-layer (car (gimp-layer-new image (+ (/ buffer 2) (car (gimp-drawable-width  strength-text) )) (* 0.11616161616 image-height) 1 "strength-second-outline-layer" 100 0)))
-		(gimp-layer-set-offsets strength-second-outline-layer  (- (- image-width (/ image-width 6.2))  buffer) (+ buffer (/ image-width 4.3)))
+		(set! strength-second-outline-layer (car (gimp-layer-new image (* 0.52 strength-width) (* 0.8 strength-height) 1 "strength-second-outline-layer" 100 0)))
+		(gimp-layer-set-offsets strength-second-outline-layer  (- (- image-width (/ image-width 5.85))  buffer) (+ buffer (/ image-width 5)))
 		(gimp-image-insert-layer image strength-second-outline-layer 0 (car (gimp-image-get-item-position image layer)))
 		(gimp-image-set-active-layer image strength-second-outline-layer)
 		;Grow selection by another 6 pixels
 		;Fill with grey using bucket tool (color is black, with V = 15%)
-		(gimp-context-set-foreground '(58 58 58))
+		(if (string=?  "TRUE" outline-dark) (gimp-context-set-foreground '(58 58 58)) (gimp-context-set-foreground '(191 191 191)))
 		(gimp-context-set-line-width 24)
 		(gimp-drawable-edit-stroke-selection strength-second-outline-layer)
 		;Send to back of layers

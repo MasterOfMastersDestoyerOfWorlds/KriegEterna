@@ -1,6 +1,25 @@
 SET WSPACE=%~dp0
 SET "WSPACE=%WSPACE:\=\\%"
-setlocal enableDelayedExpansion
+setlocal EnableDelayedExpansion
+
+
 for /F "tokens=1-6 delims=	" %%A in (CardSheet.tsv) do (
-	gimp-console-2.10.exe -i -b "(script-fu-compile-card \"%%B\" \"%%C\" \"%%D\" \"%%E\" \"%%E-Title\" \"%%F\" \"%WSPACE%cropped\\%%A.xcf\" \"%WSPACE%icons\\embossed\\%%E.xcf\" \"%WSPACE%out\\%%A\")" -b "(gimp-quit 0)"
+	if "%%E"=="Ranged" (
+		SET outlinedark=TRUE
+	) else if "%%E"=="Melee" (
+		SET outlinedark=TRUE
+	) else if "%%E"=="Siege" (
+		SET outlinedark=TRUE
+	) else if "%%E"=="Power" (
+		SET outlinedark=FALSE
+	) else if "%%E"=="King" (
+		SET outlinedark=TRUE
+	) else if "%%E"=="Decoy" (
+		SET outlinedark=FALSE
+	) else if "%%E"=="Spy" (
+		SET outlinedark=FALSE
+	) else if "%%E"=="Weather" (
+		SET outlinedark=FALSE
+	)
+	gimp-console-2.10.exe -i -b "(script-fu-compile-card \"%%B\" \"%%C\" \"%%D\" \"%%E\" \"%%E-Title\" \"%%F\" \"%WSPACE%cropped\\%%A.xcf\" \"%WSPACE%icons\\embossed\\%%E.xcf\" \"%WSPACE%out\\%%A\" \"!outlinedark!\")" -b "(gimp-quit 0)"
 )
