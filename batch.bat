@@ -15,7 +15,7 @@ for /F "tokens=1-6 delims=	" %%A in (CardSheet.tsv) do (
 	) else if "%%E"=="King" (
 		SET outlinedark=TRUE
 	) else if "%%E"=="Decoy" (
-		SET outlinedark=FALSE
+		SET outlinedark=TRUE
 	) else if "%%E"=="Spy" (
 		SET outlinedark=FALSE
 	) else if "%%E"=="Weather" (
