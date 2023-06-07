@@ -13,6 +13,7 @@
 	SF-STRING      "Text"          "effect desc"   				;effect	    	need
 	SF-STRING      "Text"          "flavor text"  				;flavor			need
 	SF-GRADIENT    "Gradient" 	   "Weather"					;gradient		need
+	SF-GRADIENT    "Gradient" 	   "Weather"					;title-gradient		need
 	SF-STRING  	   "Text" 	   	   "0"							;strength		need
 	SF-FILENAME    "FILENAME"     (string-append "C:\\Users\\Drew\\Documents\\Gimp\\cropped\\" "Frost.xcf") ;file
 	SF-FILENAME    "FILENAME"     (string-append "C:\\Users\\Drew\\Documents\\Gimp\\icons\\" "Weather.xcf") ;icon-file
@@ -23,7 +24,7 @@
   (script-fu-menu-register "script-fu-compile-card" "<Image>/File/Create/Text")
 
   
-  (define (script-fu-compile-card titleText effect flavor gradient strength file icon-file out-file)
+  (define (script-fu-compile-card titleText effect flavor gradient title-gradient strength file icon-file out-file)
     (let*
       (
         ; define our local variables
@@ -66,6 +67,9 @@
 		(desc-size)
         (layer)
 		(title-back-layer)
+		(title-first-outline-layer)
+		(title-second-outline-layer)
+		(title-gradient-layer)
 		(desc-layer)
 		(flavor-layer)
 		(effect-layer-group)
@@ -75,6 +79,9 @@
 		(icon-back-layer)
 		(strength-layer)
 		(strength-back-layer)
+		(strength-first-outline-layer)
+		(strength-second-outline-layer)
+		(strength-gradient-layer)
 		(strength-size)
 		(strength-text)
 		(effect-shadow-layer)
@@ -204,6 +211,7 @@
 	  ;;Title  formatting
 	  (gimp-message "Title")
 	  (set! title-size (/ image-width 5.5)) 
+	  ;Make vanilla title text
       (set! text
                     (car
                           (gimp-text-fontname
@@ -215,8 +223,8 @@
                           title-size PIXELS
                           titleFont)
                       )
-        )
-		
+        )	
+
 		
 		(set! title-width   (car (gimp-drawable-width  text) ) )
 		(set! title-height  (car (gimp-drawable-height text) ) )
@@ -224,38 +232,101 @@
 		(set! title-width  (+ title-width  buffer buffer) )
 		(gimp-layer-resize layer title-width title-height 0 0)
 		(gimp-layer-set-offsets text (* 2.2 buffer) (* 2.2 buffer))
-		(gimp-image-select-item image 0 text)
-
-		(script-fu-drop-shadow image text 12 12 4 '(0 0 0) 100 0)
+		
+		
+		(script-fu-drop-shadow image text 12 12 4 '(0 0 0) 0 0)
 		(gimp-floating-sel-to-layer text)
-
-
-		;Render the gradient over the text
+		;Need to do this to make the text layer into a normal layer so that drop shadow script works, so do any text changes before this line
+		(gimp-item-set-name (car (gimp-image-get-layer-by-name image "Drop Shadow")) "fake-shadow")
+		
+		(gimp-item-set-name text "title-text")
+		(gimp-image-set-active-layer image text)
+		(gimp-image-raise-item-to-top image text)
+		(gimp-image-select-item image 0 text)
+		;Create gradient
+		(gimp-message "Title Gradient")
+		;Select original title text using “Alpha to selection” (i.e. don’t select any outlines or shadow)
+		;Create new layer which is filled with transparency
+		;Use gradient tool
+			;First color is target color with V = 50% (darken it)
+			;Middle color is target color
+			;Last color is target color with saturation changed to 30%
+			;Now change the midpoints according to the diagram below (red arrows are midpoints, circles are stop points)
+			;Send to top of layers
 		(gimp-image-undo-disable image)
 		(gimp-context-push)
 		
 		(gimp-image-select-item image 0 text)
-		(gimp-context-set-gradient gradient)
+		(gimp-context-set-gradient title-gradient)
 		
 		(gimp-message (number->string image-height))
 		(gimp-message (number->string (* title-height (/ 7 9))))
 		(gimp-message (number->string (string-length titleText)))
 		(gimp-message (number->string (- (* 5 (string-length titleText)) 10)))
-		(gimp-drawable-edit-gradient-fill text GRADIENT-LINEAR 0 FALSE 0 0 TRUE 0 0 (/ title-width (- (* 5 (string-length titleText)) 10)) (/ image-height 7.729))
+		;(gimp-drawable-edit-gradient-fill text GRADIENT-LINEAR 0 FALSE 0 0 TRUE 0 0 (/ title-width (- (* 5 (string-length titleText)) 10)) (/ image-height 7.729))
+		(gimp-drawable-edit-gradient-fill text GRADIENT-LINEAR 0 FALSE 0 0 TRUE 0 0 0 (* 0.11616161616 image-height))
 		(gimp-drawable-hue-saturation text 0 0 0 50 0)
-		(gimp-selection-grow image 2)
-		(gimp-selection-border image 2)
-		(gimp-drawable-edit-fill text 1)
 
-
+		
+		;Create first outline
+		(gimp-message "Title First Outline")
+		;Select all title text using “Alpha to selection”
+		(gimp-image-select-item image 0 text)
+		;Create new layer which is filled with transparency
+		(set! title-first-outline-layer (car (gimp-layer-new image (+ (/ buffer 2) (car (gimp-drawable-width  text) )) (* 0.11616161616 image-height) 1 "title-first-outline-layer" 100 0)))
+		(gimp-layer-set-offsets title-first-outline-layer  (* 2.2 buffer) (* 2.2 buffer))
+		(gimp-image-insert-layer image title-first-outline-layer 0 (car (gimp-image-get-item-position image layer)))
+		(gimp-image-set-active-layer image title-first-outline-layer)
+		;Grow selection by 6 pixels
+		;Fill with grey using bucket tool (color is black, with V = 25%)
+		(gimp-context-set-foreground '(74 74 74))
+		(gimp-context-set-stroke-method 0)
+		(gimp-context-set-line-width 12)
+		(gimp-context-set-line-join-style 1)
+		(gimp-drawable-edit-stroke-selection title-first-outline-layer)
+		;Send to back of layers
+		
+		;Create 2nd outline
+		(gimp-message "Title Second Outline")
+		;Use current selection (from previous step)
+		(gimp-image-select-item image 0 text)
+		;Create new layer which is filled with transparency
+		(set! title-second-outline-layer (car (gimp-layer-new image (+ (/ buffer 2) (car (gimp-drawable-width  text) )) (* 0.11616161616 image-height) 1 "title-second-outline-layer" 100 0)))
+		(gimp-layer-set-offsets title-second-outline-layer  (* 2.2 buffer) (* 2.2 buffer))
+		(gimp-image-insert-layer image title-second-outline-layer 0 (car (gimp-image-get-item-position image layer)))
+		(gimp-image-set-active-layer image title-second-outline-layer)
+		;Grow selection by another 6 pixels
+		;Fill with grey using bucket tool (color is black, with V = 15%)
+		(gimp-context-set-foreground '(58 58 58))
+		(gimp-context-set-line-width 24)
+		(gimp-drawable-edit-stroke-selection title-second-outline-layer)
+		;Send to back of layers
+		
+		
+		;Create drop shadow
+		(gimp-message "Title Drop Shadow")
+		;Use current selection (from previous step)
+		;Create new layer which is filled with transparency
+		;Do not grow selection
+		;Fill with black using bucket tool
+		;Apply Gaussian filter with blur radius = 2
+		;Shift down and right roughly 6 pixels
+		;Send to back of layers
+		
+		(gimp-image-select-item image 0 title-second-outline-layer)
+		(script-fu-drop-shadow image title-second-outline-layer 6 6 2 '(0 0 0) 100 0)
+		;set the name so we don't have duplicates
 		(gimp-message "merging")
 		(gimp-item-set-name (car (gimp-image-get-layer-by-name image "Drop Shadow")) "text-layer-shadow")
+
+		;Delete / remove / hide the vanilla text so any kind of 1 pixel border goes away
 		
 		
 		(gimp-context-pop)
 		(gimp-image-undo-enable image)
 		
-		
+		;Render Title Box
+		(gimp-message "Title Box")
 		(set! title-back-layer (car (gimp-layer-new image (+ (/ buffer 2) (car (gimp-drawable-width  text) )) (* 0.11616161616 image-height) 1 "desc background" back-opacity 0)))
 		(gimp-image-insert-layer image title-back-layer 0 (car (gimp-image-get-item-position image layer)))
 		(gimp-image-set-active-layer image title-back-layer)
@@ -519,7 +590,8 @@
 		(gimp-layer-set-offsets effect-layer-group (+ buffer buffer) (+ (- image-height (/ image-height boxFac)) (/ (- (- (/ image-height boxFac) (* buffer 2)) (+ (* 2 buffer) real-flavor-height real-effect-height)) 2)))
 		
 		(set! layer   (car (gimp-image-merge-visible-layers image 1) ) )
-		(file-png-save 1 image layer (string-append out-file ".png") (string-append out-file ".png") 0 9 1 0 0 1 1)
+		;uncomment to export pngs
+		;(file-png-save 1 image layer (string-append out-file ".png") (string-append out-file ".png") 0 9 1 0 0 1 1)
 		(list image layer text effect-text flavor-text)
     )
   )
