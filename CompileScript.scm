@@ -243,6 +243,8 @@
 		(gimp-image-set-active-layer image text)
 		(gimp-image-raise-item-to-top image text)
 		(gimp-image-select-item image 0 text)
+		
+		
 		;Create gradient
 		(gimp-message "Title Gradient")
 		;Select original title text using “Alpha to selection” (i.e. don’t select any outlines or shadow)
@@ -372,27 +374,93 @@
 		(gimp-layer-resize strength-layer strength-width strength-height 0 0)
 		(gimp-layer-set-offsets strength-text (- (- image-width (/ image-width 6.2))  buffer) (+ buffer (/ image-width 4.3)))
 		
-		(script-fu-drop-shadow image strength-text 12 12 4 '(0 0 0) 100 0)
+		(script-fu-drop-shadow image strength-text 12 12 4 '(0 0 0) 0 0)
 		(gimp-floating-sel-to-layer strength-text)
+		;Need to do this to make the text layer into a normal layer so that drop shadow script works, so do any text changes before this line
+		(gimp-item-set-name (car (gimp-image-get-layer-by-name image "Drop Shadow")) "fake-strength-shadow")
 
-		;Render the gradient over the text
+		(gimp-item-set-name strength-text "strength-text")
+		(gimp-image-set-active-layer image strength-text)
+		(gimp-image-raise-item-to-top image strength-text)
+		(gimp-image-select-item image 0 strength-text)
+		
+		
+		;Create gradient
+		(gimp-message "Strength Gradient")
+		;Select original title text using “Alpha to selection” (i.e. don’t select any outlines or shadow)
+		;Create new layer which is filled with transparency
+		;Use gradient tool
+			;First color is target color with V = 50% (darken it)
+			;Middle color is target color
+			;Last color is target color with saturation changed to 30%
+			;Now change the midpoints according to the diagram below (red arrows are midpoints, circles are stop points)
+			;Send to top of layers
 		(gimp-image-undo-disable image)
 		(gimp-context-push)
 		
 		(gimp-image-select-item image 0 strength-text)
-		(gimp-context-set-gradient gradient)
-		(gimp-drawable-edit-gradient-fill strength-text GRADIENT-LINEAR 0 FALSE 0 0 TRUE 0 0 (/ strength-width yfact) (* strength-height (/ 7 9)))
+		(gimp-context-set-gradient title-gradient)
+		;(gimp-drawable-edit-gradient-fill strength-text GRADIENT-LINEAR 0 FALSE 0 0 TRUE 0 0 (/ strength-width yfact) (* strength-height (/ 7 9)))
+		(gimp-drawable-edit-gradient-fill strength-text GRADIENT-LINEAR 0 FALSE 0 0 TRUE 0 0 0 (- strength-height buffer (/ buffer 2)))
 		(gimp-drawable-hue-saturation strength-text 0 0 0 50 0)
-		(gimp-selection-grow image 2)
-		(gimp-selection-border image 2)
-		(gimp-drawable-edit-fill strength-text 1)
 		
+				;Create first outline
+		(gimp-message "Strength First Outline")
+		;Select all strength text using “Alpha to selection”
+		(gimp-image-select-item image 0 strength-text)
+		;Create new layer which is filled with transparency
+		(set! strength-first-outline-layer (car (gimp-layer-new image (+ (/ buffer 2) (car (gimp-drawable-width  strength-text) )) (* 0.11616161616 image-height) 1 "strength-first-outline-layer" 100 0)))
+		(gimp-layer-set-offsets strength-first-outline-layer  (- (- image-width (/ image-width 6.2))  buffer) (+ buffer (/ image-width 4.3)))
+		(gimp-image-insert-layer image strength-first-outline-layer 0 (car (gimp-image-get-item-position image layer)))
+		(gimp-image-set-active-layer image strength-first-outline-layer)
+		;Grow selection by 6 pixels
+		;Fill with grey using bucket tool (color is black, with V = 25%)
+		(gimp-context-set-foreground '(74 74 74))
+		(gimp-context-set-stroke-method 0)
+		(gimp-context-set-line-width 12)
+		(gimp-context-set-line-join-style 1)
+		(gimp-drawable-edit-stroke-selection strength-first-outline-layer)
+		;Send to back of layers
+		
+		;Create 2nd outline
+		(gimp-message "Strength Second Outline")
+		;Use current selection (from previous step)
+		(gimp-image-select-item image 0 strength-text)
+		;Create new layer which is filled with transparency
+		(set! strength-second-outline-layer (car (gimp-layer-new image (+ (/ buffer 2) (car (gimp-drawable-width  strength-text) )) (* 0.11616161616 image-height) 1 "strength-second-outline-layer" 100 0)))
+		(gimp-layer-set-offsets strength-second-outline-layer  (- (- image-width (/ image-width 6.2))  buffer) (+ buffer (/ image-width 4.3)))
+		(gimp-image-insert-layer image strength-second-outline-layer 0 (car (gimp-image-get-item-position image layer)))
+		(gimp-image-set-active-layer image strength-second-outline-layer)
+		;Grow selection by another 6 pixels
+		;Fill with grey using bucket tool (color is black, with V = 15%)
+		(gimp-context-set-foreground '(58 58 58))
+		(gimp-context-set-line-width 24)
+		(gimp-drawable-edit-stroke-selection strength-second-outline-layer)
+		;Send to back of layers
+		
+		
+		;Create drop shadow
+		(gimp-message "Strength Drop Shadow")
+		;Use current selection (from previous step)
+		;Create new layer which is filled with transparency
+		;Do not grow selection
+		;Fill with black using bucket tool
+		;Apply Gaussian filter with blur radius = 2
+		;Shift down and right roughly 6 pixels
+		;Send to back of layers
+		
+		(gimp-image-select-item image 0 strength-second-outline-layer)
+		(script-fu-drop-shadow image strength-second-outline-layer 6 6 2 '(0 0 0) 100 0)
+		;set the name so we don't have duplicates
 		(gimp-message "merging")
-		(gimp-item-set-name (car (gimp-image-get-layer-by-name image "Drop Shadow")) "strength-text-layer-shadow")
-
+		(gimp-item-set-name (car (gimp-image-get-layer-by-name image "Drop Shadow")) "strength-layer-shadow")
+		
 		(gimp-context-pop)
 		(gimp-image-undo-enable image)
 		
+		
+		;Render Strength Box
+		(gimp-message "Strength Box")
 		(set! strength-back-layer (car (gimp-layer-new image (* 0.52 strength-width) (* 0.8 strength-height) 1 "desc background" back-opacity 0)))
 		(gimp-image-insert-layer image strength-back-layer 0 (car (gimp-image-get-item-position image layer)))
 		(gimp-layer-set-offsets strength-back-layer (- (- image-width (/ image-width 5.85))  buffer) (+ buffer (/ image-width 5)))
@@ -591,7 +659,7 @@
 		
 		(set! layer   (car (gimp-image-merge-visible-layers image 1) ) )
 		;uncomment to export pngs
-		;(file-png-save 1 image layer (string-append out-file ".png") (string-append out-file ".png") 0 9 1 0 0 1 1)
+		(file-png-save 1 image layer (string-append out-file ".png") (string-append out-file ".png") 0 9 1 0 0 1 1)
 		(list image layer text effect-text flavor-text)
     )
   )
