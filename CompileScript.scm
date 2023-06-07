@@ -417,7 +417,7 @@
 		(gimp-image-set-active-layer image strength-first-outline-layer)
 		;Grow selection by 6 pixels
 		;Fill with grey using bucket tool (color is black, with V = 25%)
-		(if (string=?  "TRUE" outline-dark) (gimp-context-set-foreground '(74 74 74)) (gimp-context-set-foreground '(216 216 216)))
+		(if (string=?  "TRUE" outline-dark) (gimp-context-set-foreground '(74 74 74)) (gimp-context-set-foreground '(255 255 255)))
 		(gimp-context-set-stroke-method 0)
 		(gimp-context-set-line-width 12)
 		(gimp-context-set-line-join-style 1)
