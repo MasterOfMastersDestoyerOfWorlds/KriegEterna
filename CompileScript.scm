@@ -233,8 +233,8 @@
 		(set! title-height (+ title-height buffer buffer) )
 		(set! title-width  (+ title-width  buffer buffer) )
 		(gimp-layer-resize layer title-width title-height 0 0)
-		(gimp-layer-set-offsets text (* 2.2 buffer) (* 2.2 buffer))
-		
+		(gimp-layer-set-offsets text (* 2.35 buffer) (* 2.25 buffer))
+		(gimp-text-layer-set-letter-spacing text 10)
 		
 		(script-fu-drop-shadow image text 12 12 4 '(0 0 0) 0 0)
 		(gimp-floating-sel-to-layer text)
@@ -283,7 +283,7 @@
 		(gimp-image-set-active-layer image title-first-outline-layer)
 		;Grow selection by 6 pixels
 		;Fill with grey using bucket tool (color is black, with V = 25%)
-		(if (string=?  "TRUE" outline-dark) (gimp-context-set-foreground '(74 74 74)) (gimp-context-set-foreground '(255 255 255)))
+		(if (string=?  "TRUE" outline-dark) (gimp-context-set-foreground '(61 61 61)) (gimp-context-set-foreground '(229 229 229)))
 		(gimp-context-set-stroke-method 0)
 		(gimp-context-set-line-width 12)
 		(gimp-context-set-line-join-style 1)
@@ -301,7 +301,7 @@
 		(gimp-image-set-active-layer image title-second-outline-layer)
 		;Grow selection by another 6 pixels
 		;Fill with grey using bucket tool (color is black, with V = 15%)
-		(if (string=?  "TRUE" outline-dark) (gimp-context-set-foreground '(58 58 58)) (gimp-context-set-foreground '(140 140 140)))
+		(if (string=?  "TRUE" outline-dark) (gimp-context-set-foreground '(45 45 45)) (gimp-context-set-foreground '(140 140 140)))
 		
 		(gimp-context-set-line-width 24)
 		(gimp-drawable-edit-stroke-selection title-second-outline-layer)
@@ -332,7 +332,7 @@
 		
 		;Render Title Box
 		(gimp-message "Title Box")
-		(set! title-back-layer (car (gimp-layer-new image (+ (/ buffer 2) (car (gimp-drawable-width  text) )) (* 0.11616161616 image-height) 1 "title background" back-opacity 0)))
+		(set! title-back-layer (car (gimp-layer-new image (+ (/ buffer 1.25) (car (gimp-drawable-width  text) )) (* 0.125 image-height) 1 "title background" back-opacity 0)))
 		(gimp-image-insert-layer image title-back-layer 0 (car (gimp-image-get-item-position image layer)))
 		(gimp-image-set-active-layer image title-back-layer)
 		(gimp-layer-set-offsets title-back-layer (* 2 buffer) (* 2 buffer))
@@ -418,7 +418,7 @@
 		(gimp-image-set-active-layer image strength-first-outline-layer)
 		;Grow selection by 6 pixels
 		;Fill with grey using bucket tool (color is black, with V = 25%)
-		(if (string=?  "TRUE" outline-dark) (gimp-context-set-foreground '(74 74 74)) (gimp-context-set-foreground '(255 255 255)))
+		(if (string=?  "TRUE" outline-dark) (gimp-context-set-foreground '(61 61 61)) (gimp-context-set-foreground '(229 229 229)))
 		(gimp-context-set-stroke-method 0)
 		(gimp-context-set-line-width 12)
 		(gimp-context-set-line-join-style 1)
@@ -436,7 +436,7 @@
 		(gimp-image-set-active-layer image strength-second-outline-layer)
 		;Grow selection by another 6 pixels
 		;Fill with grey using bucket tool (color is black, with V = 15%)
-		(if (string=?  "TRUE" outline-dark) (gimp-context-set-foreground '(58 58 58)) (gimp-context-set-foreground '(140 140 140)))
+		(if (string=?  "TRUE" outline-dark) (gimp-context-set-foreground '(45 45 45)) (gimp-context-set-foreground '(140 140 140)))
 		(gimp-context-set-line-width 24)
 		(gimp-drawable-edit-stroke-selection strength-second-outline-layer)
 		;Send to back of layers

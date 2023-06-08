@@ -22,7 +22,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
 CreationTime: 781469486
-ModificationTime: 1685675167
+ModificationTime: 1686197994
 PfmFamily: 81
 TTFWeight: -1
 TTFWidth: 5
@@ -640,7 +640,7 @@ EndChar
 
 StartChar: .null
 Encoding: 215 215 1
-AltUni2: 000141.ffffffff.0 0000fd.ffffffff.0 000141.ffffffff.0 0000fd.ffffffff.0
+AltUni2: 0000fd.ffffffff.0 000141.ffffffff.0 0000fd.ffffffff.0 000141.ffffffff.0
 Width: 0
 GlyphClass: 1
 Flags: W
@@ -1907,58 +1907,21 @@ Width: 301
 GlyphClass: 1
 InSpiro: 1
 Flags: WO
-TtInstrs:
-NPUSHB
- 12
- 3
- 2
- 1
- 45
- 4
- 0
- 4
- 3
- 0
- 1
- 20
- 120
-SVTCA[y-axis]
-SROUND
-MIAP[rnd]
-RTG
-MIAP[rnd]
-ALIGNRP
-SVTCA[x-axis]
-MDAP[rnd]
-ALIGNRP
-MIRP[rp0,min,rnd,black]
-ALIGNRP
-SVTCA[y-axis]
-SVTCA[x-axis]
-MDAP[no-rnd]
-IUP[x]
-IUP[y]
-PUSHB_3
- 5
- 3
- 5
-CALL
-EndTTInstrs
 LayerCount: 2
 Fore
 SplineSet
-199.614257812 95.83984375 m 1,0,-1
- 107.225585938 4.6396484375 l 1,1,-1
- 107.225585938 641.0859375 l 1,2,-1
- 59.3193359375 700.365234375 l 1,3,-1
- 199.614257812 700.365234375 l 1,4,-1
- 199.614257812 95.83984375 l 1,0,-1
+191.615234375 93.83984375 m 1,0,-1
+ 115 5.5546875 l 1,1,-1
+ 115 642 l 1,2,-1
+ 67.09375 701.280273438 l 1,3,-1
+ 191.615234375 698.365234375 l 1,4,-1
+ 191.615234375 93.83984375 l 1,0,-1
   Spiro
-    199.615 95.8396 v
-    107.225 4.63993 v
-    107.225 641.085 v
-    59.319 700.365 v
-    199.615 700.365 v
+    191.615 93.8396 v
+    115 5.55493 v
+    115 642 v
+    67.094 701.28 v
+    191.615 698.365 v
     0 0 z
   EndSpiro
 EndSplineSet
