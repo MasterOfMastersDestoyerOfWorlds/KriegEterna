@@ -1,5 +1,3 @@
-
-SunKing	Sun	Double the strength of a row.\rClear all weather effects, and draw a card.	\`L'Etat, c'est moi.\`	King	
 Archer	Archer	 	\`Please just a little more^! This dream is too sweet for\rwaking^!\` Didn't you know all dreams end?	Ranged	2
 Archer2	Archer	 	\`He was a good outlaw, and did poor men much\rgood.\`	Ranged	2
 Armada	Armada	 	I will make thee a terror, and thou shall be no more:\rthough sought for, thou shall never be found again.	Siege	5
@@ -86,10 +84,11 @@ Siege3	Siege	 	\`A horse, A horse. My kingdom for a horse^!\`	Siege	2
 Smuggler	Smuggler	Draw two cards, your opponent draws one.	\`Trinkets and spices from the far reaches of the\rempire^!\` (Best not ask why the prices are so low.)	Spy	
 Soldier	Soldier	 	\`Let the dead bury their dead, but while I have a life,\rI must live.\`	Ranged	2
 Soldier2	Soldier	 	If no one fought except on his own conviction,\rthere would be no wars	Ranged	2
-Spy	Spy	Play in the opponents Melee row, then draw\rtwo cards.	Three may keep a secret, if two are dead.	Spy	1
+Spy	Spy	Play in the opponent's Melee row, then draw\rtwo cards.	Three may keep a secret, if two are dead.	Spy	2
 Square	Square	 	The walls of Sparta were its men, and its borders\rthe points of their spears.	Melee	3
 Storm	Storm	The Siege row fights at half strength this round.	Hell is not fire; Hell is mud.	Weather	
 Styx	Styx	Pick a card from the top three in the power\rgraveyard, and add that card to your hand.	\`Not all the gold, that is beneath the moon,\rOr ever hath been, of these toil-worn souls\rMight purchase rest for one.\`	Power	
+SunKing	Sun	Double the strength of a row.\rClear all weather effects, and draw a card.	\`L'Etat, c'est moi.\`	King	
 Telescope	Telescope	Add one base strength to two adjacent units\rin this row.	All truths are easy to understand once discovered;\rthe point is to discover them.	Ranged	1
 TerrorKing	Terror	Double the strength of a row.\rThe Siege row fights at half strength this round.\rSend a unit to the graveyard.	A life most simple and most ordinary and therefore\rmost terrible.	King	
 Tower	Tower	Add one base strength to two adjacent units in\rthis row.	\`It is said if a man ascended the tower, he could\rbathe in the dew of heaven.\rHere is what remains of their arrogance.\`	Siege	1
