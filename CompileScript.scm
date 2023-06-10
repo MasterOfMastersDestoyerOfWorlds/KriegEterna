@@ -42,7 +42,7 @@
 		(real-effect-height 0)
 		(strength-width 10)
 		(strength-height 10)
-		(back-opacity 70)
+		(back-opacity 80); was 70
 		(flavor-width 10)
 		(flavor-height 10)
 		(real-flavor-height 0)
@@ -283,7 +283,7 @@
 		(gimp-image-set-active-layer image title-first-outline-layer)
 		;Grow selection by 6 pixels
 		;Fill with grey using bucket tool (color is black, with V = 25%)
-		(if (string=?  "TRUE" outline-dark) (gimp-context-set-foreground '(61 61 61)) (gimp-context-set-foreground '(229 229 229)))
+		(if (string=?  "TRUE" outline-dark) (gimp-context-set-foreground '(61 61 61)) (if (string=?  "MID" outline-dark) (gimp-context-set-foreground '(100 100 100)) (gimp-context-set-foreground '(229 229 229))))
 		(gimp-context-set-stroke-method 0)
 		(gimp-context-set-line-width 12)
 		(gimp-context-set-line-join-style 1)
@@ -301,7 +301,7 @@
 		(gimp-image-set-active-layer image title-second-outline-layer)
 		;Grow selection by another 6 pixels
 		;Fill with grey using bucket tool (color is black, with V = 15%)
-		(if (string=?  "TRUE" outline-dark) (gimp-context-set-foreground '(45 45 45)) (gimp-context-set-foreground '(140 140 140)))
+		(if (string=?  "TRUE" outline-dark) (gimp-context-set-foreground '(45 45 45)) (if (string=?  "MID" outline-dark) (gimp-context-set-foreground '(74 74 74)) (gimp-context-set-foreground '(140 140 140))))
 		
 		(gimp-context-set-line-width 24)
 		(gimp-drawable-edit-stroke-selection title-second-outline-layer)
@@ -407,7 +407,7 @@
 		(gimp-drawable-edit-gradient-fill strength-text GRADIENT-LINEAR 0 FALSE 0 0 TRUE 0 0 0 (- strength-height buffer (/ buffer 2)))
 		(gimp-drawable-hue-saturation strength-text 0 0 0 50 0)
 		
-				;Create first outline
+		;Create first outline
 		(gimp-message "Strength First Outline")
 		;Select all strength text using “Alpha to selection”
 		(gimp-image-select-item image 0 strength-text)
@@ -565,7 +565,7 @@
                       )
         )
 		
-		(gimp-message "reee")
+		(gimp-message "Flavor Text")
 		(set! flavor-width   (car (gimp-drawable-width  flavor-text) ) )
 		(set! flavor-height  (car (gimp-drawable-height flavor-text) ) )
 		(set! real-flavor-height flavor-height)
@@ -599,9 +599,7 @@
 		(gimp-image-undo-enable image)
 		
 		
-		(gimp-message (number->string (+ (* 2 buffer) real-flavor-height real-effect-height)))
-		(gimp-message "max")
-		;Text Box min 442
+		(gimp-message "Description Text Box")
 
 		(if (> (string-length effect) 1)
 			(set! effect-back-layer (car (gimp-layer-new image (- (- image-width (+ buffer buffer)) (+ buffer buffer)) (+ (* 2 buffer) real-flavor-height real-effect-height) 1 "desc background" back-opacity 0)))

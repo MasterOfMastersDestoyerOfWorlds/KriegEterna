@@ -363,10 +363,21 @@ img {
 .rule-paragraph {
     max-width: 50%;
     min-width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex: auto;
     text-align: justify;
+    vertical-align: middle;
     text-shadow: 0 1px 2px var(--black-alpha75);
     margin: 1em 0em;
     font-size: 16px
+}
+
+.rule-icon {
+    height: 100%;
+    float: left;
+    margin-right: 10;
 }
 
 @media screen and (min-width:320px) {
@@ -947,8 +958,9 @@ img {
 
 .css-u6Ex {
     max-width: 100%;
-    height: auto;
-    margin-bottom: 30px;
+    height: 100%;
+    float: left;
+    margin-right: 10;
 }
 
 .css-cW5DV {
@@ -1152,7 +1164,8 @@ html[lang=zh-Hant] .css-lV1Vi {
     margin: 0 auto;
     padding: var(--cards-padding);
     width: 100%;
-    overflow-x:scroll
+    overflow-x:scroll;
+    overflow-y: hidden;
 }
 
 .card-scroll-box::-webkit-scrollbar {
@@ -1838,13 +1851,28 @@ html[lang=zh-Hant] .css-4zJQw {
     flex-direction: row;
 }
 
+.swiper-wrapper-rules {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    transition-property: transform;
+    box-sizing: content-box;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: row;
+    transform: translateZ(0);
+}
+
 
 .swiper-wrapper {
     transform: translateZ(0)
 }
-
-.swiper-pointer-events {
-    touch-action: pan-y
+.swiper-slide-rules {
+    /* flex-shrink: 0; */
+    width: 100%;
+    position: relative;
+    transition-property: transform;
 }
 
 .swiper-slide {

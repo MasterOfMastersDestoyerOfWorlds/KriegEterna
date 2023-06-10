@@ -46,7 +46,7 @@ set "maxProc=5"
 	) else if "%%E"=="Power" (
 		SET outlinedark=FALSE
 	) else if "%%E"=="King" (
-		SET outlinedark=TRUE
+		SET outlinedark=MID
 	) else if "%%E"=="Decoy" (
 		SET outlinedark=TRUE
 	) else if "%%E"=="Spy" (
