@@ -1,3 +1,4 @@
+Soldier2	Soldier	 	If no one fought except on his own conviction,\rthere would be no wars.	Ranged	2
 Archer	Archer	 	\`Please just a little more^! This dream is too sweet for\rwaking^!\` Didn't you know all dreams end?	Ranged	2
 Archer2	Archer	 	\`He was a good outlaw, and did poor men much\rgood.\`	Ranged	2
 Armada	Armada	 	I will make thee a terror, and thou shall be no more:\rthough sought for, thou shall never be found again.	Siege	5
@@ -74,7 +75,7 @@ Resurrection	Pyre	Choose one unit from the graveyard and play it\ron your side o
 Retreat	Retreat	Replace this card with any of your units on the\rfield, and add that card to your hand.	Death is nothing, but to live defeated and inglorious\ris to die daily.	Decoy	
 Riflemen	Riflemen	 	The cannonshot rang all around, but we stood firm\rfor an empire of richer men.	Ranged	3
 Ruin	Ruin	Discard up to three cards from your hand.\rAdd three times the number of discarded cards\rto the base strength of a unit.	Doom has come to the empire.\rWe are fated for lesser days and lesser deeds.	Power	
-Saboteur	Saboteur	Play in the opponents ranged row, then draw\rtwo cards.	\`Oh the Humanity^!\`	Spy	2
+Saboteur	Saboteur	Play in the opponent's ranged row, then draw\rtwo cards.	\`Oh the Humanity^!\`	Spy	2
 Sack	Sack	Replace this card with any of your opponent's\runits on the field, and add that card to your\rhand.	The slave and the noble: the same;\reverywhere the terror of death and slaughter.	Decoy	
 Scout	Scout	Reveal a power card in your opponent's hand.	If you know the enemy and know yourself,\ryou need not fear the result of a hundred battles.	Melee	1
 Shipwreck	Shipwreck	If you have three units in the same row, replace\rthem with this card. Two return to your hand,\rsend one to the graveyard.	\`Land^! Sweet Land^!\`	Decoy	
@@ -83,7 +84,6 @@ Siege2	Siege	 	Their guns sounded from dusk till dawn;\rbut we repelled them all
 Siege3	Siege	 	\`A horse, A horse. My kingdom for a horse^!\`	Siege	2
 Smuggler	Smuggler	Draw two cards, your opponent draws one.	\`Trinkets and spices from the far reaches of the\rempire^!\` (Best not ask why the prices are so low.)	Spy	
 Soldier	Soldier	 	\`Let the dead bury their dead, but while I have a life,\rI must live.\`	Ranged	2
-Soldier2	Soldier	 	If no one fought except on his own conviction,\rthere would be no wars	Ranged	2
 Spy	Spy	Play in the opponent's Melee row, then draw\rtwo cards.	Three may keep a secret, if two are dead.	Spy	2
 Square	Square	 	The walls of Sparta were its men, and its borders\rthe points of their spears.	Melee	3
 Storm	Storm	The Siege row fights at half strength this round.	Hell is not fire; Hell is mud.	Weather	
