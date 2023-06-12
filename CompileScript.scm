@@ -267,8 +267,7 @@
 		(gimp-message (number->string (* title-height (/ 7 9))))
 		(gimp-message (number->string (string-length titleText)))
 		(gimp-message (number->string (- (* 5 (string-length titleText)) 10)))
-		;(gimp-drawable-edit-gradient-fill text GRADIENT-LINEAR 0 FALSE 0 0 TRUE 0 0 (/ title-width (- (* 5 (string-length titleText)) 10)) (/ image-height 7.729))
-		(gimp-drawable-edit-gradient-fill text GRADIENT-LINEAR 0 FALSE 0 0 TRUE 0 0 0 (* 0.11616161616 image-height))
+		(gimp-drawable-edit-gradient-fill text GRADIENT-LINEAR 0 FALSE 0 0 TRUE 0 0 0 title-size)
 		(gimp-drawable-hue-saturation text 0 0 0 50 0)
 
 		
