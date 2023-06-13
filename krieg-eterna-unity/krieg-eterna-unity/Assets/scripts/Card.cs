@@ -4,11 +4,27 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
+    public int index;
     public string cardName;
+    public CardType cardType;
+    public int strength;
+    public int playerCardDraw;
+    public int playerCardDestroy;
+    public DestroyType destroyType;
+    public int playerCardReturn;
+    public CardReturnType cardReturnType;
+    public float strengthModifier;
+    public StrengthModType strengthModType;
+    public int graveyardCardDraw;
+    public int enemyCardDraw;
+    public int enemyCardDestroy;
+    public int enemyReveal;
     public float rowMultiple;
     public RowEffected rowEffected;
-    public int index;
-    public CardType cardType;
+    public int setAside;
+    public SetAsideType setAsideType;
+    public bool attach;
+    public int strengthCondition;
     private bool active = false;
     public int isSpecial;
     public bool weatherEffect = false;
@@ -19,21 +35,23 @@ public class Card : MonoBehaviour
 
     private GameObject cardModelGameObject;
     private CardModel cardModel;
-    
+
     void Awake()
     {
         cardModelGameObject = GameObject.Find("CardModel");
         cardModel = cardModelGameObject.GetComponent<CardModel>();
-		cardModel.readTextFile();
+        cardModel.readTextFile();
         spriteRenderer = GetComponent<SpriteRenderer>();
         cardColider = GetComponent<BoxCollider2D>();
         baseLoc = this.transform.position;
     }
 
-    public void setBaseLoc(){
+    public void setBaseLoc()
+    {
         baseLoc = this.transform.position;
     }
-    public void resetTransform(){
+    public void resetTransform()
+    {
         this.transform.position = baseLoc;
     }
 
@@ -51,25 +69,37 @@ public class Card : MonoBehaviour
         return this.rowMultiple;
     }
 
-    public void setRowMultiple(float power)
-    {
-        this.rowMultiple = power;
-    }
-
     public RowEffected getRowEffected()
     {
         return this.rowEffected;
     }
 
-    public void setRowEffected(RowEffected row)
-    {
-        this.rowEffected = row;
-    }
 
     public void setIndex(int index)
     {
         this.index = index;
         this.cardType = cardModel.cardTypes[index];
+        this.strength = cardModel.strength[index];
+        this.playerCardDraw = cardModel.playerCardDraw[index];
+        this.playerCardDestroy = cardModel.playerCardDestroy[index];
+        this.playerCardDraw = cardModel.playerCardDraw[index];
+        this.playerCardDestroy = cardModel.playerCardDestroy[index];
+        this.destroyType = cardModel.destroyType[index];
+        this.playerCardReturn = cardModel.playerCardReturn[index];
+        this.cardReturnType = cardModel.cardReturnType[index];
+        this.strengthModifier = cardModel.strengthModifier[index];
+        this.strengthModType = cardModel.strengthModType[index];
+        this.graveyardCardDraw = cardModel.graveyardCardDraw[index];
+        this.enemyCardDraw = cardModel.enemyCardDraw[index];
+        this.enemyCardDestroy = cardModel.enemyCardDestroy[index];
+        this.enemyReveal = cardModel.enemyReveal[index];
+        this.rowMultiple = cardModel.rowMultiple[index];
+        this.rowEffected = cardModel.rowEffected[index];
+        this.setAside = cardModel.setAside[index];
+        this.setAsideType = cardModel.setAsideType[index];
+        this.attach = cardModel.attach[index];
+        this.strengthCondition = cardModel.strengthCondition[index];
+
     }
 
 
@@ -111,11 +141,11 @@ public class Card : MonoBehaviour
     /// <param name="index">New card's front image</param>
     public void setFront(int index)
     {
-		GameObject child = this.transform.GetChild(0).gameObject;
-		GameObject childOfChild = child.transform.GetChild(0).gameObject;
-		MeshRenderer meshRend = childOfChild.GetComponent<MeshRenderer>();
-		Material material = meshRend.materials[2];
-		material.SetTexture("_MainTex", cardModel.getSmallFront(index));
+        GameObject child = this.transform.GetChild(0).gameObject;
+        GameObject childOfChild = child.transform.GetChild(0).gameObject;
+        MeshRenderer meshRend = childOfChild.GetComponent<MeshRenderer>();
+        Material material = meshRend.materials[2];
+        material.SetTexture("_MainTex", cardModel.getSmallFront(index));
         //spriteRenderer.sprite = cardModel.getSmallFront(index);
     }
 
@@ -126,9 +156,9 @@ public class Card : MonoBehaviour
     public void setBigFront(int index)
     {
         //if (index == 0)
-          //  spriteRenderer.sprite = null;
+        //  spriteRenderer.sprite = null;
         //else
-            //spriteRenderer.sprite = cardModel.getBigFront(index - 1);
+        //spriteRenderer.sprite = cardModel.getBigFront(index - 1);
     }
 
     public void setCardType(CardType cardType)

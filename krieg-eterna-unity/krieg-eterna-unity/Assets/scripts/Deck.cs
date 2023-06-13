@@ -58,9 +58,6 @@ public class Deck : MonoBehaviour
             Card clone = Instantiate(baseCard) as Card;
             clone.tag = "CloneCard";
             clone.setFront(cardId);
-            Debug.Log(baseCard.getCardModel().getRowMultiple(cardId));
-            clone.setRowMultiple(baseCard.getCardModel().getRowMultiple(cardId));
-            clone.setRowEffected(baseCard.getCardModel().getRowEffected(cardId));
             clone.setIndex(cardId);
             clone.setIsSpecial(clone.getCardModel().getIsSpecial(cardId));
             clone.setBaseLoc();
@@ -81,7 +78,6 @@ public class Deck : MonoBehaviour
             Card clone = Instantiate(baseCard) as Card;
             clone.tag = "CloneCard";
             clone.setFront(cardId);
-            clone.setRowMultiple(baseCard.getCardModel().getRowMultiple(cardId));
             clone.setIndex(cardId);
             clone.setIsSpecial(clone.getCardModel().getIsSpecial(cardId));
             clone.setBaseLoc();
