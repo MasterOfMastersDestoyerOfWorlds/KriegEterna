@@ -12,5 +12,5 @@ public enum RowEffected
     LastPlayedCard,
     Player,
     PlayerHand,
-    None
+    None = 0
 };
