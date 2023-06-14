@@ -99,6 +99,7 @@ public class Card : MonoBehaviour
     public void setIndex(int index)
     {
         this.index = index;
+        this.cardName = cardModel.names[index];
         this.cardType = cardModel.cardTypes[index];
         this.strength = cardModel.strength[index];
         this.playerCardDraw = cardModel.playerCardDraw[index];
@@ -160,9 +161,9 @@ public class Card : MonoBehaviour
     }
 
 
-    public string toString()
+    public string ToString()
     {
-        return this.cardName + " card with power " + this.rowMultiple;
+        return "Type: "+ this.cardType +" Name: "+ this.cardName + " card with strength: " + this.strength;
     }
 
     public void setFront(int index)

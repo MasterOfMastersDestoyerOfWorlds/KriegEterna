@@ -150,23 +150,20 @@ public class Game : MonoBehaviour
         // player1.reloadDeck();
         //player2.reloadDeck();
 
-        Debug.Log("P1 amount of cards: " + player1.getDeck().cardsInDeck.Count);
-        Debug.Log("P2 amount of cards: " + player2.getDeck().cardsInDeck.Count);
+        Debug.Log("P1 amount of cards: " + player1.getDeck().playerHand.Count);
+        Debug.Log("P2 amount of cards: " + player2.getDeck().playerHand.Count);
 
         player2.setDeckVisibility(false);
         activeDeck = player1.getDeck();
 
-        if (player1.getDeck().cardsInDeck.Count > 0)
-            activeCard = player1.getDeck().cardsInDeck[0];
+        if (player1.getDeck().playerHand.Count > 0)
+            activeCard = player1.getDeck().playerHand[0];
 
         activeShowingCard = Instantiate(activeCard) as Card;
         activeShowingCard.transform.position = new Vector3(8.96f, 0, -0.1f);
         showActiveCard(false);
 
         reorganizeGroup();
-
-        //player1.getDeck().cardsInDeck[0].setPower(10);
-        //player2.getDeck().cardsInDeck[0].setPower(15);
     }
 
     private enum Status{
@@ -195,192 +192,39 @@ public class Game : MonoBehaviour
     {
         // Updating numberOfCards
         // ---------------------------------------------------------------------------------------------------------------
-        cardNumber1.text = player1.getDeck().cardsInDeck.Count.ToString();
-        cardNumber2.text = player2.getDeck().cardsInDeck.Count.ToString();
+        cardNumber1.text = player1.getDeck().playerHand.Count.ToString();
+        cardNumber2.text = player2.getDeck().playerHand.Count.ToString();
 
         // Picking card
         // ---------------------------------------------------------------------------------------------------------------
         // vector of actual mouse position
         Vector3 mouseRelativePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mouseRelativePosition.z = -0.1f;
+        mouseRelativePosition.z = 0f;
         if (Input.GetMouseButtonDown(0) && state != ((int)Status.BLOCKED))
         {
             Debug.Log("Click Registered");
             // if we click on deck collision
-            if (areas.getDeckColliderBounds().Contains(mouseRelativePosition) && activeDeck.cardsInDeck.Count > 0)
+            if (areas.getDeckColliderBounds().Contains(mouseRelativePosition) && activeDeck.playerHand.Count > 0)
             {
                 Debug.Log("Click Registered On Deck");
-                foreach (Card c in activeDeck.getCards())
+                for (int i = 1; i < activeDeck.playerHand.Count; i++)
                 {
-                    // if we click on card
+                    Card c = activeDeck.playerHand[i];
                     if (c.getBounds().Contains(mouseRelativePosition))
                     {
-                        Debug.Log("clicked on: " + c.cardName);
+                        Debug.Log("clicked on: " + c.ToString());
+                        if(c.isActive()){
+                            Play(c);
+                            break;
+                        }
                         activeDeck.disactiveAllInDeck();
                         activeCard = c;
                         c.setActive(true);
 
                         showActiveCard(true);
                         activeCard.setBaseLoc();
-                        activeCard.transform.position += new Vector3(0,1f, 0f);
+                        activeCard.transform.position += new Vector3(0,Card.getBaseHeight()/3, 0f);
                         state = (int)Status.ACTIVE_CARD;
-                    }
-                }
-            }
-            // manekin card on swords
-            if (areas.getSwordColliderBounds().Contains(mouseRelativePosition) && state == (int)Status.ACTIVE_CARD && activeCard.getIsSpecial() == (int)TypeOfCard.MANEKIN)
-            {
-                foreach (Card c in activeDeck.getSwordCards())
-                {
-                    if (c.getBounds().Contains(mouseRelativePosition) && c.getIsSpecial() != (int)TypeOfCard.GOLD && c.getIsSpecial() != (int)TypeOfCard.GOLD_SPY && c.getIsSpecial() != (int)TypeOfCard.MANEKIN)
-                    {
-                        Debug.Log("Manekin target!");
-                        activeCard.setActive(false);
-                        activeDeck.moveCardToDeckFromSwords(c);
-                        if (activeDeck.addCardToSwords(activeCard) == true)
-                        {
-                            activeDeck.disactiveAllInDeck();
-                            state = (int)Status.FREE;
-
-                            if (player1.isPlaying && player2.isPlaying)
-                            {
-                                Debug.Log("switchPlayer()");
-                                switchPlayer();
-                            }
-                            else
-                            {
-                                reorganizeGroup();
-                                state = (int)Status.FREE;
-                                showActiveCard(false);
-                            }
-                        }
-                        break;
-                    }
-                }
-            }
-            // manekin card on bows
-            else if (areas.getBowColliderBounds().Contains(mouseRelativePosition) && state == (int)Status.ACTIVE_CARD && activeCard.getIsSpecial() == (int)TypeOfCard.MANEKIN)
-            {
-                foreach (Card c in activeDeck.getBowCards())
-                {
-                    if (c.getBounds().Contains(mouseRelativePosition) && c.getIsSpecial() != (int)TypeOfCard.GOLD && c.getIsSpecial() != (int)TypeOfCard.GOLD_SPY && c.getIsSpecial() != (int)TypeOfCard.MANEKIN)
-                    {
-                        activeCard.setActive(false);
-                        activeDeck.moveCardToDeckFromBows(c);
-                        if (activeDeck.addCardToBows(activeCard) == true)
-                        {
-                            activeDeck.disactiveAllInDeck();
-                            state = (int)Status.FREE;
-
-                            if (player1.isPlaying && player2.isPlaying)
-                            {
-                                Debug.Log("switchPlayer()");
-                                switchPlayer();
-                            }
-                            else
-                            {
-                                reorganizeGroup();
-                                state = (int)Status.FREE;
-                                showActiveCard(false);
-                            }
-                        }
-                        break;
-                    }
-                }
-            }
-            // manekin card on trebuchets
-            else if (areas.getTrebuchetColliderBounds().Contains(mouseRelativePosition) && state == (int)Status.ACTIVE_CARD && activeCard.getIsSpecial() == (int)TypeOfCard.MANEKIN)
-            {
-                foreach (Card c in activeDeck.getTrebuchetCards())
-                {
-                    if (c.getBounds().Contains(mouseRelativePosition) && c.getIsSpecial() != (int)TypeOfCard.GOLD && c.getIsSpecial() != (int)TypeOfCard.GOLD_SPY && c.getIsSpecial() != (int)TypeOfCard.MANEKIN)
-                    {
-                        activeCard.setActive(false);
-                        activeDeck.moveCardToDeckFromTrebuchets(c);
-                        if (activeDeck.addCardToTrebuchets(activeCard) == true)
-                        {
-                            activeDeck.disactiveAllInDeck();
-                            state = (int)Status.FREE;
-
-                            if (player1.isPlaying && player2.isPlaying)
-                            {
-                                Debug.Log("switchPlayer()");
-                                switchPlayer();
-                            }
-                            else
-                            {
-                                reorganizeGroup();
-                                state = (int)Status.FREE;
-                                showActiveCard(false);
-                            }
-                        }
-                        break;
-                    }
-                }
-            }
-            // click on card sword group
-            else if (areas.getSwordColliderBounds().Contains(mouseRelativePosition))
-            {
-                if (state == (int)Status.ACTIVE_CARD && activeCard.getCardType() == CardType.Melee && activeCard.getCardType() != CardType.Spy)
-                {
-                    // TODO - system rozmieszczania kart w grupie
-                    activeCard.setActive(false);
-                    if (activeDeck.addCardToSwords(activeCard) == true)
-                    {
-                        activeDeck.disactiveAllInDeck();
-                        state = (int)Status.FREE;
-
-                        if (player1.isPlaying && player2.isPlaying)
-                            switchPlayer();
-                        else
-                        {
-                            reorganizeGroup();
-                            state = (int)Status.FREE;
-                            showActiveCard(false);
-                        }
-                    }
-                }
-            }
-            else if (areas.getBowColliderBounds().Contains(mouseRelativePosition))
-            {
-                if (state == (int)Status.ACTIVE_CARD && activeCard.getCardType() == CardType.Ranged)
-                {
-                    // TODO - system rozmieszczania kart w grupie
-                    activeCard.setActive(false);
-                    if (activeDeck.addCardToBows(activeCard) == true)
-                    {
-                        activeDeck.disactiveAllInDeck();
-                        state = (int)Status.FREE;
-                        if (player1.isPlaying && player2.isPlaying)
-                            switchPlayer();
-                        else
-                        {
-                            reorganizeGroup();
-                            state = (int)Status.FREE;
-                            showActiveCard(false);
-                        }
-                    }
-                }
-            }
-            else if (areas.getTrebuchetColliderBounds().Contains(mouseRelativePosition))
-            {
-                if (state == (int)Status.ACTIVE_CARD && activeCard.getCardType() == CardType.Siege)
-                {
-                    // TODO - system rozmieszczania kart w grupie
-                    activeCard.setActive(false);
-                    // TODO - is it enough to have controll under card in list? Position controll
-                    if (activeDeck.addCardToTrebuchets(activeCard) == true)
-                    {
-                        activeDeck.disactiveAllInDeck();
-                        state = (int)Status.FREE;
-                        if (player1.isPlaying && player2.isPlaying)
-                            switchPlayer();
-                        else
-                        {
-                            reorganizeGroup();
-                            state = (int)Status.FREE;
-                            showActiveCard(false);
-                        }
                     }
                 }
             }
@@ -390,12 +234,11 @@ public class Game : MonoBehaviour
                 // For spy card
                 if (state == (int)Status.ACTIVE_CARD && activeCard.getCardType() == CardType.Spy && activeCard.getCardType() == CardType.Melee)
                 {
-                    // TODO - system rozmieszczania kart w grupie
                     activeCard.setActive(false);
                     if (activePlayerNumber == (int)PlayerNumber.PLAYER1)
                     {
                         player2.getDeck().addSpy(activeCard);
-                        player1.getDeck().cardsInDeck.Remove(activeCard);
+                        player1.getDeck().playerHand.Remove(activeCard);
                         player1.getDeck().addTwoRandomCards();
                         activeDeck.disactiveAllInDeck();
                         state = (int)Status.FREE;
@@ -411,7 +254,7 @@ public class Game : MonoBehaviour
                     else
                     {
                         player1.getDeck().addSpy(activeCard);
-                        player2.getDeck().cardsInDeck.Remove(activeCard);
+                        player2.getDeck().playerHand.Remove(activeCard);
                         player2.getDeck().addTwoRandomCards();
                         activeDeck.disactiveAllInDeck();
                         state = (int)Status.FREE;
@@ -491,12 +334,12 @@ public class Game : MonoBehaviour
             // Ending player time, tour
             // TODO - Change gameStatus
             // ---------------------------------------------------------------------------------------------------------------
-            if (player1.getDeck().cardsInDeck.Count == 0 && player1.isPlaying)
+            if (player1.getDeck().playerHand.Count == 0 && player1.isPlaying)
             {
                 Debug.Log("Player1 has no cards");
                 player1.isPlaying = false;
             }
-            if (player2.getDeck().cardsInDeck.Count == 0 && player2.isPlaying)
+            if (player2.getDeck().playerHand.Count == 0 && player2.isPlaying)
             {
                 Debug.Log("Player2 has no cards");
                 player2.isPlaying = false;
@@ -548,7 +391,7 @@ public class Game : MonoBehaviour
                         player1.health--;
                     if (player2.health > 0)
                         player2.health--;
-                    endText.text = "Remis!";
+                    endText.text = "Draw!";
                     if (player1.health == 0)
                         player1.health = -1;
                     if (player2.health == 0)
@@ -557,27 +400,20 @@ public class Game : MonoBehaviour
                     player1.updateHealthDiamonds();
                     player2.updateHealthDiamonds();
                 }
-
-                // game over
                 if (player1.health == -1 && player2.health == -1)
                 {
-                    Debug.Log("REMIS!");
+                    Debug.Log("Draw!");
                     gameStatus = (int)GameStatus.END;
-
-                    // TODO - zawsze przy remisie PLAYER1 - może losować?
-                    //activePlayerNumber = (int)PlayerNumber.PLAYER1;
                 }
                 else if (player1.health == -1)
                 {
-                    Debug.Log("P1 WON!");
+                    Debug.Log("Victory!");
                     gameStatus = (int)GameStatus.END;
-                    // activePlayerNumber = (int)PlayerNumber.PLAYER1;
                 }
                 else if (player2.health == -1)
                 {
-                    Debug.Log("P2 WON!");
+                    Debug.Log("Defeat");
                     gameStatus = (int)GameStatus.END;
-                    //  activePlayerNumber = (int)PlayerNumber.PLAYER2;
                 }
 
                 if (gameStatus != (int)GameStatus.END)
@@ -591,6 +427,40 @@ public class Game : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Play(Card c){
+        Debug.Log("Playing: " + c.cardName + " " + c.cardType);
+        activeDeck.playerHand.Remove(c);
+        switch (c.cardType){
+            case CardType.Melee: activeDeck.meleeRow.Add(c); break;
+            case CardType.Ranged: activeDeck.rangedRow.Add(c); break;
+            case CardType.Siege: activeDeck.siegeRow.Add(c); break;
+            case CardType.Switch: activeDeck.meleeRow.Add(c); break;
+            case CardType.King: PlayKing(c); break;
+            case CardType.Spy: PlaySpy(c); break;
+            case CardType.Decoy: PlayDecoy(c); break;
+            case CardType.Weather: PlayWeather(c); break;
+            case CardType.Power: PlayPower(c); break;
+            default:break;
+        }
+
+        reorganizeGroup();
+    }
+
+    public void PlayKing(Card c){
+    }
+    
+    public void PlaySpy(Card c){
+    }
+    
+    public void PlayDecoy(Card c){
+    }
+    
+    public void PlayWeather(Card c){
+    }
+    
+    public void PlayPower(Card c){
     }
 
     private void gameOver()
@@ -607,104 +477,36 @@ public class Game : MonoBehaviour
         // after
         endText.text = "Game Over\n";
         if(player1.health == -1 && player2.health == -1)
-            endText.text += "\nRemis";
+            endText.text += "\nDraw";
         else if(player2.health == -1)
-            endText.text += "\nGracz 1 wygrał";
+            endText.text += "\nDefeat";
         else if(player1.health == -1)
-            endText.text += "\nGracz 2 wygrał";
+            endText.text += "\nVictory";
     }
 
 
     public void reorganizeGroup()
     {
-        
-            if (activeDeck.cardsInDeck.Count > 0)
-            {
-                Vector3 centerVector = areas.getDeckCenterVector();
-                float cardHorizontalSpacing = Card.getBaseWidth()*1.025f;
-                Debug.Log(centerVector);
-                Debug.Log(Card.getBaseHeight());
-                // For odd number of cards
-                if (activeDeck.cardsInDeck.Count % 2 == 1)
-                {
-                    int j = 1;
-                    activeDeck.cardsInDeck[0].transform.position = centerVector;
 
-                    for (int i = 1; i < activeDeck.cardsInDeck.Count; i++)
-                    {
-                        // TODO - Expand range of max 8 cards in group and dynamically change offset between ech card in groups. Add functionallity of schowing one card after another (changing z position).
-                        activeDeck.cardsInDeck[i].transform.position = new Vector3(centerVector.x + j * cardHorizontalSpacing, centerVector.y, centerVector.z);
+        float cardHorizontalSpacing = Card.getBaseWidth() * 1.025f;
+        reorganizeRow(cardHorizontalSpacing, activeDeck.playerHand, areas.getDeckCenterVector());
+        reorganizeRow(cardHorizontalSpacing, activeDeck.meleeRow, areas.getSwordsCenterVector());
+        reorganizeRow(cardHorizontalSpacing, activeDeck.rangedRow, areas.getBowsCenterVector());
+        reorganizeRow(cardHorizontalSpacing, activeDeck.siegeRow, areas.getTrebuchetsCenterVector());
+    }
 
-                        j *= -1;
-                        if (i % 2 == 0)
-                            j++;
-                    }
-                }
-                else
-                {
-                    int j = 1;
-                    activeDeck.cardsInDeck[0].transform.position = centerVector + new Vector3(cardHorizontalSpacing/2, 0, 0);
-                    activeDeck.cardsInDeck[1].transform.position = centerVector + new Vector3(-cardHorizontalSpacing/2, 0, 0);
-
-                    for (int i = 2; i < activeDeck.cardsInDeck.Count; i++)
-                    {
-                        activeDeck.cardsInDeck[i].transform.position = new Vector3(centerVector.x + j * cardHorizontalSpacing + Math.Sign(j) * (cardHorizontalSpacing/2), centerVector.y, centerVector.z);
-
-                        j *= -1;
-                        if (i % 2 == 1)
-                            j++;
-                    }
-                }
-            }
-            if (activeDeck.cardsInSwords.Count > 0)
-            {
-                Vector3 centerVector = areas.getSwordsCenterVector() + new Vector3(0, -0.1456f, -0.1f);
-
-                // For odd number of cards
-                if (activeDeck.cardsInSwords.Count % 2 == 1)
-                {
-                    int j = 1;
-                    activeDeck.cardsInSwords[0].transform.position = centerVector;
-
-                    for(int i = 1; i<activeDeck.cardsInSwords.Count; i++)
-                    {
-                        activeDeck.cardsInSwords[i].transform.position = new Vector3(centerVector.x + j * 1.05f, centerVector.y, centerVector.z);
-
-                        j *= -1;
-                        if (i % 2 == 0)
-                            j++;
-                    }
-                }
-                else
-                {
-                    int j = 1;
-                    activeDeck.cardsInSwords[0].transform.position = centerVector + new Vector3(0.525f, 0, 0);
-                    activeDeck.cardsInSwords[1].transform.position = centerVector + new Vector3(-0.525f, 0, 0);
-
-                    for (int i = 2; i < activeDeck.cardsInSwords.Count; i++)
-                    {
-                        activeDeck.cardsInSwords[i].transform.position = new Vector3(centerVector.x + j * 1.05f + Math.Sign(j) * 0.525f, centerVector.y, centerVector.z);
-
-                        j *= -1;
-                        if (i % 2 == 1)
-                            j++;
-                    }
-                }
-            }
-        if (activeDeck.cardsInBows.Count > 0)
+    private void reorganizeRow(float cardHorizontalSpacing, List<Card> deck, Vector3 centerVector)
+    {
+        if (deck.Count > 0)
         {
-            Vector3 centerVector = areas.getBowsCenterVector() + new Vector3(0, -0.1456f, -0.1f);
-
-            // For odd number of cards
-            if (activeDeck.cardsInBows.Count % 2 == 1)
+            if (deck.Count % 2 == 1)
             {
                 int j = 1;
-                activeDeck.cardsInBows[0].transform.position = centerVector;
+                deck[0].transform.position = centerVector;
 
-                for (int i = 1; i < activeDeck.cardsInBows.Count; i++)
+                for (int i = 1; i < deck.Count; i++)
                 {
-                    activeDeck.cardsInBows[i].transform.position = new Vector3(centerVector.x + j * 1.05f, centerVector.y, centerVector.z);
-
+                    deck[i].transform.position = new Vector3(centerVector.x + j * cardHorizontalSpacing, centerVector.y, centerVector.z);
                     j *= -1;
                     if (i % 2 == 0)
                         j++;
@@ -713,119 +515,12 @@ public class Game : MonoBehaviour
             else
             {
                 int j = 1;
-                activeDeck.cardsInBows[0].transform.position = centerVector + new Vector3(0.525f, 0, 0);
-                activeDeck.cardsInBows[1].transform.position = centerVector + new Vector3(-0.525f, 0, 0);
+                deck[0].transform.position = centerVector + new Vector3(cardHorizontalSpacing / 2, 0, 0);
+                deck[1].transform.position = centerVector + new Vector3(-cardHorizontalSpacing / 2, 0, 0);
 
-                for (int i = 2; i < activeDeck.cardsInBows.Count; i++)
+                for (int i = 2; i < deck.Count; i++)
                 {
-                    activeDeck.cardsInBows[i].transform.position = new Vector3(centerVector.x + j * 1.05f + Math.Sign(j) * 0.525f, centerVector.y, centerVector.z);
-
-                    j *= -1;
-                    if (i % 2 == 1)
-                        j++;
-                }
-            }
-        }
-        if (activeDeck.cardsInTrebuchets.Count > 0)
-        {
-            Vector3 centerVector = areas.getTrebuchetsCenterVector() + new Vector3(0, -0.1456f, -0.1f);
-
-            // For odd number of cards
-            if (activeDeck.cardsInTrebuchets.Count % 2 == 1)
-            {
-                int j = 1;
-                activeDeck.cardsInTrebuchets[0].transform.position = centerVector;
-
-                for (int i = 1; i < activeDeck.cardsInTrebuchets.Count; i++)
-                {
-                    activeDeck.cardsInTrebuchets[i].transform.position = new Vector3(centerVector.x + j * 1.05f, centerVector.y, centerVector.z);
-
-                    j *= -1;
-                    if (i % 2 == 0)
-                        j++;
-                }
-            }
-            else
-            {
-                int j = 1;
-                activeDeck.cardsInTrebuchets[0].transform.position = centerVector + new Vector3(0.525f, 0, 0);
-                activeDeck.cardsInTrebuchets[1].transform.position = centerVector + new Vector3(-0.525f, 0, 0);
-
-                for (int i = 2; i < activeDeck.cardsInTrebuchets.Count; i++)
-                {
-                    activeDeck.cardsInTrebuchets[i].transform.position = new Vector3(centerVector.x + j * 1.05f + Math.Sign(j) * 0.525f, centerVector.y, centerVector.z);
-
-                    j *= -1;
-                    if (i % 2 == 1)
-                        j++;
-                }
-            }
-        }
-        // For spy cards - PLAYER 1
-        if (activePlayerNumber == (int)PlayerNumber.PLAYER1 && player2.getDeck().cardsInSwords.Count > 0)
-        {
-            Vector3 centerVector = areas.getSword2CenterVector() + new Vector3(0, -0.1456f, -0.1f);
-
-            // For odd number of cards
-            if (player2.getDeck().cardsInSwords.Count % 2 == 1)
-            {
-                int j = 1;
-                player2.getDeck().cardsInSwords[0].transform.position = centerVector;
-
-                for (int i = 1; i < player2.getDeck().cardsInSwords.Count; i++)
-                {
-                    player2.getDeck().cardsInSwords[i].transform.position = new Vector3(centerVector.x + j * 1.05f, centerVector.y, centerVector.z);
-
-                    j *= -1;
-                    if (i % 2 == 0)
-                        j++;
-                }
-            }
-            else
-            {
-                int j = 1;
-                player2.getDeck().cardsInSwords[0].transform.position = centerVector + new Vector3(0.525f, 0, 0);
-                player2.getDeck().cardsInSwords[1].transform.position = centerVector + new Vector3(-0.525f, 0, 0);
-
-                for (int i = 2; i < player2.getDeck().cardsInSwords.Count; i++)
-                {
-                    player2.getDeck().cardsInSwords[i].transform.position = new Vector3(centerVector.x + j * 1.05f + Math.Sign(j) * 0.525f, centerVector.y, centerVector.z);
-
-                    j *= -1;
-                    if (i % 2 == 1)
-                        j++;
-                }
-            }
-        }
-        // For spy cards - PLAYER 2
-        if (activePlayerNumber == (int)PlayerNumber.PLAYER2 && player1.getDeck().cardsInSwords.Count > 0)
-        {
-            Vector3 centerVector = areas.getSword2CenterVector() + new Vector3(0, -0.1456f, -0.1f);
-
-            // For odd number of cards
-            if (player1.getDeck().cardsInSwords.Count % 2 == 1)
-            {
-                int j = 1;
-                player1.getDeck().cardsInSwords[0].transform.position = centerVector;
-
-                for (int i = 1; i < player1.getDeck().cardsInSwords.Count; i++)
-                {
-                    player1.getDeck().cardsInSwords[i].transform.position = new Vector3(centerVector.x + j * 1.05f, centerVector.y, centerVector.z);
-
-                    j *= -1;
-                    if (i % 2 == 0)
-                        j++;
-                }
-            }
-            else
-            {
-                int j = 1;
-                player1.getDeck().cardsInSwords[0].transform.position = centerVector + new Vector3(0.525f, 0, 0);
-                player1.getDeck().cardsInSwords[1].transform.position = centerVector + new Vector3(-0.525f, 0, 0);
-
-                for (int i = 2; i < player1.getDeck().cardsInSwords.Count; i++)
-                {
-                    player1.getDeck().cardsInSwords[i].transform.position = new Vector3(centerVector.x + j * 1.05f + Math.Sign(j) * 0.525f, centerVector.y, centerVector.z);
+                    deck[i].transform.position = new Vector3(centerVector.x + j * cardHorizontalSpacing + Math.Sign(j) * (cardHorizontalSpacing / 2), centerVector.y, centerVector.z);
 
                     j *= -1;
                     if (i % 2 == 1)

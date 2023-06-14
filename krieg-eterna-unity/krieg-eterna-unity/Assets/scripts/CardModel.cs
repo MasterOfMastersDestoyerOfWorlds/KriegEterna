@@ -52,6 +52,7 @@ public class CardModel : MonoBehaviour
 		StreamReader inp_stm = new StreamReader("Assets/Resources/CardSheet.tsv");
 		List<string> stringList = new List<string>();
 		smallFronts = new List<string>();
+		names = new List<string>();
 		while (!inp_stm.EndOfStream)
 		{
 			string inp_ln = inp_stm.ReadLine();
@@ -91,6 +92,8 @@ public class CardModel : MonoBehaviour
             
 
         }
+        Debug.Log(names[0]);
+        Debug.Log(names[1]);
     }
 
     private void AddOptional(string[] temp, List<int> numList, int indexNum)

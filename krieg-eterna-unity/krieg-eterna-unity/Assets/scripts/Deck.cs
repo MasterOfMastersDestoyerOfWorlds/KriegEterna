@@ -6,20 +6,12 @@ public class Deck : MonoBehaviour
 {
     private GameObject cardGameObject;
     private Card baseCard;
-
-    // TODO - move initialization to Awake() or Start()
-    public List<Card> cardsInDeck = new List<Card>(); // list of cards represented by each index;
-    public List<Card> cardsInSwords = new List<Card>(); // list of cards in sword group
-    public List<Card> cardsInBows = new List<Card>(); // list of cards in bow group
-    public List<Card> cardsInTrebuchets = new List<Card>(); // list of cards in catapulte group
-    public List<Card> cardsInDeaths = new List<Card>(); // burned or dead cards
+    public List<Card> playerHand = new List<Card>();
+    public List<Card> meleeRow = new List<Card>();
+    public List<Card> rangedRow = new List<Card>();
+    public List<Card> siegeRow = new List<Card>();
+    public List<Card> unitGraveyard = new List<Card>();
     public List<Card> cardsInSpecial = new List<Card>(); // special cards
-
-    // TODO - dynamic layout cards system
-    public float startX = -6.53f;
-    public float startY = -6.27f;
-    public float startZ = -0.1f;
-    public float stepX = 1.05f;
 
     private static int FRONTS_NUMBER = 102;
     // TODO - remove max amount of cards in each range group
@@ -61,7 +53,7 @@ public class Deck : MonoBehaviour
             clone.setIndex(cardId);
             clone.setIsSpecial(clone.getCardModel().getIsSpecial(cardId));
             clone.setBaseLoc();
-            cardsInDeck.Add(clone);
+            playerHand.Add(clone);
         }
     }
 
@@ -81,13 +73,13 @@ public class Deck : MonoBehaviour
             clone.setIndex(cardId);
             clone.setIsSpecial(clone.getCardModel().getIsSpecial(cardId));
             clone.setBaseLoc();
-            cardsInDeck.Add(clone);
+            playerHand.Add(clone);
         }
     }
 
     public IEnumerable<Card> getCards()
     {
-        foreach(Card c in cardsInDeck)
+        foreach(Card c in playerHand)
         {
             yield return c;
         }
@@ -95,7 +87,7 @@ public class Deck : MonoBehaviour
 
     public IEnumerable<Card> getSwordCards()
     {
-        foreach(Card c in cardsInSwords)
+        foreach(Card c in meleeRow)
         {
             yield return c;
         }
@@ -103,7 +95,7 @@ public class Deck : MonoBehaviour
 
     public IEnumerable<Card> getBowCards()
     {
-        foreach (Card c in cardsInBows)
+        foreach (Card c in rangedRow)
         {
             yield return c;
         }
@@ -111,7 +103,7 @@ public class Deck : MonoBehaviour
 
     public IEnumerable<Card> getTrebuchetCards()
     {
-        foreach (Card c in cardsInTrebuchets)
+        foreach (Card c in siegeRow)
         {
             yield return c;
         }
@@ -119,7 +111,7 @@ public class Deck : MonoBehaviour
 
     public IEnumerable<Card> getDeathCards()
     {
-        foreach (Card c in cardsInDeaths)
+        foreach (Card c in unitGraveyard)
         {
             yield return c;
         }
@@ -133,26 +125,6 @@ public class Deck : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// adding card to sword group
-    /// </summary>
-    /// <param name="card">card we want to add to sword group</param>
-    /// <returns>true if operation succeeded</returns>
-    public bool addCardToSwords(Card card)
-    {
-        if(cardsInSwords.Count < MAX_NUMBER_OF_CARDS_IN_GROUP && cardsInDeck.Contains(card))
-        {
-            Vector3 newVector = new Vector3(-2.53f + cardsInSwords.Count * 1.05f, -0.19f, -0.1f);
-            card.transform.position = newVector;
-
-            cardsInSwords.Add(card);
-            // TODO - should I remove deck from deck
-            cardsInDeck.Remove(card);
-            return true;
-        }
-
-        return false;
-    }
 
     /// <summary>
     /// adding card from swords to deck
@@ -161,8 +133,8 @@ public class Deck : MonoBehaviour
     /// <returns>true if operation succeeded</returns>
     public bool moveCardToDeckFromSwords(Card card)
     {
-        cardsInDeck.Add(card);
-        return cardsInSwords.Remove(card);
+        playerHand.Add(card);
+        return meleeRow.Remove(card);
     }
 
     /// <summary>
@@ -172,8 +144,8 @@ public class Deck : MonoBehaviour
     /// <returns>true if operation succeeded</returns>
     public bool moveCardToDeckFromBows(Card card)
     {
-        cardsInDeck.Add(card);
-        return cardsInBows.Remove(card);
+        playerHand.Add(card);
+        return rangedRow.Remove(card);
     }
 
     /// <summary>
@@ -183,8 +155,8 @@ public class Deck : MonoBehaviour
     /// <returns>true if operation succeeded</returns>
     public bool moveCardToDeckFromTrebuchets(Card card)
     {
-        cardsInDeck.Add(card);
-        return cardsInTrebuchets.Remove(card);
+        playerHand.Add(card);
+        return siegeRow.Remove(card);
     }
 
     /// <summary>
@@ -193,10 +165,10 @@ public class Deck : MonoBehaviour
     /// <param name="card">spy card we want to add</param>
     public void addSpy(Card card)
     {
-        Vector3 newVector = new Vector3(-2.53f + cardsInSwords.Count * 1.05f, 1.66495f, -0.1f);
+        Vector3 newVector = new Vector3(-2.53f + meleeRow.Count * 1.05f, 1.66495f, -0.1f);
         card.transform.position = newVector;
 
-        cardsInSwords.Add(card);
+        meleeRow.Add(card);
     }
 
     /// <summary>
@@ -206,7 +178,7 @@ public class Deck : MonoBehaviour
     public void addToSpecial(Card card)
     {        
         cardsInSpecial.Add(card);
-        cardsInDeck.Remove(card);
+        playerHand.Remove(card);
     }
 
     /// <summary>
@@ -223,48 +195,6 @@ public class Deck : MonoBehaviour
     }
 
     /// <summary>
-    /// adding card to bow group
-    /// </summary>
-    /// <param name="card">card we want to add to bow group</param>
-    /// <returns>true if operation succeeded</returns>
-    public bool addCardToBows(Card card)
-    {
-        if (cardsInBows.Count < MAX_NUMBER_OF_CARDS_IN_GROUP && cardsInDeck.Contains(card))
-        {
-            Vector3 newVector = new Vector3(-2.53f + cardsInBows.Count * 1.05f, -1.91f, -0.1f);
-            card.transform.position = newVector;
-
-            cardsInBows.Add(card);
-            // TODO - should I remove deck from deck
-            cardsInDeck.Remove(card);
-            return true;
-        }
-
-        return false;
-    }
-
-    /// <summary>
-    /// adding card to trebuchets group and 
-    /// </summary>
-    /// <param name="card">card we want to add to trebuchet group</param>
-    /// <returns>true if operation succeeded</returns>
-    public bool addCardToTrebuchets(Card card)
-    {
-        if (cardsInTrebuchets.Count < MAX_NUMBER_OF_CARDS_IN_GROUP && cardsInDeck.Contains(card))
-        {
-            Vector3 newVector = new Vector3(-2.53f + cardsInTrebuchets.Count * 1.05f, -3.66f, -0.1f);
-            card.transform.position = newVector;
-
-            cardsInTrebuchets.Add(card);
-            // TODO - should I remove deck from deck
-            cardsInDeck.Remove(card);
-            return true;
-        }
-
-        return false;
-    }
-
-    /// <summary>
     /// Send cards from desk to death deck
     /// </summary>
     /// <returns>true if succeeded</returns>
@@ -272,20 +202,20 @@ public class Deck : MonoBehaviour
     {
         bool ifSucceeded = false;
 
-        for (int i = cardsInSwords.Count -1; i >=0; i--)
+        for (int i = meleeRow.Count -1; i >=0; i--)
         {
-            cardsInDeaths.Add(cardsInSwords[i]);
-            ifSucceeded = cardsInSwords.Remove(cardsInSwords[i]);
+            unitGraveyard.Add(meleeRow[i]);
+            ifSucceeded = meleeRow.Remove(meleeRow[i]);
         }
-        for (int i = cardsInBows.Count - 1; i >= 0; i--)
+        for (int i = rangedRow.Count - 1; i >= 0; i--)
         {
-            cardsInDeaths.Add(cardsInBows[i]);
-            ifSucceeded = cardsInBows.Remove(cardsInBows[i]);
+            unitGraveyard.Add(rangedRow[i]);
+            ifSucceeded = rangedRow.Remove(rangedRow[i]);
         }
-        for (int i = cardsInTrebuchets.Count - 1; i >= 0; i--)
+        for (int i = siegeRow.Count - 1; i >= 0; i--)
         {
-            cardsInDeaths.Add(cardsInTrebuchets[i]);
-            ifSucceeded = cardsInTrebuchets.Remove(cardsInTrebuchets[i]);
+            unitGraveyard.Add(siegeRow[i]);
+            ifSucceeded = siegeRow.Remove(siegeRow[i]);
         }
 
         return ifSucceeded;
@@ -300,13 +230,13 @@ public class Deck : MonoBehaviour
     {
         bool ifSucceeded = false;
 
-        cardsInDeaths.Add(card);
+        unitGraveyard.Add(card);
         if(card.getCardType() == CardType.Melee)
-            ifSucceeded = cardsInSwords.Remove(card);
+            ifSucceeded = meleeRow.Remove(card);
         if (card.getCardType() == CardType.Ranged)
-            ifSucceeded = cardsInBows.Remove(card);
+            ifSucceeded = rangedRow.Remove(card);
         if (card.getCardType() == CardType.Siege)
-            ifSucceeded = cardsInTrebuchets.Remove(card);
+            ifSucceeded = siegeRow.Remove(card);
 
         Vector3 player1DeathAreaVector = new Vector3(8.51f, -4.6f, -0.1f);
         card.transform.position = player1DeathAreaVector;
@@ -327,7 +257,7 @@ public class Deck : MonoBehaviour
     /// </summary>
     public void disactiveAllInDeck()
     {
-        if (cardsInDeck.Count > 0)
+        if (playerHand.Count > 0)
         {
             foreach (Card c in getCards())
             {
@@ -347,7 +277,7 @@ public class Deck : MonoBehaviour
     {
         float maxPower = 0;
         Card maxCard = null;
-        foreach (Card card in cardsInSwords)
+        foreach (Card card in meleeRow)
         {
             // checing if card is not a gold one and has no weather effect
             if ((card.weatherEffect == false && card.getRowMultiple() > maxPower && card.getIsSpecial() != 1) || (card.weatherEffect == true && 1 > maxPower && card.getIsSpecial() != 1))
@@ -356,7 +286,7 @@ public class Deck : MonoBehaviour
                 maxCard = card;
             }
         }
-        foreach (Card card in cardsInBows)
+        foreach (Card card in rangedRow)
         {
             // checing if card is not a gold one
             if ((card.weatherEffect == false && card.getRowMultiple() > maxPower && card.getIsSpecial() != 1) || (card.weatherEffect == true && 1 > maxPower && card.getIsSpecial() != 1))
@@ -365,7 +295,7 @@ public class Deck : MonoBehaviour
                 maxCard = card;
             }
         }
-        foreach (Card card in cardsInTrebuchets)
+        foreach (Card card in siegeRow)
         {
             // checing if card is not a gold one
             if ((card.weatherEffect == false && card.getRowMultiple() > maxPower && card.getIsSpecial() != 1) || (card.weatherEffect == true && 1 > maxPower && card.getIsSpecial() != 1))
