@@ -2431,15 +2431,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1723856409}
-  m_LocalRotation: {x: -0.71877927, y: 0.015318105, z: 0.014809448, w: 0.69491184}
-  m_LocalPosition: {x: 11.16, y: -42.39, z: 1.11}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.60225, y: 0.60225, z: 0.60225}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6525800392873765381}
   m_Father: {fileID: 1768926680}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -91.934, y: 0, z: 2.4420013}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1768926678
 GameObject:
   m_ObjectHideFlags: 0
@@ -2471,10 +2471,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a31eb1201201754c8fc754a613d488a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: 
-  power: 0
   index: 0
-  group: 0
+  cardName: 
+  cardType: 0
+  strength: 0
+  playerCardDraw: 0
+  playerCardDestroy: 0
+  destroyType: 0
+  playerCardReturn: 0
+  cardReturnType: 0
+  strengthModifier: 0
+  strengthModType: 0
+  graveyardCardDraw: 0
+  enemyCardDraw: 0
+  enemyCardDestroy: 0
+  enemyReveal: 0
+  rowMultiple: 0
+  rowEffected: 0
+  setAside: 0
+  setAsideType: 0
+  attach: 0
+  strengthCondition: 0
   isSpecial: 0
   weatherEffect: 0
   baseLoc: {x: 0, y: 0, z: 0}
@@ -2486,7 +2503,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1768926678}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.29, y: -1.06, z: -0.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2559,7 +2576,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.241816, y: -3.210282}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2570,7 +2587,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.9281635, y: 4.27348}
+  m_Size: {x: 3.02, y: 4.28}
   m_EdgeRadius: 0
 --- !u!1 &1771797912
 GameObject:
@@ -3244,8 +3261,25 @@ MonoBehaviour:
   - 
   - 
   - 
-  powers: 050000000600000001000000010000000500000005000000050000000a0000000f0000000a000000070000000a00000006000000050000000400000004000000050000000a00000006000000060000000600000000000000040000000500000000000000000000000000000004000000fffffffffefffffffdfffffffcffffff000000000000000000000000
-  groups: 0100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000200000002000000020000000200000002000000020000000300000003000000030000000100000001000000010000000000000000000000040000000100000004000000040000000400000004000000010000000400000001000000
+  cardTypes: 
+  strength: 
+  playerCardDraw: 
+  playerCardDestroy: 
+  destroyType: 
+  playerCardReturn: 
+  cardReturnType: 
+  strengthModifier: []
+  strengthModType: 
+  graveyardCardDraw: 
+  enemyCardDraw: 
+  enemyCardDestroy: 
+  enemyReveal: 
+  rowMultiple: []
+  rowEffected: 
+  setAside: 
+  setAsideType: 
+  attach: 
+  strengthCondition: 
   isSpecial: 0000000000000000000000000000000000000000000000000000000001000000010000000100000001000000010000000000000000000000000000000000000000000000010000000000000000000000000000000600000002000000020000000300000003000000040000000200000005000000050000000500000005000000060000000400000006000000
   spriteFolder: Images
 --- !u!1 &1900725526
@@ -3310,7 +3344,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10.511026
+  orthographic size: 9.74065
   m_Depth: -1.04
   m_CullingMask:
     serializedVersion: 2
@@ -3543,7 +3577,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7126718272935437551}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -21.96, y: 7.199997, z: 65.288}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 244.45665, y: 350.62357, z: 3.1443167}
   m_ConstrainProportionsScale: 0
   m_Children: []

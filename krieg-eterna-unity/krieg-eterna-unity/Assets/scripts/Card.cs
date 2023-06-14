@@ -30,6 +30,15 @@ public class Card : MonoBehaviour
     public bool weatherEffect = false;
     public Vector3 baseLoc;
 
+    private static float baseHeight;
+    private static float baseWidth;
+
+    private static float scaleHeight;
+    private static float scaleWidth;
+
+    private static float screenHeight;
+    private static float screenWidth;
+
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D cardColider;
 
@@ -43,6 +52,18 @@ public class Card : MonoBehaviour
         cardModel.readTextFile();
         spriteRenderer = GetComponent<SpriteRenderer>();
         cardColider = GetComponent<BoxCollider2D>();
+        Vector3 cardDims = cardColider.size;
+        if(scaleHeight == 0f || scaleWidth == 0f){
+            Vector3 topRight = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, 0f));
+            Vector3 botLeft = Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, 0f));
+            screenHeight = Mathf.Abs(topRight.y - botLeft.y);
+            screenWidth = Mathf.Abs(topRight.x - botLeft.x);
+            scaleHeight = screenHeight/8;
+            scaleWidth = (cardDims.x/cardDims.y) * scaleHeight;
+            Transform cardObj = this.transform.Find("Card 1");
+            cardObj.transform.localScale = new Vector3((scaleWidth/cardDims.x)*cardObj.transform.localScale.x, 1, scaleHeight/cardDims.y *cardObj.transform.localScale.z);
+            cardColider.size = new Vector2(scaleWidth, scaleHeight);
+        }
         baseLoc = this.transform.position;
     }
 
@@ -117,28 +138,33 @@ public class Card : MonoBehaviour
         return this.active;
     }
 
-    /// <summary>
-    /// Get card's collision bounds
-    /// </summary>
-    /// <returns>Card's collision bounds</returns>
     public Bounds getBounds()
     {
         return this.cardColider.bounds;
     }
 
-    /// <summary>
-    /// Get card's name and it's power in string
-    /// </summary>
-    /// <returns>card's name and it's power in string</returns>
+    public static float getBaseHeight()
+    {
+        if(baseHeight == 0f){
+            baseHeight = scaleHeight;
+        }
+        return baseHeight;
+    }
+
+    public static float getBaseWidth()
+    {
+        if(baseWidth == 0f){
+            baseWidth = scaleWidth;
+        }
+        return baseWidth;
+    }
+
+
     public string toString()
     {
         return this.cardName + " card with power " + this.rowMultiple;
     }
 
-    /// <summary>
-    /// Set new card's front image
-    /// </summary>
-    /// <param name="index">New card's front image</param>
     public void setFront(int index)
     {
         GameObject child = this.transform.GetChild(0).gameObject;
@@ -146,19 +172,6 @@ public class Card : MonoBehaviour
         MeshRenderer meshRend = childOfChild.GetComponent<MeshRenderer>();
         Material material = meshRend.materials[2];
         material.SetTexture("_MainTex", cardModel.getSmallFront(index));
-        //spriteRenderer.sprite = cardModel.getSmallFront(index);
-    }
-
-    /// <summary>
-    /// Set new card's front image from big cards set
-    /// </summary>
-    /// <param name="index">index of new big front image</param>
-    public void setBigFront(int index)
-    {
-        //if (index == 0)
-        //  spriteRenderer.sprite = null;
-        //else
-        //spriteRenderer.sprite = cardModel.getBigFront(index - 1);
     }
 
     public void setCardType(CardType cardType)
@@ -171,10 +184,6 @@ public class Card : MonoBehaviour
         return this.cardType;
     }
 
-    /// <summary>
-    /// Get a cardModel object
-    /// </summary>
-    /// <returns>cardModel object</returns>
     public CardModel getCardModel()
     {
         return this.cardModel;

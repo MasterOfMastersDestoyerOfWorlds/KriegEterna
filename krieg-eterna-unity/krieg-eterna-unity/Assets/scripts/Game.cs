@@ -588,9 +588,6 @@ public class Game : MonoBehaviour
                 else
                 {
                     gameOver();
-
-                    //Debug.Log("Deleting!");
-                    // deleteAllCardClones();
                 }
             }
         }
@@ -617,16 +614,16 @@ public class Game : MonoBehaviour
             endText.text += "\nGracz 2 wygrał";
     }
 
-    /// <summary>
-    /// Resolve new posiotion of each card in each group
-    /// </summary>
+
     public void reorganizeGroup()
     {
         
             if (activeDeck.cardsInDeck.Count > 0)
             {
-                Vector3 centerVector = areas.getDeckCenterVector() + new Vector3(0, -0.1456f, -0.1f);
-
+                Vector3 centerVector = areas.getDeckCenterVector();
+                float cardHorizontalSpacing = Card.getBaseWidth()*1.025f;
+                Debug.Log(centerVector);
+                Debug.Log(Card.getBaseHeight());
                 // For odd number of cards
                 if (activeDeck.cardsInDeck.Count % 2 == 1)
                 {
@@ -636,7 +633,7 @@ public class Game : MonoBehaviour
                     for (int i = 1; i < activeDeck.cardsInDeck.Count; i++)
                     {
                         // TODO - Expand range of max 8 cards in group and dynamically change offset between ech card in groups. Add functionallity of schowing one card after another (changing z position).
-                        activeDeck.cardsInDeck[i].transform.position = new Vector3(centerVector.x + j * 1.05f, centerVector.y, centerVector.z);
+                        activeDeck.cardsInDeck[i].transform.position = new Vector3(centerVector.x + j * cardHorizontalSpacing, centerVector.y, centerVector.z);
 
                         j *= -1;
                         if (i % 2 == 0)
@@ -646,12 +643,12 @@ public class Game : MonoBehaviour
                 else
                 {
                     int j = 1;
-                    activeDeck.cardsInDeck[0].transform.position = centerVector + new Vector3(0.525f, 0, 0);
-                    activeDeck.cardsInDeck[1].transform.position = centerVector + new Vector3(-0.525f, 0, 0);
+                    activeDeck.cardsInDeck[0].transform.position = centerVector + new Vector3(cardHorizontalSpacing/2, 0, 0);
+                    activeDeck.cardsInDeck[1].transform.position = centerVector + new Vector3(-cardHorizontalSpacing/2, 0, 0);
 
                     for (int i = 2; i < activeDeck.cardsInDeck.Count; i++)
                     {
-                        activeDeck.cardsInDeck[i].transform.position = new Vector3(centerVector.x + j * 1.05f + Math.Sign(j) * 0.525f, centerVector.y, centerVector.z);
+                        activeDeck.cardsInDeck[i].transform.position = new Vector3(centerVector.x + j * cardHorizontalSpacing + Math.Sign(j) * (cardHorizontalSpacing/2), centerVector.y, centerVector.z);
 
                         j *= -1;
                         if (i % 2 == 1)
@@ -973,11 +970,7 @@ public class Game : MonoBehaviour
 
     private void showActiveCard(bool ifShow)
     {
-        // TODO - usunąć operację modulo!
-        if(ifShow)
-            activeShowingCard.setBigFront(activeCard.getIndex() + 1); // +1 because 0 means null
-        else
-            activeShowingCard.setBigFront(0);
+        
     }
 
     public void giveUp()

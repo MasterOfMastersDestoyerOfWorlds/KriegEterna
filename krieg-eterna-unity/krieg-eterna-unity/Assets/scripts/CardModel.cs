@@ -69,7 +69,6 @@ public class CardModel : MonoBehaviour
             {
                 temp[j] = temp[j].Trim();  //removed the blank spaces
             }
-            Debug.Log("Assets/Images/" + temp[0]);
             smallFronts.Add(temp[0]);
             names.Add(temp[0]);
 

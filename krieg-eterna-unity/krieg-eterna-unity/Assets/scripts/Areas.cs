@@ -88,67 +88,54 @@ public class Areas : MonoBehaviour {
         return sword2Collider.bounds;
     }
 
-    /// <summary>
-    /// Get deck collider center vector
-    /// </summary>
-    /// <returns>deck collider center vector</returns>
+    private Vector3 getCenterBottom()
+    {
+
+        Vector3 topRight = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, 0f));
+        Vector3 botLeft = Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, 0f));
+        var height = Card.getBaseHeight();
+        Vector3 centerBottom = new Vector3(
+            0f,
+            botLeft.y + height/2,
+            0f);
+        return centerBottom;
+    }
+
     public Vector3 getDeckCenterVector()
     {
-        return deckCollider.center;
+        return getCenterBottom();
     }
 
-    /// <summary>
-    /// Get sword group collider center vector
-    /// </summary>
-    /// <returns>sworr group collider center vector</returns>
+
+
     public Vector3 getSwordsCenterVector()
     {
-        return swordCollider.center;
+        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight()*3, 0f);
     }
 
-    /// <summary>
-    /// Get bow group collider center vector
-    /// </summary>
-    /// <returns>bow group collider center vector</returns>
     public Vector3 getBowsCenterVector()
     {
-        return bowCollider.center;
+        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight()*2, 0f);
     }
 
-    /// <summary>
-    /// Get trebuchet group collider center vector
-    /// </summary>
-    /// <returns>trebuchet group collider center vector</returns>
     public Vector3 getTrebuchetsCenterVector()
     {
-        return trebuchetCollider.center;
+        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight(), 0f);
     }
 
-    /// <summary>
-    /// Get special 1 box collider center vector
-    /// </summary>
-    /// <returns>special 1 box collider center vector</returns>
     public Vector3 getSpecial1CenterVector()
     {
         return special1Collider.center;
     }
 
-    /// <summary>
-    /// Get special 2 box collider center vector
-    /// </summary>
-    /// <returns>special 2 box collider center vector</returns>
     public Vector3 getSpecial2CenterVector()
     {
         return special2Collider.center;
     }
 
-    /// <summary>
-    /// Get sword 2 box collider center vector
-    /// </summary>
-    /// <returns>sword 2 box collider center vector</returns>
     public Vector3 getSword2CenterVector()
     {
-        return sword2Collider.center;
+        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight()*4, 0f);
     }
 
     /// <summary>
