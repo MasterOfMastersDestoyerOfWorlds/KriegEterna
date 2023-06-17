@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
         Vector3 player1DeathAreaVector = new Vector3(8.51f, -4.6f, -0.1f);
         Vector3 player2DeathAreaVector = new Vector3(8.51f, 4.6f, -0.1f);
 
-        foreach (Card card in deck.getDeathCards())
+        foreach (Card card in deck.unitGraveyard)
         {
             if (player == (int)WhichPlayer.PLAYER2)
             {

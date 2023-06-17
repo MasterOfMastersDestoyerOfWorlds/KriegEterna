@@ -84,16 +84,12 @@ public class CardModel : MonoBehaviour
             AddOptional(temp, enemyCardDraw, 12);
             AddOptional(temp, enemyCardDestroy, 13);
             AddOptional(temp, enemyReveal, 14);
-            AddTypePairFloat(temp, rowMultiple, 15, rowEffected, 16);
+            AddOptionalFloat(temp, rowMultiple, 15);
+            AddOptionalType(temp, rowEffected, 16);
             AddTypePair(temp, setAside, 17, setAsideType, 18);
             AddOptionalBool(temp, attach, 19);
             AddOptional(temp, strengthCondition, 20);
-
-            
-
         }
-        Debug.Log(names[0]);
-        Debug.Log(names[1]);
     }
 
     private void AddOptional(string[] temp, List<int> numList, int indexNum)
@@ -116,6 +112,30 @@ public class CardModel : MonoBehaviour
         else
         {
             boolList.Add(false);
+        }
+    }
+
+    private void AddOptionalFloat(string[] temp, List<float> typeList, int indexType)
+    {
+        if (!System.String.IsNullOrEmpty(temp[indexType]))
+        {
+            typeList.Add(float.Parse(temp[indexType]));
+        }
+        else
+        {
+            typeList.Add(0f);
+        }
+    }
+
+    private void AddOptionalType<T>(string[] temp, List<T> typeList, int indexType)
+    {
+        if (!System.String.IsNullOrEmpty(temp[indexType]))
+        {
+            typeList.Add((T)System.Enum.Parse(typeof(T), temp[indexType], true));
+        }
+        else
+        {
+            typeList.Add(default(T));
         }
     }
 

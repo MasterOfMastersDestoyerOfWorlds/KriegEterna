@@ -228,109 +228,6 @@ public class Game : MonoBehaviour
                     }
                 }
             }
-            // Putting Spy cards
-            else if (areas.getSword2ColliderBounds().Contains(mouseRelativePosition))
-            {
-                // For spy card
-                if (state == (int)Status.ACTIVE_CARD && activeCard.getCardType() == CardType.Spy && activeCard.getCardType() == CardType.Melee)
-                {
-                    activeCard.setActive(false);
-                    if (activePlayerNumber == (int)PlayerNumber.PLAYER1)
-                    {
-                        player2.getDeck().addSpy(activeCard);
-                        player1.getDeck().playerHand.Remove(activeCard);
-                        player1.getDeck().addTwoRandomCards();
-                        activeDeck.disactiveAllInDeck();
-                        state = (int)Status.FREE;
-                        if (player1.isPlaying && player2.isPlaying)
-                            switchPlayer();
-                        else
-                        {
-                            reorganizeGroup();
-                            state = (int)Status.FREE;
-                            showActiveCard(false);
-                        }
-                    }
-                    else
-                    {
-                        player1.getDeck().addSpy(activeCard);
-                        player2.getDeck().playerHand.Remove(activeCard);
-                        player2.getDeck().addTwoRandomCards();
-                        activeDeck.disactiveAllInDeck();
-                        state = (int)Status.FREE;
-                        if (player1.isPlaying && player2.isPlaying)
-                            switchPlayer();
-                        else
-                        {
-                            reorganizeGroup();
-                            state = (int)Status.FREE;
-                            showActiveCard(false);
-                        }
-                    }
-                }
-                else
-                {
-                    activeDeck.disactiveAllInDeck();
-                    activeCard = null;
-                    showActiveCard(false);
-                    state = (int)Status.FREE;
-                }
-            }
-            else if (areas.getSpecial1ColliderBounds().Contains(mouseRelativePosition))
-            {
-                if (state == (int)Status.ACTIVE_CARD && (activeCard.getIsSpecial() == (int)TypeOfCard.DESTROY || activeCard.getIsSpecial() == (int)TypeOfCard.WEATHER))
-                {
-                    activeCard.setActive(false);
-                    activeCard.transform.position = areas.getSpecial1CenterVector();
-                    activeDeck.addToSpecial(activeCard);
-
-                    // destroy
-                    if(activeCard.getIsSpecial() == 4)
-                    {
-                        if(activePlayerNumber == (int)PlayerNumber.PLAYER1)
-                        {
-                            player2.getDeck().removeMaxPowerCard();
-                        }
-                        else
-                            player1.getDeck().removeMaxPowerCard();
-                        activeDeck.disactiveAllInDeck();
-                        state = (int)Status.FREE;
-                        if (player1.isPlaying && player2.isPlaying)
-                            switchPlayer();
-                        else
-                        {
-                            reorganizeGroup();
-                            state = (int)Status.FREE;
-                            showActiveCard(false);
-                        }
-                    }
-                    // weather
-                    else if(activeCard.getIsSpecial() == 5)
-                    {
-                        float rowMultiple = activeCard.getRowMultiple();
-                        RowEffected rowEffected = activeCard.getRowEffected();
-                        player1.getDeck().applyWeatherEffect(rowMultiple, rowEffected);
-                        player2.getDeck().applyWeatherEffect(rowMultiple, rowEffected);
-
-                        if(rowEffected == RowEffected.All)
-                        {
-                            player1.getDeck().deleteFromSpecial();
-                            player2.getDeck().deleteFromSpecial();
-                        }
-
-                        activeDeck.disactiveAllInDeck();
-                        state = (int)Status.FREE;
-                        if (player1.isPlaying && player2.isPlaying)
-                            switchPlayer();
-                        else
-                        {
-                            reorganizeGroup();
-                            state = (int)Status.FREE;
-                            showActiveCard(false);
-                        }
-                    }
-                }
-            }
             // Ending player time, tour
             // TODO - Change gameStatus
             // ---------------------------------------------------------------------------------------------------------------
@@ -452,12 +349,27 @@ public class Game : MonoBehaviour
     }
     
     public void PlaySpy(Card c){
+        Debug.Log("Playing Spy in: " + c.rowEffected);
+        switch (c.rowEffected){
+            case RowEffected.Melee: activeDeck.enemyMeleeRow.Add(c); Debug.Log("added to enemy melee"); break;
+            case RowEffected.Ranged: activeDeck.enemyRangedRow.Add(c); Debug.Log("added to enemy ranged"); break;
+            case RowEffected.Siege: activeDeck.enemySiegeRow.Add(c); Debug.Log("added to enemy siege");break;
+            default:break;
+        }
     }
     
     public void PlayDecoy(Card c){
     }
     
     public void PlayWeather(Card c){
+        Debug.Log("Playing Weather in: " + c.rowEffected);
+        switch (c.rowEffected){
+            case RowEffected.Melee: activeDeck.meleeRow.Add(c);activeDeck.enemyMeleeRow.Add(c); break;
+            case RowEffected.Ranged: activeDeck.rangedRow.Add(c);activeDeck.enemyRangedRow.Add(c); break;
+            case RowEffected.Siege: activeDeck.siegeRow.Add(c);activeDeck.enemySiegeRow.Add(c); break;
+            case RowEffected.All: activeDeck.powerGraveyard.Add(c);activeDeck.clearAllWeatherEffects();break;
+            default: break;
+        }
     }
     
     public void PlayPower(Card c){
@@ -489,10 +401,29 @@ public class Game : MonoBehaviour
     {
 
         float cardHorizontalSpacing = Card.getBaseWidth() * 1.025f;
+        float cardThickness = Card.getBaseThickness();
         reorganizeRow(cardHorizontalSpacing, activeDeck.playerHand, areas.getDeckCenterVector());
-        reorganizeRow(cardHorizontalSpacing, activeDeck.meleeRow, areas.getSwordsCenterVector());
-        reorganizeRow(cardHorizontalSpacing, activeDeck.rangedRow, areas.getBowsCenterVector());
-        reorganizeRow(cardHorizontalSpacing, activeDeck.siegeRow, areas.getTrebuchetsCenterVector());
+        reorganizeRow(cardHorizontalSpacing, activeDeck.meleeRow, areas.getMeleeRowCenterVector());
+        reorganizeRow(cardHorizontalSpacing, activeDeck.rangedRow, areas.getRangedRowCenterVector());
+        reorganizeRow(cardHorizontalSpacing, activeDeck.siegeRow, areas.getSiegeRowCenterVector());
+        reorganizeRow(cardHorizontalSpacing, activeDeck.enemyMeleeRow, areas.getEnemyMeleeRowCenterVector());
+        reorganizeRow(cardHorizontalSpacing, activeDeck.enemyRangedRow, areas.getEnemyRangedRowCenterVector());
+        reorganizeRow(cardHorizontalSpacing, activeDeck.enemySiegeRow, areas.getEnemySiegeRowCenterVector());
+        reorganizeVertRow(cardThickness, activeDeck.unitGraveyard, areas.getUnitGraveyardCenterVector());
+        reorganizeVertRow(cardThickness, activeDeck.powerGraveyard, areas.getPowerGraveyardCenterVector());
+    }
+
+    private void reorganizeVertRow(float cardThickness, List<Card> deck, Vector3 centerVector)
+    {
+        if (deck.Count > 0)
+        {
+            deck[0].transform.position = centerVector;
+
+            for (int i = 1; i < deck.Count; i++)
+            {
+                deck[i].transform.position = new Vector3(centerVector.x, centerVector.y, centerVector.z + i * cardThickness);
+            }
+        }
     }
 
     private void reorganizeRow(float cardHorizontalSpacing, List<Card> deck, Vector3 centerVector)
@@ -637,9 +568,6 @@ public class Game : MonoBehaviour
         cardNumber1.transform.position = cardNumber2.transform.position;
         cardNumber2.transform.position = playerOneNumberOfCardsPosition;
 
-        // fliping cards
-        player1.getDeck().flipGroupCards();
-        player2.getDeck().flipGroupCards();
 
         // score position replacing
         Vector3 tempVector = score1Text.transform.position;

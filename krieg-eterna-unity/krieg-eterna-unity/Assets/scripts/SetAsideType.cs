@@ -1,7 +1,7 @@
 public enum SetAsideType 
 {
-    King,
-    Enemy,
-    Player,
+    King = 1,
+    Enemy = 2,
+    Player = 3,
     None  = 0
 };

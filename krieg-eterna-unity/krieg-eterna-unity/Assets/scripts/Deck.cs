@@ -6,27 +6,35 @@ public class Deck : MonoBehaviour
 {
     private GameObject cardGameObject;
     private Card baseCard;
-    public List<Card> playerHand = new List<Card>();
-    public List<Card> meleeRow = new List<Card>();
-    public List<Card> rangedRow = new List<Card>();
-    public List<Card> siegeRow = new List<Card>();
-    public List<Card> unitGraveyard = new List<Card>();
-    public List<Card> cardsInSpecial = new List<Card>(); // special cards
+    public Row playerHand = new Row(true, false);
+    public Row meleeRow = new Row(true, true);
+    public Row rangedRow = new Row(true, true);
+    public Row siegeRow = new Row(true, true);
+
+     public Row enemyMeleeRow = new Row(true, false);
+    public Row enemyRangedRow = new Row(true, false);
+    public Row enemySiegeRow = new Row(true, false);
+
+    public List<Row> rows = new List<Row>(); 
+
+
+    public Row unitGraveyard = new Row(false, false);
+    public Row powerGraveyard = new Row(false, false);
+    public Row cardsInSpecial = new Row(false, false); // special cards
 
     private static int FRONTS_NUMBER = 102;
     // TODO - remove max amount of cards in each range group
-    private static int MAX_NUMBER_OF_CARDS_IN_GROUP = 7;
-    private static int SWORD_GROUP_AMOUNT = 7;
-    private static int SWORD_GOLD_GROUP_AMOUNT = 5;
-    private static int BOW_GROUP_AMOUNT = 5;
-    private static int BOW_GOLD_GROUP_AMOUNT = 1;
-    private static int TREBUCHET_GROUP_AMOUNT = 3;
-    private static int TREBUCHET_GOLD_GROUP_AMOUNT = 0;
 
     void Awake()
     {
         cardGameObject = GameObject.Find("Card");
         baseCard = cardGameObject.GetComponent<Card>();
+        rows.Add(meleeRow);
+        rows.Add(rangedRow);
+        rows.Add(siegeRow);
+        rows.Add(enemyMeleeRow);
+        rows.Add(enemyRangedRow);
+        rows.Add(enemySiegeRow);
     }
 
     /// <summary>
@@ -43,8 +51,18 @@ public class Deck : MonoBehaviour
             int cardId;
             do
             {
-                cardId = Random.Range(0, FRONTS_NUMBER);
+                cardId = Random.Range(1, FRONTS_NUMBER);
             } while (uniqueValues.Contains(cardId));
+
+            if(cardIndex == 1){
+                cardId = 87;
+            }
+
+            
+            if(cardIndex == 2){
+                cardId = 19;
+            }
+
             uniqueValues.Add(cardId);
             
             Card clone = Instantiate(baseCard) as Card;
@@ -109,91 +127,6 @@ public class Deck : MonoBehaviour
         }
     }
 
-    public IEnumerable<Card> getDeathCards()
-    {
-        foreach (Card c in unitGraveyard)
-        {
-            yield return c;
-        }
-    }
-
-    public IEnumerable<Card> getSpecialCards()
-    {
-        foreach (Card c in cardsInSpecial)
-        {
-            yield return c;
-        }
-    }
-
-
-    /// <summary>
-    /// adding card from swords to deck
-    /// </summary>
-    /// <param name="card">card we want to move</param>
-    /// <returns>true if operation succeeded</returns>
-    public bool moveCardToDeckFromSwords(Card card)
-    {
-        playerHand.Add(card);
-        return meleeRow.Remove(card);
-    }
-
-    /// <summary>
-    /// adding card from bows to deck
-    /// </summary>
-    /// <param name="card">card we want to move</param>
-    /// <returns>true if operation succeeded</returns>
-    public bool moveCardToDeckFromBows(Card card)
-    {
-        playerHand.Add(card);
-        return rangedRow.Remove(card);
-    }
-
-    /// <summary>
-    /// adding card from trebuchets to deck
-    /// </summary>
-    /// <param name="card">card we want to move</param>
-    /// <returns>true if operation succeeded</returns>
-    public bool moveCardToDeckFromTrebuchets(Card card)
-    {
-        playerHand.Add(card);
-        return siegeRow.Remove(card);
-    }
-
-    /// <summary>
-    /// Adding spy card to opponent sword deck
-    /// </summary>
-    /// <param name="card">spy card we want to add</param>
-    public void addSpy(Card card)
-    {
-        Vector3 newVector = new Vector3(-2.53f + meleeRow.Count * 1.05f, 1.66495f, -0.1f);
-        card.transform.position = newVector;
-
-        meleeRow.Add(card);
-    }
-
-    /// <summary>
-    /// Adding weather and destroy cards to special box
-    /// </summary>
-    /// <param name="card">Crd we wnt to add</param>
-    public void addToSpecial(Card card)
-    {        
-        cardsInSpecial.Add(card);
-        playerHand.Remove(card);
-    }
-
-    /// <summary>
-    /// Deleting weather from special box
-    /// </summary>
-    public void deleteFromSpecial()
-    {
-        foreach(Card c in getSpecialCards())
-        {
-            if(c.isSpecial == 5)
-                sendCardToDeathList(c);
-        }
-        cardsInSpecial.Clear();
-    }
-
     /// <summary>
     /// Send cards from desk to death deck
     /// </summary>
@@ -252,9 +185,6 @@ public class Deck : MonoBehaviour
         return ifSucceeded;
     }
 
-    /// <summary>
-    /// disactivating cards in deck
-    /// </summary>
     public void disactiveAllInDeck()
     {
         if (playerHand.Count > 0)
@@ -270,9 +200,6 @@ public class Deck : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Removing card with highest power value
-    /// </summary>
     public void removeMaxPowerCard()
     {
         float maxPower = 0;
@@ -308,11 +235,6 @@ public class Deck : MonoBehaviour
             sendCardToDeathList(maxCard);
     }
 
-    /// <summary>
-    /// Get sum of the card's powers from group or all caards
-    /// </summary>
-    /// <param name="group">number of group (0 - all, 1 - sword, 2 - bow, 3 - trebuchet)</param>
-    /// <returns>sum of powers of cards in group(s)</returns>
     public float getPowerSum(int group)
     {
         float result = 0;
@@ -351,10 +273,31 @@ public class Deck : MonoBehaviour
         return result;
     }
 
-    /// <summary>
-    /// Tagging cards touched by weather card
-    /// </summary>
-    /// <param name="cardGroup">range of card</param>
+    public void clearAllWeatherEffects()
+    {
+        Debug.Log("Clearing all weather");
+        for (int i = 0; i < rows.Count; i++){
+            Row row = rows[i];
+            Card weatherCard = clearWeatherRow(row);
+            Debug.Log(weatherCard);
+            if(row.isPlayer && weatherCard != null){
+                powerGraveyard.Add(weatherCard);
+            }
+        }
+    }
+    private Card clearWeatherRow(Row row){
+        Card ret = null;
+        for (int i = 0; i < row.Count; i++){
+            ret = row.Find(isWeather);
+            row.RemoveAll(isWeather);
+        }
+        return ret;
+    }
+    private static bool isWeather(Card c)
+    {
+        return c.cardType == CardType.Weather;
+    }
+
     public void applyWeatherEffect(float rowMultiple, RowEffected row)
     {
         switch(row)
@@ -397,46 +340,6 @@ public class Deck : MonoBehaviour
                         card.weatherEffect = false;
                 }
                 break;
-        }
-    }
-
-    /// <summary>
-    /// Flip player cards
-    /// </summary>
-    public void flipGroupCards()
-    {
-        foreach(Card card in getSwordCards())
-        {
-            //card.flip(true, true);
-            card.mirrorTransform();
-        }
-        foreach (Card card in getBowCards())
-        {
-            //card.flip(true, true);
-            card.mirrorTransform();
-        }
-        foreach (Card card in getTrebuchetCards())
-        {
-            //card.flip(true, true);
-            card.mirrorTransform();
-        }
-        foreach (Card card in getDeathCards())
-        {
-            //card.flip(false, true);
-
-            float x = card.transform.position.x;
-            float y = card.transform.position.y;
-            float z = card.transform.position.z;
-
-            card.transform.position = new Vector3(x, y * -1f, z);
-        }
-        foreach(Card card in getSpecialCards())
-        {
-            float x = card.transform.position.x;
-            float y = card.transform.position.y;
-            float z = card.transform.position.z;
-
-            card.transform.position = new Vector3(x, y * -1f, z);
         }
     }
 }

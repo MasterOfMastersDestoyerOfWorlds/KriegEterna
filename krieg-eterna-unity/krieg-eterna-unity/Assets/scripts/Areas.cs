@@ -34,60 +34,6 @@ public class Areas : MonoBehaviour {
         return deckCollider.bounds;
     }
 
-    /// <summary>
-    /// Get sword group collision bounds
-    /// </summary>
-    /// <returns>Sword group collision bounds</returns>
-    public Bounds getSwordColliderBounds()
-    {
-        return swordCollider.bounds;
-    }
-
-    /// <summary>
-    /// Get bow group collision bounds
-    /// </summary>
-    /// <returns>Bow group collision bounds</returns>
-    public Bounds getBowColliderBounds()
-    {
-        return bowCollider.bounds;
-    }
-
-    /// <summary>
-    /// Get trebuchet group collision bounds
-    /// </summary>
-    /// <returns>Trebuchet group bounds</returns>
-    public Bounds getTrebuchetColliderBounds()
-    {
-        return trebuchetCollider.bounds;
-    }
-
-    /// <summary>
-    /// Get special 1 group collision bounds
-    /// </summary>
-    /// <returns>Special 1 group bounds</returns>
-    public Bounds getSpecial1ColliderBounds()
-    {
-        return special1Collider.bounds;
-    }
-
-    /// <summary>
-    /// Get special 2 group collision bounds
-    /// </summary>
-    /// <returns>Special 2 group bounds</returns>
-    public Bounds getSpecial2ColliderBounds()
-    {
-        return special2Collider.bounds;
-    }
-
-    /// <summary>
-    /// Get sword in player 2 group collision bounds
-    /// </summary>
-    /// <returns>Sword in player 2 group bounds</returns>
-    public Bounds getSword2ColliderBounds()
-    {
-        return sword2Collider.bounds;
-    }
-
     private Vector3 getCenterBottom()
     {
 
@@ -107,18 +53,47 @@ public class Areas : MonoBehaviour {
     }
 
 
+    public Vector3 getUnitGraveyardCenterVector()
+    {
+        Vector3 topRight = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, 0f));
+        Vector3 botLeft = Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, 0f));
+        var height = Card.getBaseHeight();
+        var width = Card.getBaseWidth();
+        Vector3 center = (topRight + botLeft)/2;
+        Vector3 unitGraveyard = new Vector3(
+            topRight.x - width*1.5f,
+            center.y + height/2,
+            0f);
+        return unitGraveyard;
+    }
 
-    public Vector3 getSwordsCenterVector()
+        public Vector3 getPowerGraveyardCenterVector()
+    {
+        Vector3 topRight = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, 0f));
+        Vector3 botLeft = Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, 0f));
+        var height = Card.getBaseHeight();
+        var width = Card.getBaseWidth();
+        Vector3 center = (topRight + botLeft)/2;
+        Vector3 unitGraveyard = new Vector3(
+            topRight.x - width*1.5f,
+            center.y - height/2,
+            0f);
+        return unitGraveyard;
+    }
+
+
+
+    public Vector3 getMeleeRowCenterVector()
     {
         return getCenterBottom() + new Vector3(0f, Card.getBaseHeight()*3, 0f);
     }
 
-    public Vector3 getBowsCenterVector()
+    public Vector3 getRangedRowCenterVector()
     {
         return getCenterBottom() + new Vector3(0f, Card.getBaseHeight()*2, 0f);
     }
 
-    public Vector3 getTrebuchetsCenterVector()
+    public Vector3 getSiegeRowCenterVector()
     {
         return getCenterBottom() + new Vector3(0f, Card.getBaseHeight(), 0f);
     }
@@ -133,13 +108,18 @@ public class Areas : MonoBehaviour {
         return special2Collider.center;
     }
 
-    public Vector3 getSword2CenterVector()
+    public Vector3 getEnemyMeleeRowCenterVector()
     {
         return getCenterBottom() + new Vector3(0f, Card.getBaseHeight()*4, 0f);
     }
+    public Vector3 getEnemyRangedRowCenterVector()
+    {
+        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight()*5, 0f);
+    }
+    public Vector3 getEnemySiegeRowCenterVector()
+    {
+        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight()*6, 0f);
+    }
 
-    /// <summary>
-    /// Defined typed of card groups
-    /// </summary>
     private enum CardGroup { DECK, SWORD, BOW, TREBUCHET, SPECIAL1, SPECIAL2, SWORD2};
 }

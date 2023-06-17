@@ -75,7 +75,7 @@ Resurrection	Power	Choose one unit from the graveyard and play it\ron your side 
 Retreat	Decoy	Replace this card with any of your units on the\rfield, and add that card to your hand.	0				1	Unit								Player				
 Riflemen	Ranged	 	3																	
 Ruin	Power	Discard up to three cards from your hand.\rAdd three times the number of discarded cards\rto the base strength of a unit.	0		3	Unit			3	Multiply						PlayerHand			TRUE	
-Saboteur	Spy	Play in the opponents ranged row, then draw\rtwo cards.	2	2												Range				
+Saboteur	Spy	Play in the opponents ranged row, then draw\rtwo cards.	2	2												Ranged				
 Sack	Decoy	Replace this card with any of your opponent's\runits on the field, and add that card to your\rhand.	0				1	Unit								Enemy				
 Scout	Melee	Reveal a power card in your opponent's hand.	1											1						
 Shipwreck	Decoy	If you have three units in the same row, replace\rthem with this card. Two return to your hand,\rsend one to the graveyard.	0		1	Unit	2	Unit												

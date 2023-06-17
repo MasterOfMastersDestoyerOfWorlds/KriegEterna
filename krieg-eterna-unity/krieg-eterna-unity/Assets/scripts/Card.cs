@@ -42,6 +42,8 @@ public class Card : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D cardColider;
 
+    private Material material;
+
     private GameObject cardModelGameObject;
     private CardModel cardModel;
 
@@ -53,15 +55,16 @@ public class Card : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         cardColider = GetComponent<BoxCollider2D>();
         Vector3 cardDims = cardColider.size;
-        if(scaleHeight == 0f || scaleWidth == 0f){
+        if (scaleHeight == 0f || scaleWidth == 0f)
+        {
             Vector3 topRight = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, 0f));
             Vector3 botLeft = Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, 0f));
             screenHeight = Mathf.Abs(topRight.y - botLeft.y);
             screenWidth = Mathf.Abs(topRight.x - botLeft.x);
-            scaleHeight = screenHeight/8;
-            scaleWidth = (cardDims.x/cardDims.y) * scaleHeight;
+            scaleHeight = screenHeight / 8;
+            scaleWidth = (cardDims.x / cardDims.y) * scaleHeight;
             Transform cardObj = this.transform.Find("Card 1");
-            cardObj.transform.localScale = new Vector3((scaleWidth/cardDims.x)*cardObj.transform.localScale.x, 1, scaleHeight/cardDims.y *cardObj.transform.localScale.z);
+            cardObj.transform.localScale = new Vector3((scaleWidth / cardDims.x) * cardObj.transform.localScale.x, 1, scaleHeight / cardDims.y * cardObj.transform.localScale.z);
             cardColider.size = new Vector2(scaleWidth, scaleHeight);
         }
         baseLoc = this.transform.position;
@@ -132,6 +135,8 @@ public class Card : MonoBehaviour
 
     public void setActive(bool state)
     {
+        Material material = getMaterial();
+        material.SetInt("_Flash", state ? 1 : 0);
         this.active = state;
     }
     public bool isActive()
@@ -146,7 +151,8 @@ public class Card : MonoBehaviour
 
     public static float getBaseHeight()
     {
-        if(baseHeight == 0f){
+        if (baseHeight == 0f)
+        {
             baseHeight = scaleHeight;
         }
         return baseHeight;
@@ -154,25 +160,37 @@ public class Card : MonoBehaviour
 
     public static float getBaseWidth()
     {
-        if(baseWidth == 0f){
+        if (baseWidth == 0f)
+        {
             baseWidth = scaleWidth;
         }
         return baseWidth;
     }
 
+    public static float getBaseThickness()
+    {
+        return 0.1f;
+    }
 
     public string ToString()
     {
-        return "Type: "+ this.cardType +" Name: "+ this.cardName + " card with strength: " + this.strength;
+        return "Type: " + this.cardType + " Name: " + this.cardName + " card with strength: " + this.strength;
     }
 
+    private Material getMaterial()
+    {
+        if (this.material == null)
+        {
+            GameObject child = this.transform.GetChild(0).gameObject;
+            GameObject childOfChild = child.transform.GetChild(0).gameObject;
+            MeshRenderer meshRend = childOfChild.GetComponent<MeshRenderer>();
+            this.material = meshRend.materials[2];
+        }
+        return this.material;
+    }
     public void setFront(int index)
     {
-        GameObject child = this.transform.GetChild(0).gameObject;
-        GameObject childOfChild = child.transform.GetChild(0).gameObject;
-        MeshRenderer meshRend = childOfChild.GetComponent<MeshRenderer>();
-        Material material = meshRend.materials[2];
-        material.SetTexture("_MainTex", cardModel.getSmallFront(index));
+        this.getMaterial().SetTexture("_Texture2D", cardModel.getSmallFront(index));
     }
 
     public void setCardType(CardType cardType)

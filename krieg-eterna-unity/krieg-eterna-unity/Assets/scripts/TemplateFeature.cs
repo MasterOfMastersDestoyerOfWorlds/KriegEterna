@@ -22,9 +22,23 @@ public class TemplateFeature : ScriptableRendererFeature
         // additional properties ...
     }
 
+    [System.Serializable]
+    public class StencilPassSettings
+    {
+        // Where/when the render pass should be injected during the rendering process.
+        public RenderPassEvent renderPassEvent = RenderPassEvent.AfterRenderingTransparents;
+
+        
+        [Range(0, 255)] public int stencilId = 5;
+        
+        // additional properties ...
+    }
+
     // References to our pass and its settings.
     TemplatePass pass;
+    StencilPass stencilPass;
     public PassSettings passSettings = new();
+    public StencilPassSettings stencilPassSettings = new();
 
     // Gets called every time serialization happens.
     // Gets called when you enable/disable the renderer feature.
@@ -33,6 +47,7 @@ public class TemplateFeature : ScriptableRendererFeature
     {
         // Pass the settings as a parameter to the constructor of the pass.
         pass = new TemplatePass(passSettings);
+        stencilPass = new StencilPass(stencilPassSettings);
     }
 
     // Injects one or multiple render passes in the renderer.
@@ -43,5 +58,6 @@ public class TemplateFeature : ScriptableRendererFeature
     {
         // Here you can queue up multiple passes after each other.
         renderer.EnqueuePass(pass); 
+        renderer.EnqueuePass(stencilPass);
     }
 }
