@@ -6,74 +6,155 @@ public class Deck : MonoBehaviour
 {
     private GameObject cardGameObject;
     private Card baseCard;
-    public Row playerHand = new Row(true, false);
-    public Row meleeRow = new Row(true, true);
-    public Row rangedRow = new Row(true, true);
-    public Row siegeRow = new Row(true, true);
+    private GameObject targetGameObject;
+    private Target baseTarget;
+    public Row playerHand = new Row(true, false, RowEffected.PlayerHand);
+    public Row meleeRow = new Row(true, true, RowEffected.Melee);
+    public Row rangedRow = new Row(true, true, RowEffected.Ranged);
+    public Row siegeRow = new Row(true, true, RowEffected.Siege);
 
-     public Row enemyMeleeRow = new Row(true, false);
-    public Row enemyRangedRow = new Row(true, false);
-    public Row enemySiegeRow = new Row(true, false);
+    public Row enemyMeleeRow = new Row(true, false, RowEffected.Melee);
+    public Row enemyRangedRow = new Row(true, false, RowEffected.Ranged);
+    public Row enemySiegeRow = new Row(true, false, RowEffected.Siege);
 
-    public List<Row> rows = new List<Row>(); 
+    public List<Row> rows = new List<Row>();
 
+    public Row unitDeck = new Row(false, false, RowEffected.UnitDeck);
+    public Row powerDeck = new Row(false, false, RowEffected.PowerDeck);
+    public Row kingDeck = new Row(false, false, RowEffected.KingDeck);
 
-    public Row unitGraveyard = new Row(false, false);
-    public Row powerGraveyard = new Row(false, false);
-    public Row cardsInSpecial = new Row(false, false); // special cards
+    public Row unitGraveyard = new Row(false, false, RowEffected.UnitGraveyard);
+    public Row powerGraveyard = new Row(false, false, RowEffected.PowerGraveyard);
+    public Row cardsInSpecial = new Row(false, false, RowEffected.All); // special cards
+
+    private GameObject areasObject;
+    private Areas areas;
 
     private static int FRONTS_NUMBER = 102;
     // TODO - remove max amount of cards in each range group
 
     void Awake()
     {
+        areasObject = GameObject.Find("Areas");
+        areas = areasObject.GetComponent<Areas>();
         cardGameObject = GameObject.Find("Card");
         baseCard = cardGameObject.GetComponent<Card>();
+        targetGameObject = GameObject.Find("Target");
+        baseTarget = targetGameObject.GetComponent<Target>();
+        baseCard.setBaseScale();
+        meleeRow.center = areas.getMeleeRowCenterVector();
+        rangedRow.center = areas.getRangedRowCenterVector();
+        siegeRow.center = areas.getSiegeRowCenterVector();
+        enemyMeleeRow.center = areas.getEnemyMeleeRowCenterVector();
+        enemyRangedRow.center = areas.getEnemyRangedRowCenterVector();
+        enemySiegeRow.center = areas.getEnemySiegeRowCenterVector();
         rows.Add(meleeRow);
         rows.Add(rangedRow);
         rows.Add(siegeRow);
         rows.Add(enemyMeleeRow);
         rows.Add(enemyRangedRow);
         rows.Add(enemySiegeRow);
+        rows.Add(playerHand);
     }
 
-    /// <summary>
-    /// method for buildiing new deck - adding cards to player's deck
-    /// </summary>
-    /// <param name="numberOfCards">how many cards have to be added to player's deck</param>
-    public void buildDeck(int numberOfCards)
+    public void buildDeck(int numPowers, int numUnits, int numKings)
     {
         List<int> uniqueValues = new List<int>();
 
-        for (int cardIndex = 0; cardIndex < numberOfCards; cardIndex++)
+        Debug.Log("generating values");
+
+        for (int cardIndex = 0; cardIndex < FRONTS_NUMBER; cardIndex++)
         {
-            // For unique cards set
-            int cardId;
-            do
-            {
-                cardId = Random.Range(1, FRONTS_NUMBER);
-            } while (uniqueValues.Contains(cardId));
+            uniqueValues.Add(cardIndex);
+        }
+        
+        
+        for(int cardIndex = 0; cardIndex < FRONTS_NUMBER; cardIndex++)
+        {
 
-            if(cardIndex == 1){
-                cardId = 87;
-            }
+            int cardId = uniqueValues[Random.Range(0, uniqueValues.Count)];
 
-            
-            if(cardIndex == 2){
-                cardId = 19;
-            }
-
-            uniqueValues.Add(cardId);
-            
             Card clone = Instantiate(baseCard) as Card;
             clone.tag = "CloneCard";
-            clone.setFront(cardId);
             clone.setIndex(cardId);
             clone.setIsSpecial(clone.getCardModel().getIsSpecial(cardId));
             clone.setBaseLoc();
-            playerHand.Add(clone);
+            Debug.Log("making card" + clone.cardName);
+            if (CardModel.isPower(clone.cardType))
+            {
+                powerDeck.Add(clone);
+            }
+            else if (CardModel.isUnit(clone.cardType))
+            {
+                unitDeck.Add(clone);
+            }
+            else if (clone.cardType == CardType.King)
+            {
+                kingDeck.Add(clone);
+            }
+            uniqueValues.Remove(cardId);
+        }
+        int numCards = numPowers + numUnits + numKings;
+        Debug.Log("dealing cards");
+        while(numCards > 0)
+        {
+            
+            Debug.Log("cards left to deal: " + numCards);
+            Card card = baseCard;
+            if (numPowers > 0)
+            {
+                card = powerDeck[0];
+                powerDeck.Remove(card);
+                numPowers--;
+            }
+            else if (numUnits > 0)
+            {
+                card = unitDeck[0];
+                unitDeck.Remove(card);
+                numUnits--;
+            }
+            else if(numKings > 0)
+            {
+                card = kingDeck[0];
+                kingDeck.Remove(card);
+                numKings--;
+            }
+            card.loadMaterial();
+            playerHand.Add(card);
+            numCards = numPowers + numUnits + numKings;
+        }
+        playerHand.center = areas.getDeckCenterVector();
+    }
+
+    public void buildTargets()
+    {
+        for (int i = 0; i < rows.Count; i++)
+        {
+            Row row = rows[i];
+            buildRowTarget(row.center, row);
         }
     }
+    public Target buildCardTarget(Vector3 center)
+    {
+        Target clone = Instantiate(baseTarget) as Target;
+        clone.setNotFlashing();
+        clone.tag = "CloneTarget";
+        clone.transform.position = new Vector3(center.x, center.y, -1f);
+        clone.setBaseLoc();
+        return clone;
+    }
+    public Target buildRowTarget(Vector3 center, Row row)
+    {
+        Target clone = Instantiate(baseTarget) as Target;
+        clone.setNotFlashing();
+        clone.tag = "CloneTarget";
+        clone.scale(Mathf.Max(row.Count + 1, 8), 1);
+        row.target = clone;
+        clone.transform.position = new Vector3(center.x, center.y, -1f);
+        clone.setBaseLoc();
+        return clone;
+    }
+
 
     /// <summary>
     /// Adding 2 random cards to player's deck
@@ -87,7 +168,7 @@ public class Deck : MonoBehaviour
             int cardId = Random.Range(0, FRONTS_NUMBER);
             Card clone = Instantiate(baseCard) as Card;
             clone.tag = "CloneCard";
-            clone.setFront(cardId);
+            clone.loadMaterial();
             clone.setIndex(cardId);
             clone.setIsSpecial(clone.getCardModel().getIsSpecial(cardId));
             clone.setBaseLoc();
@@ -97,7 +178,7 @@ public class Deck : MonoBehaviour
 
     public IEnumerable<Card> getCards()
     {
-        foreach(Card c in playerHand)
+        foreach (Card c in playerHand)
         {
             yield return c;
         }
@@ -105,7 +186,7 @@ public class Deck : MonoBehaviour
 
     public IEnumerable<Card> getSwordCards()
     {
-        foreach(Card c in meleeRow)
+        foreach (Card c in meleeRow)
         {
             yield return c;
         }
@@ -135,7 +216,7 @@ public class Deck : MonoBehaviour
     {
         bool ifSucceeded = false;
 
-        for (int i = meleeRow.Count -1; i >=0; i--)
+        for (int i = meleeRow.Count - 1; i >= 0; i--)
         {
             unitGraveyard.Add(meleeRow[i]);
             ifSucceeded = meleeRow.Remove(meleeRow[i]);
@@ -154,17 +235,12 @@ public class Deck : MonoBehaviour
         return ifSucceeded;
     }
 
-    /// <summary>
-    /// Sending card to death list
-    /// </summary>
-    /// <param name="card">card we want to send</param>
-    /// <returns>true if succeeded</returns>
     public bool sendCardToDeathList(Card card)
     {
         bool ifSucceeded = false;
 
         unitGraveyard.Add(card);
-        if(card.getCardType() == CardType.Melee)
+        if (card.getCardType() == CardType.Melee)
             ifSucceeded = meleeRow.Remove(card);
         if (card.getCardType() == CardType.Ranged)
             ifSucceeded = rangedRow.Remove(card);
@@ -173,14 +249,14 @@ public class Deck : MonoBehaviour
 
         Vector3 player1DeathAreaVector = new Vector3(8.51f, -4.6f, -0.1f);
         card.transform.position = player1DeathAreaVector;
-        
+
         float x = card.transform.position.x;
         float y = card.transform.position.y;
         float z = card.transform.position.z;
 
         card.transform.position = new Vector3(x, y * -1f, z);
-        
-        
+
+
 
         return ifSucceeded;
     }
@@ -250,7 +326,7 @@ public class Deck : MonoBehaviour
             }
         }
         if (group == 0 || group == 2)
-        { 
+        {
             foreach (Card card in getBowCards())
             {
                 if (card.weatherEffect == false)
@@ -259,8 +335,8 @@ public class Deck : MonoBehaviour
                     result++;
             }
         }
-        if(group == 0 || group == 1)
-        { 
+        if (group == 0 || group == 1)
+        {
             foreach (Card card in getSwordCards())
             {
                 if (card.weatherEffect == false)
@@ -276,18 +352,22 @@ public class Deck : MonoBehaviour
     public void clearAllWeatherEffects()
     {
         Debug.Log("Clearing all weather");
-        for (int i = 0; i < rows.Count; i++){
+        for (int i = 0; i < rows.Count; i++)
+        {
             Row row = rows[i];
             Card weatherCard = clearWeatherRow(row);
             Debug.Log(weatherCard);
-            if(row.isPlayer && weatherCard != null){
+            if (row.isPlayer && weatherCard != null)
+            {
                 powerGraveyard.Add(weatherCard);
             }
         }
     }
-    private Card clearWeatherRow(Row row){
+    private Card clearWeatherRow(Row row)
+    {
         Card ret = null;
-        for (int i = 0; i < row.Count; i++){
+        for (int i = 0; i < row.Count; i++)
+        {
             ret = row.Find(isWeather);
             row.RemoveAll(isWeather);
         }
@@ -300,7 +380,7 @@ public class Deck : MonoBehaviour
 
     public void applyWeatherEffect(float rowMultiple, RowEffected row)
     {
-        switch(row)
+        switch (row)
         {
             case RowEffected.Melee:
                 foreach (Card card in getSwordCards())
@@ -342,4 +422,7 @@ public class Deck : MonoBehaviour
                 break;
         }
     }
+
+
+
 }

@@ -42,7 +42,14 @@ public class Target : MonoBehaviour
         flashing = false;
         this.setNotFlashing();
     }
-
+    public void scale(float xfac, float yfac){
+        float width = scaleWidth * xfac;
+        float height = scaleHeight * yfac;
+        Transform cardObj = this.transform.Find("Card 1");
+        Vector3 cardDims = cardColider.size;
+        cardObj.transform.localScale = new Vector3((width / cardDims.x) * cardObj.transform.localScale.x, 1,  (height / cardDims.y) *cardObj.transform.localScale.z);
+        cardColider.size = new Vector2(width, height);
+    }
     public void setBaseLoc()
     {
         baseLoc = this.transform.position;

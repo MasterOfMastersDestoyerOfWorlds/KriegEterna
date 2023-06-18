@@ -201,4 +201,12 @@ public class CardModel : MonoBehaviour
     {
         return 0;
     }
+    public static bool isUnit(CardType type){
+        return type == CardType.Melee || type == CardType.Ranged || 
+                type == CardType.Switch || type == CardType.Siege;
+    }
+    public static bool isPower(CardType type){
+        return type == CardType.Power || type == CardType.Spy || 
+            type == CardType.Weather || type == CardType.Decoy;
+    }
 }

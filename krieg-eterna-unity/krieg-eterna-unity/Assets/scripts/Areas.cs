@@ -43,7 +43,7 @@ public class Areas : MonoBehaviour {
         Vector3 centerBottom = new Vector3(
             0f,
             botLeft.y + height/2,
-            0f);
+            -2f);
         return centerBottom;
     }
 

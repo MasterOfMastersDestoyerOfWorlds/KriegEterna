@@ -54,20 +54,26 @@ public class Card : MonoBehaviour
         cardModel.readTextFile();
         spriteRenderer = GetComponent<SpriteRenderer>();
         cardColider = GetComponent<BoxCollider2D>();
-        Vector3 cardDims = cardColider.size;
         if (scaleHeight == 0f || scaleWidth == 0f)
         {
-            Vector3 topRight = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, 0f));
-            Vector3 botLeft = Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, 0f));
-            screenHeight = Mathf.Abs(topRight.y - botLeft.y);
-            screenWidth = Mathf.Abs(topRight.x - botLeft.x);
-            scaleHeight = screenHeight / 8;
-            scaleWidth = (cardDims.x / cardDims.y) * scaleHeight;
-            Transform cardObj = this.transform.Find("Card 1");
-            cardObj.transform.localScale = new Vector3((scaleWidth / cardDims.x) * cardObj.transform.localScale.x, 1, scaleHeight / cardDims.y * cardObj.transform.localScale.z);
-            cardColider.size = new Vector2(scaleWidth, scaleHeight);
+            setBaseScale();
         }
         baseLoc = this.transform.position;
+    }
+    
+    public void setBaseScale(){
+        BoxCollider2D cardColider = GetComponent<BoxCollider2D>();
+        Vector3 cardDims = cardColider.size;
+        Debug.Log("setting scale Hieght");
+        Vector3 topRight = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, 0f));
+        Vector3 botLeft = Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, 0f));
+        screenHeight = Mathf.Abs(topRight.y - botLeft.y);
+        screenWidth = Mathf.Abs(topRight.x - botLeft.x);
+        scaleHeight = screenHeight / 8;
+        scaleWidth = (cardDims.x / cardDims.y) * scaleHeight;
+        Transform cardObj = this.transform.Find("Card 1");
+        cardObj.transform.localScale = new Vector3((scaleWidth / cardDims.x) * cardObj.transform.localScale.x, 1, scaleHeight / cardDims.y * cardObj.transform.localScale.z);
+        cardColider.size = new Vector2(scaleWidth, scaleHeight);
     }
 
     public void setBaseLoc()
@@ -188,7 +194,7 @@ public class Card : MonoBehaviour
         }
         return this.material;
     }
-    public void setFront(int index)
+    public void loadMaterial()
     {
         this.getMaterial().SetTexture("_Texture2D", cardModel.getSmallFront(index));
     }

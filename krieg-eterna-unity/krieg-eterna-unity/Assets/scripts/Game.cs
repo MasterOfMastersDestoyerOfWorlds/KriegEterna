@@ -129,8 +129,9 @@ public class Game : MonoBehaviour
 
     void Start()
     {
-        player1.getDeck().buildDeck(10);
-        player2.getDeck().buildDeck(10);
+        
+        player1.getDeck().buildDeck(4, 9, 1);
+        player1.getDeck().buildTargets();
 
         activePlayerNumber = (int)PlayerNumber.PLAYER1;
 
@@ -210,11 +211,13 @@ public class Game : MonoBehaviour
                 for (int i = 1; i < activeDeck.playerHand.Count; i++)
                 {
                     Card c = activeDeck.playerHand[i];
+                    mouseRelativePosition.z = c.transform.position.z;
                     if (c.getBounds().Contains(mouseRelativePosition))
                     {
                         Debug.Log("clicked on: " + c.ToString());
                         if(c.isActive()){
                             Play(c);
+                            c.setActive(false);
                             break;
                         }
                         activeDeck.disactiveAllInDeck();
@@ -402,13 +405,13 @@ public class Game : MonoBehaviour
 
         float cardHorizontalSpacing = Card.getBaseWidth() * 1.025f;
         float cardThickness = Card.getBaseThickness();
-        reorganizeRow(cardHorizontalSpacing, activeDeck.playerHand, areas.getDeckCenterVector());
-        reorganizeRow(cardHorizontalSpacing, activeDeck.meleeRow, areas.getMeleeRowCenterVector());
-        reorganizeRow(cardHorizontalSpacing, activeDeck.rangedRow, areas.getRangedRowCenterVector());
-        reorganizeRow(cardHorizontalSpacing, activeDeck.siegeRow, areas.getSiegeRowCenterVector());
-        reorganizeRow(cardHorizontalSpacing, activeDeck.enemyMeleeRow, areas.getEnemyMeleeRowCenterVector());
-        reorganizeRow(cardHorizontalSpacing, activeDeck.enemyRangedRow, areas.getEnemyRangedRowCenterVector());
-        reorganizeRow(cardHorizontalSpacing, activeDeck.enemySiegeRow, areas.getEnemySiegeRowCenterVector());
+        reorganizeRow(cardHorizontalSpacing, activeDeck.playerHand);
+        reorganizeRow(cardHorizontalSpacing, activeDeck.meleeRow);
+        reorganizeRow(cardHorizontalSpacing, activeDeck.rangedRow);
+        reorganizeRow(cardHorizontalSpacing, activeDeck.siegeRow);
+        reorganizeRow(cardHorizontalSpacing, activeDeck.enemyMeleeRow);
+        reorganizeRow(cardHorizontalSpacing, activeDeck.enemyRangedRow);
+        reorganizeRow(cardHorizontalSpacing, activeDeck.enemySiegeRow);
         reorganizeVertRow(cardThickness, activeDeck.unitGraveyard, areas.getUnitGraveyardCenterVector());
         reorganizeVertRow(cardThickness, activeDeck.powerGraveyard, areas.getPowerGraveyardCenterVector());
     }
@@ -426,18 +429,20 @@ public class Game : MonoBehaviour
         }
     }
 
-    private void reorganizeRow(float cardHorizontalSpacing, List<Card> deck, Vector3 centerVector)
+    private void reorganizeRow(float cardHorizontalSpacing, Row row)
     {
-        if (deck.Count > 0)
+        Vector3 centerVector = row.center;
+        Debug.Log(centerVector);
+        if (row.Count > 0)
         {
-            if (deck.Count % 2 == 1)
+            if (row.Count % 2 == 1)
             {
                 int j = 1;
-                deck[0].transform.position = centerVector;
+                row[0].transform.position = centerVector;
 
-                for (int i = 1; i < deck.Count; i++)
+                for (int i = 1; i < row.Count; i++)
                 {
-                    deck[i].transform.position = new Vector3(centerVector.x + j * cardHorizontalSpacing, centerVector.y, centerVector.z);
+                    row[i].transform.position = new Vector3(centerVector.x + j * cardHorizontalSpacing, centerVector.y, centerVector.z);
                     j *= -1;
                     if (i % 2 == 0)
                         j++;
@@ -446,12 +451,12 @@ public class Game : MonoBehaviour
             else
             {
                 int j = 1;
-                deck[0].transform.position = centerVector + new Vector3(cardHorizontalSpacing / 2, 0, 0);
-                deck[1].transform.position = centerVector + new Vector3(-cardHorizontalSpacing / 2, 0, 0);
+                row[0].transform.position = centerVector + new Vector3(cardHorizontalSpacing / 2, 0, 0);
+                row[1].transform.position = centerVector + new Vector3(-cardHorizontalSpacing / 2, 0, 0);
 
-                for (int i = 2; i < deck.Count; i++)
+                for (int i = 2; i < row.Count; i++)
                 {
-                    deck[i].transform.position = new Vector3(centerVector.x + j * cardHorizontalSpacing + Math.Sign(j) * (cardHorizontalSpacing / 2), centerVector.y, centerVector.z);
+                    row[i].transform.position = new Vector3(centerVector.x + j * cardHorizontalSpacing + Math.Sign(j) * (cardHorizontalSpacing / 2), centerVector.y, centerVector.z);
 
                     j *= -1;
                     if (i % 2 == 1)

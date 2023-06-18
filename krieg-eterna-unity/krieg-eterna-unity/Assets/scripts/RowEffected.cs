@@ -12,5 +12,10 @@ public enum RowEffected
     LastPlayedCard = 10,
     Player = 11,
     PlayerHand = 12,
+    UnitDeck = 13,
+    PowerDeck = 14,
+    KingDeck = 15,
+    UnitGraveyard = 16,
+    PowerGraveyard = 17,
     None = 0
 };
