@@ -132,7 +132,6 @@ public class Game : MonoBehaviour
         Deck deck = player1.getDeck();
         deck.buildDeck(4, 9, 1);
         deck.buildTargets();
-        deck.updateRowCenters();
 
         activePlayerNumber = (int)PlayerNumber.PLAYER1;
 
@@ -403,7 +402,6 @@ public class Game : MonoBehaviour
             default:break;
         }
         
-        activeDeck.updateRowCenters();
         reorganizeGroup();
     }
 
