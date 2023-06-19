@@ -129,13 +129,16 @@ public class Game : MonoBehaviour
 
     void Start()
     {
-        
-        player1.getDeck().buildDeck(4, 9, 1);
-        player1.getDeck().buildTargets();
+        Deck deck = player1.getDeck();
+        deck.buildDeck(4, 9, 1);
+        deck.buildTargets();
+        deck.updateRowCenters();
 
         activePlayerNumber = (int)PlayerNumber.PLAYER1;
 
         initializePlayersDecks();
+        
+        reorganizeGroup();
     }
 
     void initializePlayersDecks()
@@ -223,7 +226,7 @@ public class Game : MonoBehaviour
                         activeDeck.disactiveAllInDeck();
                         activeCard = c;
                         c.setActive(true);
-
+                        ShowTargets(c);
                         showActiveCard(true);
                         activeCard.setBaseLoc();
                         activeCard.transform.position += new Vector3(0,Card.getBaseHeight()/3, 0f);
@@ -377,6 +380,33 @@ public class Game : MonoBehaviour
     
     public void PlayPower(Card c){
     }
+
+    public void ShowTargets(Card c){
+        Debug.Log("Showing Targets for: " + c.cardName + " " + c.cardType);
+        switch (c.cardType){
+            case CardType.Melee: break;
+            case CardType.Ranged: break;
+            case CardType.Siege: break;
+            case CardType.Switch: 
+                activeDeck.meleeRow.activateTarget();
+                activeDeck.rangedRow.activateTarget(); 
+                break;
+            case CardType.King: 
+                activeDeck.meleeKingSlot.activateTarget();
+                activeDeck.rangedKingSlot.activateTarget(); 
+                activeDeck.siegeKingSlot.activateTarget(); 
+                break;
+            case CardType.Spy: PlaySpy(c); break;
+            case CardType.Decoy: PlayDecoy(c); break;
+            case CardType.Weather: PlayWeather(c); break;
+            case CardType.Power: PlayPower(c); break;
+            default:break;
+        }
+        
+        activeDeck.updateRowCenters();
+        reorganizeGroup();
+    }
+
 
     private void gameOver()
     {

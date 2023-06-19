@@ -25,6 +25,13 @@ public class Deck : MonoBehaviour
 
     public Row unitGraveyard = new Row(false, false, RowEffected.UnitGraveyard);
     public Row powerGraveyard = new Row(false, false, RowEffected.PowerGraveyard);
+
+    public Row meleeKingSlot = new Row(true, true, RowEffected.PlayerKing);
+    public Row rangedKingSlot = new Row(true, true, RowEffected.PlayerKing);
+    public Row siegeKingSlot = new Row(true, true, RowEffected.PlayerKing);
+    public Row enemyMeleeKingSlot = new Row(true, true, RowEffected.EnemyKing);
+    public Row enemyRangedKingSlot = new Row(true, true, RowEffected.EnemyKing);
+    public Row enemySiegeKingSlot = new Row(true, true, RowEffected.EnemyKing);
     public Row cardsInSpecial = new Row(false, false, RowEffected.All); // special cards
 
     private GameObject areasObject;
@@ -42,12 +49,6 @@ public class Deck : MonoBehaviour
         targetGameObject = GameObject.Find("Target");
         baseTarget = targetGameObject.GetComponent<Target>();
         baseCard.setBaseScale();
-        meleeRow.center = areas.getMeleeRowCenterVector();
-        rangedRow.center = areas.getRangedRowCenterVector();
-        siegeRow.center = areas.getSiegeRowCenterVector();
-        enemyMeleeRow.center = areas.getEnemyMeleeRowCenterVector();
-        enemyRangedRow.center = areas.getEnemyRangedRowCenterVector();
-        enemySiegeRow.center = areas.getEnemySiegeRowCenterVector();
         rows.Add(meleeRow);
         rows.Add(rangedRow);
         rows.Add(siegeRow);
@@ -55,6 +56,7 @@ public class Deck : MonoBehaviour
         rows.Add(enemyRangedRow);
         rows.Add(enemySiegeRow);
         rows.Add(playerHand);
+        updateRowCenters();
     }
 
     public void buildDeck(int numPowers, int numUnits, int numKings)
@@ -122,23 +124,39 @@ public class Deck : MonoBehaviour
             card.loadMaterial();
             playerHand.Add(card);
             numCards = numPowers + numUnits + numKings;
+
         }
+        updateRowCenters();
+    }
+
+    public void updateRowCenters(){
+        meleeRow.center = areas.getMeleeRowCenterVector();
+        rangedRow.center = areas.getRangedRowCenterVector();
+        siegeRow.center = areas.getSiegeRowCenterVector();
+        enemyMeleeRow.center = areas.getEnemyMeleeRowCenterVector();
+        enemyRangedRow.center = areas.getEnemyRangedRowCenterVector();
+        enemySiegeRow.center = areas.getEnemySiegeRowCenterVector();
         playerHand.center = areas.getDeckCenterVector();
     }
 
     public void buildTargets()
     {
+        Debug.Log("building targets");
         for (int i = 0; i < rows.Count; i++)
         {
             Row row = rows[i];
             buildRowTarget(row.center, row);
         }
+        buildCardTarget(areas.getMeleeKingCenterVector(), meleeKingSlot);
+        buildCardTarget(areas.getRangedKingCenterVector(), rangedKingSlot);
+        buildCardTarget(areas.getSiegeKingCenterVector(), siegeKingSlot);
     }
-    public Target buildCardTarget(Vector3 center)
+    public Target buildCardTarget(Vector3 center, Row row)
     {
         Target clone = Instantiate(baseTarget) as Target;
         clone.setNotFlashing();
         clone.tag = "CloneTarget";
+        row.target = clone;
         clone.transform.position = new Vector3(center.x, center.y, -1f);
         clone.setBaseLoc();
         return clone;

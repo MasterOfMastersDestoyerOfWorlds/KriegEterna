@@ -17,5 +17,7 @@ public enum RowEffected
     KingDeck = 15,
     UnitGraveyard = 16,
     PowerGraveyard = 17,
+    PlayerKing = 18,
+    EnemyKing = 19,
     None = 0
 };

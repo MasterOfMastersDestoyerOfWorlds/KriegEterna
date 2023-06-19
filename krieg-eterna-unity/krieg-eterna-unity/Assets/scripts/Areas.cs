@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Areas : MonoBehaviour {
-    BoxCollider [] colliders;
+public class Areas : MonoBehaviour
+{
+    BoxCollider[] colliders;
     BoxCollider deckCollider;
     BoxCollider swordCollider;
     BoxCollider bowCollider;
@@ -12,10 +13,16 @@ public class Areas : MonoBehaviour {
     BoxCollider special2Collider;
     BoxCollider sword2Collider;
 
+    static Vector3 topRight;
+    static Vector3 botLeft;
+    static Vector3 center;
+    static float height;
+    static float width;
+
     void Awake()
     {
         colliders = GetComponents<BoxCollider>();
-        
+
         deckCollider = colliders[(int)CardGroup.DECK];
         swordCollider = colliders[(int)CardGroup.SWORD];
         bowCollider = colliders[(int)CardGroup.BOW];
@@ -23,26 +30,30 @@ public class Areas : MonoBehaviour {
         special1Collider = colliders[(int)CardGroup.SPECIAL1];
         special2Collider = colliders[(int)CardGroup.SPECIAL2];
         sword2Collider = colliders[(int)CardGroup.SWORD2];
+        updateScreenBounds();
+
     }
 
-    /// <summary>
-    /// Get player deck's collision bounds
-    /// </summary>
-    /// <returns>Deck's collision bounds</returns>
     public Bounds getDeckColliderBounds()
     {
         return deckCollider.bounds;
     }
 
+    private void updateScreenBounds()
+    {
+        topRight = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, 0f));
+        botLeft = Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, 0f));
+        height = Card.getBaseHeight();
+        width = Card.getBaseWidth();
+        center = (topRight + botLeft) / 2;
+    }
+
     private Vector3 getCenterBottom()
     {
-
-        Vector3 topRight = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, 0f));
-        Vector3 botLeft = Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, 0f));
-        var height = Card.getBaseHeight();
+        updateScreenBounds();
         Vector3 centerBottom = new Vector3(
             0f,
-            botLeft.y + height/2,
+            botLeft.y + height / 2,
             -2f);
         return centerBottom;
     }
@@ -55,46 +66,84 @@ public class Areas : MonoBehaviour {
 
     public Vector3 getUnitGraveyardCenterVector()
     {
-        Vector3 topRight = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, 0f));
-        Vector3 botLeft = Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, 0f));
-        var height = Card.getBaseHeight();
-        var width = Card.getBaseWidth();
-        Vector3 center = (topRight + botLeft)/2;
+        updateScreenBounds();
         Vector3 unitGraveyard = new Vector3(
-            topRight.x - width*1.5f,
-            center.y + height/2,
+            topRight.x - width * 1.5f,
+            center.y + height / 2,
             0f);
         return unitGraveyard;
     }
 
-        public Vector3 getPowerGraveyardCenterVector()
+    public Vector3 getPowerGraveyardCenterVector()
     {
-        Vector3 topRight = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, 0f));
-        Vector3 botLeft = Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, 0f));
-        var height = Card.getBaseHeight();
-        var width = Card.getBaseWidth();
-        Vector3 center = (topRight + botLeft)/2;
+        updateScreenBounds();
         Vector3 unitGraveyard = new Vector3(
-            topRight.x - width*1.5f,
-            center.y - height/2,
+            topRight.x - width * 1.5f,
+            center.y - height / 2,
             0f);
         return unitGraveyard;
     }
 
+    public Vector3 getPowerDeckCenterVector()
+    {
+        updateScreenBounds();
+        Vector3 unitGraveyard = new Vector3(
+            topRight.x - width * 2.5f,
+            center.y,
+            0f);
+        return unitGraveyard;
+    }
+
+    public Vector3 getUnitDeckCenterVector()
+    {
+        updateScreenBounds();
+        Vector3 unitGraveyard = new Vector3(
+            topRight.x - width * 2.5f,
+            center.y - height,
+            0f);
+        return unitGraveyard;
+    }
+
+    public Vector3 getKingDeckCenterVector()
+    {
+        updateScreenBounds();
+        Vector3 unitGraveyard = new Vector3(
+            topRight.x - width * 2.5f,
+            center.y + height,
+            0f);
+        return unitGraveyard;
+    }
+
+
+    public Vector3 getMeleeKingCenterVector()
+    {
+        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 3, 0f);
+    }
+
+    public Vector3 getRangedKingCenterVector()
+    {
+        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 2, 0f);
+    }
+
+    public Vector3 getSiegeKingCenterVector()
+    {
+        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 1, 0f);
+    }
 
 
     public Vector3 getMeleeRowCenterVector()
     {
-        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight()*3, 0f);
+        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 3, 0f);
     }
 
     public Vector3 getRangedRowCenterVector()
     {
-        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight()*2, 0f);
+        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 2, 0f);
     }
 
     public Vector3 getSiegeRowCenterVector()
-    {
+    {   
+        Debug.Log(getCenterBottom());
         return getCenterBottom() + new Vector3(0f, Card.getBaseHeight(), 0f);
     }
 
@@ -110,16 +159,16 @@ public class Areas : MonoBehaviour {
 
     public Vector3 getEnemyMeleeRowCenterVector()
     {
-        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight()*4, 0f);
+        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 4, 0f);
     }
     public Vector3 getEnemyRangedRowCenterVector()
     {
-        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight()*5, 0f);
+        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 5, 0f);
     }
     public Vector3 getEnemySiegeRowCenterVector()
     {
-        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight()*6, 0f);
+        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 6, 0f);
     }
 
-    private enum CardGroup { DECK, SWORD, BOW, TREBUCHET, SPECIAL1, SPECIAL2, SWORD2};
+    private enum CardGroup { DECK, SWORD, BOW, TREBUCHET, SPECIAL1, SPECIAL2, SWORD2 };
 }

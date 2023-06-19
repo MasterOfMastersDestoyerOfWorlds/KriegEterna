@@ -18,4 +18,8 @@ public class Row : List<Card>
         this.rowType = rowType;
     }
 
+    public void activateTarget(){
+        target.setFlashing();
+    }
+
 }
