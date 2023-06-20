@@ -25,7 +25,8 @@ public class Card : MonoBehaviour
     public SetAsideType setAsideType;
     public bool attach;
     public int strengthCondition;
-    private bool active = false;
+    private bool targetActive = false;
+    private bool playable = false;
     public int isSpecial;
     public bool weatherEffect = false;
     public Vector3 baseLoc;
@@ -139,17 +140,25 @@ public class Card : MonoBehaviour
         return this.index;
     }
 
-    public void setActive(bool state)
+    public void setTargetActive(bool state)
     {
         Material material = getMaterial();
         material.SetInt("_Flash", state ? 1 : 0);
-        this.active = state;
+        this.targetActive = state;
     }
-    public bool isActive()
+    public bool isTargetActive()
     {
-        return this.active;
+        return this.targetActive;
     }
 
+    public void setPlayable(bool state)
+    {
+        this.playable = state;
+    }
+    public bool isPlayable()
+    {
+        return this.playable;
+    }
     public Bounds getBounds()
     {
         return this.cardColider.bounds;

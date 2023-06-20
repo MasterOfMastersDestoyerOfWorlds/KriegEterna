@@ -42,12 +42,13 @@ public class Target : MonoBehaviour
         flashing = false;
         this.setNotFlashing();
     }
-    public void scale(float xfac, float yfac){
+    public void scale(float xfac, float yfac)
+    {
         float width = scaleWidth * xfac;
         float height = scaleHeight * yfac;
         Transform cardObj = this.transform.Find("Card 1");
         Vector3 cardDims = cardColider.size;
-        cardObj.transform.localScale = new Vector3((width / cardDims.x) * cardObj.transform.localScale.x, 1,  (height / cardDims.y) *cardObj.transform.localScale.z);
+        cardObj.transform.localScale = new Vector3((width / cardDims.x) * cardObj.transform.localScale.x, 1, (height / cardDims.y) * cardObj.transform.localScale.z);
         cardColider.size = new Vector2(width, height);
     }
     public void setBaseLoc()
@@ -57,13 +58,6 @@ public class Target : MonoBehaviour
     public void resetTransform()
     {
         this.transform.position = baseLoc;
-    }
-
-    public void setFlashing(bool state)
-    {
-        Material material = getMaterial();
-        material.SetInt("_Flash", state ? 1 : 0);
-        this.flashing = state;
     }
     public bool isFlashing()
     {
@@ -114,9 +108,20 @@ public class Target : MonoBehaviour
         }
         return this.material;
     }
+    public void setFlashing(bool state)
+    {
+        if (state)
+        {
+            this.setFlashing();
+        }
+        else
+        {
+            this.setNotFlashing();
+        }
+    }
     public void setFlashing()
     {
-        flashing = true;
+        this.flashing = true;
         this.getMaterial().SetInt("_Flash", 1);
         this.getMaterial().SetInt("_TransparentFlash", 1);
         this.getMaterial().SetInt("_Transparent", 0);

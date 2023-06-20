@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     private GameObject deckObject;
     private Deck deck;
 
-    void Awake()
+    void Awake() 
     {
         lifeObject = GameObject.Find("HealthDiamond");
         life = lifeObject.GetComponent<HealthDiamond>();
@@ -53,6 +53,8 @@ public class Player : MonoBehaviour
             player = (int)WhichPlayer.PLAYER1;
         else
             player = (int)WhichPlayer.PLAYER2;
+
+            
     }
 
     void Update()
@@ -93,7 +95,7 @@ public class Player : MonoBehaviour
         Vector3 player1DeathAreaVector = new Vector3(8.51f, -4.6f, -0.1f);
         Vector3 player2DeathAreaVector = new Vector3(8.51f, 4.6f, -0.1f);
 
-        foreach (Card card in deck.unitGraveyard)
+        foreach (Card card in deck.getRowByType(RowEffected.UnitGraveyard))
         {
             if (player == (int)WhichPlayer.PLAYER2)
             {
@@ -207,7 +209,7 @@ public class Player : MonoBehaviour
         if (visibility == true)
             value = -5.35f;
                 
-        foreach (Card card in deck.getCards())
+        foreach (Card card in deck.getRowByType(RowEffected.PlayerHand))
         {
             card.transform.position = new Vector3(card.transform.position.x, value, card.transform.position.z);
         }

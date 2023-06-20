@@ -114,7 +114,7 @@ public class Game : MonoBehaviour
         button = buttonObject.GetComponent<Button>();
 
         endPanelObject = GameObject.FindGameObjectWithTag("EndPanel");
-        endPanelObject.transform.position = new Vector3(0,0,-1.8f);
+        endPanelObject.transform.position = new Vector3(0, 0, -1.8f);
         endTextObject = GameObject.FindGameObjectWithTag("EndText");
         endText = endTextObject.GetComponent<Text>();
 
@@ -125,19 +125,20 @@ public class Game : MonoBehaviour
 
         activePlayerNumber = (int)PlayerNumber.PLAYER1;
         gameStatus = (int)GameStatus.TOUR1;
-    }    
-
-    void Start()
-    {
         Deck deck = player1.getDeck();
         deck.buildDeck(4, 9, 1);
         deck.buildTargets();
 
         activePlayerNumber = (int)PlayerNumber.PLAYER1;
 
+    }
+
+    void Start()
+    {
         initializePlayersDecks();
-        
+
         reorganizeGroup();
+
     }
 
     void initializePlayersDecks()
@@ -147,20 +148,16 @@ public class Game : MonoBehaviour
 
         player1.moveCardsFromDeskToDeathArea(activePlayerNumber);
         player2.moveCardsFromDeskToDeathArea(activePlayerNumber);
+ 
 
-        //Debug.Log("Deleted " + deleteAllCardClones() + " cards");
-
-        // player1.reloadDeck();
-        //player2.reloadDeck();
-
-        Debug.Log("P1 amount of cards: " + player1.getDeck().playerHand.Count);
-        Debug.Log("P2 amount of cards: " + player2.getDeck().playerHand.Count);
+        Debug.Log("P1 amount of cards: " + player1.getDeck().getRowByType(RowEffected.PlayerHand).Count);
+        Debug.Log("P2 amount of cards: " + player2.getDeck().getRowByType(RowEffected.PlayerHand).Count);
 
         player2.setDeckVisibility(false);
         activeDeck = player1.getDeck();
 
-        if (player1.getDeck().playerHand.Count > 0)
-            activeCard = player1.getDeck().playerHand[0];
+        if (player1.getDeck().getRowByType(RowEffected.PlayerHand).Count > 0)
+            activeCard = player1.getDeck().getRowByType(RowEffected.PlayerHand)[0];
 
         activeShowingCard = Instantiate(activeCard) as Card;
         activeShowingCard.transform.position = new Vector3(8.96f, 0, -0.1f);
@@ -169,7 +166,8 @@ public class Game : MonoBehaviour
         reorganizeGroup();
     }
 
-    private enum Status{
+    private enum Status
+    {
         FREE,
         ACTIVE_CARD,
         BLOCKED
@@ -195,8 +193,8 @@ public class Game : MonoBehaviour
     {
         // Updating numberOfCards
         // ---------------------------------------------------------------------------------------------------------------
-        cardNumber1.text = player1.getDeck().playerHand.Count.ToString();
-        cardNumber2.text = player2.getDeck().playerHand.Count.ToString();
+        cardNumber1.text = player1.getDeck().getRowByType(RowEffected.PlayerHand).Count.ToString();
+        cardNumber2.text = player2.getDeck().getRowByType(RowEffected.PlayerHand).Count.ToString();
 
         // Picking card
         // ---------------------------------------------------------------------------------------------------------------
@@ -206,42 +204,55 @@ public class Game : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && state != ((int)Status.BLOCKED))
         {
             Debug.Log("Click Registered");
+
             // if we click on deck collision
-            if (areas.getDeckColliderBounds().Contains(mouseRelativePosition) && activeDeck.playerHand.Count > 0)
+            if (areas.getDeckColliderBounds().Contains(mouseRelativePosition) && activeDeck.getRowByType(RowEffected.PlayerHand).Count > 0)
             {
                 Debug.Log("Click Registered On Deck");
-                for (int i = 1; i < activeDeck.playerHand.Count; i++)
+                for (int i = 1; i < activeDeck.getRowByType(RowEffected.PlayerHand).Count; i++)
                 {
-                    Card c = activeDeck.playerHand[i];
+                    Card c = activeDeck.getRowByType(RowEffected.PlayerHand)[i];
                     mouseRelativePosition.z = c.transform.position.z;
                     if (c.getBounds().Contains(mouseRelativePosition))
                     {
                         Debug.Log("clicked on: " + c.ToString());
-                        if(c.isActive()){
-                            Play(c);
-                            c.setActive(false);
+                        if (c.isTargetActive() && c.isPlayable())
+                        {
+                            Play(c, null);
+                            c.setTargetActive(false);
                             break;
                         }
                         activeDeck.disactiveAllInDeck();
                         activeCard = c;
-                        c.setActive(true);
                         ShowTargets(c);
                         showActiveCard(true);
                         activeCard.setBaseLoc();
-                        activeCard.transform.position += new Vector3(0,Card.getBaseHeight()/3, 0f);
+                        activeCard.transform.position += new Vector3(0, Card.getBaseHeight() / 3, 0f);
                         state = (int)Status.ACTIVE_CARD;
                     }
+                }
+            }
+            List<Row> activeRowTargets = activeDeck.getActiveRowTargets();
+            for (int i = 1; i < activeRowTargets.Count; i++)
+            {
+                Row row = activeRowTargets[i];
+                Target target = row.target;
+                mouseRelativePosition.z = target.transform.position.z;
+                if (target.getBounds().Contains(mouseRelativePosition))
+                {
+                    Play(activeCard, row);
+                    activeDeck.disactiveAllInDeck();
                 }
             }
             // Ending player time, tour
             // TODO - Change gameStatus
             // ---------------------------------------------------------------------------------------------------------------
-            if (player1.getDeck().playerHand.Count == 0 && player1.isPlaying)
+            if (player1.getDeck().getRowByType(RowEffected.PlayerHand).Count == 0 && player1.isPlaying)
             {
                 Debug.Log("Player1 has no cards");
                 player1.isPlaying = false;
             }
-            if (player2.getDeck().playerHand.Count == 0 && player2.isPlaying)
+            if (player2.getDeck().getRowByType(RowEffected.PlayerHand).Count == 0 && player2.isPlaying)
             {
                 Debug.Log("Player2 has no cards");
                 player2.isPlaying = false;
@@ -331,77 +342,102 @@ public class Game : MonoBehaviour
         }
     }
 
-    public void Play(Card c){
-        Debug.Log("Playing: " + c.cardName + " " + c.cardType);
-        activeDeck.playerHand.Remove(c);
-        switch (c.cardType){
-            case CardType.Melee: activeDeck.meleeRow.Add(c); break;
-            case CardType.Ranged: activeDeck.rangedRow.Add(c); break;
-            case CardType.Siege: activeDeck.siegeRow.Add(c); break;
-            case CardType.Switch: activeDeck.meleeRow.Add(c); break;
-            case CardType.King: PlayKing(c); break;
+    public void Play(Card c, Row targetRow)
+    {
+        Debug.Log("Playing: " + c.cardName + " Type: " + c.cardType);
+        if (targetRow != null)
+        {
+            Debug.Log(" TargetRow: " + targetRow.name);
+        }
+        activeDeck.getRowByType(RowEffected.PlayerHand).Remove(c);
+        switch (c.cardType)
+        {
+            case CardType.Melee: activeDeck.getRowByType(RowEffected.PlayerMelee).Add(c); break;
+            case CardType.Ranged: activeDeck.getRowByType(RowEffected.PlayerRanged).Add(c); break;
+            case CardType.Siege: activeDeck.getRowByType(RowEffected.PlayerSiege).Add(c); break;
+            case CardType.Switch: targetRow.Add(c); break;
+            case CardType.King: PlayKing(c, targetRow); break;
             case CardType.Spy: PlaySpy(c); break;
             case CardType.Decoy: PlayDecoy(c); break;
             case CardType.Weather: PlayWeather(c); break;
             case CardType.Power: PlayPower(c); break;
-            default:break;
+            default: break;
         }
 
         reorganizeGroup();
     }
 
-    public void PlayKing(Card c){
+    public void PlayKing(Card c, Row targetRow)
+    {
+        targetRow.Add(c);
     }
-    
-    public void PlaySpy(Card c){
+
+    public void PlaySpy(Card c)
+    {
         Debug.Log("Playing Spy in: " + c.rowEffected);
-        switch (c.rowEffected){
-            case RowEffected.Melee: activeDeck.enemyMeleeRow.Add(c); Debug.Log("added to enemy melee"); break;
-            case RowEffected.Ranged: activeDeck.enemyRangedRow.Add(c); Debug.Log("added to enemy ranged"); break;
-            case RowEffected.Siege: activeDeck.enemySiegeRow.Add(c); Debug.Log("added to enemy siege");break;
-            default:break;
-        }
-    }
-    
-    public void PlayDecoy(Card c){
-    }
-    
-    public void PlayWeather(Card c){
-        Debug.Log("Playing Weather in: " + c.rowEffected);
-        switch (c.rowEffected){
-            case RowEffected.Melee: activeDeck.meleeRow.Add(c);activeDeck.enemyMeleeRow.Add(c); break;
-            case RowEffected.Ranged: activeDeck.rangedRow.Add(c);activeDeck.enemyRangedRow.Add(c); break;
-            case RowEffected.Siege: activeDeck.siegeRow.Add(c);activeDeck.enemySiegeRow.Add(c); break;
-            case RowEffected.All: activeDeck.powerGraveyard.Add(c);activeDeck.clearAllWeatherEffects();break;
+        switch (c.rowEffected)
+        {
+            case RowEffected.Melee: activeDeck.getRowByType(RowEffected.EnemyMelee).Add(c); Debug.Log("added to enemy melee"); break;
+            case RowEffected.Ranged: activeDeck.getRowByType(RowEffected.EnemyRanged).Add(c); Debug.Log("added to enemy ranged"); break;
+            case RowEffected.Siege: activeDeck.getRowByType(RowEffected.EnemySiege).Add(c); Debug.Log("added to enemy siege"); break;
             default: break;
         }
     }
-    
-    public void PlayPower(Card c){
+
+    public void PlayDecoy(Card c)
+    {
     }
 
-    public void ShowTargets(Card c){
-        Debug.Log("Showing Targets for: " + c.cardName + " " + c.cardType);
-        switch (c.cardType){
-            case CardType.Melee: break;
-            case CardType.Ranged: break;
-            case CardType.Siege: break;
-            case CardType.Switch: 
-                activeDeck.meleeRow.activateTarget();
-                activeDeck.rangedRow.activateTarget(); 
-                break;
-            case CardType.King: 
-                activeDeck.meleeKingSlot.activateTarget();
-                activeDeck.rangedKingSlot.activateTarget(); 
-                activeDeck.siegeKingSlot.activateTarget(); 
-                break;
-            case CardType.Spy: PlaySpy(c); break;
-            case CardType.Decoy: PlayDecoy(c); break;
-            case CardType.Weather: PlayWeather(c); break;
-            case CardType.Power: PlayPower(c); break;
-            default:break;
+    public void PlayWeather(Card c)
+    {
+        Debug.Log("Playing Weather in: " + c.rowEffected);
+        switch (c.rowEffected)
+        {
+            case RowEffected.Melee: activeDeck.getRowByType(RowEffected.PlayerMelee).Add(c); activeDeck.getRowByType(RowEffected.EnemyMelee).Add(c); break;
+            case RowEffected.Ranged: activeDeck.getRowByType(RowEffected.PlayerRanged).Add(c); activeDeck.getRowByType(RowEffected.EnemyRanged).Add(c); break;
+            case RowEffected.Siege: activeDeck.getRowByType(RowEffected.PlayerSiege).Add(c); activeDeck.getRowByType(RowEffected.EnemySiege).Add(c); break;
+            case RowEffected.All: activeDeck.getRowByType(RowEffected.PowerGraveyard).Add(c); activeDeck.clearAllWeatherEffects(); break;
+            default: break;
         }
-        
+    }
+
+    public void PlayPower(Card c)
+    {
+    }
+
+    public void ShowTargets(Card c)
+    {
+        Debug.Log("Showing Targets for: " + c.cardName + " " + c.cardType);
+        switch (c.cardType)
+        {
+            case CardType.Melee: c.setTargetActive(true); break;
+            case CardType.Ranged: c.setTargetActive(true); break;
+            case CardType.Siege: c.setTargetActive(true); break;
+            case CardType.Switch:
+                activeDeck.getRowByType(RowEffected.PlayerMelee).setActivateRowCardTargets(true, false);
+                activeDeck.getRowByType(RowEffected.PlayerRanged).setActivateRowCardTargets(true, false);
+                break;
+            case CardType.King:
+                activeDeck.activateRowsByType(true, false, RowEffected.PlayerKing);
+                break;
+            case CardType.Spy:
+                if (c.rowEffected == RowEffected.Enemy)
+                {
+                    activeDeck.activateRowsByType(true, false, RowEffected.Enemy);
+                }
+                else
+                {
+                    c.setTargetActive(true);
+                }
+            ; break;
+            case CardType.Decoy:
+                ;
+                break;
+            case CardType.Weather: c.setTargetActive(true); break;
+            case CardType.Power: break;
+            default: break;
+        }
+        c.setPlayable(true);
         reorganizeGroup();
     }
 
@@ -416,14 +452,14 @@ public class Game : MonoBehaviour
     IEnumerator GameOverScreen(float duration)
     {
         yield return new WaitForSeconds(duration);
-        
+
         // after
         endText.text = "Game Over\n";
-        if(player1.health == -1 && player2.health == -1)
+        if (player1.health == -1 && player2.health == -1)
             endText.text += "\nDraw";
-        else if(player2.health == -1)
+        else if (player2.health == -1)
             endText.text += "\nDefeat";
-        else if(player1.health == -1)
+        else if (player1.health == -1)
             endText.text += "\nVictory";
     }
 
@@ -433,62 +469,56 @@ public class Game : MonoBehaviour
 
         float cardHorizontalSpacing = Card.getBaseWidth() * 1.025f;
         float cardThickness = Card.getBaseThickness();
-        reorganizeRow(cardHorizontalSpacing, activeDeck.playerHand);
-        reorganizeRow(cardHorizontalSpacing, activeDeck.meleeRow);
-        reorganizeRow(cardHorizontalSpacing, activeDeck.rangedRow);
-        reorganizeRow(cardHorizontalSpacing, activeDeck.siegeRow);
-        reorganizeRow(cardHorizontalSpacing, activeDeck.enemyMeleeRow);
-        reorganizeRow(cardHorizontalSpacing, activeDeck.enemyRangedRow);
-        reorganizeRow(cardHorizontalSpacing, activeDeck.enemySiegeRow);
-        reorganizeVertRow(cardThickness, activeDeck.unitGraveyard, areas.getUnitGraveyardCenterVector());
-        reorganizeVertRow(cardThickness, activeDeck.powerGraveyard, areas.getPowerGraveyardCenterVector());
-    }
-
-    private void reorganizeVertRow(float cardThickness, List<Card> deck, Vector3 centerVector)
-    {
-        if (deck.Count > 0)
+        foreach (Row row in activeDeck.rows)
         {
-            deck[0].transform.position = centerVector;
-
-            for (int i = 1; i < deck.Count; i++)
-            {
-                deck[i].transform.position = new Vector3(centerVector.x, centerVector.y, centerVector.z + i * cardThickness);
-            }
+            reorganizeRow(cardHorizontalSpacing, cardThickness, row);
         }
     }
 
-    private void reorganizeRow(float cardHorizontalSpacing, Row row)
+    private void reorganizeRow(float cardHorizontalSpacing, float cardThickness, Row row)
     {
         Vector3 centerVector = row.center;
-        Debug.Log(centerVector);
+
         if (row.Count > 0)
         {
-            if (row.Count % 2 == 1)
+            if (!row.wide)
             {
-                int j = 1;
                 row[0].transform.position = centerVector;
 
                 for (int i = 1; i < row.Count; i++)
                 {
-                    row[i].transform.position = new Vector3(centerVector.x + j * cardHorizontalSpacing, centerVector.y, centerVector.z);
-                    j *= -1;
-                    if (i % 2 == 0)
-                        j++;
+                    row[i].transform.position = new Vector3(centerVector.x, centerVector.y, centerVector.z + i * cardThickness);
                 }
             }
             else
             {
-                int j = 1;
-                row[0].transform.position = centerVector + new Vector3(cardHorizontalSpacing / 2, 0, 0);
-                row[1].transform.position = centerVector + new Vector3(-cardHorizontalSpacing / 2, 0, 0);
-
-                for (int i = 2; i < row.Count; i++)
+                if (row.Count % 2 == 1)
                 {
-                    row[i].transform.position = new Vector3(centerVector.x + j * cardHorizontalSpacing + Math.Sign(j) * (cardHorizontalSpacing / 2), centerVector.y, centerVector.z);
+                    int j = 1;
+                    row[0].transform.position = centerVector;
 
-                    j *= -1;
-                    if (i % 2 == 1)
-                        j++;
+                    for (int i = 1; i < row.Count; i++)
+                    {
+                        row[i].transform.position = new Vector3(centerVector.x + j * cardHorizontalSpacing, centerVector.y, centerVector.z);
+                        j *= -1;
+                        if (i % 2 == 0)
+                            j++;
+                    }
+                }
+                else
+                {
+                    int j = 1;
+                    row[0].transform.position = centerVector + new Vector3(cardHorizontalSpacing / 2, 0, 0);
+                    row[1].transform.position = centerVector + new Vector3(-cardHorizontalSpacing / 2, 0, 0);
+
+                    for (int i = 2; i < row.Count; i++)
+                    {
+                        row[i].transform.position = new Vector3(centerVector.x + j * cardHorizontalSpacing + Math.Sign(j) * (cardHorizontalSpacing / 2), centerVector.y, centerVector.z);
+
+                        j *= -1;
+                        if (i % 2 == 1)
+                            j++;
+                    }
                 }
             }
         }
@@ -508,11 +538,11 @@ public class Game : MonoBehaviour
     /// Defined game status
     /// </summary>
     private enum GameStatus { END, TOUR1, TOUR2, TOUR3 };
-    
+
     /// <summary>
     /// Defined type of card
     /// </summary>
-    private enum TypeOfCard { NORMAL, GOLD, SPY, MANEKIN, DESTROY, WEATHER , GOLD_SPY};
+    private enum TypeOfCard { NORMAL, GOLD, SPY, MANEKIN, DESTROY, WEATHER, GOLD_SPY };
 
     /// <summary>
     /// Switch player - update active deck
@@ -522,7 +552,7 @@ public class Game : MonoBehaviour
         reorganizeGroup();
         state = (int)Status.BLOCKED;
         showActiveCard(false);
-        
+
         StartCoroutine(Wait(0.75f));
     }
 
@@ -626,7 +656,7 @@ public class Game : MonoBehaviour
 
     private void showActiveCard(bool ifShow)
     {
-        
+
     }
 
     public void giveUp()

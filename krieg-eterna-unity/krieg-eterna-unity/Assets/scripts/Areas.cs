@@ -19,6 +19,8 @@ public class Areas : MonoBehaviour
     static float height;
     static float width;
 
+    float kingPadding = 4.5f;
+
     void Awake()
     {
         colliders = GetComponents<BoxCollider>();
@@ -117,17 +119,32 @@ public class Areas : MonoBehaviour
 
     public Vector3 getMeleeKingCenterVector()
     {
-        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 3, 0f);
+        updateScreenBounds();
+        Vector3 kingCenter = new Vector3(
+            botLeft.x + width * kingPadding,
+            botLeft.y + height * 3.5f,
+            0f);
+        return kingCenter;
     }
 
     public Vector3 getRangedKingCenterVector()
     {
-        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 2, 0f);
+        updateScreenBounds();
+        Vector3 kingCenter = new Vector3(
+            botLeft.x + width * kingPadding,
+            botLeft.y + height * 2.5f,
+            0f);
+        return kingCenter;
     }
 
     public Vector3 getSiegeKingCenterVector()
-    {
-        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 1, 0f);
+    {        
+        updateScreenBounds();
+        Vector3 kingCenter = new Vector3(
+            botLeft.x + width * kingPadding,
+            botLeft.y + height * 1.5f,
+            0f);
+        return kingCenter;
     }
 
 
