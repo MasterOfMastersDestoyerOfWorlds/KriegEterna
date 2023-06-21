@@ -14,6 +14,8 @@ public class Row : List<Card>
     public System.Func<Vector3> centerMethod;
     public bool wide;
 
+    public bool cardTargetsActivated = false;
+
     public Row(bool isPlayer, bool isScoring, bool wide, RowEffected uniqueType, List<RowEffected> rowType, System.Func<Vector3> centerMethod)
     {
         this.isPlayer = isPlayer;
@@ -35,6 +37,7 @@ public class Row : List<Card>
             {
                 this[i].setTargetActive(state);
             }
+            cardTargetsActivated = state;
         }
         else{
             this.target.setFlashing(state);

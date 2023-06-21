@@ -27,12 +27,19 @@ public class Card : MonoBehaviour
     public int strengthCondition;
     private bool targetActive = false;
     private bool playable = false;
+    public bool isBig = false;
+    public float bigFac = 2;
     public int isSpecial;
     public bool weatherEffect = false;
     public Vector3 baseLoc;
 
+    public List<Card> attachments;
+
     private static float baseHeight;
     private static float baseWidth;
+
+    private static float baseScalex;
+    private static float baseScalez;
 
     private static float scaleHeight;
     private static float scaleWidth;
@@ -61,7 +68,29 @@ public class Card : MonoBehaviour
         }
         baseLoc = this.transform.position;
     }
+
+    public void scaleBig()
+    {
+        isBig = true;
+        Transform cardObj = this.transform.Find("Card 1");
+        bigFac = 4;
+        Debug.Log("big scale: " + this.cardName + "bigFac" + bigFac+ "scalex " + bigFac*baseScalex + " scaley " + bigFac*baseScalez);
+        cardObj.transform.localScale = new Vector3(bigFac * baseScalex, 1, bigFac* baseScalez);
+    }
+    public void resetScale()
+    {
+        Debug.Log("resetting scale: " + this.cardName + "scalex " + baseScalex + " scaley " + baseScalez);
+        isBig = false;
+        Transform cardObj = this.transform.Find("Card 1");
+        cardObj.transform.localScale = new Vector3(baseScalex, 1, baseScalez);
+    }
     
+    public bool ContainsMouse(Vector3 mousePos){
+        mousePos.z = this.transform.position.z;
+        return this.cardColider.bounds.Contains(mousePos);
+    }
+
+
     public void setBaseScale(){
         BoxCollider2D cardColider = GetComponent<BoxCollider2D>();
         Vector3 cardDims = cardColider.size;
@@ -73,7 +102,9 @@ public class Card : MonoBehaviour
         scaleHeight = screenHeight / 8;
         scaleWidth = (cardDims.x / cardDims.y) * scaleHeight;
         Transform cardObj = this.transform.Find("Card 1");
-        cardObj.transform.localScale = new Vector3((scaleWidth / cardDims.x) * cardObj.transform.localScale.x, 1, scaleHeight / cardDims.y * cardObj.transform.localScale.z);
+        baseScalex = (scaleWidth / cardDims.x) * cardObj.transform.localScale.x;
+        baseScalez = scaleHeight / cardDims.y * cardObj.transform.localScale.z;
+        cardObj.transform.localScale = new Vector3(baseScalex, 1, baseScalez);
         cardColider.size = new Vector2(scaleWidth, scaleHeight);
     }
 
@@ -185,6 +216,26 @@ public class Card : MonoBehaviour
     public static float getBaseThickness()
     {
         return 0.1f;
+    }
+
+    public void attachCard(Card c){
+        attachments.Add(c);
+    }
+    public bool hasAttachments(){
+        return attachments.Count > 0;
+    }
+
+    public void clearAttachments(Deck d){
+        for(int i = 0; i < attachments.Count; i ++){
+            Card c = attachments[i];
+            if(CardModel.isPower(c.cardType)){
+                d.getRowByType(RowEffected.PowerGraveyard).Add(c);
+            }
+            else if(CardModel.isUnit(c.cardType)){
+                d.getRowByType(RowEffected.UnitGraveyard).Add(c);
+            }
+        }
+        attachments.RemoveAll(delegate(Card c) { return true;});
     }
 
     public string ToString()

@@ -3,7 +3,7 @@ Archer	Ranged	 	2
 Archer2	Ranged	 	2																	
 Armada	Siege	 	5																	
 Armada2	Siege	 	5																	
-Assassin	Spy	Play in any of the opponent's rows and draw two\rcards. If the row has no other cards at the end of\rthe round, send any unit to the graveyard.	5	2									1							
+Assassin	Spy	Play in any of the opponent's rows and draw two\rcards. If the row has no other cards at the end of\rthe round, send any unit to the graveyard.	5	2									1			Enemy				
 Assault	Siege	 	3																	
 Assault2	Siege	 	3																	
 Assault3	Siege	 	3																	
@@ -32,13 +32,13 @@ Feast2	Power	Attach to a unit; this unit now has plus two base\rstrength.	0					
 Feast3	Power	Attach to a unit; this unit now has plus two base\rstrength.	0						2	Add									TRUE	
 Feint	Decoy	Send one of your units on the field to the\rgraveyard, return one of your units to your hand.\rYou can play this card after you've passed.	0		1	Unit	1	Unit												
 Fog	Weather	The Range row fights at half strength this round.	0												0.5	Ranged				
-Fortress	Decoy	Attach to a unit on the field. Its strength is halved\rthis round. This unit remains on the field to fight\rin the next round at full strength.	0						0.5	Multiply									TRUE	
+Fortress	Decoy	Attach to a unit on the field. Its strength is halved\rthis round. This unit remains on the field to fight\rin the next round at full strength.	0						0.5	Multiply						All			TRUE	
 Frost	Weather	The Melee row fights at half strength this round.	0												0.5	Melee				
 Grail	Power	Reveal the top unit in the graveyard and add it to\ryour hand. If it has less than three strength draw\ranother card.	0								1									3
 Grenadier	Ranged	 	4																	
 Grenadier2	Ranged	 	4																	
 Halberdier	Melee	 	2																	
-Jester	Decoy	Replace this card with any unit on either side of\rthe field, and add that card to your hand.	0				1	Unit								Any				
+Jester	Decoy	Replace this card with any unit on either side of\rthe field, and add that card to your hand.	0				1	Unit								All				
 Juggernaut	Switch	This unit can also be played in the Range row.	2																	
 Knight	Melee	 	2																	
 Knight10	Melee	 	2																	
@@ -64,13 +64,13 @@ Officer	Melee	 	3
 Officer2	Ranged	 	3																	
 Officer3	Siege	 	3																	
 Officer4	Siege	 	3																	
-Plague	Power	Set a unit's base strength to one.	0						1	Set										
+Plague	Power	Set a unit's base strength to one.	0						1	Set									TRUE	
 Privateer	Ranged	 	4																	
 Privateer2	Ranged	 	4																	
 Privateer3	Ranged	 	4																	
 Privateer4	Ranged	 	4																	
 Redemption	Power	If your King is on the field, return it to your hand.\rThe top card in the graveyard is played on your\rside of the field.	0				1	King			1									
-Relic	Power	Move a unit to any row.	0				1	Move								Any				
+Relic	Power	Move a unit to any row.	0				1	Move								All				
 Resurrection	Power	Choose one unit from the graveyard and play it\ron your side of the field.	0								1									
 Retreat	Decoy	Replace this card with any of your units on the\rfield, and add that card to your hand.	0				1	Unit								Player				
 Riflemen	Ranged	 	3																	
@@ -82,7 +82,7 @@ Shipwreck	Decoy	If you have three units in the same row, replace\rthem with this
 Siege	Siege	 	2																	
 Siege2	Siege	 	2																	
 Siege3	Siege	 	2																	
-Smuggler	Spy	Draw two cards, your opponent draws one.	0	2								1								
+Smuggler	Spy	Draw two cards, your opponent draws one.	0	2								1				None				
 Soldier	Ranged	 	2																	
 Soldier2	Ranged	 	2																	
 Spy	Spy	Play in the opponents Melee row, then draw\rtwo cards.	1	2												Melee				

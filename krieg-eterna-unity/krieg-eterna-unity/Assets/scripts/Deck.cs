@@ -12,7 +12,7 @@ public class Deck : MonoBehaviour
 
     private Areas areas;
 
-    public List<Row> rows; 
+    public List<Row> rows;
     private GameObject areasObject;
 
     private static int FRONTS_NUMBER = 102;
@@ -33,9 +33,9 @@ public class Deck : MonoBehaviour
         new Row(true, true, true, RowEffected.PlayerMelee, new List<RowEffected>() { RowEffected.PlayerMelee, RowEffected.Player, RowEffected.All, RowEffected.Melee }, areas.getMeleeRowCenterVector),
         new Row(true, true, true, RowEffected.PlayerRanged, new List<RowEffected>() {RowEffected.PlayerRanged, RowEffected.Player, RowEffected.All, RowEffected.Ranged }, areas.getRangedRowCenterVector),
         new Row(true, true, true, RowEffected.PlayerSiege, new List<RowEffected>() { RowEffected.PlayerSiege, RowEffected.Player, RowEffected.All, RowEffected.Siege }, areas.getSiegeRowCenterVector),
-        new Row(true, false, true, RowEffected.EnemyMelee, new List<RowEffected>() {RowEffected.EnemyMelee, RowEffected.Enemy, RowEffected.All, RowEffected.Melee }, areas.getEnemyMeleeRowCenterVector),
-        new Row(true, false, true, RowEffected.EnemyRanged, new List<RowEffected>() {RowEffected.EnemyRanged, RowEffected.Enemy, RowEffected.All, RowEffected.Ranged }, areas.getEnemyRangedRowCenterVector),
-        new Row(true, false, true, RowEffected.EnemySiege, new List<RowEffected>() {RowEffected.EnemySiege, RowEffected.Enemy, RowEffected.All, RowEffected.Siege }, areas.getEnemySiegeRowCenterVector),
+        new Row(true, true, true, RowEffected.EnemyMelee, new List<RowEffected>() {RowEffected.EnemyMelee, RowEffected.Enemy, RowEffected.All, RowEffected.Melee }, areas.getEnemyMeleeRowCenterVector),
+        new Row(true, true, true, RowEffected.EnemyRanged, new List<RowEffected>() {RowEffected.EnemyRanged, RowEffected.Enemy, RowEffected.All, RowEffected.Ranged }, areas.getEnemyRangedRowCenterVector),
+        new Row(true, true, true, RowEffected.EnemySiege, new List<RowEffected>() {RowEffected.EnemySiege, RowEffected.Enemy, RowEffected.All, RowEffected.Siege }, areas.getEnemySiegeRowCenterVector),
         new Row(false, false, false, RowEffected.UnitDeck, new List<RowEffected>() { RowEffected.DrawableDeck, RowEffected.UnitDeck }, areas.getUnitDeckCenterVector),
         new Row(false, false, false, RowEffected.PowerDeck, new List<RowEffected>() { RowEffected.DrawableDeck, RowEffected.PowerDeck }, areas.getPowerDeckCenterVector),
         new Row(false, false, false, RowEffected.KingDeck, new List<RowEffected>() { RowEffected.KingDeck }, areas.getKingDeckCenterVector),
@@ -48,13 +48,14 @@ public class Deck : MonoBehaviour
         new Row(true, true, false, RowEffected.EnemyRangedKing, new List<RowEffected>() {  RowEffected.EnemyRangedKing, RowEffected.EnemyKing }, areas.getRangedKingCenterVector),
         new Row(true, true, false, RowEffected.EnemySiegeKing, new List<RowEffected>() { RowEffected.EnemySiegeKing, RowEffected.EnemyKing }, areas.getSiegeKingCenterVector),
         new Row(false, false, false, RowEffected.None, new List<RowEffected>() { RowEffected.All }, areas.getDeckCenterVector) // special cards
-        }; 
+        };
     }
 
-    void Start(){
+    void Start()
+    {
 
         updateRowCenters();
-    } 
+    }
 
     public void buildDeck(int numPowers, int numUnits, int numKings)
     {
@@ -78,7 +79,7 @@ public class Deck : MonoBehaviour
             clone.setIndex(cardId);
             clone.setIsSpecial(clone.getCardModel().getIsSpecial(cardId));
             clone.setBaseLoc();
-            Debug.Log("making card" + clone.cardName);
+            Debug.Log("Making Card" + clone.cardName);
             if (CardModel.isPower(clone.cardType))
             {
                 getRowByType(RowEffected.PowerDeck).Add(clone);
@@ -94,11 +95,11 @@ public class Deck : MonoBehaviour
             uniqueValues.Remove(cardId);
         }
         int numCards = numPowers + numUnits + numKings;
-        Debug.Log("dealing cards");
+        Debug.Log("Dealing Cards");
         while (numCards > 0)
         {
 
-            Debug.Log("cards left to deal: " + numCards);
+            Debug.Log("Cards Left to Deal: " + numCards);
             Card card = baseCard;
             if (numPowers > 0)
             {
@@ -127,15 +128,16 @@ public class Deck : MonoBehaviour
     }
 
     public void updateRowCenters()
-    {   
-        foreach(Row row in rows){
+    {
+        foreach (Row row in rows)
+        {
             row.centerRow();
         }
     }
 
     public void buildTargets()
     {
-        Debug.Log("building targets");
+        Debug.Log("Building Targets");
         for (int i = 0; i < rows.Count; i++)
         {
             Row row = rows[i];
@@ -148,8 +150,13 @@ public class Deck : MonoBehaviour
         Target clone = Instantiate(baseTarget) as Target;
         clone.setNotFlashing();
         clone.tag = "CloneTarget";
-        if(row.wide){
+        if (row.wide)
+        {
             clone.scale(Mathf.Max(row.Count + 1, 8), 1);
+        }
+        else
+        {
+            clone.scale(1, 1);
         }
         row.setTarget(clone);
         clone.transform.position = new Vector3(center.x, center.y, -1f);
@@ -169,11 +176,74 @@ public class Deck : MonoBehaviour
                     c.setPlayable(false);
                     c.resetTransform();
                 }
+                if (c.isBig)
+                {
+                    c.resetScale();
+                    c.resetTransform();
+                }
             }
             if (row.target != null)
             {
                 row.target.setNotFlashing();
             }
+        }
+    }
+
+    public List<Card> getVisibleCards()
+    {
+        List<Card> cards = new List<Card>();
+        foreach (Row row in rows)
+        {
+            if (row.isPlayer)
+            {
+                foreach (Card card in row)
+                {
+                    cards.Add(card);
+                }
+
+            }
+        }
+
+        return cards;
+    }
+    public List<Card> getActiveCardTargets()
+    {
+        List<Card> cardTargets = new List<Card>();
+        foreach (Row row in rows)
+        {
+            if (row.isPlayer)
+            {
+                foreach (Card card in row)
+                {
+                    if (card.isTargetActive()){
+                        cardTargets.Add(card);
+                    }
+                }
+
+            }
+        }
+        return cardTargets;
+    }
+    public List<Row> getActiveRowTargets()
+    {
+        List<Row> rowTargets = new List<Row>();
+        foreach (Row row in rows)
+        {
+            if (row.target != null && row.target.isFlashing())
+            {
+                rowTargets.Add(row);
+            }
+        }
+        return rowTargets;
+    }
+
+    public void activateRowsByType(bool state, bool individualCards, RowEffected type)
+    {
+        List<Row> rowList = getRowsByType(type);
+        Debug.Log(getRowByType(RowEffected.PlayerMeleeKing).target);
+        foreach (Row row in rowList)
+        {
+            row.setActivateRowCardTargets(state, individualCards);
         }
     }
 
@@ -210,28 +280,6 @@ public class Deck : MonoBehaviour
             }
         }
         return null;
-    }
-    public void activateRowsByType(bool state, bool individualCards, RowEffected type)
-    {
-        List<Row> rowList = getRowsByType(type);
-        Debug.Log(getRowByType(RowEffected.PlayerMeleeKing).target);
-        foreach (Row row in rowList)
-        {
-            row.setActivateRowCardTargets(state, individualCards);
-        }
-    }
-
-    public List<Row> getActiveRowTargets()
-    {
-        List<Row> rowTargets = new List<Row>();
-        foreach (Row row in rows)
-        {
-            if (row.target != null && row.target.isFlashing())
-            {
-                rowTargets.Add(row);
-            }
-        }
-        return rowTargets;
     }
 
 

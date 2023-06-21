@@ -87,6 +87,11 @@ public class Target : MonoBehaviour
         return baseWidth;
     }
 
+    public bool ContainsMouse(Vector3 mousePos){
+        mousePos.z = this.transform.position.z;
+        return this.cardColider.bounds.Contains(mousePos);
+    }
+
     public static float getBaseThickness()
     {
         return 0.1f;

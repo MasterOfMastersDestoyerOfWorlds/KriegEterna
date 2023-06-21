@@ -50,7 +50,7 @@ public class Areas : MonoBehaviour
         center = (topRight + botLeft) / 2;
     }
 
-    private Vector3 getCenterBottom()
+    public Vector3 getCenterBottom()
     {
         updateScreenBounds();
         Vector3 centerBottom = new Vector3(
@@ -58,6 +58,16 @@ public class Areas : MonoBehaviour
             botLeft.y + height / 2,
             -2f);
         return centerBottom;
+    }
+
+    public Vector3 getCenterFront()
+    {
+        updateScreenBounds();
+        Vector3 centerFront = new Vector3(
+            center.x,
+            center.y,
+            -5f);
+        return centerFront;
     }
 
     public Vector3 getDeckCenterVector()

@@ -18,8 +18,8 @@ public class Game : MonoBehaviour
     private Card activeCard;
     private Card activeShowingCard;
     private static int activePlayerNumber;
-    private static int state = (int)Status.FREE;
-    private static int gameStatus = (int)GameStatus.TOUR1;
+    public static State state = State.FREE;
+    private static int gameState = (int)GameState.TOUR1;
 
     private GameObject deckObject;
     private GameObject deskObject;
@@ -124,7 +124,7 @@ public class Game : MonoBehaviour
         endPanelObject.SetActive(false);
 
         activePlayerNumber = (int)PlayerNumber.PLAYER1;
-        gameStatus = (int)GameStatus.TOUR1;
+        gameState = (int)GameState.TOUR1;
         Deck deck = player1.getDeck();
         deck.buildDeck(4, 9, 1);
         deck.buildTargets();
@@ -148,7 +148,7 @@ public class Game : MonoBehaviour
 
         player1.moveCardsFromDeskToDeathArea(activePlayerNumber);
         player2.moveCardsFromDeskToDeathArea(activePlayerNumber);
- 
+
 
         Debug.Log("P1 amount of cards: " + player1.getDeck().getRowByType(RowEffected.PlayerHand).Count);
         Debug.Log("P2 amount of cards: " + player2.getDeck().getRowByType(RowEffected.PlayerHand).Count);
@@ -166,29 +166,6 @@ public class Game : MonoBehaviour
         reorganizeGroup();
     }
 
-    private enum Status
-    {
-        FREE,
-        ACTIVE_CARD,
-        BLOCKED
-    };
-
-    /// <summary>
-    /// Delete all clone cards
-    /// </summary>
-    /// <returns>Number of deleted cards</returns>
-    /*public int deleteAllCardClones()
-    {
-        int cloneNumber = 0;
-        GameObject[] cloneCards = GameObject.FindGameObjectsWithTag("CloneCard");
-        cloneNumber = cloneCards.Length;
-
-        foreach (GameObject go in cloneCards)
-            GameObject.DestroyObject(go);
-
-        return cloneNumber;
-    }*/
-
     void Update()
     {
         // Updating numberOfCards
@@ -201,24 +178,40 @@ public class Game : MonoBehaviour
         // vector of actual mouse position
         Vector3 mouseRelativePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseRelativePosition.z = 0f;
-        if (Input.GetMouseButtonDown(0) && state != ((int)Status.BLOCKED))
+        if (Input.GetMouseButtonDown(1))
+        {
+            activeDeck.disactiveAllInDeck();
+            reorganizeGroup();
+            List<Card> cards = activeDeck.getVisibleCards();
+            foreach (Card c in cards)
+            {
+                if (c.ContainsMouse(mouseRelativePosition))
+                {
+                    c.scaleBig();
+                    c.transform.position = areas.getCenterFront();
+                }
+            }
+        }
+        if (Input.GetMouseButtonDown(0) && state != State.BLOCKED)
         {
             Debug.Log("Click Registered");
+            bool clickOnTarget = false;
 
             // if we click on deck collision
-            if (areas.getDeckColliderBounds().Contains(mouseRelativePosition) && activeDeck.getRowByType(RowEffected.PlayerHand).Count > 0)
+            Row playerHand = activeDeck.getRowByType(RowEffected.PlayerHand);
+            if (playerHand.target.ContainsMouse(mouseRelativePosition) && playerHand.Count > 0 && state != State.MULTISTEP)
             {
+                clickOnTarget = true;
                 Debug.Log("Click Registered On Deck");
-                for (int i = 1; i < activeDeck.getRowByType(RowEffected.PlayerHand).Count; i++)
+                for (int i = 0; i < playerHand.Count; i++)
                 {
-                    Card c = activeDeck.getRowByType(RowEffected.PlayerHand)[i];
-                    mouseRelativePosition.z = c.transform.position.z;
-                    if (c.getBounds().Contains(mouseRelativePosition))
+                    Card c = playerHand[i];
+                    if (c.ContainsMouse(mouseRelativePosition))
                     {
                         Debug.Log("clicked on: " + c.ToString());
                         if (c.isTargetActive() && c.isPlayable())
                         {
-                            Play(c, null);
+                            Play(c, null, null);
                             c.setTargetActive(false);
                             break;
                         }
@@ -228,24 +221,42 @@ public class Game : MonoBehaviour
                         showActiveCard(true);
                         activeCard.setBaseLoc();
                         activeCard.transform.position += new Vector3(0, Card.getBaseHeight() / 3, 0f);
-                        state = (int)Status.ACTIVE_CARD;
+                        state = State.ACTIVE_CARD;
                     }
                 }
             }
             List<Row> activeRowTargets = activeDeck.getActiveRowTargets();
-            for (int i = 1; i < activeRowTargets.Count; i++)
+            for (int i = 0; i < activeRowTargets.Count; i++)
             {
                 Row row = activeRowTargets[i];
-                Target target = row.target;
-                mouseRelativePosition.z = target.transform.position.z;
-                if (target.getBounds().Contains(mouseRelativePosition))
+                if (row.target.ContainsMouse(mouseRelativePosition))
                 {
-                    Play(activeCard, row);
+                    clickOnTarget = true;
+                    Play(activeCard, row, null);
                     activeDeck.disactiveAllInDeck();
                 }
             }
+            for (int i = 0; i < activeDeck.rows.Count; i++)
+            {
+                Row row = activeDeck.rows[i];
+                if (row.cardTargetsActivated && row.target.ContainsMouse(mouseRelativePosition))
+                {
+                    for (int j = 0; j < row.Count; j++)
+                    {
+                        Card selected = row[j];
+                        if (selected.ContainsMouse(mouseRelativePosition))
+                        {
+                            List<Card> selectedCards = new List<Card>();
+                            selectedCards.Add(selected);
+                            clickOnTarget = true;
+                            activeDeck.disactiveAllInDeck();
+                            Play(activeCard, row, selectedCards);
+                        }
+                    }
+                }
+            }
             // Ending player time, tour
-            // TODO - Change gameStatus
+            // TODO - Change gameState
             // ---------------------------------------------------------------------------------------------------------------
             if (player1.getDeck().getRowByType(RowEffected.PlayerHand).Count == 0 && player1.isPlaying)
             {
@@ -257,7 +268,7 @@ public class Game : MonoBehaviour
                 Debug.Log("Player2 has no cards");
                 player2.isPlaying = false;
             }
-            if (player1.isPlaying == false && player2.isPlaying == false && gameStatus != (int)GameStatus.END)
+            if (player1.isPlaying == false && player2.isPlaying == false && gameState != (int)GameState.END)
             {
                 player1.updateScore();
                 player2.updateScore();
@@ -316,20 +327,20 @@ public class Game : MonoBehaviour
                 if (player1.health == -1 && player2.health == -1)
                 {
                     Debug.Log("Draw!");
-                    gameStatus = (int)GameStatus.END;
+                    gameState = (int)GameState.END;
                 }
                 else if (player1.health == -1)
                 {
                     Debug.Log("Victory!");
-                    gameStatus = (int)GameStatus.END;
+                    gameState = (int)GameState.END;
                 }
                 else if (player2.health == -1)
                 {
                     Debug.Log("Defeat");
-                    gameStatus = (int)GameStatus.END;
+                    gameState = (int)GameState.END;
                 }
 
-                if (gameStatus != (int)GameStatus.END)
+                if (gameState != (int)GameState.END)
                 {
                     Debug.Log("End tour()");
                     endTour();
@@ -339,10 +350,18 @@ public class Game : MonoBehaviour
                     gameOver();
                 }
             }
+
+            Debug.Log("Click on target: " + clickOnTarget);
+            if (!clickOnTarget)
+            {
+                Debug.Log("No valid click resetting");
+                activeDeck.disactiveAllInDeck();
+                reorganizeGroup();
+            }
         }
     }
 
-    public void Play(Card c, Row targetRow)
+    public void Play(Card c, Row targetRow, List<Card> targetCards)
     {
         Debug.Log("Playing: " + c.cardName + " Type: " + c.cardType);
         if (targetRow != null)
@@ -357,35 +376,65 @@ public class Game : MonoBehaviour
             case CardType.Siege: activeDeck.getRowByType(RowEffected.PlayerSiege).Add(c); break;
             case CardType.Switch: targetRow.Add(c); break;
             case CardType.King: PlayKing(c, targetRow); break;
-            case CardType.Spy: PlaySpy(c); break;
-            case CardType.Decoy: PlayDecoy(c); break;
+            case CardType.Spy: PlaySpy(c, targetRow); break;
+            case CardType.Decoy: PlayDecoy(c, targetRow, targetCards); break;
             case CardType.Weather: PlayWeather(c); break;
-            case CardType.Power: PlayPower(c); break;
+            case CardType.Power: PlayPower(c, targetRow, targetCards); break;
             default: break;
         }
-
+        fulfillSideEffects(c);
         reorganizeGroup();
     }
 
+    public void fulfillSideEffects(Card c)
+    {
+        if (c.playerCardDraw > 0)
+        {
+
+        }
+    }
     public void PlayKing(Card c, Row targetRow)
     {
         targetRow.Add(c);
     }
 
-    public void PlaySpy(Card c)
+    public void PlaySpy(Card c, Row targetRow)
     {
-        Debug.Log("Playing Spy in: " + c.rowEffected);
-        switch (c.rowEffected)
+        if (targetRow == null)
         {
-            case RowEffected.Melee: activeDeck.getRowByType(RowEffected.EnemyMelee).Add(c); Debug.Log("added to enemy melee"); break;
-            case RowEffected.Ranged: activeDeck.getRowByType(RowEffected.EnemyRanged).Add(c); Debug.Log("added to enemy ranged"); break;
-            case RowEffected.Siege: activeDeck.getRowByType(RowEffected.EnemySiege).Add(c); Debug.Log("added to enemy siege"); break;
-            default: break;
+            Debug.Log("Playing Spy in: " + c.rowEffected);
+            switch (c.rowEffected)
+            {
+                case RowEffected.Melee: activeDeck.getRowByType(RowEffected.EnemyMelee).Add(c); Debug.Log("added to enemy melee"); break;
+                case RowEffected.Ranged: activeDeck.getRowByType(RowEffected.EnemyRanged).Add(c); Debug.Log("added to enemy ranged"); break;
+                case RowEffected.Siege: activeDeck.getRowByType(RowEffected.EnemySiege).Add(c); Debug.Log("added to enemy siege"); break;
+                default: activeDeck.getRowByType(RowEffected.PowerGraveyard).Add(c); break;
+            }
+        }
+        else
+        {
+            targetRow.Add(c);
+            Debug.Log("Added Spy to Row: " + targetRow);
         }
     }
 
-    public void PlayDecoy(Card c)
+    public void PlayDecoy(Card c, Row targetRow, List<Card> targetCards)
     {
+
+        if (c.playerCardReturn > 0)
+        {
+            int index = targetRow.IndexOf(targetCards[0]);
+            targetRow.Insert(index, c);
+            for (int i = 0; i < targetCards.Count; i++)
+            {
+                targetRow.Remove(targetCards[i]);
+                activeDeck.getRowByType(RowEffected.PlayerHand).Add(targetCards[i]);
+            }
+        }
+        else if (c.attach)
+        {
+            targetCards[0].attachCard(c);
+        }
     }
 
     public void PlayWeather(Card c)
@@ -401,8 +450,11 @@ public class Game : MonoBehaviour
         }
     }
 
-    public void PlayPower(Card c)
+    public void PlayPower(Card c, Row targetRow, List<Card> targetCards)
     {
+        if(c.attach){
+            targetCards[0].attachCard(c);
+        }
     }
 
     public void ShowTargets(Card c)
@@ -431,10 +483,22 @@ public class Game : MonoBehaviour
                 }
             ; break;
             case CardType.Decoy:
-                ;
+                activeDeck.activateRowsByType(true, true, c.rowEffected);
                 break;
             case CardType.Weather: c.setTargetActive(true); break;
-            case CardType.Power: break;
+            case CardType.Power:
+                if(c.playerCardDestroy > 0){
+                    activeDeck.activateRowsByType(true, true, RowEffected.Player);
+                }else if(c.enemyCardDestroy > 0){
+                    activeDeck.activateRowsByType(true, true, RowEffected.Enemy);
+                }else if(c.attach){
+                    activeDeck.activateRowsByType(true, true, RowEffected.All);
+                }else if(c.rowEffected != RowEffected.None){
+                    activeDeck.activateRowsByType(true, true, c.rowEffected);
+                }else{
+                    c.setTargetActive(true);
+                }
+                break;
             default: break;
         }
         c.setPlayable(true);
@@ -466,16 +530,16 @@ public class Game : MonoBehaviour
 
     public void reorganizeGroup()
     {
-
         float cardHorizontalSpacing = Card.getBaseWidth() * 1.025f;
         float cardThickness = Card.getBaseThickness();
+        float attachmentVerticalSpacing = Card.getBaseHeight() * 0.2f;
         foreach (Row row in activeDeck.rows)
         {
-            reorganizeRow(cardHorizontalSpacing, cardThickness, row);
+            reorganizeRow(cardHorizontalSpacing, cardThickness, attachmentVerticalSpacing, row);
         }
     }
 
-    private void reorganizeRow(float cardHorizontalSpacing, float cardThickness, Row row)
+    private void reorganizeRow(float cardHorizontalSpacing, float cardThickness, float attachmentVerticalSpacing, Row row)
     {
         Vector3 centerVector = row.center;
 
@@ -520,6 +584,15 @@ public class Game : MonoBehaviour
                             j++;
                     }
                 }
+                for (int i = 0; i < row.Count; i++)
+                {
+                    Card c = row[i];
+                    for (int j = 0; j < c.attachments.Count; j++)
+                    {
+                        Vector3 cardCenter = c.transform.position;
+                        c.attachments[j].transform.position = new Vector3(cardCenter.x, cardCenter.y - (j+1) * attachmentVerticalSpacing, cardCenter.z + j * cardThickness);
+                    }
+                }
             }
         }
     }
@@ -537,7 +610,7 @@ public class Game : MonoBehaviour
     /// <summary>
     /// Defined game status
     /// </summary>
-    private enum GameStatus { END, TOUR1, TOUR2, TOUR3 };
+    private enum GameState { END, TOUR1, TOUR2, TOUR3 };
 
     /// <summary>
     /// Defined type of card
@@ -550,7 +623,7 @@ public class Game : MonoBehaviour
     private void switchPlayer()
     {
         reorganizeGroup();
-        state = (int)Status.BLOCKED;
+        state = State.BLOCKED;
         showActiveCard(false);
 
         StartCoroutine(Wait(0.75f));
@@ -651,7 +724,7 @@ public class Game : MonoBehaviour
 
         reorganizeGroup();
 
-        state = (int)Status.FREE;
+        state = State.FREE;
     }
 
     private void showActiveCard(bool ifShow)
