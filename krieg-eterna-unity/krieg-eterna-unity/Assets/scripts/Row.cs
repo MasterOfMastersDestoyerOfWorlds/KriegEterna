@@ -55,11 +55,11 @@ public class Row : List<Card>
     {
         return this.target.getBounds();
     }
-    public string ToString()
+    public override string ToString()
     {
         return this.name;
     }
-    public bool isType(RowEffected type){
+    public bool hasType(RowEffected type){
         return this.rowType.Contains(type);
     }
 

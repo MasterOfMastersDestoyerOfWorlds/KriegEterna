@@ -27,6 +27,10 @@ public class CardModel : MonoBehaviour
     public List<SetAsideType> setAsideType;
     public List<bool> attach;
     public List<int> strengthCondition;
+    public List<int> chooseN;
+    public List<RowEffected> chooseRow;
+    public List<int> chooseShowN;
+
 	public int[] isSpecial;
 	public string spriteFolder = "Images";
     /* 
@@ -89,6 +93,8 @@ public class CardModel : MonoBehaviour
             AddTypePair(temp, setAside, 17, setAsideType, 18);
             AddOptionalBool(temp, attach, 19);
             AddOptional(temp, strengthCondition, 20);
+            AddTypePair(temp, chooseN, 21, chooseRow, 22);
+            AddOptional(temp, chooseShowN, 23);
         }
     }
 

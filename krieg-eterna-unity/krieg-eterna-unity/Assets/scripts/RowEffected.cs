@@ -12,11 +12,11 @@ public enum RowEffected
     EnemySiege = 10,
     Any = 11,
     BothHand = 12,
-    Enemy = 13,
+    EnemyPlayable = 13,
     EnemyHand = 14,
     EnemyMax = 15,
     LastPlayedCard = 16,
-    Player = 17,
+    PlayerPlayable = 17,
     PlayerHand = 18,
     UnitDeck = 19,
     PowerDeck = 20,
@@ -32,5 +32,9 @@ public enum RowEffected
     EnemyMeleeKing = 30,
     EnemyRangedKing = 31,
     EnemySiegeKing = 32,
+    PlayerSetAside = 33,
+    EnemySetAside = 34,
+    Enemy = 35,
+    Player = 36,
     None = 0
 };

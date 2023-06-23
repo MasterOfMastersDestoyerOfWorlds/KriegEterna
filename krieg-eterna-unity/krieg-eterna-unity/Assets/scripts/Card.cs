@@ -9,24 +9,33 @@ public class Card : MonoBehaviour
     public CardType cardType;
     public int strength;
     public int playerCardDraw;
+    public int playerCardDrawRemain;
     public int playerCardDestroy;
+    public uint playerCardDestroyRemain;
     public DestroyType destroyType;
     public int playerCardReturn;
+    public uint playerCardReturnRemain;
     public CardReturnType cardReturnType;
     public float strengthModifier;
     public StrengthModType strengthModType;
     public int graveyardCardDraw;
+    public uint graveyardCardDrawRemain;
     public int enemyCardDraw;
     public int enemyCardDestroy;
+    public uint enemyCardDestroyRemain;
     public int enemyReveal;
     public float rowMultiple;
     public RowEffected rowEffected;
     public int setAside;
+    public uint setAsideRemain;
+    public RowEffected setAsideReturnRow;
     public SetAsideType setAsideType;
     public bool attach;
     public int strengthCondition;
+    public int chooseN;
+    public RowEffected ChooseRow;
+    public int chooseShowN;
     private bool targetActive = false;
-    private bool playable = false;
     public bool isBig = false;
     public float bigFac = 2;
     public int isSpecial;
@@ -145,8 +154,6 @@ public class Card : MonoBehaviour
         this.strength = cardModel.strength[index];
         this.playerCardDraw = cardModel.playerCardDraw[index];
         this.playerCardDestroy = cardModel.playerCardDestroy[index];
-        this.playerCardDraw = cardModel.playerCardDraw[index];
-        this.playerCardDestroy = cardModel.playerCardDestroy[index];
         this.destroyType = cardModel.destroyType[index];
         this.playerCardReturn = cardModel.playerCardReturn[index];
         this.cardReturnType = cardModel.cardReturnType[index];
@@ -162,13 +169,38 @@ public class Card : MonoBehaviour
         this.setAsideType = cardModel.setAsideType[index];
         this.attach = cardModel.attach[index];
         this.strengthCondition = cardModel.strengthCondition[index];
-
+        this.resetSelectionCounts();
     }
 
 
     public int getIndex()
     {
         return this.index;
+    }
+
+    public void resetSelectionCounts(){
+        
+        this.playerCardDrawRemain = playerCardDraw;
+        this.playerCardDestroyRemain = (uint)this.playerCardDestroy;
+        this.playerCardReturnRemain = (uint)this.playerCardReturn;
+        this.enemyCardDestroyRemain = (uint)this.enemyCardDestroy;
+        this.setAsideRemain = (uint)this.setAside;
+        this.graveyardCardDrawRemain = (uint)this.graveyardCardDraw;
+    }
+
+    public bool doneMultiSelection(){
+        return  this.playerCardDrawRemain == 0 && this.playerCardDestroyRemain == 0 
+        && this.playerCardReturnRemain ==0 && this.enemyCardDestroyRemain == 0
+        && this.setAsideRemain == 0;
+    }
+
+    public void LogSelectionsRemaining(){
+        Debug.Log("Remaining Selections: ");
+        Debug.Log("playerCardDraw: " + this.playerCardDrawRemain);
+        Debug.Log("playerCardDestroy: " + this.playerCardDestroyRemain);
+        Debug.Log("playerCardReturn: " + this.playerCardReturnRemain);
+        Debug.Log("enemyCardDestroy: " + this.enemyCardDestroyRemain);
+        Debug.Log("setAside: " + this.setAsideRemain);
     }
 
     public void setTargetActive(bool state)
@@ -182,13 +214,37 @@ public class Card : MonoBehaviour
         return this.targetActive;
     }
 
-    public void setPlayable(bool state)
+    public bool isPlayable(Deck deck)
     {
-        this.playable = state;
-    }
-    public bool isPlayable()
-    {
-        return this.playable;
+        List<Row> playerRows = deck.getRowsByType(RowEffected.PlayerPlayable);
+        int playerRowsSum = 0;
+        List<Row> enemyRows = deck.getRowsByType(RowEffected.EnemyPlayable);
+        int enemyRowsSum = 0;
+        RowEffected playerKingRow = deck.getKingRow(true);
+        RowEffected enemyKingRow = deck.getKingRow(false);
+        for(int i = 0; i < playerRows.Count; i++){
+            playerRowsSum += playerRows[i].Count;
+        }
+        for(int i = 0; i < enemyRows.Count; i++){
+            enemyRowsSum += enemyRows[i].Count;
+        }
+        if(this.playerCardDestroy + this.playerCardReturn > playerRowsSum){
+            return false;
+        }
+        if(this.setAsideType == SetAsideType.Player && this.setAside > playerRowsSum){
+            return false;
+        }
+        if(this.setAsideType == SetAsideType.Enemy && this.setAside > enemyRowsSum){
+            return false;
+        }
+        if(this.setAsideType == SetAsideType.EnemyKing && enemyKingRow == RowEffected.None){
+            return false;
+        }
+        if(this.setAsideType == SetAsideType.King && playerKingRow == RowEffected.None){
+            return false;
+        }
+
+        return true;
     }
     public Bounds getBounds()
     {
