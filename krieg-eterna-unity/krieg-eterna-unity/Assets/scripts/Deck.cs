@@ -49,7 +49,7 @@ public class Deck : MonoBehaviour
         new Row(true, true, false, RowEffected.EnemySiegeKing, new List<RowEffected>() { RowEffected.EnemySiegeKing, RowEffected.EnemyKing, RowEffected.Enemy }, areas.getSiegeKingCenterVector),
         new Row(false, false, false, RowEffected.PlayerSetAside, new List<RowEffected>() { RowEffected.PlayerSetAside, RowEffected.Player }, areas.getUnitGraveyardCenterVector),
         new Row(false, false, false, RowEffected.EnemySetAside, new List<RowEffected>() { RowEffected.EnemySetAside, RowEffected.Enemy }, areas.getUnitGraveyardCenterVector),
-        new Row(false, false, false, RowEffected.None, new List<RowEffected>() { RowEffected.All }, areas.getDeckCenterVector) // special cards
+        new Row(false, false, true, RowEffected.ChooseN, new List<RowEffected>() { RowEffected.ChooseN }, areas.getCenterFront) // choose N
         };
     }
 

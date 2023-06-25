@@ -26,6 +26,10 @@ public class Game : MonoBehaviour
     private GameObject areasObject;
 
     private Deck activeDeck;
+
+    private bool hasChosenStart;
+    private RowEffected chooseNRow;
+    private System.Action<Row, Card> chooseNAction;
     private Desk desk;
     private Areas areas;
 
@@ -128,6 +132,7 @@ public class Game : MonoBehaviour
         Deck deck = player1.getDeck();
         deck.buildDeck(4, 9, 1);
         deck.buildTargets();
+        hasChosenStart = false;
 
         activePlayerNumber = (int)PlayerNumber.PLAYER1;
 
@@ -138,7 +143,6 @@ public class Game : MonoBehaviour
         initializePlayersDecks();
 
         reorganizeGroup();
-
     }
 
     void initializePlayersDecks()
@@ -156,7 +160,7 @@ public class Game : MonoBehaviour
         player2.setDeckVisibility(false);
         activeDeck = player1.getDeck();
 
-        if (player1.getDeck().getRowByType(RowEffected.PlayerHand).Count > 0)
+        if (activeDeck.getRowByType(RowEffected.PlayerHand).Count > 0)
             activeCard = player1.getDeck().getRowByType(RowEffected.PlayerHand)[0];
 
         activeShowingCard = Instantiate(activeCard) as Card;
@@ -172,7 +176,10 @@ public class Game : MonoBehaviour
         // ---------------------------------------------------------------------------------------------------------------
         cardNumber1.text = player1.getDeck().getRowByType(RowEffected.PlayerHand).Count.ToString();
         cardNumber2.text = player2.getDeck().getRowByType(RowEffected.PlayerHand).Count.ToString();
-
+        if(!hasChosenStart){
+            hasChosenStart = true;
+            setChooseN(RowEffected.PlayerHand, activeDeck.sendCardToGraveyard, 3, activeDeck.getRowByType(RowEffected.PlayerHand).Count);
+        }
         // Picking card
         // ---------------------------------------------------------------------------------------------------------------
         // vector of actual mouse position
@@ -180,7 +187,8 @@ public class Game : MonoBehaviour
         mouseRelativePosition.z = 0f;
         if (Input.GetMouseButtonDown(1))
         {
-            if(state != State.MULTISTEP){
+            if (state != State.MULTISTEP)
+            {
                 activeDeck.disactiveAllInDeck(false);
             }
             reorganizeGroup();
@@ -198,10 +206,9 @@ public class Game : MonoBehaviour
         {
             Debug.Log("Click Registered");
             bool clickOnTarget = false;
-
-            // if we click on deck collision
             Row playerHand = activeDeck.getRowByType(RowEffected.PlayerHand);
-            if (playerHand.target.ContainsMouse(mouseRelativePosition) && playerHand.Count > 0 && state != State.MULTISTEP)
+
+            if (playerHand.target.ContainsMouse(mouseRelativePosition) && playerHand.Count > 0 && state != State.MULTISTEP && state != State.CHOOSE_N)
             {
                 clickOnTarget = true;
                 Debug.Log("Click Registered On Deck");
@@ -215,7 +222,8 @@ public class Game : MonoBehaviour
                         {
                             Play(c, null, null);
                             c.setTargetActive(false);
-                            if(state == State.MULTISTEP){  
+                            if (state == State.MULTISTEP)
+                            {
                                 activeDeck.disactiveAllInDeck(false);
                                 ShowTargets(c);
                             }
@@ -243,7 +251,8 @@ public class Game : MonoBehaviour
                     {
                         activeDeck.disactiveAllInDeck(false);
                     }
-                    else{
+                    else
+                    {
                         activeDeck.disactiveAllInDeck(false);
                         ShowTargets(activeCard);
                     }
@@ -259,13 +268,24 @@ public class Game : MonoBehaviour
                         Card selected = row[j];
                         if (selected.ContainsMouse(mouseRelativePosition))
                         {
-                            clickOnTarget = true;
-                            Play(activeCard, row, selected);
-                            if(state != State.MULTISTEP){
-                                activeDeck.disactiveAllInDeck(false);
-                            }else{  
-                                activeDeck.disactiveAllInDeck(false);
-                                ShowTargets(activeCard);
+                            if (state == State.CHOOSE_N)
+                            {
+                                chooseCard(selected);
+                            }
+                            else
+                            {
+
+                                clickOnTarget = true;
+                                Play(activeCard, row, selected);
+                                if (state != State.MULTISTEP)
+                                {
+                                    activeDeck.disactiveAllInDeck(false);
+                                }
+                                else
+                                {
+                                    activeDeck.disactiveAllInDeck(false);
+                                    ShowTargets(activeCard);
+                                }
                             }
                         }
                     }
@@ -367,7 +387,7 @@ public class Game : MonoBehaviour
             Debug.Log("Click on target: " + clickOnTarget);
             if (!clickOnTarget)
             {
-                if (state != State.MULTISTEP)
+                if (state != State.MULTISTEP && state != State.CHOOSE_N)
                 {
                     Debug.Log("No valid click resetting");
                     activeDeck.disactiveAllInDeck(false);
@@ -522,7 +542,8 @@ public class Game : MonoBehaviour
             targetCard.attachCard(c);
         }
 
-        if(!c.attach){
+        if (!c.attach)
+        {
             activeDeck.sendCardToGraveyard(targetRow, c);
         }
     }
@@ -670,6 +691,58 @@ public class Game : MonoBehaviour
     }
 
 
+    public void chooseCard(Card cardClone)
+    {
+        
+        Row row = activeDeck.getRowByType(chooseNRow);
+        Row displayRow = activeDeck.getRowByType(RowEffected.ChooseN);
+
+        displayRow.Remove(cardClone);
+        Card realCard = row[row.IndexOf(cardClone)];
+        row.chooseNRemain --;
+        chooseNAction.Invoke(row, realCard);
+
+        cardClone.Destroy();
+        reorganizeGroup();
+
+        if(row.chooseNRemain == 0){
+            displayRow.setVisibile(false);
+            activeDeck.disactiveAllInDeck(false);
+            state = State.FREE;
+        }
+    }
+
+    public void setChooseN(RowEffected chooseRow, System.Action<Row, Card> action, int numChoose, int numShow)
+    {
+
+        Row row = activeDeck.getRowByType(chooseRow);
+        row.chooseNRemain = numChoose;
+        state = State.CHOOSE_N;
+        
+        Debug.Log(state);
+        Debug.Log("setting up choice");
+        float cardHorizontalSpacing = Card.getBaseWidth() * 1.025f;
+        float cardThickness = Card.getBaseThickness();
+        float attachmentVerticalSpacing = Card.getBaseHeight() * 0.2f;
+        Row displayRow = activeDeck.getRowByType(RowEffected.ChooseN);
+        chooseNRow = chooseRow;
+        chooseNAction = action;
+        while (displayRow.Count > 0)
+        {
+            Card clone = displayRow[0];
+            displayRow.Remove(clone);
+            Destroy(clone);
+        }
+        for (int i = 0; i < numShow; i++)
+        {
+            Card clone = Instantiate(row[i]) as Card;
+            displayRow.Add(clone);
+        }
+        reorganizeRow(cardHorizontalSpacing, cardThickness, attachmentVerticalSpacing, displayRow, displayRow.center);
+        displayRow.setActivateRowCardTargets(true, true);
+    }
+
+
     public void reorganizeGroup()
     {
         float cardHorizontalSpacing = Card.getBaseWidth() * 1.025f;
@@ -677,13 +750,12 @@ public class Game : MonoBehaviour
         float attachmentVerticalSpacing = Card.getBaseHeight() * 0.2f;
         foreach (Row row in activeDeck.rows)
         {
-            reorganizeRow(cardHorizontalSpacing, cardThickness, attachmentVerticalSpacing, row);
+            reorganizeRow(cardHorizontalSpacing, cardThickness, attachmentVerticalSpacing, row, row.center);
         }
     }
 
-    private void reorganizeRow(float cardHorizontalSpacing, float cardThickness, float attachmentVerticalSpacing, Row row)
+    private void reorganizeRow(float cardHorizontalSpacing, float cardThickness, float attachmentVerticalSpacing, Row row, Vector3 centerVector)
     {
-        Vector3 centerVector = row.center;
 
         if (row.Count > 0)
         {
@@ -740,11 +812,6 @@ public class Game : MonoBehaviour
     }
 
     /// <summary>
-    /// Defined type of card groups
-    /// </summary>
-    private enum CardGroup { DECK, SWORD, BOW, TREBUCHET };
-
-    /// <summary>
     /// Defined name of players
     /// </summary>
     private enum PlayerNumber { PLAYER1 = 1, PLAYER2 };
@@ -753,11 +820,6 @@ public class Game : MonoBehaviour
     /// Defined game status
     /// </summary>
     private enum GameState { END, TOUR1, TOUR2, TOUR3 };
-
-    /// <summary>
-    /// Defined type of card
-    /// </summary>
-    private enum TypeOfCard { NORMAL, GOLD, SPY, MANEKIN, DESTROY, WEATHER, GOLD_SPY };
 
     /// <summary>
     /// Switch player - update active deck

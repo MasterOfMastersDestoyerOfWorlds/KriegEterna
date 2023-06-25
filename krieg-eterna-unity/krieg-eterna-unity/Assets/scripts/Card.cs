@@ -209,6 +209,11 @@ public class Card : MonoBehaviour
         material.SetInt("_Flash", state ? 1 : 0);
         this.targetActive = state;
     }
+    public void setVisible(bool state)
+    {
+        Material material = getMaterial();
+        material.SetInt("_Transparent", state ? 0 : 1);
+    }
     public bool isTargetActive()
     {
         return this.targetActive;
@@ -294,9 +299,16 @@ public class Card : MonoBehaviour
         attachments.RemoveAll(delegate(Card c) { return true;});
     }
 
-    public string ToString()
+    public override string ToString()
     {
         return "Type: " + this.cardType + " Name: " + this.cardName + " card with strength: " + this.strength;
+    }
+
+    public override bool Equals(object c){
+        if(c.GetType() == typeof(Card)){
+            return this.cardName.Equals(((Card)c).cardName);
+        }
+        return false;
     }
 
     private Material getMaterial()
@@ -377,5 +389,13 @@ public class Card : MonoBehaviour
     public void mirrorTransform()
     {
         transform.position = new Vector3(transform.position.x * -1 + 4.39f, transform.position.y * -1 + 1.435f, transform.position.z);
+    }
+    public void Destroy(){
+         foreach (Transform child in transform) {
+            foreach (Transform childC in transform) {
+                Destroy(childC.gameObject);
+            }
+            Destroy(child.gameObject);
+        }
     }
 }

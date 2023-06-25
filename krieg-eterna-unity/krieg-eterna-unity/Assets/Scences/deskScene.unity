@@ -3020,22 +3020,32 @@ MonoBehaviour:
   cardType: 0
   strength: 0
   playerCardDraw: 0
+  playerCardDrawRemain: 0
   playerCardDestroy: 0
+  playerCardDestroyRemain: 0
   destroyType: 0
   playerCardReturn: 0
+  playerCardReturnRemain: 0
   cardReturnType: 0
   strengthModifier: 0
   strengthModType: 0
   graveyardCardDraw: 0
+  graveyardCardDrawRemain: 0
   enemyCardDraw: 0
   enemyCardDestroy: 0
+  enemyCardDestroyRemain: 0
   enemyReveal: 0
   rowMultiple: 0
   rowEffected: 0
   setAside: 0
+  setAsideRemain: 0
+  setAsideReturnRow: 0
   setAsideType: 0
   attach: 0
   strengthCondition: 0
+  chooseN: 0
+  ChooseRow: 0
+  chooseShowN: 0
   isBig: 0
   bigFac: 2
   isSpecial: 0
@@ -3050,7 +3060,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1768926678}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22.73, y: 0, z: 0}
+  m_LocalPosition: {x: -20.88, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3842,6 +3852,9 @@ MonoBehaviour:
   setAsideType: 
   attach: 
   strengthCondition: 
+  chooseN: 
+  chooseRow: 
+  chooseShowN: 
   isSpecial: 0000000000000000000000000000000000000000000000000000000001000000010000000100000001000000010000000000000000000000000000000000000000000000010000000000000000000000000000000600000002000000020000000300000003000000040000000200000005000000050000000500000005000000060000000400000006000000
   spriteFolder: Images
 --- !u!1 &1900725526

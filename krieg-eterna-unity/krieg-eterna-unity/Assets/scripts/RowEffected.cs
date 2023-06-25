@@ -36,5 +36,6 @@ public enum RowEffected
     EnemySetAside = 34,
     Enemy = 35,
     Player = 36,
+    ChooseN = 37,
     None = 0
 };

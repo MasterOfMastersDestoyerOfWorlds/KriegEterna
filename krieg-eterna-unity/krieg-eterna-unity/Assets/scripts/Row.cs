@@ -14,6 +14,8 @@ public class Row : List<Card>
     public System.Func<Vector3> centerMethod;
     public bool wide;
 
+    public int chooseNRemain;
+
     public bool cardTargetsActivated = false;
 
     public Row(bool isPlayer, bool isScoring, bool wide, RowEffected uniqueType, List<RowEffected> rowType, System.Func<Vector3> centerMethod)
@@ -27,8 +29,19 @@ public class Row : List<Card>
         this.wide = wide;
     }
 
+    public void setVisibile(bool state)
+    {
+        foreach(Card c in this)
+        {
+            c.setVisible(state);
+        }
+
+    }
+
+    
+
     public void setActivateRowCardTargets(bool state, bool individualCards)
-    {   
+    {
         Debug.Log(this.target);
         Debug.Log(this.name);
         if (individualCards)
@@ -39,11 +52,13 @@ public class Row : List<Card>
             }
             cardTargetsActivated = state;
         }
-        else{
+        else
+        {
             this.target.setFlashing(state);
         }
     }
-    public void centerRow(){
+    public void centerRow()
+    {
         this.center = centerMethod.Invoke();
     }
     public void setTarget(Target target)
@@ -59,11 +74,13 @@ public class Row : List<Card>
     {
         return this.name;
     }
-    public bool hasType(RowEffected type){
+    public bool hasType(RowEffected type)
+    {
         return this.rowType.Contains(type);
     }
 
-    public bool isTypeUnique(RowEffected type){
+    public bool isTypeUnique(RowEffected type)
+    {
         return this.uniqueType == type;
     }
 }
