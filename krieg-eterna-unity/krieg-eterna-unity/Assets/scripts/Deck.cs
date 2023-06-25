@@ -195,7 +195,7 @@ public class Deck : MonoBehaviour
         List<Card> cards = new List<Card>();
         foreach (Row row in rows)
         {
-            if (row.hasType(RowEffected.Player) || row.hasType(RowEffected.Enemy))
+            if (row.hasType(RowEffected.Player) || row.hasType(RowEffected.Enemy) || row.hasType(RowEffected.ChooseN))
             {
                 foreach (Card card in row)
                 {

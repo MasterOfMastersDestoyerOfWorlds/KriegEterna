@@ -70,6 +70,16 @@ public class Areas : MonoBehaviour
         return centerFront;
     }
 
+    public Vector3 getCenterFrontBig()
+    {
+        updateScreenBounds();
+        Vector3 centerFront = new Vector3(
+            center.x,
+            center.y,
+            -6f);
+        return centerFront;
+    }
+
     public Vector3 getDeckCenterVector()
     {
         return getCenterBottom();

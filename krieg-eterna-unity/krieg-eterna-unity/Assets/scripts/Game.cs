@@ -191,6 +191,9 @@ public class Game : MonoBehaviour
             {
                 activeDeck.disactiveAllInDeck(false);
             }
+            else{
+                activeDeck.disactiveAllInDeck(true);
+            }
             reorganizeGroup();
             List<Card> cards = activeDeck.getVisibleCards();
             foreach (Card c in cards)
@@ -198,7 +201,7 @@ public class Game : MonoBehaviour
                 if (c.ContainsMouse(mouseRelativePosition))
                 {
                     c.scaleBig();
-                    c.transform.position = areas.getCenterFront();
+                    c.transform.position = areas.getCenterFrontBig();
                 }
             }
         }
