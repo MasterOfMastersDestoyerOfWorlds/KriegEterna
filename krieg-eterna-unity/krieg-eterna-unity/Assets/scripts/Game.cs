@@ -178,7 +178,7 @@ public class Game : MonoBehaviour
         cardNumber2.text = player2.getDeck().getRowByType(RowEffected.PlayerHand).Count.ToString();
         if(!hasChosenStart){
             hasChosenStart = true;
-            setChooseN(RowEffected.PlayerHand, activeDeck.sendCardToGraveyard, 3, activeDeck.getRowByType(RowEffected.PlayerHand).Count);
+            setChooseN(RowEffected.PlayerHand, activeDeck.sendCardToGraveyard, 3, activeDeck.getRowByType(RowEffected.PlayerHand).Count, CardType.King);
         }
         // Picking card
         // ---------------------------------------------------------------------------------------------------------------
@@ -187,7 +187,7 @@ public class Game : MonoBehaviour
         mouseRelativePosition.z = 0f;
         if (Input.GetMouseButtonDown(1))
         {
-            if (state != State.MULTISTEP)
+            if (state != State.MULTISTEP && state != State.CHOOSE_N)
             {
                 activeDeck.disactiveAllInDeck(false);
             }
@@ -712,7 +712,7 @@ public class Game : MonoBehaviour
         }
     }
 
-    public void setChooseN(RowEffected chooseRow, System.Action<Row, Card> action, int numChoose, int numShow)
+    public void setChooseN(RowEffected chooseRow, System.Action<Row, Card> action, int numChoose, int numShow, CardType exclude)
     {
 
         Row row = activeDeck.getRowByType(chooseRow);
@@ -736,7 +736,7 @@ public class Game : MonoBehaviour
         }
         for (int i = 0; i < numShow; i++)
         {
-            if(row[i].cardType != CardType.King){
+            if(row[i].cardType != exclude){
                 Card clone = Instantiate(row[i]) as Card;
                 displayRow.Add(clone);
             }
@@ -773,34 +773,16 @@ public class Game : MonoBehaviour
             }
             else
             {
-                if (row.Count % 2 == 1)
-                {
-                    int j = 1;
-                    row[0].transform.position = centerVector;
-
-                    for (int i = 1; i < row.Count; i++)
-                    {
-                        row[i].transform.position = new Vector3(centerVector.x + j * cardHorizontalSpacing, centerVector.y, centerVector.z);
-                        j *= -1;
-                        if (i % 2 == 0)
-                            j++;
-                    }
+                Vector3 rowStart = new Vector3(centerVector.x - ((row.Count/2) * cardHorizontalSpacing), centerVector.y, centerVector.z);
+                if(row.Count % 2 == 0){
+                   rowStart = new Vector3(centerVector.x - (((row.Count)/2) * cardHorizontalSpacing - (cardHorizontalSpacing/2)), centerVector.y, centerVector.z);
                 }
-                else
+                for (int i = 0; i < row.Count; i++)
                 {
-                    int j = 1;
-                    row[0].transform.position = centerVector + new Vector3(cardHorizontalSpacing / 2, 0, 0);
-                    row[1].transform.position = centerVector + new Vector3(-cardHorizontalSpacing / 2, 0, 0);
+                    row[i].transform.position = new Vector3(rowStart.x + i * cardHorizontalSpacing, rowStart.y, rowStart.z);
 
-                    for (int i = 2; i < row.Count; i++)
-                    {
-                        row[i].transform.position = new Vector3(centerVector.x + j * cardHorizontalSpacing + Math.Sign(j) * (cardHorizontalSpacing / 2), centerVector.y, centerVector.z);
-
-                        j *= -1;
-                        if (i % 2 == 1)
-                            j++;
-                    }
                 }
+               
                 for (int i = 0; i < row.Count; i++)
                 {
                     Card c = row[i];
