@@ -397,5 +397,7 @@ public class Card : MonoBehaviour
             }
             Destroy(child.gameObject);
         }
+        Destroy(this.gameObject);
+        Destroy(this);
     }
 }

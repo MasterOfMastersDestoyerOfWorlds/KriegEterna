@@ -261,7 +261,7 @@ public class Game : MonoBehaviour
             for (int i = 0; i < activeDeck.rows.Count; i++)
             {
                 Row row = activeDeck.rows[i];
-                if (row.cardTargetsActivated && row.target.ContainsMouse(mouseRelativePosition))
+                if (row.cardTargetsActivated)
                 {
                     for (int j = 0; j < row.Count; j++)
                     {
@@ -269,13 +269,12 @@ public class Game : MonoBehaviour
                         if (selected.ContainsMouse(mouseRelativePosition))
                         {
                             if (state == State.CHOOSE_N)
-                            {
+                            {   
+                                Debug.Log("selected!" + selected.cardName);
                                 chooseCard(selected);
                             }
                             else
                             {
-
-                                clickOnTarget = true;
                                 Play(activeCard, row, selected);
                                 if (state != State.MULTISTEP)
                                 {
@@ -287,6 +286,7 @@ public class Game : MonoBehaviour
                                     ShowTargets(activeCard);
                                 }
                             }
+                            clickOnTarget = true;
                         }
                     }
                 }
@@ -731,12 +731,15 @@ public class Game : MonoBehaviour
         {
             Card clone = displayRow[0];
             displayRow.Remove(clone);
-            Destroy(clone);
+            clone.Destroy();
+
         }
         for (int i = 0; i < numShow; i++)
         {
-            Card clone = Instantiate(row[i]) as Card;
-            displayRow.Add(clone);
+            if(row[i].cardType != CardType.King){
+                Card clone = Instantiate(row[i]) as Card;
+                displayRow.Add(clone);
+            }
         }
         reorganizeRow(cardHorizontalSpacing, cardThickness, attachmentVerticalSpacing, displayRow, displayRow.center);
         displayRow.setActivateRowCardTargets(true, true);
