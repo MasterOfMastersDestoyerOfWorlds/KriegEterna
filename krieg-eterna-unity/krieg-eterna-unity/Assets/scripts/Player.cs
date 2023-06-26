@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        this.score = deck.getPowerSum(0);
+        this.score = deck.scoreRow(RowEffected.PlayerMelee);
     }
 
     /// <summary>
@@ -220,7 +220,7 @@ public class Player : MonoBehaviour
     /// </summary>
     public void updateScore()
     {
-        this.score = deck.getPowerSum(0);
+        this.score = deck.scoreRow(RowEffected.PlayerMelee);
     }
 
     /// <summary>

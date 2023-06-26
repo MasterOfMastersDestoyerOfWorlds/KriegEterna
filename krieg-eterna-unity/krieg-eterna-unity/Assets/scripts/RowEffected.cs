@@ -37,5 +37,9 @@ public enum RowEffected
     Enemy = 35,
     Player = 36,
     ChooseN = 37,
+    King = 38,
+    MeleeFull = 39,
+    RangedFull = 40,
+    SiegeFull = 41,
     None = 0
 };
