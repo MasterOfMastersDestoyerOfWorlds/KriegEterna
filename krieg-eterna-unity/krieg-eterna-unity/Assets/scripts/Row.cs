@@ -150,7 +150,14 @@ public class Row : List<Card>
         }
         return flag;
     }
-
+    public Card getKing(){
+        foreach(Card c in this){
+            if(c.cardType == CardType.King){
+                return c;
+            }
+        }
+        return null;
+    }
     public bool isTypeUnique(RowEffected type)
     {
         return this.uniqueType == type;

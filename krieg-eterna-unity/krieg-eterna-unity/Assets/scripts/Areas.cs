@@ -91,7 +91,7 @@ public class Areas : MonoBehaviour
         updateScreenBounds();
         Vector3 unitGraveyard = new Vector3(
             topRight.x - width * 1.5f,
-            center.y + height / 2,
+            center.y - height,
             0f);
         return unitGraveyard;
     }
@@ -101,7 +101,17 @@ public class Areas : MonoBehaviour
         updateScreenBounds();
         Vector3 unitGraveyard = new Vector3(
             topRight.x - width * 1.5f,
-            center.y - height / 2,
+            center.y,
+            0f);
+        return unitGraveyard;
+    }
+
+    public Vector3 getKingGraveyardCenterVector()
+    {
+        updateScreenBounds();
+        Vector3 unitGraveyard = new Vector3(
+            topRight.x - width * 1.5f,
+            center.y + height,
             0f);
         return unitGraveyard;
     }

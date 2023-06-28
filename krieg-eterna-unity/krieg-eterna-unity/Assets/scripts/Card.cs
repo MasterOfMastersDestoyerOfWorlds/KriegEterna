@@ -9,6 +9,7 @@ public class Card : MonoBehaviour
     public CardType cardType;
     public int strength;
     public int playerCardDraw;
+    public CardDrawType cardDrawType;
     public int playerCardDrawRemain;
     public int playerCardDestroy;
     public uint playerCardDestroyRemain;
@@ -21,6 +22,7 @@ public class Card : MonoBehaviour
     public int graveyardCardDraw;
     public uint graveyardCardDrawRemain;
     public int enemyCardDraw;
+    public uint enemyCardDrawRemain;
     public int enemyCardDestroy;
     public uint enemyCardDestroyRemain;
     public int enemyReveal;
@@ -156,6 +158,7 @@ public class Card : MonoBehaviour
         this.cardType = cardModel.cardTypes[index];
         this.strength = cardModel.strength[index];
         this.playerCardDraw = cardModel.playerCardDraw[index];
+        this.cardDrawType = cardModel.cardDrawType[index];
         this.playerCardDestroy = cardModel.playerCardDestroy[index];
         this.destroyType = cardModel.destroyType[index];
         this.playerCardReturn = cardModel.playerCardReturn[index];
@@ -190,6 +193,7 @@ public class Card : MonoBehaviour
         this.playerCardDestroyRemain = (uint)this.playerCardDestroy;
         this.playerCardReturnRemain = (uint)this.playerCardReturn;
         this.enemyCardDestroyRemain = (uint)this.enemyCardDestroy;
+        this.enemyCardDrawRemain = (uint) this.enemyCardDraw;
         this.setAsideRemain = (uint)this.setAside;
         this.graveyardCardDrawRemain = (uint)this.graveyardCardDraw;
     }
@@ -214,6 +218,7 @@ public class Card : MonoBehaviour
 
     public void setTargetActive(bool state)
     {
+        Debug.Log("Setting target: " + state);
         Material material = getMaterial();
         material.SetInt("_Flash", state ? 1 : 0);
         this.targetActive = state;
@@ -242,7 +247,7 @@ public class Card : MonoBehaviour
         for(int i = 0; i < enemyRows.Count; i++){
             enemyRowsSum += enemyRows[i].Count;
         }
-        if(this.playerCardDestroy + this.playerCardReturn > playerRowsSum){
+        if(this.destroyType ==DestroyType.Unit && this.playerCardDestroy + this.playerCardReturn > playerRowsSum){
             return false;
         }
         if(this.setAsideType == SetAsideType.Player && this.setAside > playerRowsSum){

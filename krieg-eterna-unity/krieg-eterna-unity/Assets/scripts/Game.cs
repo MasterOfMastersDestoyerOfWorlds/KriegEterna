@@ -137,12 +137,13 @@ public class Game : MonoBehaviour
         Deck deck = player1.getDeck();
         List<string> choosePower = new List<string>();
         choosePower.Add("Shipwreck");
-        choosePower.Add("Relic");
         choosePower.Add("Spy");
+        choosePower.Add("Execution");
         List<string> chooseUnit = new List<string>();
         List<string> chooseKing = new List<string>();
         List<string> chooseUnitGraveyard = new List<string>();
         chooseUnitGraveyard.Add("Crusader");
+        chooseUnitGraveyard.Add("Knight");
         List<string> choosePowerGraveyard = new List<string>();
         deck.buildDeck(4, 9, 1, choosePower, chooseUnit, chooseKing, chooseUnitGraveyard, choosePowerGraveyard);
         deck.buildTargets();
@@ -235,14 +236,14 @@ public class Game : MonoBehaviour
                     Card c = playerHand[i];
                     if (c.ContainsMouse(mouseRelativePosition))
                     {
-                        Debug.Log("clicked on: " + c.ToString());
+                        Debug.Log("clicked on: " + c.ToString() + " isPlayable: "+c.isPlayable(activeDeck) );
                         if (c.isTargetActive() && (CardModel.isUnit(c.cardType) || c.isPlayable(activeDeck)))
                         {
                             Play(c, null, null);
                             c.setTargetActive(false);
                             if (state == State.MULTISTEP)
                             {
-                                activeDeck.disactiveAllInDeck(false);
+                                activeDeck.disactiveAllInDeck(true);
                                 ShowTargets(c);
                                 break;
                             }
@@ -418,6 +419,19 @@ public class Game : MonoBehaviour
         {
             Debug.LogError("Ruhroh raggy, spy f'ed up");
         }
+        if (c.doneMultiSelection())
+        {
+            if (c.enemyCardDrawRemain > 0)
+            {
+                uint cardsDrawn = 0;
+                for (int i = 0; i < c.enemyCardDrawRemain; i++)
+                {
+                    activeDeck.drawCard(activeDeck.getRowByType(RowEffected.UnitDeck), false);
+                    cardsDrawn++;
+                }
+                c.enemyCardDrawRemain -= cardsDrawn;
+            }
+        }
     }
 
     public void PlayWeather(Card c)
@@ -478,20 +492,34 @@ public class Game : MonoBehaviour
         if (c.playerCardDestroyRemain > 0)
         {
             c.playerCardDestroyRemain--;
-            activeDeck.sendCardToGraveyard(targetRow, RowEffected.None, targetCard);
+            if(c.destroyType == DestroyType.Unit){
+                activeDeck.sendCardToGraveyard(targetRow, RowEffected.None, targetCard);
+            }else if(c.destroyType == DestroyType.King){
+                Row playerHand = activeDeck.getRowByType(RowEffected.PlayerHand);
+                Card king = playerHand.getKing();
+                if(king!=null){
+                    c.playerCardDrawRemain++;
+                    activeDeck.sendCardToGraveyard(playerHand, RowEffected.PlayerHand, king);
+                }else{
+                    Row kingRow = activeDeck.getRowByType(activeDeck.getKingRow(true));
+                    activeDeck.sendCardToGraveyard(kingRow, RowEffected.None, kingRow[0]);
+                }
+
+            }
         }
         else if (c.enemyCardDestroyRemain > 0)
         {
             c.enemyCardDestroyRemain--;
             activeDeck.sendCardToGraveyard(targetRow, RowEffected.None, targetCard);
         }
-        else if (c.moveRemain > 0){
-            c.moveRemain --;
+        else if (c.moveRemain > 0)
+        {
+            c.moveRemain--;
             activeDeck.addCardToHand(activeDeck.getRowByType(c.moveRow), targetRow.uniqueType, c.moveCard);
         }
         else if (c.playerCardReturnRemain > 0)
         {
-            
+
             uint cardsRemaining = activeDeck.countCardsInRows(c.rowEffected);
             if (c.cardReturnType == CardReturnType.Unit)
             {
@@ -529,11 +557,6 @@ public class Game : MonoBehaviour
             c.playerCardDrawRemain--;
             activeDeck.drawCard(targetRow, true);
         }
-        else if (c.graveyardCardDraw > 0)
-        {
-            c.graveyardCardDrawRemain--;
-            activeDeck.drawCardGraveyard(c, targetCard);
-        }
         else if (c.chooseN > 0)
         {
             Row row = activeDeck.getRowByType(c.chooseRow);
@@ -546,9 +569,26 @@ public class Game : MonoBehaviour
         {
             targetCard.attachCard(c);
         }
-        if (!c.attach && c.doneMultiSelection())
+        if (c.doneMultiSelection())
         {
-            activeDeck.sendCardToGraveyard(activeDeck.getRowByType(RowEffected.PlayerHand), RowEffected.None, c);
+            if (c.enemyCardDrawRemain > 0)
+            {
+                uint cardsDrawn = 0;
+                for (int i = 0; i < c.enemyCardDrawRemain; i++)
+                {
+                    activeDeck.drawCard(activeDeck.getRowByType(RowEffected.UnitDeck), false);
+                    cardsDrawn++;
+                }
+                c.enemyCardDrawRemain -= cardsDrawn;
+            }
+            if (c.graveyardCardDrawRemain > 0)
+            {
+                activeDeck.drawCardGraveyard(c, targetCard);
+            }
+            if (!c.attach)
+            {
+                activeDeck.sendCardToGraveyard(activeDeck.getRowByType(RowEffected.PlayerHand), RowEffected.None, c);
+            }
         }
     }
 
@@ -632,15 +672,23 @@ public class Game : MonoBehaviour
                 activeDeck.activateRowsByType(true, true, c.rowEffected); break;
             case CardType.Weather: c.setTargetActive(true); break;
             case CardType.Power:
-                if (c.playerCardDestroy > 0)
+                    Debug.Log("Setup Power Targets: " + c.cardName);
+                if (c.playerCardDestroyRemain > 0)
                 {
-                    activeDeck.activateRowsByType(true, true, RowEffected.PlayerPlayable);
+                    switch(c.destroyType){
+                        case DestroyType.Unit: activeDeck.activateRowsByType(true, true, RowEffected.PlayerPlayable);break;
+                        case DestroyType.King: c.setTargetActive(true);break;
+                        case DestroyType.Max: c.setTargetActive(true);break;
+                        case DestroyType.MaxAll: c.setTargetActive(true);break;
+                    }
+                    break;
                 }
-                else if (c.enemyCardDestroy > 0)
+                else if (c.enemyCardDestroyRemain > 0)
                 {
                     activeDeck.activateRowsByType(true, true, RowEffected.EnemyPlayable);
                 }
-                else if(c.moveRemain > 0){
+                else if (c.moveRemain > 0)
+                {
                     activeDeck.activateRowsByTypeExclude(true, false, c.rowEffected, c.moveRow);
                 }
                 else if (c.playerCardReturnRemain > 0)
@@ -660,7 +708,11 @@ public class Game : MonoBehaviour
                 }
                 else if (c.playerCardDrawRemain > 0)
                 {
-                    activeDeck.activateRowsByType(true, false, RowEffected.DrawableDeck);
+                    switch(c.cardDrawType){
+                        case CardDrawType.Either: activeDeck.activateRowsByType(true, false, RowEffected.DrawableDeck);break;
+                        case CardDrawType.Unit: activeDeck.activateRowsByType(true, false, RowEffected.UnitDeck);break;
+                        case CardDrawType.Power: activeDeck.activateRowsByType(true, false, RowEffected.PowerDeck);break;
+                    }
                 }
                 else if (c.attach)
                 {
@@ -782,11 +834,11 @@ public class Game : MonoBehaviour
         {
             if (!row.wide)
             {
-                row[0].transform.position = centerVector;
+                row[row.Count - 1].transform.position = centerVector;
 
-                for (int i = 1; i < row.Count; i++)
+                for (int i = row.Count - 1; i >= 0; i--)
                 {
-                    row[i].transform.position = new Vector3(centerVector.x, centerVector.y, centerVector.z + i * cardThickness);
+                    row[i].transform.position = new Vector3(centerVector.x, centerVector.y, centerVector.z + (row.Count - 1 - i) * cardThickness);
                 }
             }
             else
@@ -809,7 +861,7 @@ public class Game : MonoBehaviour
                     for (int j = 0; j < c.attachments.Count; j++)
                     {
                         Vector3 cardCenter = c.transform.position;
-                        c.attachments[j].transform.position = new Vector3(cardCenter.x, cardCenter.y - (j + 1) * attachmentVerticalSpacing, cardCenter.z + j * cardThickness);
+                        c.attachments[j].transform.position = new Vector3(cardCenter.x, cardCenter.y - (j + 1) * attachmentVerticalSpacing, cardCenter.z - j * cardThickness);
                         c.attachments[j].setBaseLoc();
                     }
                 }

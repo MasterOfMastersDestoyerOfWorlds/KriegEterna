@@ -58,6 +58,7 @@
      <Compile Include="Assets\scripts\StrengthModType.cs" />
      <Compile Include="Assets\scripts\Player.cs" />
      <Compile Include="Assets\scripts\ButtonContinue.cs" />
+     <Compile Include="Assets\scripts\CardDrawType.cs" />
      <Compile Include="Assets\scripts\Score.cs" />
      <Compile Include="Assets\scripts\HealthDiamond.cs" />
      <Compile Include="Assets\scripts\StencilPass.cs" />

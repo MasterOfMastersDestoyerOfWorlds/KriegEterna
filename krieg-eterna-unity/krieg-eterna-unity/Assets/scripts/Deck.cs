@@ -41,6 +41,7 @@ public class Deck : MonoBehaviour
         new Row(false, false, false, RowEffected.KingDeck, new List<RowEffected>() { RowEffected.KingDeck }, areas.getKingDeckCenterVector),
         new Row(false, false, false, RowEffected.UnitGraveyard, new List<RowEffected>() { RowEffected.UnitGraveyard }, areas.getUnitGraveyardCenterVector),
         new Row(false, false, false, RowEffected.PowerGraveyard, new List<RowEffected>() { RowEffected.PowerGraveyard }, areas.getPowerGraveyardCenterVector),
+        new Row(false, false, false, RowEffected.KingGraveyard, new List<RowEffected>() { RowEffected.KingGraveyard }, areas.getKingGraveyardCenterVector),
         new Row(true, true, false, RowEffected.PlayerMeleeKing, new List<RowEffected>() { RowEffected.PlayerMeleeKing, RowEffected.PlayerKing, RowEffected.Player, RowEffected.King, RowEffected.MeleeFull }, areas.getMeleeKingCenterVector),
         new Row(true, true, false, RowEffected.PlayerRangedKing, new List<RowEffected>() { RowEffected.PlayerRangedKing, RowEffected.PlayerKing, RowEffected.Player, RowEffected.King, RowEffected.RangedFull }, areas.getRangedKingCenterVector),
         new Row(true, true, false, RowEffected.PlayerSiegeKing, new List<RowEffected>() { RowEffected.PlayerSiegeKing, RowEffected.PlayerKing, RowEffected.Player, RowEffected.King, RowEffected.SiegeFull }, areas.getSiegeKingCenterVector),
@@ -206,6 +207,7 @@ public class Deck : MonoBehaviour
 
     public void disactiveAllInDeck(bool multistep)
     {
+        Debug.Log("Disactivating all: " + multistep.ToString());
         foreach (Row row in rows)
         {
             foreach (Card c in row)
@@ -387,7 +389,7 @@ public class Deck : MonoBehaviour
         c.setTargetActive(false);
         c.clearAttachments(this);
         //c.resetSelectionCounts();
-        RowEffected graveyard = CardModel.isPower(c.cardType) ? RowEffected.PowerGraveyard : (CardModel.isUnit(c.cardType) ? RowEffected.UnitGraveyard : RowEffected.King);
+        RowEffected graveyard = CardModel.isPower(c.cardType) ? RowEffected.PowerGraveyard : (CardModel.isUnit(c.cardType) ? RowEffected.UnitGraveyard : RowEffected.KingGraveyard);
         this.getRowByType(graveyard).Add(c);
     }
 
@@ -461,21 +463,27 @@ public class Deck : MonoBehaviour
 
     public void drawCardGraveyard(Card c, Card targetCard)
     {
+        
+        Debug.Log("Drawing from Graveyard: " +c.cardName + targetCard);
         Row graveyard = getRowByType(c.rowEffected);
+        int cardsDrawn = 0;
         if (graveyard.Count >= c.graveyardCardDrawRemain)
         {
 
             for (int i = 0; i < c.graveyardCardDrawRemain; i++)
             {
-                Card drawC = graveyard[0];
+                Card drawC = graveyard[graveyard.Count-1];
                 graveyard.Remove(drawC);
                 getRowByType(RowEffected.PlayerHand).Add(drawC);
+                cardsDrawn ++;
                 if (i == 0 && drawC.strength < c.strengthCondition)
                 {
                     c.graveyardCardDrawRemain++;
                 }
             }
         }
+        
+        c.graveyardCardDrawRemain -= (uint) cardsDrawn;
     }
 
     public void setCardAside(Row currentRow, Card c)

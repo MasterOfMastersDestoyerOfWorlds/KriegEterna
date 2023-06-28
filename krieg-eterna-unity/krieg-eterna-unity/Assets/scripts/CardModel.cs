@@ -11,6 +11,7 @@ public class CardModel : MonoBehaviour
     public List<CardType> cardTypes;
     public List<int> strength;
     public List<int> playerCardDraw;
+    public List<CardDrawType> cardDrawType;
     public List<int> playerCardDestroy;
     public List<DestroyType> destroyType;
     public List<int> playerCardReturn;
@@ -80,21 +81,21 @@ public class CardModel : MonoBehaviour
             cardTypes.Add((CardType)System.Enum.Parse(typeof(CardType), temp[1], true));
 
             AddOptional(temp, strength, 3);
-            AddOptional(temp, playerCardDraw, 4);
-            AddTypePair(temp, playerCardDestroy, 5, destroyType, 6);
-            AddTypePair(temp, playerCardReturn, 7, cardReturnType, 8);
-            AddTypePairFloat(temp, strengthModifier, 9, strengthModType, 10);
-            AddOptional(temp, graveyardCardDraw, 11);
-            AddOptional(temp, enemyCardDraw, 12);
-            AddOptional(temp, enemyCardDestroy, 13);
-            AddOptional(temp, enemyReveal, 14);
-            AddOptionalFloat(temp, rowMultiple, 15);
-            AddOptionalType(temp, rowEffected, 16);
-            AddTypePair(temp, setAside, 17, setAsideType, 18);
-            AddOptionalBool(temp, attach, 19);
-            AddOptional(temp, strengthCondition, 20);
-            AddTypePair(temp, chooseN, 21, chooseRow, 22);
-            AddOptional(temp, chooseShowN, 23);
+            AddTypePair(temp, playerCardDraw, 4, cardDrawType, 5);
+            AddTypePair(temp, playerCardDestroy, 6, destroyType, 7);
+            AddTypePair(temp, playerCardReturn, 8, cardReturnType, 9);
+            AddTypePairFloat(temp, strengthModifier, 10, strengthModType, 11);
+            AddOptional(temp, graveyardCardDraw, 12);
+            AddOptional(temp, enemyCardDraw, 13);
+            AddOptional(temp, enemyCardDestroy, 14);
+            AddOptional(temp, enemyReveal, 15);
+            AddOptionalFloat(temp, rowMultiple, 16);
+            AddOptionalType(temp, rowEffected, 17);
+            AddTypePair(temp, setAside, 18, setAsideType, 19);
+            AddOptionalBool(temp, attach, 20);
+            AddOptional(temp, strengthCondition, 21);
+            AddTypePair(temp, chooseN, 22, chooseRow, 23);
+            AddOptional(temp, chooseShowN, 24);
         }
     }
 

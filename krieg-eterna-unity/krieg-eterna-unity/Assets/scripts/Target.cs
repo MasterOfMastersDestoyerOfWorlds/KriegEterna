@@ -115,6 +115,7 @@ public class Target : MonoBehaviour
     }
     public void setFlashing(bool state)
     {
+        
         if (state)
         {
             this.setFlashing();
