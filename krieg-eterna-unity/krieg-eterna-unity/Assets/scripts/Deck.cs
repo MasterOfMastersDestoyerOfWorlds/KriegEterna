@@ -110,13 +110,15 @@ public class Deck : MonoBehaviour
             {
                 Card card = units.getCardByName(chooseUnitGraveyard[0]);
                 chooseUnitGraveyard.RemoveAt(0);
-                this.sendCardToGraveyard(units, card);
+                card.loadMaterial();
+                this.sendCardToGraveyard(units, RowEffected.None, card);
             }
             else if (choosePowerGraveyard.Count > 0)
             {
                 Card card = powers.getCardByName(choosePowerGraveyard[0]);
                 choosePowerGraveyard.RemoveAt(0);
-                this.sendCardToGraveyard(powers, card);
+                card.loadMaterial();
+                this.sendCardToGraveyard(powers, RowEffected.None, card);
             }
         }
         while (numCards > 0)
@@ -212,7 +214,7 @@ public class Deck : MonoBehaviour
                 {
                     c.setTargetActive(false);
                     c.resetTransform();
-                    
+
                 }
                 if (c.isBig)
                 {
@@ -220,9 +222,9 @@ public class Deck : MonoBehaviour
                     c.resetTransform();
                 }
             }
-            if (row.target != null)
+            if (row.target != null && !multistep)
             {
-                row.target.setNotFlashing();    
+                row.target.setNotFlashing();
                 row.cardTargetsActivated = false;
             }
         }
@@ -284,6 +286,28 @@ public class Deck : MonoBehaviour
         {
             row.setActivateRowCardTargets(state, individualCards);
         }
+    }
+    public void activateRowsByTypeExclude(bool state, bool individualCards, RowEffected type, RowEffected exclude)
+    {
+        List<Row> rowList = getRowsByType(type);
+        foreach (Row row in rowList)
+        {
+            if(row.uniqueType != exclude){
+                row.setActivateRowCardTargets(state, individualCards);
+            }
+        }
+    }
+
+    public uint countCardsInRows(RowEffected type){
+        uint sum = 0;
+        foreach (Row row in rows)
+        {
+            if (row.hasType(type))
+            {
+                sum += (uint)row.Count;
+            }
+        }
+        return sum;
     }
 
     public List<Row> getRowsByType(RowEffected type)
@@ -357,25 +381,25 @@ public class Deck : MonoBehaviour
         }
     }
 
-    public void sendCardToGraveyard(Row currentRow, Card c)
+    public void sendCardToGraveyard(Row currentRow, RowEffected playerHand, Card c)
     {
         currentRow.Remove(c);
+        c.setTargetActive(false);
         c.clearAttachments(this);
-        if (CardModel.isPower(c.cardType))
-        {
-            this.getRowByType(RowEffected.PowerGraveyard).Add(c);
-        }
-        else if (CardModel.isUnit(c.cardType))
-        {
-            this.getRowByType(RowEffected.UnitGraveyard).Add(c);
-        }
+        //c.resetSelectionCounts();
+        RowEffected graveyard = CardModel.isPower(c.cardType) ? RowEffected.PowerGraveyard : (CardModel.isUnit(c.cardType) ? RowEffected.UnitGraveyard : RowEffected.King);
+        this.getRowByType(graveyard).Add(c);
     }
 
     public void addCardToHand(Row currentRow, RowEffected playerHand, Card c)
     {
         currentRow.Remove(c);
         c.clearAttachments(this);
+        c.setTargetActive(false);
         c.resetSelectionCounts();
+        if(currentRow.uniqueType == RowEffected.UnitGraveyard && c.graveyardCardDrawRemain > 0){
+            drawCardGraveyard(c, null);
+        }
         getRowByType(playerHand).Add(c);
     }
 
@@ -399,8 +423,9 @@ public class Deck : MonoBehaviour
         }
         return RowEffected.None;
     }
-    public Row getKingRowFromPlayRow(Row cardRow){
-        return getRowByTypes(new List<RowEffected>{RowEffected.King, cardRow.getPlayer(), cardRow.getFullRowType()});
+    public Row getKingRowFromPlayRow(Row cardRow)
+    {
+        return getRowByTypes(new List<RowEffected> { RowEffected.King, cardRow.getPlayer(), cardRow.getFullRowType() });
     }
 
     public void drawCard(Row drawDeck, bool player)

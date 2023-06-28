@@ -32,7 +32,7 @@ public class Target : MonoBehaviour
             Vector3 botLeft = Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, 0f));
             screenHeight = Mathf.Abs(topRight.y - botLeft.y);
             screenWidth = Mathf.Abs(topRight.x - botLeft.x);
-            scaleHeight = screenHeight / 8;
+            scaleHeight = screenHeight / 7;
             scaleWidth = (cardDims.x / cardDims.y) * scaleHeight;
             Transform cardObj = this.transform.Find("Card 1");
             cardObj.transform.localScale = new Vector3((scaleWidth / cardDims.x) * cardObj.transform.localScale.x, 1, scaleHeight / cardDims.y * cardObj.transform.localScale.z);

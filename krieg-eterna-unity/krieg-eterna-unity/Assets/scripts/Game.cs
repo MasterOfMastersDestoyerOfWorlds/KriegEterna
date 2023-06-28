@@ -29,7 +29,9 @@ public class Game : MonoBehaviour
 
     private bool hasChosenStart;
     private RowEffected chooseNRow;
-    private System.Action<Row, Card> chooseNAction;
+
+    private RowEffected chooseNPlayerHand;
+    private System.Action<Row, RowEffected, Card> chooseNAction;
     private Desk desk;
     private Areas areas;
 
@@ -73,7 +75,7 @@ public class Game : MonoBehaviour
     public Text endText;
 
     private GameObject giveUpButtonObject;
-    
+
     Card LastCardPlayed;
 
     void Awake()
@@ -134,11 +136,13 @@ public class Game : MonoBehaviour
         gameState = (int)GameState.TOUR1;
         Deck deck = player1.getDeck();
         List<string> choosePower = new List<string>();
+        choosePower.Add("Shipwreck");
+        choosePower.Add("Relic");
         choosePower.Add("Spy");
-        choosePower.Add("Jester");
         List<string> chooseUnit = new List<string>();
         List<string> chooseKing = new List<string>();
         List<string> chooseUnitGraveyard = new List<string>();
+        chooseUnitGraveyard.Add("Crusader");
         List<string> choosePowerGraveyard = new List<string>();
         deck.buildDeck(4, 9, 1, choosePower, chooseUnit, chooseKing, chooseUnitGraveyard, choosePowerGraveyard);
         deck.buildTargets();
@@ -185,9 +189,10 @@ public class Game : MonoBehaviour
         // ---------------------------------------------------------------------------------------------------------------
         cardNumber1.text = activeDeck.getRowByType(RowEffected.PlayerHand).Count.ToString();
         cardNumber2.text = activeDeck.getRowByType(RowEffected.EnemyHand).Count.ToString();
-        if(!hasChosenStart){
+        if (!hasChosenStart)
+        {
             hasChosenStart = true;
-            setChooseN(RowEffected.PlayerHand, activeDeck.sendCardToGraveyard, 3, activeDeck.getRowByType(RowEffected.PlayerHand).Count, CardType.King);
+            setChooseN(RowEffected.PlayerHand, activeDeck.sendCardToGraveyard, 3, activeDeck.getRowByType(RowEffected.PlayerHand).Count, CardType.King, RowEffected.None);
         }
         // Picking card
         // ---------------------------------------------------------------------------------------------------------------
@@ -200,7 +205,8 @@ public class Game : MonoBehaviour
             {
                 activeDeck.disactiveAllInDeck(false);
             }
-            else{
+            else
+            {
                 activeDeck.disactiveAllInDeck(true);
             }
             reorganizeGroup();
@@ -265,7 +271,7 @@ public class Game : MonoBehaviour
                     }
                     else
                     {
-                        activeDeck.disactiveAllInDeck(false);
+                        activeDeck.disactiveAllInDeck(true);
                         ShowTargets(activeCard);
                     }
                 }
@@ -281,7 +287,7 @@ public class Game : MonoBehaviour
                         if (selected.ContainsMouse(mouseRelativePosition))
                         {
                             if (state == State.CHOOSE_N)
-                            {   
+                            {
                                 Debug.Log("selected!" + selected.cardName);
                                 chooseCard(selected);
                             }
@@ -329,7 +335,6 @@ public class Game : MonoBehaviour
         {
             Debug.Log(" TargetRow: " + targetRow.name);
         }
-        activeDeck.getRowByType(RowEffected.PlayerHand).Remove(c);
         switch (c.cardType)
         {
             case CardType.Melee: activeDeck.getRowByType(RowEffected.PlayerMelee).Add(c); break;
@@ -344,6 +349,10 @@ public class Game : MonoBehaviour
             default: break;
         }
         updateStateBasedOnCardState(c);
+        if (state != State.MULTISTEP)
+        {
+            activeDeck.getRowByType(RowEffected.PlayerHand).Remove(c);
+        }
         reorganizeGroup();
     }
     public void PlayKing(Card c, Row targetRow, Card targetCard)
@@ -353,7 +362,8 @@ public class Game : MonoBehaviour
             if (c.enemyCardDestroyRemain > 0)
             {
                 c.enemyCardDestroyRemain--;
-                activeDeck.sendCardToGraveyard(targetRow, targetCard);
+                activeDeck.sendCardToGraveyard(targetRow, RowEffected.None, targetCard);
+
             }
             else if (c.playerCardReturnRemain > 0)
             {
@@ -427,14 +437,36 @@ public class Game : MonoBehaviour
         if (c.playerCardDestroyRemain > 0)
         {
             c.playerCardDestroyRemain--;
-            activeDeck.sendCardToGraveyard(targetRow, targetCard);
+            uint cardsRemaining = activeDeck.countCardsInRows(c.rowEffected);
+            if (c.playerCardReturnRemain > cardsRemaining)
+            {
+                c.playerCardReturnRemain = cardsRemaining - 1;
+            }
+            if (c.playerCardReturnRemain <= 0)
+            {
+                int index = targetRow.IndexOf(targetCard);
+                targetRow.Insert(index, c);
+            }
+            activeDeck.sendCardToGraveyard(targetRow, RowEffected.None, targetCard);
         }
         else if (c.playerCardReturnRemain > 0)
         {
-            c.playerCardReturnRemain--;
-            int index = targetRow.IndexOf(targetCard);
-            targetRow.Insert(index, c);
+            uint cardsRemaining = activeDeck.countCardsInRows(c.rowEffected);
+            if (c.playerCardReturnRemain > cardsRemaining)
+            {
+                c.playerCardReturnRemain = cardsRemaining - 1;
+            }
+            else
+            {
+                c.playerCardReturnRemain--;
+            }
+            if (c.playerCardReturnRemain <= 0)
+            {
+                int index = targetRow.IndexOf(targetCard);
+                targetRow.Insert(index, c);
+            }
             activeDeck.addCardToHand(targetRow, RowEffected.PlayerHand, targetCard);
+
         }
         else if (c.attach)
         {
@@ -446,20 +478,46 @@ public class Game : MonoBehaviour
         if (c.playerCardDestroyRemain > 0)
         {
             c.playerCardDestroyRemain--;
-            activeDeck.sendCardToGraveyard(targetRow, targetCard);
+            activeDeck.sendCardToGraveyard(targetRow, RowEffected.None, targetCard);
         }
         else if (c.enemyCardDestroyRemain > 0)
         {
             c.enemyCardDestroyRemain--;
-            activeDeck.sendCardToGraveyard(targetRow, targetCard);
+            activeDeck.sendCardToGraveyard(targetRow, RowEffected.None, targetCard);
+        }
+        else if (c.moveRemain > 0){
+            c.moveRemain --;
+            activeDeck.addCardToHand(activeDeck.getRowByType(c.moveRow), targetRow.uniqueType, c.moveCard);
         }
         else if (c.playerCardReturnRemain > 0)
         {
-            c.playerCardReturnRemain--;
-            int index = targetRow.IndexOf(targetCard);
-            targetRow.Insert(index, c);
-            activeDeck.addCardToHand(targetRow, RowEffected.PlayerHand, targetCard);
-            reorganizeGroup();
+            
+            uint cardsRemaining = activeDeck.countCardsInRows(c.rowEffected);
+            if (c.cardReturnType == CardReturnType.Unit)
+            {
+                if (c.playerCardReturnRemain > cardsRemaining)
+                {
+                    c.playerCardReturnRemain = cardsRemaining - 1;
+                }
+                else
+                {
+                    c.playerCardReturnRemain--;
+                }
+                if (c.playerCardReturnRemain <= 0)
+                {
+                    int index = targetRow.IndexOf(targetCard);
+                    targetRow.Insert(index, c);
+                }
+                activeDeck.addCardToHand(targetRow, RowEffected.PlayerHand, targetCard);
+            }
+            else if (c.cardReturnType == CardReturnType.Move)
+            {
+                c.playerCardReturnRemain--;
+                c.moveRemain++;
+                c.moveCard = targetCard;
+                targetCard.setTargetActive(false);
+                c.moveRow = targetRow.uniqueType;
+            }
         }
         else if (c.setAsideRemain > 0)
         {
@@ -473,22 +531,34 @@ public class Game : MonoBehaviour
         }
         else if (c.graveyardCardDraw > 0)
         {
-            c.playerCardDrawRemain--;
+            c.graveyardCardDrawRemain--;
             activeDeck.drawCardGraveyard(c, targetCard);
+        }
+        else if (c.chooseN > 0)
+        {
+            Row row = activeDeck.getRowByType(c.chooseRow);
+            if (row.Count > 0)
+            {
+                setChooseN(c.chooseRow, activeDeck.addCardToHand, c.chooseN, c.chooseShowN > 0 ? c.chooseShowN : row.Count, CardType.None, RowEffected.PlayerHand);
+            }
         }
         else if (c.attach)
         {
             targetCard.attachCard(c);
         }
-        if (!c.attach)
+        if (!c.attach && c.doneMultiSelection())
         {
-            activeDeck.sendCardToGraveyard(targetRow, c);
+            activeDeck.sendCardToGraveyard(activeDeck.getRowByType(RowEffected.PlayerHand), RowEffected.None, c);
         }
     }
 
     public void updateStateBasedOnCardState(Card c)
     {
         c.LogSelectionsRemaining();
+        if (state == State.CHOOSE_N)
+        {
+            return;
+        }
         if (c.doneMultiSelection())
         {
             Debug.Log("Done with card: " + c.cardName);
@@ -498,6 +568,7 @@ public class Game : MonoBehaviour
         {
             state = State.MULTISTEP;
         }
+        Debug.Log(state);
     }
 
     public void ShowTargets(Card c)
@@ -569,6 +640,9 @@ public class Game : MonoBehaviour
                 {
                     activeDeck.activateRowsByType(true, true, RowEffected.EnemyPlayable);
                 }
+                else if(c.moveRemain > 0){
+                    activeDeck.activateRowsByTypeExclude(true, false, c.rowEffected, c.moveRow);
+                }
                 else if (c.playerCardReturnRemain > 0)
                 {
                     activeDeck.activateRowsByType(true, true, RowEffected.PlayerPlayable);
@@ -631,32 +705,35 @@ public class Game : MonoBehaviour
 
     public void chooseCard(Card cardClone)
     {
-        
+
+        Debug.Log("Choosing Card: " + cardClone.cardName);
         Row row = activeDeck.getRowByType(chooseNRow);
         Row displayRow = activeDeck.getRowByType(RowEffected.ChooseN);
 
         displayRow.Remove(cardClone);
         Card realCard = row[row.IndexOf(cardClone)];
-        row.chooseNRemain --;
-        chooseNAction.Invoke(row, realCard);
+        row.chooseNRemain--;
+        chooseNAction.Invoke(row, chooseNPlayerHand, realCard);
 
         cardClone.Destroy();
         reorganizeGroup();
 
-        if(row.chooseNRemain == 0){
+        if (row.chooseNRemain <= 0)
+        {
+            Debug.Log("Setting Invisible");
             displayRow.setVisibile(false);
             activeDeck.disactiveAllInDeck(false);
             state = State.FREE;
         }
     }
 
-    public void setChooseN(RowEffected chooseRow, System.Action<Row, Card> action, int numChoose, int numShow, CardType exclude)
+    public void setChooseN(RowEffected chooseRow, System.Action<Row, RowEffected, Card> action, int numChoose, int numShow, CardType exclude, RowEffected playerHand)
     {
 
         Row row = activeDeck.getRowByType(chooseRow);
         row.chooseNRemain = numChoose;
         state = State.CHOOSE_N;
-        
+
         Debug.Log(state);
         Debug.Log("setting up choice");
         float cardHorizontalSpacing = Card.getBaseWidth() * 1.025f;
@@ -664,6 +741,7 @@ public class Game : MonoBehaviour
         float attachmentVerticalSpacing = Card.getBaseHeight() * 0.2f;
         Row displayRow = activeDeck.getRowByType(RowEffected.ChooseN);
         chooseNRow = chooseRow;
+        chooseNPlayerHand = playerHand;
         chooseNAction = action;
         while (displayRow.Count > 0)
         {
@@ -672,9 +750,10 @@ public class Game : MonoBehaviour
             clone.Destroy();
 
         }
-        for (int i = 0; i < numShow; i++)
+        for (int i = 0; i < numShow && i < row.Count; i++)
         {
-            if(row[i].cardType != exclude){
+            if (row[i].cardType != exclude)
+            {
                 Card clone = Instantiate(row[i]) as Card;
                 displayRow.Add(clone);
             }
@@ -712,16 +791,17 @@ public class Game : MonoBehaviour
             }
             else
             {
-                Vector3 rowStart = new Vector3(centerVector.x - ((row.Count/2) * cardHorizontalSpacing), centerVector.y, centerVector.z);
-                if(row.Count % 2 == 0){
-                   rowStart = new Vector3(centerVector.x - (((row.Count)/2) * cardHorizontalSpacing - (cardHorizontalSpacing/2)), centerVector.y, centerVector.z);
+                Vector3 rowStart = new Vector3(centerVector.x - ((row.Count / 2) * cardHorizontalSpacing), centerVector.y, centerVector.z);
+                if (row.Count % 2 == 0)
+                {
+                    rowStart = new Vector3(centerVector.x - (((row.Count) / 2) * cardHorizontalSpacing - (cardHorizontalSpacing / 2)), centerVector.y, centerVector.z);
                 }
                 for (int i = 0; i < row.Count; i++)
                 {
                     row[i].transform.position = new Vector3(rowStart.x + i * cardHorizontalSpacing, rowStart.y, rowStart.z);
 
                 }
-               
+
                 for (int i = 0; i < row.Count; i++)
                 {
                     Card c = row[i];

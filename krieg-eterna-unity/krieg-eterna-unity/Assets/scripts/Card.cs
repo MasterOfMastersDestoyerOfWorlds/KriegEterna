@@ -33,8 +33,11 @@ public class Card : MonoBehaviour
     public bool attach;
     public int strengthCondition;
     public int chooseN;
-    public RowEffected ChooseRow;
+    public RowEffected chooseRow;
     public int chooseShowN;
+    public int moveRemain;
+    public Card moveCard;
+    public RowEffected moveRow;
     private bool targetActive = false;
     public bool isBig = false;
     public float bigFac = 2;
@@ -108,7 +111,7 @@ public class Card : MonoBehaviour
         Vector3 botLeft = Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, 0f));
         screenHeight = Mathf.Abs(topRight.y - botLeft.y);
         screenWidth = Mathf.Abs(topRight.x - botLeft.x);
-        scaleHeight = screenHeight / 8;
+        scaleHeight = screenHeight / 7;
         scaleWidth = (cardDims.x / cardDims.y) * scaleHeight;
         Transform cardObj = this.transform.Find("Card 1");
         baseScalex = (scaleWidth / cardDims.x) * cardObj.transform.localScale.x;
@@ -169,6 +172,9 @@ public class Card : MonoBehaviour
         this.setAsideType = cardModel.setAsideType[index];
         this.attach = cardModel.attach[index];
         this.strengthCondition = cardModel.strengthCondition[index];
+        this.chooseN = cardModel.chooseN[index];
+        this.chooseRow = cardModel.chooseRow[index];
+        this.chooseShowN = cardModel.chooseShowN[index];
         this.resetSelectionCounts();
     }
 
@@ -191,15 +197,18 @@ public class Card : MonoBehaviour
     public bool doneMultiSelection(){
         return  this.playerCardDrawRemain == 0 && this.playerCardDestroyRemain == 0 
         && this.playerCardReturnRemain ==0 && this.enemyCardDestroyRemain == 0
-        && this.setAsideRemain == 0;
+        && this.setAsideRemain == 0 && this.chooseN ==0 && this.moveRemain ==0;
     }
 
     public void LogSelectionsRemaining(){
-        Debug.Log("Remaining Selections: ");
+        Debug.Log("Remaining Selections: " + cardName);
         Debug.Log("playerCardDraw: " + this.playerCardDrawRemain);
         Debug.Log("playerCardDestroy: " + this.playerCardDestroyRemain);
         Debug.Log("playerCardReturn: " + this.playerCardReturnRemain);
         Debug.Log("enemyCardDestroy: " + this.enemyCardDestroyRemain);
+        Debug.Log("chooseN: " + this.chooseN);
+        Debug.Log("chooseShowN: " + this.chooseShowN);
+        Debug.Log("move: " + this.moveRemain);
         Debug.Log("setAside: " + this.setAsideRemain);
     }
 
