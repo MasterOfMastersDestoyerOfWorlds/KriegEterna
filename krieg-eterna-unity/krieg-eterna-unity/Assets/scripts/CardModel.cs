@@ -216,4 +216,56 @@ public class CardModel : MonoBehaviour
         return type == CardType.Power || type == CardType.Spy || 
             type == CardType.Weather || type == CardType.Decoy;
     }
+    public static RowEffected getHandRow(RowEffected player){
+        if(player == RowEffected.Enemy){
+            return RowEffected.EnemyHand;
+        }
+        return RowEffected.PlayerHand;
+    }
+    public static RowEffected getEnemy(RowEffected player){
+        if(player == RowEffected.Enemy){
+            return RowEffected.Player;
+        }
+        return RowEffected.Enemy;
+    }
+    public static RowEffected getPlayerRow(RowEffected player, RowEffected generalRow){
+        if(player == RowEffected.Enemy){
+            switch (generalRow)
+            {
+                case RowEffected.PlayerPlayable: return RowEffected.EnemyPlayable;
+                case RowEffected.PlayerMelee: return RowEffected.EnemyMelee;
+                case RowEffected.PlayerRanged: return RowEffected.EnemyRanged;
+                case RowEffected.PlayerSiege: return RowEffected.EnemySiege;
+                case RowEffected.EnemyPlayable: return RowEffected.PlayerPlayable;
+                case RowEffected.PlayerHand: return RowEffected.EnemyHand;
+                case RowEffected.EnemyKing: return RowEffected.PlayerKing;
+                case RowEffected.PlayerKing: return RowEffected.EnemyKing;
+                case RowEffected.EnemyMax: return RowEffected.PlayerMax;
+                case RowEffected.PlayerMax: return RowEffected.EnemyMax;
+                case RowEffected.EnemyHand: return RowEffected.PlayerHand;
+                case RowEffected.EnemyMelee: return RowEffected.PlayerMelee;
+                case RowEffected.EnemyRanged: return RowEffected.PlayerRanged;
+                case RowEffected.EnemySiege: return RowEffected.PlayerSiege;
+            }
+        }else{
+            switch (generalRow)
+            {   
+                case RowEffected.PlayerMelee: return RowEffected.PlayerMelee;
+                case RowEffected.PlayerRanged: return RowEffected.PlayerRanged;
+                case RowEffected.PlayerSiege: return RowEffected.PlayerSiege;
+                case RowEffected.PlayerPlayable: return RowEffected.PlayerPlayable;
+                case RowEffected.EnemyPlayable: return RowEffected.EnemyPlayable;
+                case RowEffected.PlayerHand: return RowEffected.PlayerHand;
+                case RowEffected.EnemyHand: return RowEffected.EnemyHand;
+                case RowEffected.EnemyKing: return RowEffected.EnemyKing;
+                case RowEffected.EnemyMax: return RowEffected.EnemyMax;
+                case RowEffected.PlayerMax: return RowEffected.PlayerMax;
+                case RowEffected.PlayerKing: return RowEffected.PlayerKing;
+                case RowEffected.EnemyMelee: return RowEffected.EnemyMelee;
+                case RowEffected.EnemyRanged: return RowEffected.EnemyRanged;
+                case RowEffected.EnemySiege: return RowEffected.EnemySiege;
+            }
+        }
+        return generalRow;
+    }
 }

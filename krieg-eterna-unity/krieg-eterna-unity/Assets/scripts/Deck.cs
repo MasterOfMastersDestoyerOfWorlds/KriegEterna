@@ -62,7 +62,8 @@ public class Deck : MonoBehaviour
 
     public void buildDeck(int numPowers, int numUnits, int numKings, List<string> choosePower,
             List<string> chooseUnit, List<string> chooseKing, List<string> chooseUnitGraveyard,
-            List<string> choosePowerGraveyard)
+            List<string> choosePowerGraveyard, List<string> enemyPower,
+            List<string> enemyUnit, List<string> enemyKing)
     {
         List<int> uniqueValues = new List<int>();
 
@@ -102,9 +103,7 @@ public class Deck : MonoBehaviour
             uniqueValues.Remove(cardId);
         }
 
-
-        int numCards = numPowers + numUnits + numKings;
-        Debug.Log("Dealing Cards");
+        Debug.Log("Dealing Player Cards");
         while (chooseUnitGraveyard.Count + choosePowerGraveyard.Count > 0)
         {
             if (chooseUnitGraveyard.Count > 0)
@@ -122,6 +121,17 @@ public class Deck : MonoBehaviour
                 this.sendCardToGraveyard(powers, RowEffected.None, card);
             }
         }
+        dealHand(numPowers, numUnits, numKings, choosePower, chooseUnit, chooseKing, powers, units, kings, RowEffected.PlayerHand);
+        dealHand(numPowers-2, numUnits-1, numKings, enemyPower, enemyUnit, enemyKing, powers, units, kings, RowEffected.EnemyHand);
+        getRowByType(RowEffected.EnemyHand).setVisibile(false);
+        updateRowCenters();
+    }
+
+    private void dealHand(int numPowers, int numUnits, int numKings,
+    List<string> choosePower, List<string> chooseUnit, List<string> chooseKing,
+    Row powers, Row units, Row kings, RowEffected playerHand)
+    {
+        int numCards = numPowers + numUnits + numKings;
         while (numCards > 0)
         {
 
@@ -161,12 +171,12 @@ public class Deck : MonoBehaviour
                 numKings--;
             }
             card.loadMaterial();
-            getRowByType(RowEffected.PlayerHand).Add(card);
+            getRowByType(playerHand).Add(card);
             numCards = numPowers + numUnits + numKings;
 
         }
-        updateRowCenters();
     }
+
 
     public void updateRowCenters()
     {
@@ -224,7 +234,7 @@ public class Deck : MonoBehaviour
                     c.resetTransform();
                 }
             }
-            if (row.target != null && !multistep)
+            if (row.target != null)
             {
                 row.target.setNotFlashing();
                 row.cardTargetsActivated = false;
@@ -232,12 +242,28 @@ public class Deck : MonoBehaviour
         }
     }
 
-    public List<Card> getVisibleCards()
+    public int maxStrength(RowEffected rowType)
+    {
+        List<Row> destroyRows = getRowsByType(rowType);
+        int max = 0;
+        foreach (Row r in destroyRows)
+        {
+            int temp = r.maxStrength();
+            if (temp > max)
+            {
+                max = temp;
+            }
+        }
+        return max;
+    }
+
+    public List<Card> getVisibleCards(State state)
     {
         List<Card> cards = new List<Card>();
         foreach (Row row in rows)
         {
-            if (row.hasType(RowEffected.Player) || row.hasType(RowEffected.Enemy) || row.hasType(RowEffected.ChooseN))
+            if (((state != State.CHOOSE_N && state != State.REVEAL) && (row.hasType(RowEffected.Player) || row.hasType(RowEffected.Enemy)))
+            || ((state == State.CHOOSE_N || state == State.REVEAL) && (row.hasType(RowEffected.PlayerHand) || row.hasType(RowEffected.ChooseN))))
             {
                 foreach (Card card in row)
                 {
@@ -289,24 +315,33 @@ public class Deck : MonoBehaviour
             row.setActivateRowCardTargets(state, individualCards);
         }
     }
+    public void activateAllRowsByType(bool state, bool individualCards, List<RowEffected> types)
+    {
+        foreach (RowEffected row in types)
+        {
+            this.activateRowsByType(state, individualCards, row);
+        }
+    }
     public void activateRowsByTypeExclude(bool state, bool individualCards, RowEffected type, RowEffected exclude)
     {
         List<Row> rowList = getRowsByType(type);
         foreach (Row row in rowList)
         {
-            if(row.uniqueType != exclude){
+            if (row.uniqueType != exclude)
+            {
                 row.setActivateRowCardTargets(state, individualCards);
             }
         }
     }
 
-    public uint countCardsInRows(RowEffected type){
-        uint sum = 0;
+    public int countCardsInRows(RowEffected type)
+    {
+        int sum = 0;
         foreach (Row row in rows)
         {
             if (row.hasType(type))
             {
-                sum += (uint)row.Count;
+                sum += row.Count;
             }
         }
         return sum;
@@ -399,23 +434,19 @@ public class Deck : MonoBehaviour
         c.clearAttachments(this);
         c.setTargetActive(false);
         c.resetSelectionCounts();
-        if(currentRow.uniqueType == RowEffected.UnitGraveyard && c.graveyardCardDrawRemain > 0){
+        if (currentRow.uniqueType == RowEffected.UnitGraveyard && c.graveyardCardDrawRemain > 0)
+        {
             drawCardGraveyard(c, null);
         }
         getRowByType(playerHand).Add(c);
     }
 
-    public RowEffected getKingRow(bool player)
-    {
+    public RowEffected getKingRow(RowEffected player)
+    {   
+
         List<Row> kingRows;
-        if (player)
-        {
-            kingRows = getRowsByType(RowEffected.PlayerKing);
-        }
-        else
-        {
-            kingRows = getRowsByType(RowEffected.EnemyKing);
-        }
+        kingRows = getRowsByType(CardModel.getPlayerRow(player, RowEffected.PlayerKing));
+
         for (int i = 0; i < kingRows.Count; i++)
         {
             if (kingRows[i].Count > 0)
@@ -463,8 +494,8 @@ public class Deck : MonoBehaviour
 
     public void drawCardGraveyard(Card c, Card targetCard)
     {
-        
-        Debug.Log("Drawing from Graveyard: " +c.cardName + targetCard);
+
+        Debug.Log("Drawing from Graveyard: " + c.cardName + targetCard);
         Row graveyard = getRowByType(c.rowEffected);
         int cardsDrawn = 0;
         if (graveyard.Count >= c.graveyardCardDrawRemain)
@@ -472,42 +503,32 @@ public class Deck : MonoBehaviour
 
             for (int i = 0; i < c.graveyardCardDrawRemain; i++)
             {
-                Card drawC = graveyard[graveyard.Count-1];
+                Card drawC = graveyard[graveyard.Count - 1];
                 graveyard.Remove(drawC);
                 getRowByType(RowEffected.PlayerHand).Add(drawC);
-                cardsDrawn ++;
+                cardsDrawn++;
                 if (i == 0 && drawC.strength < c.strengthCondition)
                 {
                     c.graveyardCardDrawRemain++;
                 }
             }
         }
-        
-        c.graveyardCardDrawRemain -= (uint) cardsDrawn;
+
+        c.graveyardCardDrawRemain -= cardsDrawn;
     }
 
-    public void setCardAside(Row currentRow, Card c)
+    public void setCardAside(Row currentRow, Card c, RowEffected player)
     {
         switch (c.setAsideType)
         {
-            case SetAsideType.King: c.setAsideReturnRow = getKingRow(true); break;
-            case SetAsideType.EnemyKing: c.setAsideReturnRow = getKingRow(false); break;
+            case SetAsideType.King: c.setAsideReturnRow = getKingRow(player); break;
+            case SetAsideType.EnemyKing: c.setAsideReturnRow = getKingRow(player); break;
             case SetAsideType.Enemy: c.setAsideReturnRow = RowEffected.EnemyHand; break;
             case SetAsideType.Player: c.setAsideReturnRow = RowEffected.PlayerHand; break;
         }
         currentRow.Remove(c);
-        if (currentRow.hasType(RowEffected.Enemy))
-        {
-            getRowByType(RowEffected.EnemySetAside).Add(c);
-        }
-        else if (currentRow.hasType(RowEffected.Player))
-        {
-            getRowByType(RowEffected.PlayerSetAside).Add(c);
-        }
-        else
-        {
-            Debug.LogError("You weren't supposed to do that, setCardAside error");
-        }
+        getRowByType(CardModel.getPlayerRow(player, RowEffected.PlayerSetAside)).Add(c);
+
     }
 
 
@@ -568,11 +589,11 @@ public class Deck : MonoBehaviour
     }
 
 
-    public Card getPlayableCard()
+    public Card getPlayableCard(RowEffected player)
     {
-        foreach (Card c in getRowByType(RowEffected.PlayerHand))
+        foreach (Card c in getRowByType(CardModel.getPlayerRow(player, RowEffected.PlayerHand)))
         {
-            if (c.isPlayable(this))
+            if (c.isPlayable(this, player))
             {
                 return c;
             }
@@ -620,6 +641,24 @@ public class Deck : MonoBehaviour
     {
         //Row row = getRowByType(rowType);
         return 0;//row.scoreRow(this);
+    }
+
+    public List<RowEffected> getMaxScoreRows(RowEffected rowType)
+    {
+        List<Row> rows = getRowsByType(rowType);
+        List<RowEffected> maxRows = new List<RowEffected>();
+        float max = -1;
+        for (int i = 0; i < rows.Count; i++)
+        {
+           float temp = rows[i].scoreRow(this); 
+           if(temp > max){
+                maxRows =  new List<RowEffected>(){rows[i].uniqueType};
+                max = temp;
+           }else if( temp == max){
+                maxRows.Add(rows[i].uniqueType);
+           }
+        }
+        return maxRows;
     }
 
     public void clearAllWeatherEffects()

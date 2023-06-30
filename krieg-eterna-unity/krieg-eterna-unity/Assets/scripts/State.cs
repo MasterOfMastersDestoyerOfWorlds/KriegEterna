@@ -4,5 +4,6 @@ public enum State
     ACTIVE_CARD,
     CHOOSE_N,
     MULTISTEP,
+    REVEAL,
     BLOCKED
 };

@@ -42,5 +42,6 @@ public enum RowEffected
     MeleeFull = 40,
     RangedFull = 41,
     SiegeFull = 42,
+    PlayerMax = 43,
     None = 0
 };

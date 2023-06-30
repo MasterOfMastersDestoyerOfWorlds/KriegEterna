@@ -50,6 +50,34 @@ public class Row : List<Card>
         return null;
     }
 
+    public int maxStrength()
+    {
+        int max = 0;
+        foreach (Card c in this)
+        {
+            if (c.strength > max)
+            {
+                max = c.strength;
+            }
+        }
+        return max;
+    }
+
+    public Card maxStrengthCard()
+    {
+        int max = 0;
+        Card maxCard = null;
+        foreach (Card c in this)
+        {
+            if (c.strength > max)
+            {
+                max = c.strength;
+                maxCard = c;
+            }
+        }
+        return maxCard;
+    }
+
     public float scoreRow(Deck deck)
     {
         float score = 0f;

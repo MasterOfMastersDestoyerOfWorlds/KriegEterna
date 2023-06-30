@@ -12,24 +12,24 @@ public class Card : MonoBehaviour
     public CardDrawType cardDrawType;
     public int playerCardDrawRemain;
     public int playerCardDestroy;
-    public uint playerCardDestroyRemain;
+    public int playerCardDestroyRemain;
     public DestroyType destroyType;
     public int playerCardReturn;
-    public uint playerCardReturnRemain;
+    public int playerCardReturnRemain;
     public CardReturnType cardReturnType;
     public float strengthModifier;
     public StrengthModType strengthModType;
     public int graveyardCardDraw;
-    public uint graveyardCardDrawRemain;
+    public int graveyardCardDrawRemain;
     public int enemyCardDraw;
-    public uint enemyCardDrawRemain;
+    public int enemyCardDrawRemain;
     public int enemyCardDestroy;
-    public uint enemyCardDestroyRemain;
+    public int enemyCardDestroyRemain;
     public int enemyReveal;
     public float rowMultiple;
     public RowEffected rowEffected;
     public int setAside;
-    public uint setAsideRemain;
+    public int setAsideRemain;
     public RowEffected setAsideReturnRow;
     public SetAsideType setAsideType;
     public bool attach;
@@ -45,6 +45,7 @@ public class Card : MonoBehaviour
     public float bigFac = 2;
     public int isSpecial;
     public bool weatherEffect = false;
+    public bool beenRevealed;
     public Vector3 baseLoc;
 
     public List<Card> attachments;
@@ -190,18 +191,18 @@ public class Card : MonoBehaviour
     public void resetSelectionCounts(){
         
         this.playerCardDrawRemain = playerCardDraw;
-        this.playerCardDestroyRemain = (uint)this.playerCardDestroy;
-        this.playerCardReturnRemain = (uint)this.playerCardReturn;
-        this.enemyCardDestroyRemain = (uint)this.enemyCardDestroy;
-        this.enemyCardDrawRemain = (uint) this.enemyCardDraw;
-        this.setAsideRemain = (uint)this.setAside;
-        this.graveyardCardDrawRemain = (uint)this.graveyardCardDraw;
+        this.playerCardDestroyRemain = this.playerCardDestroy;
+        this.playerCardReturnRemain = this.playerCardReturn;
+        this.enemyCardDestroyRemain = this.enemyCardDestroy;
+        this.enemyCardDrawRemain =  this.enemyCardDraw;
+        this.setAsideRemain = this.setAside;
+        this.graveyardCardDrawRemain = this.graveyardCardDraw;
     }
 
     public bool doneMultiSelection(){
-        return  this.playerCardDrawRemain == 0 && this.playerCardDestroyRemain == 0 
-        && this.playerCardReturnRemain ==0 && this.enemyCardDestroyRemain == 0
-        && this.setAsideRemain == 0 && this.chooseN ==0 && this.moveRemain ==0;
+        return  this.playerCardDrawRemain <= 0 && this.playerCardDestroyRemain <= 0 
+        && this.playerCardReturnRemain <=0 && this.enemyCardDestroyRemain <= 0
+        && this.setAsideRemain <= 0 && this.moveRemain <=0;
     }
 
     public void LogSelectionsRemaining(){
@@ -233,14 +234,14 @@ public class Card : MonoBehaviour
         return this.targetActive;
     }
 
-    public bool isPlayable(Deck deck)
+    public bool isPlayable(Deck deck, RowEffected player)
     {
-        List<Row> playerRows = deck.getRowsByType(RowEffected.PlayerPlayable);
+        List<Row> playerRows = deck.getRowsByType(CardModel.getPlayerRow(player, RowEffected.PlayerPlayable));
         int playerRowsSum = 0;
-        List<Row> enemyRows = deck.getRowsByType(RowEffected.EnemyPlayable);
+        List<Row> enemyRows = deck.getRowsByType(CardModel.getPlayerRow(player, RowEffected.EnemyPlayable));
         int enemyRowsSum = 0;
-        RowEffected playerKingRow = deck.getKingRow(true);
-        RowEffected enemyKingRow = deck.getKingRow(false);
+        RowEffected playerKingRow = deck.getKingRow(player);
+        RowEffected enemyKingRow = deck.getKingRow(CardModel.getEnemy(player));
         for(int i = 0; i < playerRows.Count; i++){
             playerRowsSum += playerRows[i].Count;
         }
