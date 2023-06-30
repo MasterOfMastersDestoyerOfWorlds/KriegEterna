@@ -587,19 +587,19 @@ public class Game : MonoBehaviour
         {
             targetCard.attachCard(c);
         }
-        else if (c.rowMultiple > 0)
-        {
-            if (c.cardType != CardType.King)
-            {
-                targetRow.Add(c);
-            }
-            if (c.rowMultiple == 1 && c.rowEffected == RowEffected.All)
-            {
-                activeDeck.clearAllWeatherEffects();
-            }
-        }
         if (c.doneMultiSelection())
         {
+            if (c.rowMultiple > 0)
+            {
+                if (c.cardType != CardType.King)
+                {
+                    targetRow.Add(c);
+                }
+                if (c.rowMultiple == 1 && c.rowEffected == RowEffected.All)
+                {
+                    activeDeck.clearAllWeatherEffects();
+                }
+            }
             if (c.enemyCardDrawRemain > 0)
             {
                 int cardsDrawn = 0;
