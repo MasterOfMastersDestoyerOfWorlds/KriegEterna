@@ -67,13 +67,16 @@ public class Card : MonoBehaviour
 
     private Material material;
 
-    private GameObject cardModelGameObject;
-    private CardModel cardModel;
+    private static GameObject cardModelGameObject;
+    private static CardModel cardModel;
 
     void Awake()
     {
-        cardModelGameObject = GameObject.Find("CardModel");
-        cardModel = cardModelGameObject.GetComponent<CardModel>();
+        if (cardModelGameObject == null)
+        {
+            cardModelGameObject = GameObject.Instantiate(Resources.Load("Prefabs/CardModel") as GameObject, transform.position, transform.rotation);
+            cardModel = cardModelGameObject.GetComponent<CardModel>();
+        }
         cardModel.readTextFile();
         spriteRenderer = GetComponent<SpriteRenderer>();
         cardColider = GetComponent<BoxCollider2D>();
@@ -89,8 +92,8 @@ public class Card : MonoBehaviour
         isBig = true;
         Transform cardObj = this.transform.Find("Card 1");
         bigFac = 4;
-        Debug.Log("big scale: " + this.cardName + "bigFac" + bigFac+ "scalex " + bigFac*baseScalex + " scaley " + bigFac*baseScalez);
-        cardObj.transform.localScale = new Vector3(bigFac * baseScalex, 1, bigFac* baseScalez);
+        Debug.Log("big scale: " + this.cardName + "bigFac" + bigFac + "scalex " + bigFac * baseScalex + " scaley " + bigFac * baseScalez);
+        cardObj.transform.localScale = new Vector3(bigFac * baseScalex, 1, bigFac * baseScalez);
     }
     public void resetScale()
     {
@@ -99,14 +102,16 @@ public class Card : MonoBehaviour
         Transform cardObj = this.transform.Find("Card 1");
         cardObj.transform.localScale = new Vector3(baseScalex, 1, baseScalez);
     }
-    
-    public bool ContainsMouse(Vector3 mousePos){
+
+    public bool ContainsMouse(Vector3 mousePos)
+    {
         mousePos.z = this.transform.position.z;
         return this.cardColider.bounds.Contains(mousePos);
     }
 
 
-    public void setBaseScale(){
+    public void setBaseScale()
+    {
         BoxCollider2D cardColider = GetComponent<BoxCollider2D>();
         Vector3 cardDims = cardColider.size;
         Debug.Log("setting scale Hieght");
@@ -188,24 +193,27 @@ public class Card : MonoBehaviour
         return this.index;
     }
 
-    public void resetSelectionCounts(){
-        
+    public void resetSelectionCounts()
+    {
+
         this.playerCardDrawRemain = playerCardDraw;
         this.playerCardDestroyRemain = this.playerCardDestroy;
         this.playerCardReturnRemain = this.playerCardReturn;
         this.enemyCardDestroyRemain = this.enemyCardDestroy;
-        this.enemyCardDrawRemain =  this.enemyCardDraw;
+        this.enemyCardDrawRemain = this.enemyCardDraw;
         this.setAsideRemain = this.setAside;
         this.graveyardCardDrawRemain = this.graveyardCardDraw;
     }
 
-    public bool doneMultiSelection(){
-        return  this.playerCardDrawRemain <= 0 && this.playerCardDestroyRemain <= 0 
-        && this.playerCardReturnRemain <=0 && this.enemyCardDestroyRemain <= 0
-        && this.setAsideRemain <= 0 && this.moveRemain <=0;
+    public bool doneMultiSelection()
+    {
+        return this.playerCardDrawRemain <= 0 && this.playerCardDestroyRemain <= 0
+        && this.playerCardReturnRemain <= 0 && this.enemyCardDestroyRemain <= 0
+        && this.setAsideRemain <= 0 && this.moveRemain <= 0;
     }
 
-    public void LogSelectionsRemaining(){
+    public void LogSelectionsRemaining()
+    {
         Debug.Log("Remaining Selections: " + cardName);
         Debug.Log("playerCardDraw: " + this.playerCardDrawRemain);
         Debug.Log("playerCardDestroy: " + this.playerCardDestroyRemain);
@@ -242,25 +250,32 @@ public class Card : MonoBehaviour
         int enemyRowsSum = 0;
         RowEffected playerKingRow = deck.getKingRow(player);
         RowEffected enemyKingRow = deck.getKingRow(CardModel.getEnemy(player));
-        for(int i = 0; i < playerRows.Count; i++){
+        for (int i = 0; i < playerRows.Count; i++)
+        {
             playerRowsSum += playerRows[i].Count;
         }
-        for(int i = 0; i < enemyRows.Count; i++){
+        for (int i = 0; i < enemyRows.Count; i++)
+        {
             enemyRowsSum += enemyRows[i].Count;
         }
-        if(this.destroyType ==DestroyType.Unit && this.playerCardDestroy + this.playerCardReturn > playerRowsSum){
+        if (this.destroyType == DestroyType.Unit && this.playerCardDestroy + this.playerCardReturn > playerRowsSum)
+        {
             return false;
         }
-        if(this.setAsideType == SetAsideType.Player && this.setAside > playerRowsSum){
+        if (this.setAsideType == SetAsideType.Player && this.setAside > playerRowsSum)
+        {
             return false;
         }
-        if(this.setAsideType == SetAsideType.Enemy && this.setAside > enemyRowsSum){
+        if (this.setAsideType == SetAsideType.Enemy && this.setAside > enemyRowsSum)
+        {
             return false;
         }
-        if(this.setAsideType == SetAsideType.EnemyKing && enemyKingRow == RowEffected.None){
+        if (this.setAsideType == SetAsideType.EnemyKing && enemyKingRow == RowEffected.None)
+        {
             return false;
         }
-        if(this.setAsideType == SetAsideType.King && playerKingRow == RowEffected.None){
+        if (this.setAsideType == SetAsideType.King && playerKingRow == RowEffected.None)
+        {
             return false;
         }
 
@@ -294,24 +309,30 @@ public class Card : MonoBehaviour
         return 0.1f;
     }
 
-    public void attachCard(Card c){
+    public void attachCard(Card c)
+    {
         attachments.Add(c);
     }
-    public bool hasAttachments(){
+    public bool hasAttachments()
+    {
         return attachments.Count > 0;
     }
 
-    public void clearAttachments(Deck d){
-        for(int i = 0; i < attachments.Count; i ++){
+    public void clearAttachments(Deck d)
+    {
+        for (int i = 0; i < attachments.Count; i++)
+        {
             Card c = attachments[i];
-            if(CardModel.isPower(c.cardType)){
+            if (CardModel.isPower(c.cardType))
+            {
                 d.getRowByType(RowEffected.PowerGraveyard).Add(c);
             }
-            else if(CardModel.isUnit(c.cardType)){
+            else if (CardModel.isUnit(c.cardType))
+            {
                 d.getRowByType(RowEffected.UnitGraveyard).Add(c);
             }
         }
-        attachments.RemoveAll(delegate(Card c) { return true;});
+        attachments.RemoveAll(delegate (Card c) { return true; });
     }
 
     public override string ToString()
@@ -319,8 +340,10 @@ public class Card : MonoBehaviour
         return "Type: " + this.cardType + " Name: " + this.cardName + " card with strength: " + this.strength;
     }
 
-    public override bool Equals(object c){
-        if(c.GetType() == typeof(Card)){
+    public override bool Equals(object c)
+    {
+        if (c.GetType() == typeof(Card))
+        {
             return this.cardName.Equals(((Card)c).cardName);
         }
         return false;
@@ -354,7 +377,7 @@ public class Card : MonoBehaviour
 
     public CardModel getCardModel()
     {
-        return this.cardModel;
+        return cardModel;
     }
 
     /// <summary>
@@ -405,9 +428,12 @@ public class Card : MonoBehaviour
     {
         transform.position = new Vector3(transform.position.x * -1 + 4.39f, transform.position.y * -1 + 1.435f, transform.position.z);
     }
-    public void Destroy(){
-         foreach (Transform child in transform) {
-            foreach (Transform childC in transform) {
+    public void Destroy()
+    {
+        foreach (Transform child in transform)
+        {
+            foreach (Transform childC in transform)
+            {
                 Destroy(childC.gameObject);
             }
             Destroy(child.gameObject);

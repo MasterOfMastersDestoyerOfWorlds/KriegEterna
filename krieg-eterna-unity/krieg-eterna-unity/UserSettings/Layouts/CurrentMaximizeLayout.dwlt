@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 513
+  controlID: 7815
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -45,9 +45,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 275.4
-    y: 19
-    width: 846
+    x: 243.2
+    y: 73.6
+    width: 793.99994
     height: 463
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -103,23 +103,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 846
+      width: 793.99994
       height: 442
     m_Scale: {x: 0.5115741, y: 0.5115741}
-    m_Translation: {x: 423, y: 221}
+    m_Translation: {x: 396.99997, y: 221}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -826.8597
+      x: -776.03613
       y: -432
-      width: 1653.7194
+      width: 1552.0723
       height: 864
     m_MinimalGUI: 1
   m_defaultScale: 0.5115741
-  m_LastWindowPixelSize: {x: 1057.5, y: 578.75}
+  m_LastWindowPixelSize: {x: 992.49994, y: 578.75}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -144,12 +144,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1122.4
+    width: 1039.2
     height: 818.8
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 586
+  controlID: 7774
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,12 +169,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1122.4
+    width: 1039.2
     height: 484
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 464
+  controlID: 7753
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -192,10 +192,10 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 274.4
+    width: 243.2
     height: 484
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -223,7 +223,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 73.6
-    width: 273.4
+    width: 242.2
     height: 463
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -240,7 +240,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 5a9cffff069dffff169effff1a9effffc69effffd69fffffda9fffff86a0ffff96a1ffff9aa1ffff44a2ffff54a3ffffeea3ffff9aa4ffffaaa5ffffaea5ffff5aa6ffff6aa7ffff6ea7ffff1aa8ffff2aa9ffff2ea9ffffd8a9ffffe8aaffff82abffff2cacffff3cadffffd0adffff7aaeffff8aafffff1eb0ffffc8b0ffffd8b1ffff28b6ffffd2b6ffffe2b7ffff18d1ffff
+      m_ExpandedIDs: 0817ffffb417ffff881cffffcc36ffff7837ffff743bfffffe3dffff0e3fffffbe42ffff7a44ffffae47ffffc647ffffbe48ffffc46cffff706dffff0c71ffffde72ffffec73ffff9a77ffff4279ffff627cffff7a7cffff707dffff3e7fffffca82ffff5089fffffc89ffff8a8dffff4892fffff492ffff9896ffff4c9afffff89affff5abcffff1ac0ffffc6c0ffff68dfffff10e3ffff52e3ffffa8e3ffffb2e3ffff0ce4ffffb8e4ffff5af7ffff72f9ffff20fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -279,9 +279,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 274.4
+    x: 243.2
     y: 0
-    width: 848
+    width: 795.99994
     height: 484
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
@@ -313,9 +313,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 274.4
+    x: 243.2
     y: 73.6
-    width: 846
+    width: 793.99994
     height: 463
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -675,9 +675,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.88373256, y: -0.6498032, z: -0.017404087}
+    m_Target: {x: -0.3835193, y: -1.7691108, z: -0.056428857}
     speed: 2
-    m_Value: {x: -0.88373256, y: -0.6498032, z: -0.017404087}
+    m_Value: {x: -0.3835193, y: -1.7691108, z: -0.056428857}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -727,9 +727,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 12.986717
+    m_Target: 6.0895247
     speed: 2
-    m_Value: 12.986717
+    m_Value: 6.0895247
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -2258,23 +2258,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
     x: 0
     y: 484
-    width: 1122.4
+    width: 1039.2
     height: 334.8
-  m_MinSize: {x: 230, y: 250}
-  m_MaxSize: {x: 10000, y: 10000}
-  m_ActualView: {fileID: 12}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 12}
   - {fileID: 13}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -2297,7 +2297,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 557.60004
-    width: 1121.4
+    width: 1038.2
     height: 313.8
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -2320,7 +2320,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Tests/PlayTests
+    - Assets/Resources/Prefabs
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -2328,16 +2328,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Tests/PlayTests
+  - Assets/Resources/Prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\andre\KriegEterna\krieg-eterna-unity\krieg-eterna-unity
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 62.500305}
-    m_SelectedIDs: 5c6f0000
-    m_LastClickedID: 28508
-    m_ExpandedIDs: 00000000c26d0000c46d0000c66d000000ca9a3bffffff7f
+    m_SelectedIDs: fc660000
+    m_LastClickedID: 26364
+    m_ExpandedIDs: 000000004c6400004e6400005064000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2365,7 +2365,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000c26d0000c46d0000c66d000000ca9a3bffffff7f
+    m_ExpandedIDs: 000000004c6400004e6400005064000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2390,9 +2390,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 58760000
-    m_LastClickedInstanceID: 30296
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000d65a0000d65b00003e5d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -2409,7 +2409,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 7}
+      m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -2443,7 +2443,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 557.60004
-    width: 1121.4
+    width: 1038.2
     height: 313.8
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -2472,14 +2472,14 @@ MonoBehaviour:
   - {fileID: 17}
   m_Position:
     serializedVersion: 2
-    x: 1122.4
+    x: 1039.2
     y: 0
-    width: 413.59998
+    width: 496.80005
     height: 818.8
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 514
+  controlID: 7816
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -2497,7 +2497,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 413.59998
+    width: 496.80005
     height: 545.6
   m_MinSize: {x: 276, y: 71}
   m_MaxSize: {x: 4001, y: 4021}
@@ -2526,9 +2526,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1122.4
+    x: 1039.2001
     y: 73.6
-    width: 412.59998
+    width: 495.80005
     height: 524.6
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -2546,8 +2546,8 @@ MonoBehaviour:
     m_CachedPref: 160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: 30296
-  m_LastVerticalScrollValue: 778.4
+  m_LastInspectedObjectInstanceID: -1
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
@@ -2570,7 +2570,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 545.6
-    width: 413.59998
+    width: 496.80005
     height: 273.2
   m_MinSize: {x: 101, y: 121}
   m_MaxSize: {x: 4001, y: 4021}
@@ -2599,9 +2599,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1122.4
+    x: 1039.2001
     y: 619.2
-    width: 412.59998
+    width: 495.80005
     height: 252.20001
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -2614,7 +2614,7 @@ MonoBehaviour:
     m_SaveData: []
     m_OverlaysVisible: 1
   m_Spl:
-    ID: 542
+    ID: 7844
     splitterInitialOffset: 0
     currentActiveSplitter: -1
     realSizes:
@@ -2645,9 +2645,9 @@ MonoBehaviour:
       uniqueId: '[krieg-eterna-unity][suite]'
       name: krieg-eterna-unity
       fullName: krieg-eterna-unity
-      resultStatus: 0
-      duration: 0
-      messages: 
+      resultStatus: 2
+      duration: 0.0742121
+      messages: One or more child tests had errors
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2661,9 +2661,9 @@ MonoBehaviour:
       uniqueId: '[PlayTests][C:/Users/andre/KriegEterna/krieg-eterna-unity/krieg-eterna-unity/Library/ScriptAssemblies/PlayTests.dll][suite]'
       name: PlayTests.dll
       fullName: C:/Users/andre/KriegEterna/krieg-eterna-unity/krieg-eterna-unity/Library/ScriptAssemblies/PlayTests.dll
-      resultStatus: 0
-      duration: 0
-      messages: 
+      resultStatus: 2
+      duration: 0.0648607
+      messages: One or more child tests had errors
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2677,9 +2677,9 @@ MonoBehaviour:
       uniqueId: PlayTests.dll/[PlayTests][TestDecoys][suite]
       name: TestDecoys
       fullName: TestDecoys
-      resultStatus: 0
-      duration: 0
-      messages: 
+      resultStatus: 2
+      duration: 0.0622046
+      messages: One or more child tests had errors
       output: 
       stacktrace: 
       notRunnable: 0
@@ -2689,32 +2689,83 @@ MonoBehaviour:
       categories: []
       parentId: 1004
       parentUniqueId: '[PlayTests][C:/Users/andre/KriegEterna/krieg-eterna-unity/krieg-eterna-unity/Library/ScriptAssemblies/PlayTests.dll][suite]'
-    - id: 1002
-      uniqueId: PlayTests.dll/TestDecoys/[PlayTests][TestDecoys.TestDecoysSimplePasses]
-      name: TestDecoysSimplePasses
-      fullName: TestDecoys.TestDecoysSimplePasses
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1001
-      parentUniqueId: PlayTests.dll/[PlayTests][TestDecoys][suite]
     - id: 1003
       uniqueId: PlayTests.dll/TestDecoys/[PlayTests][TestDecoys.TestDecoysWithEnumeratorPasses]
       name: TestDecoysWithEnumeratorPasses
       fullName: TestDecoys.TestDecoysWithEnumeratorPasses
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
+      resultStatus: 2
+      duration: 0.0496255
+      messages: 'Unhandled log message: ''[Exception] NullReferenceException: Object
+        reference not set to an instance of an object''. Use UnityEngine.TestTools.LogAssert.Expect'
+      output: 'Player creating - P1
+
+        NullReferenceException: Object reference
+        not set to an instance of an object
+
+        NullReferenceException: Object
+        reference not set to an instance of an object
+
+        NullReferenceException:
+        Object reference not set to an instance of an object
+
+        setting scale
+        Hieght
+
+        NullReferenceException: Object reference not set to an instance
+        of an object
+
+        Player creating - P1
+
+        NullReferenceException:
+        Object reference not set to an instance of an object
+
+        NullReferenceException:
+        Object reference not set to an instance of an object
+
+        NullReferenceException:
+        Object reference not set to an instance of an object
+
+        setting scale
+        Hieght
+
+        NullReferenceException: Object reference not set to an instance
+        of an object
+
+        NullReferenceException: Object reference not set to
+        an instance of an object
+
+'
+      stacktrace: 'Areas.updateScreenBounds () (at Assets/Scripts/Areas.cs:46)
+
+        Areas.Awake
+        () (at Assets/Scripts/Areas.cs:35)
+
+        UnityEngine.Object:Instantiate(GameObject,
+        Vector3, Quaternion)
+
+        Deck:Awake() (at Assets/Scripts/Deck.cs:23)
+
+        UnityEngine.Object:Instantiate(GameObject,
+        Vector3, Quaternion)
+
+        Player:Awake() (at Assets/Scripts/Player.cs:47)
+
+        UnityEngine.Object:Instantiate(GameObject,
+        Vector3, Quaternion)
+
+        Game:Awake() (at Assets/Scripts/Game.cs:79)
+
+        UnityEngine.GameObject:AddComponent()
+
+        <TestDecoysWithEnumeratorPasses>d__0:MoveNext()
+        (at Assets/Tests/PlayTests/TestDecoys.cs:17)
+
+        UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator,
+        IntPtr)
+
+
+
+'
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
@@ -2723,13 +2774,117 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1001
       parentUniqueId: PlayTests.dll/[PlayTests][TestDecoys][suite]
-    m_ResultText: 
-    m_ResultStacktrace: 
+    m_ResultText: 'TestDecoysWithEnumeratorPasses (0.050s)
+
+      ---
+
+      Unhandled
+      log message: ''[Exception] NullReferenceException: Object reference not set
+      to an instance of an object''. Use UnityEngine.TestTools.LogAssert.Expect
+
+      ---
+
+      Areas.updateScreenBounds
+      () (at Assets/Scripts/Areas.cs:46)
+
+      Areas.Awake () (at Assets/Scripts/Areas.cs:35)
+
+      UnityEngine.Object:Instantiate(GameObject,
+      Vector3, Quaternion)
+
+      Deck:Awake() (at Assets/Scripts/Deck.cs:23)
+
+      UnityEngine.Object:Instantiate(GameObject,
+      Vector3, Quaternion)
+
+      Player:Awake() (at Assets/Scripts/Player.cs:47)
+
+      UnityEngine.Object:Instantiate(GameObject,
+      Vector3, Quaternion)
+
+      Game:Awake() (at Assets/Scripts/Game.cs:79)
+
+      UnityEngine.GameObject:AddComponent()
+
+      <TestDecoysWithEnumeratorPasses>d__0:MoveNext()
+      (at Assets/Tests/PlayTests/TestDecoys.cs:17)
+
+      UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator,
+      IntPtr)
+
+      ---
+
+      Player creating - P1
+
+      NullReferenceException:
+      Object reference not set to an instance of an object
+
+      NullReferenceException:
+      Object reference not set to an instance of an object
+
+      NullReferenceException:
+      Object reference not set to an instance of an object
+
+      setting scale Hieght
+
+      NullReferenceException:
+      Object reference not set to an instance of an object
+
+      Player creating
+      - P1
+
+      NullReferenceException: Object reference not set to an instance
+      of an object
+
+      NullReferenceException: Object reference not set to an
+      instance of an object
+
+      NullReferenceException: Object reference not set
+      to an instance of an object
+
+      setting scale Hieght
+
+      NullReferenceException:
+      Object reference not set to an instance of an object
+
+      NullReferenceException:
+      Object reference not set to an instance of an object'
+    m_ResultStacktrace: 'Areas.updateScreenBounds () (at Assets/Scripts/Areas.cs:46)
+
+      Areas.Awake
+      () (at Assets/Scripts/Areas.cs:35)
+
+      UnityEngine.Object:Instantiate(GameObject,
+      Vector3, Quaternion)
+
+      Deck:Awake() (at Assets/Scripts/Deck.cs:23)
+
+      UnityEngine.Object:Instantiate(GameObject,
+      Vector3, Quaternion)
+
+      Player:Awake() (at Assets/Scripts/Player.cs:47)
+
+      UnityEngine.Object:Instantiate(GameObject,
+      Vector3, Quaternion)
+
+      Game:Awake() (at Assets/Scripts/Game.cs:79)
+
+      UnityEngine.GameObject:AddComponent()
+
+      <TestDecoysWithEnumeratorPasses>d__0:MoveNext()
+      (at Assets/Tests/PlayTests/TestDecoys.cs:17)
+
+      UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator,
+      IntPtr)
+
+
+
+'
     m_TestListState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: acd42e23
-      m_LastClickedID: 590271660
-      m_ExpandedIDs: 8863541effffff7f
+      m_SelectedIDs: 1812ef53
+      m_LastClickedID: 1408176664
+      m_ExpandedIDs: 8863541eacd42e2302429058ffffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

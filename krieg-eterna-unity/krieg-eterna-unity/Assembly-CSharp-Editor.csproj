@@ -852,6 +852,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp.csproj">
+      <Project>{7956bf2f-c2a1-9c7b-1be6-b5be3635b322}</Project>
+      <Name>Assembly-CSharp</Name>
+    </ProjectReference>
     <ProjectReference Include="Scripts.csproj">
       <Project>{45a038ac-91e6-fccc-be86-e02f43593987}</Project>
       <Name>Scripts</Name>

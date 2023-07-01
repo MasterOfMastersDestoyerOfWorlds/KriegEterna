@@ -25,7 +25,7 @@ public class Game : MonoBehaviour
     private GameObject deskObject;
     private GameObject areasObject;
 
-    private Deck activeDeck;
+    public Deck activeDeck;
 
     private bool hasChosenStart;
     private RowEffected chooseNRow;
@@ -33,7 +33,6 @@ public class Game : MonoBehaviour
     private RowEffected chooseNPlayerHand;
     private System.Action<Row, RowEffected, Card> chooseNAction;
     private Desk desk;
-    private Areas areas;
 
     private GameObject playerDownNameTextObject;
     private Text playerDownNameText;
@@ -70,9 +69,6 @@ public class Game : MonoBehaviour
     private GameObject buttonObject;
     private Button button;
 
-    public GameObject endPanelObject;
-    public GameObject endTextObject;
-    public Text endText;
 
     private GameObject giveUpButtonObject;
 
@@ -80,16 +76,20 @@ public class Game : MonoBehaviour
 
     void Awake()
     {
-        player1Object = GameObject.Find("Player1");
-        player2Object = GameObject.Find("Player2");
+        GameObject camera = GameObject.Instantiate( Resources.Load("Prefabs/Main Camera") as GameObject, new Vector3(0f,0f,-100f), transform.rotation);
+        camera.tag="MainCamera";
+        Debug.Log("Made Camera");
+        player2Object = GameObject.Instantiate( Resources.Load("Prefabs/Player") as GameObject, transform.position, transform.rotation);
+        var player1Object = GameObject.Instantiate( Resources.Load("Prefabs/Player") as GameObject, transform.position, transform.rotation);
         player1 = player1Object.GetComponent<Player>();
         player2 = player2Object.GetComponent<Player>();
 
-        deskObject = GameObject.Find("Desk");
+        deskObject = GameObject.Instantiate( Resources.Load("Prefabs/Desk") as GameObject, transform.position, transform.rotation);
         desk = deskObject.GetComponent<Desk>();
 
-        areasObject = GameObject.Find("Areas");
-        areas = areasObject.GetComponent<Areas>();
+
+        GameObject.Instantiate( Resources.Load("Prefabs/Canvas") as GameObject, transform.position, transform.rotation);
+
 
         playerDownNameTextObject = GameObject.Find("DownPlayerName");
         playerDownNameText = playerDownNameTextObject.GetComponent<Text>();
@@ -122,15 +122,8 @@ public class Game : MonoBehaviour
         buttonObject = GameObject.Find("Button");
         button = buttonObject.GetComponent<Button>();
 
-        endPanelObject = GameObject.FindGameObjectWithTag("EndPanel");
-        endPanelObject.transform.position = new Vector3(0, 0, -1.8f);
-        endTextObject = GameObject.FindGameObjectWithTag("EndText");
-        endText = endTextObject.GetComponent<Text>();
-
         giveUpButtonObject = GameObject.FindGameObjectWithTag("giveUpButton");
         giveUpButtonObject.SetActive(true);
-
-        endPanelObject.SetActive(false);
 
         activePlayerNumber = (int)PlayerNumber.PLAYER1;
         gameState = (int)GameState.TOUR1;
@@ -225,7 +218,7 @@ public class Game : MonoBehaviour
                 if (c.ContainsMouse(mouseRelativePosition))
                 {
                     c.scaleBig();
-                    c.transform.position = areas.getCenterFrontBig();
+                    c.transform.position = activeDeck.areas.getCenterFrontBig();
                     break;
                 }
             }
@@ -784,7 +777,6 @@ public class Game : MonoBehaviour
 
     private void gameOver()
     {
-        endPanelObject.SetActive(true);
         giveUpButtonObject.SetActive(false);
         StartCoroutine(GameOverScreen(2f));
     }
@@ -792,15 +784,6 @@ public class Game : MonoBehaviour
     IEnumerator GameOverScreen(float duration)
     {
         yield return new WaitForSeconds(duration);
-
-        // after
-        endText.text = "Game Over\n";
-        if (player1.health == -1 && player2.health == -1)
-            endText.text += "\nDraw";
-        else if (player2.health == -1)
-            endText.text += "\nDefeat";
-        else if (player1.health == -1)
-            endText.text += "\nVictory";
     }
 
 
@@ -950,7 +933,6 @@ public class Game : MonoBehaviour
     private void endTour()
     {
         // before
-        endPanelObject.SetActive(true);
         giveUpButtonObject.SetActive(false);
 
         player1.isPlaying = true;
@@ -968,7 +950,6 @@ public class Game : MonoBehaviour
 
         Debug.Log("WaitEndTour() has ended");
         // after
-        endPanelObject.SetActive(false);
         giveUpButtonObject.SetActive(true);
     }
 

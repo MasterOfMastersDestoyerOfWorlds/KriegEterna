@@ -10,7 +10,7 @@ public class Deck : MonoBehaviour
     private GameObject targetGameObject;
     private Target baseTarget;
 
-    private Areas areas;
+    public Areas areas;
 
     public List<Row> rows;
     private GameObject areasObject;
@@ -20,11 +20,11 @@ public class Deck : MonoBehaviour
 
     void Awake()
     {
-        areasObject = GameObject.Find("Areas");
+        areasObject = GameObject.Instantiate( Resources.Load("Prefabs/Areas") as GameObject, transform.position, transform.rotation);
         areas = areasObject.GetComponent<Areas>();
-        cardGameObject = GameObject.Find("Card");
+        cardGameObject = GameObject.Instantiate( Resources.Load("Prefabs/Card") as GameObject, new Vector3(-1000f,0f,0f), transform.rotation);
         baseCard = cardGameObject.GetComponent<Card>();
-        targetGameObject = GameObject.Find("Target");
+        targetGameObject = GameObject.Instantiate( Resources.Load("Prefabs/Target") as GameObject, transform.position, transform.rotation);
         baseTarget = targetGameObject.GetComponent<Target>();
         baseCard.setBaseScale();
         rows = new List<Row>(){

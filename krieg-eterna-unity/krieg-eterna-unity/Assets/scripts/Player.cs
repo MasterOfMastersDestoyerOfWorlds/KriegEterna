@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
 
     void Awake() 
     {
-        lifeObject = GameObject.Find("HealthDiamond");
+        lifeObject = GameObject.Instantiate( Resources.Load("Prefabs/HealthDiamond") as GameObject, transform.position, transform.rotation);
         life = lifeObject.GetComponent<HealthDiamond>();
 
         // creating two instance of life diamond image
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
         secondHealthDiamond.enableSprite();
 
         string objectGameName = this.gameObject.name + "Deck";
-        deckObject = GameObject.Find(objectGameName);
+        deckObject = GameObject.Instantiate( Resources.Load("Prefabs/Deck") as GameObject, transform.position, transform.rotation);
         deck = deckObject.GetComponent<Deck>();
         health = 2;
         score = 0;
