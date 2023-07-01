@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 868.8
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Console
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 8378
+  controlID: 37
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,12 +139,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1152
+    width: 1153.6
     height: 818.8
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 8379
+  controlID: 38
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -164,12 +164,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1152
+    width: 1153.6
     height: 484
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 8380
+  controlID: 39
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -213,7 +213,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 271.2
     y: 0
-    width: 880.8
+    width: 882.39996
     height: 484
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
@@ -235,23 +235,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
     x: 0
     y: 484
-    width: 1152
+    width: 1153.6
     height: 334.8
-  m_MinSize: {x: 231, y: 271}
-  m_MaxSize: {x: 10001, y: 10021}
-  m_ActualView: {fileID: 19}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 19}
   - {fileID: 20}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -269,14 +269,14 @@ MonoBehaviour:
   - {fileID: 13}
   m_Position:
     serializedVersion: 2
-    x: 1152
+    x: 1153.6
     y: 0
-    width: 384
+    width: 382.40002
     height: 818.8
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 8443
+  controlID: 101
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -294,10 +294,10 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 384
+    width: 382.40002
     height: 545.6
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -320,10 +320,10 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 545.6
-    width: 384
+    width: 382.40002
     height: 273.2
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 22}
   m_Panes:
   - {fileID: 22}
@@ -351,7 +351,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 271.2
     y: 73.6
-    width: 878.8
+    width: 880.39996
     height: 463
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -407,23 +407,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 878.8
+      width: 880.39996
       height: 442
     m_Scale: {x: 0.5115741, y: 0.5115741}
-    m_Translation: {x: 439.4, y: 221}
+    m_Translation: {x: 440.19998, y: 221}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -858.9176
+      x: -860.4814
       y: -432
-      width: 1717.8352
+      width: 1720.9628
       height: 864
     m_MinimalGUI: 1
   m_defaultScale: 0.5115741
-  m_LastWindowPixelSize: {x: 1098.5, y: 578.75}
+  m_LastWindowPixelSize: {x: 1100.5, y: 578.75}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -468,7 +468,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 4675feff5075feff6a75feff7475feff1e76feff2876feff6478feff6e78feff1e9bfeff7e9bfeff0817ffffb417ffff881cffffcc36ffff7837ffff743bfffffe3dffff0e3fffffbe42ffff7a44ffffae47ffffc647ffffbe48ffffc46cffff706dffff0c71ffffde72ffffec73ffff9a77ffff4279ffff627cffff7a7cffff707dffff3e7fffffca82ffff5089fffffc89ffff8a8dffff4892fffff492ffff9896ffff4c9afffff89affff5abcffff1ac0ffffc6c0ffff68dfffff10e3ffff52e3ffffa8e3ffffb2e3ffff0ce4ffffb8e4ffff5af7ffff72f9ffff20fbffff
+      m_ExpandedIDs: e0effdffeef0fdff9af4fdffaaf5fdff4ef7fdff64f7fdff48f8fdffe6f8fdff1afcfdff0e10feff5613feff6415feffb418feff5a19feff681afeff141efeff241ffeffc820feffde20feffc221feff5c22feff0026feff763bfeff223cfeff9c4dfeff9a6afeffa46afeffb66afeffc06afeff8e77feffee77feff0878feff1278feff1e78feff2878feff8aceffff94ceffff32cfffff3ccfffff4ecfffff58cfffffa2cfffffaccfffff64d1ffff6ed1ffff80d1ffff8ad1ffff9cd1ffffa6d1ffff60d3ffff6ad3ffff36d6ffff40d6ffff4ed9ffff58d9ffffd2d9ffffdcd9ffffe8d9fffff2d9ffff2adaffff34daffff98daffffa2daffffc4daffffcedaffff1cdbffff26dbffff48dbffff52dbffff8adbffff94dbffff86e6ffff80e9ffff8ae9ffff20fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -514,7 +514,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 271.2
     y: 73.6
-    width: 878.8
+    width: 880.39996
     height: 463
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -855,7 +855,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 48, y: 10.399994}
+      snapOffset: {x: 48, y: 10.399963}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: UnityEditor.SceneViewCameraOverlay
@@ -869,14 +869,14 @@ MonoBehaviour:
   m_OverrideSceneCullingMask: 6917529027641081856
   m_SceneIsLit: 1
   m_SceneLighting: 1
-  m_2DMode: 0
+  m_2DMode: 1
   m_isRotationLocked: 0
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -6.2812424, y: -0.9983196, z: -5.0390587}
+    m_Target: {x: 2.6254108, y: 1.0722024, z: -0.9674565}
     speed: 2
-    m_Value: {x: -6.2812424, y: -0.9983196, z: -5.0390587}
+    m_Value: {x: 2.6254108, y: 1.0722024, z: -0.9674565}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -904,17 +904,17 @@ MonoBehaviour:
       m_Size: {x: 1, y: 1}
     yGrid:
       m_Fade:
-        m_Target: 1
+        m_Target: 0
         speed: 2
-        m_Value: 1
+        m_Value: 0
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
     zGrid:
       m_Fade:
-        m_Target: 0
+        m_Target: 1
         speed: 2
-        m_Value: 0
+        m_Value: 1
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
@@ -924,15 +924,15 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0, y: 0, z: 0, w: 1}
     speed: 2
-    m_Value: {x: 0, y: 0, z: 0, w: 0.99999994}
+    m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 12.762051
+    m_Target: 7.9306893
     speed: 2
-    m_Value: 12.762051
+    m_Value: 7.9306893
   m_Ortho:
-    m_Target: 0
+    m_Target: 1
     speed: 2
-    m_Value: 0
+    m_Value: 1
   m_CameraSettings:
     m_Speed: 1
     m_SpeedNormalized: 0.5
@@ -946,7 +946,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 0
     m_OcclusionCulling: 1
-  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
+  m_LastSceneViewRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
@@ -1439,9 +1439,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 241.6
+    x: 271.2
     y: 73.6
-    width: 740.4
+    width: 878.8
     height: 463
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -2445,7 +2445,7 @@ MonoBehaviour:
     0.0,\n        \"e20\": 0.0,\n        \"e21\": 0.0,\n        \"e22\": 1.0,\n       
     \"e23\": 0.0,\n        \"e30\": 0.0,\n        \"e31\": 0.0,\n        \"e32\":
     0.0,\n        \"e33\": 1.0\n    }\n}\n\n"
-  m_AssetMaybeChangedOnDisk: 1
+  m_AssetMaybeChangedOnDisk: 0
   m_AssetMaybeDeleted: 0
 --- !u!114 &19
 MonoBehaviour:
@@ -2507,9 +2507,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 62.500305}
-    m_SelectedIDs: fc660000
-    m_LastClickedID: 26364
-    m_ExpandedIDs: 000000004c6400004e6400005064000000ca9a3bffffff7f
+    m_SelectedIDs: 36670000
+    m_LastClickedID: 26422
+    m_ExpandedIDs: 000000007c6400007e6400008064000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2537,7 +2537,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000004c6400004e6400005064000000ca9a3bffffff7f
+    m_ExpandedIDs: 000000007c6400007e64000080640000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2562,9 +2562,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: 7ae6ffff
+    m_LastClickedInstanceID: -6534
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000d65a0000d65b00003e5d000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -2615,7 +2615,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 557.60004
-    width: 1038.2
+    width: 1152.6
     height: 313.8
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -2647,9 +2647,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1152
+    x: 1153.6
     y: 73.6
-    width: 383
+    width: 381.40002
     height: 524.6
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -2694,9 +2694,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1152
+    x: 1153.6
     y: 619.2
-    width: 383
+    width: 381.40002
     height: 252.20001
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -2709,7 +2709,7 @@ MonoBehaviour:
     m_SaveData: []
     m_OverlaysVisible: 1
   m_Spl:
-    ID: 8471
+    ID: 139
     splitterInitialOffset: 0
     currentActiveSplitter: -1
     realSizes:
@@ -2740,8 +2740,8 @@ MonoBehaviour:
       uniqueId: '[krieg-eterna-unity][suite]'
       name: krieg-eterna-unity
       fullName: krieg-eterna-unity
-      resultStatus: 2
-      duration: 0.0742121
+      resultStatus: 0
+      duration: 0.5569541
       messages: One or more child tests had errors
       output: 
       stacktrace: 
@@ -2756,8 +2756,8 @@ MonoBehaviour:
       uniqueId: '[PlayTests][C:/Users/andre/KriegEterna/krieg-eterna-unity/krieg-eterna-unity/Library/ScriptAssemblies/PlayTests.dll][suite]'
       name: PlayTests.dll
       fullName: C:/Users/andre/KriegEterna/krieg-eterna-unity/krieg-eterna-unity/Library/ScriptAssemblies/PlayTests.dll
-      resultStatus: 2
-      duration: 0.0648607
+      resultStatus: 0
+      duration: 0.5471831
       messages: One or more child tests had errors
       output: 
       stacktrace: 
@@ -2772,8 +2772,8 @@ MonoBehaviour:
       uniqueId: PlayTests.dll/[PlayTests][TestDecoys][suite]
       name: TestDecoys
       fullName: TestDecoys
-      resultStatus: 2
-      duration: 0.0622046
+      resultStatus: 0
+      duration: 0.5446476
       messages: One or more child tests had errors
       output: 
       stacktrace: 
@@ -2788,11 +2788,26 @@ MonoBehaviour:
       uniqueId: PlayTests.dll/TestDecoys/[PlayTests][TestDecoys.TestDecoysWithEnumeratorPasses]
       name: TestDecoysWithEnumeratorPasses
       fullName: TestDecoys.TestDecoysWithEnumeratorPasses
-      resultStatus: 2
-      duration: 0.0496255
+      resultStatus: 0
+      duration: 0.5308549
       messages: 'Unhandled log message: ''[Exception] NullReferenceException: Object
         reference not set to an instance of an object''. Use UnityEngine.TestTools.LogAssert.Expect'
-      output: 'Player creating - P1
+      output: 'Made Camera
+
+        Player creating - P1
+
+        setting scale
+        Hieght
+
+        setting scale Hieght
+
+        Player creating - P1
+
+        setting
+        scale Hieght
+
+        NullReferenceException: Object reference not set to
+        an instance of an object
 
         NullReferenceException: Object reference
         not set to an instance of an object
@@ -2803,13 +2818,14 @@ MonoBehaviour:
         NullReferenceException:
         Object reference not set to an instance of an object
 
-        setting scale
-        Hieght
+        NullReferenceException:
+        Object reference not set to an instance of an object
 
-        NullReferenceException: Object reference not set to an instance
-        of an object
+        NullReferenceException:
+        Object reference not set to an instance of an object
 
-        Player creating - P1
+        NullReferenceException:
+        Object reference not set to an instance of an object
 
         NullReferenceException:
         Object reference not set to an instance of an object
@@ -2820,35 +2836,393 @@ MonoBehaviour:
         NullReferenceException:
         Object reference not set to an instance of an object
 
-        setting scale
-        Hieght
+        generating
+        values
 
-        NullReferenceException: Object reference not set to an instance
-        of an object
+        Making Card: Officer3
 
-        NullReferenceException: Object reference not set to
-        an instance of an object
+        Making Card: Storm
+
+        Making
+        Card: Execution
+
+        Making Card: Knight12
+
+        Making Card: TraitorKing
+
+        Making
+        Card: Catapult
+
+        Making Card: Militia
+
+        Making Card: Tower
+
+        Making
+        Card: Void
+
+        Making Card: Crusader
+
+        Making Card: Saboteur
+
+        Making
+        Card: Fate
+
+        Making Card: Siege2
+
+        Making Card: Waterworks
+
+        Making
+        Card: Mortar
+
+        Making Card: Privateer
+
+        Making Card: Redemption
+
+        Making
+        Card: Cannon4
+
+        Making Card: Death
+
+        Making Card: Plague
+
+        Making
+        Card: Frost
+
+        Making Card: Spy
+
+        Making Card: Knight10
+
+        Making
+        Card: Sack
+
+        Making Card: Privateer3
+
+        Making Card: Fortress
+
+        Making
+        Card: Retreat
+
+        Making Card: Famine
+
+        Making Card: Privateer2
+
+        Making
+        Card: Relic
+
+        Making Card: Calvary
+
+        Making Card: Feint
+
+        Making
+        Card: TerrorKing
+
+        Making Card: Knight3
+
+        Making Card: Burden
+
+        Making
+        Card: Knight4
+
+        Making Card: Offering
+
+        Making Card: Bowman2
+
+        Making
+        Card: Cannon2
+
+        Making Card: Officer2
+
+        Making Card: Knight6
+
+        Making
+        Card: Grenadier2
+
+        Making Card: Styx
+
+        Making Card: Riflemen
+
+        Making
+        Card: Musketeer3
+
+        Making Card: Assault3
+
+        Making Card: Feast2
+
+        Making
+        Card: Death2
+
+        Making Card: Archer
+
+        Making Card: EmperorDemise
+
+        Making
+        Card: Jester
+
+        Making Card: WinterKing
+
+        Making Card: Soldier2
+
+        Making
+        Card: Ruin
+
+        Making Card: Assault
+
+        Making Card: Calvary3
+
+        Making
+        Card: Telescope
+
+        Making Card: War
+
+        Making Card: Landsknecht
+
+        Making
+        Card: Halberdier
+
+        Making Card: Assault2
+
+        Making Card: Musketeer2
+
+        Making
+        Card: Siege
+
+        Making Card: MusketLine
+
+        Making Card: Soldier
+
+        Making
+        Card: Siege3
+
+        Making Card: Grail
+
+        Making Card: Knight5
+
+        Making
+        Card: Knight11
+
+        Making Card: Cannon
+
+        Making Card: Resurrection
+
+        Making
+        Card: Cannon3
+
+        Making Card: Scout
+
+        Making Card: Archer2
+
+        Making
+        Card: SunKing
+
+        Making Card: Grenadier
+
+        Making Card: Armada2
+
+        Making
+        Card: Square
+
+        Making Card: Crusade
+
+        Making Card: Knight
+
+        Making
+        Card: Knight7
+
+        Making Card: Enlightenment
+
+        Making Card:
+        Bowman
+
+        Making Card: Wrath
+
+        Making Card: Calvary2
+
+        Making
+        Card: Minister
+
+        Making Card: Officer4
+
+        Making Card: Officer
+
+        Making
+        Card: Juggernaut
+
+        Making Card: Smuggler
+
+        Making Card: Fog
+
+        Making
+        Card: Musketeer
+
+        Making Card: LionKing
+
+        Making Card: ClearSkies
+
+        Making
+        Card: Assassin
+
+        Making Card: Shipwreck
+
+        Making Card: Armada
+
+        Making
+        Card: Zealot
+
+        Making Card: Privateer4
+
+        Making Card: Knight9
+
+        Making
+        Card: Usury
+
+        Making Card: Feast3
+
+        Dealing Player Cards
+
+        Setting
+        target: False
+
+        Setting target: False
+
+        Cards Left to Deal:
+        14
+
+        Cards Left to Deal: 13
+
+        Cards Left to Deal: 12
+
+        Cards
+        Left to Deal: 11
+
+        Cards Left to Deal: 10
+
+        Cards Left to
+        Deal: 9
+
+        Cards Left to Deal: 8
+
+        Cards Left to Deal: 7
+
+        Cards
+        Left to Deal: 6
+
+        Cards Left to Deal: 5
+
+        Cards Left to Deal:
+        4
+
+        Cards Left to Deal: 3
+
+        Cards Left to Deal: 2
+
+        Cards
+        Left to Deal: 1
+
+        Cards Left to Deal: 11
+
+        Cards Left to
+        Deal: 10
+
+        Cards Left to Deal: 9
+
+        Cards Left to Deal: 8
+
+        Cards
+        Left to Deal: 7
+
+        Cards Left to Deal: 6
+
+        Cards Left to Deal:
+        5
+
+        Cards Left to Deal: 4
+
+        Cards Left to Deal: 3
+
+        Cards
+        Left to Deal: 2
+
+        Cards Left to Deal: 1
+
+        (0.00, -8.35, -2.00)
+
+        Building
+        Targets
+
+        Setting Target: Target(Clone)(Clone) (Target) On: PlayerHand
+
+        Setting
+        Target: Target(Clone)(Clone) (Target) On: EnemyHand
+
+        Setting Target:
+        Target(Clone)(Clone) (Target) On: PlayerMelee
+
+        Setting Target: Target(Clone)(Clone)
+        (Target) On: PlayerRanged
+
+        Setting Target: Target(Clone)(Clone)
+        (Target) On: PlayerSiege
+
+        Setting Target: Target(Clone)(Clone) (Target)
+        On: EnemyMelee
+
+        Setting Target: Target(Clone)(Clone) (Target) On:
+        EnemyRanged
+
+        Setting Target: Target(Clone)(Clone) (Target) On: EnemySiege
+
+        Setting
+        Target: Target(Clone)(Clone) (Target) On: UnitDeck
+
+        Setting Target:
+        Target(Clone)(Clone) (Target) On: PowerDeck
+
+        Setting Target: Target(Clone)(Clone)
+        (Target) On: KingDeck
+
+        Setting Target: Target(Clone)(Clone) (Target)
+        On: UnitGraveyard
+
+        Setting Target: Target(Clone)(Clone) (Target)
+        On: PowerGraveyard
+
+        Setting Target: Target(Clone)(Clone) (Target)
+        On: KingGraveyard
+
+        Setting Target: Target(Clone)(Clone) (Target)
+        On: PlayerMeleeKing
+
+        Setting Target: Target(Clone)(Clone) (Target)
+        On: PlayerRangedKing
+
+        Setting Target: Target(Clone)(Clone) (Target)
+        On: PlayerSiegeKing
+
+        Setting Target: Target(Clone)(Clone) (Target)
+        On: EnemyMeleeKing
+
+        Setting Target: Target(Clone)(Clone) (Target)
+        On: EnemyRangedKing
+
+        Setting Target: Target(Clone)(Clone) (Target)
+        On: EnemySiegeKing
+
+        Setting Target: Target(Clone)(Clone) (Target)
+        On: PlayerSetAside
+
+        Setting Target: Target(Clone)(Clone) (Target)
+        On: EnemySetAside
+
+        Setting Target: Target(Clone)(Clone) (Target)
+        On: ChooseN
 
 '
-      stacktrace: 'Areas.updateScreenBounds () (at Assets/Scripts/Areas.cs:46)
-
-        Areas.Awake
-        () (at Assets/Scripts/Areas.cs:35)
+      stacktrace: 'Score.Awake () (at Assets/Scripts/Score.cs:30)
 
         UnityEngine.Object:Instantiate(GameObject,
         Vector3, Quaternion)
 
-        Deck:Awake() (at Assets/Scripts/Deck.cs:23)
-
-        UnityEngine.Object:Instantiate(GameObject,
-        Vector3, Quaternion)
-
-        Player:Awake() (at Assets/Scripts/Player.cs:47)
-
-        UnityEngine.Object:Instantiate(GameObject,
-        Vector3, Quaternion)
-
-        Game:Awake() (at Assets/Scripts/Game.cs:79)
+        Game:Awake() (at Assets/Scripts/Game.cs:91)
 
         UnityEngine.GameObject:AddComponent()
 
@@ -2858,7 +3232,7 @@ MonoBehaviour:
         UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator,
         IntPtr)
 
-
+        
 
 '
       notRunnable: 0
@@ -2869,35 +3243,13 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1001
       parentUniqueId: PlayTests.dll/[PlayTests][TestDecoys][suite]
-    m_ResultText: 'TestDecoysWithEnumeratorPasses (0.050s)
-
-      ---
-
-      Unhandled
-      log message: ''[Exception] NullReferenceException: Object reference not set
-      to an instance of an object''. Use UnityEngine.TestTools.LogAssert.Expect
-
-      ---
-
-      Areas.updateScreenBounds
-      () (at Assets/Scripts/Areas.cs:46)
-
-      Areas.Awake () (at Assets/Scripts/Areas.cs:35)
+    m_ResultText: 
+    m_ResultStacktrace: 'Score.Awake () (at Assets/Scripts/Score.cs:30)
 
       UnityEngine.Object:Instantiate(GameObject,
       Vector3, Quaternion)
 
-      Deck:Awake() (at Assets/Scripts/Deck.cs:23)
-
-      UnityEngine.Object:Instantiate(GameObject,
-      Vector3, Quaternion)
-
-      Player:Awake() (at Assets/Scripts/Player.cs:47)
-
-      UnityEngine.Object:Instantiate(GameObject,
-      Vector3, Quaternion)
-
-      Game:Awake() (at Assets/Scripts/Game.cs:79)
+      Game:Awake() (at Assets/Scripts/Game.cs:91)
 
       UnityEngine.GameObject:AddComponent()
 
@@ -2907,72 +3259,7 @@ MonoBehaviour:
       UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator,
       IntPtr)
 
-      ---
-
-      Player creating - P1
-
-      NullReferenceException:
-      Object reference not set to an instance of an object
-
-      NullReferenceException:
-      Object reference not set to an instance of an object
-
-      NullReferenceException:
-      Object reference not set to an instance of an object
-
-      setting scale Hieght
-
-      NullReferenceException:
-      Object reference not set to an instance of an object
-
-      Player creating
-      - P1
-
-      NullReferenceException: Object reference not set to an instance
-      of an object
-
-      NullReferenceException: Object reference not set to an
-      instance of an object
-
-      NullReferenceException: Object reference not set
-      to an instance of an object
-
-      setting scale Hieght
-
-      NullReferenceException:
-      Object reference not set to an instance of an object
-
-      NullReferenceException:
-      Object reference not set to an instance of an object'
-    m_ResultStacktrace: 'Areas.updateScreenBounds () (at Assets/Scripts/Areas.cs:46)
-
-      Areas.Awake
-      () (at Assets/Scripts/Areas.cs:35)
-
-      UnityEngine.Object:Instantiate(GameObject,
-      Vector3, Quaternion)
-
-      Deck:Awake() (at Assets/Scripts/Deck.cs:23)
-
-      UnityEngine.Object:Instantiate(GameObject,
-      Vector3, Quaternion)
-
-      Player:Awake() (at Assets/Scripts/Player.cs:47)
-
-      UnityEngine.Object:Instantiate(GameObject,
-      Vector3, Quaternion)
-
-      Game:Awake() (at Assets/Scripts/Game.cs:79)
-
-      UnityEngine.GameObject:AddComponent()
-
-      <TestDecoysWithEnumeratorPasses>d__0:MoveNext()
-      (at Assets/Tests/PlayTests/TestDecoys.cs:17)
-
-      UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator,
-      IntPtr)
-
-
+      
 
 '
     m_TestListState:

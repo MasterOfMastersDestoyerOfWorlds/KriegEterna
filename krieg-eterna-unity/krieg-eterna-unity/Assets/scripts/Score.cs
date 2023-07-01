@@ -25,7 +25,7 @@ public class Score : MonoBehaviour
         else
             currentPlayer = 2;
 
-        string playerDeckName = "Player" + currentPlayer + "Deck";
+        string playerDeckName = "Deck(Clone)";
         deckObject = GameObject.Find(playerDeckName);
         deck = deckObject.GetComponent<Deck>();
 
