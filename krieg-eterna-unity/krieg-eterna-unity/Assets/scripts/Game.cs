@@ -72,6 +72,10 @@ public class Game : MonoBehaviour
 
     private GameObject giveUpButtonObject;
 
+    public static readonly int NUM_POWERS = 4;
+    public static readonly int NUM_UNITS = 9;
+    public static readonly int NUM_KINGS = 1;
+
     Card LastCardPlayed;
 
     void Awake()
@@ -144,7 +148,7 @@ public class Game : MonoBehaviour
         List<string> enemyPower = new List<string>();
         List<string> enemyUnit = new List<string>();
         List<string> enemyKing = new List<string>();
-        deck.buildDeck(4, 9, 1, choosePower, chooseUnit, chooseKing, chooseUnitGraveyard, choosePowerGraveyard, enemyPower, enemyUnit, enemyKing);
+        deck.buildDeck(NUM_POWERS, NUM_UNITS, NUM_KINGS, choosePower, chooseUnit, chooseKing, chooseUnitGraveyard, choosePowerGraveyard, enemyPower, enemyUnit, enemyKing);
         deck.buildTargets();
         hasChosenStart = false;
 
