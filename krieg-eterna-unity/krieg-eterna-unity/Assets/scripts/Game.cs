@@ -208,10 +208,8 @@ public class Game : MonoBehaviour
         Vector3 mouseRelativePosition = new Vector3(0f, 0f, 0f);
         if (Mouse.current != null)
         {
+            Debug.Log("Mouse Position BeforeUpdate: " + Mouse.current.position.ReadValue());
             mouseRelativePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        }
-        if(Mouse.current != null ){
-            Debug.Log("clicked!: " + Mouse.current.leftButton.wasPressedThisFrame);
         }
         mouseRelativePosition.z = 0f;
         if (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame)
@@ -244,11 +242,11 @@ public class Game : MonoBehaviour
                 state = State.FREE;
                 return;
             }
-            Debug.Log("Click Registered");
+            Debug.Log("Click Registered! State: " + state);
             bool clickOnTarget = false;
             Row playerHand = activeDeck.getRowByType(RowEffected.PlayerHand);
-
-            if (playerHand.target.ContainsMouse(mouseRelativePosition) && playerHand.Count > 0 && state != State.MULTISTEP && state != State.CHOOSE_N)
+            
+            if (playerHand.Count > 0 && state != State.MULTISTEP && state != State.CHOOSE_N)
             {
                 clickOnTarget = true;
                 Debug.Log("Click Registered On Deck");

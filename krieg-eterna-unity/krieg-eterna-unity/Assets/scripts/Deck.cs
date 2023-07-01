@@ -180,6 +180,38 @@ public class Deck : MonoBehaviour
         }
     }
 
+    public Card dealCardToRow(string cardName, RowEffected row)
+    {
+
+        Row powers = getRowByType(RowEffected.PowerDeck);
+        Row units = getRowByType(RowEffected.UnitDeck);
+        Row kings = getRowByType(RowEffected.KingDeck);
+        Row deck;
+        if (powers.ContainsCard(cardName))
+        {
+            deck = powers;
+        }
+        else if (units.ContainsCard(cardName))
+        {
+            deck = units;
+        }
+        else if (kings.ContainsCard(cardName))
+        {
+            deck = kings;
+        }
+        else
+        {
+            return null;
+        }
+        Card card = deck.getCardByName(cardName);
+        deck.Remove(card);
+        card.loadMaterial();
+        card.resetSelectionCounts();
+        getRowByType(row).Add(card);
+        return card;
+
+    }
+
     public void dealListToRow(List<string> choosePower, List<string> chooseUnit, List<string> chooseKing, RowEffected row)
     {
         Row powers = getRowByType(RowEffected.PowerDeck);
@@ -780,6 +812,19 @@ public class Deck : MonoBehaviour
     private static bool isWeather(Card c)
     {
         return c.cardType == CardType.Weather;
+    }
+
+    public Row getCardRow(Card card)
+    {
+        foreach (Row r in rows)
+        {
+
+            if (r.Contains(card))
+            {
+                return r;
+            }
+        }
+        return null;
     }
 
     public void applyWeatherEffect(float rowMultiple, RowEffected row)

@@ -44,7 +44,7 @@
      <Compile Include="Assets\RenderScripts\TemplatePass.cs" />
      <Compile Include="Assets\Resources\New Controls.cs" />
      <Compile Include="Assets\RenderScripts\StencilPass.cs" />
-     <None Include="Assets\Resources\Materials\Outline.shader" />
+     <None Include="Assets\Resources\Materials\Blur.shader" />
      <None Include="Assets\Resources\Materials\StencilMask.shader" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
