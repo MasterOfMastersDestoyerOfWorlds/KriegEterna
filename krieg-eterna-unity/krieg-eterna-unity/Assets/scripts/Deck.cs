@@ -121,16 +121,19 @@ public class Deck : MonoBehaviour
                 this.sendCardToGraveyard(powers, RowEffected.None, card);
             }
         }
-        dealHand(numPowers, numUnits, numKings, choosePower, chooseUnit, chooseKing, powers, units, kings, RowEffected.PlayerHand);
-        dealHand(numPowers - 2, numUnits - 1, numKings, enemyPower, enemyUnit, enemyKing, powers, units, kings, RowEffected.EnemyHand);
+        dealHand(numPowers, numUnits, numKings, choosePower, chooseUnit, chooseKing, RowEffected.PlayerHand);
+        dealHand(numPowers - 2, numUnits - 1, numKings, enemyPower, enemyUnit, enemyKing, RowEffected.EnemyHand);
         getRowByType(RowEffected.EnemyHand).setVisibile(false);
         updateRowCenters();
     }
 
     public void dealHand(int numPowers, int numUnits, int numKings,
-    List<string> choosePower, List<string> chooseUnit, List<string> chooseKing,
-    Row powers, Row units, Row kings, RowEffected playerHand)
+    List<string> choosePower, List<string> chooseUnit, List<string> chooseKing, RowEffected playerHand)
     {
+
+        Row powers = getRowByType(RowEffected.PowerDeck);
+        Row units = getRowByType(RowEffected.UnitDeck);
+        Row kings = getRowByType(RowEffected.KingDeck);
         int numCards = numPowers + numUnits + numKings;
         while (numCards > 0)
         {
@@ -177,17 +180,60 @@ public class Deck : MonoBehaviour
         }
     }
 
+    public void dealListToRow(List<string> choosePower, List<string> chooseUnit, List<string> chooseKing, RowEffected row)
+    {
+        Row powers = getRowByType(RowEffected.PowerDeck);
+        Row units = getRowByType(RowEffected.UnitDeck);
+        Row kings = getRowByType(RowEffected.KingDeck);
+        Card card = baseCard;
+        for (int i = 0; i < choosePower.Count; i++)
+        {
+            card = powers[0];
+            if (choosePower.Count > 0)
+            {
+                card = powers.getCardByName(choosePower[0]);
+                choosePower.RemoveAt(0);
+            }
+            powers.Remove(card);
+        }
+        for (int i = 0; i < chooseUnit.Count; i++)
+        {
+            card = units[0];
+            if (chooseUnit.Count > 0)
+            {
+                card = units.getCardByName(chooseUnit[0]);
+                chooseUnit.RemoveAt(0);
+            }
+            units.Remove(card);
+        }
+        for (int i = 0; i < chooseKing.Count; i++)
+        {
+            card = kings[0];
+            if (chooseKing.Count > 0)
+            {
+                card = kings.getCardByName(chooseKing[0]);
+                chooseKing.RemoveAt(0);
+            }
+            kings.Remove(card);
+        }
+        card.loadMaterial();
+        getRowByType(row).Add(card);
+    }
+
     public void resetDeck()
-    {   
+    {
         List<Row> playedRows = getRowsByType(RowEffected.Played);
         List<Card> playedCards = getCardsInRowByType(RowEffected.Played);
-        foreach(Row r in playedRows){
-            foreach(Card c in playedCards){
-                if(r.Contains(c)){
+        foreach (Row r in playedRows)
+        {
+            foreach (Card c in playedCards)
+            {
+                if (r.Contains(c))
+                {
                     resetCard(r, c);
                 }
 
-                
+
             }
         }
     }
@@ -195,7 +241,8 @@ public class Deck : MonoBehaviour
     {
         currentRow.Remove(c);
         c.setTargetActive(false);
-        foreach(Card attachment in c.attachments){
+        foreach (Card attachment in c.attachments)
+        {
             resetCard(currentRow, c);
         }
         c.attachments.RemoveAll(delegate (Card c) { return true; });
@@ -393,7 +440,8 @@ public class Deck : MonoBehaviour
         List<Card> cardList = new List<Card>();
         foreach (Row row in rows)
         {
-            foreach(Card c in row){
+            foreach (Card c in row)
+            {
                 cardList.Add(c);
             }
         }

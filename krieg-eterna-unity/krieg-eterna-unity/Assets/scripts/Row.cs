@@ -50,6 +50,18 @@ public class Row : List<Card>
         return null;
     }
 
+    public bool ContainsCard(string cardName)
+    {
+        foreach (Card c in this)
+        {
+            if (c.cardName.Equals(cardName))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int maxStrength()
     {
         int max = 0;

@@ -7,9 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class TestDecoys
 {
-    // A Test behaves as an ordinary method
-    // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-    // `yield return null;` to skip a frame.
     bool sceneLoaded;
     GameObject gameObject;
     Game game;
@@ -70,8 +67,20 @@ public class TestDecoys
     [UnityTest]
     public IEnumerator GameLoads()
     {
-        deck.dealHand(Game.NUM_POWERS, Game.NUM_UNITS, Game.NUM_KINGS, choosePower, chooseUnit, chooseKing, powers, units, kings, RowEffected.PlayerHand);
+        deck.dealHand(Game.NUM_POWERS, Game.NUM_UNITS, Game.NUM_KINGS, choosePower, chooseUnit, chooseKing, RowEffected.PlayerHand);
         Assert.AreEqual(14, deck.getRowByType(RowEffected.PlayerHand).Count);
+        yield return null;
+    }
+
+    [UnityTest]
+    public IEnumerator Jester()
+    {
+        string cardName = "Jester";
+        choosePower.Add("Jester");
+        enemyUnit.Add("Knight");
+        deck.dealListToRow(enemyPower, enemyUnit, enemyKing, RowEffected.EnemyMelee);
+        deck.dealHand(Game.NUM_POWERS, Game.NUM_UNITS, Game.NUM_KINGS, choosePower, chooseUnit, chooseKing, RowEffected.PlayerHand);
+        Assert.AreEqual(true, deck.getRowByType(RowEffected.PlayerHand).ContainsCard(cardName));
         yield return null;
     }
 }
