@@ -304,6 +304,7 @@ public class Game : MonoBehaviour
                     for (int j = 0; j < row.Count; j++)
                     {
                         Card selected = row[j];
+                        Debug.Log("Card Location: " + selected.transform.position + " Mouse: " + mouseRelativePosition);
                         if (selected.ContainsMouse(mouseRelativePosition))
                         {
                             Debug.Log("Clicked on Card:" + selected.cardName);
@@ -322,7 +323,6 @@ public class Game : MonoBehaviour
                                 else
                                 {
                                     ShowTargets(activeCard, player);
-                                    activeDeck.disactiveAllInDeck(true);
                                 }
                             }
                             clickOnTarget = true;

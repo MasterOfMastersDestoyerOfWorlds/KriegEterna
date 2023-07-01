@@ -102,18 +102,48 @@ namespace KriegTests
         {
             yield return new TestCase
             {
-                cardName = "Jester",
+                testName = "Jester",
                 clicks = new List<Click>{
                 new Click("Jester", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemyMelee, true),
                 new Click("Knight", RowEffected.EnemyMelee, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
             }
             };
+
             yield return new TestCase
             {
-                cardName = "Retreat",
+                testName = "Retreat",
                 clicks = new List<Click>{
                 new Click("Retreat", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
                 new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
+            }
+            };
+
+            yield return new TestCase
+            {
+                testName = "Sack",
+                clicks = new List<Click>{
+                new Click("Sack", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemyMelee, true),
+                new Click("Knight", RowEffected.EnemyMelee, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
+            }
+            };
+
+            yield return new TestCase
+            {
+                testName = "Shipwreck",
+                clicks = new List<Click>{
+                new Click("Shipwreck", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
+                new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
+                new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerHand, RowEffected.PlayerHand, true),
+                new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
+            }
+            };
+            yield return new TestCase
+            {
+                testName = "ShipwreckHalfAvailable",
+                clicks = new List<Click>{
+                new Click("Shipwreck", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
+                new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
+                new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
             }
             };
         }
@@ -121,12 +151,12 @@ namespace KriegTests
 
         public struct TestCase
         {
-            public string cardName;
+            public string testName;
             public List<Click> clicks;
 
             public override string ToString()
             {
-                return $"{cardName}";
+                return $"{testName}";
             }
         }
 
@@ -155,7 +185,7 @@ namespace KriegTests
         [UnityTest]
         public IEnumerator TestCard([ValueSource(nameof(TestCases))] TestCase testCase)
         {
-            Debug.Log("Starting Test:" + testCase.cardName);
+            Debug.Log("Starting Test:" + testCase.testName);
             List<Click> clicks = testCase.clicks;
             //Setup Cards in row
             List<string> dealtCards = new List<string>();
