@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using System;
+using UnityEngine.InputSystem;
 
 // TODO - check if SetActive method of GameObject objects works - yes? Correct system of transparent object
 // TODO - areas size matched to deck size so player can disactivate card clicking into deck area at the edges
@@ -15,7 +16,7 @@ using System;
 
 public class Game : MonoBehaviour
 {
-    private Card activeCard;
+    public Card activeCard;
     private Card activeShowingCard;
     private static int activePlayerNumber;
     public static State state = State.FREE;
@@ -80,19 +81,19 @@ public class Game : MonoBehaviour
 
     void Awake()
     {
-        GameObject camera = GameObject.Instantiate( Resources.Load("Prefabs/Main Camera") as GameObject, new Vector3(0f,0f,-100f), transform.rotation);
-        camera.tag="MainCamera";
+        GameObject camera = GameObject.Instantiate(Resources.Load("Prefabs/Main Camera") as GameObject, new Vector3(0f, 0f, -100f), transform.rotation);
+        camera.tag = "MainCamera";
         Debug.Log("Made Camera");
-        player2Object = GameObject.Instantiate( Resources.Load("Prefabs/Player") as GameObject, transform.position, transform.rotation);
-        var player1Object = GameObject.Instantiate( Resources.Load("Prefabs/Player") as GameObject, transform.position, transform.rotation);
+        player2Object = GameObject.Instantiate(Resources.Load("Prefabs/Player") as GameObject, transform.position, transform.rotation);
+        var player1Object = GameObject.Instantiate(Resources.Load("Prefabs/Player") as GameObject, transform.position, transform.rotation);
         player1 = player1Object.GetComponent<Player>();
         player2 = player2Object.GetComponent<Player>();
 
-        deskObject = GameObject.Instantiate( Resources.Load("Prefabs/Desk") as GameObject, transform.position, transform.rotation);
+        deskObject = GameObject.Instantiate(Resources.Load("Prefabs/Desk") as GameObject, transform.position, transform.rotation);
         desk = deskObject.GetComponent<Desk>();
 
 
-        GameObject.Instantiate( Resources.Load("Prefabs/Canvas") as GameObject, transform.position, transform.rotation);
+        GameObject.Instantiate(Resources.Load("Prefabs/Canvas") as GameObject, transform.position, transform.rotation);
 
 
         playerDownNameTextObject = GameObject.Find("DownPlayerName");
@@ -100,6 +101,7 @@ public class Game : MonoBehaviour
 
         playerUpNameTextObject = GameObject.Find("UpPlayerName");
         playerUpNameText = playerUpNameTextObject.GetComponent<Text>();
+
 
         score1Object = GameObject.Find("Score1");
         score2Object = GameObject.Find("Score2");
@@ -187,7 +189,7 @@ public class Game : MonoBehaviour
         reorganizeGroup();
     }
 
-    void Update()
+    public void Update()
     {
         // Updating numberOfCards
         // ---------------------------------------------------------------------------------------------------------------
@@ -203,9 +205,16 @@ public class Game : MonoBehaviour
         // Picking card
         // ---------------------------------------------------------------------------------------------------------------
         // vector of actual mouse position
-        Vector3 mouseRelativePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mouseRelativePosition = new Vector3(0f, 0f, 0f);
+        if (Mouse.current != null)
+        {
+            mouseRelativePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        }
+        if(Mouse.current != null ){
+            Debug.Log("clicked!: " + Mouse.current.leftButton.wasPressedThisFrame);
+        }
         mouseRelativePosition.z = 0f;
-        if (Input.GetMouseButtonDown(1))
+        if (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame)
         {
             if (state != State.MULTISTEP && state != State.CHOOSE_N)
             {
@@ -227,7 +236,7 @@ public class Game : MonoBehaviour
                 }
             }
         }
-        if (Input.GetMouseButtonDown(0) && state != State.BLOCKED)
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame && state != State.BLOCKED)
         {
             if (state == State.REVEAL)
             {
@@ -341,6 +350,8 @@ public class Game : MonoBehaviour
             }
         }
     }
+
+
 
     public void Play(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
