@@ -208,7 +208,6 @@ public class Game : MonoBehaviour
         Vector3 mouseRelativePosition = new Vector3(0f, 0f, 0f);
         if (Mouse.current != null)
         {
-            Debug.Log("Mouse Position BeforeUpdate: " + Mouse.current.position.ReadValue());
             mouseRelativePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         }
         mouseRelativePosition.z = 0f;
@@ -245,16 +244,17 @@ public class Game : MonoBehaviour
             Debug.Log("Click Registered! State: " + state);
             bool clickOnTarget = false;
             Row playerHand = activeDeck.getRowByType(RowEffected.PlayerHand);
-            
+
             if (playerHand.Count > 0 && state != State.MULTISTEP && state != State.CHOOSE_N)
             {
-                clickOnTarget = true;
-                Debug.Log("Click Registered On Deck");
                 for (int i = 0; i < playerHand.Count; i++)
                 {
                     Card c = playerHand[i];
                     if (c.ContainsMouse(mouseRelativePosition))
                     {
+
+                        Debug.Log("Click Registered On Deck");
+                        clickOnTarget = true;
                         Debug.Log("clicked on: " + c.ToString() + " isPlayable: " + c.isPlayable(activeDeck, player));
                         if (c.isTargetActive() && (CardModel.isUnit(c.cardType) || c.isPlayable(activeDeck, player)))
                         {
@@ -271,67 +271,77 @@ public class Game : MonoBehaviour
                         activeDeck.disactiveAllInDeck(false);
                         activeCard = c;
                         ShowTargets(c, player);
+                        
+                        Debug.Log("Setting Card Active: " + c.cardName);
                         activeCard.setBaseLoc();
                         activeCard.transform.position += new Vector3(0, Card.getBaseHeight() / 3, 0f);
                         state = State.ACTIVE_CARD;
                     }
                 }
             }
-            List<Row> activeRowTargets = activeDeck.getActiveRowTargets();
-            for (int i = 0; i < activeRowTargets.Count; i++)
+            if (!clickOnTarget)
             {
-                Row row = activeRowTargets[i];
-                if (row.target.ContainsMouse(mouseRelativePosition))
+                List<Row> activeRowTargets = activeDeck.getActiveRowTargets();
+                for (int i = 0; i < activeRowTargets.Count; i++)
                 {
-                    clickOnTarget = true;
-                    Play(activeCard, row, null, player);
-                    if (state != State.MULTISTEP)
+                    Row row = activeRowTargets[i];
+                    if (row.target.ContainsMouse(mouseRelativePosition))
                     {
-                        activeDeck.disactiveAllInDeck(false);
-                    }
-                    else
-                    {
-                        activeDeck.disactiveAllInDeck(true);
-                        ShowTargets(activeCard, player);
+                        clickOnTarget = true;
+                        Play(activeCard, row, null, player);
+                        if (state != State.MULTISTEP)
+                        {
+                            activeDeck.disactiveAllInDeck(false);
+                        }
+                        else
+                        {
+                            activeDeck.disactiveAllInDeck(true);
+                            ShowTargets(activeCard, player);
+                        }
+                        break;
                     }
                 }
             }
-            for (int i = 0; i < activeDeck.rows.Count; i++)
+            if (!clickOnTarget)
             {
-                Row row = activeDeck.rows[i];
-                if (row.cardTargetsActivated)
+                for (int i = 0; i < activeDeck.rows.Count; i++)
                 {
-                    for (int j = 0; j < row.Count; j++)
+                    Row row = activeDeck.rows[i];
+                    if (row.cardTargetsActivated)
                     {
-                        Card selected = row[j];
-                        Debug.Log("Card Location: " + selected.transform.position + " Mouse: " + mouseRelativePosition);
-                        if (selected.ContainsMouse(mouseRelativePosition))
+                        for (int j = 0; j < row.Count; j++)
                         {
-                            Debug.Log("Clicked on Card:" + selected.cardName);
-                            if (state == State.CHOOSE_N)
+                            Card selected = row[j];
+                            Debug.Log("Card: " + selected.cardName + " Contains: " + selected.ContainsMouse(mouseRelativePosition) + "Card Location: " + selected.transform.position + " Mouse: " + mouseRelativePosition);
+                            if (selected.ContainsMouse(mouseRelativePosition))
                             {
-                                Debug.Log("selected!" + selected.cardName);
-                                chooseCard(selected);
-                            }
-                            else
-                            {
-                                Play(activeCard, row, selected, player);
-                                if (state != State.MULTISTEP)
+                                Debug.Log("Clicked on Card:" + selected.cardName);
+                                if (state == State.CHOOSE_N)
                                 {
-                                    activeDeck.disactiveAllInDeck(false);
+                                    Debug.Log("selected!" + selected.cardName);
+                                    chooseCard(selected);
                                 }
                                 else
                                 {
-                                    ShowTargets(activeCard, player);
+                                    Play(activeCard, row, selected, player);
+                                    if (state != State.MULTISTEP)
+                                    {
+                                        activeDeck.disactiveAllInDeck(false);
+                                    }
+                                    else
+                                    {
+                                        ShowTargets(activeCard, player);
+                                    }
                                 }
+                                clickOnTarget = true;
                             }
-                            clickOnTarget = true;
+                        }
+                        if(clickOnTarget){
+                            break;
                         }
                     }
                 }
             }
-
-            Debug.Log("Click on target: " + clickOnTarget);
             if (!clickOnTarget)
             {
                 if (state != State.MULTISTEP && state != State.CHOOSE_N)
@@ -347,6 +357,7 @@ public class Game : MonoBehaviour
                 reorganizeGroup();
             }
         }
+        Debug.Log("--------------------------------------------------------------------");
     }
 
 

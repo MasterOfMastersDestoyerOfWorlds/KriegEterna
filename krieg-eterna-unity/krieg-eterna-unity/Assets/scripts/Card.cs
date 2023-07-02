@@ -105,8 +105,10 @@ public class Card : MonoBehaviour
 
     public bool ContainsMouse(Vector3 mousePos)
     {
-        mousePos.z = this.transform.position.z;
-        return this.cardColider.bounds.Contains(mousePos);
+        Vector3 pos = new Vector3(mousePos.x, mousePos.y, this.cardColider.bounds.center.z);
+        this.cardColider.offset = new Vector2(0f,0f);
+        Debug.Log(pos + " " + this.cardColider.bounds.center);
+        return this.cardColider.bounds.Contains(pos);
     }
 
 
@@ -227,7 +229,6 @@ public class Card : MonoBehaviour
 
     public void setTargetActive(bool state)
     {
-        Debug.Log("Setting target: " + state);
         Material material = getMaterial();
         material.SetInt("_Flash", state ? 1 : 0);
         this.targetActive = state;

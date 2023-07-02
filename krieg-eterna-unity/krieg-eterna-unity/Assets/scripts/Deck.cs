@@ -325,7 +325,6 @@ public class Deck : MonoBehaviour
 
     public void disactiveAllInDeck(bool multistep)
     {
-        Debug.Log("Disactivating all: " + multistep.ToString());
         foreach (Row row in rows)
         {
             foreach (Card c in row)

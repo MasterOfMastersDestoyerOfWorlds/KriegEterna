@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 868.8
   m_ShowMode: 4
-  m_Title: Test Runner
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -139,7 +139,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 475.2
+    width: 836.8
     height: 818.8
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
@@ -164,7 +164,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 475.2
+    width: 836.8
     height: 353.6
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
@@ -187,10 +187,10 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 115.2
+    width: 198.4
     height: 353.6
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -206,25 +206,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneView
+  m_Name: GameView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 115.2
+    x: 198.4
     y: 0
-    width: 360
+    width: 638.4
     height: 353.6
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 16}
+  m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 16}
   - {fileID: 14}
   - {fileID: 17}
   - {fileID: 18}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -235,23 +235,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
     x: 0
     y: 353.6
-    width: 475.2
+    width: 836.8
     height: 465.19998
-  m_MinSize: {x: 231, y: 271}
-  m_MaxSize: {x: 10001, y: 10021}
-  m_ActualView: {fileID: 19}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 19}
   - {fileID: 20}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -269,14 +269,14 @@ MonoBehaviour:
   - {fileID: 13}
   m_Position:
     serializedVersion: 2
-    x: 475.2
+    x: 836.8
     y: 0
-    width: 1060.8
+    width: 699.2
     height: 818.8
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 85
+  controlID: 108
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -294,10 +294,10 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1060.8
-    height: 341.6
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+    width: 699.2
+    height: 461.6
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -319,11 +319,11 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 341.6
-    width: 1060.8
-    height: 477.19998
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+    y: 461.6
+    width: 699.2
+    height: 357.19998
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 22}
   m_Panes:
   - {fileID: 22}
@@ -349,9 +349,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 115.200005
+    x: 198.40001
     y: 73.6
-    width: 358
+    width: 636.4
     height: 332.6
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -407,23 +407,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 358
+      width: 636.4
       height: 311.6
-    m_Scale: {x: 0.23307292, y: 0.23307292}
-    m_Translation: {x: 179, y: 155.8}
+    m_Scale: {x: 0.36064816, y: 0.36064816}
+    m_Translation: {x: 318.2, y: 155.8}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -768
-      y: -668.4603
-      width: 1536
-      height: 1336.9207
+      x: -882.3004
+      y: -432
+      width: 1764.6008
+      height: 864
     m_MinimalGUI: 1
-  m_defaultScale: 0.23307292
-  m_LastWindowPixelSize: {x: 447.5, y: 415.75}
+  m_defaultScale: 0.36064816
+  m_LastWindowPixelSize: {x: 795.5, y: 415.75}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -451,7 +451,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 73.6
-    width: 114.2
+    width: 197.4
     height: 332.6
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -466,9 +466,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 783cfeff
       m_LastClickedID: 0
-      m_ExpandedIDs: 54a7fbff00a8fbff3ebbfbff64bdfbff10befbff4cd1fbffded1fbff1ed5fbff54dafbff00dbfbff46eefbff3804fcffe404fcff3618fcff981afcff441bfcff822efcffa830fcff5431fcffa444fcff4645fcffb448fcff1e4bfcffd24bfcffbe4cfcff944dfcff404efcff7e61fcff3865fcffe465fcff2079fcffb279fcffe67cfcff7c7dfcff0682fcff9882fcffcc85fcff6a86fcffb489fcff4e8afcfffa8afcffd09dfcff769efcff229ffcff60b2fcfffab2fcffa6b3fcff90c6fcff62cdfcff0ecefcffece0fcff7ee1fcffb2e4fcff50e5fcff86e8fcff84f2fcff30f3fcff7206fdffac08fdff5809fdff7a1cfdff0c1dfdff4020fdffd220fdff2024fdff5826fdff0427fdff283afdffbc3dfdff683efdffe251fdff4e68fdff966bfdff286cfdff5c6ffdffee6ffdff2c73fdff1e87fdffca87fdff029bfdff149efdffc09efdfff6b1fdff94b2fdffdeb5fdff6cb9fdff18bafdff50cdfdfff2d1fdff9ed2fdffc0e5fdff88e6fdffbee9fdfff0ebfdff9cecfdffcafffdff080afeffb40afeffd61dfeff681efeffb021feff4222feff8025feff6639feff123afeff544dfeffc24ffeff6e50feff9063feff9266feffe469feff4880fefff480feff2c94feffc094feff6099feff929bfeff3e9cfeff76affeff9cb1feff48b2feff80c5feffa6c7feff52c8feffe6dbfeff84dcfeffc4dffeff421affffee1affff122effff7430ffff2031ffff5844ffff7e46ffff2a47ffff625affff885cffff345dffff6a70fffffc70ffff3274ffff3c7affffe87affff0c8effff7a90ffff2691ffff54a4ffff86a6ffff32a7ffff70baffff4acffffff6cfffff82e3ffffa8e5ffff56e6ffff3af9ffff1cfbffff
+      m_ExpandedIDs: b035feffec53feff7e54feffe657feffda6cfeff886dfeff2c86feff5688feffe888feff1e8cfeff468efeff8e91feff2092feff7495feffb6a2feff62a3feffcab6feff64b7feff10b8fefff2cafeff6ecdfeff1acefeff00e1feff92e1feffdce4feff08e7feffb4e7feff9cfafeff92fefeff3efffeffbc12ffff4e13ffff8416ffff5227ffff9427ffffea27ffffe831ffffc835ffff1a39ffffc639ffffb03affff4a3cfffff63cffff4650ffffd850ffff2c54ffffb469ffff606affff867effff187fffff6282ffff9484ffff4085ffff5299ffffe499ffff189dffffb69dffffeca0ffff1ea3ffffcaa3ffff08b7ffff24b9ffffd0b9ffff10cdffff38cfffffe4cfffff22e3ffff48e5fffff6e5ffff3af9ffff1cfbfffff4ffffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -512,9 +512,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 115.200005
+    x: 198.40001
     y: 73.6
-    width: 358
+    width: 636.4
     height: 332.6
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -2469,7 +2469,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 427.2
-    width: 474.2
+    width: 835.8
     height: 444.19998
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -2492,7 +2492,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Tests/PlayTests
+    - Assets/Resources
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -2500,16 +2500,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Tests/PlayTests
+  - Assets/Resources
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\andre\KriegEterna\krieg-eterna-unity\krieg-eterna-unity
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 83.49945}
-    m_SelectedIDs: be790000
-    m_LastClickedID: 31166
-    m_ExpandedIDs: 0000000074670000766700007867000000ca9a3bffffff7f
+    m_SelectedIDs: 72670000
+    m_LastClickedID: 26482
+    m_ExpandedIDs: 0000000070670000726700007467000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2537,7 +2537,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000746700007667000078670000
+    m_ExpandedIDs: 00000000706700007267000074670000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2565,7 +2565,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000d65a0000d65b00003e5d000000000000
+    m_ExpandedInstanceIDs: c6230000d65a0000d65b00003e5d00000000000036680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2581,7 +2581,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 13}
+      m_ClientGUIView: {fileID: 10}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -2615,7 +2615,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 427.2
-    width: 474.2
+    width: 835.8
     height: 444.19998
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -2647,10 +2647,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 475.2
+    x: 836.8
     y: 73.6
-    width: 1059.8
-    height: 320.6
+    width: 698.2
+    height: 440.6
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -2664,7 +2664,7 @@ MonoBehaviour:
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 
   m_PreviewResizer:
-    m_CachedPref: 160
+    m_CachedPref: -160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
@@ -2694,10 +2694,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 475.2
-    y: 415.2
-    width: 1059.8
-    height: 456.19998
+    x: 836.8
+    y: 535.2
+    width: 698.2
+    height: 336.19998
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -2709,22 +2709,22 @@ MonoBehaviour:
     m_SaveData: []
     m_OverlaysVisible: 1
   m_Spl:
-    ID: 123
-    splitterInitialOffset: 134.4
+    ID: 146
+    splitterInitialOffset: 234.8
     currentActiveSplitter: -1
     realSizes:
-    - 68
-    - 317.6
+    - 103.2
+    - 162.40001
     relativeSizes:
-    - 0.17634855
-    - 0.82365143
+    - 0.3887337
+    - 0.61126626
     minSizes:
     - 32
     - 32
     maxSizes:
     - 0
     - 0
-    lastTotalSize: 385.6
+    lastTotalSize: 265.6
     splitSize: 6
     xOffset: 0
     m_Version: 1
@@ -2741,7 +2741,7 @@ MonoBehaviour:
       name: krieg-eterna-unity
       fullName: krieg-eterna-unity
       resultStatus: 2
-      duration: 2.6431212
+      duration: 2.1837234
       messages: One or more child tests had errors
       output: 
       stacktrace: 
@@ -2752,12 +2752,12 @@ MonoBehaviour:
       categories: []
       parentId: 
       parentUniqueId: 
-    - id: 1004
-      uniqueId: '[PlayTests][C:/Users/andre/KriegEterna/krieg-eterna-unity/krieg-eterna-unity/Library/ScriptAssemblies/PlayTests.dll][suite]'
+    - id: 1006
+      uniqueId: '[PlayTests.dll][suite]'
       name: PlayTests.dll
       fullName: C:/Users/andre/KriegEterna/krieg-eterna-unity/krieg-eterna-unity/Library/ScriptAssemblies/PlayTests.dll
       resultStatus: 2
-      duration: 2.6143618
+      duration: 2.1714122
       messages: One or more child tests had errors
       output: 
       stacktrace: 
@@ -2768,12 +2768,12 @@ MonoBehaviour:
       categories: []
       parentId: 1000
       parentUniqueId: '[krieg-eterna-unity][suite]'
-    - id: 1001
-      uniqueId: PlayTests.dll/[PlayTests][TestDecoys][suite]
-      name: TestDecoys
-      fullName: TestDecoys
+    - id: 1007
+      uniqueId: PlayTests.dll/[PlayTests][KriegTests][suite]
+      name: KriegTests
+      fullName: KriegTests
       resultStatus: 2
-      duration: 2.6071808
+      duration: 2.166353
       messages: One or more child tests had errors
       output: 
       stacktrace: 
@@ -2782,14 +2782,30 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1004
-      parentUniqueId: '[PlayTests][C:/Users/andre/KriegEterna/krieg-eterna-unity/krieg-eterna-unity/Library/ScriptAssemblies/PlayTests.dll][suite]'
+      parentId: 1006
+      parentUniqueId: '[PlayTests.dll][suite]'
+    - id: 1001
+      uniqueId: PlayTests.dll/KriegTests/[PlayTests][KriegTests.TestCards][suite]
+      name: TestCards
+      fullName: KriegTests.TestCards
+      resultStatus: 2
+      duration: 2.1593003
+      messages: One or more child tests had errors
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1007
+      parentUniqueId: PlayTests.dll/[PlayTests][KriegTests][suite]
     - id: 1002
-      uniqueId: PlayTests.dll/TestDecoys/[PlayTests][TestDecoys.GameLoads]
+      uniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.GameLoads]
       name: GameLoads
-      fullName: TestDecoys.GameLoads
+      fullName: KriegTests.TestCards.GameLoads
       resultStatus: 1
-      duration: 2.2550492
+      duration: 1.5465413
       messages: 
       output: 'UnitySetup Base
 
@@ -2810,243 +2826,243 @@ MonoBehaviour:
         generating values
 
         Making
-        Card: Feint
+        Card: SunKing
 
-        Making Card: Knight9
+        Making Card: Knight11
 
-        Making Card: Death
-
-        Making
-        Card: Privateer2
-
-        Making Card: Officer3
-
-        Making Card: Plague
+        Making Card: Relic
 
         Making
-        Card: Knight10
+        Card: Wrath
 
-        Making Card: Calvary
+        Making Card: Feint
+
+        Making Card: Soldier2
+
+        Making
+        Card: Smuggler
+
+        Making Card: MusketLine
+
+        Making Card: EmperorDemise
+
+        Making
+        Card: Bowman
+
+        Making Card: Musketeer3
+
+        Making Card: Musketeer2
+
+        Making
+        Card: Calvary2
+
+        Making Card: Death2
+
+        Making Card: Sack
+
+        Making
+        Card: Juggernaut
+
+        Making Card: Calvary3
 
         Making Card: Redemption
 
         Making
-        Card: Storm
-
-        Making Card: TraitorKing
-
-        Making Card: Musketeer
-
-        Making
-        Card: Officer
-
-        Making Card: Bowman2
-
-        Making Card: Resurrection
-
-        Making
-        Card: Landsknecht
-
-        Making Card: Enlightenment
-
-        Making Card:
-        Grail
-
-        Making Card: Armada2
-
-        Making Card: Square
-
-        Making
-        Card: Tower
-
-        Making Card: Assault
-
-        Making Card: Knight5
-
-        Making
-        Card: Frost
-
-        Making Card: Smuggler
-
-        Making Card: Execution
-
-        Making
-        Card: Soldier2
-
-        Making Card: Sack
-
-        Making Card: Crusader
-
-        Making
-        Card: Militia
-
-        Making Card: Calvary3
+        Card: Riflemen
 
         Making Card: Offering
 
-        Making
-        Card: Fate
-
-        Making Card: Knight7
-
-        Making Card: Officer4
+        Making Card: Feast2
 
         Making
-        Card: Knight3
-
-        Making Card: Saboteur
-
-        Making Card: Fog
-
-        Making
-        Card: Privateer
-
-        Making Card: Mortar
-
-        Making Card: Knight6
-
-        Making
-        Card: EmperorDemise
-
-        Making Card: Fortress
-
-        Making Card:
-        Bowman
-
-        Making Card: Musketeer2
-
-        Making Card: Knight4
-
-        Making
-        Card: Spy
-
-        Making Card: Ruin
-
-        Making Card: Shipwreck
-
-        Making
-        Card: Feast3
-
-        Making Card: Musketeer3
-
-        Making Card: ClearSkies
-
-        Making
-        Card: Burden
-
-        Making Card: Catapult
-
-        Making Card: Wrath
-
-        Making
-        Card: Archer
+        Card: Mortar
 
         Making Card: Assault3
-
-        Making Card: Cannon2
-
-        Making
-        Card: Officer2
-
-        Making Card: Halberdier
-
-        Making Card: Knight11
-
-        Making
-        Card: Styx
-
-        Making Card: Cannon4
-
-        Making Card: Siege3
-
-        Making
-        Card: Minister
-
-        Making Card: LionKing
-
-        Making Card: Soldier
-
-        Making
-        Card: Privateer3
-
-        Making Card: Grenadier2
-
-        Making Card:
-        Grenadier
-
-        Making Card: Feast2
 
         Making Card: WinterKing
 
         Making
-        Card: Waterworks
+        Card: TraitorKing
 
-        Making Card: Cannon3
+        Making Card: Styx
 
-        Making Card: Calvary2
+        Making Card: Knight4
 
         Making
-        Card: Knight12
+        Card: Knight6
 
-        Making Card: MusketLine
+        Making Card: Storm
 
-        Making Card: Assault2
+        Making Card: Privateer
+
+        Making
+        Card: Retreat
+
+        Making Card: Halberdier
+
+        Making Card: Privateer2
 
         Making
         Card: Privateer4
 
-        Making Card: Death2
+        Making Card: Telescope
 
-        Making Card: TerrorKing
+        Making Card:
+        Fortress
 
-        Making
-        Card: SunKing
+        Making Card: Assassin
 
-        Making Card: Retreat
-
-        Making Card: Usury
+        Making Card: Archer2
 
         Making
-        Card: Archer2
+        Card: Militia
 
-        Making Card: Zealot
+        Making Card: Spy
 
-        Making Card: Riflemen
+        Making Card: LionKing
 
         Making
-        Card: Famine
+        Card: ClearSkies
 
-        Making Card: Scout
+        Making Card: Frost
+
+        Making Card: Tower
+
+        Making
+        Card: Knight5
+
+        Making Card: Resurrection
+
+        Making Card:
+        Feast3
+
+        Making Card: Landsknecht
+
+        Making Card: Cannon4
+
+        Making
+        Card: Knight9
+
+        Making Card: Archer
 
         Making Card: Jester
 
         Making
-        Card: Telescope
+        Card: Siege
 
-        Making Card: Siege2
+        Making Card: Plague
 
-        Making Card: War
+        Making Card: Crusader
+
+        Making
+        Card: Grail
+
+        Making Card: Minister
+
+        Making Card: Armada2
+
+        Making
+        Card: Knight7
+
+        Making Card: Knight
+
+        Making Card: Knight10
+
+        Making
+        Card: Cannon2
+
+        Making Card: Crusade
+
+        Making Card: Famine
+
+        Making
+        Card: Assault2
+
+        Making Card: Knight3
+
+        Making Card: Grenadier
+
+        Making
+        Card: Execution
+
+        Making Card: Ruin
+
+        Making Card: Zealot
+
+        Making
+        Card: TerrorKing
+
+        Making Card: Cannon3
+
+        Making Card: Scout
 
         Making
         Card: Cannon
 
-        Making Card: Relic
+        Making Card: Assault
 
-        Making Card: Crusade
-
-        Making
-        Card: Void
-
-        Making Card: Juggernaut
-
-        Making Card: Knight
+        Making Card: Officer
 
         Making
-        Card: Armada
+        Card: Bowman2
 
-        Making Card: Siege
+        Making Card: Fog
 
-        Making Card: Assassin
+        Making Card: Officer2
+
+        Making
+        Card: Calvary
+
+        Making Card: Fate
+
+        Making Card: Musketeer
+
+        Making
+        Card: Soldier
+
+        Making Card: Death
+
+        Making Card: Knight12
+
+        Making
+        Card: Burden
+
+        Making Card: Officer3
+
+        Making Card: Siege3
+
+        Making
+        Card: Siege2
+
+        Making Card: Officer4
+
+        Making Card: Void
+
+        Making
+        Card: Square
+
+        Making Card: Saboteur
+
+        Making Card: Shipwreck
+
+        Making
+        Card: Usury
+
+        Making Card: Grenadier2
+
+        Making Card: Catapult
+
+        Making
+        Card: Enlightenment
+
+        Making Card: Waterworks
+
+        Making Card:
+        Armada
+
+        Making Card: Privateer3
+
+        Making Card: War
 
         Dealing
         Player Cards
@@ -3382,13 +3398,13 @@ MonoBehaviour:
       categories:
       - Uncategorized
       parentId: 1001
-      parentUniqueId: PlayTests.dll/[PlayTests][TestDecoys][suite]
+      parentUniqueId: PlayTests.dll/KriegTests/[PlayTests][KriegTests.TestCards][suite]
     - id: 1005
-      uniqueId: PlayTests.dll/TestDecoys/[PlayTests][TestDecoys.TestCard][suite]
+      uniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
       name: TestCard
-      fullName: TestDecoys.TestCard
+      fullName: KriegTests.TestCards.TestCard
       resultStatus: 2
-      duration: 0.1964946
+      duration: 0.5961975
       messages: One or more child tests had errors
       output: 
       stacktrace: 
@@ -3398,36 +3414,35 @@ MonoBehaviour:
       isSuite: 1
       categories: []
       parentId: 1001
-      parentUniqueId: PlayTests.dll/[PlayTests][TestDecoys][suite]
+      parentUniqueId: PlayTests.dll/KriegTests/[PlayTests][KriegTests.TestCards][suite]
     - id: 1003
-      uniqueId: PlayTests.dll/TestDecoys/TestCard/[PlayTests][TestDecoys.TestCard(Jester)]
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(Jester)]
       name: TestCard(Jester)
-      fullName: TestDecoys.TestCard(Jester)
-      resultStatus: 2
-      duration: 0.1237892
-      messages: "  cardName: Knight, Expected Row: PlayerHand, Actual Row: EnemyMelee\r\n 
-        Expected: True\r\n  But was:  False\r\n"
+      fullName: KriegTests.TestCards.TestCard(Jester)
+      resultStatus: 1
+      duration: 0.0691248
+      messages: 
       output: "UnitySetup Base\r\nSetting target: False\r\nSetting target: False\r\nSetting
         target: False\r\nSetting target: False\r\nSetting target: False\r\nSetting
         target: False\r\nSetting target: False\r\nSetting target: False\r\nSetting
         target: False\r\nSetting target: False\r\nSetting target: False\r\nSetting
         target: False\r\nSetting target: False\r\nSetting target: False\r\nDisactivating
         all: False\r\nReorganizing all rows\r\nStarting Test:Jester\r\nMouse Position:
-        (1647.84, 540.00, 100.60)\r\nClick Registered! State: FREE\r\nClick Registered!
-        mouse: (12.41, 0.00, 0.00) targetClicked: False  handCont: 1 \r\ncardNameJester(1647.84,
-        540.00, 100.60)\r\nClick on target: False\r\nNo valid click resetting\r\nDisactivating
-        all: False\r\nReorganizing all rows\r\nMouse Position: (960.00, 694.29, 98.00)\r\nClick
-        Registered! State: FREE\r\nClick Registered! mouse: (0.00, 2.78, 0.00) targetClicked:
-        False  handCont: 1 \r\ncardNameJester(960.00, 77.14, 98.00)\r\nClick on target:
-        False\r\nNo valid click resetting\r\nDisactivating all: False\r\nReorganizing
-        all rows\r\nTearDown Base\r\n"
-      stacktrace: 'at TestDecoys+<TestCard>d__25.MoveNext () [0x0018b] in C:\Users\andre\KriegEterna\krieg-eterna-unity\krieg-eterna-unity\Assets\Tests\PlayTests\TestDecoys.cs:184
-
-        at
-        UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a]
-        in .\Library\PackageCache\com.unity.test-framework@1.1.31\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:46
-
-'
+        (1647.84, 540.00, 100.60)\r\nMouse Position BeforeUpdate: (1647.84, 540.00)\r\nClick
+        Registered! State: FREE\r\nClick Registered On Deck\r\nclicked on: Type:
+        Decoy Name: Jester card with strength: 0 isPlayable: True\r\nDisactivating
+        all: False\r\nShowing Targets for: Jester Decoy\r\nSetting target: True\r\nReorganizing
+        all rows\r\nCard Location: (0.00, 2.78, -2.00) Mouse: (12.41, 0.00, 0.00)\r\nClick
+        on target: True\r\nMouse Position: (960.00, 694.29, 98.00)\r\nMouse Position
+        BeforeUpdate: (960.00, 694.29)\r\nClick Registered! State: ACTIVE_CARD\r\nClick
+        Registered On Deck\r\nCard Location: (0.00, 2.78, -2.00) Mouse: (0.00, 2.78,
+        0.00)\r\nClicked on Card:Knight\r\nPlaying: Jester Type: Decoy\r\n TargetRow:
+        EnemyMelee\r\nSetting target: False\r\nRemaining Selections: Jester\r\nplayerCardDraw:
+        0\r\nplayerCardDestroy: 0\r\nplayerCardReturn: 0\r\nenemyCardDestroy: 0\r\nchooseN:
+        0\r\nchooseShowN: 0\r\nmove: 0\r\nsetAside: 0\r\nDone with card: Jester\r\nFREE\r\nReorganizing
+        all rows\r\nDisactivating all: False\r\nClick on target: True\r\nTearDown
+        Base\r\n"
+      stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
@@ -3435,26 +3450,180 @@ MonoBehaviour:
       categories:
       - Uncategorized
       parentId: 1005
-      parentUniqueId: PlayTests.dll/TestDecoys/[PlayTests][TestDecoys.TestCard][suite]
+      parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
     - id: 1004
-      uniqueId: PlayTests.dll/TestDecoys/TestCard/[PlayTests][TestDecoys.TestCard(Retreat)]
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(Retreat)]
       name: TestCard(Retreat)
-      fullName: TestDecoys.TestCard(Retreat)
-      resultStatus: 2
-      duration: 0.0580775
-      messages: "  cardName: Knight, Expected Row: PlayerHand, Actual Row: PlayerMelee\r\n 
-        Expected: True\r\n  But was:  False\r\n"
+      fullName: KriegTests.TestCards.TestCard(Retreat)
+      resultStatus: 1
+      duration: 0.0429727
+      messages: 
       output: "UnitySetup Base\r\nSetting target: False\r\nSetting target: False\r\nDisactivating
         all: False\r\nReorganizing all rows\r\nStarting Test:Retreat\r\nMouse Position:
-        (1647.84, 540.00, 100.80)\r\nClick Registered! State: FREE\r\nClick Registered!
-        mouse: (12.41, 0.00, 0.00) targetClicked: False  handCont: 1 \r\ncardNameRetreat(1647.84,
-        540.00, 100.80)\r\nClick on target: False\r\nNo valid click resetting\r\nDisactivating
-        all: False\r\nReorganizing all rows\r\nMouse Position: (960.00, 540.00, 98.00)\r\nClick
-        Registered! State: FREE\r\nClick Registered! mouse: (0.00, 0.00, 0.00) targetClicked:
-        False  handCont: 1 \r\ncardNameRetreat(960.00, 77.14, 98.00)\r\nClick on
-        target: False\r\nNo valid click resetting\r\nDisactivating all: False\r\nReorganizing
-        all rows\r\nTearDown Base\r\n"
-      stacktrace: 'at TestDecoys+<TestCard>d__25.MoveNext () [0x0018b] in C:\Users\andre\KriegEterna\krieg-eterna-unity\krieg-eterna-unity\Assets\Tests\PlayTests\TestDecoys.cs:184
+        (1647.84, 540.00, 100.80)\r\nMouse Position BeforeUpdate: (1647.84, 540.00)\r\nClick
+        Registered! State: FREE\r\nClick Registered On Deck\r\nclicked on: Type:
+        Decoy Name: Retreat card with strength: 0 isPlayable: True\r\nDisactivating
+        all: False\r\nShowing Targets for: Retreat Decoy\r\nSetting target: True\r\nReorganizing
+        all rows\r\nCard Location: (0.00, 0.00, -2.00) Mouse: (12.41, 0.00, 0.00)\r\nClick
+        on target: True\r\nMouse Position: (960.00, 540.00, 98.00)\r\nMouse Position
+        BeforeUpdate: (960.00, 540.00)\r\nClick Registered! State: ACTIVE_CARD\r\nClick
+        Registered On Deck\r\nCard Location: (0.00, 0.00, -2.00) Mouse: (0.00, 0.00,
+        0.00)\r\nClicked on Card:Knight\r\nPlaying: Retreat Type: Decoy\r\n TargetRow:
+        PlayerMelee\r\nSetting target: False\r\nRemaining Selections: Retreat\r\nplayerCardDraw:
+        0\r\nplayerCardDestroy: 0\r\nplayerCardReturn: 0\r\nenemyCardDestroy: 0\r\nchooseN:
+        0\r\nchooseShowN: 0\r\nmove: 0\r\nsetAside: 0\r\nDone with card: Retreat\r\nFREE\r\nReorganizing
+        all rows\r\nDisactivating all: False\r\nClick on target: True\r\nTearDown
+        Base\r\n"
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1005
+      parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
+    - id: 1005
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(Sack)]
+      name: TestCard(Sack)
+      fullName: KriegTests.TestCards.TestCard(Sack)
+      resultStatus: 1
+      duration: 0.0839779
+      messages: 
+      output: "UnitySetup Base\r\nSetting target: False\r\nSetting target: False\r\nDisactivating
+        all: False\r\nReorganizing all rows\r\nStarting Test:Sack\r\nMouse Position:
+        (1647.84, 540.00, 103.80)\r\nMouse Position BeforeUpdate: (1647.84, 540.00)\r\nClick
+        Registered! State: FREE\r\nClick Registered On Deck\r\nclicked on: Type:
+        Decoy Name: Sack card with strength: 0 isPlayable: True\r\nDisactivating
+        all: False\r\nShowing Targets for: Sack Decoy\r\nSetting target: True\r\nReorganizing
+        all rows\r\nCard Location: (0.00, 2.78, -2.00) Mouse: (12.41, 0.00, 0.00)\r\nClick
+        on target: True\r\nMouse Position: (960.00, 694.29, 98.00)\r\nMouse Position
+        BeforeUpdate: (960.00, 694.29)\r\nClick Registered! State: ACTIVE_CARD\r\nClick
+        Registered On Deck\r\nCard Location: (0.00, 2.78, -2.00) Mouse: (0.00, 2.78,
+        0.00)\r\nClicked on Card:Knight\r\nPlaying: Sack Type: Decoy\r\n TargetRow:
+        EnemyMelee\r\nSetting target: False\r\nRemaining Selections: Sack\r\nplayerCardDraw:
+        0\r\nplayerCardDestroy: 0\r\nplayerCardReturn: 0\r\nenemyCardDestroy: 0\r\nchooseN:
+        0\r\nchooseShowN: 0\r\nmove: 0\r\nsetAside: 0\r\nDone with card: Sack\r\nFREE\r\nReorganizing
+        all rows\r\nDisactivating all: False\r\nClick on target: True\r\nTearDown
+        Base\r\n"
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1009
+      parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
+    - id: 1006
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(Shipwreck)]
+      name: TestCard(Shipwreck)
+      fullName: KriegTests.TestCards.TestCard(Shipwreck)
+      resultStatus: 1
+      duration: 0.2504986
+      messages: 
+      output: "UnitySetup Base\r\nSetting target: False\r\nSetting target: False\r\nDisactivating
+        all: False\r\nReorganizing all rows\r\nStarting Test:Shipwreck\r\nMouse Position:
+        (1647.84, 540.00, 101.40)\r\nMouse Position BeforeUpdate: (1647.84, 540.00)\r\nClick
+        Registered! State: FREE\r\nClick Registered On Deck\r\nclicked on: Type:
+        Decoy Name: Shipwreck card with strength: 0 isPlayable: True\r\nDisactivating
+        all: False\r\nShowing Targets for: Shipwreck Decoy\r\nSetting target: True\r\nSetting
+        target: True\r\nSetting target: True\r\nReorganizing all rows\r\nCard Location:
+        (0.00, 0.00, -2.00) Mouse: (12.41, 0.00, 0.00)\r\nCard Location: (-1.01,
+        -2.78, -2.00) Mouse: (12.41, 0.00, 0.00)\r\nCard Location: (1.01, -2.78,
+        -2.00) Mouse: (12.41, 0.00, 0.00)\r\nClick on target: True\r\nMouse Position:
+        (960.00, 540.00, 98.00)\r\nMouse Position BeforeUpdate: (960.00, 540.00)\r\nClick
+        Registered! State: ACTIVE_CARD\r\nClick Registered On Deck\r\nCard Location:
+        (0.00, 0.00, -2.00) Mouse: (0.00, 0.00, 0.00)\r\nClicked on Card:Knight\r\nPlaying:
+        Shipwreck Type: Decoy\r\n TargetRow: PlayerMelee\r\nSetting target: False\r\nRemaining
+        Selections: Shipwreck\r\nplayerCardDraw: 0\r\nplayerCardDestroy: 0\r\nplayerCardReturn:
+        2\r\nenemyCardDestroy: 0\r\nchooseN: 0\r\nchooseShowN: 0\r\nmove: 0\r\nsetAside:
+        0\r\nMULTISTEP\r\nReorganizing all rows\r\nShowing Targets for: Shipwreck
+        Decoy\r\nSetting target: True\r\nSetting target: True\r\nReorganizing all
+        rows\r\nCard Location: (-1.01, -2.78, -2.00) Mouse: (0.00, 0.00, 0.00)\r\nCard
+        Location: (1.01, -2.78, -2.00) Mouse: (0.00, 0.00, 0.00)\r\nClick on target:
+        True\r\nMouse Position: (904.21, 385.71, 98.00)\r\nMouse Position BeforeUpdate:
+        (904.21, 385.71)\r\nClick Registered! State: MULTISTEP\r\nCard Location:
+        (-1.01, -2.78, -2.00) Mouse: (-1.01, -2.78, 0.00)\r\nClicked on Card:Soldier\r\nPlaying:
+        Shipwreck Type: Decoy\r\n TargetRow: PlayerRanged\r\nSetting target: False\r\nRemaining
+        Selections: Shipwreck\r\nplayerCardDraw: 0\r\nplayerCardDestroy: 0\r\nplayerCardReturn:
+        1\r\nenemyCardDestroy: 0\r\nchooseN: 0\r\nchooseShowN: 0\r\nmove: 0\r\nsetAside:
+        0\r\nMULTISTEP\r\nReorganizing all rows\r\nShowing Targets for: Shipwreck
+        Decoy\r\nSetting target: True\r\nReorganizing all rows\r\nClick on target:
+        True\r\nMouse Position: (960.00, 385.71, 98.00)\r\nMouse Position BeforeUpdate:
+        (960.00, 385.71)\r\nClick Registered! State: MULTISTEP\r\nCard Location:
+        (0.00, -2.78, -2.00) Mouse: (0.00, -2.78, 0.00)\r\nClicked on Card:Soldier2\r\nPlaying:
+        Shipwreck Type: Decoy\r\n TargetRow: PlayerRanged\r\nSetting target: False\r\nRemaining
+        Selections: Shipwreck\r\nplayerCardDraw: 0\r\nplayerCardDestroy: 0\r\nplayerCardReturn:
+        0\r\nenemyCardDestroy: 0\r\nchooseN: 0\r\nchooseShowN: 0\r\nmove: 0\r\nsetAside:
+        0\r\nDone with card: Shipwreck\r\nFREE\r\nReorganizing all rows\r\nDisactivating
+        all: False\r\nClick on target: True\r\nTearDown Base\r\n"
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1009
+      parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
+    - id: 1008
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(ShipwreckHalfAvailable)]
+      name: TestCard(ShipwreckHalfAvailable)
+      fullName: KriegTests.TestCards.TestCard(ShipwreckHalfAvailable)
+      resultStatus: 2
+      duration: 0.0409591
+      messages: "  cardName: Knight, Expected Row: UnitGraveyard, Actual Row: PlayerMelee\r\n 
+        Expected: True\r\n  But was:  False\r\n"
+      output: 'UnitySetup Base
+
+        Setting target: False
+
+        Setting
+        target: False
+
+        Setting target: False
+
+        Setting target: False
+
+        Disactivating
+        all: False
+
+        Reorganizing all rows
+
+        Starting Test:ShipwreckHalfAvailable
+
+        Mouse
+        Position: (1647.84, 540.00, 100.00)
+
+        Mouse Position BeforeUpdate:
+        (1647.84, 540.00)
+
+        Click Registered! State: FREE
+
+        Click
+        Registered On Deck
+
+        Click on target: True
+
+        Mouse Position:
+        (1647.84, 385.71, 100.00)
+
+        Mouse Position BeforeUpdate: (1647.84,
+        385.71)
+
+        Click Registered! State: FREE
+
+        Click Registered
+        On Deck
+
+        Click on target: True
+
+        TearDown Base
+
+'
+      stacktrace: 'at KriegTests.TestCards+<TestCard>d__25.MoveNext () [0x0018b]
+        in C:\Users\andre\KriegEterna\krieg-eterna-unity\krieg-eterna-unity\Assets\Tests\PlayTests\TestCards.cs:234
 
         at
         UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a]
@@ -3467,24 +3636,114 @@ MonoBehaviour:
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1005
-      parentUniqueId: PlayTests.dll/TestDecoys/[PlayTests][TestDecoys.TestCard][suite]
-    m_ResultText: "TestCard(Retreat) (0.058s)\n---\ncardName: Knight, Expected Row:
-      PlayerHand, Actual Row: PlayerMelee\r\n  Expected: True\r\n  But was:  False\n---\nat
-      TestDecoys+<TestCard>d__25.MoveNext () [0x0018b] in C:\\Users\\andre\\KriegEterna\\krieg-eterna-unity\\krieg-eterna-unity\\Assets\\Tests\\PlayTests\\TestDecoys.cs:184\r\nat
+      parentId: 1009
+      parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
+    - id: 1008
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(Death)]
+      name: TestCard(Death)
+      fullName: KriegTests.TestCards.TestCard(Death)
+      resultStatus: 2
+      duration: 0.0650506
+      messages: "  cardName: Knight, Expected Row: UnitGraveyard, Actual Row: EnemyMelee\r\n 
+        Expected: True\r\n  But was:  False\r\n"
+      output: "UnitySetup Base\r\nSetting target: False\r\nSetting target: False\r\nSetting
+        target: False\r\nDisactivating all: False\r\nReorganizing all rows\r\nStarting
+        Test:Death\r\nMouse Position: (1647.84, 540.00, 101.80)\r\nMouse Position
+        BeforeUpdate: (1647.84, 540.00)\r\nClick Registered! State: FREE\r\nClick
+        Registered On Deck\r\nclicked on: Type: Power Name: Death card with strength:
+        0 isPlayable: True\r\nDisactivating all: False\r\nShowing Targets for: Death
+        Power\r\nSetup Power Targets: Death\r\nSetting target: True\r\nReorganizing
+        all rows\r\nCard Location: (0.00, 2.78, -2.00) Mouse: (12.41, 0.00, 0.00)\r\nClick
+        on target: True\r\nMouse Position: (960.00, 694.29, 98.00)\r\nMouse Position
+        BeforeUpdate: (960.00, 694.29)\r\nClick Registered! State: ACTIVE_CARD\r\nClick
+        Registered On Deck\r\nCard Location: (0.00, 2.78, -2.00) Mouse: (0.00, 2.78,
+        0.00)\r\nClicked on Card:Knight\r\nPlaying: Death Type: Power\r\n TargetRow:
+        EnemyMelee\r\nREEEENone\r\nRemaining Selections: Death\r\nplayerCardDraw:
+        0\r\nplayerCardDestroy: 0\r\nplayerCardReturn: 0\r\nenemyCardDestroy: 1\r\nchooseN:
+        0\r\nchooseShowN: 0\r\nmove: 0\r\nsetAside: 0\r\nMULTISTEP\r\nReorganizing
+        all rows\r\nShowing Targets for: Death Power\r\nSetup Power Targets: Death\r\nSetting
+        target: True\r\nReorganizing all rows\r\nClick on target: True\r\nTearDown
+        Base\r\n"
+      stacktrace: 'at KriegTests.TestCards+<TestCard>d__25.MoveNext () [0x0018b]
+        in C:\Users\andre\KriegEterna\krieg-eterna-unity\krieg-eterna-unity\Assets\Tests\PlayTests\TestCards.cs:234
+
+        at
+        UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a]
+        in .\Library\PackageCache\com.unity.test-framework@1.1.31\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:46
+
+'
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1010
+      parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
+    - id: 1009
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(Death2)]
+      name: TestCard(Death2)
+      fullName: KriegTests.TestCards.TestCard(Death2)
+      resultStatus: 2
+      duration: 0.0327697
+      messages: "  cardName: Knight, Expected Row: UnitGraveyard, Actual Row: EnemyMelee\r\n 
+        Expected: True\r\n  But was:  False\r\n"
+      output: "UnitySetup Base\r\nSetting target: False\r\nSetting target: False\r\nDisactivating
+        all: False\r\nReorganizing all rows\r\nStarting Test:Death2\r\nMouse Position:
+        (1647.84, 540.00, 100.50)\r\nMouse Position BeforeUpdate: (1647.84, 540.00)\r\nClick
+        Registered! State: FREE\r\nClick Registered On Deck\r\nclicked on: Type:
+        Power Name: Death2 card with strength: 0 isPlayable: True\r\nDisactivating
+        all: False\r\nShowing Targets for: Death2 Power\r\nSetup Power Targets: Death2\r\nSetting
+        target: True\r\nReorganizing all rows\r\nCard Location: (0.00, 2.78, -2.00)
+        Mouse: (12.41, 0.00, 0.00)\r\nClick on target: True\r\nMouse Position: (960.00,
+        694.29, 98.00)\r\nMouse Position BeforeUpdate: (960.00, 694.29)\r\nClick
+        Registered! State: ACTIVE_CARD\r\nClick Registered On Deck\r\nCard Location:
+        (0.00, 2.78, -2.00) Mouse: (0.00, 2.78, 0.00)\r\nClicked on Card:Knight\r\nPlaying:
+        Death2 Type: Power\r\n TargetRow: EnemyMelee\r\nREEEENone\r\nRemaining Selections:
+        Death2\r\nplayerCardDraw: 0\r\nplayerCardDestroy: 0\r\nplayerCardReturn:
+        0\r\nenemyCardDestroy: 1\r\nchooseN: 0\r\nchooseShowN: 0\r\nmove: 0\r\nsetAside:
+        0\r\nMULTISTEP\r\nReorganizing all rows\r\nShowing Targets for: Death2 Power\r\nSetup
+        Power Targets: Death2\r\nSetting target: True\r\nReorganizing all rows\r\nClick
+        on target: True\r\nTearDown Base\r\n"
+      stacktrace: 'at KriegTests.TestCards+<TestCard>d__25.MoveNext () [0x0018b]
+        in C:\Users\andre\KriegEterna\krieg-eterna-unity\krieg-eterna-unity\Assets\Tests\PlayTests\TestCards.cs:234
+
+        at
+        UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a]
+        in .\Library\PackageCache\com.unity.test-framework@1.1.31\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:46
+
+'
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1010
+      parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
+    m_ResultText: "TestCard(Death) (0.065s)\n---\ncardName: Knight, Expected Row:
+      UnitGraveyard, Actual Row: EnemyMelee\r\n  Expected: True\r\n  But was:  False\n---\nat
+      KriegTests.TestCards+<TestCard>d__25.MoveNext () [0x0018b] in C:\\Users\\andre\\KriegEterna\\krieg-eterna-unity\\krieg-eterna-unity\\Assets\\Tests\\PlayTests\\TestCards.cs:234\r\nat
       UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in
       .\\Library\\PackageCache\\com.unity.test-framework@1.1.31\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:46\n---\nUnitySetup
-      Base\r\nSetting target: False\r\nSetting target: False\r\nDisactivating all:
-      False\r\nReorganizing all rows\r\nStarting Test:Retreat\r\nMouse Position:
-      (1647.84, 540.00, 100.80)\r\nClick Registered! State: FREE\r\nClick Registered!
-      mouse: (12.41, 0.00, 0.00) targetClicked: False  handCont: 1 \r\ncardNameRetreat(1647.84,
-      540.00, 100.80)\r\nClick on target: False\r\nNo valid click resetting\r\nDisactivating
-      all: False\r\nReorganizing all rows\r\nMouse Position: (960.00, 540.00, 98.00)\r\nClick
-      Registered! State: FREE\r\nClick Registered! mouse: (0.00, 0.00, 0.00) targetClicked:
-      False  handCont: 1 \r\ncardNameRetreat(960.00, 77.14, 98.00)\r\nClick on target:
-      False\r\nNo valid click resetting\r\nDisactivating all: False\r\nReorganizing
-      all rows\r\nTearDown Base"
-    m_ResultStacktrace: 'at TestDecoys+<TestCard>d__25.MoveNext () [0x0018b] in C:\Users\andre\KriegEterna\krieg-eterna-unity\krieg-eterna-unity\Assets\Tests\PlayTests\TestDecoys.cs:184
+      Base\r\nSetting target: False\r\nSetting target: False\r\nSetting target: False\r\nDisactivating
+      all: False\r\nReorganizing all rows\r\nStarting Test:Death\r\nMouse Position:
+      (1647.84, 540.00, 101.80)\r\nMouse Position BeforeUpdate: (1647.84, 540.00)\r\nClick
+      Registered! State: FREE\r\nClick Registered On Deck\r\nclicked on: Type: Power
+      Name: Death card with strength: 0 isPlayable: True\r\nDisactivating all: False\r\nShowing
+      Targets for: Death Power\r\nSetup Power Targets: Death\r\nSetting target: True\r\nReorganizing
+      all rows\r\nCard Location: (0.00, 2.78, -2.00) Mouse: (12.41, 0.00, 0.00)\r\nClick
+      on target: True\r\nMouse Position: (960.00, 694.29, 98.00)\r\nMouse Position
+      BeforeUpdate: (960.00, 694.29)\r\nClick Registered! State: ACTIVE_CARD\r\nClick
+      Registered On Deck\r\nCard Location: (0.00, 2.78, -2.00) Mouse: (0.00, 2.78,
+      0.00)\r\nClicked on Card:Knight\r\nPlaying: Death Type: Power\r\n TargetRow:
+      EnemyMelee\r\nREEEENone\r\nRemaining Selections: Death\r\nplayerCardDraw: 0\r\nplayerCardDestroy:
+      0\r\nplayerCardReturn: 0\r\nenemyCardDestroy: 1\r\nchooseN: 0\r\nchooseShowN:
+      0\r\nmove: 0\r\nsetAside: 0\r\nMULTISTEP\r\nReorganizing all rows\r\nShowing
+      Targets for: Death Power\r\nSetup Power Targets: Death\r\nSetting target: True\r\nReorganizing
+      all rows\r\nClick on target: True\r\nTearDown Base"
+    m_ResultStacktrace: 'at KriegTests.TestCards+<TestCard>d__25.MoveNext () [0x0018b]
+      in C:\Users\andre\KriegEterna\krieg-eterna-unity\krieg-eterna-unity\Assets\Tests\PlayTests\TestCards.cs:234
 
       at
       UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in
@@ -3492,10 +3751,10 @@ MonoBehaviour:
 
 '
     m_TestListState:
-      scrollPos: {x: 0, y: 48}
-      m_SelectedIDs: 937015ce
-      m_LastClickedID: -837455725
-      m_ExpandedIDs: df839d928863541eacd42e23801c1b4b02429058e6bf4e73ffffff7f
+      scrollPos: {x: 0, y: 109}
+      m_SelectedIDs: db9964dc
+      m_LastClickedID: -597386789
+      m_ExpandedIDs: 05004889df839d92aad244a0cbae0ae08863541eacd42e23715b0146801c1b4b02429058e6bf4e73ffffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

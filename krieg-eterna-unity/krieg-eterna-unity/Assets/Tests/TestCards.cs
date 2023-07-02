@@ -104,47 +104,63 @@ namespace KriegTests
             {
                 testName = "Jester",
                 clicks = new List<Click>{
-                new Click("Jester", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemyMelee, true),
-                new Click("Knight", RowEffected.EnemyMelee, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
-            }
+                    new Click("Jester", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemyMelee, true),
+                    new Click("Knight", RowEffected.EnemyMelee, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
+                }
             };
 
             yield return new TestCase
             {
                 testName = "Retreat",
                 clicks = new List<Click>{
-                new Click("Retreat", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
-                new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
-            }
+                    new Click("Retreat", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
+                }
             };
 
             yield return new TestCase
             {
                 testName = "Sack",
                 clicks = new List<Click>{
-                new Click("Sack", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemyMelee, true),
-                new Click("Knight", RowEffected.EnemyMelee, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
-            }
+                    new Click("Sack", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemyMelee, true),
+                    new Click("Knight", RowEffected.EnemyMelee, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
+                }
             };
 
             yield return new TestCase
             {
                 testName = "Shipwreck",
                 clicks = new List<Click>{
-                new Click("Shipwreck", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
-                new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
-                new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerHand, RowEffected.PlayerHand, true),
-                new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
-            }
+                    new Click("Shipwreck", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
+                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerHand, RowEffected.PlayerHand, true),
+                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
+                }
             };
             yield return new TestCase
             {
                 testName = "ShipwreckHalfAvailable",
                 clicks = new List<Click>{
-                new Click("Shipwreck", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
-                new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
-                new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
-            }
+                    new Click("Shipwreck", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
+                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
+                }
+            };
+            yield return new TestCase
+            {
+                testName = "Death",
+                clicks = new List<Click>{
+                    new Click("Death", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new Click("Knight", RowEffected.EnemyMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
+                }
+            };
+            yield return new TestCase
+            {
+                testName = "Death2",
+                clicks = new List<Click>{
+                    new Click("Death2", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new Click("Knight", RowEffected.EnemyMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
+                }
             };
         }
 
@@ -185,6 +201,7 @@ namespace KriegTests
         [UnityTest]
         public IEnumerator TestCard([ValueSource(nameof(TestCases))] TestCase testCase)
         {
+
             Debug.Log("Starting Test:" + testCase.testName);
             List<Click> clicks = testCase.clicks;
             //Setup Cards in row
@@ -210,6 +227,9 @@ namespace KriegTests
                 if (clicks[i].click)
                 {
                     Card c = clicks[i].card;
+
+                    InputSystem.Update();
+                    MousePositioning(c);
                     ClickOnCard(c);
                     yield return null;
                     MouseUnClick();
@@ -232,9 +252,6 @@ namespace KriegTests
 
         private void ClickOnCard(Card c)
         {
-            InputSystem.Update();
-            MousePositioning(c);
-            InputSystem.Update();
             MouseClick();
             Assert.AreEqual((Vector2)Camera.main.WorldToScreenPoint(c.transform.position), Mouse.current.position.ReadValue());
             Debug.Log("Mouse Position BeforeUpdate: " + Mouse.current.position.ReadValue());
@@ -268,10 +285,16 @@ namespace KriegTests
 
         private void MousePositioning(Card c)
         {
-            Vector3 mousepos = Camera.main.WorldToScreenPoint(c.transform.position); // 3D worldpos into 2D
-            Debug.Log("Mouse Position: " + mousepos);
-            InputSystem.QueueDeltaStateEvent(Mouse.current.position, (Vector2)mousepos);
-            mouse.WarpCursorPosition(mousepos);
+            Vector3 mousepos = Camera.main.WorldToScreenPoint(c.transform.position); 
+            using (StateEvent.From(Mouse.current, out var eventPtr))
+            {
+                Mouse.current.position.WriteValueIntoEvent((Vector2)mousepos, eventPtr);
+                InputSystem.QueueDeltaStateEvent(Mouse.current.position, eventPtr);
+                InputState.Change(Mouse.current, eventPtr);
+            }
+            
+            Assert.AreEqual((Vector2)Camera.main.WorldToScreenPoint(c.transform.position), Mouse.current.position.ReadValue());
+
         }
 
     }
