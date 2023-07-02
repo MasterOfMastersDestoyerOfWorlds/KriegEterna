@@ -225,6 +225,7 @@ namespace KriegTests
             new TestCase
             {
                 testName = "Grail",
+                playerHandCount = 2,
                 clicks = new List<Click>{
                     new Click("Grail", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
@@ -237,6 +238,7 @@ namespace KriegTests
             new TestCase
             {
                 testName = "Crusader",
+                playerHandCount = 3,
                 clicks = new List<Click>{
                     new Click("Grail", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
@@ -249,6 +251,7 @@ namespace KriegTests
             new TestCase
             {
                 testName = "GrailStrengthConditionFail",
+                playerHandCount = 1,
                 clicks = new List<Click>{
                     new Click("Grail", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),

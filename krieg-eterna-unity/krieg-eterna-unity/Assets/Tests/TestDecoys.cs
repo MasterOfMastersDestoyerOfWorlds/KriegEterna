@@ -14,6 +14,7 @@ namespace KriegTests
              new TestCase
             {
                 testName = "Jester",
+                playerHandCount = 1,
                 clicks = new List<Click>{
                     new Click("Jester", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemyMelee, true),
                     new Click("Knight", RowEffected.EnemyMelee, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
@@ -23,6 +24,7 @@ namespace KriegTests
              new TestCase
             {
                 testName = "Retreat",
+                playerHandCount = 1,
                 clicks = new List<Click>{
                     new Click("Retreat", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
                     new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
@@ -32,6 +34,7 @@ namespace KriegTests
              new TestCase
             {
                 testName = "Sack",
+                playerHandCount = 1,
                 clicks = new List<Click>{
                     new Click("Sack", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemyMelee, true),
                     new Click("Knight", RowEffected.EnemyMelee, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
@@ -41,6 +44,7 @@ namespace KriegTests
              new TestCase
             {
                 testName = "Shipwreck",
+                playerHandCount = 2,
                 clicks = new List<Click>{
                     new Click("Shipwreck", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
                     new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
@@ -51,6 +55,7 @@ namespace KriegTests
              new TestCase
             {
                 testName = "ShipwreckHalfAvailable",
+                playerHandCount = 1,
                 clicks = new List<Click>{
                     new Click("Shipwreck", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
                     new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
@@ -61,21 +66,19 @@ namespace KriegTests
             new TestCase
             {
                 testName = "Feint",
+                playerHandCount = 1,
                 clicks = new List<Click>{
                     new Click("Feint", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
-                    new Click("Knight3", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
-                    new Click("Mortar", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.PlayerHand, false),
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
+                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
                 }
             },
             new TestCase
             {
                 testName = "Fortress",
                 clicks = new List<Click>{
-                    new Click("Fortress", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
-                    new Click("Knight3", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
-                    new Click("Mortar", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.PlayerHand, false),
+                    new Click("Fortress", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
                 }
             }
         };

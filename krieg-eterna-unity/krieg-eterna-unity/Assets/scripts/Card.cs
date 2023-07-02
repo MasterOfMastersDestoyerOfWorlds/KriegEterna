@@ -114,9 +114,9 @@ public class Card : MonoBehaviour
             Debug.Log("+++++++++++++++++++++++++++++");
             Debug.Log("Card Bounds Check: card center: " + transform.position + " mouse center: " + pos + " screenvec center: " + screenvec);
             Debug.Log("+++++++++++++++++++++++++++++");
-            if (mousePos.x > transform.position.x - (cardColider.bounds.extents.x) && mousePos.x > transform.position.x + (cardColider.bounds.extents.x))
+            if (mousePos.x > transform.position.x - (cardColider.bounds.extents.x) && mousePos.x < transform.position.x + (cardColider.bounds.extents.x))
             {
-                if (mousePos.y > transform.position.y - (cardColider.bounds.extents.y) && mousePos.y > transform.position.y + (cardColider.bounds.extents.y))
+                if (mousePos.y > transform.position.y - (cardColider.bounds.extents.y) && mousePos.y < transform.position.y + (cardColider.bounds.extents.y))
                 {
                     return true;
                 }

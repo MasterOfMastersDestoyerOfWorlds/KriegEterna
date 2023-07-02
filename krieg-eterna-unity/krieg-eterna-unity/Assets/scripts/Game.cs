@@ -382,11 +382,12 @@ public class Game : MonoBehaviour
         updateStateBasedOnCardState(c);
         if (state != State.MULTISTEP)
         {
-            activeDeck.getRowByType(RowEffected.PlayerHand).Remove(c);
-            if (c.enemyReveal > 0)
+            activeDeck.getRowByType(CardModel.getPlayerRow(player, RowEffected.PlayerHand)).Remove(c);
+            RowEffected enemyHand = CardModel.getPlayerRow(player, RowEffected.EnemyHand);
+            if (c.enemyReveal > 0  && activeDeck.getRowByType(enemyHand).Count > 0)
             {
                 //may want to turn off flashing since it is only otherwise used when some input is happening
-                setChooseN(RowEffected.EnemyHand, null, 0, c.enemyReveal, new List<CardType>() { CardType.King, CardType.Melee, CardType.Ranged, CardType.Siege }, RowEffected.None, State.REVEAL);
+                setChooseN(enemyHand, null, 0, c.enemyReveal, new List<CardType>() { CardType.King, CardType.Melee, CardType.Ranged, CardType.Siege }, RowEffected.None, State.REVEAL);
             }
         }
         reorganizeGroup();
@@ -839,7 +840,7 @@ public class Game : MonoBehaviour
     {
 
         Row row = activeDeck.getRowByType(chooseRow);
-        row.chooseNRemain = numChoose;
+        row.chooseNRemain = row.Count > numChoose ? numChoose : row.Count;
         state = newState;
 
         Debug.Log(state);

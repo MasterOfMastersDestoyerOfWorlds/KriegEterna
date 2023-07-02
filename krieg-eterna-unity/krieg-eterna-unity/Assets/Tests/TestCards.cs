@@ -49,6 +49,31 @@ namespace KriegTests
                 yield return t;
             }
 
+            foreach (TestCase t in TestRanged.cases)
+            {
+                yield return t;
+            }
+
+            foreach (TestCase t in TestSiege.cases)
+            {
+                yield return t;
+            }
+            
+            foreach (TestCase t in TestWeather.cases)
+            {
+                yield return t;
+            }
+            
+            foreach (TestCase t in TestSpys.cases)
+            {
+                yield return t;
+            }
+            
+            foreach (TestCase t in TestPowers.cases)
+            {
+                yield return t;
+            }
+
 
         }
 
@@ -56,6 +81,8 @@ namespace KriegTests
         public struct TestCase
         {
             public string testName;
+            public int playerHandCount;
+            public int enemyHandCount;
             public List<Click> clicks;
 
             public override string ToString()
@@ -72,7 +99,7 @@ namespace KriegTests
             public RowEffected rowAfterClick;
             public RowEffected finalRow;
             public bool click;
-
+            public bool inDisplayRow = false;
             public bool isRowTarget;
 
             public Click(string cardName, RowEffected dealRow, RowEffected rowAfterClick, RowEffected finalRow, bool click)
@@ -83,6 +110,19 @@ namespace KriegTests
                 this.rowAfterClick = rowAfterClick;
                 this.finalRow = finalRow;
                 this.click = click;
+                this.inDisplayRow = false;
+                this.isRowTarget = false;
+            }
+
+            public Click(string cardName, RowEffected dealRow, RowEffected rowAfterClick, RowEffected finalRow, bool click, bool inDisplayRow)
+            {
+                this.card = null;
+                this.name = cardName;
+                this.dealRow = dealRow;
+                this.rowAfterClick = rowAfterClick;
+                this.finalRow = finalRow;
+                this.click = click;
+                this.inDisplayRow = inDisplayRow;
                 this.isRowTarget = false;
             }
         }
@@ -235,6 +275,10 @@ namespace KriegTests
                     $"cardName: {clicks[i].name}, Expected Row: {clicks[i].finalRow}, Actual Row: {deck.getCardRow(c).uniqueType}");
                 }
             }
+            Assert.AreEqual(State.FREE, Game.state);
+            
+            Assert.AreEqual(testCase.playerHandCount, deck.getRowByType(RowEffected.PlayerHand).Count);
+            Assert.AreEqual(testCase.enemyHandCount, deck.getRowByType(RowEffected.EnemyHand).Count);
         }
 
         private void ClickOnCard(Transform transform)

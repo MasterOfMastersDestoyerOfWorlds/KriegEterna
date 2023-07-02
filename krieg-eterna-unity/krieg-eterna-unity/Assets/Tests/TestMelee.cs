@@ -167,7 +167,7 @@ namespace KriegTests
                 testName = "Juggernaut",
                 clicks = new List<Click>{
                     new Click("Juggernaut", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
-                    new Click("Juggernaut", RowEffected.PlayerHand, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
+                    new ClickRow("PlayerMelee", RowEffected.PlayerMelee),
                 }
             },
         };
