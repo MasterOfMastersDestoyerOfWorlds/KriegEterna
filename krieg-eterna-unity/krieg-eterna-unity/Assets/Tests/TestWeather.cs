@@ -13,41 +13,62 @@ namespace KriegTests
             new TestCase
             {
                 testName = "ClearSkies",
+                scoreRows = new List<(RowEffected, int)>{
+                    (RowEffected.EnemySiege, 2),
+                    (RowEffected.PlayerSiege, 6),
+                    (RowEffected.PlayerRanged, 8),
+                },
                 clicks = new List<Click>{
+                    new Click("Storm", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),                   
+                    new Click("Storm", RowEffected.PlayerHand, RowEffected.PlayerSiege, RowEffected.PowerGraveyard, true),
+                    new Click("Siege", RowEffected.EnemySiege, RowEffected.EnemySiege, RowEffected.EnemySiege, false),
+                    new Click("Mortar", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
+                    new Click("Fog", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new Click("Fog", RowEffected.PlayerHand, RowEffected.PlayerRanged, RowEffected.PowerGraveyard, true),
+                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, false),
+                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, false),
                     new Click("ClearSkies", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
-                    new Click("Knight3", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
-                    new Click("Mortar", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.PlayerHand, false),
+                    new Click("ClearSkies", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
                 }
             },
             new TestCase
             {
                 testName = "Fog",
+                scoreRows = new List<(RowEffected, int)>{
+                    (RowEffected.PlayerRanged, 4),
+                },
                 clicks = new List<Click>{
-                    new Click("Fog", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
-                    new Click("Knight3", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
-                    new Click("Mortar", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.PlayerHand, false),
+                    new Click("Fog", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
+                    new Click("Fog", RowEffected.PlayerHand, RowEffected.PlayerRanged, RowEffected.EnemyRanged, true),
+                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, false),
+                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, false),
                 }
             },
             new TestCase
             {
                 testName = "Frost",
+                scoreRows = new List<(RowEffected, int)>{
+                    (RowEffected.EnemyMelee, 2),
+                },
                 clicks = new List<Click>{
-                    new Click("Frost", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
-                    new Click("Knight3", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
-                    new Click("Mortar", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.PlayerHand, false),
+                    new Click("Frost", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
+                    new Click("Frost", RowEffected.PlayerHand, RowEffected.PlayerMelee, RowEffected.EnemyMelee, true),
+                    new Click("Knight3", RowEffected.EnemyMelee, RowEffected.EnemyMelee, RowEffected.EnemyMelee, false),
+                    new Click("Officer", RowEffected.EnemyMelee, RowEffected.EnemyMelee, RowEffected.EnemyMelee, false),
                 }
             },
             new TestCase
             {
                 testName = "Storm",
+                scoreRows = new List<(RowEffected, int)>{
+                    (RowEffected.EnemySiege, 1),
+                    (RowEffected.PlayerSiege, 3),
+                },
                 clicks = new List<Click>{
-                    new Click("Storm", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
-                    new Click("Knight3", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
-                    new Click("Mortar", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.PlayerHand, false),
+                    new Click("Storm", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiege, true),           
+                    new Click("Storm", RowEffected.PlayerHand, RowEffected.PlayerSiege, RowEffected.EnemySiege, true),
+                    new Click("Siege", RowEffected.EnemySiege, RowEffected.EnemySiege, RowEffected.EnemySiege, false),
+                    new Click("Mortar", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
                 }
             },
         };

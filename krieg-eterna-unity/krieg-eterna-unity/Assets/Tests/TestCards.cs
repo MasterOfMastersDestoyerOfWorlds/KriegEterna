@@ -84,6 +84,7 @@ namespace KriegTests
             public int playerHandCount;
             public int enemyHandCount;
             public List<Click> clicks;
+            public List<(RowEffected, int)> scoreRows;
 
             public override string ToString()
             {
@@ -279,6 +280,12 @@ namespace KriegTests
             
             Assert.AreEqual(testCase.playerHandCount, deck.getRowByType(RowEffected.PlayerHand).Count);
             Assert.AreEqual(testCase.enemyHandCount, deck.getRowByType(RowEffected.EnemyHand).Count);
+
+            if(testCase.scoreRows != null){
+                foreach((RowEffected, int) rowPair in testCase.scoreRows){
+                    Assert.AreEqual(rowPair.Item2, deck.getRowByType(rowPair.Item1).scoreRow(deck));
+                }
+            }
         }
 
         private void ClickOnCard(Transform transform)
