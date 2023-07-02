@@ -255,7 +255,7 @@ public class Game : MonoBehaviour
 
                         Debug.Log("Click Registered On Deck");
                         clickOnTarget = true;
-                        Debug.Log("clicked on: " + c.ToString() + " isPlayable: " + c.isPlayable(activeDeck, player));
+                        Debug.Log("clicked on: " + c.ToString() + " isPlayable: " + c.isPlayable(activeDeck, player) + " active: " + c.isTargetActive());
                         if (c.isTargetActive() && (CardModel.isUnit(c.cardType) || c.isPlayable(activeDeck, player)))
                         {
                             Play(c, null, null, player);

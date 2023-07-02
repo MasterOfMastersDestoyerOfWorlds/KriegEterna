@@ -106,8 +106,26 @@ public class Card : MonoBehaviour
     public bool ContainsMouse(Vector3 mousePos)
     {
         Vector3 pos = new Vector3(mousePos.x, mousePos.y, this.cardColider.bounds.center.z);
-        this.cardColider.offset = new Vector2(0f,0f);
-        Debug.Log(pos + " " + this.cardColider.bounds.center);
+        this.cardColider.offset = new Vector2(0f, 0f);
+        if (!transform.position.Equals(cardColider.bounds.center))
+        {
+            Debug.Log("REEEEEEEEE offcenter");
+            Vector3 screenvec = Camera.main.WorldToScreenPoint(transform.position);
+            Debug.Log("+++++++++++++++++++++++++++++");
+            Debug.Log("Card Bounds Check: card center: " + transform.position + " mouse center: " + pos + " screenvec center: " + screenvec);
+            Debug.Log("+++++++++++++++++++++++++++++");
+            if (mousePos.x > transform.position.x - (cardColider.bounds.extents.x) && mousePos.x > transform.position.x + (cardColider.bounds.extents.x))
+            {
+                if (mousePos.y > transform.position.y - (cardColider.bounds.extents.y) && mousePos.y > transform.position.y + (cardColider.bounds.extents.y))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        Debug.Log("+++++++++++++++++++++++++++++");
+        Debug.Log("Card Bounds Check: card center: " + transform.position + " mouse center: " + pos + " collider center: " + this.cardColider.bounds.center);
+        Debug.Log("+++++++++++++++++++++++++++++");
         return this.cardColider.bounds.Contains(pos);
     }
 

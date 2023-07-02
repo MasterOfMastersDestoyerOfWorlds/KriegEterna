@@ -32,8 +32,8 @@ Scout	Melee	Reveal a power card in your opponent's hand.	1												1
 Square	Melee	 	3																					
 Burden	Power	Double the strength of your opponent's strongest\rrow. In the next round this card switches sides.	0													2	EnemyMax							
 Crusade	Power	Send all of the strongest units on both sides of\rthe Melee row to the graveyard.	0			1	MaxAll							1			Melee							
-Death	Power	Choose one unit in the opponent's field to send\rto the graveyard.	0											1										
-Death2	Power	Choose one unit in the opponent's field to send\rto the graveyard.	0											1										
+Death	Power	Choose one unit in the opponent's field to send\rto the graveyard.	0			0	Unit							1										
+Death2	Power	Choose one unit in the opponent's field to send\rto the graveyard.	0			0	Unit							1										
 EmperorDemise	Power	If a King is on the field, set it aside until the start\rof the next round.	0															1	King					
 Enlightenment	Power	Reveal two power cards in your opponent's hand.\rDraw a unit card.	0	1	Unit										2		EnemyHand							
 Execution	Power	Send your King to the graveyard.\rIf your King was on the field, draw three units;\rif it was in your hand, draw four.	0	3	Unit	1	King																	

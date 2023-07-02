@@ -62,6 +62,18 @@ public class Row : List<Card>
         return false;
     }
 
+    public bool ContainsIncludeAttachments(Card card)
+    {
+        foreach (Card c in this)
+        {
+            if (c.Equals(card) || c.attachments.Contains(card))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int maxStrength()
     {
         int max = 0;

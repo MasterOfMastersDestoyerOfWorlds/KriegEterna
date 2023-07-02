@@ -275,7 +275,7 @@ public class Deck : MonoBehaviour
         c.setTargetActive(false);
         foreach (Card attachment in c.attachments)
         {
-            resetCard(currentRow, c);
+            resetCard(currentRow, attachment);
         }
         c.attachments.RemoveAll(delegate (Card c) { return true; });
         RowEffected deck = CardModel.isPower(c.cardType) ? RowEffected.PowerDeck : (CardModel.isUnit(c.cardType) ? RowEffected.UnitDeck : RowEffected.KingDeck);
@@ -416,6 +416,7 @@ public class Deck : MonoBehaviour
 
     public void activateRowsByType(bool state, bool individualCards, RowEffected type)
     {
+        Debug.Log("Activating Row: " + type);
         List<Row> rowList = getRowsByType(type);
         foreach (Row row in rowList)
         {
@@ -424,13 +425,17 @@ public class Deck : MonoBehaviour
     }
     public void activateAllRowsByType(bool state, bool individualCards, List<RowEffected> types)
     {
+
         foreach (RowEffected row in types)
         {
+            Debug.Log("Activating Row: " + row);
             this.activateRowsByType(state, individualCards, row);
         }
     }
     public void activateRowsByTypeExclude(bool state, bool individualCards, RowEffected type, RowEffected exclude)
     {
+
+        Debug.Log("Activating Row: " + type);
         List<Row> rowList = getRowsByType(type);
         foreach (Row row in rowList)
         {
@@ -818,7 +823,7 @@ public class Deck : MonoBehaviour
         foreach (Row r in rows)
         {
 
-            if (r.Contains(card))
+            if (r.ContainsIncludeAttachments(card))
             {
                 return r;
             }
