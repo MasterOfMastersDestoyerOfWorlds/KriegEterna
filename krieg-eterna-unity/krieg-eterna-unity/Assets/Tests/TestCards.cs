@@ -248,7 +248,7 @@ namespace KriegTests
                     MouseUnClick();
                     yield return null;
                     Assert.AreEqual(true, deck.getRowByType(clicks[i].rowAfterClick).ContainsIncludeAttachments(c),
-                    $"cardName: {clicks[i].name}, Expected Row: {clicks[i].rowAfterClick}, Actual Row: {deck.getCardRow(c).uniqueType}");
+                    $"row after click cardName: {clicks[i].name}, Expected Row: {clicks[i].rowAfterClick}, Actual Row: {deck.getCardRow(c).uniqueType}");
                 }
                 else if (clicks[i].isRowTarget)
                 {
@@ -273,7 +273,7 @@ namespace KriegTests
                 {
                     Card c = clicks[i].card;
                     Assert.AreEqual(true, deck.getRowByType(clicks[i].finalRow).ContainsIncludeAttachments(c),
-                    $"cardName: {clicks[i].name}, Expected Row: {clicks[i].finalRow}, Actual Row: {deck.getCardRow(c).uniqueType}");
+                    $"final row cardName: {clicks[i].name}, Expected Row: {clicks[i].finalRow}, Actual Row: {deck.getCardRow(c).uniqueType}");
                 }
             }
             Assert.AreEqual(State.FREE, Game.state);

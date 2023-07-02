@@ -115,9 +115,8 @@ namespace KriegTests
                 testName = "Relic",
                 clicks = new List<Click>{
                     new Click("Relic", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
-                    new Click("Knight3", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
-                    new Click("Mortar", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.PlayerHand, false),
+                    new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.EnemyRanged, true),
+                    new ClickRow("EnemyRanged", RowEffected.EnemyRanged),
                 }
             },
             new TestCase
@@ -185,9 +184,19 @@ namespace KriegTests
                 testName = "Wrath",
                 clicks = new List<Click>{
                     new Click("Wrath", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
-                    new Click("Knight3", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
-                    new Click("Mortar", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.PlayerHand, false),
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
+                    new Click("Knight3", RowEffected.EnemyMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
+                    new Click("Mortar", RowEffected.EnemySiege, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
+                }
+            },
+
+            new TestCase
+            {
+                testName = "WrathOneForOne",
+                clicks = new List<Click>{
+                    new Click("Wrath", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
+                    new Click("Knight3", RowEffected.EnemyMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
                 }
             },
             new TestCase
@@ -209,6 +218,9 @@ namespace KriegTests
             new TestCase
             {
                 testName = "Feast2",
+                scoreRows = new List<(RowEffected, int)>{
+                    (RowEffected.PlayerMelee, 4),
+                },
                 clicks = new List<Click>{
                     new Click("Feast2", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
                     new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
@@ -217,9 +229,12 @@ namespace KriegTests
             new TestCase
             {
                 testName = "Feast3",
+                scoreRows = new List<(RowEffected, int)>{
+                    (RowEffected.EnemyMelee, 4),
+                },
                 clicks = new List<Click>{
-                    new Click("Feast3", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
-                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
+                    new Click("Feast3", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemyMelee, true),
+                    new Click("Knight", RowEffected.EnemyMelee, RowEffected.EnemyMelee, RowEffected.EnemyMelee, true),
                 }
             },
             new TestCase
