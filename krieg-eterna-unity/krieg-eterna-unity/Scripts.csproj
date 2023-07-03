@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\DestroyType.cs" />
      <Compile Include="Assets\Scripts\Target.cs" />
      <Compile Include="Assets\Scripts\SetAsideType.cs" />
+     <Compile Include="Assets\Scripts\RoundType.cs" />
      <Compile Include="Assets\Scripts\LoadScene.cs" />
      <Compile Include="Assets\Scripts\Areas.cs" />
      <Compile Include="Assets\Scripts\TextOutline.cs" />

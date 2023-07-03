@@ -32,8 +32,8 @@ public class CardModel : MonoBehaviour
     public List<RowEffected> chooseRow;
     public List<int> chooseShowN;
 
-	public int[] isSpecial;
-	public string spriteFolder = "Images";
+    public int[] isSpecial;
+    public string spriteFolder = "Images";
     /* 
      * > isSpecial table of values:
      * [1] - gold card
@@ -52,23 +52,23 @@ public class CardModel : MonoBehaviour
      */
 
 
-	public void readTextFile()
-	{
-		StreamReader inp_stm = new StreamReader("Assets/Resources/CardSheet.tsv");
-		List<string> stringList = new List<string>();
-		smallFronts = new List<string>();
-		names = new List<string>();
-		while (!inp_stm.EndOfStream)
-		{
-			string inp_ln = inp_stm.ReadLine();
+    public void readTextFile()
+    {
+        StreamReader inp_stm = new StreamReader("Assets/Resources/CardSheet.tsv");
+        List<string> stringList = new List<string>();
+        smallFronts = new List<string>();
+        names = new List<string>();
+        while (!inp_stm.EndOfStream)
+        {
+            string inp_ln = inp_stm.ReadLine();
 
-			stringList.Add(inp_ln);
-		}
+            stringList.Add(inp_ln);
+        }
 
-		inp_stm.Close();
-		
+        inp_stm.Close();
+
         // start from second row
-		for (int i = 1; i < stringList.Count; i++)
+        for (int i = 1; i < stringList.Count; i++)
         {
             string[] temp = stringList[i].Split("	".ToCharArray());
             for (int j = 0; j < temp.Length; j++)
@@ -109,7 +109,7 @@ public class CardModel : MonoBehaviour
         {
             numList.Add(0);
         }
-    }    
+    }
     private void AddOptionalBool(string[] temp, List<bool> boolList, int indexBool)
     {
         if (!System.String.IsNullOrEmpty(temp[indexBool]))
@@ -175,7 +175,7 @@ public class CardModel : MonoBehaviour
 
     public Texture2D getSmallFront(int index)
     {
-		Texture2D s = (Texture2D)Resources.Load("Images/"+smallFronts[index], typeof(Texture2D));
+        Texture2D s = (Texture2D)Resources.Load("Images/" + smallFronts[index], typeof(Texture2D));
         return s;
     }
 
@@ -208,28 +208,72 @@ public class CardModel : MonoBehaviour
     {
         return 0;
     }
-    public static bool isUnit(CardType type){
-        return type == CardType.Melee || type == CardType.Ranged || 
+    public static bool isUnit(CardType type)
+    {
+        return type == CardType.Melee || type == CardType.Ranged ||
                 type == CardType.Switch || type == CardType.Siege;
     }
-    public static bool isPower(CardType type){
-        return type == CardType.Power || type == CardType.Spy || 
+    public static bool isPower(CardType type)
+    {
+        return type == CardType.Power || type == CardType.Spy ||
             type == CardType.Weather || type == CardType.Decoy;
     }
-    public static RowEffected getHandRow(RowEffected player){
-        if(player == RowEffected.Enemy){
+    public static RowEffected getHandRow(RowEffected player)
+    {
+        if (player == RowEffected.Enemy)
+        {
             return RowEffected.EnemyHand;
         }
         return RowEffected.PlayerHand;
     }
-    public static RowEffected getEnemy(RowEffected player){
-        if(player == RowEffected.Enemy){
+    public static RowEffected getEnemy(RowEffected player)
+    {
+        if (player == RowEffected.Enemy)
+        {
             return RowEffected.Player;
         }
         return RowEffected.Enemy;
     }
-    public static RowEffected getPlayerRow(RowEffected player, RowEffected generalRow){
-        if(player == RowEffected.Enemy){
+    public static RowEffected getFullRow(RowEffected generalRow)
+    {
+        switch (generalRow)
+        {
+            case RowEffected.PlayerMelee: return RowEffected.MeleeFull;
+            case RowEffected.PlayerRanged: return RowEffected.RangedFull;
+            case RowEffected.PlayerSiege: return RowEffected.SiegeFull;
+            case RowEffected.EnemyMelee: return RowEffected.MeleeFull;
+            case RowEffected.EnemyRanged: return RowEffected.RangedFull;
+            case RowEffected.EnemySiege: return RowEffected.SiegeFull;
+        }
+        return generalRow;
+    }
+
+    public static RowEffected getPlayerFromRow( RowEffected generalRow)
+    {
+        switch (generalRow)
+        {
+            case RowEffected.PlayerPlayable: return RowEffected.Player;
+            case RowEffected.PlayerMelee: return RowEffected.Player;
+            case RowEffected.PlayerRanged: return RowEffected.Player;
+            case RowEffected.PlayerSiege: return RowEffected.Player;
+            case RowEffected.EnemyPlayable: return RowEffected.Enemy;
+            case RowEffected.PlayerHand: return RowEffected.Player;
+            case RowEffected.EnemyKing: return RowEffected.Enemy;
+            case RowEffected.PlayerKing: return RowEffected.Player;
+            case RowEffected.EnemyMax: return RowEffected.Enemy;
+            case RowEffected.PlayerMax: return RowEffected.Player;
+            case RowEffected.EnemyHand: return RowEffected.Enemy;
+            case RowEffected.EnemyMelee: return RowEffected.Enemy;
+            case RowEffected.EnemyRanged: return RowEffected.Enemy;
+            case RowEffected.EnemySiege: return RowEffected.Enemy;
+        }
+
+        return RowEffected.None;
+    }
+    public static RowEffected getRowFromSide(RowEffected player, RowEffected generalRow)
+    {
+        if (player == RowEffected.Enemy)
+        {
             switch (generalRow)
             {
                 case RowEffected.PlayerPlayable: return RowEffected.EnemyPlayable;
@@ -247,9 +291,11 @@ public class CardModel : MonoBehaviour
                 case RowEffected.EnemyRanged: return RowEffected.PlayerRanged;
                 case RowEffected.EnemySiege: return RowEffected.PlayerSiege;
             }
-        }else{
+        }
+        else
+        {
             switch (generalRow)
-            {   
+            {
                 case RowEffected.PlayerMelee: return RowEffected.PlayerMelee;
                 case RowEffected.PlayerRanged: return RowEffected.PlayerRanged;
                 case RowEffected.PlayerSiege: return RowEffected.PlayerSiege;

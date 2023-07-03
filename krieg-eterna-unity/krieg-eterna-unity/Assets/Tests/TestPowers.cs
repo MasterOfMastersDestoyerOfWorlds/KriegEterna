@@ -31,7 +31,7 @@ namespace KriegTests
                 scoreRows = new List<(RowEffected, int)>{
                     (RowEffected.PlayerRanged, 4),
                 },
-                turn = 1,
+                round = RoundType.RoundTwo,
                 clicks = new List<Click>{
                     new Click("Burden", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
                     new Click("Burden", RowEffected.PlayerHand, RowEffected.EnemyRanged, RowEffected.PlayerRanged, true),
@@ -297,7 +297,7 @@ namespace KriegTests
             {
                 testName = "Usury",
                 playerHandCount = 3,
-                turn = 1,
+                round = RoundType.RoundTwo,
                 clicks = new List<Click>{
                     new Click("Usury", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerSetAside, RowEffected.PlayerHand, true),
@@ -307,7 +307,7 @@ namespace KriegTests
             new TestCase
             {
                 testName = "Void",
-                turn = 1,
+                round = RoundType.RoundTwo,
                 clicks = new List<Click>{
                     new Click("Void", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new Click("Void", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
@@ -319,7 +319,7 @@ namespace KriegTests
             new TestCase
             {
                 testName = "VoidEndEarly",
-                turn = 1,
+                round = RoundType.RoundTwo,
                 clicks = new List<Click>{
                     new Click("Void", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new Click("Void", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),

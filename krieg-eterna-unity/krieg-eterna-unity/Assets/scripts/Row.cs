@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -102,20 +103,77 @@ public class Row : List<Card>
         return maxCard;
     }
 
-    public float scoreRow(Deck deck)
+    public float scoreRow(Deck deck, RowEffected player)
     {
         float score = 0f;
         float rowMultiple = 1f;
+        RowEffected enemy = CardModel.getEnemy(player);
+        
+        bool halfFlag = false;
         foreach (Card card in this)
         {
-            if (card.rowMultiple != 0)
+            if (card.rowMultiple != 0){
                 rowMultiple = rowMultiple * card.rowMultiple;
+                if(card.rowMultiple < 1){
+                    halfFlag = true;
+                }
+            }
         }
-        Row kingRow = deck.getKingRowFromPlayRow(this);
-        rowMultiple = rowMultiple * (kingRow.Count > 0 ? kingRow[0].rowMultiple : 1);
+        RowEffected playerKingRowType = deck.getKingRow(player);
+        RowEffected enemyKingRowType = deck.getKingRow(enemy);
+        if (this.hasType(RowEffected.All))
+        {
+            Row playerKingRow = deck.getRowByType(playerKingRowType);
+            if (playerKingRowType != RowEffected.None && !halfFlag)
+            {
+                RowEffected fullRow = CardModel.getFullRow(this.uniqueType);
+                
+                rowMultiple = rowMultiple * (playerKingRow.hasType(fullRow) ? 2 : 1);
+                Card playerKing = playerKingRow[0];
+                if (playerKing.rowMultiple > 0 && this.hasType(playerKing.rowEffected))
+                {
+                    rowMultiple = rowMultiple * playerKing.rowMultiple;
+                    halfFlag = true;
+                }
+            }
+            if (enemyKingRowType != RowEffected.None && !halfFlag)
+            {
+                Card enemyKing = deck.getRowByType(enemyKingRowType)[0];
+                if (enemyKing.rowMultiple > 0 && this.hasType(enemyKing.rowEffected))
+                {
+                    rowMultiple = rowMultiple * enemyKing.rowMultiple;
+                    halfFlag = true;
+                }
+            }
+        }
+        List<List<Card>> strengthGroupingList = new List<List<Card>>(){
+            new List<Card>(),
+            new List<Card>(),
+            new List<Card>(),
+        };
+        foreach (Card card in this){
+            int strength = card.calculateBaseStrength();
+            card.calculatedStrength = strength;
+            if( strength <= 3 && strength > 0){
+                strengthGroupingList[strength-1].Add(card);
+            }
+        }
+        foreach (List<Card> strengthGrouping in strengthGroupingList){
+            int numAdjacent = strengthGrouping.Count - strengthGrouping.Count % 2;
+            for(int i =0; i < numAdjacent; i ++){
+                Card card = strengthGrouping[i];
+                card.calculatedStrength = card.calculatedStrength *2;
+            }
+        }
         foreach (Card card in this)
         {
-            score += card.strength * rowMultiple;
+            card.calculatedStrength =  (int)Mathf.Floor( ((float)card.calculatedStrength) * rowMultiple);
+            if(card.calculatedStrength < 1 && card.strength > 0){
+                card.calculatedStrength = 1;
+            }
+        }
+        foreach(Card card in this){
+            score += card.calculatedStrength;
         }
 
         return score;
@@ -183,7 +241,8 @@ public class Row : List<Card>
     public override string ToString()
     {
         string str = this.name + " [ ";
-        foreach(Card c in this){
+        foreach (Card c in this)
+        {
             str += " " + c.cardName + " ";
         }
         str += " ]";
@@ -194,17 +253,22 @@ public class Row : List<Card>
         return this.rowType.Contains(type);
     }
 
+
     public bool hasAllTypes(List<RowEffected> types)
-    {   
+    {
         bool flag = true;
-        foreach(RowEffected type in types){
+        foreach (RowEffected type in types)
+        {
             flag = flag & rowType.Contains(type);
         }
         return flag;
     }
-    public Card getKing(){
-        foreach(Card c in this){
-            if(c.cardType == CardType.King){
+    public Card getKing()
+    {
+        foreach (Card c in this)
+        {
+            if (c.cardType == CardType.King)
+            {
                 return c;
             }
         }

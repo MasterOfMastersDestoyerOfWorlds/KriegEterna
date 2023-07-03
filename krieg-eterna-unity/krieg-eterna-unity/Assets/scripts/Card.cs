@@ -8,6 +8,7 @@ public class Card : MonoBehaviour
     public string cardName;
     public CardType cardType;
     public int strength;
+    public int calculatedStrength;
     public int playerCardDraw;
     public CardDrawType cardDrawType;
     public int playerCardDrawRemain;
@@ -18,6 +19,7 @@ public class Card : MonoBehaviour
     public int playerCardReturnRemain;
     public CardReturnType cardReturnType;
     public float strengthModifier;
+    private float strengthMultiple;
     public StrengthModType strengthModType;
     public int graveyardCardDraw;
     public int graveyardCardDrawRemain;
@@ -263,9 +265,9 @@ public class Card : MonoBehaviour
 
     public bool isPlayable(Deck deck, RowEffected player)
     {
-        List<Row> playerRows = deck.getRowsByType(CardModel.getPlayerRow(player, RowEffected.PlayerPlayable));
+        List<Row> playerRows = deck.getRowsByType(CardModel.getRowFromSide(player, RowEffected.PlayerPlayable));
         int playerRowsSum = 0;
-        List<Row> enemyRows = deck.getRowsByType(CardModel.getPlayerRow(player, RowEffected.EnemyPlayable));
+        List<Row> enemyRows = deck.getRowsByType(CardModel.getRowFromSide(player, RowEffected.EnemyPlayable));
         int enemyRowsSum = 0;
         RowEffected playerKingRow = deck.getKingRow(player);
         RowEffected enemyKingRow = deck.getKingRow(CardModel.getEnemy(player));
@@ -327,7 +329,25 @@ public class Card : MonoBehaviour
     {
         return 0.1f;
     }
-
+    public int calculateBaseStrength(){
+        int str = strength;
+        foreach(Card attachment in attachments){
+            switch(attachment.strengthModType){
+                case StrengthModType.Set: str = (int)attachment.strengthModifier;break;
+                default: break;
+            }
+        }
+        foreach(Card attachment in attachments){
+            switch(attachment.strengthModType){
+                case StrengthModType.Add: str += (int)attachment.strengthModifier;break;
+                case StrengthModType.Adjacent:str += (int)attachment.strengthModifier;break;
+                case StrengthModType.Multiply:str += (int)(attachment.strengthModifier * attachment.strengthMultiple);break;
+                case StrengthModType.None:break;
+                default: break;
+            }
+        }
+        return str;
+    }
     public void attachCard(Card c)
     {
         attachments.Add(c);

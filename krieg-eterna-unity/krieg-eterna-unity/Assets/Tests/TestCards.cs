@@ -87,7 +87,7 @@ namespace KriegTests
             public string testName;
             public int playerHandCount;
             public int enemyHandCount;
-            public int turn;
+            public RoundType round;
             public List<Click> clicks;
             public List<(RowEffected, int)> scoreRows;
 
@@ -190,6 +190,7 @@ namespace KriegTests
             displayRow.setVisibile(false);
             deck.disactiveAllInDeck(false);
             Game.state = State.FREE;
+            Game.round = RoundType.RoundOne;
             game.reorganizeGroup();
         }
 
@@ -291,6 +292,7 @@ namespace KriegTests
                 }
             }
             Assert.AreEqual(State.FREE, Game.state);
+            Assert.AreEqual(testCase.round, Game.round);
 
             Assert.AreEqual(testCase.playerHandCount, deck.getRowByType(RowEffected.PlayerHand).Count);
             Assert.AreEqual(testCase.enemyHandCount, deck.getRowByType(RowEffected.EnemyHand).Count);
@@ -299,7 +301,7 @@ namespace KriegTests
             {
                 foreach ((RowEffected, int) rowPair in testCase.scoreRows)
                 {
-                    Assert.AreEqual(rowPair.Item2, deck.getRowByType(rowPair.Item1).scoreRow(deck));
+                    Assert.AreEqual(rowPair.Item2, deck.getRowByType(rowPair.Item1).scoreRow(deck, RowEffected.Player));
                 }
             }
         }

@@ -28,6 +28,8 @@ public class Game : MonoBehaviour
 
     public Deck activeDeck;
 
+    public static RoundType round;
+
     private bool hasChosenStart;
     private RowEffected chooseNRow;
 
@@ -153,7 +155,7 @@ public class Game : MonoBehaviour
         deck.buildDeck(NUM_POWERS, NUM_UNITS, NUM_KINGS, choosePower, chooseUnit, chooseKing, chooseUnitGraveyard, choosePowerGraveyard, enemyPower, enemyUnit, enemyKing);
         deck.buildTargets();
         hasChosenStart = false;
-
+        round = RoundType.RoundOne;
         activePlayerNumber = (int)PlayerNumber.PLAYER1;
 
     }
@@ -371,9 +373,9 @@ public class Game : MonoBehaviour
         }
         switch (c.cardType)
         {
-            case CardType.Melee: activeDeck.getRowByType(CardModel.getPlayerRow(player, RowEffected.PlayerMelee)).Add(c); break;
-            case CardType.Ranged: activeDeck.getRowByType(CardModel.getPlayerRow(player, RowEffected.PlayerRanged)).Add(c); break;
-            case CardType.Siege: activeDeck.getRowByType(CardModel.getPlayerRow(player, RowEffected.PlayerSiege)).Add(c); break;
+            case CardType.Melee: activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerMelee)).Add(c); break;
+            case CardType.Ranged: activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerRanged)).Add(c); break;
+            case CardType.Siege: activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerSiege)).Add(c); break;
             case CardType.Switch: targetRow.Add(c); break;
             case CardType.Weather: PlayWeather(c); break;
             case CardType.King: PlayKing(c, targetRow, targetCard, player); break;
@@ -382,8 +384,8 @@ public class Game : MonoBehaviour
         updateStateBasedOnCardState(c);
         if (state != State.MULTISTEP)
         {
-            activeDeck.getRowByType(CardModel.getPlayerRow(player, RowEffected.PlayerHand)).Remove(c);
-            RowEffected enemyHand = CardModel.getPlayerRow(player, RowEffected.EnemyHand);
+            activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerHand)).Remove(c);
+            RowEffected enemyHand = CardModel.getRowFromSide(player, RowEffected.EnemyHand);
             if (c.enemyReveal > 0  && activeDeck.getRowByType(enemyHand).Count > 0)
             {
                 //may want to turn off flashing since it is only otherwise used when some input is happening
@@ -401,7 +403,7 @@ public class Game : MonoBehaviour
         else
         {
             targetRow.Add(c);
-            RowEffected enemySide = CardModel.getPlayerRow(player, RowEffected.EnemyPlayable);
+            RowEffected enemySide = CardModel.getRowFromSide(player, RowEffected.EnemyPlayable);
             int cardsRemaining = activeDeck.countCardsInRows(enemySide);
             if (c.setAsideRemain > cardsRemaining)
             {
@@ -432,7 +434,7 @@ public class Game : MonoBehaviour
         RowEffected enemy = CardModel.getEnemy(player);
         if (targetRow == null && c.rowEffected != RowEffected.None)
         {
-            RowEffected rowEffected = CardModel.getPlayerRow(player, c.rowEffected);
+            RowEffected rowEffected = CardModel.getRowFromSide(player, c.rowEffected);
             Debug.Log("Playing Card in: " + rowEffected);
             activeDeck.getRowByType(rowEffected).Add(c);
         }
@@ -661,10 +663,10 @@ public class Game : MonoBehaviour
     public void ShowTargets(Card c, RowEffected player)
     {
         Debug.Log("Showing Targets for: " + c.cardName + " " + c.cardType);
-        RowEffected playerPlayable = CardModel.getPlayerRow(player, RowEffected.PlayerPlayable);
-        RowEffected playerKing = CardModel.getPlayerRow(player, RowEffected.PlayerKing);
-        RowEffected enemyKing = CardModel.getPlayerRow(player, RowEffected.EnemyKing);
-        RowEffected enemyPlayable = CardModel.getPlayerRow(player, RowEffected.EnemyPlayable);
+        RowEffected playerPlayable = CardModel.getRowFromSide(player, RowEffected.PlayerPlayable);
+        RowEffected playerKing = CardModel.getRowFromSide(player, RowEffected.PlayerKing);
+        RowEffected enemyKing = CardModel.getRowFromSide(player, RowEffected.EnemyKing);
+        RowEffected enemyPlayable = CardModel.getRowFromSide(player, RowEffected.EnemyPlayable);
         RowEffected enemy = CardModel.getEnemy(player);
         switch (c.cardType)
         {
@@ -672,9 +674,9 @@ public class Game : MonoBehaviour
             case CardType.Ranged: c.setTargetActive(true); break;
             case CardType.Siege: c.setTargetActive(true); break;
             case CardType.Switch:
-                activeDeck.getRowByType(CardModel.getPlayerRow(player, RowEffected.PlayerMelee))
+                activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerMelee))
                     .setActivateRowCardTargets(true, false);
-                activeDeck.getRowByType(CardModel.getPlayerRow(player, RowEffected.PlayerRanged))
+                activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerRanged))
                     .setActivateRowCardTargets(true, false);
                 break;
             case CardType.King:

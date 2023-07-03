@@ -581,7 +581,7 @@ public class Deck : MonoBehaviour
     {
 
         List<Row> kingRows;
-        kingRows = getRowsByType(CardModel.getPlayerRow(player, RowEffected.PlayerKing));
+        kingRows = getRowsByType(CardModel.getRowFromSide(player, RowEffected.PlayerKing));
 
         for (int i = 0; i < kingRows.Count; i++)
         {
@@ -663,7 +663,7 @@ public class Deck : MonoBehaviour
             case SetAsideType.Player: c.setAsideReturnRow = RowEffected.PlayerHand; break;
         }
         currentRow.Remove(c);
-        getRowByType(CardModel.getPlayerRow(player, RowEffected.PlayerSetAside)).Add(c);
+        getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerSetAside)).Add(c);
 
     }
 
@@ -727,7 +727,7 @@ public class Deck : MonoBehaviour
 
     public Card getPlayableCard(RowEffected player)
     {
-        foreach (Card c in getRowByType(CardModel.getPlayerRow(player, RowEffected.PlayerHand)))
+        foreach (Card c in getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerHand)))
         {
             if (c.isPlayable(this, player))
             {
@@ -785,16 +785,17 @@ public class Deck : MonoBehaviour
         List<RowEffected> maxRows = new List<RowEffected>();
         float max = -1;
         for (int i = 0; i < rows.Count; i++)
-        {
-            float temp = rows[i].scoreRow(this);
+        {   
+            Row row = rows[i];
+            float temp = row.scoreRow(this, CardModel.getPlayerFromRow(row.uniqueType));
             if (temp > max)
             {
-                maxRows = new List<RowEffected>() { rows[i].uniqueType };
+                maxRows = new List<RowEffected>() { row.uniqueType };
                 max = temp;
             }
             else if (temp == max)
             {
-                maxRows.Add(rows[i].uniqueType);
+                maxRows.Add(row.uniqueType);
             }
         }
         return maxRows;

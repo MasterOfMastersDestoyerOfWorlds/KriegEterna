@@ -276,7 +276,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 90
+  controlID: 85
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -468,7 +468,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 1cfbffff
+      m_ExpandedIDs: 92faffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -2509,7 +2509,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 50670000
     m_LastClickedID: 26448
-    m_ExpandedIDs: 000000006267000064670000
+    m_ExpandedIDs: 000000004c6800004e680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2537,7 +2537,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000006267000064670000
+    m_ExpandedIDs: 000000004c6800004e680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -12189,125 +12189,38 @@ MonoBehaviour:
       parentId: 1103
       parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
     - id: 1078
-      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(Burden)]
-      name: TestCard(Burden)
-      fullName: KriegTests.TestCards.TestCard(Burden)
-      resultStatus: 2
-      duration: 0.0952025
-      messages: "  final row cardName: Burden, Expected Row: PowerGraveyard, Actual
-        Row: PlayerHand\r\n  Expected: True\r\n  But was:  False\r\n"
-      output: 'UnitySetup Base
-
-        --------------------------------------------------------------------
-
-        Reorganizing
-        all rows
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        Starting
-        Test:Burden
-
-        Mouse Position BeforeUpdate: (1635.97, 540.00)
-
-        Click
-        Registered! State: FREE
-
-        +++++++++++++++++++++++++++++
-
-        Card
-        Bounds Check: card center: (12.19, 0.00, 3.30) mouse center: (12.19, 0.00,
-        3.30) collider center: (12.19, 0.00, 3.30)
-
-        +++++++++++++++++++++++++++++
-
-        Click
-        Registered On Deck
-
-        clicked on: Type: Power Name: Burden card with
-        strength: 0 isPlayable: True active: False
-
-        Showing Targets for:
-        Burden Power
-
-        Setup Power Targets: Burden
-
-        Activating Row:
-        EnemyMelee
-
-        Activating Row: EnemyMelee
-
-        Activating Row: EnemyRanged
-
-        Activating
-        Row: EnemyRanged
-
-        Activating Row: EnemySiege
-
-        Activating
-        Row: EnemySiege
-
-        Activating Row: EnemyMax
-
-        Reorganizing all
-        rows
-
-        Setting Card Active: Burden
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        Mouse
-        Position BeforeUpdate: (1749.58, 385.71)
-
-        Click Registered! State:
-        ACTIVE_CARD
-
-        +++++++++++++++++++++++++++++
-
-        Card Bounds Check:
-        card center: (0.00, -7.42, -2.00) mouse center: (14.24, -2.78, -2.00) collider
-        center: (0.00, -7.42, -2.00)
-
-        +++++++++++++++++++++++++++++
-
-        No
-        valid click resetting
-
-        Reorganizing all rows
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        TearDown
-        Base
-
-'
-      stacktrace: 'at KriegTests.TestCards+<TestCard>d__26.MoveNext () [0x00398]
-        in C:\Users\andre\KriegEterna\krieg-eterna-unity\krieg-eterna-unity\Assets\Tests\TestCards.cs:279
-
-        at
-        UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a]
-        in .\Library\PackageCache\com.unity.test-framework@1.1.33\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:46
-
-'
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(BurdenRoundOne)]
+      name: TestCard(BurdenRoundOne)
+      fullName: KriegTests.TestCards.TestCard(BurdenRoundOne)
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1103
+      parentId: 1123
+      parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
+    - id: 1079
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(BurdenRoundTwo)]
+      name: TestCard(BurdenRoundTwo)
+      fullName: KriegTests.TestCards.TestCard(BurdenRoundTwo)
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1123
       parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
     - id: 1079
       uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(Crusade)]
@@ -12413,325 +12326,107 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1103
       parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
-    - id: 1080
-      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(EmperorDemise)]
-      name: TestCard(EmperorDemise)
-      fullName: KriegTests.TestCards.TestCard(EmperorDemise)
-      resultStatus: 2
-      duration: 0.0361556
-      messages: "  final row cardName: EmperorDemise, Expected Row: PowerGraveyard,
-        Actual Row: PlayerHand\r\n  Expected: True\r\n  But was:  False\r\n"
-      output: 'UnitySetup Base
-
-        --------------------------------------------------------------------
-
-        Reorganizing
-        all rows
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        Starting
-        Test:EmperorDemise
-
-        Mouse Position BeforeUpdate: (1635.97, 540.00)
-
-        Click
-        Registered! State: FREE
-
-        +++++++++++++++++++++++++++++
-
-        Card
-        Bounds Check: card center: (12.19, 0.00, 0.60) mouse center: (12.19, 0.00,
-        0.60) collider center: (12.19, 0.00, 0.60)
-
-        +++++++++++++++++++++++++++++
-
-        Click
-        Registered On Deck
-
-        clicked on: Type: Power Name: EmperorDemise card
-        with strength: 0 isPlayable: False active: False
-
-        Showing Targets
-        for: EmperorDemise Power
-
-        Setup Power Targets: EmperorDemise
-
-        Activating
-        Row: PlayerKing
-
-        Reorganizing all rows
-
-        Setting Card Active:
-        EmperorDemise
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        Mouse
-        Position BeforeUpdate: (1749.58, 385.71)
-
-        Click Registered! State:
-        ACTIVE_CARD
-
-        +++++++++++++++++++++++++++++
-
-        Card Bounds Check:
-        card center: (0.00, -7.42, -2.00) mouse center: (14.24, -2.78, -2.00) collider
-        center: (0.00, -7.42, -2.00)
-
-        +++++++++++++++++++++++++++++
-
-        No
-        valid click resetting
-
-        Reorganizing all rows
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        TearDown
-        Base
-
-'
-      stacktrace: 'at KriegTests.TestCards+<TestCard>d__26.MoveNext () [0x00398]
-        in C:\Users\andre\KriegEterna\krieg-eterna-unity\krieg-eterna-unity\Assets\Tests\TestCards.cs:279
-
-        at
-        UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a]
-        in .\Library\PackageCache\com.unity.test-framework@1.1.33\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:46
-
-'
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1103
-      parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
     - id: 1081
-      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(Enlightenment)]
-      name: TestCard(Enlightenment)
-      fullName: KriegTests.TestCards.TestCard(Enlightenment)
-      resultStatus: 2
-      duration: 0.0381608
-      messages: "  final row cardName: Enlightenment, Expected Row: PowerGraveyard,
-        Actual Row: PlayerHand\r\n  Expected: True\r\n  But was:  False\r\n"
-      output: 'UnitySetup Base
-
-        --------------------------------------------------------------------
-
-        Reorganizing
-        all rows
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        Starting
-        Test:Enlightenment
-
-        Mouse Position BeforeUpdate: (1635.97, 540.00)
-
-        Click
-        Registered! State: FREE
-
-        +++++++++++++++++++++++++++++
-
-        Card
-        Bounds Check: card center: (12.19, 0.00, 0.40) mouse center: (12.19, 0.00,
-        0.40) collider center: (12.19, 0.00, 0.40)
-
-        +++++++++++++++++++++++++++++
-
-        Click
-        Registered On Deck
-
-        clicked on: Type: Power Name: Enlightenment card
-        with strength: 0 isPlayable: True active: False
-
-        Showing Targets
-        for: Enlightenment Power
-
-        Setup Power Targets: Enlightenment
-
-        Activating
-        Row: UnitDeck
-
-        Reorganizing all rows
-
-        Setting Card Active:
-        Enlightenment
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        Mouse
-        Position BeforeUpdate: (1749.58, 385.71)
-
-        Click Registered! State:
-        ACTIVE_CARD
-
-        REEEEEEEEE offcenter
-
-        +++++++++++++++++++++++++++++
-
-        Card
-        Bounds Check: card center: (0.00, -7.42, -2.00) mouse center: (14.24, -2.78,
-        -2.00) screenvec center: (960.00, 128.57, 98.00)
-
-        +++++++++++++++++++++++++++++
-
-        No
-        valid click resetting
-
-        Reorganizing all rows
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        TearDown
-        Base
-
-'
-      stacktrace: 'at KriegTests.TestCards+<TestCard>d__26.MoveNext () [0x00398]
-        in C:\Users\andre\KriegEterna\krieg-eterna-unity\krieg-eterna-unity\Assets\Tests\TestCards.cs:279
-
-        at
-        UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a]
-        in .\Library\PackageCache\com.unity.test-framework@1.1.33\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:46
-
-'
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(EmperorDemisePlayer)]
+      name: TestCard(EmperorDemisePlayer)
+      fullName: KriegTests.TestCards.TestCard(EmperorDemisePlayer)
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1103
+      parentId: 1123
       parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
     - id: 1082
-      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(Execution)]
-      name: TestCard(Execution)
-      fullName: KriegTests.TestCards.TestCard(Execution)
-      resultStatus: 2
-      duration: 0.084011
-      messages: "  final row cardName: Execution, Expected Row: PowerGraveyard, Actual
-        Row: PlayerHand\r\n  Expected: True\r\n  But was:  False\r\n"
-      output: 'UnitySetup Base
-
-        --------------------------------------------------------------------
-
-        Reorganizing
-        all rows
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        Starting
-        Test:Execution
-
-        Mouse Position BeforeUpdate: (1635.97, 540.00)
-
-        Click
-        Registered! State: FREE
-
-        +++++++++++++++++++++++++++++
-
-        Card
-        Bounds Check: card center: (12.19, 0.00, 3.70) mouse center: (12.19, 0.00,
-        3.70) collider center: (12.19, 0.00, 3.70)
-
-        +++++++++++++++++++++++++++++
-
-        Click
-        Registered On Deck
-
-        clicked on: Type: Power Name: Execution card
-        with strength: 0 isPlayable: True active: False
-
-        Showing Targets
-        for: Execution Power
-
-        Setup Power Targets: Execution
-
-        Reorganizing
-        all rows
-
-        Setting Card Active: Execution
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        Mouse
-        Position BeforeUpdate: (1749.58, 385.71)
-
-        Click Registered! State:
-        ACTIVE_CARD
-
-        +++++++++++++++++++++++++++++
-
-        Card Bounds Check:
-        card center: (0.00, -7.42, -2.00) mouse center: (14.24, -2.78, -2.00) collider
-        center: (0.00, -7.42, -2.00)
-
-        +++++++++++++++++++++++++++++
-
-        No
-        valid click resetting
-
-        Reorganizing all rows
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        TearDown
-        Base
-
-'
-      stacktrace: 'at KriegTests.TestCards+<TestCard>d__26.MoveNext () [0x00398]
-        in C:\Users\andre\KriegEterna\krieg-eterna-unity\krieg-eterna-unity\Assets\Tests\TestCards.cs:279
-
-        at
-        UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a]
-        in .\Library\PackageCache\com.unity.test-framework@1.1.33\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:46
-
-'
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(EmperorDemiseEnemy)]
+      name: TestCard(EmperorDemiseEnemy)
+      fullName: KriegTests.TestCards.TestCard(EmperorDemiseEnemy)
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1103
+      parentId: 1123
+      parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
+    - id: 1083
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(EnlightenmentRevealOne)]
+      name: TestCard(EnlightenmentRevealOne)
+      fullName: KriegTests.TestCards.TestCard(EnlightenmentRevealOne)
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1123
+      parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
+    - id: 1084
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(EnlightenmentRevealTwo)]
+      name: TestCard(EnlightenmentRevealTwo)
+      fullName: KriegTests.TestCards.TestCard(EnlightenmentRevealTwo)
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1123
+      parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
+    - id: 1085
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(ExecutionInHand)]
+      name: TestCard(ExecutionInHand)
+      fullName: KriegTests.TestCards.TestCard(ExecutionInHand)
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1123
+      parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
+    - id: 1086
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(ExecutionOnField)]
+      name: TestCard(ExecutionOnField)
+      fullName: KriegTests.TestCards.TestCard(ExecutionOnField)
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1123
       parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
     - id: 1083
       uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(Famine)]
@@ -12839,326 +12534,107 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1103
       parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
-    - id: 1084
-      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(Fate)]
-      name: TestCard(Fate)
-      fullName: KriegTests.TestCards.TestCard(Fate)
-      resultStatus: 2
-      duration: 0.0397443
-      messages: "  final row cardName: Fate, Expected Row: PowerGraveyard, Actual
-        Row: PlayerHand\r\n  Expected: True\r\n  But was:  False\r\n"
-      output: 'UnitySetup Base
-
-        --------------------------------------------------------------------
-
-        Reorganizing
-        all rows
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        Starting
-        Test:Fate
-
-        Mouse Position BeforeUpdate: (1635.97, 540.00)
-
-        Click
-        Registered! State: FREE
-
-        +++++++++++++++++++++++++++++
-
-        Card
-        Bounds Check: card center: (12.19, 0.00, 3.00) mouse center: (12.19, 0.00,
-        3.00) collider center: (12.19, 0.00, 3.00)
-
-        +++++++++++++++++++++++++++++
-
-        Click
-        Registered On Deck
-
-        clicked on: Type: Power Name: Fate card with
-        strength: 0 isPlayable: True active: False
-
-        Showing Targets for:
-        Fate Power
-
-        Setup Power Targets: Fate
-
-        Activating Row: PlayerPlayable
-
-        Reorganizing
-        all rows
-
-        Setting Card Active: Fate
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        Mouse
-        Position BeforeUpdate: (1749.58, 385.71)
-
-        Click Registered! State:
-        ACTIVE_CARD
-
-        REEEEEEEEE offcenter
-
-        +++++++++++++++++++++++++++++
-
-        Card
-        Bounds Check: card center: (0.00, -7.42, -2.00) mouse center: (14.24, -2.78,
-        -2.00) screenvec center: (960.00, 128.57, 98.00)
-
-        +++++++++++++++++++++++++++++
-
-        No
-        valid click resetting
-
-        Reorganizing all rows
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        TearDown
-        Base
-
-'
-      stacktrace: 'at KriegTests.TestCards+<TestCard>d__26.MoveNext () [0x00398]
-        in C:\Users\andre\KriegEterna\krieg-eterna-unity\krieg-eterna-unity\Assets\Tests\TestCards.cs:279
-
-        at
-        UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a]
-        in .\Library\PackageCache\com.unity.test-framework@1.1.33\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:46
-
-'
+    - id: 1088
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(FamineAdjacency)]
+      name: TestCard(FamineAdjacency)
+      fullName: KriegTests.TestCards.TestCard(FamineAdjacency)
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1103
+      parentId: 1123
       parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
-    - id: 1085
-      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(Offering)]
-      name: TestCard(Offering)
-      fullName: KriegTests.TestCards.TestCard(Offering)
-      resultStatus: 2
-      duration: 0.0600379
-      messages: "  final row cardName: Offering, Expected Row: PowerGraveyard, Actual
-        Row: PlayerHand\r\n  Expected: True\r\n  But was:  False\r\n"
-      output: 'UnitySetup Base
-
-        --------------------------------------------------------------------
-
-        Reorganizing
-        all rows
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        Starting
-        Test:Offering
-
-        Mouse Position BeforeUpdate: (1635.97, 540.00)
-
-        Click
-        Registered! State: FREE
-
-        +++++++++++++++++++++++++++++
-
-        Card
-        Bounds Check: card center: (12.19, 0.00, 4.20) mouse center: (12.19, 0.00,
-        4.20) collider center: (12.19, 0.00, 4.20)
-
-        +++++++++++++++++++++++++++++
-
-        Click
-        Registered On Deck
-
-        clicked on: Type: Power Name: Offering card with
-        strength: 0 isPlayable: False active: False
-
-        Showing Targets for:
-        Offering Power
-
-        Setup Power Targets: Offering
-
-        Activating
-        Row: PlayerPlayable
-
-        Reorganizing all rows
-
-        Setting Card
-        Active: Offering
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        Mouse
-        Position BeforeUpdate: (1749.58, 385.71)
-
-        Click Registered! State:
-        ACTIVE_CARD
-
-        +++++++++++++++++++++++++++++
-
-        Card Bounds Check:
-        card center: (0.00, -7.42, -2.00) mouse center: (14.24, -2.78, -2.00) collider
-        center: (0.00, -7.42, -2.00)
-
-        +++++++++++++++++++++++++++++
-
-        No
-        valid click resetting
-
-        Reorganizing all rows
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        TearDown
-        Base
-
-'
-      stacktrace: 'at KriegTests.TestCards+<TestCard>d__26.MoveNext () [0x00398]
-        in C:\Users\andre\KriegEterna\krieg-eterna-unity\krieg-eterna-unity\Assets\Tests\TestCards.cs:279
-
-        at
-        UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a]
-        in .\Library\PackageCache\com.unity.test-framework@1.1.33\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:46
-
-'
+    - id: 1089
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(FateGraveyard)]
+      name: TestCard(FateGraveyard)
+      fullName: KriegTests.TestCards.TestCard(FateGraveyard)
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1103
+      parentId: 1123
       parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
-    - id: 1086
-      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(Plague)]
-      name: TestCard(Plague)
-      fullName: KriegTests.TestCards.TestCard(Plague)
-      resultStatus: 2
-      duration: 0.0904587
-      messages: "  final row cardName: Plague, Expected Row: PowerGraveyard, Actual
-        Row: PlayerHand\r\n  Expected: True\r\n  But was:  False\r\n"
-      output: 'UnitySetup Base
-
-        --------------------------------------------------------------------
-
-        Reorganizing
-        all rows
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        Starting
-        Test:Plague
-
-        Mouse Position BeforeUpdate: (1635.97, 540.00)
-
-        Click
-        Registered! State: FREE
-
-        +++++++++++++++++++++++++++++
-
-        Card
-        Bounds Check: card center: (12.19, 0.00, 4.20) mouse center: (12.19, 0.00,
-        4.20) collider center: (12.19, 0.00, 4.20)
-
-        +++++++++++++++++++++++++++++
-
-        Click
-        Registered On Deck
-
-        clicked on: Type: Power Name: Plague card with
-        strength: 0 isPlayable: True active: False
-
-        Showing Targets for:
-        Plague Power
-
-        Setup Power Targets: Plague
-
-        Activating Row:
-        All
-
-        Reorganizing all rows
-
-        Setting Card Active: Plague
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        Mouse
-        Position BeforeUpdate: (1749.58, 385.71)
-
-        Click Registered! State:
-        ACTIVE_CARD
-
-        +++++++++++++++++++++++++++++
-
-        Card Bounds Check:
-        card center: (0.00, -7.42, -2.00) mouse center: (14.24, -2.78, -2.00) collider
-        center: (0.00, -7.42, -2.00)
-
-        +++++++++++++++++++++++++++++
-
-        No
-        valid click resetting
-
-        Reorganizing all rows
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        --------------------------------------------------------------------
-
-        TearDown
-        Base
-
-'
-      stacktrace: 'at KriegTests.TestCards+<TestCard>d__26.MoveNext () [0x00398]
-        in C:\Users\andre\KriegEterna\krieg-eterna-unity\krieg-eterna-unity\Assets\Tests\TestCards.cs:279
-
-        at
-        UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a]
-        in .\Library\PackageCache\com.unity.test-framework@1.1.33\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:46
-
-'
+    - id: 1090
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(OfferingStrengthConditionFail)]
+      name: TestCard(OfferingStrengthConditionFail)
+      fullName: KriegTests.TestCards.TestCard(OfferingStrengthConditionFail)
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1103
+      parentId: 1123
+      parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
+    - id: 1091
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(OfferingStrengthConditionPass)]
+      name: TestCard(OfferingStrengthConditionPass)
+      fullName: KriegTests.TestCards.TestCard(OfferingStrengthConditionPass)
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1123
+      parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
+    - id: 1092
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(PlagueEnemy)]
+      name: TestCard(PlagueEnemy)
+      fullName: KriegTests.TestCards.TestCard(PlagueEnemy)
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1123
+      parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
+    - id: 1093
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(PlaguePlayer)]
+      name: TestCard(PlaguePlayer)
+      fullName: KriegTests.TestCards.TestCard(PlaguePlayer)
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1123
       parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
     - id: 1087
       uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(Redemption)]
@@ -13265,6 +12741,23 @@ MonoBehaviour:
       categories:
       - Uncategorized
       parentId: 1103
+      parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
+    - id: 1095
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(RedemptionNoKing)]
+      name: TestCard(RedemptionNoKing)
+      fullName: KriegTests.TestCards.TestCard(RedemptionNoKing)
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1123
       parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
     - id: 1088
       uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(Relic)]
@@ -13630,6 +13123,23 @@ MonoBehaviour:
       categories:
       - Uncategorized
       parentId: 1103
+      parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
+    - id: 1099
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(RuinSkip)]
+      name: TestCard(RuinSkip)
+      fullName: KriegTests.TestCards.TestCard(RuinSkip)
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1123
       parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
     - id: 1091
       uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(Styx)]
@@ -14071,6 +13581,23 @@ MonoBehaviour:
       categories:
       - Uncategorized
       parentId: 1103
+      parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
+    - id: 1103
+      uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(VoidEndEarly)]
+      name: TestCard(VoidEndEarly)
+      fullName: KriegTests.TestCards.TestCard(VoidEndEarly)
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1123
       parentUniqueId: PlayTests.dll/KriegTests/TestCards/[PlayTests][KriegTests.TestCards.TestCard][suite]
     - id: 1094
       uniqueId: PlayTests.dll/KriegTests/TestCards/TestCard/[PlayTests][KriegTests.TestCards.TestCard(War)]
