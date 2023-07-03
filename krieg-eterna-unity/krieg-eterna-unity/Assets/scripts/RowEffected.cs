@@ -44,5 +44,7 @@ public enum RowEffected
     SiegeFull = 42,
     PlayerMax = 43,
     Played = 44,
+    EndRound = 45,
+    Skip=46,
     None = 0
 };

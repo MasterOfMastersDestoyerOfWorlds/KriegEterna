@@ -87,6 +87,7 @@ namespace KriegTests
             public string testName;
             public int playerHandCount;
             public int enemyHandCount;
+            public int turn;
             public List<Click> clicks;
             public List<(RowEffected, int)> scoreRows;
 

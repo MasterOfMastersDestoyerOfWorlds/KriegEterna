@@ -50,7 +50,9 @@ public class Deck : MonoBehaviour
         new Row(true, true, false, RowEffected.EnemySiegeKing, new List<RowEffected>() { RowEffected.EnemySiegeKing, RowEffected.EnemyKing, RowEffected.Enemy, RowEffected.King, RowEffected.SiegeFull , RowEffected.Played}, areas.getSiegeKingCenterVector),
         new Row(false, false, false, RowEffected.PlayerSetAside, new List<RowEffected>() { RowEffected.PlayerSetAside, RowEffected.Player , RowEffected.Played}, areas.getUnitGraveyardCenterVector),
         new Row(false, false, false, RowEffected.EnemySetAside, new List<RowEffected>() { RowEffected.EnemySetAside, RowEffected.Enemy , RowEffected.Played}, areas.getUnitGraveyardCenterVector),
-        new Row(false, false, true, RowEffected.ChooseN, new List<RowEffected>() { RowEffected.ChooseN }, areas.getCenterFront) // choose N
+        new Row(false, false, true, RowEffected.ChooseN, new List<RowEffected>() { RowEffected.ChooseN }, areas.getCenterFront),
+        new Row(false, false, true, RowEffected.EndRound, new List<RowEffected>() { RowEffected.EndRound }, areas.getCenterFront),
+        new Row(false, false, true, RowEffected.Skip, new List<RowEffected>() { RowEffected.Skip }, areas.getCenterFront)
         };
     }
 

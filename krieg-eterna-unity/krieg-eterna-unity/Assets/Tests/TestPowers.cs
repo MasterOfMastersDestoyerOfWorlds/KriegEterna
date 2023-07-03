@@ -12,12 +12,34 @@ namespace KriegTests
         public static List<TestCase> cases = new List<TestCase>(){
             new TestCase
             {
-                testName = "Burden",
+                testName = "BurdenRoundOne",
+                scoreRows = new List<(RowEffected, int)>{
+                    (RowEffected.PlayerMelee, 2),
+                    (RowEffected.EnemyRanged, 8),
+                },
                 clicks = new List<Click>{
-                    new Click("Burden", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
-                    new Click("Knight3", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
-                    new Click("Mortar", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.PlayerHand, false),
+                    new Click("Burden", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemyRanged, true),
+                    new Click("Burden", RowEffected.PlayerHand, RowEffected.EnemyRanged, RowEffected.EnemyRanged, true),
+                    new Click("Grenadier2", RowEffected.EnemyRanged, RowEffected.EnemyRanged, RowEffected.EnemyRanged, false),
+                    new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, false),
+                    new Click("Knight", RowEffected.EnemyMelee, RowEffected.EnemyMelee, RowEffected.EnemyMelee, false),
+                }
+            },
+            new TestCase
+            {
+                testName = "BurdenRoundTwo",
+                scoreRows = new List<(RowEffected, int)>{
+                    (RowEffected.PlayerRanged, 4),
+                },
+                turn = 1,
+                clicks = new List<Click>{
+                    new Click("Burden", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
+                    new Click("Burden", RowEffected.PlayerHand, RowEffected.EnemyRanged, RowEffected.PlayerRanged, true),
+                    new Click("Grenadier2", RowEffected.EnemyRanged, RowEffected.EnemyRanged, RowEffected.UnitGraveyard, false),
+                    new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.UnitGraveyard, false),
+                    new ClickRow("EndRound", RowEffected.EndRound),
+                    new Click("Soldier", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
+                    new Click("Soldier", RowEffected.PlayerHand, RowEffected.PlayerRanged, RowEffected.PlayerRanged, true),
                 }
             },
             new TestCase
@@ -25,89 +47,177 @@ namespace KriegTests
                 testName = "Crusade",
                 clicks = new List<Click>{
                     new Click("Crusade", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
-                    new Click("Knight3", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
-                    new Click("Mortar", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.PlayerHand, false),
+                    new Click("Crusade", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
+                    new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.UnitGraveyard, false),
+                    new Click("Knight11", RowEffected.EnemyMelee, RowEffected.EnemyMelee, RowEffected.EnemyMelee, false),
+                    new Click("Knight12", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.UnitGraveyard, false),
+                    new Click("Calvary", RowEffected.EnemyMelee, RowEffected.EnemyMelee, RowEffected.UnitGraveyard, false),
+                    new Click("Calvary2", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.UnitGraveyard, false),
+                    new Click("Calvary3", RowEffected.EnemyMelee, RowEffected.EnemyMelee, RowEffected.UnitGraveyard, false),
+                    new Click("Grenadier2", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, false),
                 }
             },
             new TestCase
             {
-                testName = "EmperorDemise",
+                testName = "EmperorDemisePlayer",
                 clicks = new List<Click>{
                     new Click("EmperorDemise", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
-                    new Click("Knight3", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
-                    new Click("Mortar", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.PlayerHand, false),
+                    new Click("LionKing", RowEffected.PlayerRangedKing, RowEffected.PlayerRangedKing, RowEffected.PlayerSetAside, true),
                 }
             },
             new TestCase
             {
-                testName = "Enlightenment",
+                testName = "EmperorDemiseEnemy",
+                clicks = new List<Click>{
+                    new Click("EmperorDemise", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new Click("LionKing", RowEffected.EnemyRangedKing, RowEffected.EnemyRangedKing, RowEffected.EnemySetAside, true),
+                }
+            },
+            new TestCase
+            {
+                testName = "EnlightenmentRevealOne",
+                enemyHandCount = 1,
+                playerHandCount = 1,
                 clicks = new List<Click>{
                     new Click("Enlightenment", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
-                    new Click("Knight3", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
-                    new Click("Mortar", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.PlayerHand, false),
+                    new Click("Enlightenment", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
+                    new Click("Fate", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.ChooseN, false),
                 }
             },
             new TestCase
             {
-                testName = "Execution",
+                testName = "EnlightenmentRevealTwo",
+                enemyHandCount = 3,
+                playerHandCount = 1,
+                clicks = new List<Click>{
+                    new Click("Enlightenment", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new Click("Enlightenment", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
+                    new Click("Fate", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.ChooseN, false),
+                    new Click("Execution", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.ChooseN, false),
+                    new Click("Famine", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.EnemyHand, false),
+                }
+            },
+            new TestCase
+            {
+                testName = "ExecutionInHand",
+                playerHandCount = 4,
                 clicks = new List<Click>{
                     new Click("Execution", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
-                    new Click("Knight3", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
-                    new Click("Mortar", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.PlayerHand, false),
+                    new Click("Execution", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
+                    new Click("LionKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.KingGraveyard, false),
+                }
+            },
+            new TestCase
+            {
+                testName = "ExecutionOnField",
+                playerHandCount = 3,
+                clicks = new List<Click>{
+                    new Click("Execution", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new Click("Execution", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
+                    new Click("LionKing", RowEffected.PlayerRangedKing, RowEffected.PlayerRangedKing, RowEffected.KingGraveyard, false),
                 }
             },
             new TestCase
             {
                 testName = "Famine",
+                playerHandCount = 1,
+                enemyHandCount = 1,
                 clicks = new List<Click>{
                     new Click("Famine", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
-                    new Click("Knight3", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
-                    new Click("Mortar", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.PlayerHand, false),
+                    new Click("Famine", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
+                    new Click("Calvary", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.UnitGraveyard, false),
+                    new Click("Calvary2", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerHand, false),
+                    new Click("Mortar", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.UnitGraveyard, false),
+                    new Click("Calvary3", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.EnemyHand, false),
                 }
             },
             new TestCase
             {
-                testName = "Fate",
+                testName = "FamineAdjacency",
+                playerHandCount = 2,
                 clicks = new List<Click>{
-                    new Click("Fate", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
-                    new Click("Knight3", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
-                    new Click("Mortar", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.PlayerHand, false),
+                    new Click("Famine", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new Click("Famine", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
+                    new Click("Knight", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.UnitGraveyard, false),
+                    new Click("Knight3", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerHand, false),
+                    new Click("Officer", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerHand, false),
                 }
             },
             new TestCase
             {
-                testName = "Offering",
+                testName = "FateGraveyard",
+                playerHandCount = 1,
+                clicks = new List<Click>{
+                    new Click("Death", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerHand, true),
+                    new Click("Knight", RowEffected.EnemyMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
+                    new Click("Fate", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new Click("Fate", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
+                }
+            },
+            new TestCase
+            {
+                testName = "OfferingStrengthConditionFail",
+                playerHandCount = 2,
                 clicks = new List<Click>{
                     new Click("Offering", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
-                    new Click("Knight3", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
-                    new Click("Mortar", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.PlayerHand, false),
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
+                    new ClickRow("UnitDeck", RowEffected.UnitDeck),
+                    new ClickRow("UnitDeck", RowEffected.UnitDeck),
+                }
+            },
+
+            new TestCase
+            {
+                testName = "OfferingStrengthConditionPass",
+                playerHandCount = 3,
+                clicks = new List<Click>{
+                    new Click("Offering", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new Click("Mortar", RowEffected.PlayerSiege, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
+                    new ClickRow("UnitDeck", RowEffected.UnitDeck),
+                    new ClickRow("UnitDeck", RowEffected.UnitDeck),
+                    new ClickRow("PowerDeck", RowEffected.PowerDeck),
                 }
             },
             new TestCase
             {
-                testName = "Plague",
+                testName = "PlagueEnemy",
+                scoreRows = new List<(RowEffected, int)>{
+                    (RowEffected.EnemyMelee, 1),
+                },
                 clicks = new List<Click>{
-                    new Click("Plague", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
-                    new Click("Knight3", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
-                    new Click("Mortar", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.PlayerHand, false),
+                    new Click("Plague", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemyMelee, true),
+                    new Click("Knight11", RowEffected.EnemyMelee, RowEffected.EnemyMelee, RowEffected.EnemyMelee, true),
+                }
+            },
+            new TestCase
+            {
+                testName = "PlaguePlayer",
+                scoreRows = new List<(RowEffected, int)>{
+                    (RowEffected.PlayerMelee, 3),
+                },
+                clicks = new List<Click>{
+                    new Click("Plague", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
+                    new Click("Knight11", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
+                    new Click("Knight12", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, false),
                 }
             },
             new TestCase
             {
                 testName = "Redemption",
+                playerHandCount = 1,
                 clicks = new List<Click>{
                     new Click("Redemption", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
-                    new Click("Knight3", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
-                    new Click("Mortar", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.PlayerHand, false),
+                    new Click("Redemption", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
+                    new Click("LionKing", RowEffected.PlayerRangedKing, RowEffected.PlayerHand, RowEffected.PlayerHand, false),
+                }
+            },
+            new TestCase
+            {
+                testName = "RedemptionNoKing",
+                playerHandCount = 1,
+                clicks = new List<Click>{
+                    new Click("Redemption", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new Click("Redemption", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
                 }
             },
             new TestCase
@@ -135,11 +245,39 @@ namespace KriegTests
             new TestCase
             {
                 testName = "Ruin",
+                scoreRows = new List<(RowEffected, int)>{
+                    (RowEffected.PlayerMelee, 11),
+                },
                 clicks = new List<Click>{
-                    new Click("Ruin", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
-                    new Click("Knight3", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
-                    new Click("Mortar", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.PlayerHand, false),
+                    new Click("Ruin", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
+                    new Click("Ruin", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
+                    new Click("Knight", RowEffected.PlayerHand, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
+                    new Click("Knight3", RowEffected.PlayerHand, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
+                    new Click("Officer", RowEffected.PlayerHand, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
+                    new Click("Knight", RowEffected.ChooseN, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
+                    new Click("Knight3", RowEffected.ChooseN, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
+                    new Click("Officer", RowEffected.ChooseN, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
+                    new Click("Knight11", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
+                }
+            },
+
+            new TestCase
+            {
+                testName = "RuinSkip",
+                scoreRows = new List<(RowEffected, int)>{
+                    (RowEffected.PlayerMelee, 8),
+                },
+                playerHandCount = 1,
+                clicks = new List<Click>{
+                    new Click("Ruin", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
+                    new Click("Ruin", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
+                    new Click("Knight", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerHand, false),
+                    new Click("Knight3", RowEffected.PlayerHand, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
+                    new Click("Officer", RowEffected.PlayerHand, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
+                    new Click("Knight3", RowEffected.ChooseN, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
+                    new Click("Officer", RowEffected.ChooseN, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
+                    new ClickRow("Skip", RowEffected.Skip),
+                    new Click("Knight11", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
                 }
             },
             new TestCase
@@ -158,21 +296,36 @@ namespace KriegTests
             new TestCase
             {
                 testName = "Usury",
+                playerHandCount = 3,
+                turn = 1,
                 clicks = new List<Click>{
                     new Click("Usury", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
-                    new Click("Knight3", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
-                    new Click("Mortar", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.PlayerHand, false),
+                    new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerSetAside, RowEffected.PlayerHand, true),
+                    new ClickRow("EndRound", RowEffected.EndRound),
                 }
             },
             new TestCase
             {
                 testName = "Void",
+                turn = 1,
                 clicks = new List<Click>{
                     new Click("Void", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
-                    new Click("Knight3", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
-                    new Click("Mortar", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.PlayerHand, false),
+                    new Click("Void", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
+                    new Click("Knight11", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
+                    new Click("Knight11", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
+                }
+            },
+
+            new TestCase
+            {
+                testName = "VoidEndEarly",
+                turn = 1,
+                clicks = new List<Click>{
+                    new Click("Void", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new Click("Void", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
+                    new ClickRow("EndRound", RowEffected.EndRound),
+                    new Click("Knight11", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
+                    new Click("Knight11", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
                 }
             },
             new TestCase
@@ -180,9 +333,12 @@ namespace KriegTests
                 testName = "War",
                 clicks = new List<Click>{
                     new Click("War", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("UnitGraveyard", RowEffected.UnitGraveyard),
-                    new Click("Knight3", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
-                    new Click("Mortar", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.PlayerHand, false),
+                    new Click("War", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
+                    new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, false),
+                    new Click("Soldier2", RowEffected.EnemyRanged, RowEffected.EnemyRanged, RowEffected.UnitGraveyard, false),
+                    new Click("Soldier", RowEffected.EnemyRanged, RowEffected.EnemyRanged, RowEffected.UnitGraveyard, false),
+                    new Click("Grenadier", RowEffected.EnemyRanged, RowEffected.EnemyRanged, RowEffected.UnitGraveyard, false),
+                    new Click("Grenadier2", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.UnitGraveyard, false),
                 }
             },
             new TestCase
