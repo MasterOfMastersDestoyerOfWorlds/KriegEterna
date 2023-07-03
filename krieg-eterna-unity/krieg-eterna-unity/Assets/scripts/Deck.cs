@@ -179,7 +179,17 @@ public class Deck : MonoBehaviour
 
         }
     }
-
+    public Card getCardByName(string cardName){
+        List<Row> searchRows = getRowsByType(RowEffected.Played);
+        foreach (Row r in searchRows)
+        {
+            Card c = r.getCardByName(cardName);
+            if(c !=null){
+                return c;
+            }
+        }
+        return null;
+    }
     public Card dealCardToRow(string cardName, RowEffected row)
     {
 

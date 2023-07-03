@@ -58,22 +58,26 @@ namespace KriegTests
             {
                 yield return t;
             }
-            
+
             foreach (TestCase t in TestWeather.cases)
             {
                 yield return t;
             }
-            
+
             foreach (TestCase t in TestSpys.cases)
             {
                 yield return t;
             }
-            
+
             foreach (TestCase t in TestPowers.cases)
             {
                 yield return t;
             }
 
+            foreach (TestCase t in TestKings.cases)
+            {
+                yield return t;
+            }
 
         }
 
@@ -230,7 +234,12 @@ namespace KriegTests
                     }
                     else
                     {
-                        clicks[i].card = deck.getRowByType(clicks[i].dealRow).getCardByName(cardName);
+                        if (clicks[i].dealRow != RowEffected.ChooseN)
+                        {
+                            clicks[i].card = deck.getRowByType(clicks[i].dealRow).getCardByName(cardName);
+                        }else{
+                            clicks[i].card = deck.getCardByName(clicks[i].name);
+                        }
                     }
                 }
             }
@@ -241,9 +250,13 @@ namespace KriegTests
                 if (clicks[i].click && !clicks[i].isRowTarget)
                 {
                     Card c = clicks[i].card;
+                    Card clickCard = c;
+                    if(clicks[i].dealRow == RowEffected.ChooseN){
+                        clickCard = deck.getRowByType(clicks[i].dealRow).getCardByName(clicks[i].name);
+                    }
                     InputSystem.Update();
-                    MousePositioning(c.transform);
-                    ClickOnCard(c.transform);
+                    MousePositioning(clickCard.transform);
+                    ClickOnCard(clickCard.transform);
                     yield return null;
                     MouseUnClick();
                     yield return null;
@@ -277,12 +290,14 @@ namespace KriegTests
                 }
             }
             Assert.AreEqual(State.FREE, Game.state);
-            
+
             Assert.AreEqual(testCase.playerHandCount, deck.getRowByType(RowEffected.PlayerHand).Count);
             Assert.AreEqual(testCase.enemyHandCount, deck.getRowByType(RowEffected.EnemyHand).Count);
 
-            if(testCase.scoreRows != null){
-                foreach((RowEffected, int) rowPair in testCase.scoreRows){
+            if (testCase.scoreRows != null)
+            {
+                foreach ((RowEffected, int) rowPair in testCase.scoreRows)
+                {
                     Assert.AreEqual(rowPair.Item2, deck.getRowByType(rowPair.Item1).scoreRow(deck));
                 }
             }
