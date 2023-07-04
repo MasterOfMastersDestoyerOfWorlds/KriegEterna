@@ -26,15 +26,15 @@ public class Game : MonoBehaviour
     private GameObject deskObject;
     private GameObject areasObject;
 
-    public Deck activeDeck;
+    public static Deck activeDeck;
 
     public static RoundType round;
 
     private bool hasChosenStart;
-    private RowEffected chooseNRow;
+    private static RowEffected chooseNRow;
 
-    private RowEffected chooseNPlayerHand;
-    private System.Action<Row, RowEffected, Card> chooseNAction;
+    private static RowEffected chooseNPlayerHand;
+    private static System.Action<Row, RowEffected, Card> chooseNAction;
     private Desk desk;
 
     private GameObject playerDownNameTextObject;
@@ -260,19 +260,19 @@ public class Game : MonoBehaviour
                         Debug.Log("clicked on: " + c.ToString() + " isPlayable: " + c.isPlayable(activeDeck, player) + " active: " + c.isTargetActive());
                         if (c.isTargetActive() && (CardModel.isUnit(c.cardType) || c.isPlayable(activeDeck, player)))
                         {
-                            Play(c, null, null, player);
+                            PlayController.Play(c, null, null, player);
                             c.setTargetActive(false);
                             if (state == State.MULTISTEP)
                             {
                                 activeDeck.disactiveAllInDeck(true);
-                                ShowTargets(c, player);
+                                TargetController.ShowTargets(c, player);
                                 break;
                             }
                             break;
                         }
                         activeDeck.disactiveAllInDeck(false);
                         activeCard = c;
-                        ShowTargets(c, player);
+                        TargetController.ShowTargets(c, player);
                         
                         Debug.Log("Setting Card Active: " + c.cardName);
                         activeCard.setBaseLoc();
@@ -290,7 +290,7 @@ public class Game : MonoBehaviour
                     if (row.target.ContainsMouse(mouseRelativePosition))
                     {
                         clickOnTarget = true;
-                        Play(activeCard, row, null, player);
+                        PlayController.Play(activeCard, row, null, player);
                         if (state != State.MULTISTEP)
                         {
                             activeDeck.disactiveAllInDeck(false);
@@ -298,7 +298,7 @@ public class Game : MonoBehaviour
                         else
                         {
                             activeDeck.disactiveAllInDeck(true);
-                            ShowTargets(activeCard, player);
+                            TargetController.ShowTargets(activeCard, player);
                         }
                         break;
                     }
@@ -325,14 +325,14 @@ public class Game : MonoBehaviour
                                 }
                                 else
                                 {
-                                    Play(activeCard, row, selected, player);
+                                    PlayController.Play(activeCard, row, selected, player);
                                     if (state != State.MULTISTEP)
                                     {
                                         activeDeck.disactiveAllInDeck(false);
                                     }
                                     else
                                     {
-                                        ShowTargets(activeCard, player);
+                                        TargetController.ShowTargets(activeCard, player);
                                     }
                                 }
                                 clickOnTarget = true;
@@ -360,445 +360,6 @@ public class Game : MonoBehaviour
             }
         }
         Debug.Log("--------------------------------------------------------------------");
-    }
-
-
-
-    public void Play(Card c, Row targetRow, Card targetCard, RowEffected player)
-    {
-        Debug.Log("Playing: " + c.cardName + " Type: " + c.cardType);
-        if (targetRow != null)
-        {
-            Debug.Log(" TargetRow: " + targetRow.name);
-        }
-        switch (c.cardType)
-        {
-            case CardType.Melee: activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerMelee)).Add(c); break;
-            case CardType.Ranged: activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerRanged)).Add(c); break;
-            case CardType.Siege: activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerSiege)).Add(c); break;
-            case CardType.Switch: targetRow.Add(c); break;
-            case CardType.Weather: PlayWeather(c); break;
-            case CardType.King: PlayKing(c, targetRow, targetCard, player); break;
-            default: PlayPower(c, targetRow, targetCard, RowEffected.Player); break;
-        }
-        updateStateBasedOnCardState(c);
-        if (state != State.MULTISTEP)
-        {
-            activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerHand)).Remove(c);
-            RowEffected enemyHand = CardModel.getRowFromSide(player, RowEffected.EnemyHand);
-            if (c.enemyReveal > 0  && activeDeck.getRowByType(enemyHand).Count > 0)
-            {
-                //may want to turn off flashing since it is only otherwise used when some input is happening
-                setChooseN(enemyHand, null, 0, c.enemyReveal, new List<CardType>() { CardType.King, CardType.Melee, CardType.Ranged, CardType.Siege }, RowEffected.None, State.REVEAL);
-            }
-        }
-        reorganizeGroup();
-    }
-    public void PlayKing(Card c, Row targetRow, Card targetCard, RowEffected player)
-    {
-        if (state == State.MULTISTEP)
-        {
-            PlayPower(c, targetRow, targetCard, player);
-        }
-        else
-        {
-            targetRow.Add(c);
-            RowEffected enemySide = CardModel.getRowFromSide(player, RowEffected.EnemyPlayable);
-            int cardsRemaining = activeDeck.countCardsInRows(enemySide);
-            if (c.setAsideRemain > cardsRemaining)
-            {
-                c.setAsideRemain = cardsRemaining;
-            }
-            if (c.enemyCardDestroyRemain > cardsRemaining)
-            {
-                c.enemyCardDestroyRemain = cardsRemaining;
-            }
-        }
-    }
-
-    public void PlayWeather(Card c)
-    {
-        Debug.Log("Playing Weather in: " + c.rowEffected);
-        switch (c.rowEffected)
-        {
-            case RowEffected.Melee: activeDeck.getRowByType(RowEffected.PlayerMelee).Add(c); activeDeck.getRowByType(RowEffected.EnemyMelee).Add(c); break;
-            case RowEffected.Ranged: activeDeck.getRowByType(RowEffected.PlayerRanged).Add(c); activeDeck.getRowByType(RowEffected.EnemyRanged).Add(c); break;
-            case RowEffected.Siege: activeDeck.getRowByType(RowEffected.PlayerSiege).Add(c); activeDeck.getRowByType(RowEffected.EnemySiege).Add(c); break;
-            case RowEffected.All: activeDeck.getRowByType(RowEffected.PowerGraveyard).Add(c); activeDeck.clearAllWeatherEffects(); break;
-            default: break;
-        }
-    }
-    public void PlayPower(Card c, Row targetRow, Card targetCard, RowEffected player)
-    {
-        RowEffected playerHand = CardModel.getHandRow(player);
-        RowEffected enemy = CardModel.getEnemy(player);
-        if (targetRow == null && c.rowEffected != RowEffected.None)
-        {
-            RowEffected rowEffected = CardModel.getRowFromSide(player, c.rowEffected);
-            Debug.Log("Playing Card in: " + rowEffected);
-            activeDeck.getRowByType(rowEffected).Add(c);
-        }
-        else if (targetRow != null && targetRow.hasType(RowEffected.Enemy) && c.cardType == CardType.Spy)
-        {
-            targetRow.Add(c);
-            Debug.Log("Added Spy to Row: " + targetRow);
-        }
-        else if (c.playerCardDestroyRemain > 0)
-        {
-            c.playerCardDestroyRemain--;
-            Row playerHandRow = activeDeck.getRowByType(playerHand);
-            if (c.destroyType == DestroyType.Unit)
-            {
-                activeDeck.sendCardToGraveyard(targetRow, RowEffected.None, targetCard);
-            }
-            else if (c.destroyType == DestroyType.King)
-            {
-                Card king = playerHandRow.getKing();
-                if (king != null)
-                {
-                    c.playerCardDrawRemain++;
-                    activeDeck.sendCardToGraveyard(playerHandRow, playerHand, king);
-                }
-                else
-                {
-                    Row kingRow = activeDeck.getRowByType(activeDeck.getKingRow(player));
-                    activeDeck.sendCardToGraveyard(kingRow, RowEffected.None, kingRow[0]);
-                }
-
-            }
-            else if (c.destroyType == DestroyType.MaxAll)
-            {
-                List<Row> destroyRows = activeDeck.getRowsByType(c.rowEffected);
-                int max = activeDeck.maxStrength(c.rowEffected);
-                List<Card> graveyardList = new List<Card>();
-                List<Row> graveyardRowList = new List<Row>();
-                foreach (Row r in destroyRows)
-                {
-                    foreach (Card destroyCard in r)
-                    {
-                        if (destroyCard.strength == max)
-                        {
-                            graveyardList.Add(destroyCard);
-                            graveyardRowList.Add(r);
-                        }
-                    }
-                }
-                for (int i = 0; i < graveyardList.Count; i++)
-                {
-                    activeDeck.sendCardToGraveyard(graveyardRowList[i], RowEffected.None, graveyardList[i]);
-                }
-                c.playerCardDestroyRemain = 0;
-                c.enemyCardDestroyRemain = 0;
-            }
-            else if (c.destroyType == DestroyType.Max)
-            {
-                List<Row> destroyRows = activeDeck.getRowsByType(c.rowEffected);
-                List<Card> graveyardList = new List<Card>();
-                List<Row> graveyardRowList = new List<Row>();
-                foreach (Row r in destroyRows)
-                {
-                    if (r.Count > 0)
-                    {
-                        graveyardList.Add(r.maxStrengthCard());
-                        graveyardRowList.Add(r);
-                    }
-                }
-                for (int i = 0; i < graveyardList.Count; i++)
-                {
-                    activeDeck.sendCardToGraveyard(graveyardRowList[i], RowEffected.None, graveyardList[i]);
-                }
-                c.playerCardDestroyRemain = 0;
-                c.enemyCardDestroyRemain = 0;
-            }
-        }
-        else if (c.enemyCardDestroyRemain > 0)
-        {
-            if (c.destroyType == DestroyType.Unit)
-            {
-                int cardsRemaining = activeDeck.countCardsInRows(c.rowEffected);
-                if (c.enemyCardDestroyRemain > cardsRemaining)
-                {
-                    c.enemyCardDestroyRemain = cardsRemaining - 1;
-                }
-                else
-                {
-                    c.enemyCardDestroyRemain--;
-                }
-                activeDeck.sendCardToGraveyard(targetRow, RowEffected.None, targetCard);
-            }
-            else
-            {
-                Debug.Log("REEEE" + c.destroyType);
-            }
-        }
-        else if (c.moveRemain > 0)
-        {
-            c.moveRemain--;
-            activeDeck.addCardToHand(activeDeck.getRowByType(c.moveRow), targetRow.uniqueType, c.moveCard);
-        }
-        else if (c.playerCardReturnRemain > 0)
-        {
-
-            if (c.cardReturnType == CardReturnType.Unit)
-            {
-
-                int cardsRemaining = activeDeck.countCardsInRows(c.rowEffected);
-                if (c.playerCardReturnRemain > cardsRemaining)
-                {
-                    c.playerCardReturnRemain = cardsRemaining - 1;
-                }
-                else
-                {
-                    c.playerCardReturnRemain--;
-                }
-                if (c.playerCardReturnRemain <= 0 && c.cardType == CardType.Decoy)
-                {
-                    int index = targetRow.IndexOf(targetCard);
-                    targetRow.Insert(index, c);
-                }
-                activeDeck.addCardToHand(targetRow, playerHand, targetCard);
-            }
-            else if (c.cardReturnType == CardReturnType.Move)
-            {
-                c.playerCardReturnRemain--;
-                c.moveRemain++;
-                c.moveCard = targetCard;
-                targetCard.setTargetActive(false);
-                c.moveRow = targetRow.uniqueType;
-            }
-            else if (c.cardReturnType == CardReturnType.King)
-            {
-                RowEffected kingLoc = activeDeck.getKingRow(player);
-                if (kingLoc != RowEffected.None)
-                {
-                    c.playerCardReturnRemain--;
-                    Row kingRow = activeDeck.getRowByType(kingLoc);
-                    activeDeck.addCardToHand(kingRow, playerHand, kingRow[0]);
-                }
-            }
-        }
-        else if (c.setAsideRemain > 0)
-        {
-            int cardsRemaining = activeDeck.countCardsInRows(c.rowEffected);
-            if (c.setAsideRemain > cardsRemaining)
-            {
-                c.setAsideRemain = cardsRemaining - 1;
-            }
-            else
-            {
-                c.setAsideRemain--;
-            }
-            activeDeck.setCardAside(targetRow, targetCard, player);
-        }
-        else if (c.playerCardDrawRemain > 0)
-        {
-            c.playerCardDrawRemain--;
-            activeDeck.drawCard(targetRow, true);
-        }
-        else if (c.chooseN > 0)
-        {
-            Row row = activeDeck.getRowByType(c.chooseRow);
-            if (row.Count > 0)
-            {
-                setChooseN(c.chooseRow, activeDeck.addCardToHand, c.chooseN, c.chooseShowN > 0 ? c.chooseShowN : row.Count, new List<CardType>() { CardType.None }, playerHand, State.CHOOSE_N);
-            }
-        }
-        else if (c.attach)
-        {
-            targetCard.attachCard(c);
-        }
-        if (c.doneMultiSelection())
-        {
-            if (c.rowMultiple > 0)
-            {
-                if (c.cardType != CardType.King)
-                {
-                    targetRow.Add(c);
-                }
-                if (c.rowMultiple == 1 && c.rowEffected == RowEffected.All)
-                {
-                    activeDeck.clearAllWeatherEffects();
-                }
-            }
-            if (c.enemyCardDrawRemain > 0)
-            {
-                int cardsDrawn = 0;
-                for (int i = 0; i < c.enemyCardDrawRemain; i++)
-                {
-                    activeDeck.drawCard(activeDeck.getRowByType(RowEffected.UnitDeck), false);
-                    cardsDrawn++;
-                }
-                c.enemyCardDrawRemain -= cardsDrawn;
-            }
-            if (c.graveyardCardDrawRemain > 0)
-            {
-                activeDeck.drawCardGraveyard(c, targetCard);
-            }
-            if (!c.attach && c.cardType == CardType.Power)
-            {
-                activeDeck.sendCardToGraveyard(activeDeck.getRowByType(playerHand), RowEffected.None, c);
-            }
-        }
-    }
-
-    public void updateStateBasedOnCardState(Card c)
-    {
-        c.LogSelectionsRemaining();
-        if (state == State.CHOOSE_N)
-        {
-            return;
-        }
-        if (c.doneMultiSelection())
-        {
-            Debug.Log("Done with card: " + c.cardName);
-            state = State.FREE;
-        }
-        else
-        {
-            state = State.MULTISTEP;
-        }
-        Debug.Log(state);
-    }
-
-    public void ShowTargets(Card c, RowEffected player)
-    {
-        Debug.Log("Showing Targets for: " + c.cardName + " " + c.cardType);
-        RowEffected playerPlayable = CardModel.getRowFromSide(player, RowEffected.PlayerPlayable);
-        RowEffected playerKing = CardModel.getRowFromSide(player, RowEffected.PlayerKing);
-        RowEffected enemyKing = CardModel.getRowFromSide(player, RowEffected.EnemyKing);
-        RowEffected enemyPlayable = CardModel.getRowFromSide(player, RowEffected.EnemyPlayable);
-        RowEffected enemy = CardModel.getEnemy(player);
-        switch (c.cardType)
-        {
-            case CardType.Melee: c.setTargetActive(true); break;
-            case CardType.Ranged: c.setTargetActive(true); break;
-            case CardType.Siege: c.setTargetActive(true); break;
-            case CardType.Switch:
-                activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerMelee))
-                    .setActivateRowCardTargets(true, false);
-                activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerRanged))
-                    .setActivateRowCardTargets(true, false);
-                break;
-            case CardType.King:
-                if (state == State.MULTISTEP)
-                {
-                    if (c.enemyCardDestroy > 0)
-                    {
-                        activeDeck.activateRowsByType(true, true, enemyPlayable);
-                    }
-                    else if (c.setAsideRemain > 0)
-                    {
-                        switch (c.setAsideType)
-                        {
-                            case SetAsideType.King:
-                                activeDeck.activateRowsByType(true, true, playerKing); break;
-                            case SetAsideType.EnemyKing:
-                                activeDeck.activateRowsByType(true, true, enemyKing); break;
-                            case SetAsideType.Enemy:
-                                activeDeck.activateRowsByType(true, true, enemy); break;
-                            case SetAsideType.Player:
-                                activeDeck.activateRowsByType(true, true, player); break;
-
-                        }
-                    }
-                    else if (c.playerCardDrawRemain > 0)
-                    {
-                        activeDeck.activateRowsByType(true, false, RowEffected.DrawableDeck);
-                    }
-                }
-                else
-                {
-                    activeDeck.activateRowsByType(true, false, playerKing);
-                }
-                break;
-            case CardType.Spy:
-                if (state == State.MULTISTEP)
-                {
-                    activeDeck.activateRowsByType(true, false, RowEffected.DrawableDeck);
-                }
-                else
-                {
-                    if (c.rowEffected == RowEffected.EnemyPlayable)
-                    {
-                        activeDeck.activateRowsByType(true, false, enemyPlayable);
-                    }
-                    else
-                    {
-                        c.setTargetActive(true);
-                    }
-                }
-            ; break;
-            case CardType.Decoy:
-                activeDeck.activateRowsByType(true, true, c.rowEffected); break;
-            case CardType.Weather: c.setTargetActive(true); break;
-            case CardType.Power:
-                Debug.Log("Setup Power Targets: " + c.cardName);
-                if (c.playerCardDestroyRemain > 0)
-                {
-                    switch (c.destroyType)
-                    {
-                        case DestroyType.Unit: activeDeck.activateRowsByType(true, true, playerPlayable); break;
-                        default: c.setTargetActive(true); break;
-                    }
-                    break;
-                }
-                else if (c.enemyCardDestroyRemain > 0)
-                {
-                    activeDeck.activateRowsByType(true, true, enemyPlayable);
-                }
-                else if (c.moveRemain > 0)
-                {
-                    activeDeck.activateRowsByTypeExclude(true, false, c.rowEffected, c.moveRow);
-                }
-                else if (c.playerCardReturnRemain > 0)
-                {
-                    switch (c.cardReturnType)
-                    {
-                        case CardReturnType.King: activeDeck.activateRowsByType(true, true, activeDeck.getKingRow(player)); break;
-                        default: activeDeck.activateRowsByType(true, true, playerPlayable); break;
-                    }
-
-                }
-                else if (c.setAsideRemain > 0)
-                {
-                    switch (c.setAsideType)
-                    {
-                        case SetAsideType.King: activeDeck.activateRowsByType(true, true, playerKing); break;
-                        case SetAsideType.EnemyKing: activeDeck.activateRowsByType(true, true, enemyKing); break;
-                        case SetAsideType.Enemy: activeDeck.activateRowsByType(true, true, enemy); break;
-                        case SetAsideType.Player: activeDeck.activateRowsByType(true, true, player); break;
-
-                    }
-                }
-                else if (c.playerCardDrawRemain > 0)
-                {
-                    switch (c.cardDrawType)
-                    {
-                        case CardDrawType.Either: activeDeck.activateRowsByType(true, false, RowEffected.DrawableDeck); break;
-                        case CardDrawType.Unit: activeDeck.activateRowsByType(true, false, RowEffected.UnitDeck); break;
-                        case CardDrawType.Power: activeDeck.activateRowsByType(true, false, RowEffected.PowerDeck); break;
-                    }
-                }
-                else if (c.attach)
-                {
-                    activeDeck.activateRowsByType(true, true, RowEffected.All);
-                }
-                else if (c.rowEffected != RowEffected.None)
-                {
-                    if (c.rowEffected == RowEffected.EnemyMax)
-                    {
-                        activeDeck.activateAllRowsByType(true, false, activeDeck.getMaxScoreRows(enemyPlayable));
-                    }
-                    activeDeck.activateRowsByType(true, true, c.rowEffected);
-                }
-                else
-                {
-                    c.setTargetActive(true);
-                }
-                break;
-            default: break;
-        }
-        reorganizeGroup();
     }
 
 
@@ -838,7 +399,7 @@ public class Game : MonoBehaviour
         }
     }
 
-    public void setChooseN(RowEffected chooseRow, System.Action<Row, RowEffected, Card> action, int numChoose, int numShow, List<CardType> exclude, RowEffected playerHand, State newState)
+    public static void setChooseN(RowEffected chooseRow, System.Action<Row, RowEffected, Card> action, int numChoose, int numShow, List<CardType> exclude, RowEffected playerHand, State newState)
     {
 
         Row row = activeDeck.getRowByType(chooseRow);
@@ -879,7 +440,7 @@ public class Game : MonoBehaviour
     }
 
 
-    public void reorganizeGroup()
+    public static void reorganizeGroup()
     {
         Debug.Log("Reorganizing all rows");
         float cardHorizontalSpacing = Card.getBaseWidth() * 1.025f;
@@ -891,7 +452,7 @@ public class Game : MonoBehaviour
         }
     }
 
-    private void reorganizeRow(float cardHorizontalSpacing, float cardThickness, float attachmentVerticalSpacing, Row row, Vector3 centerVector)
+    private static void reorganizeRow(float cardHorizontalSpacing, float cardThickness, float attachmentVerticalSpacing, Row row, Vector3 centerVector)
     {
 
         if (row.Count > 0)
@@ -992,14 +553,14 @@ public class Game : MonoBehaviour
 
         if (activePlayerNumber == (int)PlayerNumber.PLAYER1)
         {
-            this.activeDeck = player2.getDeck();
+            activeDeck = player2.getDeck();
             player1.setDeckVisibility(false);
             player2.setDeckVisibility(true);
             activePlayerNumber = (int)PlayerNumber.PLAYER2;
         }
         else if (activePlayerNumber == (int)PlayerNumber.PLAYER2)
         {
-            this.activeDeck = player1.getDeck();
+            activeDeck = player1.getDeck();
             player1.setDeckVisibility(true);
             player2.setDeckVisibility(false);
             activePlayerNumber = (int)PlayerNumber.PLAYER1;

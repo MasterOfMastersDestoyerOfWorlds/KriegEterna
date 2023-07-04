@@ -4,5 +4,6 @@ public enum SetAsideType
     EnemyKing = 2,
     Enemy = 3,
     Player = 4,
+    EitherKing = 5,
     None  = 0
 };

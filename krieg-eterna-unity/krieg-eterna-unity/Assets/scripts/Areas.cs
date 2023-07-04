@@ -217,5 +217,35 @@ public class Areas : MonoBehaviour
         return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 6, 0f);
     }
 
+    public Vector3 getEnemyMeleeKingCenterVector()
+    {
+        updateScreenBounds();
+        Vector3 kingCenter = new Vector3(
+            botLeft.x + width * kingPadding,
+            botLeft.y + height * 4.5f,
+            0f);
+        return kingCenter;
+    }
+
+    public Vector3 getEnemyRangedKingCenterVector()
+    {
+        updateScreenBounds();
+        Vector3 kingCenter = new Vector3(
+            botLeft.x + width * kingPadding,
+            botLeft.y + height * 5.5f,
+            0f);
+        return kingCenter;
+    }
+
+    public Vector3 getEnemySiegeKingCenterVector()
+    {        
+        updateScreenBounds();
+        Vector3 kingCenter = new Vector3(
+            botLeft.x + width * kingPadding,
+            botLeft.y + height * 6.5f,
+            0f);
+        return kingCenter;
+    }
+
     private enum CardGroup { DECK, SWORD, BOW, TREBUCHET, SPECIAL1, SPECIAL2, SWORD2 };
 }

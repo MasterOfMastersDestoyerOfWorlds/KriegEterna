@@ -31,6 +31,7 @@ public class CardModel : MonoBehaviour
     public List<int> chooseN;
     public List<RowEffected> chooseRow;
     public List<int> chooseShowN;
+    public List<bool> playInRow;
 
     public int[] isSpecial;
     public string spriteFolder = "Images";
@@ -96,6 +97,7 @@ public class CardModel : MonoBehaviour
             AddOptional(temp, strengthCondition, 21);
             AddTypePair(temp, chooseN, 22, chooseRow, 23);
             AddOptional(temp, chooseShowN, 24);
+            AddOptionalBool(temp, playInRow, 25);
         }
     }
 
@@ -248,7 +250,7 @@ public class CardModel : MonoBehaviour
         return generalRow;
     }
 
-    public static RowEffected getPlayerFromRow( RowEffected generalRow)
+    public static RowEffected getPlayerFromRow(RowEffected generalRow)
     {
         switch (generalRow)
         {
@@ -256,6 +258,9 @@ public class CardModel : MonoBehaviour
             case RowEffected.PlayerMelee: return RowEffected.Player;
             case RowEffected.PlayerRanged: return RowEffected.Player;
             case RowEffected.PlayerSiege: return RowEffected.Player;
+            case RowEffected.PlayerMeleeKing: return RowEffected.Player;
+            case RowEffected.PlayerRangedKing: return RowEffected.Player;
+            case RowEffected.PlayerSiegeKing: return RowEffected.Player;
             case RowEffected.EnemyPlayable: return RowEffected.Enemy;
             case RowEffected.PlayerHand: return RowEffected.Player;
             case RowEffected.EnemyKing: return RowEffected.Enemy;
@@ -266,6 +271,9 @@ public class CardModel : MonoBehaviour
             case RowEffected.EnemyMelee: return RowEffected.Enemy;
             case RowEffected.EnemyRanged: return RowEffected.Enemy;
             case RowEffected.EnemySiege: return RowEffected.Enemy;
+            case RowEffected.EnemyMeleeKing: return RowEffected.Enemy;
+            case RowEffected.EnemyRangedKing: return RowEffected.Enemy;
+            case RowEffected.EnemySiegeKing: return RowEffected.Enemy;
         }
 
         return RowEffected.None;
@@ -290,6 +298,14 @@ public class CardModel : MonoBehaviour
                 case RowEffected.EnemyMelee: return RowEffected.PlayerMelee;
                 case RowEffected.EnemyRanged: return RowEffected.PlayerRanged;
                 case RowEffected.EnemySiege: return RowEffected.PlayerSiege;
+                case RowEffected.EnemySetAside: return RowEffected.PlayerSetAside;
+                case RowEffected.PlayerSetAside: return RowEffected.EnemySetAside;
+                case RowEffected.EnemyMeleeKing: return RowEffected.PlayerMeleeKing;
+                case RowEffected.EnemyRangedKing: return RowEffected.PlayerRangedKing;
+                case RowEffected.EnemySiegeKing: return RowEffected.PlayerSiegeKing;
+                case RowEffected.PlayerMeleeKing: return RowEffected.EnemyMeleeKing;
+                case RowEffected.PlayerRangedKing: return RowEffected.EnemyRangedKing;
+                case RowEffected.PlayerSiegeKing: return RowEffected.EnemySiegeKing;
             }
         }
         else
@@ -310,6 +326,14 @@ public class CardModel : MonoBehaviour
                 case RowEffected.EnemyMelee: return RowEffected.EnemyMelee;
                 case RowEffected.EnemyRanged: return RowEffected.EnemyRanged;
                 case RowEffected.EnemySiege: return RowEffected.EnemySiege;
+                case RowEffected.PlayerSetAside: return RowEffected.PlayerSetAside;
+                case RowEffected.EnemySetAside: return RowEffected.EnemySetAside;
+                case RowEffected.EnemyMeleeKing: return RowEffected.EnemyMeleeKing;
+                case RowEffected.EnemyRangedKing: return RowEffected.EnemyRangedKing;
+                case RowEffected.EnemySiegeKing: return RowEffected.EnemySiegeKing;
+                case RowEffected.PlayerMeleeKing: return RowEffected.PlayerMeleeKing;
+                case RowEffected.PlayerRangedKing: return RowEffected.PlayerRangedKing;
+                case RowEffected.PlayerSiegeKing: return RowEffected.PlayerSiegeKing;
             }
         }
         return generalRow;

@@ -1,103 +1,103 @@
-CardName	CardType	Effect Text	Strength	PlayerCardDraw	CardDrawType	PlayerCardDestroy	DestroyType	PlayerCardReturn	CardReturnType	StrengthModifier	StrengthModType	GraveyardCardDraw	EnemyCardDraw	EnemyCardDestroy	EnemyReveal	RowMultiple	EffectedRow	SetAside	SetAsideType	Attach	StengthCondition	ChooseN	ChooseRow	ChooseShowN
-Feint	Decoy	Send one of your units on the field to the\rgraveyard, return one of your units to your hand.\rYou can play this card after you've passed.	0			1	Unit	1	Unit								PlayerPlayable							
-Fortress	Decoy	Attach to a unit on the field. Its strength is halved\rthis round. This unit remains on the field to fight\rin the next round at full strength.	0							0.5	Multiply						All			TRUE				
-Jester	Decoy	Replace this card with any unit on either side of\rthe field, and add that card to your hand.	0					1	Unit								All							
-Retreat	Decoy	Replace this card with any of your units on the\rfield, and add that card to your hand.	0					1	Unit								PlayerPlayable							
-Sack	Decoy	Replace this card with any of your opponent's\runits on the field, and add that card to your\rhand.	0					1	Unit								EnemyPlayable							
-Shipwreck	Decoy	If you have three units in the same row, replace\rthem with this card. Two return to your hand,\rsend one to the graveyard.	0			1	Unit	2	Unit								PlayerPlayable							
-LionKing	King	Double the strength of a row.\rChoose two units to return to the opponent's\rhand until the next round.	0															2	Enemy					
-SunKing	King	Double the strength of a row.\rClear all weather effects, and draw a card.	0	1	Either											1	All							
-TerrorKing	King	Double the strength of a row.\rThe Siege row fights at half strength this round.\rSend a unit to the graveyard.	0			0	Unit							1		0.5	Siege							
-TraitorKing	King	Double the strength of a row.\rSwap one unit on the field with your opponent\rfor every King on the field.	0					2	Swap															
-WinterKing	King	Double the strength of a row.\rThe Melee row fights at half strength this round.\rSend a unit to the graveyard.	0			0	Unit							1		0.5	Melee							
-Calvary	Melee	 	4																					
-Calvary2	Melee	 	4																					
-Calvary3	Melee	 	4																					
-Crusader	Melee	If drawn from the graveyard,\rdraw another unit from the graveyard.	2									1					UnitGraveyard							
-Halberdier	Melee	 	2																					
-Knight	Melee	 	2																					
-Knight10	Melee	 	2																					
-Knight11	Melee	 	2																					
-Knight12	Melee	 	2																					
-Knight9	Melee	 	2																					
-Knight3	Melee	 	2																					
-Knight4	Melee	 	2																					
-Knight5	Melee	 	2																					
-Knight6	Melee	 	2																					
-Knight7	Melee	 	2																					
-Landsknecht	Melee	 	2																					
-MusketLine	Melee	 	5																					
-Officer	Melee	 	3																					
-Scout	Melee	Reveal a power card in your opponent's hand.	1												1									
-Square	Melee	 	3																					
-Burden	Power	Double the strength of your opponent's strongest\rrow. In the next round this card switches sides.	0													2	EnemyMax							
-Crusade	Power	Send all of the strongest units on both sides of\rthe Melee row to the graveyard.	0			1	MaxAll							1			Melee							
-Death	Power	Choose one unit in the opponent's field to send\rto the graveyard.	0			0	Unit							1			EnemyPlayable							
-Death2	Power	Choose one unit in the opponent's field to send\rto the graveyard.	0			0	Unit							1			EnemyPlayable							
-EmperorDemise	Power	If a King is on the field, set it aside until the start\rof the next round.	0															1	King					
-Enlightenment	Power	Reveal two power cards in your opponent's hand.\rDraw a unit card.	0	1	Unit										2		EnemyHand							
-Execution	Power	Send your King to the graveyard.\rIf your King was on the field, draw three units;\rif it was in your hand, draw four.	0	3	Unit	1	King																	
-Famine	Power	The strongest units from each player's hand are\rsent to the graveyard.	0			1	Max							1			BothHand							
-Fate	Power	Return the last card you played to your hand.	0					1	LastPlayedCard								LastPlayedCard							
-Feast2	Power	Attach to a unit; this unit now has plus two base\rstrength.	0							2	Add									TRUE				
-Feast3	Power	Attach to a unit; this unit now has plus two base\rstrength.	0							2	Add									TRUE				
-Grail	Power	Reveal the top unit in the graveyard and add it to\ryour hand. If it has less than three strength draw\ranother card.	0									1					UnitGraveyard				3			
-Offering	Power	Send one of your units on the field to the\rgraveyard. If its strength was less than four, draw\rtwo cards; otherwise, draw three.	0	2	Either	1	Unit														4			
-Plague	Power	Set a unit's base strength to one.	0							1	Set									TRUE				
-Redemption	Power	If your King is on the field, return it to your hand.\rThe top card in the graveyard is played on your\rside of the field.	0					1	King			1					UnitGraveyard							
-Relic	Power	Move a unit to any row.	0					1	Move								All							
-Resurrection	Power	Choose one unit from the graveyard and play it\ron your side of the field.	0																			1	UnitGraveyard	-1
-Ruin	Power	Discard up to three cards from your hand.\rAdd three times the number of discarded cards\rto the base strength of a unit.	0			3	Unit			3	Multiply						PlayerHand			TRUE				
-Styx	Power	Pick a card from the top three in the power\rgraveyard, and add that card to your hand.	0																			1	PowerGraveyard	3
-Usury	Power	Set aside one of your units on the field until the\rstart of the next round. Draw two cards at the\rend of this round.	0	2	RoundEnd													1	Player					
-Void	Power	The round ends after your next turn.	0																					
-War	Power	Send a card from your hand to the graveyard.\rYour opponent then discards the strongest unit\rin their hand.	0			1	Unit							1										
-Wrath	Power	Send one of your units on the field and two of\ryour opponent's to the graveyard.	0			1	Unit							2			EnemyPlayable							
-Archer	Ranged	 	2																					
-Archer2	Ranged	 	2																					
-Bowman	Ranged	 	2																					
-Bowman2	Ranged	 	2																					
-Grenadier	Ranged	 	4																					
-Grenadier2	Ranged	 	4																					
-Militia	Ranged	 	2																					
-Musketeer3	Ranged	 	3																					
-Musketeer	Ranged	 	3																					
-Musketeer2	Ranged	 	3																					
-Officer2	Ranged	 	3																					
-Privateer	Ranged	 	4																					
-Privateer2	Ranged	 	4																					
-Privateer3	Ranged	 	4																					
-Privateer4	Ranged	 	4																					
-Riflemen	Ranged	 	3																					
-Soldier	Ranged	 	2																					
-Soldier2	Ranged	 	2																					
-Telescope	Ranged	Add one base strength to two adjacent units\rin this row.	1							1	Adjacent													
-Waterworks	Ranged	 	5																					
-Armada	Siege	 	5																					
-Armada2	Siege	 	5																					
-Assault	Siege	 	3																					
-Assault2	Siege	 	3																					
-Assault3	Siege	 	3																					
-Cannon	Siege	 	4																					
-Cannon2	Siege	 	4																					
-Cannon3	Siege	 	4																					
-Cannon4	Siege	 	4																					
-Catapult	Siege	 	3																					
-Mortar	Siege	 	6																					
-Officer3	Siege	 	3																					
-Officer4	Siege	 	3																					
-Siege	Siege	 	2																					
-Siege2	Siege	 	2																					
-Siege3	Siege	 	2																					
-Tower	Siege	Add one base strength to two adjacent units in\rthis row.	1							1	Adjacent													
-Assassin	Spy	Play in any of the opponent's rows and draw two\rcards. If the row has no other cards at the end of\rthe round, send any unit to the graveyard.	5	2	Either	0	RoundEnd							1			EnemyPlayable							
-Minister	Spy	Play in the opponent's Siege row, then draw two\rcards.	3	2	Either												EnemySiege							
-Saboteur	Spy	Play in the opponents ranged row, then draw\rtwo cards.	2	2	Either												EnemyRanged							
-Smuggler	Spy	Draw two cards, your opponent draws one.	0	2	Either								1				PowerGraveyard							
-Spy	Spy	Play in the opponents Melee row, then draw\rtwo cards.	1	2	Either												EnemyMelee							
-Zealot	Spy	Play in the opponent's Melee row, then draw\rtwo cards.	4	2	Either												EnemyMelee							
-Juggernaut	Switch	This unit can also be played in the Range row.	2																					
-ClearSkies	Weather	Remove all weather effects.	0													1	All							
-Fog	Weather	The Range row fights at half strength this round.	0													0.5	Ranged							
-Frost	Weather	The Melee row fights at half strength this round.	0													0.5	Melee							
-Storm	Weather	The Siege row fights at half strength this round.	0													0.5	Siege							
+CardName	CardType	Effect Text	Strength	PlayerCardDraw	CardDrawType	PlayerCardDestroy	DestroyType	PlayerCardReturn	CardReturnType	StrengthModifier	StrengthModType	GraveyardCardDraw	EnemyCardDraw	EnemyCardDestroy	EnemyReveal	RowMultiple	EffectedRow	SetAside	SetAsideType	Attach	StengthCondition	ChooseN	ChooseRow	ChooseShowN	PlayInRow
+Feint	Decoy	Send one of your units on the field to the\rgraveyard, return one of your units to your hand.\rYou can play this card after you've passed.	0			1	Unit	1	Unit								PlayerPlayable								TRUE
+Fortress	Decoy	Attach to a unit on the field. Its strength is halved\rthis round. This unit remains on the field to fight\rin the next round at full strength.	0							0.5	Multiply						All			TRUE					TRUE
+Jester	Decoy	Replace this card with any unit on either side of\rthe field, and add that card to your hand.	0					1	Unit								All								TRUE
+Retreat	Decoy	Replace this card with any of your units on the\rfield, and add that card to your hand.	0					1	Unit								PlayerPlayable								TRUE
+Sack	Decoy	Replace this card with any of your opponent's\runits on the field, and add that card to your\rhand.	0					1	Unit								EnemyPlayable								TRUE
+Shipwreck	Decoy	If you have three units in the same row, replace\rthem with this card. Two return to your hand,\rsend one to the graveyard.	0			1	Unit	2	Unit								PlayerPlayable								TRUE
+LionKing	King	Double the strength of a row.\rChoose two units to return to the opponent's\rhand until the next round.	0														EnemyPlayable	2	Enemy						TRUE
+SunKing	King	Double the strength of a row.\rClear all weather effects, and draw a card.	0	1	Either											1	All								TRUE
+TerrorKing	King	Double the strength of a row.\rThe Siege row fights at half strength this round.\rSend a unit to the graveyard.	0			0	Unit							1		0.5	Siege								TRUE
+TraitorKing	King	Double the strength of a row.\rSwap one unit on the field with your opponent\rfor every King on the field.	0					2	Swap																TRUE
+WinterKing	King	Double the strength of a row.\rThe Melee row fights at half strength this round.\rSend a unit to the graveyard.	0			0	Unit							1		0.5	Melee								TRUE
+Calvary	Melee	 	4																						TRUE
+Calvary2	Melee	 	4																						TRUE
+Calvary3	Melee	 	4																						TRUE
+Crusader	Melee	If drawn from the graveyard,\rdraw another unit from the graveyard.	2									1					UnitGraveyard								TRUE
+Halberdier	Melee	 	2																						TRUE
+Knight	Melee	 	2																						TRUE
+Knight10	Melee	 	2																						TRUE
+Knight11	Melee	 	2																						TRUE
+Knight12	Melee	 	2																						TRUE
+Knight9	Melee	 	2																						TRUE
+Knight3	Melee	 	2																						TRUE
+Knight4	Melee	 	2																						TRUE
+Knight5	Melee	 	2																						TRUE
+Knight6	Melee	 	2																						TRUE
+Knight7	Melee	 	2																						TRUE
+Landsknecht	Melee	 	2																						TRUE
+MusketLine	Melee	 	5																						TRUE
+Officer	Melee	 	3																						TRUE
+Scout	Melee	Reveal a power card in your opponent's hand.	1												1										TRUE
+Square	Melee	 	3																						TRUE
+Burden	Power	Double the strength of your opponent's strongest\rrow. In the next round this card switches sides.	0													2	EnemyMax								TRUE
+Crusade	Power	Send all of the strongest units on both sides of\rthe Melee row to the graveyard.	0			1	MaxAll							1			Melee								FALSE
+Death	Power	Choose one unit in the opponent's field to send\rto the graveyard.	0			0	Unit							1			EnemyPlayable								FALSE
+Death2	Power	Choose one unit in the opponent's field to send\rto the graveyard.	0			0	Unit							1			EnemyPlayable								FALSE
+EmperorDemise	Power	If a King is on the field, set it aside until the start\rof the next round.	0															1	EitherKing						FALSE
+Enlightenment	Power	Reveal two power cards in your opponent's hand.\rDraw a unit card.	0	1	Unit										2		EnemyHand								FALSE
+Execution	Power	Send your King to the graveyard.\rIf your King was on the field, draw three units;\rif it was in your hand, draw four.	0	3	Unit	1	King																		FALSE
+Famine	Power	The strongest units from each player's hand are\rsent to the graveyard.	0			1	Max							1			BothHand								FALSE
+Fate	Power	Return the last card you played to your hand.	0					1	LastPlayedCard								LastPlayedCard								FALSE
+Feast2	Power	Attach to a unit; this unit now has plus two base\rstrength.	0							2	Add									TRUE					TRUE
+Feast3	Power	Attach to a unit; this unit now has plus two base\rstrength.	0							2	Add									TRUE					TRUE
+Grail	Power	Reveal the top unit in the graveyard and add it to\ryour hand. If it has less than three strength draw\ranother card.	0									1					UnitGraveyard				3				FALSE
+Offering	Power	Send one of your units on the field to the\rgraveyard. If its strength was less than four, draw\rtwo cards; otherwise, draw three.	0	2	Either	1	Unit														4				FALSE
+Plague	Power	Set a unit's base strength to one.	0							1	Set									TRUE					TRUE
+Redemption	Power	If your King is on the field, return it to your hand.\rThe top card in the graveyard is played on your\rside of the field.	0					1	King			1					UnitGraveyard								FALSE
+Relic	Power	Move a unit to any row.	0					1	Move								All								FALSE
+Resurrection	Power	Choose one unit from the graveyard and play it\ron your side of the field.	0																			1	UnitGraveyard	-1	FALSE
+Ruin	Power	Discard up to three cards from your hand.\rAdd three times the number of discarded cards\rto the base strength of a unit.	0			3	Unit			3	Multiply						PlayerHand			TRUE					TRUE
+Styx	Power	Pick a card from the top three in the power\rgraveyard, and add that card to your hand.	0																			1	PowerGraveyard	3	FALSE
+Usury	Power	Set aside one of your units on the field until the\rstart of the next round. Draw two cards at the\rend of this round.	0	2	RoundEnd													1	Player						FALSE
+Void	Power	The round ends after your next turn.	0																						FALSE
+War	Power	Send a card from your hand to the graveyard.\rYour opponent then discards the strongest unit\rin their hand.	0			1	MaxAll							1			Ranged								FALSE
+Wrath	Power	Send one of your units on the field and two of\ryour opponent's to the graveyard.	0			1	Unit							2			EnemyPlayable								FALSE
+Archer	Ranged	 	2																						TRUE
+Archer2	Ranged	 	2																						TRUE
+Bowman	Ranged	 	2																						TRUE
+Bowman2	Ranged	 	2																						TRUE
+Grenadier	Ranged	 	4																						TRUE
+Grenadier2	Ranged	 	4																						TRUE
+Militia	Ranged	 	2																						TRUE
+Musketeer3	Ranged	 	3																						TRUE
+Musketeer	Ranged	 	3																						TRUE
+Musketeer2	Ranged	 	3																						TRUE
+Officer2	Ranged	 	3																						TRUE
+Privateer	Ranged	 	4																						TRUE
+Privateer2	Ranged	 	4																						TRUE
+Privateer3	Ranged	 	4																						TRUE
+Privateer4	Ranged	 	4																						TRUE
+Riflemen	Ranged	 	3																						TRUE
+Soldier	Ranged	 	2																						TRUE
+Soldier2	Ranged	 	2																						TRUE
+Telescope	Ranged	Add one base strength to two adjacent units\rin this row.	1							1	Adjacent														TRUE
+Waterworks	Ranged	 	5																						TRUE
+Armada	Siege	 	5																						TRUE
+Armada2	Siege	 	5																						TRUE
+Assault	Siege	 	3																						TRUE
+Assault2	Siege	 	3																						TRUE
+Assault3	Siege	 	3																						TRUE
+Cannon	Siege	 	4																						TRUE
+Cannon2	Siege	 	4																						TRUE
+Cannon3	Siege	 	4																						TRUE
+Cannon4	Siege	 	4																						TRUE
+Catapult	Siege	 	3																						TRUE
+Mortar	Siege	 	6																						TRUE
+Officer3	Siege	 	3																						TRUE
+Officer4	Siege	 	3																						TRUE
+Siege	Siege	 	2																						TRUE
+Siege2	Siege	 	2																						TRUE
+Siege3	Siege	 	2																						TRUE
+Tower	Siege	Add one base strength to two adjacent units in\rthis row.	1							1	Adjacent														TRUE
+Assassin	Spy	Play in any of the opponent's rows and draw two\rcards. If the row has no other cards at the end of\rthe round, send any unit to the graveyard.	5	2	Either	0	RoundEnd							1			EnemyPlayable								TRUE
+Minister	Spy	Play in the opponent's Siege row, then draw two\rcards.	3	2	Either												EnemySiege								TRUE
+Saboteur	Spy	Play in the opponents ranged row, then draw\rtwo cards.	2	2	Either												EnemyRanged								TRUE
+Smuggler	Spy	Draw two cards, your opponent draws one.	0	2	Either								1				PowerGraveyard								TRUE
+Spy	Spy	Play in the opponents Melee row, then draw\rtwo cards.	1	2	Either												EnemyMelee								TRUE
+Zealot	Spy	Play in the opponent's Melee row, then draw\rtwo cards.	4	2	Either												EnemyMelee								TRUE
+Juggernaut	Switch	This unit can also be played in the Range row.	2																						TRUE
+ClearSkies	Weather	Remove all weather effects.	0													1	All								FALSE
+Fog	Weather	The Range row fights at half strength this round.	0													0.5	Ranged								TRUE
+Frost	Weather	The Melee row fights at half strength this round.	0													0.5	Melee								TRUE
+Storm	Weather	The Siege row fights at half strength this round.	0													0.5	Siege								TRUE

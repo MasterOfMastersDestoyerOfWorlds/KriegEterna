@@ -44,7 +44,7 @@ namespace KriegTests
             {
                 testName = "LionKingNoSetAside",
                 scoreRows = new List<(RowEffected, int)>{
-                    (RowEffected.PlayerRanged, 4),
+                    (RowEffected.PlayerRanged, 6),
                 },
                 clicks = new List<Click>{
                     new Click("LionKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRangedKing, true),
@@ -133,7 +133,7 @@ namespace KriegTests
                     (RowEffected.PlayerSiege, 12),
                 },
                 clicks = new List<Click>{
-                    new Click("TerrorKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiegeKing, true),
+                    new Click("WinterKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiegeKing, true),
                     new ClickRow("PlayerSiegeKing", RowEffected.PlayerSiegeKing),
                     new Click("Knight", RowEffected.EnemyMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
                     new Click("Knight3", RowEffected.EnemyMelee, RowEffected.EnemyMelee, RowEffected.EnemyMelee, false),

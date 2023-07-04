@@ -38,6 +38,15 @@ public class Row : List<Card>
         }
 
     }
+    public bool isVisible(){
+        foreach (Card c in this)
+        {
+            if(!c.isVisible()){
+                return false;
+            }
+        }
+        return true;
+    }
 
     public Card getCardByName(string cardName)
     {
@@ -75,14 +84,15 @@ public class Row : List<Card>
         return false;
     }
 
-    public int maxStrength()
+    public int maxStrength(Deck deck, RowEffected player)
     {
+        this.scoreRow(deck, player);
         int max = 0;
         foreach (Card c in this)
         {
-            if (c.strength > max)
+            if (c.calculatedStrength > max)
             {
-                max = c.strength;
+                max = c.calculatedStrength;
             }
         }
         return max;

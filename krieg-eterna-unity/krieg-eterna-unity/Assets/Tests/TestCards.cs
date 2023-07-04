@@ -173,7 +173,7 @@ namespace KriegTests
             yield return new WaitWhile(() => sceneLoaded == false);
             gameObject = GameObject.Find("Game");
             game = gameObject.GetComponent<Game>();
-            deck = game.activeDeck;
+            deck = Game.activeDeck;
             deck.resetDeck();
             choosePower = new List<string>();
             chooseUnit = new List<string>();
@@ -191,7 +191,7 @@ namespace KriegTests
             deck.disactiveAllInDeck(false);
             Game.state = State.FREE;
             Game.round = RoundType.RoundOne;
-            game.reorganizeGroup();
+            Game.reorganizeGroup();
         }
 
         [TearDown]
@@ -263,7 +263,7 @@ namespace KriegTests
                     MouseUnClick();
                     yield return null;
                     Assert.AreEqual(true, deck.getRowByType(clicks[i].rowAfterClick).ContainsIncludeAttachments(c),
-                    $"row after click cardName: {clicks[i].name}, Expected Row: {clicks[i].rowAfterClick}, Actual Row: {deck.getCardRow(c).uniqueType}");
+                    $"row after click cardName: {clicks[i].name}, Expected Row: {clicks[i].rowAfterClick}  {deck.getRowByType(clicks[i].rowAfterClick)}, Actual Row: {deck.getCardRow(c).uniqueType} {deck.getRowByType(deck.getCardRow(c).uniqueType)}");
                 }
                 else if (clicks[i].isRowTarget)
                 {
@@ -288,14 +288,16 @@ namespace KriegTests
                 {
                     Card c = clicks[i].card;
                     Assert.AreEqual(true, deck.getRowByType(clicks[i].finalRow).ContainsIncludeAttachments(c),
-                    $"final row cardName: {clicks[i].name}, Expected Row: {clicks[i].finalRow}, Actual Row: {deck.getCardRow(c).uniqueType}");
+                    $"final row cardName: {clicks[i].name}, Expected Row: {clicks[i].finalRow} {deck.getRowByType(clicks[i].finalRow)}, Actual Row: {deck.getCardRow(c).uniqueType} {deck.getRowByType(deck.getCardRow(c).uniqueType)}");
                 }
             }
             Assert.AreEqual(State.FREE, Game.state);
             Assert.AreEqual(testCase.round, Game.round);
+            Assert.AreEqual(false, deck.getRowByType(RowEffected.ChooseN).isVisible());
 
-            Assert.AreEqual(testCase.playerHandCount, deck.getRowByType(RowEffected.PlayerHand).Count);
-            Assert.AreEqual(testCase.enemyHandCount, deck.getRowByType(RowEffected.EnemyHand).Count);
+            Assert.AreEqual(testCase.playerHandCount, deck.getRowByType(RowEffected.PlayerHand).Count, $"{deck.getRowByType(RowEffected.PlayerHand)}");
+            Assert.AreEqual(testCase.enemyHandCount, deck.getRowByType(RowEffected.EnemyHand).Count, $"{deck.getRowByType(RowEffected.EnemyHand)}");
+
 
             if (testCase.scoreRows != null)
             {

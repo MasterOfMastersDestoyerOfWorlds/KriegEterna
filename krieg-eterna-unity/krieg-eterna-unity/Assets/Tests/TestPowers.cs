@@ -62,7 +62,7 @@ namespace KriegTests
                 testName = "EmperorDemisePlayer",
                 clicks = new List<Click>{
                     new Click("EmperorDemise", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new Click("LionKing", RowEffected.PlayerRangedKing, RowEffected.PlayerRangedKing, RowEffected.PlayerSetAside, true),
+                    new Click("LionKing", RowEffected.PlayerRangedKing, RowEffected.PlayerSetAside, RowEffected.PlayerSetAside, true),
                 }
             },
             new TestCase
@@ -70,7 +70,17 @@ namespace KriegTests
                 testName = "EmperorDemiseEnemy",
                 clicks = new List<Click>{
                     new Click("EmperorDemise", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new Click("LionKing", RowEffected.EnemyRangedKing, RowEffected.EnemyRangedKing, RowEffected.EnemySetAside, true),
+                    new Click("LionKing", RowEffected.EnemyRangedKing, RowEffected.EnemySetAside, RowEffected.EnemySetAside, true),
+                }
+            },
+
+            new TestCase
+            {
+                testName = "EmperorDemiseChoice",
+                clicks = new List<Click>{
+                    new Click("EmperorDemise", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new Click("LionKing", RowEffected.EnemyRangedKing, RowEffected.EnemySetAside, RowEffected.EnemySetAside, true),
+                    new Click("TerrorKing", RowEffected.PlayerRangedKing, RowEffected.PlayerRangedKing, RowEffected.PlayerRangedKing, false),
                 }
             },
             new TestCase
@@ -81,7 +91,7 @@ namespace KriegTests
                 clicks = new List<Click>{
                     new Click("Enlightenment", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new Click("Enlightenment", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
-                    new Click("Fate", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.ChooseN, false),
+                    new Click("Fate", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.ChooseN, true),
                 }
             },
             new TestCase
@@ -93,7 +103,7 @@ namespace KriegTests
                     new Click("Enlightenment", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new Click("Enlightenment", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
                     new Click("Fate", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.ChooseN, false),
-                    new Click("Execution", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.ChooseN, false),
+                    new Click("Execution", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.ChooseN, true),
                     new Click("Famine", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.EnemyHand, false),
                 }
             },
@@ -138,9 +148,9 @@ namespace KriegTests
                 clicks = new List<Click>{
                     new Click("Famine", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new Click("Famine", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
-                    new Click("Knight", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.UnitGraveyard, false),
+                    new Click("Knight", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerHand, false),
                     new Click("Knight3", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerHand, false),
-                    new Click("Officer", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerHand, false),
+                    new Click("Officer", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.UnitGraveyard, false),
                 }
             },
             new TestCase

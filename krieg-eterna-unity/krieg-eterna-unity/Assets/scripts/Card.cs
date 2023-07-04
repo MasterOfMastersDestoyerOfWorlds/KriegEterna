@@ -39,6 +39,7 @@ public class Card : MonoBehaviour
     public int chooseN;
     public RowEffected chooseRow;
     public int chooseShowN;
+    public bool playInRow;
     public int moveRemain;
     public Card moveCard;
     public RowEffected moveRow;
@@ -206,6 +207,7 @@ public class Card : MonoBehaviour
         this.chooseN = cardModel.chooseN[index];
         this.chooseRow = cardModel.chooseRow[index];
         this.chooseShowN = cardModel.chooseShowN[index];
+        this.playInRow = cardModel.playInRow[index];
         this.resetSelectionCounts();
     }
 
@@ -229,7 +231,7 @@ public class Card : MonoBehaviour
 
     public bool doneMultiSelection()
     {
-        return this.playerCardDrawRemain <= 0 && this.playerCardDestroyRemain <= 0
+        return (this.playerCardDrawRemain <= 0 || this.cardDrawType != CardDrawType.Either) && this.playerCardDestroyRemain <= 0
         && this.playerCardReturnRemain <= 0 && this.enemyCardDestroyRemain <= 0
         && this.setAsideRemain <= 0 && this.moveRemain <= 0;
     }
@@ -245,6 +247,7 @@ public class Card : MonoBehaviour
         Debug.Log("chooseShowN: " + this.chooseShowN);
         Debug.Log("move: " + this.moveRemain);
         Debug.Log("setAside: " + this.setAsideRemain);
+        Debug.Log("reveal: " + this.enemyReveal);
     }
 
     public void setTargetActive(bool state)
@@ -257,6 +260,12 @@ public class Card : MonoBehaviour
     {
         Material material = getMaterial();
         material.SetInt("_Transparent", state ? 0 : 1);
+    }
+
+    public bool isVisible()
+    {
+        Material material = getMaterial();
+        return material.GetInt("_Transparent") == 0 ? true: false;
     }
     public bool isTargetActive()
     {
