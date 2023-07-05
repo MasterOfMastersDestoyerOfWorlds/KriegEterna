@@ -91,7 +91,7 @@ namespace KriegTests
                 clicks = new List<Click>{
                     new Click("Enlightenment", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new Click("Enlightenment", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
-                    new Click("Fate", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.ChooseN, true),
+                    new Click(false, "Fate", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.ChooseN, true),
                 }
             },
             new TestCase
@@ -102,9 +102,9 @@ namespace KriegTests
                 clicks = new List<Click>{
                     new Click("Enlightenment", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new Click("Enlightenment", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
-                    new Click("Fate", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.ChooseN, false),
-                    new Click("Execution", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.ChooseN, true),
-                    new Click("Famine", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.EnemyHand, false),
+                    new Click(true, "Fate", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.EnemyHand, false),
+                    new Click(false, "Execution", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.ChooseN, true),
+                    new Click(false, "Famine", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.ChooseN, false),
                 }
             },
             new TestCase
@@ -322,7 +322,7 @@ namespace KriegTests
                     new Click("Void", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new Click("Void", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
                     new Click("Knight11", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
-                    new Click("Knight11", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
+                    new Click("Knight11", RowEffected.PlayerHand, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
                 }
             },
 
@@ -335,7 +335,7 @@ namespace KriegTests
                     new Click("Void", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
                     new ClickRow("EndRound", RowEffected.EndRound),
                     new Click("Knight11", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
-                    new Click("Knight11", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
+                    new Click("Knight11", RowEffected.PlayerHand, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
                 }
             },
             new TestCase

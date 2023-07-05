@@ -144,7 +144,7 @@ public class Game : MonoBehaviour
         List<string> chooseUnit = new List<string>();
         chooseUnit.Add("Scout");
         List<string> chooseKing = new List<string>();
-        chooseKing.Add("TerrorKing");
+        chooseKing.Add("TraitorKing");
         List<string> chooseUnitGraveyard = new List<string>();
         chooseUnitGraveyard.Add("Crusader");
         chooseUnitGraveyard.Add("Knight");
@@ -237,6 +237,8 @@ public class Game : MonoBehaviour
         }
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame && state != State.BLOCKED)
         {
+            
+            Debug.Log("--------------------------------------------------------------------");
             if (state == State.REVEAL)
             {
                 activeDeck.getRowByType(RowEffected.ChooseN).setVisibile(false);
@@ -359,7 +361,6 @@ public class Game : MonoBehaviour
                 reorganizeGroup();
             }
         }
-        Debug.Log("--------------------------------------------------------------------");
     }
 
 
@@ -422,13 +423,15 @@ public class Game : MonoBehaviour
             clone.Destroy();
 
         }
-        for (int i = 0; i < numShow && i < row.Count; i++)
+        int revealed = 0;
+        for (int i = 0; revealed < numShow && i < row.Count; i++)
         {
             if (!exclude.Contains(row[i].cardType) && (state != State.REVEAL || !row[i].beenRevealed))
             {
                 Card clone = Instantiate(row[i]) as Card;
                 clone.setVisible(true);
                 displayRow.Add(clone);
+                revealed ++;
                 if (state == State.REVEAL)
                 {
                     row[i].beenRevealed = true;

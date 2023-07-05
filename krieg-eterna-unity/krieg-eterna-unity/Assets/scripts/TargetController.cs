@@ -1,5 +1,6 @@
 using UnityEngine;
-public class TargetController{
+public class TargetController
+{
     public static void ShowTargets(Card c, RowEffected player)
     {
         Deck deck = Game.activeDeck;
@@ -28,6 +29,26 @@ public class TargetController{
                     {
                         deck.activateRowsByType(true, true, enemyPlayable);
                     }
+                    else if (c.moveRemain > 0)
+                    {
+                        if (c.cardReturnType == CardReturnType.Move)
+                        {
+                            deck.activateRowsByTypeExclude(true, false, c.rowEffected, c.moveRow);
+                        }
+                        else if (c.cardReturnType == CardReturnType.Swap)
+                        {
+                            deck.activateRowsByTypeExclude(true, true, c.rowEffected, c.moveRow);
+                        }
+                    }
+                    else if (c.playerCardReturnRemain > 0)
+                    {
+                        switch (c.cardReturnType)
+                        {
+                            case CardReturnType.King: deck.activateRowsByType(true, true, deck.getKingRow(player)); break;
+                            default: deck.activateRowsByType(true, true, playerPlayable); break;
+                        }
+
+                    }
                     else if (c.setAsideRemain > 0)
                     {
                         switch (c.setAsideType)
@@ -47,6 +68,7 @@ public class TargetController{
                     {
                         deck.activateRowsByType(true, false, RowEffected.DrawableDeck);
                     }
+
                 }
                 else
                 {
@@ -90,7 +112,14 @@ public class TargetController{
                 }
                 else if (c.moveRemain > 0)
                 {
-                    deck.activateRowsByTypeExclude(true, false, c.rowEffected, c.moveRow);
+                    if (c.cardReturnType == CardReturnType.Move)
+                    {
+                        deck.activateRowsByTypeExclude(true, false, c.rowEffected, c.moveRow);
+                    }
+                    else if (c.cardReturnType == CardReturnType.Swap)
+                    {
+                        deck.activateRowsByTypeExclude(true, true, c.rowEffected, c.moveRow);
+                    }
                 }
                 else if (c.playerCardReturnRemain > 0)
                 {

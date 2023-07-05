@@ -36,6 +36,7 @@ public class PlayController
             if (c.enemyReveal > 0 && deck.getRowByType(enemyHand).Count > 0)
             {
                 //may want to turn off flashing since it is only otherwise used when some input is happening
+                Debug.Log("Reeee" + c.enemyReveal);
                 Game.setChooseN(enemyHand, null, 0, c.enemyReveal, new List<CardType>() { CardType.King, CardType.Melee, CardType.Ranged, CardType.Siege }, RowEffected.None, State.REVEAL);
 
             }
@@ -52,7 +53,9 @@ public class PlayController
         {
             targetRow.Add(c);
             RowEffected enemySide = CardModel.getRowFromSide(player, RowEffected.EnemyPlayable);
+            RowEffected playerSide = CardModel.getRowFromSide(player, RowEffected.PlayerPlayable);
             int cardsRemaining = Game.activeDeck.countCardsInRows(enemySide);
+            int cardsRemainingPlayer = Game.activeDeck.countCardsInRows(playerSide);
             Debug.Log(c.cardName + " setAside: " + c.setAsideRemain);
             if (c.setAsideRemain > cardsRemaining)
             {
@@ -61,6 +64,14 @@ public class PlayController
             if (c.enemyCardDestroyRemain > cardsRemaining)
             {
                 c.enemyCardDestroyRemain = cardsRemaining;
+            }
+            if (c.playerCardReturnRemain > cardsRemaining)
+            {
+                c.playerCardReturnRemain = cardsRemaining;
+            }
+            if (c.playerCardReturnRemain > cardsRemainingPlayer && c.cardReturnType == CardReturnType.Swap)
+            {
+                c.playerCardReturnRemain = cardsRemainingPlayer;
             }
         }
     }
@@ -185,7 +196,16 @@ public class PlayController
         else if (c.moveRemain > 0)
         {
             c.moveRemain--;
-            deck.addCardToHand(deck.getRowByType(c.moveRow), targetRow.uniqueType, c.moveCard);
+            Debug.Log("MOVING " + c.cardReturnType);
+            if(c.cardReturnType == CardReturnType.Move){
+                deck.addCardToHand(deck.getRowByType(c.moveRow), targetRow.uniqueType, c.moveCard);
+            }
+            if(c.cardReturnType == CardReturnType.Swap){
+                
+                Debug.Log("Swaping Cards: " +  c.moveCard + " " + targetCard);
+                deck.addCardToHand(deck.getRowByType(c.moveRow), CardModel.getRowFromSide(RowEffected.Enemy, c.moveRow), c.moveCard);
+                deck.addCardToHand(deck.getRowByType(targetRow.uniqueType), CardModel.getRowFromSide(RowEffected.Enemy, targetRow.uniqueType), targetCard);
+            }
         }
         else if (c.playerCardReturnRemain > 0)
         {
@@ -209,7 +229,7 @@ public class PlayController
                 }
                 deck.addCardToHand(targetRow, playerHand, targetCard);
             }
-            else if (c.cardReturnType == CardReturnType.Move)
+            else if (c.cardReturnType == CardReturnType.Move || c.cardReturnType == CardReturnType.Swap)
             {
                 c.playerCardReturnRemain--;
                 c.moveRemain++;

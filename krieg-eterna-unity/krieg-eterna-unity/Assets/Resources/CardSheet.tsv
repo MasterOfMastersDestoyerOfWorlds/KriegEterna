@@ -8,7 +8,7 @@ Shipwreck	Decoy	If you have three units in the same row, replace\rthem with this
 LionKing	King	Double the strength of a row.\rChoose two units to return to the opponent's\rhand until the next round.	0														EnemyPlayable	2	Enemy						TRUE
 SunKing	King	Double the strength of a row.\rClear all weather effects, and draw a card.	0	1	Either											1	All								TRUE
 TerrorKing	King	Double the strength of a row.\rThe Siege row fights at half strength this round.\rSend a unit to the graveyard.	0			0	Unit							1		0.5	Siege								TRUE
-TraitorKing	King	Double the strength of a row.\rSwap one unit on the field with your opponent\rfor every King on the field.	0					2	Swap																TRUE
+TraitorKing	King	Double the strength of a row.\rSwap one unit on the field with your opponent\rfor every King on the field.	0					2	Swap								EnemyPlayable								TRUE
 WinterKing	King	Double the strength of a row.\rThe Melee row fights at half strength this round.\rSend a unit to the graveyard.	0			0	Unit							1		0.5	Melee								TRUE
 Calvary	Melee	 	4																						TRUE
 Calvary2	Melee	 	4																						TRUE

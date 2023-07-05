@@ -105,7 +105,7 @@ namespace KriegTests
             public RowEffected rowAfterClick;
             public RowEffected finalRow;
             public bool click;
-            public bool inDisplayRow = false;
+            public bool setRevealed = false;
             public bool isRowTarget;
 
             public Click(string cardName, RowEffected dealRow, RowEffected rowAfterClick, RowEffected finalRow, bool click)
@@ -116,11 +116,9 @@ namespace KriegTests
                 this.rowAfterClick = rowAfterClick;
                 this.finalRow = finalRow;
                 this.click = click;
-                this.inDisplayRow = false;
                 this.isRowTarget = false;
             }
-
-            public Click(string cardName, RowEffected dealRow, RowEffected rowAfterClick, RowEffected finalRow, bool click, bool inDisplayRow)
+            public Click(bool setRevealed, string cardName, RowEffected dealRow, RowEffected rowAfterClick, RowEffected finalRow, bool click)
             {
                 this.card = null;
                 this.name = cardName;
@@ -128,7 +126,7 @@ namespace KriegTests
                 this.rowAfterClick = rowAfterClick;
                 this.finalRow = finalRow;
                 this.click = click;
-                this.inDisplayRow = inDisplayRow;
+                this.setRevealed = setRevealed;
                 this.isRowTarget = false;
             }
         }
@@ -233,6 +231,7 @@ namespace KriegTests
                         dealtCards.Add(cardName);
                         Card c = deck.dealCardToRow(cardName, clicks[i].dealRow);
                         clicks[i].card = c;
+                        c.beenRevealed = clicks[i].setRevealed;                   
                     }
                     else
                     {
@@ -303,7 +302,7 @@ namespace KriegTests
             {
                 foreach ((RowEffected, int) rowPair in testCase.scoreRows)
                 {
-                    Assert.AreEqual(rowPair.Item2, deck.getRowByType(rowPair.Item1).scoreRow(deck, RowEffected.Player));
+                    Assert.AreEqual(rowPair.Item2, deck.getRowByType(rowPair.Item1).scoreRow(deck, CardModel.getPlayerFromRow(rowPair.Item1)), $"{deck.getRowByType(rowPair.Item1)}");
                 }
             }
         }

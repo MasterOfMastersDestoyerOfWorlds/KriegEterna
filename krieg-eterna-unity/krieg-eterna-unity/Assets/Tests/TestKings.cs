@@ -86,7 +86,9 @@ namespace KriegTests
             {
                 testName = "TraitorKingTwoSwaps",
                 scoreRows = new List<(RowEffected, int)>{
-                    (RowEffected.PlayerSiege, 12),
+                    (RowEffected.PlayerSiege, 6),
+                    (RowEffected.EnemyMelee, 8),
+                    (RowEffected.PlayerRanged, 4),
                 },
                 clicks = new List<Click>{
                     new Click("TerrorKing", RowEffected.EnemySiegeKing, RowEffected.EnemySiegeKing, RowEffected.EnemySiegeKing, false),
@@ -102,27 +104,29 @@ namespace KriegTests
             {
                 testName = "TraitorKingOneSwapPossible",
                 scoreRows = new List<(RowEffected, int)>{
-                    (RowEffected.PlayerSiege, 12),
+                    (RowEffected.EnemyRanged, 4),
+                    (RowEffected.PlayerMelee, 2),
                 },
                 clicks = new List<Click>{
                     new Click("TraitorKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRangedKing, true),
-                    new ClickRow("PlayerSiegeKing", RowEffected.PlayerRangedKing),
+                    new ClickRow("PlayerRangedKing", RowEffected.PlayerRangedKing),
                     new Click("Grenadier", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.EnemyRanged, true),
-                    new Click("Knight", RowEffected.EnemyMelee, RowEffected.EnemyMelee, RowEffected.PlayerMelee, true),
+                    new Click("Knight", RowEffected.EnemyMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
                 }
             },
             new TestCase
             {
                 testName = "TraitorKingOneSwap",
                 scoreRows = new List<(RowEffected, int)>{
-                    (RowEffected.PlayerSiege, 12),
+                    (RowEffected.PlayerMelee, 4),
+                    (RowEffected.EnemyRanged, 4),
                 },
                 clicks = new List<Click>{
                     new Click("TerrorKing", RowEffected.EnemySiegeKing, RowEffected.EnemySiegeKing, RowEffected.EnemySiegeKing, false),
-                    new Click("TraitorKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRangedKing, true),
-                    new ClickRow("PlayerSiegeKing", RowEffected.PlayerRangedKing),
+                    new Click("TraitorKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMeleeKing, true),
+                    new ClickRow("PlayerMeleeKing", RowEffected.PlayerMeleeKing),
                     new Click("Grenadier", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.EnemyRanged, true),
-                    new Click("Knight", RowEffected.EnemyMelee, RowEffected.EnemyMelee, RowEffected.PlayerMelee, true),
+                    new Click("Knight", RowEffected.EnemyMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
                 }
             },
             new TestCase
