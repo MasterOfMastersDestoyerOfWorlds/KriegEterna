@@ -47,7 +47,7 @@ public class Deck : MonoBehaviour
         new Row(true, true, false, RowEffected.PlayerSiegeKing, new List<RowEffected>() { RowEffected.PlayerSiegeKing, RowEffected.PlayerKing, RowEffected.Player, RowEffected.King, RowEffected.SiegeFull , RowEffected.Played}, areas.getSiegeKingCenterVector),
         new Row(true, true, false, RowEffected.EnemyMeleeKing, new List<RowEffected>() { RowEffected.EnemyMeleeKing, RowEffected.EnemyKing, RowEffected.Enemy, RowEffected.King, RowEffected.MeleeFull , RowEffected.Played}, areas.getEnemyMeleeKingCenterVector),
         new Row(true, true, false, RowEffected.EnemyRangedKing, new List<RowEffected>() {  RowEffected.EnemyRangedKing, RowEffected.EnemyKing, RowEffected.Enemy, RowEffected.King, RowEffected.RangedFull , RowEffected.Played}, areas.getEnemyRangedKingCenterVector),
-        new Row(true, true, false, RowEffected.EnemySiegeKing, new List<RowEffected>() { RowEffected.EnemySiegeKing, RowEffected.EnemyKing, RowEffected.Enemy, RowEffected.King, RowEffected.SiegeFull , RowEffected.Played}, areas.getEnemySiegeKingCenterVector), 
+        new Row(true, true, false, RowEffected.EnemySiegeKing, new List<RowEffected>() { RowEffected.EnemySiegeKing, RowEffected.EnemyKing, RowEffected.Enemy, RowEffected.King, RowEffected.SiegeFull , RowEffected.Played}, areas.getEnemySiegeKingCenterVector),
         new Row(false, false, false, RowEffected.PlayerSetAside, new List<RowEffected>() { RowEffected.PlayerSetAside, RowEffected.Player , RowEffected.Played}, areas.getUnitGraveyardCenterVector),
         new Row(false, false, false, RowEffected.EnemySetAside, new List<RowEffected>() { RowEffected.EnemySetAside, RowEffected.Enemy , RowEffected.Played}, areas.getUnitGraveyardCenterVector),
         new Row(false, false, true, RowEffected.ChooseN, new List<RowEffected>() { RowEffected.ChooseN }, areas.getCenterFront),
@@ -181,12 +181,14 @@ public class Deck : MonoBehaviour
 
         }
     }
-    public Card getCardByName(string cardName){
+    public Card getCardByName(string cardName)
+    {
         List<Row> searchRows = getRowsByType(RowEffected.Played);
         foreach (Row r in searchRows)
         {
             Card c = r.getCardByName(cardName);
-            if(c !=null){
+            if (c != null)
+            {
                 return c;
             }
         }
@@ -640,6 +642,10 @@ public class Deck : MonoBehaviour
                 {
                     c.graveyardCardDrawRemain++;
                 }
+                if (CardModel.isUnit(drawC.cardType) && drawC.graveyardCardDraw > 0)
+                {
+                    c.graveyardCardDrawRemain += drawC.graveyardCardDraw;
+                }
             }
         }
 
@@ -781,7 +787,7 @@ public class Deck : MonoBehaviour
         List<RowEffected> maxRows = new List<RowEffected>();
         float max = -1;
         for (int i = 0; i < rows.Count; i++)
-        {   
+        {
             Row row = rows[i];
             float temp = row.scoreRow(this, CardModel.getPlayerFromRow(row.uniqueType));
             if (temp > max)
