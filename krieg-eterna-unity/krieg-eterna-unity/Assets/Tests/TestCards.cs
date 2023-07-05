@@ -189,6 +189,9 @@ namespace KriegTests
             deck.disactiveAllInDeck(false);
             Game.state = State.FREE;
             Game.round = RoundType.RoundOne;
+            Game.player = RowEffected.Player;
+            Game.playerPassed = false;
+            Game.enemyPassed = true;
             Game.reorganizeGroup();
         }
 

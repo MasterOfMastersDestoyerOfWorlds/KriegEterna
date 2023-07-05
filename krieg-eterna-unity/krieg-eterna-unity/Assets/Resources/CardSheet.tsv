@@ -42,7 +42,7 @@ Fate	Power	Return the last card you played to your hand.	0					1	LastPlayedCard	
 Feast2	Power	Attach to a unit; this unit now has plus two base\rstrength.	0							2	Add									TRUE					TRUE
 Feast3	Power	Attach to a unit; this unit now has plus two base\rstrength.	0							2	Add									TRUE					TRUE
 Grail	Power	Reveal the top unit in the graveyard and add it to\ryour hand. If it has less than three strength draw\ranother card.	0									1					UnitGraveyard				3				FALSE
-Offering	Power	Send one of your units on the field to the\rgraveyard. If its strength was less than four, draw\rtwo cards; otherwise, draw three.	0	2	Either	1	Unit														4				FALSE
+Offering	Power	Send one of your units on the field to the\rgraveyard. If its strength was less than four, draw\rtwo cards; otherwise, draw three.	0	2	Either	1	Unit														3				FALSE
 Plague	Power	Set a unit's base strength to one.	0							1	Set									TRUE					TRUE
 Redemption	Power	If your King is on the field, return it to your hand.\rThe top card in the graveyard is played on your\rside of the field.	0					1	King			1					UnitGraveyard								FALSE
 Relic	Power	Move a unit to any row.	0					1	Move								All								FALSE
@@ -50,7 +50,7 @@ Resurrection	Power	Choose one unit from the graveyard and play it\ron your side 
 Ruin	Power	Discard up to three cards from your hand.\rAdd three times the number of discarded cards\rto the base strength of a unit.	0			3	Unit			3	Multiply						PlayerHand			TRUE					TRUE
 Styx	Power	Pick a card from the top three in the power\rgraveyard, and add that card to your hand.	0																			1	PowerGraveyard	3	FALSE
 Usury	Power	Set aside one of your units on the field until the\rstart of the next round. Draw two cards at the\rend of this round.	0	2	RoundEnd													1	Player						FALSE
-Void	Power	The round ends after your next turn.	0																						FALSE
+Void	Power	The round ends after your next turn.	0							1	RoundAdvance														FALSE
 War	Power	Send a card from your hand to the graveyard.\rYour opponent then discards the strongest unit\rin their hand.	0			1	MaxAll							1			Ranged								FALSE
 Wrath	Power	Send one of your units on the field and two of\ryour opponent's to the graveyard.	0			1	Unit							2			EnemyPlayable								FALSE
 Archer	Ranged	 	2																						TRUE

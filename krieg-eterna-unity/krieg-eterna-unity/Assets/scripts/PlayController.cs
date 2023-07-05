@@ -116,6 +116,10 @@ public class PlayController
             if (c.destroyType == DestroyType.Unit)
             {
                 deck.sendCardToGraveyard(targetRow, RowEffected.None, targetCard);
+                Debug.Log("GTRRRRREEEERRRR " + c.strengthCondition + " " + targetCard.calculatedStrength);
+                if(c.strengthCondition > 0 && targetCard.calculatedStrength > c.strengthCondition){
+                    c.strengthConditionPassed = true;
+                }
             }
             else if (c.destroyType == DestroyType.King)
             {
@@ -177,7 +181,7 @@ public class PlayController
                 c.enemyCardDestroyRemain = 0;
             }
         }
-        else if (c.enemyCardDestroyRemain > 0)
+        else if (c.enemyCardDestroyRemain > 0 && c.destroyType != DestroyType.RoundEnd)
         {
             if (c.destroyType == DestroyType.Unit)
             {
@@ -268,7 +272,11 @@ public class PlayController
         }
         else if (c.playerCardDrawRemain > 0 && c.cardDrawType == CardDrawType.Either)
         {
-            c.playerCardDrawRemain--;
+            if(c.strengthConditionPassed){
+                c.strengthConditionPassed = false;
+            }else{
+                c.playerCardDrawRemain--;
+            }
             deck.drawCard(targetRow, player);
         }
         else if (c.chooseN > 0)
@@ -296,6 +304,7 @@ public class PlayController
         }
         if (c.doneMultiSelection())
         {
+            Debug.Log("Done MultiSelection, Doing Side Effects");
             if (c.rowMultiple > 0)
             {
                 if (c.cardType != CardType.King)
@@ -335,7 +344,13 @@ public class PlayController
             {
                 deck.sendCardToGraveyard(deck.getRowByType(playerHand), RowEffected.None, c);
             }
-            
+            if(c.strengthModType == StrengthModType.RoundAdvance){
+                if(Game.enemyPassed){
+                    Game.turnsLeft = 2;
+                }else{
+                    Game.turnsLeft = 3;
+                }
+            }
             if(c.attach && CardModel.isUnit(c.cardType) && c.attachmentsRemaining <= 0){
                 targetRow.Add(c);
             }

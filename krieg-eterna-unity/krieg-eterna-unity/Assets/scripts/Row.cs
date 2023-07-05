@@ -15,6 +15,8 @@ public class Row : List<Card>
     public System.Func<Vector3> centerMethod;
     public bool wide;
 
+    public int score;
+
     public int chooseNRemain;
 
     public bool cardTargetsActivated = false;
@@ -185,7 +187,7 @@ public class Row : List<Card>
         foreach(Card card in this){
             score += card.calculatedStrength;
         }
-
+        this.score = (int)score;
         return score;
     }
 

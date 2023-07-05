@@ -37,6 +37,10 @@ public class Game : MonoBehaviour
     private static System.Action<Row, RowEffected, Card> chooseNAction;
     private Desk desk;
 
+    public static int turnsLeft;
+    public static bool enemyPassed;
+    public static bool playerPassed;
+    public static RowEffected player;
     private GameObject playerDownNameTextObject;
     private Text playerDownNameText;
 
@@ -157,6 +161,8 @@ public class Game : MonoBehaviour
         hasChosenStart = false;
         round = RoundType.RoundOne;
         activePlayerNumber = (int)PlayerNumber.PLAYER1;
+        turnsLeft = int.MaxValue;
+        player = RowEffected.Player;
 
     }
 
@@ -193,6 +199,7 @@ public class Game : MonoBehaviour
 
     public void Update()
     {
+
         // Updating numberOfCards
         // ---------------------------------------------------------------------------------------------------------------
         cardNumber1.text = activeDeck.getRowByType(RowEffected.PlayerHand).Count.ToString();
@@ -202,6 +209,7 @@ public class Game : MonoBehaviour
             hasChosenStart = true;
             setChooseN(RowEffected.PlayerHand, activeDeck.sendCardToGraveyard, 3, activeDeck.getRowByType(RowEffected.PlayerHand).Count, new List<CardType>() { CardType.King }, RowEffected.None, State.CHOOSE_N);
         }
+
 
         RowEffected player = RowEffected.Player;
         // Picking card
@@ -237,7 +245,7 @@ public class Game : MonoBehaviour
         }
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame && state != State.BLOCKED)
         {
-            
+
             Debug.Log("--------------------------------------------------------------------");
             if (state == State.REVEAL)
             {
@@ -275,7 +283,7 @@ public class Game : MonoBehaviour
                         activeDeck.disactiveAllInDeck(false);
                         activeCard = c;
                         TargetController.ShowTargets(c, player);
-                        
+
                         Debug.Log("Setting Card Active: " + c.cardName);
                         activeCard.setBaseLoc();
                         activeCard.transform.position += new Vector3(0, Card.getBaseHeight() / 3, 0f);
@@ -340,7 +348,8 @@ public class Game : MonoBehaviour
                                 clickOnTarget = true;
                             }
                         }
-                        if(clickOnTarget){
+                        if (clickOnTarget)
+                        {
                             break;
                         }
                     }
@@ -360,10 +369,48 @@ public class Game : MonoBehaviour
                 }
                 reorganizeGroup();
             }
+            else
+            {
+                Debug.Log("ur a wizard harry: " + turnsLeft);
+                activeDeck.scoreRows(RowEffected.All);
+                if (state == State.FREE)
+                {
+                    turnOver();
+                }
+            }
         }
     }
 
+    private void turnOver()
+    {
+        if (turnsLeft != int.MaxValue && turnsLeft > 0)
+        {
+            turnsLeft--;
+        }
+        if((enemyPassed && playerPassed) || turnsLeft == 0)
+        {
+            Debug.Log("Round Over");
+            round = nextRound(round);
+            enemyPassed = false;
+            playerPassed = false;
+            turnsLeft = int.MaxValue;
+            return;
+        }
+        if (!enemyPassed && !playerPassed )
+        {
+            player = CardModel.getEnemy(player);
+        }
+        else if (enemyPassed && !playerPassed)
+        {
+            player = RowEffected.Player;
+        }
+        else if (enemyPassed && !playerPassed)
+        {
+            player = RowEffected.Enemy;
+        }
 
+
+    }
     private void gameOver()
     {
         giveUpButtonObject.SetActive(false);
@@ -431,7 +478,7 @@ public class Game : MonoBehaviour
                 Card clone = Instantiate(row[i]) as Card;
                 clone.setVisible(true);
                 displayRow.Add(clone);
-                revealed ++;
+                revealed++;
                 if (state == State.REVEAL)
                 {
                     row[i].beenRevealed = true;
@@ -506,6 +553,16 @@ public class Game : MonoBehaviour
     /// Defined game status
     /// </summary>
     private enum GameState { END, TOUR1, TOUR2, TOUR3 };
+
+    public RoundType nextRound(RoundType round)
+    {
+        switch (round)
+        {
+            case RoundType.RoundOne: return RoundType.RoundTwo;
+            case RoundType.RoundTwo: return RoundType.FinalRound;
+            default: return RoundType.GameFinished;
+        }
+    }
 
     /// <summary>
     /// Switch player - update active deck

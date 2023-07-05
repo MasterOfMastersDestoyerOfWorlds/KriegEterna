@@ -4,5 +4,6 @@ public enum StrengthModType
     Multiply = 2,
     Set = 3,
     Adjacent = 4,
+    RoundAdvance = 5,
     None = 0
 };

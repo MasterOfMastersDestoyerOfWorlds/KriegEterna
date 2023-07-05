@@ -37,6 +37,7 @@ public class Card : MonoBehaviour
     public bool attach;
     public int attachmentsRemaining;
     public int strengthCondition;
+    public bool strengthConditionPassed;
     public int chooseN;
     public RowEffected chooseRow;
     public int chooseShowN;
@@ -234,6 +235,7 @@ public class Card : MonoBehaviour
         }else if (attach){
             this.attachmentsRemaining = 1;
         }       
+        this.strengthConditionPassed = false;
     }
 
     public void zeroSelectionCounts()
@@ -252,7 +254,7 @@ public class Card : MonoBehaviour
     public bool doneMultiSelection()
     {
         return (this.playerCardDrawRemain <= 0 || this.cardDrawType != CardDrawType.Either) && this.playerCardDestroyRemain <= 0
-        && this.playerCardReturnRemain <= 0 && this.enemyCardDestroyRemain <= 0
+        && this.playerCardReturnRemain <= 0 && (this.enemyCardDestroyRemain <= 0  || this.destroyType == DestroyType.RoundEnd)
         && this.setAsideRemain <= 0 && this.moveRemain <= 0 && this.attachmentsRemaining <= 0;
     }
 
@@ -269,6 +271,7 @@ public class Card : MonoBehaviour
         Debug.Log("setAside: " + this.setAsideRemain);
         Debug.Log("reveal: " + this.enemyReveal);
         Debug.Log("attachmentsRemaining: " + this.attachmentsRemaining);
+        Debug.Log("strengthConditionPassed: " + this.strengthConditionPassed);
     }
 
     public void setTargetActive(bool state)
