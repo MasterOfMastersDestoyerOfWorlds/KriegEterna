@@ -228,6 +228,7 @@ namespace KriegTests
                 clicks = new List<Click>{
                     new Click("Redemption", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new Click("Redemption", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
+                    new Click("Knight12", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.PlayerHand, false),
                 }
             },
             new TestCase

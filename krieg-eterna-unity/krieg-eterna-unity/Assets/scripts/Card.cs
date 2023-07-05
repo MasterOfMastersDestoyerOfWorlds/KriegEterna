@@ -35,6 +35,7 @@ public class Card : MonoBehaviour
     public RowEffected setAsideReturnRow;
     public SetAsideType setAsideType;
     public bool attach;
+    public int attachmentsRemaining;
     public int strengthCondition;
     public int chooseN;
     public RowEffected chooseRow;
@@ -52,6 +53,7 @@ public class Card : MonoBehaviour
     public Vector3 baseLoc;
 
     public List<Card> attachments;
+
 
     private static float baseHeight;
     private static float baseWidth;
@@ -227,13 +229,31 @@ public class Card : MonoBehaviour
         this.enemyCardDrawRemain = this.enemyCardDraw;
         this.setAsideRemain = this.setAside;
         this.graveyardCardDrawRemain = this.graveyardCardDraw;
+        if(attach && strengthModType == StrengthModType.Adjacent){
+            this.attachmentsRemaining = 2;
+        }else if (attach){
+            this.attachmentsRemaining = 1;
+        }       
+    }
+
+    public void zeroSelectionCounts()
+    {
+
+        this.playerCardDrawRemain = 0;
+        this.playerCardDestroyRemain = 0;
+        this.playerCardReturnRemain = 0;
+        this.enemyCardDestroyRemain = 0;
+        this.enemyCardDrawRemain = 0;
+        this.setAsideRemain = 0;
+        this.graveyardCardDrawRemain = 0;
+        this.attachmentsRemaining = 0;
     }
 
     public bool doneMultiSelection()
     {
         return (this.playerCardDrawRemain <= 0 || this.cardDrawType != CardDrawType.Either) && this.playerCardDestroyRemain <= 0
         && this.playerCardReturnRemain <= 0 && this.enemyCardDestroyRemain <= 0
-        && this.setAsideRemain <= 0 && this.moveRemain <= 0;
+        && this.setAsideRemain <= 0 && this.moveRemain <= 0 && this.attachmentsRemaining <= 0;
     }
 
     public void LogSelectionsRemaining()
@@ -248,6 +268,7 @@ public class Card : MonoBehaviour
         Debug.Log("move: " + this.moveRemain);
         Debug.Log("setAside: " + this.setAsideRemain);
         Debug.Log("reveal: " + this.enemyReveal);
+        Debug.Log("attachmentsRemaining: " + this.attachmentsRemaining);
     }
 
     public void setTargetActive(bool state)

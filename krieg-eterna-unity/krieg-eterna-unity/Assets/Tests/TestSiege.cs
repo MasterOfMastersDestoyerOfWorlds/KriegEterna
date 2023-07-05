@@ -138,6 +138,37 @@ namespace KriegTests
                     new Click("Siege3", RowEffected.PlayerHand, RowEffected.PlayerSiege, RowEffected.PlayerSiege, true),
                                     }
             },
+
+            new TestCase
+            {
+                testName = "TowerOneCard",
+                scoreRows = new List<(RowEffected, int)>(){(RowEffected.PlayerSiege, 4)},
+                clicks = new List<Click>{
+                    new Click("Tower", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiege, true),
+                    new Click("Siege3", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, true),
+                }
+            },
+            new TestCase
+            {
+                testName = "TowerTwoCards",
+                scoreRows = new List<(RowEffected, int)>(){(RowEffected.PlayerSiege, 13)},
+                clicks = new List<Click>{
+                    new Click("Tower", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiege, true),
+                    new Click("Siege3", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, true),
+                    new Click("Siege2", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, true),
+                }
+            },
+            new TestCase
+            {
+                testName = "TowerSkipOne",
+                scoreRows = new List<(RowEffected, int)>(){(RowEffected.PlayerSiege, 6)},
+                clicks = new List<Click>{
+                    new Click("Tower", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiege, true),
+                    new Click("Siege3", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, true),
+                    new ClickRow("Skip", RowEffected.Skip),
+                    new Click("Siege2", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
+                }
+            },
             new TestCase
             {
                 testName = "Tower",

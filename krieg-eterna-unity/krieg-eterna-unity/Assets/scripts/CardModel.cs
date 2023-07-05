@@ -236,6 +236,16 @@ public class CardModel : MonoBehaviour
         }
         return RowEffected.Enemy;
     }
+    public static RowEffected getPlayableRow(RowEffected player, CardType type)
+    {   
+        switch (type)
+        {
+            case CardType.Melee: return getRowFromSide(player, RowEffected.PlayerMelee);
+            case CardType.Ranged: return getRowFromSide(player, RowEffected.PlayerRanged);
+            case CardType.Siege: return getRowFromSide(player, RowEffected.PlayerSiege);
+        }
+        return RowEffected.None;
+    }
     public static RowEffected getFullRow(RowEffected generalRow)
     {
         switch (generalRow)
@@ -247,7 +257,7 @@ public class CardModel : MonoBehaviour
             case RowEffected.EnemyRanged: return RowEffected.RangedFull;
             case RowEffected.EnemySiege: return RowEffected.SiegeFull;
         }
-        return generalRow;
+        return RowEffected.None;
     }
 
     public static RowEffected getPlayerFromRow(RowEffected generalRow)

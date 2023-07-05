@@ -164,6 +164,36 @@ namespace KriegTests
             },
             new TestCase
             {
+                testName = "TelescopeOneCard",
+                scoreRows = new List<(RowEffected, int)>(){(RowEffected.PlayerRanged, 4)},
+                clicks = new List<Click>{
+                    new Click("Telescope", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
+                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, true),
+                }
+            },
+            new TestCase
+            {
+                testName = "TelescopeTwoCards",
+                scoreRows = new List<(RowEffected, int)>(){(RowEffected.PlayerRanged, 13)},
+                clicks = new List<Click>{
+                    new Click("Telescope", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
+                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, true),
+                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, true),
+                }
+            },
+            new TestCase
+            {
+                testName = "TelescopeSkipOne",
+                scoreRows = new List<(RowEffected, int)>(){(RowEffected.PlayerRanged, 6)},
+                clicks = new List<Click>{
+                    new Click("Telescope", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
+                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, true),
+                    new ClickRow("Skip", RowEffected.Skip),
+                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, false),
+                }
+            },
+            new TestCase
+            {
                 testName = "Waterworks",
                 clicks = new List<Click>{
                     new Click("Waterworks", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),

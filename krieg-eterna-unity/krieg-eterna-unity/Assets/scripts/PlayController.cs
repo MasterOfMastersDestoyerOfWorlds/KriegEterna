@@ -18,15 +18,19 @@ public class PlayController
         {
             Debug.Log(" TargetCard: " + targetCard.cardName);
         }
-        switch (c.cardType)
-        {
-            case CardType.Melee: deck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerMelee)).Add(c); break;
-            case CardType.Ranged: deck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerRanged)).Add(c); break;
-            case CardType.Siege: deck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerSiege)).Add(c); break;
-            case CardType.Switch: targetRow.Add(c); break;
-            case CardType.Weather: PlayWeather(c); break;
-            case CardType.King: PlayKing(c, targetRow, targetCard, player); break;
-            default: PlayPower(c, targetRow, targetCard, RowEffected.Player); break;
+        if(CardModel.isUnit(c.cardType) && c.strengthModType == StrengthModType.Adjacent && targetRow != null){
+            PlayPower(c,targetRow,targetCard, RowEffected.Player);
+        }else{
+            switch (c.cardType)
+            {
+                case CardType.Melee: deck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerMelee)).Add(c); c.zeroSelectionCounts(); break;
+                case CardType.Ranged: deck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerRanged)).Add(c);  c.zeroSelectionCounts(); break;
+                case CardType.Siege: deck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerSiege)).Add(c); c.zeroSelectionCounts(); break;
+                case CardType.Switch: targetRow.Add(c); c.zeroSelectionCounts(); break;
+                case CardType.Weather: PlayWeather(c); break;
+                case CardType.King: PlayKing(c, targetRow, targetCard, player); break;
+                default: PlayPower(c, targetRow, targetCard, RowEffected.Player); break;
+            }
         }
         updateStateBasedOnCardState(c);
         if (Game.state != State.MULTISTEP)
@@ -240,9 +244,9 @@ public class PlayController
             else if (c.cardReturnType == CardReturnType.King)
             {
                 RowEffected kingLoc = deck.getKingRow(player);
+                c.playerCardReturnRemain--;
                 if (kingLoc != RowEffected.None)
                 {
-                    c.playerCardReturnRemain--;
                     Row kingRow = deck.getRowByType(kingLoc);
                     deck.addCardToHand(kingRow, playerHand, kingRow[0]);
                 }
@@ -275,8 +279,19 @@ public class PlayController
                 Game.setChooseN(c.chooseRow, deck.addCardToHand, c.chooseN, c.chooseShowN > 0 ? c.chooseShowN : row.Count, new List<CardType>() { CardType.None }, playerHand, State.CHOOSE_N);
             }
         }
-        else if (c.attach)
+        else if (c.attach && c.attachmentsRemaining > 0)
         {
+            int cardsRemaining = deck.countCardsInRows(targetRow.uniqueType);
+            Debug.Log(" attachments remaining: " + c.attachmentsRemaining + " cardsRemaining " + cardsRemaining + " row: " + targetRow);
+            if (c.attachmentsRemaining > cardsRemaining)
+            {
+                c.attachmentsRemaining = cardsRemaining - 1;
+            }
+            else
+            {
+                c.attachmentsRemaining--;
+            }
+
             targetCard.attachCard(c);
         }
         if (c.doneMultiSelection())
@@ -319,6 +334,10 @@ public class PlayController
             if (!c.attach && c.cardType == CardType.Power)
             {
                 deck.sendCardToGraveyard(deck.getRowByType(playerHand), RowEffected.None, c);
+            }
+            
+            if(c.attach && CardModel.isUnit(c.cardType) && c.attachmentsRemaining <= 0){
+                targetRow.Add(c);
             }
         }
     }
