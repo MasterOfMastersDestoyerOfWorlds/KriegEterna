@@ -19,7 +19,7 @@ namespace KriegTests
                 },
                 clicks = new List<Click>{
                     new Click("Burden", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemyRanged, true),
-                    new Click("Burden", RowEffected.PlayerHand, RowEffected.EnemyRanged, RowEffected.EnemyRanged, true),
+                    new ClickRow("EnemyRanged", RowEffected.EnemyRanged),
                     new Click("Grenadier2", RowEffected.EnemyRanged, RowEffected.EnemyRanged, RowEffected.EnemyRanged, false),
                     new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, false),
                     new Click("Knight", RowEffected.EnemyMelee, RowEffected.EnemyMelee, RowEffected.EnemyMelee, false),
@@ -34,7 +34,7 @@ namespace KriegTests
                 round = RoundType.RoundTwo,
                 clicks = new List<Click>{
                     new Click("Burden", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
-                    new Click("Burden", RowEffected.PlayerHand, RowEffected.EnemyRanged, RowEffected.PlayerRanged, true),
+                    new ClickRow("EnemyRanged", RowEffected.EnemyRanged),
                     new Click("Grenadier2", RowEffected.EnemyRanged, RowEffected.EnemyRanged, RowEffected.UnitGraveyard, false),
                     new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.UnitGraveyard, false),
                     new ClickRow("EndRound", RowEffected.EndRound),
