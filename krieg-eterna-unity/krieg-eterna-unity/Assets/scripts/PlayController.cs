@@ -35,7 +35,9 @@ public class PlayController
         updateStateBasedOnCardState(c);
         if (Game.state != State.MULTISTEP)
         {
-            deck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerHand)).Remove(c);
+            if(c.doneMultiSelection()){
+                deck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerHand)).Remove(c);
+            }
             RowEffected enemyHand = CardModel.getRowFromSide(player, RowEffected.EnemyHand);
             if (c.enemyReveal > 0 && deck.getRowByType(enemyHand).Count > 0)
             {
@@ -98,7 +100,7 @@ public class PlayController
         RowEffected playerHand = CardModel.getHandRow(player);
         RowEffected enemy = CardModel.getEnemy(player);
         Deck deck = Game.activeDeck;
-        if (targetRow == null && c.rowEffected != RowEffected.None && c.playInRow)
+        if (targetRow == null && c.rowEffected != RowEffected.None && c.playInRow && !c.attach)
         {
             RowEffected rowEffected = CardModel.getRowFromSide(player, c.rowEffected);
             Debug.Log("Playing Card in: " + rowEffected);
@@ -279,12 +281,17 @@ public class PlayController
             }
             deck.drawCard(targetRow, player);
         }
-        else if (c.chooseN > 0)
+        else if (c.chooseNRemain > 0)
         {
             Row row = deck.getRowByType(c.chooseRow);
             if (row.Count > 0)
             {
-                Game.setChooseN(c.chooseRow, deck.addCardToHand, c.chooseN, c.chooseShowN > 0 ? c.chooseShowN : row.Count, new List<CardType>() { CardType.None }, playerHand, State.CHOOSE_N);
+                RowEffected sendRow = CardModel.getRowFromSide(player, c.rowEffected);
+                Action<Row, RowEffected, Card> chooseAction = deck.addCardToHand;
+                if(c.strengthModType == StrengthModType.Multiply){
+                    chooseAction = deck.addCardToHandMultiply;
+                }
+                Game.setChooseN(c.chooseRow, chooseAction, c.chooseN, c.chooseShowN > 0 ? c.chooseShowN : row.Count, CardModel.chooseToCardTypeExclude(c.chooseCardType), sendRow, State.CHOOSE_N);
             }
         }
         else if (c.attach && c.attachmentsRemaining > 0)
@@ -375,4 +382,6 @@ public class PlayController
         }
         Debug.Log(Game.state);
     }
+
+    
 }

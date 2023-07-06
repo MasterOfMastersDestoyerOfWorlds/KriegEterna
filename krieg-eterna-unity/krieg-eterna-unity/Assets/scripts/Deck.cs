@@ -39,9 +39,9 @@ public class Deck : MonoBehaviour
         new Row(false, false, false, RowEffected.UnitDeck, new List<RowEffected>() { RowEffected.DrawableDeck, RowEffected.UnitDeck }, areas.getUnitDeckCenterVector),
         new Row(false, false, false, RowEffected.PowerDeck, new List<RowEffected>() { RowEffected.DrawableDeck, RowEffected.PowerDeck }, areas.getPowerDeckCenterVector),
         new Row(false, false, false, RowEffected.KingDeck, new List<RowEffected>() { RowEffected.KingDeck }, areas.getKingDeckCenterVector),
-        new Row(false, false, false, RowEffected.UnitGraveyard, new List<RowEffected>() { RowEffected.UnitGraveyard , RowEffected.Played}, areas.getUnitGraveyardCenterVector),
-        new Row(false, false, false, RowEffected.PowerGraveyard, new List<RowEffected>() { RowEffected.PowerGraveyard , RowEffected.Played}, areas.getPowerGraveyardCenterVector),
-        new Row(false, false, false, RowEffected.KingGraveyard, new List<RowEffected>() { RowEffected.KingGraveyard , RowEffected.Played}, areas.getKingGraveyardCenterVector),
+        new Row(false, false, false, RowEffected.UnitGraveyard, new List<RowEffected>() { RowEffected.UnitGraveyard , RowEffected.Played, RowEffected.PlayableGraveyard, RowEffected.Graveyard}, areas.getUnitGraveyardCenterVector),
+        new Row(false, false, false, RowEffected.PowerGraveyard, new List<RowEffected>() { RowEffected.PowerGraveyard , RowEffected.Played, RowEffected.PlayableGraveyard, RowEffected.Graveyard}, areas.getPowerGraveyardCenterVector),
+        new Row(false, false, false, RowEffected.KingGraveyard, new List<RowEffected>() { RowEffected.KingGraveyard , RowEffected.Played, RowEffected.Graveyard}, areas.getKingGraveyardCenterVector),
         new Row(true, true, false, RowEffected.PlayerMeleeKing, new List<RowEffected>() { RowEffected.PlayerMeleeKing, RowEffected.PlayerKing, RowEffected.Player, RowEffected.King, RowEffected.MeleeFull , RowEffected.Played}, areas.getMeleeKingCenterVector),
         new Row(true, true, false, RowEffected.PlayerRangedKing, new List<RowEffected>() { RowEffected.PlayerRangedKing, RowEffected.PlayerKing, RowEffected.Player, RowEffected.King, RowEffected.RangedFull , RowEffected.Played}, areas.getRangedKingCenterVector),
         new Row(true, true, false, RowEffected.PlayerSiegeKing, new List<RowEffected>() { RowEffected.PlayerSiegeKing, RowEffected.PlayerKing, RowEffected.Player, RowEffected.King, RowEffected.SiegeFull , RowEffected.Played}, areas.getSiegeKingCenterVector),
@@ -573,6 +573,20 @@ public class Deck : MonoBehaviour
         c.clearAttachments(this);
         c.setTargetActive(false);
         c.resetSelectionCounts();
+        if (currentRow.uniqueType == RowEffected.UnitGraveyard && c.graveyardCardDrawRemain > 0)
+        {
+            drawCardGraveyard(c, null);
+        }
+        getRowByType(playerHand).Add(c);
+    }
+
+    public void addCardToHandMultiply(Row currentRow, RowEffected playerHand, Card c)
+    {
+        currentRow.Remove(c);
+        c.clearAttachments(this);
+        c.setTargetActive(false);
+        c.resetSelectionCounts();
+        Game.activeCard.strengthMultiple++;
         if (currentRow.uniqueType == RowEffected.UnitGraveyard && c.graveyardCardDrawRemain > 0)
         {
             drawCardGraveyard(c, null);

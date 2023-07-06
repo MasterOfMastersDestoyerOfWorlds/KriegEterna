@@ -16,7 +16,7 @@ using UnityEngine.InputSystem;
 
 public class Game : MonoBehaviour
 {
-    public Card activeCard;
+    public static Card activeCard;
     private Card activeShowingCard;
     private static int activePlayerNumber;
     public static State state = State.FREE;
@@ -33,7 +33,7 @@ public class Game : MonoBehaviour
     private bool hasChosenStart;
     private static RowEffected chooseNRow;
 
-    private static RowEffected chooseNPlayerHand;
+    private static RowEffected chooseNSendRow;
     private static System.Action<Row, RowEffected, Card> chooseNAction;
     private Desk desk;
 
@@ -142,7 +142,7 @@ public class Game : MonoBehaviour
         Deck deck = player1.getDeck();
         List<string> choosePower = new List<string>();
         choosePower.Add("Redemption");
-        choosePower.Add("Retreat");
+        choosePower.Add("Ruin");
         choosePower.Add("Spy");
         choosePower.Add("Jester");
         List<string> chooseUnit = new List<string>();
@@ -432,8 +432,9 @@ public class Game : MonoBehaviour
 
         displayRow.Remove(cardClone);
         Card realCard = row[row.IndexOf(cardClone)];
+        activeCard.chooseNRemain--;
         row.chooseNRemain--;
-        chooseNAction.Invoke(row, chooseNPlayerHand, realCard);
+        chooseNAction.Invoke(row, chooseNSendRow, realCard);
 
         cardClone.Destroy();
         reorganizeGroup();
@@ -443,11 +444,16 @@ public class Game : MonoBehaviour
             Debug.Log("Setting Invisible");
             displayRow.setVisibile(false);
             activeDeck.disactiveAllInDeck(false);
-            state = State.FREE;
+            if(activeCard.doneMultiSelection()){  
+                state = State.FREE;
+            }else{
+                state = State.MULTISTEP;
+                TargetController.ShowTargets(activeCard, player);
+            }
         }
     }
 
-    public static void setChooseN(RowEffected chooseRow, System.Action<Row, RowEffected, Card> action, int numChoose, int numShow, List<CardType> exclude, RowEffected playerHand, State newState)
+    public static void setChooseN(RowEffected chooseRow, System.Action<Row, RowEffected, Card> action, int numChoose, int numShow, List<CardType> exclude, RowEffected sendRow, State newState)
     {
 
         Row row = activeDeck.getRowByType(chooseRow);
@@ -461,7 +467,7 @@ public class Game : MonoBehaviour
         float attachmentVerticalSpacing = Card.getBaseHeight() * 0.2f;
         Row displayRow = activeDeck.getRowByType(RowEffected.ChooseN);
         chooseNRow = chooseRow;
-        chooseNPlayerHand = playerHand;
+        chooseNSendRow = sendRow;
         chooseNAction = action;
         while (displayRow.Count > 0)
         {
@@ -573,23 +579,6 @@ public class Game : MonoBehaviour
         state = State.BLOCKED;
 
         StartCoroutine(Wait(0.75f));
-    }
-
-    /// <summary>
-    /// End tour - show who won and start new game
-    /// </summary>
-    private void endTour()
-    {
-        // before
-        giveUpButtonObject.SetActive(false);
-
-        player1.isPlaying = true;
-        player2.isPlaying = true;
-
-        initializePlayersDecks();
-        // TODO - Player who has won - started
-        Debug.Log("WaitEndTour() has started");
-        StartCoroutine(WaitEndTour(3f));
     }
 
     IEnumerator WaitEndTour(float duration)

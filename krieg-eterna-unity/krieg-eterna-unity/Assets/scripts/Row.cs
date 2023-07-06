@@ -41,6 +41,9 @@ public class Row : List<Card>
 
     }
     public bool isVisible(){
+        if(this.Count == 0){
+            return false;
+        }
         foreach (Card c in this)
         {
             if(!c.isVisible()){

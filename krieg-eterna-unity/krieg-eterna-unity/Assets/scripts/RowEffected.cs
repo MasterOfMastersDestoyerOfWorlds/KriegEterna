@@ -46,5 +46,7 @@ public enum RowEffected
     Played = 44,
     EndRound = 45,
     Skip=46,
+    PlayableGraveyard = 47,
+    Graveyard = 48,
     None = 0
 };

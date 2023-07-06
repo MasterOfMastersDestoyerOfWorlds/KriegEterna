@@ -16,9 +16,12 @@ public class TargetController
             RowEffected playableRow = CardModel.getPlayableRow(player, c.cardType);
             Row r = deck.getRowByType(playableRow);
             Debug.Log(r + " " + r.Count);
-            if(r.Count > 0){
+            if (r.Count > 0)
+            {
                 deck.getRowByType(playableRow).setActivateRowCardTargets(true, true);
-            }else{
+            }
+            else
+            {
                 c.setTargetActive(true);
             }
         }
@@ -163,6 +166,10 @@ public class TargetController
                             case CardDrawType.Unit: c.setTargetActive(true); break;
                             case CardDrawType.Power: c.setTargetActive(true); break;
                         }
+                    }
+                    else if (c.chooseNRemain > 0)
+                    {
+                        c.setTargetActive(true);
                     }
                     else if (c.attach)
                     {

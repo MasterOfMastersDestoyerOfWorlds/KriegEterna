@@ -264,6 +264,10 @@ namespace KriegTests
                     yield return null;
                     MouseUnClick();
                     yield return null;
+                    Debug.Log(deck.getRowByType(clicks[i].rowAfterClick));
+                    Debug.Log(clicks[i].rowAfterClick);
+                    Debug.Log(c);
+                    Debug.Log(deck.getCardRow(c));
                     Assert.AreEqual(true, deck.getRowByType(clicks[i].rowAfterClick).ContainsIncludeAttachments(c),
                     $"row after click cardName: {clicks[i].name}, Expected Row: {clicks[i].rowAfterClick}  {deck.getRowByType(clicks[i].rowAfterClick)}, Actual Row: {deck.getCardRow(c).uniqueType} {deck.getRowByType(deck.getCardRow(c).uniqueType)}");
                 }
@@ -295,7 +299,7 @@ namespace KriegTests
             }
             Assert.AreEqual(State.FREE, Game.state);
             Assert.AreEqual(testCase.round, Game.round);
-            Assert.AreEqual(false, deck.getRowByType(RowEffected.ChooseN).isVisible());
+            Assert.AreEqual(false, deck.getRowByType(RowEffected.ChooseN).isVisible(), "ChooseN row is Visible!");
 
             Assert.AreEqual(testCase.playerHandCount, deck.getRowByType(RowEffected.PlayerHand).Count, $"{deck.getRowByType(RowEffected.PlayerHand)}");
             Assert.AreEqual(testCase.enemyHandCount, deck.getRowByType(RowEffected.EnemyHand).Count, $"{deck.getRowByType(RowEffected.EnemyHand)}");

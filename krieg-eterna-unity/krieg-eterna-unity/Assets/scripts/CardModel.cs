@@ -31,6 +31,7 @@ public class CardModel : MonoBehaviour
     public List<int> chooseN;
     public List<RowEffected> chooseRow;
     public List<int> chooseShowN;
+    public List<ChooseCardType> chooseCardType;
     public List<bool> playInRow;
 
     public int[] isSpecial;
@@ -97,7 +98,8 @@ public class CardModel : MonoBehaviour
             AddOptional(temp, strengthCondition, 21);
             AddTypePair(temp, chooseN, 22, chooseRow, 23);
             AddOptional(temp, chooseShowN, 24);
-            AddOptionalBool(temp, playInRow, 25);
+            AddOptionalType(temp, chooseCardType, 25);
+            AddOptionalBool(temp, playInRow, 26);
         }
     }
 
@@ -237,7 +239,7 @@ public class CardModel : MonoBehaviour
         return RowEffected.Enemy;
     }
     public static RowEffected getPlayableRow(RowEffected player, CardType type)
-    {   
+    {
         switch (type)
         {
             case CardType.Melee: return getRowFromSide(player, RowEffected.PlayerMelee);
@@ -287,6 +289,26 @@ public class CardModel : MonoBehaviour
         }
 
         return RowEffected.None;
+    }
+    public static List<CardType> chooseToCardType(ChooseCardType type)
+    {
+        switch (type)
+        {
+            case ChooseCardType.Unit: return new List<CardType>(){CardType.Melee, CardType.Ranged, CardType.Siege, CardType.Switch};
+            case ChooseCardType.Power: return new List<CardType>(){CardType.Power, CardType.Decoy, CardType.Spy, CardType.Weather};
+            case ChooseCardType.King: return new List<CardType>(){CardType.King};
+        }
+        return null;
+    }
+    public static List<CardType> chooseToCardTypeExclude(ChooseCardType type)
+    {
+        switch (type)
+        {
+            case ChooseCardType.Unit: return new List<CardType>(){CardType.Power, CardType.Decoy, CardType.Spy, CardType.Weather, CardType.King};
+            case ChooseCardType.Power: return new List<CardType>(){CardType.Melee, CardType.Ranged, CardType.Siege, CardType.Switch, CardType.King};
+            case ChooseCardType.King: return new List<CardType>(){CardType.Melee, CardType.Ranged, CardType.Siege, CardType.Switch, CardType.Power, CardType.Decoy, CardType.Spy, CardType.Weather};
+        }
+        return null;
     }
     public static RowEffected getRowFromSide(RowEffected player, RowEffected generalRow)
     {

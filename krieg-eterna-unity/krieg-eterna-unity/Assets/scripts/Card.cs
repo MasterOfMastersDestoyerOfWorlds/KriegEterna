@@ -19,7 +19,7 @@ public class Card : MonoBehaviour
     public int playerCardReturnRemain;
     public CardReturnType cardReturnType;
     public float strengthModifier;
-    private float strengthMultiple;
+    public float strengthMultiple;
     public StrengthModType strengthModType;
     public int graveyardCardDraw;
     public int graveyardCardDrawRemain;
@@ -41,6 +41,8 @@ public class Card : MonoBehaviour
     public int chooseN;
     public RowEffected chooseRow;
     public int chooseShowN;
+    public int chooseNRemain;
+    public ChooseCardType chooseCardType;
     public bool playInRow;
     public int moveRemain;
     public Card moveCard;
@@ -210,6 +212,7 @@ public class Card : MonoBehaviour
         this.chooseN = cardModel.chooseN[index];
         this.chooseRow = cardModel.chooseRow[index];
         this.chooseShowN = cardModel.chooseShowN[index];
+        this.chooseCardType = cardModel.chooseCardType[index];
         this.playInRow = cardModel.playInRow[index];
         this.resetSelectionCounts();
     }
@@ -230,12 +233,14 @@ public class Card : MonoBehaviour
         this.enemyCardDrawRemain = this.enemyCardDraw;
         this.setAsideRemain = this.setAside;
         this.graveyardCardDrawRemain = this.graveyardCardDraw;
+        this.chooseNRemain = this.chooseN;
         if(attach && strengthModType == StrengthModType.Adjacent){
             this.attachmentsRemaining = 2;
         }else if (attach){
             this.attachmentsRemaining = 1;
         }       
         this.strengthConditionPassed = false;
+
     }
 
     public void zeroSelectionCounts()
@@ -266,6 +271,7 @@ public class Card : MonoBehaviour
         Debug.Log("playerCardReturn: " + this.playerCardReturnRemain);
         Debug.Log("enemyCardDestroy: " + this.enemyCardDestroyRemain);
         Debug.Log("chooseN: " + this.chooseN);
+        Debug.Log("chooseNRemain: " + this.chooseNRemain);
         Debug.Log("chooseShowN: " + this.chooseShowN);
         Debug.Log("move: " + this.moveRemain);
         Debug.Log("setAside: " + this.setAsideRemain);

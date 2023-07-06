@@ -64,6 +64,7 @@
      <Compile Include="Assets\Scripts\RoundType.cs" />
      <Compile Include="Assets\Scripts\LoadScene.cs" />
      <Compile Include="Assets\Scripts\Areas.cs" />
+     <Compile Include="Assets\Scripts\ChooseCardType.cs" />
      <Compile Include="Assets\Scripts\TextOutline.cs" />
      <Compile Include="Assets\Scripts\Deck.cs" />
      <None Include="Assets\Scripts\Scripts.asmdef" />
