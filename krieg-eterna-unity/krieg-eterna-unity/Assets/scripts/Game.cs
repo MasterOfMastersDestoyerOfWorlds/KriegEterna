@@ -449,7 +449,7 @@ public class Game : MonoBehaviour
                     row[i].transform.position = new Vector3(centerVector.x, centerVector.y, centerVector.z + (row.Count - 1 - i) * cardThickness);
                     if(row.flipped != row[i].flipped){
                         row[i].transform.RotateAround(row[i].transform.position, Vector3.up, 180f);
-                        row[i].flipped = true;
+                        row[i].flipped = !row[i].flipped;
                     }
                 }
             }
@@ -463,9 +463,9 @@ public class Game : MonoBehaviour
                 for (int i = 0; i < row.Count; i++)
                 {
                     row[i].transform.position = new Vector3(rowStart.x + i * cardHorizontalSpacing, rowStart.y, rowStart.z);
-                    if(row.flipped){
+                    if(row.flipped != row[i].flipped){
                         row[i].transform.RotateAround(row[i].transform.position, Vector3.up, 180f);
-                        row[i].flipped = true;
+                        row[i].flipped = !row[i].flipped;
                     }
                 }
 
