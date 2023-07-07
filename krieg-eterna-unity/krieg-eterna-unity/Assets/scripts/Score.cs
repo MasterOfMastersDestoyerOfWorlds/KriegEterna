@@ -34,6 +34,6 @@ public class Score : MonoBehaviour
 
     void Update()
     {
-        _MyText.text = deck.scoreRow(RowEffected.PlayerMelee).ToString();
+        _MyText.text = Game.activeDeck.scoreRow(rowEffected).ToString();
     }
 }

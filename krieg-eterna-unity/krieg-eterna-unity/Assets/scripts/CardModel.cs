@@ -177,6 +177,19 @@ public class CardModel : MonoBehaviour
         }
     }
 
+    public Texture2D getCardBack(int index)
+    {
+        CardType type = cardTypes[index];
+        string postfix = "";
+        if(isPower(type)){
+            postfix = "Power";
+        }else if(type == CardType.King){
+            postfix = "King";
+        }
+        Texture2D s = (Texture2D)Resources.Load("Images/CardBacks/Flag" + postfix, typeof(Texture2D));
+        return s;
+    }
+
     public Texture2D getSmallFront(int index)
     {
         Texture2D s = (Texture2D)Resources.Load("Images/" + smallFronts[index], typeof(Texture2D));
@@ -294,9 +307,9 @@ public class CardModel : MonoBehaviour
     {
         switch (type)
         {
-            case ChooseCardType.Unit: return new List<CardType>(){CardType.Melee, CardType.Ranged, CardType.Siege, CardType.Switch};
-            case ChooseCardType.Power: return new List<CardType>(){CardType.Power, CardType.Decoy, CardType.Spy, CardType.Weather};
-            case ChooseCardType.King: return new List<CardType>(){CardType.King};
+            case ChooseCardType.Unit: return new List<CardType>() { CardType.Melee, CardType.Ranged, CardType.Siege, CardType.Switch };
+            case ChooseCardType.Power: return new List<CardType>() { CardType.Power, CardType.Decoy, CardType.Spy, CardType.Weather };
+            case ChooseCardType.King: return new List<CardType>() { CardType.King };
         }
         return null;
     }
@@ -304,9 +317,9 @@ public class CardModel : MonoBehaviour
     {
         switch (type)
         {
-            case ChooseCardType.Unit: return new List<CardType>(){CardType.Power, CardType.Decoy, CardType.Spy, CardType.Weather, CardType.King};
-            case ChooseCardType.Power: return new List<CardType>(){CardType.Melee, CardType.Ranged, CardType.Siege, CardType.Switch, CardType.King};
-            case ChooseCardType.King: return new List<CardType>(){CardType.Melee, CardType.Ranged, CardType.Siege, CardType.Switch, CardType.Power, CardType.Decoy, CardType.Spy, CardType.Weather};
+            case ChooseCardType.Unit: return new List<CardType>() { CardType.Power, CardType.Decoy, CardType.Spy, CardType.Weather, CardType.King };
+            case ChooseCardType.Power: return new List<CardType>() { CardType.Melee, CardType.Ranged, CardType.Siege, CardType.Switch, CardType.King };
+            case ChooseCardType.King: return new List<CardType>() { CardType.Melee, CardType.Ranged, CardType.Siege, CardType.Switch, CardType.Power, CardType.Decoy, CardType.Spy, CardType.Weather };
         }
         return null;
     }

@@ -17,14 +17,8 @@ using UnityEngine.InputSystem;
 public class Game : MonoBehaviour
 {
     public static Card activeCard;
-    private Card activeShowingCard;
     private static int activePlayerNumber;
     public static State state = State.FREE;
-    private static int gameState = (int)GameState.TOUR1;
-
-    private GameObject deckObject;
-    private GameObject deskObject;
-    private GameObject areasObject;
 
     public static Deck activeDeck;
 
@@ -32,10 +26,8 @@ public class Game : MonoBehaviour
 
     private bool hasChosenStart;
     private static RowEffected chooseNRow;
-
     private static RowEffected chooseNSendRow;
     private static System.Action<Row, RowEffected, Card> chooseNAction;
-    private Desk desk;
 
     public static int turnsLeft;
     public static bool enemyPassed;
@@ -52,29 +44,6 @@ public class Game : MonoBehaviour
     private Player player1;
     private Player player2;
 
-    private GameObject score1Object;
-    private GameObject score2Object;
-    private GameObject score3Object;
-    private GameObject score4Object;
-    private GameObject score5Object;
-    private GameObject score6Object;
-    private GameObject score7Object;
-    private GameObject score8Object;
-    private GameObject cardNumber1Object;
-    private GameObject cardNumber2Object;
-    private Text score1Text;
-    private Text score2Text;
-    private Text score3Text;
-    private Text score4Text;
-    private Text score5Text;
-    private Text score6Text;
-    private Text score7Text;
-    private Text score8Text;
-    private Text cardNumber1;
-    private Text cardNumber2;
-
-    private GameObject buttonObject;
-    private Button button;
 
 
     private GameObject giveUpButtonObject;
@@ -83,20 +52,15 @@ public class Game : MonoBehaviour
     public static readonly int NUM_UNITS = 9;
     public static readonly int NUM_KINGS = 1;
 
-    Card LastCardPlayed;
-
     void Awake()
     {
         GameObject camera = GameObject.Instantiate(Resources.Load("Prefabs/Main Camera") as GameObject, new Vector3(0f, 0f, -100f), transform.rotation);
         camera.tag = "MainCamera";
-        Debug.Log("Made Camera");
+
         player2Object = GameObject.Instantiate(Resources.Load("Prefabs/Player") as GameObject, transform.position, transform.rotation);
-        var player1Object = GameObject.Instantiate(Resources.Load("Prefabs/Player") as GameObject, transform.position, transform.rotation);
+        player1Object = GameObject.Instantiate(Resources.Load("Prefabs/Player") as GameObject, transform.position, transform.rotation);
         player1 = player1Object.GetComponent<Player>();
         player2 = player2Object.GetComponent<Player>();
-
-        deskObject = GameObject.Instantiate(Resources.Load("Prefabs/Desk") as GameObject, transform.position, transform.rotation);
-        desk = deskObject.GetComponent<Desk>();
 
 
         GameObject.Instantiate(Resources.Load("Prefabs/Canvas") as GameObject, transform.position, transform.rotation);
@@ -109,36 +73,6 @@ public class Game : MonoBehaviour
         playerUpNameText = playerUpNameTextObject.GetComponent<Text>();
 
 
-        score1Object = GameObject.Find("Score1");
-        score2Object = GameObject.Find("Score2");
-        score3Object = GameObject.Find("Score3");
-        score4Object = GameObject.Find("Score4");
-        score5Object = GameObject.Find("Score5");
-        score6Object = GameObject.Find("Score6");
-        score7Object = GameObject.Find("Score7");
-        score8Object = GameObject.Find("Score8");
-        cardNumber1Object = GameObject.Find("cardNumber1");
-        cardNumber2Object = GameObject.Find("cardNumber2");
-        score1Text = score1Object.GetComponent<Text>();
-        score2Text = score2Object.GetComponent<Text>();
-        score3Text = score3Object.GetComponent<Text>();
-        score4Text = score4Object.GetComponent<Text>();
-        score5Text = score5Object.GetComponent<Text>();
-        score6Text = score6Object.GetComponent<Text>();
-        score7Text = score7Object.GetComponent<Text>();
-        score8Text = score8Object.GetComponent<Text>();
-        cardNumber1 = cardNumber1Object.GetComponent<Text>();
-        cardNumber2 = cardNumber2Object.GetComponent<Text>();
-
-
-        buttonObject = GameObject.Find("Button");
-        button = buttonObject.GetComponent<Button>();
-
-        giveUpButtonObject = GameObject.FindGameObjectWithTag("giveUpButton");
-        giveUpButtonObject.SetActive(true);
-
-        activePlayerNumber = (int)PlayerNumber.PLAYER1;
-        gameState = (int)GameState.TOUR1;
         Deck deck = player1.getDeck();
         List<string> choosePower = new List<string>();
         choosePower.Add("Redemption");
@@ -160,7 +94,6 @@ public class Game : MonoBehaviour
         deck.buildTargets();
         hasChosenStart = false;
         round = RoundType.RoundOne;
-        activePlayerNumber = (int)PlayerNumber.PLAYER1;
         turnsLeft = int.MaxValue;
         player = RowEffected.Player;
 
@@ -188,12 +121,6 @@ public class Game : MonoBehaviour
         player2.setDeckVisibility(false);
         activeDeck = player1.getDeck();
 
-        if (activeDeck.getRowByType(RowEffected.PlayerHand).Count > 0)
-            activeCard = player1.getDeck().getRowByType(RowEffected.PlayerHand)[0];
-
-        activeShowingCard = Instantiate(activeCard) as Card;
-        activeShowingCard.transform.position = new Vector3(8.96f, 0, -0.1f);
-
         reorganizeGroup();
     }
 
@@ -202,8 +129,6 @@ public class Game : MonoBehaviour
 
         // Updating numberOfCards
         // ---------------------------------------------------------------------------------------------------------------
-        cardNumber1.text = activeDeck.getRowByType(RowEffected.PlayerHand).Count.ToString();
-        cardNumber2.text = activeDeck.getRowByType(RowEffected.EnemyHand).Count.ToString();
         if (!hasChosenStart)
         {
             hasChosenStart = true;
@@ -432,7 +357,9 @@ public class Game : MonoBehaviour
 
         displayRow.Remove(cardClone);
         Card realCard = row[row.IndexOf(cardClone)];
-        activeCard.chooseNRemain--;
+        if(activeCard != null){
+            activeCard.chooseNRemain--;
+        }
         row.chooseNRemain--;
         chooseNAction.Invoke(row, chooseNSendRow, realCard);
 
@@ -444,7 +371,7 @@ public class Game : MonoBehaviour
             Debug.Log("Setting Invisible");
             displayRow.setVisibile(false);
             activeDeck.disactiveAllInDeck(false);
-            if(activeCard.doneMultiSelection()){  
+            if(activeCard == null || activeCard.doneMultiSelection()){  
                 state = State.FREE;
             }else{
                 state = State.MULTISTEP;
@@ -520,6 +447,10 @@ public class Game : MonoBehaviour
                 for (int i = row.Count - 1; i >= 0; i--)
                 {
                     row[i].transform.position = new Vector3(centerVector.x, centerVector.y, centerVector.z + (row.Count - 1 - i) * cardThickness);
+                    if(row.flipped != row[i].flipped){
+                        row[i].transform.RotateAround(row[i].transform.position, Vector3.up, 180f);
+                        row[i].flipped = true;
+                    }
                 }
             }
             else
@@ -532,7 +463,10 @@ public class Game : MonoBehaviour
                 for (int i = 0; i < row.Count; i++)
                 {
                     row[i].transform.position = new Vector3(rowStart.x + i * cardHorizontalSpacing, rowStart.y, rowStart.z);
-
+                    if(row.flipped){
+                        row[i].transform.RotateAround(row[i].transform.position, Vector3.up, 180f);
+                        row[i].flipped = true;
+                    }
                 }
 
                 for (int i = 0; i < row.Count; i++)
@@ -550,16 +484,6 @@ public class Game : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Defined name of players
-    /// </summary>
-    private enum PlayerNumber { PLAYER1 = 1, PLAYER2 };
-
-    /// <summary>
-    /// Defined game status
-    /// </summary>
-    private enum GameState { END, TOUR1, TOUR2, TOUR3 };
-
     public RoundType nextRound(RoundType round)
     {
         switch (round)
@@ -568,113 +492,5 @@ public class Game : MonoBehaviour
             case RoundType.RoundTwo: return RoundType.FinalRound;
             default: return RoundType.GameFinished;
         }
-    }
-
-    /// <summary>
-    /// Switch player - update active deck
-    /// </summary>
-    private void switchPlayer()
-    {
-        reorganizeGroup();
-        state = State.BLOCKED;
-
-        StartCoroutine(Wait(0.75f));
-    }
-
-    IEnumerator WaitEndTour(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-
-        Debug.Log("WaitEndTour() has ended");
-        // after
-        giveUpButtonObject.SetActive(true);
-    }
-
-    IEnumerator Wait(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-
-        //giveUpButtonObject.SetActive(false);
-        //playerDownNameTextObject.SetActive(false);
-        // playerUpNameTextObject.SetActive(false);
-
-        button.transform.position = new Vector3(0, 0, -1f);
-
-        if (activePlayerNumber == (int)PlayerNumber.PLAYER1)
-        {
-            activeDeck = player2.getDeck();
-            player1.setDeckVisibility(false);
-            player2.setDeckVisibility(true);
-            activePlayerNumber = (int)PlayerNumber.PLAYER2;
-        }
-        else if (activePlayerNumber == (int)PlayerNumber.PLAYER2)
-        {
-            activeDeck = player1.getDeck();
-            player1.setDeckVisibility(true);
-            player2.setDeckVisibility(false);
-            activePlayerNumber = (int)PlayerNumber.PLAYER1;
-        }
-
-        button.GetComponentInChildren<Text>().text = "Gracz " + activePlayerNumber + ",\nDotknij aby kontynuować";
-        //playerNameText.text = "Gracz " + activePlayerNumber.ToString();
-
-        Vector3 upPlayerNamePosition = playerUpNameTextObject.transform.position;
-        playerUpNameTextObject.transform.position = playerDownNameTextObject.transform.position;
-        playerDownNameTextObject.transform.position = upPlayerNamePosition;
-
-        // changing position of players health diamonds
-        Vector3 playerOneHealthOneVector = player1.getHealthDiamond(1).getPosition();
-        Vector3 playerOneHealthSecondVector = player1.getHealthDiamond(2).getPosition();
-        Vector3 playerTwoHealthOneVector = player2.getHealthDiamond(1).getPosition();
-        Vector3 playerTwoHealthSecondVector = player2.getHealthDiamond(2).getPosition();
-        player1.getHealthDiamond(1).setPosition(playerTwoHealthOneVector);
-        player1.getHealthDiamond(2).setPosition(playerTwoHealthSecondVector);
-        player2.getHealthDiamond(1).setPosition(playerOneHealthOneVector);
-        player2.getHealthDiamond(2).setPosition(playerOneHealthSecondVector);
-
-        // number of cards posiotion replacing
-        Vector3 playerOneNumberOfCardsPosition = cardNumber1.transform.position;
-        cardNumber1.transform.position = cardNumber2.transform.position;
-        cardNumber2.transform.position = playerOneNumberOfCardsPosition;
-
-
-        // score position replacing
-        Vector3 tempVector = score1Text.transform.position;
-        score1Text.transform.position = score2Text.transform.position;
-        score2Text.transform.position = tempVector;
-
-        tempVector = score3Text.transform.position;
-        score3Text.transform.position = score6Text.transform.position;
-        score6Text.transform.position = tempVector;
-
-        tempVector = score4Text.transform.position;
-        score4Text.transform.position = score7Text.transform.position;
-        score7Text.transform.position = tempVector;
-
-        tempVector = score5Text.transform.position;
-        score5Text.transform.position = score8Text.transform.position;
-        score8Text.transform.position = tempVector;
-
-        reorganizeGroup();
-
-        state = State.FREE;
-    }
-
-
-    public void giveUp()
-    {
-        Debug.Log("Button position: " + button.transform.position);
-        if (button.transform.position.y > 5f)
-        {
-            Debug.Log("Give up!");
-            switchPlayer();
-
-            if (activePlayerNumber == (int)PlayerNumber.PLAYER1)
-                player1.isPlaying = false;
-            else if (activePlayerNumber == (int)PlayerNumber.PLAYER2)
-                player2.isPlaying = false;
-        }
-        else
-            Debug.Log("Blocked!");
     }
 }

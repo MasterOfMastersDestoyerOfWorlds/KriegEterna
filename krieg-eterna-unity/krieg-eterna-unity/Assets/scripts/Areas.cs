@@ -4,15 +4,6 @@ using UnityEngine;
 
 public class Areas : MonoBehaviour
 {
-    BoxCollider[] colliders;
-    BoxCollider deckCollider;
-    BoxCollider swordCollider;
-    BoxCollider bowCollider;
-    BoxCollider trebuchetCollider;
-    BoxCollider special1Collider;
-    BoxCollider special2Collider;
-    BoxCollider sword2Collider;
-
     static Vector3 topRight;
     static Vector3 botLeft;
     static Vector3 center;
@@ -23,22 +14,7 @@ public class Areas : MonoBehaviour
 
     void Awake()
     {
-        colliders = GetComponents<BoxCollider>();
-
-        deckCollider = colliders[(int)CardGroup.DECK];
-        swordCollider = colliders[(int)CardGroup.SWORD];
-        bowCollider = colliders[(int)CardGroup.BOW];
-        trebuchetCollider = colliders[(int)CardGroup.TREBUCHET];
-        special1Collider = colliders[(int)CardGroup.SPECIAL1];
-        special2Collider = colliders[(int)CardGroup.SPECIAL2];
-        sword2Collider = colliders[(int)CardGroup.SWORD2];
         updateScreenBounds();
-
-    }
-
-    public Bounds getDeckColliderBounds()
-    {
-        return deckCollider.bounds;
     }
 
     private void updateScreenBounds()
@@ -193,17 +169,6 @@ public class Areas : MonoBehaviour
         Debug.Log(getCenterBottom());
         return getCenterBottom() + new Vector3(0f, Card.getBaseHeight(), 0f);
     }
-
-    public Vector3 getSpecial1CenterVector()
-    {
-        return special1Collider.center;
-    }
-
-    public Vector3 getSpecial2CenterVector()
-    {
-        return special2Collider.center;
-    }
-
     public Vector3 getEnemyMeleeRowCenterVector()
     {
         return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 4, 0f);

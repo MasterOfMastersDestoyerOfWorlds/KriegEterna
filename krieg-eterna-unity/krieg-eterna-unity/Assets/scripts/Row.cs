@@ -14,14 +14,14 @@ public class Row : List<Card>
     public List<RowEffected> rowType;
     public System.Func<Vector3> centerMethod;
     public bool wide;
-
+    public bool flipped;
     public int score;
 
     public int chooseNRemain;
 
     public bool cardTargetsActivated = false;
 
-    public Row(bool isPlayer, bool isScoring, bool wide, RowEffected uniqueType, List<RowEffected> rowType, System.Func<Vector3> centerMethod)
+    public Row(bool isPlayer, bool isScoring, bool wide, bool flipped, RowEffected uniqueType, List<RowEffected> rowType, System.Func<Vector3> centerMethod)
     {
         this.isPlayer = isPlayer;
         this.isScoring = isScoring;
@@ -30,6 +30,7 @@ public class Row : List<Card>
         this.rowType = rowType;
         this.centerMethod = centerMethod;
         this.wide = wide;
+        this.flipped = flipped;
     }
 
     public void setVisibile(bool state)

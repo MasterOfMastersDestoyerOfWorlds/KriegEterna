@@ -47,7 +47,6 @@
      <Compile Include="Assets\Scripts\CardReturnType.cs" />
      <Compile Include="Assets\Scripts\Row.cs" />
      <Compile Include="Assets\Scripts\StrengthModType.cs" />
-     <Compile Include="Assets\Scripts\Desk.cs" />
      <Compile Include="Assets\Scripts\CardModel.cs" />
      <Compile Include="Assets\Scripts\TargetController.cs" />
      <Compile Include="Assets\Scripts\PlayController.cs" />

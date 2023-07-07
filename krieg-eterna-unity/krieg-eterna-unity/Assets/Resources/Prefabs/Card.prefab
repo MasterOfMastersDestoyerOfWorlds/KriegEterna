@@ -93,7 +93,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4874126678125670354, guid: fa2d36329c27493499c55a8620b884a1, type: 3}
+  - {fileID: -876546973899608171, guid: 4af743c49a7b340408b11772eb923781, type: 3}
   - {fileID: -3846018093981099296, guid: fa2d36329c27493499c55a8620b884a1, type: 3}
   - {fileID: 2100000, guid: 18463bcc38742784093b087125a76e80, type: 2}
   m_StaticBatchInfo:
@@ -150,7 +150,7 @@ Transform:
   m_Children:
   - {fileID: 7183809115597333202}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7541484202447766774
 MonoBehaviour:
@@ -168,6 +168,7 @@ MonoBehaviour:
   cardName: 
   cardType: 0
   strength: 0
+  calculatedStrength: 0
   playerCardDraw: 0
   cardDrawType: 0
   playerCardDrawRemain: 0
@@ -178,6 +179,7 @@ MonoBehaviour:
   playerCardReturnRemain: 0
   cardReturnType: 0
   strengthModifier: 0
+  strengthMultiple: 0
   strengthModType: 0
   graveyardCardDraw: 0
   graveyardCardDrawRemain: 0
@@ -193,10 +195,15 @@ MonoBehaviour:
   setAsideReturnRow: 0
   setAsideType: 0
   attach: 0
+  attachmentsRemaining: 0
   strengthCondition: 0
+  strengthConditionPassed: 0
   chooseN: 0
   chooseRow: 0
   chooseShowN: 0
+  chooseNRemain: 0
+  chooseCardType: 0
+  playInRow: 0
   moveRemain: 0
   moveCard: {fileID: 0}
   moveRow: 0

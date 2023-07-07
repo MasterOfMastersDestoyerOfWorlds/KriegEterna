@@ -52,6 +52,7 @@ public class Card : MonoBehaviour
     public float bigFac = 2;
     public int isSpecial;
     public bool weatherEffect = false;
+    public bool flipped = false;
     public bool beenRevealed;
     public Vector3 baseLoc;
 
@@ -74,6 +75,7 @@ public class Card : MonoBehaviour
     private BoxCollider2D cardColider;
 
     private Material material;
+    private Material backMaterial;
 
     private static GameObject cardModelGameObject;
     private static CardModel cardModel;
@@ -83,9 +85,9 @@ public class Card : MonoBehaviour
         if (cardModelGameObject == null)
         {
             cardModelGameObject = GameObject.Instantiate(Resources.Load("Prefabs/CardModel") as GameObject, transform.position, transform.rotation);
-            cardModel = cardModelGameObject.GetComponent<CardModel>();
+            cardModel = cardModelGameObject.GetComponent<CardModel>();  
+            cardModel.readTextFile();
         }
-        cardModel.readTextFile();
         spriteRenderer = GetComponent<SpriteRenderer>();
         cardColider = GetComponent<BoxCollider2D>();
         if (scaleHeight == 0f || scaleWidth == 0f)
@@ -215,6 +217,7 @@ public class Card : MonoBehaviour
         this.chooseCardType = cardModel.chooseCardType[index];
         this.playInRow = cardModel.playInRow[index];
         this.resetSelectionCounts();
+        this.loadCardBackMaterial();
     }
 
 
@@ -282,19 +285,19 @@ public class Card : MonoBehaviour
 
     public void setTargetActive(bool state)
     {
-        Material material = getMaterial();
+        Material material = getCardFrontMaterial();
         material.SetInt("_Flash", state ? 1 : 0);
         this.targetActive = state;
     }
     public void setVisible(bool state)
     {
-        Material material = getMaterial();
+        Material material = getCardFrontMaterial();
         material.SetInt("_Transparent", state ? 0 : 1);
     }
 
     public bool isVisible()
     {
-        Material material = getMaterial();
+        Material material = getCardFrontMaterial();
         return material.GetInt("_Transparent") == 0 ? true: false;
     }
     public bool isTargetActive()
@@ -427,7 +430,19 @@ public class Card : MonoBehaviour
         return false;
     }
 
-    private Material getMaterial()
+    private Material getCardBackMaterial()
+    {
+        if (this.backMaterial == null)
+        {
+            GameObject child = this.transform.GetChild(0).gameObject;
+            GameObject childOfChild = child.transform.GetChild(0).gameObject;
+            MeshRenderer meshRend = childOfChild.GetComponent<MeshRenderer>();
+            this.backMaterial = meshRend.materials[0];
+        }
+        return this.backMaterial;
+    }
+
+    private Material getCardFrontMaterial()
     {
         if (this.material == null)
         {
@@ -438,9 +453,15 @@ public class Card : MonoBehaviour
         }
         return this.material;
     }
-    public void loadMaterial()
+    public void loadCardFrontMaterial()
     {
-        this.getMaterial().SetTexture("_Texture2D", cardModel.getSmallFront(index));
+        this.getCardFrontMaterial().SetTexture("_Texture2D", cardModel.getSmallFront(index));
+    }
+    public void loadCardBackMaterial()
+    {
+        Material backMaterial = this.getCardBackMaterial();
+        backMaterial.SetTexture("_Texture2D", cardModel.getCardBack(index));
+        backMaterial.SetInt("_Flash", 0);
     }
 
     public void setCardType(CardType cardType)
