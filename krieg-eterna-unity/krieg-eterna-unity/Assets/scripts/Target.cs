@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro; 
 
 public class Target : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class Target : MonoBehaviour
     public bool flashing;
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D cardColider;
+
+    
+    TMP_Text  text;
 
     private Material material;
 
@@ -38,6 +42,9 @@ public class Target : MonoBehaviour
             cardObj.transform.localScale = new Vector3((scaleWidth / cardDims.x) * cardObj.transform.localScale.x, 1, scaleHeight / cardDims.y * cardObj.transform.localScale.z);
             cardColider.size = new Vector2(scaleWidth, scaleHeight);
         }
+        Transform textObj = this.transform.Find("Text");
+        text = textObj.GetComponent<TMP_Text>();
+        text.text = "";
         baseLoc = this.transform.position;
         flashing = false;
         this.setNotFlashing();
@@ -50,6 +57,9 @@ public class Target : MonoBehaviour
         Vector3 cardDims = cardColider.size;
         cardObj.transform.localScale = new Vector3((width / cardDims.x) * cardObj.transform.localScale.x, 1, (height / cardDims.y) * cardObj.transform.localScale.z);
         cardColider.size = new Vector2(width, height);
+    }
+    public void setText(string str){
+        text.text = str;
     }
     public void setBaseLoc()
     {

@@ -15,6 +15,9 @@ public class Row : List<Card>
     public System.Func<Vector3> centerMethod;
     public bool wide;
     public bool flipped;
+
+    public  bool isButton;
+
     public int score;
 
     public int chooseNRemain;
@@ -31,6 +34,20 @@ public class Row : List<Card>
         this.centerMethod = centerMethod;
         this.wide = wide;
         this.flipped = flipped;
+        this.isButton = false;
+    }
+
+    public Row(RowEffected uniqueType, string ButtonText, System.Func<Vector3> centerMethod)
+    {
+        this.isPlayer = false;
+        this.isScoring = false;
+        this.isButton = true;
+        this.name = uniqueType.ToString();
+        this.uniqueType = uniqueType;
+        this.rowType = new List<RowEffected>(){uniqueType};
+        this.centerMethod = centerMethod;
+        this.wide = false;
+        this.flipped = false;
     }
 
     public void setVisibile(bool state)
@@ -38,6 +55,9 @@ public class Row : List<Card>
         foreach (Card c in this)
         {
             c.setVisible(state);
+        }
+        if(isButton){
+            
         }
 
     }

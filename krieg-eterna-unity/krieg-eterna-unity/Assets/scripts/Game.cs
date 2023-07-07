@@ -139,13 +139,14 @@ public class Game : MonoBehaviour
         RowEffected player = RowEffected.Player;
         // Picking card
         // ---------------------------------------------------------------------------------------------------------------
-        // vector of actual mouse position
         Vector3 mouseRelativePosition = new Vector3(0f, 0f, 0f);
         if (Mouse.current != null)
         {
             mouseRelativePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         }
         mouseRelativePosition.z = 0f;
+        // Right click to inspect card
+        // ---------------------------------------------------------------------------------------------------------------
         if (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame)
         {
             if (state != State.MULTISTEP && state != State.CHOOSE_N)
@@ -296,9 +297,8 @@ public class Game : MonoBehaviour
             }
             else
             {
-                Debug.Log("ur a wizard harry: " + turnsLeft);
                 activeDeck.scoreRows(RowEffected.All);
-                if (state == State.FREE)
+                if (state == State.FREE || activeDeck.getRowByType(CardModel.getHandRow(player)).Count == 0)
                 {
                     turnOver();
                 }

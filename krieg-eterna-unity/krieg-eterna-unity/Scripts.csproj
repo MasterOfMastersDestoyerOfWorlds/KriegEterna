@@ -740,6 +740,10 @@
       <Project>{e7cc4241-ece0-6be2-b349-5ee90ffc47e2}</Project>
       <Name>Unity.InputSystem.TestFramework</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.csproj">
+      <Project>{7c1aa9ac-69da-990d-c4a9-c2baa032bf37}</Project>
+      <Name>Unity.TextMeshPro</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
