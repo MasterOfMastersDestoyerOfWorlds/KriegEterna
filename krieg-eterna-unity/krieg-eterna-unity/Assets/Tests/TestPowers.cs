@@ -324,8 +324,8 @@ namespace KriegTests
                 clicks = new List<Click>{
                     new Click("Void", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new Click("Void", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
-                    new Click("Knight11", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
-                    new Click("Knight11", RowEffected.PlayerHand, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
+                    new Click("Knight11", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.UnitGraveyard, true),
+                    new Click("Knight11", RowEffected.PlayerHand, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
                 }
             },
 

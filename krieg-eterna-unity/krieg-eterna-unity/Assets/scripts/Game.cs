@@ -353,8 +353,26 @@ public class Game : MonoBehaviour
             {
                 PlayController.Play(c, activeDeck.getCardRow(c), null, player);
             }
-            roundEndCards = new List<Card>();
             state = State.FREE;
+            activeDeck.sendAllToGraveYard(RowEffected.CleanUp, (Row r) =>
+            {
+                List<Card> remove = new List<Card>();
+                foreach (Card c in r)
+                {
+                    if (c.roundEndRemoveType == RoundEndRemoveType.Protect)
+                    {
+                        c.roundEndRemoveType = RoundEndRemoveType.Remove;
+
+                    }
+                    else
+                    {
+                        remove.Add(c);
+                    }
+                }
+                return remove;
+            });
+
+            roundEndCards = new List<Card>();
             return;
         }
         if (!enemyPassed && !playerPassed)
@@ -379,8 +397,9 @@ public class Game : MonoBehaviour
     {
         activeCard.zeroSkipSelectionCounts();
         endChooseN(activeDeck.getRowByType(RowEffected.ChooseN));
-        if(CardModel.isUnit(activeCard.cardType) && activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerHand)).Contains(activeCard)){
-            PlayController.Play(activeCard, activeDeck.getRowByType(CardModel.getPlayableRow(player, activeCard.cardType)), null, player );
+        if (CardModel.isUnit(activeCard.cardType) && activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerHand)).Contains(activeCard))
+        {
+            PlayController.Play(activeCard, activeDeck.getRowByType(CardModel.getPlayableRow(player, activeCard.cardType)), null, player);
         }
     }
     private void gameOver()

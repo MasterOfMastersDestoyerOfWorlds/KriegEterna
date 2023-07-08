@@ -50,5 +50,6 @@ public enum RowEffected
     Graveyard = 48,
     Button = 49,
     SetAside = 50,
+    CleanUp = 51,
     None = 0
 };

@@ -177,21 +177,7 @@ public class PlayController
             }
             else if (c.destroyType == DestroyType.Max)
             {
-                List<Row> destroyRows = deck.getRowsByType(c.rowEffected);
-                List<Card> graveyardList = new List<Card>();
-                List<Row> graveyardRowList = new List<Row>();
-                foreach (Row r in destroyRows)
-                {
-                    if (r.Count > 0)
-                    {
-                        graveyardList.Add(r.maxStrengthCard());
-                        graveyardRowList.Add(r);
-                    }
-                }
-                for (int i = 0; i < graveyardList.Count; i++)
-                {
-                    deck.sendCardToGraveyard(graveyardRowList[i], RowEffected.None, graveyardList[i]);
-                }
+                deck.sendAllToGraveYard(c.rowEffected, (Row r)=> new List<Card>(){r.maxStrengthCard()});
                 c.playerCardDestroyRemain = 0;
                 c.enemyCardDestroyRemain = 0;
             }
