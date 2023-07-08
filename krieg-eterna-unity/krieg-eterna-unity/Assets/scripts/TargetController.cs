@@ -142,6 +142,7 @@ public class TargetController
                         switch (c.cardReturnType)
                         {
                             case CardReturnType.King: c.setTargetActive(true); break;
+                            case CardReturnType.LastPlayedCard: c.setTargetActive(true); break;
                             default: deck.activateRowsByType(true, true, playerPlayable); break;
                         }
 

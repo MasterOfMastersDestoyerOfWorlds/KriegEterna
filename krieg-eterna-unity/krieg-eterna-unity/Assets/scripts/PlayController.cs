@@ -49,9 +49,11 @@ public class PlayController
 
             }
         }
-        if(Game.state == State.MULTISTEP){
+        if (Game.state == State.MULTISTEP)
+        {
             Debug.Log("Setting skippable: " + c.canSkip());
-            if(c.canSkip()){
+            if (c.canSkip())
+            {
                 deck.getRowByType(RowEffected.Skip).setVisibile(true);
             }
         }
@@ -103,12 +105,13 @@ public class PlayController
             default: break;
         }
     }
-        public static void PlayPower(Card c, Row targetRow, Card targetCard, RowEffected player)
+    public static void PlayPower(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
         RowEffected playerHand = CardModel.getHandRow(player);
         RowEffected enemy = CardModel.getEnemy(player);
         Deck deck = Game.activeDeck;
-        if (targetRow == null && c.rowEffected != RowEffected.None && c.playInRow && !c.attach)
+        Debug.Log("Playing Power Card targetRow:" + targetRow);
+        if (targetRow == null && c.rowEffected != RowEffected.None && c.playInRow && !c.attach && Game.state != State.ROUND_END)
         {
             RowEffected rowEffected = CardModel.getRowFromSide(player, c.rowEffected);
             Debug.Log("Playing Card in: " + rowEffected);
@@ -121,6 +124,7 @@ public class PlayController
         }
         else if (c.playerCardDestroyRemain > 0)
         {
+            Debug.Log("Destroying Card");
             c.playerCardDestroyRemain--;
             Row playerHandRow = deck.getRowByType(playerHand);
             if (c.destroyType == DestroyType.Unit)
@@ -196,8 +200,9 @@ public class PlayController
                 Game.roundEndCards.Add(c);
             }
         }
-        else if (c.enemyCardDestroyRemain > 0 && (c.destroyType != DestroyType.RoundEnd|| Game.state == State.ROUND_END))
+        else if (c.enemyCardDestroyRemain > 0 && (c.destroyType != DestroyType.RoundEnd || Game.state == State.ROUND_END))
         {
+            Debug.Log("Destroying Enemy Card");
             if (c.destroyType == DestroyType.Unit)
             {
                 int cardsRemaining = deck.countCardsInRows(c.rowEffected);
@@ -247,7 +252,7 @@ public class PlayController
         }
         else if (c.playerCardReturnRemain > 0)
         {
-
+            Debug.Log("Returning Card");
             if (c.cardReturnType == CardReturnType.Unit)
             {
 
@@ -284,10 +289,14 @@ public class PlayController
                     Row kingRow = deck.getRowByType(kingLoc);
                     deck.addCardToHand(kingRow, playerHand, kingRow[0]);
                 }
-            }
-            else if (c.cardReturnType == CardReturnType.RoundEnd)
-            {
-                Game.roundEndCards.Add(c);
+            } else if(c.cardReturnType == CardReturnType.LastPlayedCard){
+                c.playerCardReturnRemain--;
+                if (Game.lastPlayedCard != null)
+                {
+                    Row row = deck.getCardRow(Game.lastPlayedCard);
+                    deck.addCardToHand(row, playerHand, Game.lastPlayedCard);
+                }
+
             }
         }
         else if (c.setAsideRemain > 0)
@@ -306,6 +315,7 @@ public class PlayController
         }
         else if (c.playerCardDrawRemain > 0 && c.cardDrawType == CardDrawType.Either)
         {
+            Debug.Log("Drawing Card");
             if (c.strengthConditionPassed)
             {
                 c.strengthConditionPassed = false;
@@ -318,6 +328,7 @@ public class PlayController
         }
         else if (c.chooseNRemain > 0)
         {
+            Debug.Log("Setting up Choose N");
             Row row = deck.getRowByType(c.chooseRow);
             if (row.Count > 0)
             {
@@ -344,12 +355,17 @@ public class PlayController
             }
 
             targetCard.attachCard(c);
+            if (c.cardReturnType == CardReturnType.Protect)
+            {
+                targetCard.roundEndRemoveType = RoundEndRemoveType.Protect;
+            }
         }
         if (c.doneMultiSelection(player))
         {
             Debug.Log("Done MultiSelection, Doing Side Effects");
-            if (c.rowMultiple > 0)
+            if (c.rowMultiple > 0  && Game.state != State.ROUND_END)
             {
+                Debug.Log("Weather Effects");
                 if (c.cardType != CardType.King)
                 {
                     targetRow.Add(c);
@@ -361,6 +377,7 @@ public class PlayController
             }
             if (c.playerCardDrawRemain > 0)
             {
+                Debug.Log("Card Draw");
                 if (c.cardDrawType == CardDrawType.Unit || (c.cardDrawType == CardDrawType.RoundEnd && Game.state == State.ROUND_END))
                 {
                     int cardsDrawn = 0;
@@ -378,6 +395,7 @@ public class PlayController
             }
             if (c.enemyCardDrawRemain > 0)
             {
+                Debug.Log("Enemy Card Draw");
                 int cardsDrawn = 0;
                 for (int i = 0; i < c.enemyCardDrawRemain; i++)
                 {
@@ -388,14 +406,35 @@ public class PlayController
             }
             if (c.graveyardCardDrawRemain > 0)
             {
+                Debug.Log("Graveyard Card Draw");
                 deck.drawCardGraveyard(c, targetCard);
             }
-            if (!c.attach && c.cardType == CardType.Power)
+            if (!c.attach && c.cardType == CardType.Power && !c.playInRow)
             {
+                Debug.Log("Sending Card to Graveyard");
                 deck.sendCardToGraveyard(deck.getRowByType(playerHand), RowEffected.None, c);
             }
+
+            if (c.cardReturnType == CardReturnType.RoundEnd && Game.state != State.ROUND_END)
+            {
+                Debug.Log("Adding card to Round End List");
+                Game.roundEndCards.Add(c);
+                c.roundEndRemoveType = RoundEndRemoveType.Protect;
+
+            }
+            else if (c.cardReturnType == CardReturnType.RoundEnd && Game.state == State.ROUND_END)
+            {
+                Row oppositeRow = deck.getRowByType(CardModel.getRowFromSide(RowEffected.Enemy, targetRow.uniqueType));
+                Debug.Log("Swaping Rows: " + c + " from row: " + targetRow + " to row" + oppositeRow);
+                targetRow.Remove(c);
+                oppositeRow.Add(c);
+                Debug.Log("Swaping Rows: " + c + " from row: " + targetRow + " to row" + oppositeRow);
+                c.playerCardReturnRemain = 0;
+            }
+
             if (c.strengthModType == StrengthModType.RoundAdvance)
             {
+                Debug.Log("Round Advance");
                 if (Game.enemyPassed)
                 {
                     Game.turnsLeft = 2;
@@ -405,11 +444,15 @@ public class PlayController
                     Game.turnsLeft = 3;
                 }
             }
+            
             if (c.attach && CardModel.isUnit(c.cardType) && c.attachmentsRemaining <= 0)
             {
+                Debug.Log("Unit Attach");
                 targetRow.Add(c);
             }
         }
+        
+        Debug.Log("Done Playing Power Card targetRow:" + targetRow);
     }
 
     public static void updateStateBasedOnCardState(Card c, RowEffected player)
@@ -422,6 +465,7 @@ public class PlayController
         if (c.doneMultiSelection(player))
         {
             Debug.Log("Done with card: " + c.cardName);
+            Game.lastPlayedCard = c;
             Game.state = State.FREE;
         }
         else

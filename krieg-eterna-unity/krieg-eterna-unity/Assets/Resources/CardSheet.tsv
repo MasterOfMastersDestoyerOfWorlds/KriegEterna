@@ -38,7 +38,7 @@ EmperorDemise	Power	If a King is on the field, set it aside until the start\rof 
 Enlightenment	Power	Reveal two power cards in your opponent's hand.\rDraw a unit card.	0	1	Unit										2		EnemyHand									FALSE
 Execution	Power	Send your King to the graveyard.\rIf your King was on the field, draw three units;\rif it was in your hand, draw four.	0	3	Unit	1	King																			FALSE
 Famine	Power	The strongest units from each player's hand are\rsent to the graveyard.	0			1	Max							1			BothHand									FALSE
-Fate	Power	Return the last card you played to your hand.	0					1	LastPlayedCard								LastPlayedCard									FALSE
+Fate	Power	Return the last card you played to your hand.	0					1	LastPlayedCard																	FALSE
 Feast2	Power	Attach to a unit; this unit now has plus two base\rstrength.	0							2	Add									TRUE						TRUE
 Feast3	Power	Attach to a unit; this unit now has plus two base\rstrength.	0							2	Add									TRUE						TRUE
 Grail	Power	Reveal the top unit in the graveyard and add it to\ryour hand. If it has less than three strength draw\ranother card.	0									1					UnitGraveyard				3					FALSE

@@ -54,6 +54,7 @@ public class Card : MonoBehaviour
     public bool weatherEffect = false;
     public bool flipped = false;
     public bool beenRevealed;
+    public RoundEndRemoveType roundEndRemoveType;
     public Vector3 baseLoc;
 
     public List<Card> attachments;
@@ -119,11 +120,7 @@ public class Card : MonoBehaviour
         this.cardColider.offset = new Vector2(0f, 0f);
         if (!transform.position.Equals(cardColider.bounds.center))
         {
-            Debug.Log("REEEEEEEEE offcenter");
             Vector3 screenvec = Camera.main.WorldToScreenPoint(transform.position);
-            Debug.Log("+++++++++++++++++++++++++++++");
-            Debug.Log("Card Bounds Check: card center: " + transform.position + " mouse center: " + pos + " screenvec center: " + screenvec);
-            Debug.Log("+++++++++++++++++++++++++++++");
             if (mousePos.x > transform.position.x - (cardColider.bounds.extents.x) && mousePos.x < transform.position.x + (cardColider.bounds.extents.x))
             {
                 if (mousePos.y > transform.position.y - (cardColider.bounds.extents.y) && mousePos.y < transform.position.y + (cardColider.bounds.extents.y))
@@ -133,9 +130,6 @@ public class Card : MonoBehaviour
             }
             return false;
         }
-        Debug.Log("+++++++++++++++++++++++++++++");
-        Debug.Log("Card Bounds Check: card center: " + transform.position + " mouse center: " + pos + " collider center: " + this.cardColider.bounds.center);
-        Debug.Log("+++++++++++++++++++++++++++++");
         return this.cardColider.bounds.Contains(pos);
     }
 
@@ -228,7 +222,7 @@ public class Card : MonoBehaviour
 
     public void resetSelectionCounts()
     {
-
+        this.roundEndRemoveType = RoundEndRemoveType.Remove;
         this.playerCardDrawRemain = playerCardDraw;
         this.playerCardDestroyRemain = this.playerCardDestroy;
         this.playerCardReturnRemain = this.playerCardReturn;

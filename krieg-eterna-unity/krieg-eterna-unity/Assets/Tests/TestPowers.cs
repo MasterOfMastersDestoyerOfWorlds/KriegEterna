@@ -37,7 +37,7 @@ namespace KriegTests
                     new ClickRow("EnemyRanged", RowEffected.EnemyRanged),
                     new Click("Grenadier2", RowEffected.EnemyRanged, RowEffected.EnemyRanged, RowEffected.UnitGraveyard, false),
                     new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.UnitGraveyard, false),
-                    new ClickRow("EndRound", RowEffected.Pass),
+                    new ClickRow("Pass", RowEffected.Pass),
                     new Click("Soldier", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
                     new Click("Soldier", RowEffected.PlayerHand, RowEffected.PlayerRanged, RowEffected.PlayerRanged, true),
                 }

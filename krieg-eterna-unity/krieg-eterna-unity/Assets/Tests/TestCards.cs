@@ -192,6 +192,8 @@ namespace KriegTests
             Game.player = RowEffected.Player;
             Game.playerPassed = false;
             Game.enemyPassed = true;
+            Game.lastPlayedCard = null;
+            Game.roundEndCards = new List<Card>();
             Game.reorganizeGroup();
         }
 

@@ -17,6 +17,7 @@ using UnityEngine.InputSystem;
 public class Game : MonoBehaviour
 {
     public static Card activeCard;
+    public static Card lastPlayedCard;
     private static int activePlayerNumber;
     public static State state = State.FREE;
 
@@ -352,6 +353,8 @@ public class Game : MonoBehaviour
             {
                 PlayController.Play(c, activeDeck.getCardRow(c), null, player);
             }
+            roundEndCards = new List<Card>();
+            state = State.FREE;
             return;
         }
         if (!enemyPassed && !playerPassed)
