@@ -1,6 +1,6 @@
 CardName	CardType	Effect Text	Strength	PlayerCardDraw	CardDrawType	PlayerCardDestroy	DestroyType	PlayerCardReturn	CardReturnType	StrengthModifier	StrengthModType	GraveyardCardDraw	EnemyCardDraw	EnemyCardDestroy	EnemyReveal	RowMultiple	EffectedRow	SetAside	SetAsideType	Attach	StengthCondition	ChooseN	ChooseRow	ChooseShowN	ChooseCardType	PlayInRow
 Feint	Decoy	Send one of your units on the field to the\rgraveyard, return one of your units to your hand.\rYou can play this card after you've passed.	0			1	Unit	1	Unit								PlayerPlayable									TRUE
-Fortress	Decoy	Attach to a unit on the field. Its strength is halved\rthis round. This unit remains on the field to fight\rin the next round at full strength.	0							0.5	Multiply						All			TRUE						TRUE
+Fortress	Decoy	Attach to a unit on the field. Its strength is halved\rthis round. This unit remains on the field to fight\rin the next round at full strength.	0					0	Protect	0.5	Multiply						All			TRUE						TRUE
 Jester	Decoy	Replace this card with any unit on either side of\rthe field, and add that card to your hand.	0					1	Unit								All									TRUE
 Retreat	Decoy	Replace this card with any of your units on the\rfield, and add that card to your hand.	0					1	Unit								PlayerPlayable									TRUE
 Sack	Decoy	Replace this card with any of your opponent's\runits on the field, and add that card to your\rhand.	0					1	Unit								EnemyPlayable									TRUE
@@ -30,7 +30,7 @@ MusketLine	Melee	 	5																							TRUE
 Officer	Melee	 	3																							TRUE
 Scout	Melee	Reveal a power card in your opponent's hand.	1												1											TRUE
 Square	Melee	 	3																							TRUE
-Burden	Power	Double the strength of your opponent's strongest\rrow. In the next round this card switches sides.	0													2	EnemyMax									TRUE
+Burden	Power	Double the strength of your opponent's strongest\rrow. In the next round this card switches sides.	0					0	RoundEnd							2	EnemyMax									TRUE
 Crusade	Power	Send all of the strongest units on both sides of\rthe Melee row to the graveyard.	0			1	MaxAll							1			Melee									FALSE
 Death	Power	Choose one unit in the opponent's field to send\rto the graveyard.	0			0	Unit							1			EnemyPlayable									FALSE
 Death2	Power	Choose one unit in the opponent's field to send\rto the graveyard.	0			0	Unit							1			EnemyPlayable									FALSE
@@ -47,9 +47,9 @@ Plague	Power	Set a unit's base strength to one.	0							1	Set									TRUE						
 Redemption	Power	If your King is on the field, return it to your hand.\rThe top card in the graveyard is played on your\rside of the field.	0					1	King			1					UnitGraveyard									FALSE
 Relic	Power	Move a unit to any row.	0					1	Move								All									FALSE
 Resurrection	Power	Choose one unit from the graveyard and play it\ron your side of the field.	0														PlayerHand					1	UnitGraveyard	-1	Unit	FALSE
-Ruin	Power	Discard up to three cards from your hand.\rAdd three times the number of discarded cards\rto the base strength of a unit.	0				Unit			3	Multiply						UnitGraveyard			TRUE		3	PlayerHand	-1	Unit	TRUE
+Ruin	Power	Discard up to three cards from your hand.\rAdd three times the number of discarded cards\rto the base strength of a unit.	0							3	Multiply						UnitGraveyard			TRUE		3	PlayerHand	-1	Unit	TRUE
 Styx	Power	Pick a card from the top three in the power\rgraveyard, and add that card to your hand.	0														PlayerHand					1	PowerGraveyard	3	Power	FALSE
-Usury	Power	Set aside one of your units on the field until the\rstart of the next round. Draw two cards at the\rend of this round.	0	2	RoundEnd													1	Player							FALSE
+Usury	Power	Set aside one of your units on the field until the\rstart of the next round. Draw two cards at the\rend of this round.	0	2	RoundEnd													2	Player							FALSE
 Void	Power	The round ends after your next turn.	0							1	RoundAdvance															FALSE
 War	Power	Send a card from your hand to the graveyard.\rYour opponent then discards the strongest unit\rin their hand.	0			1	MaxAll							1			Ranged									FALSE
 Wrath	Power	Send one of your units on the field and two of\ryour opponent's to the graveyard.	0			1	Unit							2			EnemyPlayable									FALSE

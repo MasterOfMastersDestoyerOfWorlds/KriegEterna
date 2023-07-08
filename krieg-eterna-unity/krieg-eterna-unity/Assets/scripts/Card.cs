@@ -243,6 +243,7 @@ public class Card : MonoBehaviour
             this.attachmentsRemaining = 1;
         }       
         this.strengthConditionPassed = false;
+        this.strengthMultiple = 0;
 
     }
 
@@ -259,10 +260,31 @@ public class Card : MonoBehaviour
         this.attachmentsRemaining = 0;
     }
 
-    public bool doneMultiSelection()
+    public void zeroSkipSelectionCounts()
+    {
+        this.chooseNRemain = 0;
+        this.playerCardDrawRemain = 0;
+        this.playerCardReturnRemain = 0;
+        this.setAsideRemain = 0;
+        this.graveyardCardDrawRemain = 0;
+        if(strengthModType == StrengthModType.Adjacent){
+            this.attachmentsRemaining = 0;
+        }
+    }
+
+    public bool canSkip()
+    {
+        return this.playerCardDestroyRemain <= 0 && 
+        (this.setAsideRemain <= 0 || (this.setAsideType != SetAsideType.King && this.setAsideType != SetAsideType.Player)) 
+        && this.moveRemain <= 0 
+        && (this.attachmentsRemaining <= 0 || strengthModType == StrengthModType.Adjacent);
+    }
+
+    public bool doneMultiSelection(RowEffected player)
     {
         return (this.playerCardDrawRemain <= 0 || this.cardDrawType != CardDrawType.Either) && this.playerCardDestroyRemain <= 0
-        && this.playerCardReturnRemain <= 0 && (this.enemyCardDestroyRemain <= 0  || this.destroyType == DestroyType.RoundEnd)
+        && (this.playerCardReturnRemain <= 0 || this.cardReturnType == CardReturnType.RoundEnd)
+        && (this.enemyCardDestroyRemain <= 0  || this.destroyType == DestroyType.RoundEnd)
         && this.setAsideRemain <= 0 && this.moveRemain <= 0 && this.attachmentsRemaining <= 0;
     }
 

@@ -22,6 +22,7 @@ public class Target : MonoBehaviour
 
     
     TMP_Text  text;
+    private bool buttonVisible = false;
 
     private Material material;
 
@@ -69,6 +70,11 @@ public class Target : MonoBehaviour
     {
         this.transform.position = baseLoc;
     }
+    public bool isVisible()
+    {
+        return this.buttonVisible;
+    }
+
     public bool isFlashing()
     {
         return this.flashing;
@@ -134,6 +140,11 @@ public class Target : MonoBehaviour
         {
             this.setNotFlashing();
         }
+    }
+    public void setButtonVisible()
+    {
+        this.buttonVisible = true;
+        this.getMaterial().SetInt("_Transparent", 0);
     }
     public void setFlashing()
     {

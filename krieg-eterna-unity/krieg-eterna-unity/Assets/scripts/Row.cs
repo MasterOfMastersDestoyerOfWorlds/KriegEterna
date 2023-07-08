@@ -17,10 +17,18 @@ public class Row : List<Card>
     public bool flipped;
 
     public  bool isButton;
+    public string buttonText;
+    public System.Action buttonAction;
 
     public int score;
 
     public int chooseNRemain;
+
+    
+    private static  GameObject targetGameObject;
+    private static Target baseTarget;
+
+    
 
     public bool cardTargetsActivated = false;
 
@@ -35,19 +43,24 @@ public class Row : List<Card>
         this.wide = wide;
         this.flipped = flipped;
         this.isButton = false;
+        setupTarget();
     }
 
-    public Row(RowEffected uniqueType, string ButtonText, System.Func<Vector3> centerMethod)
+    public Row(bool visible, RowEffected uniqueType, string buttonText, System.Func<Vector3> centerMethod, System.Action buttonAction)
     {
         this.isPlayer = false;
         this.isScoring = false;
         this.isButton = true;
+        this.buttonText = buttonText;
+        this.buttonAction = buttonAction;
         this.name = uniqueType.ToString();
         this.uniqueType = uniqueType;
-        this.rowType = new List<RowEffected>(){uniqueType};
+        this.rowType = new List<RowEffected>(){uniqueType, RowEffected.Button};
         this.centerMethod = centerMethod;
         this.wide = false;
         this.flipped = false;
+        setupTarget();
+        setVisibile(visible);
     }
 
     public void setVisibile(bool state)
@@ -57,11 +70,21 @@ public class Row : List<Card>
             c.setVisible(state);
         }
         if(isButton){
-            
+            if(state){
+                target.setText(buttonText);
+                target.setButtonVisible();
+            }else {
+                target.setText("");
+            }
         }
 
     }
     public bool isVisible(){
+
+        if(isButton){
+            return target.isVisible();
+        }
+
         if(this.Count == 0){
             return false;
         }
@@ -265,9 +288,29 @@ public class Row : List<Card>
     {
         this.center = centerMethod.Invoke();
     }
-    public void setTarget(Target target)
+    public void setupTarget()
     {
-        this.target = target;
+        if(baseTarget == null){
+            targetGameObject = GameObject.Instantiate(Resources.Load("Prefabs/Target") as GameObject, new Vector3(0f,0f,0f), new Quaternion(0,0,0,0));
+            baseTarget = targetGameObject.GetComponent<Target>();
+        }
+
+        this.center = centerMethod.Invoke();
+        Target clone = GameObject.Instantiate(baseTarget) as Target;
+        clone.setNotFlashing();
+        clone.tag = "CloneTarget";
+        if (this.wide)
+        {
+            clone.scale(Mathf.Max(this.Count + 1, 8), 1);
+        }
+        else
+        {
+            clone.scale(1, 1);
+        }
+        this.target = clone;
+        target.transform.position = new Vector3(center.x, center.y, -1f);
+        target.setBaseLoc();
+
         Debug.Log("Setting Target: " + this.target + " On: " + this.name);
     }
     public Bounds getTargetBounds()

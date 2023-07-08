@@ -5,5 +5,6 @@ public enum State
     CHOOSE_N,
     MULTISTEP,
     REVEAL,
+    ROUND_END,
     BLOCKED
 };

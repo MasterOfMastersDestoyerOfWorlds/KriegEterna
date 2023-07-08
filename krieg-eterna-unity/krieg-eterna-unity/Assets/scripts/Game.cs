@@ -22,9 +22,11 @@ public class Game : MonoBehaviour
 
     public static Deck activeDeck;
 
+    public static List<Card> roundEndCards;
+
     public static RoundType round;
 
-    private bool hasChosenStart;
+    private static bool hasChosenStart;
     private static RowEffected chooseNRow;
     private static RowEffected chooseNSendRow;
     private static System.Action<Row, RowEffected, Card> chooseNAction;
@@ -91,8 +93,8 @@ public class Game : MonoBehaviour
         List<string> enemyUnit = new List<string>();
         List<string> enemyKing = new List<string>();
         deck.buildDeck(NUM_POWERS, NUM_UNITS, NUM_KINGS, choosePower, chooseUnit, chooseKing, chooseUnitGraveyard, choosePowerGraveyard, enemyPower, enemyUnit, enemyKing);
-        deck.buildTargets();
         hasChosenStart = false;
+        roundEndCards = new List<Card>();
         round = RoundType.RoundOne;
         turnsLeft = int.MaxValue;
         player = RowEffected.Player;
@@ -132,7 +134,7 @@ public class Game : MonoBehaviour
         if (!hasChosenStart)
         {
             hasChosenStart = true;
-            setChooseN(RowEffected.PlayerHand, activeDeck.sendCardToGraveyard, 3, activeDeck.getRowByType(RowEffected.PlayerHand).Count, new List<CardType>() { CardType.King }, RowEffected.None, State.CHOOSE_N);
+            setChooseN(RowEffected.PlayerHand, activeDeck.sendCardToGraveyard, 3, activeDeck.getRowByType(RowEffected.PlayerHand).Count, new List<CardType>() { CardType.King }, RowEffected.None, State.CHOOSE_N, false);
         }
 
 
@@ -283,6 +285,19 @@ public class Game : MonoBehaviour
             }
             if (!clickOnTarget)
             {
+                List<Row> buttons = activeDeck.getRowsByType(RowEffected.Button);
+                foreach (Row row in buttons)
+                {
+                    if (row.target.ContainsMouse(mouseRelativePosition) && row.isVisible())
+                    {
+                        row.buttonAction.Invoke();
+                        clickOnTarget = true;
+                        break;
+                    }
+                }
+            }
+            if (!clickOnTarget)
+            {
                 if (state != State.MULTISTEP && state != State.CHOOSE_N)
                 {
                     Debug.Log("No valid click resetting");
@@ -308,20 +323,38 @@ public class Game : MonoBehaviour
 
     private void turnOver()
     {
+        activeDeck.getRowByType(RowEffected.Skip).setVisibile(false);
         if (turnsLeft != int.MaxValue && turnsLeft > 0)
         {
             turnsLeft--;
         }
-        if((enemyPassed && playerPassed) || turnsLeft == 0)
+        if ((enemyPassed && playerPassed) || turnsLeft == 0)
         {
             Debug.Log("Round Over");
             round = nextRound(round);
             enemyPassed = false;
             playerPassed = false;
             turnsLeft = int.MaxValue;
+            List<Row> setAsideRows = activeDeck.getRowsByType(RowEffected.SetAside);
+            foreach (Row row in setAsideRows)
+            {
+                foreach (Card c in row)
+                {
+                    Debug.Log(c.setAsideReturnRow);
+                    Row returnRow = activeDeck.getRowByType(c.setAsideReturnRow);
+                    returnRow.Add(c);
+                }
+                row.RemoveAll(delegate (Card a) { return true; });
+            }
+
+            state = State.ROUND_END;
+            foreach (Card c in roundEndCards)
+            {
+                PlayController.Play(c, activeDeck.getCardRow(c), null, player);
+            }
             return;
         }
-        if (!enemyPassed && !playerPassed )
+        if (!enemyPassed && !playerPassed)
         {
             player = CardModel.getEnemy(player);
         }
@@ -333,8 +366,19 @@ public class Game : MonoBehaviour
         {
             player = RowEffected.Enemy;
         }
+    }
+    public static void playerPass()
+    {
+        playerPassed = true;
+    }
 
-
+    public static void skipActiveCardEffects()
+    {
+        activeCard.zeroSkipSelectionCounts();
+        endChooseN(activeDeck.getRowByType(RowEffected.ChooseN));
+        if(CardModel.isUnit(activeCard.cardType) && activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerHand)).Contains(activeCard)){
+            PlayController.Play(activeCard, activeDeck.getRowByType(CardModel.getPlayableRow(player, activeCard.cardType)), null, player );
+        }
     }
     private void gameOver()
     {
@@ -357,7 +401,8 @@ public class Game : MonoBehaviour
 
         displayRow.Remove(cardClone);
         Card realCard = row[row.IndexOf(cardClone)];
-        if(activeCard != null){
+        if (activeCard != null)
+        {
             activeCard.chooseNRemain--;
         }
         row.chooseNRemain--;
@@ -368,19 +413,28 @@ public class Game : MonoBehaviour
 
         if (row.chooseNRemain <= 0)
         {
-            Debug.Log("Setting Invisible");
-            displayRow.setVisibile(false);
-            activeDeck.disactiveAllInDeck(false);
-            if(activeCard == null || activeCard.doneMultiSelection()){  
-                state = State.FREE;
-            }else{
-                state = State.MULTISTEP;
-                TargetController.ShowTargets(activeCard, player);
-            }
+            endChooseN(displayRow);
         }
     }
 
-    public static void setChooseN(RowEffected chooseRow, System.Action<Row, RowEffected, Card> action, int numChoose, int numShow, List<CardType> exclude, RowEffected sendRow, State newState)
+    public static void endChooseN(Row displayRow)
+    {
+        activeDeck.getRowByType(RowEffected.Skip).setVisibile(false);
+        Debug.Log("Setting Invisible");
+        displayRow.setVisibile(false);
+        activeDeck.disactiveAllInDeck(false);
+        if (activeCard == null || activeCard.doneMultiSelection(player))
+        {
+            state = State.FREE;
+        }
+        else
+        {
+            state = State.MULTISTEP;
+            TargetController.ShowTargets(activeCard, player);
+        }
+    }
+
+    public static void setChooseN(RowEffected chooseRow, System.Action<Row, RowEffected, Card> action, int numChoose, int numShow, List<CardType> exclude, RowEffected sendRow, State newState, bool skipable)
     {
 
         Row row = activeDeck.getRowByType(chooseRow);
@@ -418,6 +472,10 @@ public class Game : MonoBehaviour
                 }
             }
         }
+        if (skipable)
+        {
+            activeDeck.getRowByType(RowEffected.Skip).setVisibile(true);
+        }
         reorganizeRow(cardHorizontalSpacing, cardThickness, attachmentVerticalSpacing, displayRow, displayRow.center);
         displayRow.setActivateRowCardTargets(true, true);
     }
@@ -447,7 +505,8 @@ public class Game : MonoBehaviour
                 for (int i = row.Count - 1; i >= 0; i--)
                 {
                     row[i].transform.position = new Vector3(centerVector.x, centerVector.y, centerVector.z + (row.Count - 1 - i) * cardThickness);
-                    if(row.flipped != row[i].flipped){
+                    if (row.flipped != row[i].flipped)
+                    {
                         row[i].transform.RotateAround(row[i].transform.position, Vector3.up, 180f);
                         row[i].flipped = !row[i].flipped;
                     }
@@ -463,7 +522,8 @@ public class Game : MonoBehaviour
                 for (int i = 0; i < row.Count; i++)
                 {
                     row[i].transform.position = new Vector3(rowStart.x + i * cardHorizontalSpacing, rowStart.y, rowStart.z);
-                    if(row.flipped != row[i].flipped){
+                    if (row.flipped != row[i].flipped)
+                    {
                         row[i].transform.RotateAround(row[i].transform.position, Vector3.up, 180f);
                         row[i].flipped = !row[i].flipped;
                     }

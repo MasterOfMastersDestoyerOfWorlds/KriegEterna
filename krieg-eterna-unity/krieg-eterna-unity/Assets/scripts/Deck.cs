@@ -7,8 +7,6 @@ public class Deck : MonoBehaviour
 {
     private GameObject cardGameObject;
     private Card baseCard;
-    private GameObject targetGameObject;
-    private Target baseTarget;
 
     public Areas areas;
 
@@ -24,8 +22,6 @@ public class Deck : MonoBehaviour
         areas = areasObject.GetComponent<Areas>();
         cardGameObject = GameObject.Instantiate(Resources.Load("Prefabs/Card") as GameObject, new Vector3(-1000f, 0f, 0f), transform.rotation);
         baseCard = cardGameObject.GetComponent<Card>();
-        targetGameObject = GameObject.Instantiate(Resources.Load("Prefabs/Target") as GameObject, transform.position, transform.rotation);
-        baseTarget = targetGameObject.GetComponent<Target>();
         baseCard.setBaseScale();
         rows = new List<Row>(){
         new Row(true, false, true, false, RowEffected.PlayerHand, new List<RowEffected>() { RowEffected.BothHand, RowEffected.PlayerHand, RowEffected.Player, RowEffected.Played}, areas.getDeckCenterVector),
@@ -48,17 +44,16 @@ public class Deck : MonoBehaviour
         new Row(true, true, false, false, RowEffected.EnemyMeleeKing, new List<RowEffected>() { RowEffected.EnemyMeleeKing, RowEffected.EnemyKing, RowEffected.Enemy, RowEffected.King, RowEffected.MeleeFull , RowEffected.Played}, areas.getEnemyMeleeKingCenterVector),
         new Row(true, true, false, false, RowEffected.EnemyRangedKing, new List<RowEffected>() {  RowEffected.EnemyRangedKing, RowEffected.EnemyKing, RowEffected.Enemy, RowEffected.King, RowEffected.RangedFull , RowEffected.Played}, areas.getEnemyRangedKingCenterVector),
         new Row(true, true, false, false, RowEffected.EnemySiegeKing, new List<RowEffected>() { RowEffected.EnemySiegeKing, RowEffected.EnemyKing, RowEffected.Enemy, RowEffected.King, RowEffected.SiegeFull , RowEffected.Played}, areas.getEnemySiegeKingCenterVector),
-        new Row(false, false, false, false, RowEffected.PlayerSetAside, new List<RowEffected>() { RowEffected.PlayerSetAside, RowEffected.Player , RowEffected.Played}, areas.getUnitGraveyardCenterVector),
-        new Row(false, false, false, false, RowEffected.EnemySetAside, new List<RowEffected>() { RowEffected.EnemySetAside, RowEffected.Enemy , RowEffected.Played}, areas.getUnitGraveyardCenterVector),
+        new Row(false, false, false, false, RowEffected.PlayerSetAside, new List<RowEffected>() { RowEffected.PlayerSetAside, RowEffected.Player , RowEffected.Played, RowEffected.SetAside}, areas.getUnitGraveyardCenterVector),
+        new Row(false, false, false, false, RowEffected.EnemySetAside, new List<RowEffected>() { RowEffected.EnemySetAside, RowEffected.Enemy , RowEffected.Played, RowEffected.SetAside}, areas.getUnitGraveyardCenterVector),
         new Row(false, false, true, false, RowEffected.ChooseN, new List<RowEffected>() { RowEffected.ChooseN }, areas.getCenterFront),
-        new Row(false, false, true, false, RowEffected.EndRound, new List<RowEffected>() { RowEffected.EndRound }, areas.getCenterFront),
-        new Row(false, false, true, false, RowEffected.Skip, new List<RowEffected>() { RowEffected.Skip }, areas.getCenterFront)
+        new Row(true, RowEffected.Pass, "Pass", areas.getPassButtonCenterVector, Game.playerPass),
+        new Row(false, RowEffected.Skip,"Skip" , areas.getSkipButtonCenterVector, () => Game.skipActiveCardEffects())
         };
     }
 
     void Start()
     {
-
         updateRowCenters();
     }
 
@@ -306,35 +301,6 @@ public class Deck : MonoBehaviour
         {
             row.centerRow();
         }
-    }
-
-    public void buildTargets()
-    {
-        Debug.Log("Building Targets");
-        for (int i = 0; i < rows.Count; i++)
-        {
-            Row row = rows[i];
-            buildRowTarget(row);
-        }
-    }
-    public Target buildRowTarget(Row row)
-    {
-        Vector3 center = row.center;
-        Target clone = Instantiate(baseTarget) as Target;
-        clone.setNotFlashing();
-        clone.tag = "CloneTarget";
-        if (row.wide)
-        {
-            clone.scale(Mathf.Max(row.Count + 1, 8), 1);
-        }
-        else
-        {
-            clone.scale(1, 1);
-        }
-        row.setTarget(clone);
-        clone.transform.position = new Vector3(center.x, center.y, -1f);
-        clone.setBaseLoc();
-        return clone;
     }
 
     public void disactiveAllInDeck(bool multistep)
@@ -666,11 +632,11 @@ public class Deck : MonoBehaviour
         c.graveyardCardDrawRemain -= cardsDrawn;
     }
 
-    public void setCardAside(Row currentRow, Card c)
+    public void setCardAside(Row currentRow, Card c, SetAsideType setAsideType)
     {
         RowEffected player = CardModel.getPlayerFromRow(currentRow.uniqueType);
-        Debug.Log("GREMLIN: " + player + " row: " + currentRow.uniqueType);
-        switch (c.setAsideType)
+        Debug.Log("GREMLIN: card: " + c.cardName + " player: " + player + " row: " + currentRow.uniqueType + " setAsideType: " + c.setAsideType);
+        switch (setAsideType)
         {
             case SetAsideType.King: c.setAsideReturnRow = getKingRow(player); break;
             case SetAsideType.EnemyKing: c.setAsideReturnRow = getKingRow(player); break;
@@ -678,6 +644,7 @@ public class Deck : MonoBehaviour
             case SetAsideType.Enemy: c.setAsideReturnRow = CardModel.getRowFromSide(player, RowEffected.EnemyHand); break;
             case SetAsideType.Player: c.setAsideReturnRow = CardModel.getRowFromSide(player, RowEffected.PlayerHand); break;
         }
+        Debug.Log(c.setAsideReturnRow);
         currentRow.Remove(c);
         getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerSetAside)).Add(c);
 
@@ -911,6 +878,19 @@ public class Deck : MonoBehaviour
         }
     }
 
-
-
+    public Card getStrongestCard(RowEffected rowEffected, Card exclude)
+    {
+        List<Row> searchRows = getRowsByType(rowEffected);
+        int maxStrength = 0;
+        Card strongest = null;
+        foreach(Row row in searchRows){
+            foreach(Card card in row){
+                if(card.calculatedStrength > maxStrength && !card.Equals(exclude)){
+                    maxStrength = card.calculatedStrength;
+                    strongest = card;
+                }
+            }
+        }
+        return strongest;
+    }
 }

@@ -18,13 +18,16 @@ public class PlayController
         {
             Debug.Log(" TargetCard: " + targetCard.cardName);
         }
-        if(CardModel.isUnit(c.cardType) && c.strengthModType == StrengthModType.Adjacent && targetRow != null){
-            PlayPower(c,targetRow,targetCard, RowEffected.Player);
-        }else{
+        if (CardModel.isUnit(c.cardType) && c.strengthModType == StrengthModType.Adjacent && targetRow != null)
+        {
+            PlayPower(c, targetRow, targetCard, RowEffected.Player);
+        }
+        else
+        {
             switch (c.cardType)
             {
                 case CardType.Melee: deck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerMelee)).Add(c); c.zeroSelectionCounts(); break;
-                case CardType.Ranged: deck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerRanged)).Add(c);  c.zeroSelectionCounts(); break;
+                case CardType.Ranged: deck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerRanged)).Add(c); c.zeroSelectionCounts(); break;
                 case CardType.Siege: deck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerSiege)).Add(c); c.zeroSelectionCounts(); break;
                 case CardType.Switch: targetRow.Add(c); c.zeroSelectionCounts(); break;
                 case CardType.Weather: PlayWeather(c); break;
@@ -32,19 +35,24 @@ public class PlayController
                 default: PlayPower(c, targetRow, targetCard, RowEffected.Player); break;
             }
         }
-        updateStateBasedOnCardState(c);
+        updateStateBasedOnCardState(c, player);
         if (Game.state != State.MULTISTEP)
         {
-            if(c.doneMultiSelection()){
+            if (c.doneMultiSelection(player))
+            {
                 deck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerHand)).Remove(c);
             }
             RowEffected enemyHand = CardModel.getRowFromSide(player, RowEffected.EnemyHand);
             if (c.enemyReveal > 0 && deck.getRowByType(enemyHand).Count > 0)
             {
-                //may want to turn off flashing since it is only otherwise used when some input is happening
-                Debug.Log("Reeee" + c.enemyReveal);
-                Game.setChooseN(enemyHand, null, 0, c.enemyReveal, new List<CardType>() { CardType.King, CardType.Melee, CardType.Ranged, CardType.Siege }, RowEffected.None, State.REVEAL);
+                Game.setChooseN(enemyHand, null, 0, c.enemyReveal, new List<CardType>() { CardType.King, CardType.Melee, CardType.Ranged, CardType.Siege }, RowEffected.None, State.REVEAL, false);
 
+            }
+        }
+        if(Game.state == State.MULTISTEP){
+            Debug.Log("Setting skippable: " + c.canSkip());
+            if(c.canSkip()){
+                deck.getRowByType(RowEffected.Skip).setVisibile(true);
             }
         }
         Game.reorganizeGroup();
@@ -95,7 +103,7 @@ public class PlayController
             default: break;
         }
     }
-    public static void PlayPower(Card c, Row targetRow, Card targetCard, RowEffected player)
+        public static void PlayPower(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
         RowEffected playerHand = CardModel.getHandRow(player);
         RowEffected enemy = CardModel.getEnemy(player);
@@ -119,7 +127,8 @@ public class PlayController
             {
                 deck.sendCardToGraveyard(targetRow, RowEffected.None, targetCard);
                 Debug.Log("GTRRRRREEEERRRR " + c.strengthCondition + " " + targetCard.calculatedStrength);
-                if(c.strengthCondition > 0 && targetCard.calculatedStrength > c.strengthCondition){
+                if (c.strengthCondition > 0 && targetCard.calculatedStrength > c.strengthCondition)
+                {
                     c.strengthConditionPassed = true;
                 }
             }
@@ -182,8 +191,12 @@ public class PlayController
                 c.playerCardDestroyRemain = 0;
                 c.enemyCardDestroyRemain = 0;
             }
+            else if (c.destroyType == DestroyType.RoundEnd)
+            {
+                Game.roundEndCards.Add(c);
+            }
         }
-        else if (c.enemyCardDestroyRemain > 0 && c.destroyType != DestroyType.RoundEnd)
+        else if (c.enemyCardDestroyRemain > 0 && (c.destroyType != DestroyType.RoundEnd|| Game.state == State.ROUND_END))
         {
             if (c.destroyType == DestroyType.Unit)
             {
@@ -198,21 +211,36 @@ public class PlayController
                 }
                 deck.sendCardToGraveyard(targetRow, RowEffected.None, targetCard);
             }
-            else
+            else if (c.destroyType == DestroyType.RoundEnd && Game.state == State.ROUND_END)
             {
-                Debug.Log("REEEE" + c.destroyType);
+                if (targetRow.Count == 1)
+                {
+                    Card strongest = deck.getStrongestCard(CardModel.getRowFromSide(player, RowEffected.EnemyPlayable), c);
+                    if (strongest != null)
+                    {
+                        Row strongestRow = deck.getCardRow(strongest);
+                        deck.sendCardToGraveyard(strongestRow, RowEffected.None, strongest);
+                        c.enemyCardDestroyRemain--;
+                    }
+                    else
+                    {
+                        c.enemyCardDestroyRemain = 0;
+                    }
+                }
             }
         }
         else if (c.moveRemain > 0)
         {
             c.moveRemain--;
             Debug.Log("MOVING " + c.cardReturnType);
-            if(c.cardReturnType == CardReturnType.Move){
+            if (c.cardReturnType == CardReturnType.Move)
+            {
                 deck.addCardToHand(deck.getRowByType(c.moveRow), targetRow.uniqueType, c.moveCard);
             }
-            if(c.cardReturnType == CardReturnType.Swap){
-                
-                Debug.Log("Swaping Cards: " +  c.moveCard + " " + targetCard);
+            if (c.cardReturnType == CardReturnType.Swap)
+            {
+
+                Debug.Log("Swaping Cards: " + c.moveCard + " " + targetCard);
                 deck.addCardToHand(deck.getRowByType(c.moveRow), CardModel.getRowFromSide(RowEffected.Enemy, c.moveRow), c.moveCard);
                 deck.addCardToHand(deck.getRowByType(targetRow.uniqueType), CardModel.getRowFromSide(RowEffected.Enemy, targetRow.uniqueType), targetCard);
             }
@@ -257,6 +285,10 @@ public class PlayController
                     deck.addCardToHand(kingRow, playerHand, kingRow[0]);
                 }
             }
+            else if (c.cardReturnType == CardReturnType.RoundEnd)
+            {
+                Game.roundEndCards.Add(c);
+            }
         }
         else if (c.setAsideRemain > 0)
         {
@@ -270,13 +302,16 @@ public class PlayController
             {
                 c.setAsideRemain--;
             }
-            deck.setCardAside(targetRow, targetCard);
+            deck.setCardAside(targetRow, targetCard, c.setAsideType);
         }
         else if (c.playerCardDrawRemain > 0 && c.cardDrawType == CardDrawType.Either)
         {
-            if(c.strengthConditionPassed){
+            if (c.strengthConditionPassed)
+            {
                 c.strengthConditionPassed = false;
-            }else{
+            }
+            else
+            {
                 c.playerCardDrawRemain--;
             }
             deck.drawCard(targetRow, player);
@@ -288,10 +323,11 @@ public class PlayController
             {
                 RowEffected sendRow = CardModel.getRowFromSide(player, c.rowEffected);
                 Action<Row, RowEffected, Card> chooseAction = deck.addCardToHand;
-                if(c.strengthModType == StrengthModType.Multiply){
+                if (c.strengthModType == StrengthModType.Multiply)
+                {
                     chooseAction = deck.addCardToHandMultiply;
                 }
-                Game.setChooseN(c.chooseRow, chooseAction, c.chooseN, c.chooseShowN > 0 ? c.chooseShowN : row.Count, CardModel.chooseToCardTypeExclude(c.chooseCardType), sendRow, State.CHOOSE_N);
+                Game.setChooseN(c.chooseRow, chooseAction, c.chooseN, c.chooseShowN > 0 ? c.chooseShowN : row.Count, CardModel.chooseToCardTypeExclude(c.chooseCardType), sendRow, State.CHOOSE_N, true);
             }
         }
         else if (c.attach && c.attachmentsRemaining > 0)
@@ -309,7 +345,7 @@ public class PlayController
 
             targetCard.attachCard(c);
         }
-        if (c.doneMultiSelection())
+        if (c.doneMultiSelection(player))
         {
             Debug.Log("Done MultiSelection, Doing Side Effects");
             if (c.rowMultiple > 0)
@@ -323,15 +359,22 @@ public class PlayController
                     deck.clearAllWeatherEffects();
                 }
             }
-            if (c.playerCardDrawRemain > 0 && c.cardDrawType == CardDrawType.Unit)
+            if (c.playerCardDrawRemain > 0)
             {
-                int cardsDrawn = 0;
-                for (int i = 0; i < c.playerCardDrawRemain; i++)
+                if (c.cardDrawType == CardDrawType.Unit || (c.cardDrawType == CardDrawType.RoundEnd && Game.state == State.ROUND_END))
                 {
-                    deck.drawCard(deck.getRowByType(RowEffected.UnitDeck), player);
-                    cardsDrawn++;
+                    int cardsDrawn = 0;
+                    for (int i = 0; i < c.playerCardDrawRemain; i++)
+                    {
+                        deck.drawCard(deck.getRowByType(RowEffected.UnitDeck), player);
+                        cardsDrawn++;
+                    }
+                    c.playerCardDrawRemain -= cardsDrawn;
                 }
-                c.playerCardDrawRemain -= cardsDrawn;
+                else if (c.cardDrawType == CardDrawType.RoundEnd)
+                {
+                    Game.roundEndCards.Add(c);
+                }
             }
             if (c.enemyCardDrawRemain > 0)
             {
@@ -351,27 +394,32 @@ public class PlayController
             {
                 deck.sendCardToGraveyard(deck.getRowByType(playerHand), RowEffected.None, c);
             }
-            if(c.strengthModType == StrengthModType.RoundAdvance){
-                if(Game.enemyPassed){
+            if (c.strengthModType == StrengthModType.RoundAdvance)
+            {
+                if (Game.enemyPassed)
+                {
                     Game.turnsLeft = 2;
-                }else{
+                }
+                else
+                {
                     Game.turnsLeft = 3;
                 }
             }
-            if(c.attach && CardModel.isUnit(c.cardType) && c.attachmentsRemaining <= 0){
+            if (c.attach && CardModel.isUnit(c.cardType) && c.attachmentsRemaining <= 0)
+            {
                 targetRow.Add(c);
             }
         }
     }
 
-    public static void updateStateBasedOnCardState(Card c)
+    public static void updateStateBasedOnCardState(Card c, RowEffected player)
     {
         c.LogSelectionsRemaining();
         if (Game.state == State.CHOOSE_N)
         {
             return;
         }
-        if (c.doneMultiSelection())
+        if (c.doneMultiSelection(player))
         {
             Debug.Log("Done with card: " + c.cardName);
             Game.state = State.FREE;
@@ -383,5 +431,5 @@ public class PlayController
         Debug.Log(Game.state);
     }
 
-    
+
 }

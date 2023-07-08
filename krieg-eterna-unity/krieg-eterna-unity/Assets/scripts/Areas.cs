@@ -122,6 +122,25 @@ public class Areas : MonoBehaviour
         return unitGraveyard;
     }
 
+    public Vector3 getSkipButtonCenterVector()
+    {
+        updateScreenBounds();
+        Vector3 skip = new Vector3(
+            topRight.x - width * 2.5f,
+            center.y - height*2,
+            0f);
+        return skip;
+    }
+
+    public Vector3 getPassButtonCenterVector()
+    {
+        updateScreenBounds();
+        Vector3 skip = new Vector3(
+            topRight.x - width * 1.5f,
+            center.y - height*2f,
+            0f);
+        return skip;
+    }
 
     public Vector3 getMeleeKingCenterVector()
     {
