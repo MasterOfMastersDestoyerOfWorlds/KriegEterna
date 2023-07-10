@@ -178,6 +178,11 @@ public class Areas : MonoBehaviour
         return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 3, 0f);
     }
 
+    public Vector3 getScoreDisplayCenterVector(System.Func<Vector3> centerRowMethod)
+    {
+        return centerRowMethod.Invoke() - new Vector3(Card.getBaseWidth() * 5, 0f, 0f);
+    }
+
     public Vector3 getRangedRowCenterVector()
     {
         return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 2, 0f);

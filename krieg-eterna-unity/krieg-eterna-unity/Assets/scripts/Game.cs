@@ -59,7 +59,8 @@ public class Game : MonoBehaviour
     {
         GameObject camera = GameObject.Instantiate(Resources.Load("Prefabs/Main Camera") as GameObject, new Vector3(0f, 0f, -100f), transform.rotation);
         camera.tag = "MainCamera";
-
+        GameObject deckObject = GameObject.Instantiate(Resources.Load("Prefabs/Deck") as GameObject, transform.position, transform.rotation);
+        activeDeck = deckObject.GetComponent<Deck>();
         player2Object = GameObject.Instantiate(Resources.Load("Prefabs/Player") as GameObject, transform.position, transform.rotation);
         player1Object = GameObject.Instantiate(Resources.Load("Prefabs/Player") as GameObject, transform.position, transform.rotation);
         player1 = player1Object.GetComponent<Player>();
@@ -75,8 +76,6 @@ public class Game : MonoBehaviour
         playerUpNameTextObject = GameObject.Find("UpPlayerName");
         playerUpNameText = playerUpNameTextObject.GetComponent<Text>();
 
-
-        Deck deck = player1.getDeck();
         List<string> choosePower = new List<string>();
         choosePower.Add("Redemption");
         choosePower.Add("Ruin");
@@ -93,7 +92,7 @@ public class Game : MonoBehaviour
         List<string> enemyPower = new List<string>();
         List<string> enemyUnit = new List<string>();
         List<string> enemyKing = new List<string>();
-        deck.buildDeck(NUM_POWERS, NUM_UNITS, NUM_KINGS, choosePower, chooseUnit, chooseKing, chooseUnitGraveyard, choosePowerGraveyard, enemyPower, enemyUnit, enemyKing);
+        activeDeck.buildDeck(NUM_POWERS, NUM_UNITS, NUM_KINGS, choosePower, chooseUnit, chooseKing, chooseUnitGraveyard, choosePowerGraveyard, enemyPower, enemyUnit, enemyKing);
         hasChosenStart = false;
         roundEndCards = new List<Card>();
         round = RoundType.RoundOne;
@@ -104,25 +103,6 @@ public class Game : MonoBehaviour
 
     void Start()
     {
-        initializePlayersDecks();
-
-        reorganizeGroup();
-    }
-
-    void initializePlayersDecks()
-    {
-        player1.getDeck().sendCardsToDeathList();
-        player2.getDeck().sendCardsToDeathList();
-
-        player1.moveCardsFromDeskToDeathArea(activePlayerNumber);
-        player2.moveCardsFromDeskToDeathArea(activePlayerNumber);
-
-
-        Debug.Log("P1 amount of cards: " + player1.getDeck().getRowByType(RowEffected.PlayerHand).Count);
-        Debug.Log("P2 amount of cards: " + player2.getDeck().getRowByType(RowEffected.PlayerHand).Count);
-
-        player2.setDeckVisibility(false);
-        activeDeck = player1.getDeck();
 
         reorganizeGroup();
     }

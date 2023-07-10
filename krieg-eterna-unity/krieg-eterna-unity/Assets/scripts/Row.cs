@@ -2,6 +2,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro; 
 
 public class Row : List<Card>
 {
@@ -13,6 +14,7 @@ public class Row : List<Card>
     public RowEffected uniqueType;
     public List<RowEffected> rowType;
     public System.Func<Vector3> centerMethod;
+    public System.Func<Vector3> scoreDisplayCenterMethod;
     public bool wide;
     public bool flipped;
 
@@ -21,6 +23,9 @@ public class Row : List<Card>
     public System.Action buttonAction;
 
     public int score;
+
+    public GameObject scoreDisplayObject;
+    public TMP_Text  scoreDisplay;
 
     public int chooseNRemain;
 
@@ -32,10 +37,10 @@ public class Row : List<Card>
 
     public bool cardTargetsActivated = false;
 
-    public Row(bool isPlayer, bool isScoring, bool wide, bool flipped, RowEffected uniqueType, List<RowEffected> rowType, System.Func<Vector3> centerMethod)
+    public Row(bool isPlayer, bool wide, bool flipped, RowEffected uniqueType, List<RowEffected> rowType, System.Func<Vector3> centerMethod)
     {
         this.isPlayer = isPlayer;
-        this.isScoring = isScoring;
+        this.isScoring = false;
         this.name = uniqueType.ToString();
         this.uniqueType = uniqueType;
         this.rowType = rowType;
@@ -43,6 +48,22 @@ public class Row : List<Card>
         this.wide = wide;
         this.flipped = flipped;
         this.isButton = false;
+        setupTarget();
+    }
+    public Row(bool isPlayer, bool wide, bool flipped, RowEffected uniqueType, List<RowEffected> rowType, System.Func<Vector3> centerMethod, System.Func<Vector3> scoreDisplayCenterMethod)
+    {
+        this.isPlayer = isPlayer;
+        this.isScoring = true;
+        this.name = uniqueType.ToString();
+        this.uniqueType = uniqueType;
+        this.rowType = rowType;
+        this.centerMethod = centerMethod;
+        this.scoreDisplayCenterMethod = scoreDisplayCenterMethod;
+        this.wide = wide;
+        this.flipped = flipped;
+        this.isButton = false;
+        scoreDisplayObject = GameObject.Instantiate(Resources.Load("Prefabs/Score") as GameObject, scoreDisplayCenterMethod.Invoke(), new Quaternion(0f,0f,0f,0f));
+        scoreDisplay = scoreDisplayObject.GetComponent<TMP_Text>();
         setupTarget();
     }
 
@@ -235,6 +256,10 @@ public class Row : List<Card>
             score += card.calculatedStrength;
         }
         this.score = (int)score;
+        if(scoreDisplay != null){
+            Debug.Log("Updating Score: " + this.score);
+            scoreDisplay.text = score + "";
+        }
         return score;
     }
 

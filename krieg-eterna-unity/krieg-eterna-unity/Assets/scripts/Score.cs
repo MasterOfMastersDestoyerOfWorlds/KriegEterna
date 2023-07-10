@@ -18,12 +18,6 @@ public class Score : MonoBehaviour
     void Awake()
     {
         string currentGameObjectName = this.gameObject.name;
-        int currentPlayer = Int32.Parse(currentGameObjectName[currentGameObjectName.Length - 1].ToString());
-
-        if (currentPlayer == 1 || currentPlayer == 6 || currentPlayer == 7 || currentPlayer == 8)
-            currentPlayer = 1;
-        else
-            currentPlayer = 2;
 
         string playerDeckName = "Deck(Clone)";
         deckObject = GameObject.Find(playerDeckName);
