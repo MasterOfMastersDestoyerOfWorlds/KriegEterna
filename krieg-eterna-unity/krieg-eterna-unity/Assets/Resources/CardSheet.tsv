@@ -93,7 +93,7 @@ Tower	Siege	Add one base strength to two adjacent units in\rthis row.	1							1	
 Assassin	Spy	Play in any of the opponent's rows and draw two\rcards. If the row has no other cards at the end of\rthe round, send any unit to the graveyard.	5	2	Either	0	RoundEnd							1			EnemyPlayable									TRUE
 Minister	Spy	Play in the opponent's Siege row, then draw two\rcards.	3	2	Either												EnemySiege									TRUE
 Saboteur	Spy	Play in the opponents ranged row, then draw\rtwo cards.	2	2	Either												EnemyRanged									TRUE
-Smuggler	Spy	Draw two cards, your opponent draws one.	0	2	Either								1				PowerGraveyard									TRUE
+Smuggler	Spy	Draw two cards, your opponent draws one.	0	2	Either								1													FALSE
 Spy	Spy	Play in the opponents Melee row, then draw\rtwo cards.	1	2	Either												EnemyMelee									TRUE
 Zealot	Spy	Play in the opponent's Melee row, then draw\rtwo cards.	4	2	Either												EnemyMelee									TRUE
 Juggernaut	Switch	This unit can also be played in the Range row.	2																							TRUE

@@ -62,7 +62,6 @@ namespace KriegTests
                 enemyHandCount = 1,
                 clicks = new List<Click>{
                     new Click("Smuggler", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new Click("Smuggler", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
                     new ClickRow("PowerDeck", RowEffected.PowerDeck),
                     new ClickRow("PowerDeck", RowEffected.PowerDeck),
                 }

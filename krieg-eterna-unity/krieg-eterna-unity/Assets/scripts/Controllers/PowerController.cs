@@ -14,6 +14,8 @@ public static class PowerController
         new PlayerDrawController(),
         new ChooseNController(),
         new AttachController(),
+        new RowTargetController(),
+        new DefaultTargetController(),
     };
 
     public static List<EffectControllerInterface> sideEffectControllerList = new List<EffectControllerInterface>(){
@@ -57,35 +59,15 @@ public static class PowerController
     public static void TargetPower(Card c, RowEffected player)
     {
         Deck deck = Game.activeDeck;
-        RowEffected enemyPlayable = CardModel.getRowFromSide(player, RowEffected.EnemyPlayable);
         Debug.Log("Setup Power Targets: " + c.cardName);
-        bool flag = false;
         foreach (EffectControllerInterface controller in mainControllerList)
         {
             if (controller.TargetCondition(c, player))
             {
                 Debug.Log("Target Controller: " + controller);
                 controller.Target(c, player);
-                flag = true;
                 break;
             }
-        }
-        if (!flag && c.rowEffected != RowEffected.None)
-        {
-            if (c.rowEffected == RowEffected.EnemyMax)
-            {
-                deck.activateAllRowsByType(true, false, deck.getMaxScoreRows(enemyPlayable));
-            }
-            if (c.cardType != CardType.Weather)
-            {
-                deck.activateRowsByType(true, true, c.rowEffected);
-            }else{
-                deck.activateRowsByType(true, false, c.rowEffected);
-            }
-        }
-        else
-        {
-            c.setTargetActive(true);
         }
     }
 }

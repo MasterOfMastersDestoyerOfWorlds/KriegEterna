@@ -50,7 +50,7 @@ public class EnemyDestroyController : EffectControllerInterface
     }
     public bool TargetCondition(Card c, RowEffected player)
     {
-        return c.enemyCardDestroyRemain > 0;
+        return c.enemyCardDestroyRemain > 0 && c.destroyType != DestroyType.RoundEnd;
     }
 
 }

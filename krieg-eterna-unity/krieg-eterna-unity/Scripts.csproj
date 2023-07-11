@@ -55,7 +55,9 @@
      <Compile Include="Assets\Scripts\Row.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\AttachController.cs" />
      <Compile Include="Assets\Scripts\StrengthModType.cs" />
+     <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\DefaultTargetController.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\ReturnController.cs" />
+     <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\RowTargetController.cs" />
      <Compile Include="Assets\Scripts\CardModel.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\EnemyDestroyController.cs" />
      <Compile Include="Assets\Scripts\Game.cs" />

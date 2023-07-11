@@ -10,7 +10,7 @@ public class PowerGraveyardController : EffectControllerInterface
     }
     public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
-        return !c.attach && c.cardType == CardType.Power && !c.playInRow;
+        return !c.attach && !c.playInRow;
     }
     public bool IsSideEffect(Card c, RowEffected player) => true;
 }

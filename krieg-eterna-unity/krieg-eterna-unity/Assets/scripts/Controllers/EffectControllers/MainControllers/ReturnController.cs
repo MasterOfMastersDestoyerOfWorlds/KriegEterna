@@ -68,6 +68,7 @@ public class ReturnController : EffectControllerInterface
         {
             case CardReturnType.King: c.setTargetActive(true); break;
             case CardReturnType.LastPlayedCard: c.setTargetActive(true); break;
+            case CardReturnType.Unit: deck.activateRowsByType(true, true, CardModel.getRowFromSide(player, c.rowEffected)); break;
             default: deck.activateRowsByType(true, true, playerPlayable); break;
         }
     }

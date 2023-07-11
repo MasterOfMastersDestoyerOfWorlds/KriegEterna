@@ -32,4 +32,14 @@ public class KingController : EffectControllerInterface
     {
         return Game.state != State.MULTISTEP && c.cardType == CardType.King;
     }
+    public void Target(Card c, RowEffected player)
+    {
+        Deck deck = Game.activeDeck;
+        RowEffected playerKing = CardModel.getRowFromSide(player, RowEffected.PlayerKing);
+        deck.activateRowsByType(true, false, playerKing);
+    }
+    public bool TargetCondition(Card c, RowEffected player)
+    {
+        return Game.state != State.MULTISTEP && c.cardType == CardType.King; ;
+    }
 }

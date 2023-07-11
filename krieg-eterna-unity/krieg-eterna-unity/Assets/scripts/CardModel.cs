@@ -181,9 +181,12 @@ public class CardModel : MonoBehaviour
     {
         CardType type = cardTypes[index];
         string postfix = "";
-        if(isPower(type)){
+        if (isPower(type))
+        {
             postfix = "Power";
-        }else if(type == CardType.King){
+        }
+        else if (type == CardType.King)
+        {
             postfix = "King";
         }
         Texture2D s = (Texture2D)Resources.Load("Images/CardBacks/Flag" + postfix, typeof(Texture2D));
@@ -260,6 +263,25 @@ public class CardModel : MonoBehaviour
             case CardType.Siege: return getRowFromSide(player, RowEffected.PlayerSiege);
         }
         return RowEffected.None;
+    }
+    public static bool rowIsUnique(RowEffected type)
+    {
+        switch (type)
+        {
+            case RowEffected.PlayerMelee: return true;
+            case RowEffected.PlayerRanged: return true;
+            case RowEffected.PlayerSiege: return true;
+            case RowEffected.PlayerMeleeKing: return true;
+            case RowEffected.PlayerRangedKing: return true;
+            case RowEffected.PlayerSiegeKing: return true;
+            case RowEffected.EnemyMelee: return true;
+            case RowEffected.EnemyRanged: return true;
+            case RowEffected.EnemySiege: return true;
+            case RowEffected.EnemyMeleeKing: return true;
+            case RowEffected.EnemyRangedKing: return true;
+            case RowEffected.EnemySiegeKing: return true;
+        }
+        return false;
     }
 
     public static RowEffected getPlayableRow(RowEffected player, RowEffected type)
