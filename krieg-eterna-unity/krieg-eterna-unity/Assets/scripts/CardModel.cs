@@ -261,6 +261,17 @@ public class CardModel : MonoBehaviour
         }
         return RowEffected.None;
     }
+
+    public static RowEffected getPlayableRow(RowEffected player, RowEffected type)
+    {
+        switch (type)
+        {
+            case RowEffected.Melee: return getRowFromSide(player, RowEffected.PlayerMelee);
+            case RowEffected.Ranged: return getRowFromSide(player, RowEffected.PlayerRanged);
+            case RowEffected.Siege: return getRowFromSide(player, RowEffected.PlayerSiege);
+        }
+        return RowEffected.None;
+    }
     public static RowEffected getFullRow(RowEffected generalRow)
     {
         switch (generalRow)

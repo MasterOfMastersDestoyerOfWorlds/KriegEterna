@@ -12,6 +12,7 @@ public class PlayInRowController : EffectControllerInterface
     }
     public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
-        return targetRow == null && c.rowEffected != RowEffected.None && c.playInRow && !c.attach && Game.state != State.ROUND_END;
+        return targetRow == null && c.rowEffected != RowEffected.None && 
+        c.playInRow && !c.attach && Game.state != State.ROUND_END && c.cardType != CardType.Weather;
     }
 }
