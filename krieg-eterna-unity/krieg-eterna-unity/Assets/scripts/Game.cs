@@ -75,7 +75,7 @@ public class Game : MonoBehaviour
 
         List<string> choosePower = new List<string>();
         choosePower.Add("Redemption");
-        choosePower.Add("Ruin");
+        choosePower.Add("Frost");
         choosePower.Add("Spy");
         choosePower.Add("Jester");
         List<string> chooseUnit = new List<string>();

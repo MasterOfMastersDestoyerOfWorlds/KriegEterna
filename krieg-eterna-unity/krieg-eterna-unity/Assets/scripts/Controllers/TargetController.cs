@@ -111,11 +111,9 @@ public class TargetController
                 ; break;
                 case CardType.Decoy:
                     deck.activateRowsByType(true, true, c.rowEffected); break;
-                case CardType.Weather: c.setTargetActive(true); break;
-                case CardType.Power:
+                default:
                     PowerController.TargetPower(c, player);
                     break;
-                default: break;
             }
         }
         Game.reorganizeGroup();

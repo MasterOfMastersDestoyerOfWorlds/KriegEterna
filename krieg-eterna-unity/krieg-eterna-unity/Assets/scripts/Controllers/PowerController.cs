@@ -64,6 +64,7 @@ public static class PowerController
         {
             if (controller.TargetCondition(c, player))
             {
+                Debug.Log("Target Controller: " + controller);
                 controller.Target(c, player);
                 flag = true;
                 break;
@@ -75,7 +76,12 @@ public static class PowerController
             {
                 deck.activateAllRowsByType(true, false, deck.getMaxScoreRows(enemyPlayable));
             }
-            deck.activateRowsByType(true, true, c.rowEffected);
+            if (c.cardType != CardType.Weather)
+            {
+                deck.activateRowsByType(true, true, c.rowEffected);
+            }else{
+                deck.activateRowsByType(true, false, c.rowEffected);
+            }
         }
         else
         {

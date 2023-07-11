@@ -61,7 +61,7 @@ namespace KriegTests
                 playerHandCount = 1,
                 clicks = new List<Click>{
                     new Click("Storm", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new Click("Storm", RowEffected.PlayerHand, RowEffected.PlayerSiege, RowEffected.PowerGraveyard, true),
+                    new ClickRow("Player Siege", RowEffected.PlayerSiege),  
                     new Click("SunKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiegeKing, true),
                     new ClickRow("PlayerSiegeKing", RowEffected.PlayerSiegeKing),
                     new ClickRow("UnitDeck", RowEffected.UnitDeck),
