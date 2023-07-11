@@ -56,7 +56,7 @@ public class ReturnController : EffectControllerInterface
 
         }
     }
-    public bool PlayCondition(Card c, RowEffected player)
+    public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
         return c.playerCardReturnRemain > 0;
     }

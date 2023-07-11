@@ -18,7 +18,7 @@ public class SetAsideController : EffectControllerInterface
         }
         deck.setCardAside(targetRow, targetCard, c.setAsideType);
     }
-    public bool PlayCondition(Card c, RowEffected player){
+    public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player){
         return c.setAsideRemain > 0;
     }
     public void Target(Card c, RowEffected player)

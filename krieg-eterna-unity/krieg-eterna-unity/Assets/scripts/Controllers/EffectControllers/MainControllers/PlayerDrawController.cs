@@ -17,7 +17,7 @@ public class PlayerDrawController : EffectControllerInterface
         }
         deck.drawCard(targetRow, player);
     }
-    public bool PlayCondition(Card c, RowEffected player)
+    public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
         return c.playerCardDrawRemain > 0 && c.cardDrawType == CardDrawType.Either;
     }

@@ -1,6 +1,6 @@
 CardName	CardType	Effect Text	Strength	PlayerCardDraw	CardDrawType	PlayerCardDestroy	DestroyType	PlayerCardReturn	CardReturnType	StrengthModifier	StrengthModType	GraveyardCardDraw	EnemyCardDraw	EnemyCardDestroy	EnemyReveal	RowMultiple	EffectedRow	SetAside	SetAsideType	Attach	StengthCondition	ChooseN	ChooseRow	ChooseShowN	ChooseCardType	PlayInRow
 Feint	Decoy	Send one of your units on the field to the\rgraveyard, return one of your units to your hand.\rYou can play this card after you've passed.	0			1	Unit	1	Unit								PlayerPlayable									TRUE
-Fortress	Decoy	Attach to a unit on the field. Its strength is halved\rthis round. This unit remains on the field to fight\rin the next round at full strength.	0					0	Protect	0.5	Multiply						All			TRUE						TRUE
+Fortress	Decoy	Attach to a unit on the field. Its strength is halved\rthis round. This unit remains on the field to fight\rin the next round at full strength.	0					0	ProtectAtRoundEnd	0.5	Multiply						All			TRUE						TRUE
 Jester	Decoy	Replace this card with any unit on either side of\rthe field, and add that card to your hand.	0					1	Unit								All									TRUE
 Retreat	Decoy	Replace this card with any of your units on the\rfield, and add that card to your hand.	0					1	Unit								PlayerPlayable									TRUE
 Sack	Decoy	Replace this card with any of your opponent's\runits on the field, and add that card to your\rhand.	0					1	Unit								EnemyPlayable									TRUE
@@ -30,7 +30,7 @@ MusketLine	Melee	 	5																							TRUE
 Officer	Melee	 	3																							TRUE
 Scout	Melee	Reveal a power card in your opponent's hand.	1												1											TRUE
 Square	Melee	 	3																							TRUE
-Burden	Power	Double the strength of your opponent's strongest\rrow. In the next round this card switches sides.	0					0	RoundEnd							2	EnemyMax									TRUE
+Burden	Power	Double the strength of your opponent's strongest\rrow. In the next round this card switches sides.	0					0	SwitchSidesRoundEnd							2	EnemyMax									TRUE
 Crusade	Power	Send all of the strongest units on both sides of\rthe Melee row to the graveyard.	0			1	MaxAll							1			Melee									FALSE
 Death	Power	Choose one unit in the opponent's field to send\rto the graveyard.	0			0	Unit							1			EnemyPlayable									FALSE
 Death2	Power	Choose one unit in the opponent's field to send\rto the graveyard.	0			0	Unit							1			EnemyPlayable									FALSE

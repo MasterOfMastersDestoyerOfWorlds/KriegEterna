@@ -38,7 +38,7 @@ public class EnemyDestroyController : EffectControllerInterface
             }
         }
     }
-    public bool PlayCondition(Card c, RowEffected player)
+    public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
         return c.enemyCardDestroyRemain > 0 && (c.destroyType != DestroyType.RoundEnd || Game.state == State.ROUND_END);
     }

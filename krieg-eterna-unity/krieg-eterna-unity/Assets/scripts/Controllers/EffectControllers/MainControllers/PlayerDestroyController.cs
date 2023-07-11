@@ -68,7 +68,7 @@ public class PlayerDestroyController : EffectControllerInterface
             Game.roundEndCards.Add(c);
         }
     }
-    public bool PlayCondition(Card c, RowEffected player)
+    public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
         return c.playerCardDestroyRemain > 0;
     }

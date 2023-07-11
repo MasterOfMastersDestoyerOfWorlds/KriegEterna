@@ -277,7 +277,7 @@ public class Card : MonoBehaviour
     public bool doneMultiSelection(RowEffected player)
     {
         return (this.playerCardDrawRemain <= 0 || this.cardDrawType != CardDrawType.Either) && this.playerCardDestroyRemain <= 0
-        && (this.playerCardReturnRemain <= 0 || this.cardReturnType == CardReturnType.RoundEnd)
+        && (this.playerCardReturnRemain <= 0 || this.cardReturnType == CardReturnType.SwitchSidesRoundEnd)
         && (this.enemyCardDestroyRemain <= 0  || this.destroyType == DestroyType.RoundEnd)
         && this.setAsideRemain <= 0 && this.moveRemain <= 0 && this.attachmentsRemaining <= 0;
     }

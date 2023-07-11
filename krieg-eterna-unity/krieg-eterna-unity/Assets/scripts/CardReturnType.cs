@@ -5,8 +5,8 @@ public enum CardReturnType
     LastPlayedCard = 3,
     Move = 4,
     Swap = 5,
-    RoundEnd = 6,
-    Protect = 7,
+    SwitchSidesRoundEnd = 6,
+    ProtectAtRoundEnd = 7,
     None = 0
 
 };

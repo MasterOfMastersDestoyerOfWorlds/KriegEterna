@@ -23,7 +23,7 @@ public class ChooseNController : EffectControllerInterface
             setChooseN(c.chooseRow, chooseAction, c.chooseN, c.chooseShowN > 0 ? c.chooseShowN : row.Count, CardModel.chooseToCardTypeExclude(c.chooseCardType), sendRow, State.CHOOSE_N, true);
         }
     }
-    public bool PlayCondition(Card c, RowEffected player){
+    public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player){
         return c.chooseNRemain > 0;
     }
 

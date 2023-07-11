@@ -18,12 +18,12 @@ public class AttachController : EffectControllerInterface
         }
 
         targetCard.attachCard(c);
-        if (c.cardReturnType == CardReturnType.Protect)
+        if (c.cardReturnType == CardReturnType.ProtectAtRoundEnd)
         {
             targetCard.roundEndRemoveType = RoundEndRemoveType.Protect;
         }
     }
-    public bool PlayCondition(Card c, RowEffected player)
+    public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
         return c.attach && c.attachmentsRemaining > 0;
     }

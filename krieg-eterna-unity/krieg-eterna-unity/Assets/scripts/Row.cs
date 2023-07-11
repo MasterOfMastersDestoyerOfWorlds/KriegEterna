@@ -257,7 +257,6 @@ public class Row : List<Card>
         }
         this.score = (int)score;
         if(scoreDisplay != null){
-            Debug.Log("Updating Score: " + this.score);
             scoreDisplay.text = score + "";
         }
         return score;
