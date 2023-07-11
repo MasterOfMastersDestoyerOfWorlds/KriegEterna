@@ -261,6 +261,7 @@ public class CardModel : MonoBehaviour
             case CardType.Melee: return getRowFromSide(player, RowEffected.PlayerMelee);
             case CardType.Ranged: return getRowFromSide(player, RowEffected.PlayerRanged);
             case CardType.Siege: return getRowFromSide(player, RowEffected.PlayerSiege);
+            case CardType.Switch: return getRowFromSide(player, RowEffected.PlayerMelee);
         }
         return RowEffected.None;
     }
@@ -318,6 +319,10 @@ public class CardModel : MonoBehaviour
             case RowEffected.PlayerSiege: return RowEffected.Player;
             case RowEffected.PlayerMeleeKing: return RowEffected.Player;
             case RowEffected.PlayerRangedKing: return RowEffected.Player;
+            case RowEffected.PlayerSwitchFront: return RowEffected.Player;
+            case RowEffected.PlayerSwitchBack: return RowEffected.Player;
+            case RowEffected.EnemySwitchFront: return RowEffected.Enemy;
+            case RowEffected.EnemySwitchBack: return RowEffected.Enemy;
             case RowEffected.PlayerSiegeKing: return RowEffected.Player;
             case RowEffected.EnemyPlayable: return RowEffected.Enemy;
             case RowEffected.PlayerHand: return RowEffected.Player;
@@ -384,36 +389,13 @@ public class CardModel : MonoBehaviour
                 case RowEffected.PlayerMeleeKing: return RowEffected.EnemyMeleeKing;
                 case RowEffected.PlayerRangedKing: return RowEffected.EnemyRangedKing;
                 case RowEffected.PlayerSiegeKing: return RowEffected.EnemySiegeKing;
+                case RowEffected.PlayerSwitchFront: return RowEffected.EnemySwitchFront;
+                case RowEffected.PlayerSwitchBack: return RowEffected.EnemySwitchBack;
+                case RowEffected.EnemySwitchFront: return RowEffected.PlayerSwitchFront;
+                case RowEffected.EnemySwitchBack: return RowEffected.PlayerSwitchBack;
             }
         }
-        else
-        {
-            switch (generalRow)
-            {
-                case RowEffected.PlayerMelee: return RowEffected.PlayerMelee;
-                case RowEffected.PlayerRanged: return RowEffected.PlayerRanged;
-                case RowEffected.PlayerSiege: return RowEffected.PlayerSiege;
-                case RowEffected.PlayerPlayable: return RowEffected.PlayerPlayable;
-                case RowEffected.EnemyPlayable: return RowEffected.EnemyPlayable;
-                case RowEffected.PlayerHand: return RowEffected.PlayerHand;
-                case RowEffected.EnemyHand: return RowEffected.EnemyHand;
-                case RowEffected.EnemyKing: return RowEffected.EnemyKing;
-                case RowEffected.EnemyMax: return RowEffected.EnemyMax;
-                case RowEffected.PlayerMax: return RowEffected.PlayerMax;
-                case RowEffected.PlayerKing: return RowEffected.PlayerKing;
-                case RowEffected.EnemyMelee: return RowEffected.EnemyMelee;
-                case RowEffected.EnemyRanged: return RowEffected.EnemyRanged;
-                case RowEffected.EnemySiege: return RowEffected.EnemySiege;
-                case RowEffected.PlayerSetAside: return RowEffected.PlayerSetAside;
-                case RowEffected.EnemySetAside: return RowEffected.EnemySetAside;
-                case RowEffected.EnemyMeleeKing: return RowEffected.EnemyMeleeKing;
-                case RowEffected.EnemyRangedKing: return RowEffected.EnemyRangedKing;
-                case RowEffected.EnemySiegeKing: return RowEffected.EnemySiegeKing;
-                case RowEffected.PlayerMeleeKing: return RowEffected.PlayerMeleeKing;
-                case RowEffected.PlayerRangedKing: return RowEffected.PlayerRangedKing;
-                case RowEffected.PlayerSiegeKing: return RowEffected.PlayerSiegeKing;
-            }
-        }
+
         return generalRow;
     }
 }

@@ -3,6 +3,7 @@ using UnityEngine;
 public static class PowerController
 {
     public static List<EffectControllerInterface> mainControllerList = new List<EffectControllerInterface>(){
+        new TelescopeTargetController(),
         new KingController(),
         new PlayInRowController(),
         new SpyController(),

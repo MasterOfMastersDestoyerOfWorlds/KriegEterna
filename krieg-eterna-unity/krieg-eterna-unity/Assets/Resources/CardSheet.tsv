@@ -96,7 +96,7 @@ Saboteur	Spy	Play in the opponents ranged row, then draw\rtwo cards.	2	2	Either	
 Smuggler	Spy	Draw two cards, your opponent draws one.	0	2	Either								1													FALSE
 Spy	Spy	Play in the opponents Melee row, then draw\rtwo cards.	1	2	Either												EnemyMelee									TRUE
 Zealot	Spy	Play in the opponent's Melee row, then draw\rtwo cards.	4	2	Either												EnemyMelee									TRUE
-Juggernaut	Switch	This unit can also be played in the Range row.	2																							TRUE
+Juggernaut	Switch	This unit can also be played in the Range row.	2														PlayerSwitchFront									TRUE
 ClearSkies	Weather	Remove all weather effects.	0													1	All									FALSE
 Fog	Weather	The Range row fights at half strength this round.	0													0.5	Ranged									TRUE
 Frost	Weather	The Melee row fights at half strength this round.	0													0.5	Melee									TRUE

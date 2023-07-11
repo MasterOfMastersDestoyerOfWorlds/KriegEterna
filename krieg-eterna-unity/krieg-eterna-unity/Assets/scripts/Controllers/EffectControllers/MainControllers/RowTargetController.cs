@@ -11,7 +11,7 @@ public class RowTargetController : EffectControllerInterface
         {
             deck.activateAllRowsByType(true, false, deck.getMaxScoreRows(enemyPlayable));
         }
-        if (c.cardType != CardType.Weather)
+        if (CardModel.rowIsUnique(c.rowEffected))
         {
             deck.activateRowsByType(true, true, c.rowEffected);
         }

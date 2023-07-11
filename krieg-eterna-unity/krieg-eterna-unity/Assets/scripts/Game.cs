@@ -79,7 +79,7 @@ public class Game : MonoBehaviour
         choosePower.Add("Spy");
         choosePower.Add("Jester");
         List<string> chooseUnit = new List<string>();
-        chooseUnit.Add("Scout");
+        chooseUnit.Add("Juggernaut");
         List<string> chooseKing = new List<string>();
         chooseKing.Add("TraitorKing");
         List<string> chooseUnitGraveyard = new List<string>();

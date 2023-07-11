@@ -51,5 +51,10 @@ public enum RowEffected
     Button = 49,
     SetAside = 50,
     CleanUp = 51,
+    PlayerSwitchFront = 52,
+    PlayerSwitchBack = 53,
+
+    EnemySwitchFront = 54,
+    EnemySwitchBack = 55,
     None = 0
 };
