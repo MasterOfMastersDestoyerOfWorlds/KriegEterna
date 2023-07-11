@@ -1,6 +1,7 @@
 using UnityEngine;
 public class TargetController
 {
+    
     public static void ShowTargets(Card c, RowEffected player)
     {
         Deck deck = Game.activeDeck;
@@ -112,86 +113,13 @@ public class TargetController
                     deck.activateRowsByType(true, true, c.rowEffected); break;
                 case CardType.Weather: c.setTargetActive(true); break;
                 case CardType.Power:
-                    Debug.Log("Setup Power Targets: " + c.cardName);
-                    if (c.playerCardDestroyRemain > 0)
-                    {
-                        switch (c.destroyType)
-                        {
-                            case DestroyType.Unit: deck.activateRowsByType(true, true, playerPlayable); break;
-                            default: c.setTargetActive(true); break;
-                        }
-                        break;
-                    }
-                    else if (c.enemyCardDestroyRemain > 0)
-                    {
-                        deck.activateRowsByType(true, true, enemyPlayable);
-                    }
-                    else if (c.moveRemain > 0)
-                    {
-                        if (c.cardReturnType == CardReturnType.Move)
-                        {
-                            deck.activateRowsByTypeExclude(true, false, c.rowEffected, c.moveRow);
-                        }
-                        else if (c.cardReturnType == CardReturnType.Swap)
-                        {
-                            deck.activateRowsByTypeExclude(true, true, c.rowEffected, c.moveRow);
-                        }
-                    }
-                    else if (c.playerCardReturnRemain > 0)
-                    {
-                        switch (c.cardReturnType)
-                        {
-                            case CardReturnType.King: c.setTargetActive(true); break;
-                            case CardReturnType.LastPlayedCard: c.setTargetActive(true); break;
-                            default: deck.activateRowsByType(true, true, playerPlayable); break;
-                        }
-
-                    }
-                    else if (c.setAsideRemain > 0)
-                    {
-                        switch (c.setAsideType)
-                        {
-                            case SetAsideType.King: deck.activateRowsByType(true, true, playerKing); break;
-                            case SetAsideType.EnemyKing: deck.activateRowsByType(true, true, enemyKing); break;
-                            case SetAsideType.EitherKing: deck.activateRowsByType(true, true, eitherKing); break;
-                            case SetAsideType.Enemy: deck.activateRowsByType(true, true, enemy); break;
-                            case SetAsideType.Player: deck.activateRowsByType(true, true, player); break;
-
-                        }
-                    }
-                    else if (c.playerCardDrawRemain > 0)
-                    {
-                        switch (c.cardDrawType)
-                        {
-                            case CardDrawType.Either: deck.activateRowsByType(true, false, RowEffected.DrawableDeck); break;
-                            case CardDrawType.Unit: c.setTargetActive(true); break;
-                            case CardDrawType.Power: c.setTargetActive(true); break;
-                        }
-                    }
-                    else if (c.chooseNRemain > 0)
-                    {
-                        c.setTargetActive(true);
-                    }
-                    else if (c.attach)
-                    {
-                        deck.activateRowsByType(true, true, RowEffected.All);
-                    }
-                    else if (c.rowEffected != RowEffected.None)
-                    {
-                        if (c.rowEffected == RowEffected.EnemyMax)
-                        {
-                            deck.activateAllRowsByType(true, false, deck.getMaxScoreRows(enemyPlayable));
-                        }
-                        deck.activateRowsByType(true, true, c.rowEffected);
-                    }
-                    else
-                    {
-                        c.setTargetActive(true);
-                    }
+                    PowerController.TargetPower(c, player);
                     break;
                 default: break;
             }
         }
         Game.reorganizeGroup();
     }
+
 }
+

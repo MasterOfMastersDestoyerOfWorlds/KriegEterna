@@ -28,9 +28,6 @@ public class Game : MonoBehaviour
     public static RoundType round;
 
     private static bool hasChosenStart;
-    private static RowEffected chooseNRow;
-    private static RowEffected chooseNSendRow;
-    private static System.Action<Row, RowEffected, Card> chooseNAction;
 
     public static int turnsLeft;
     public static bool enemyPassed;
@@ -115,7 +112,7 @@ public class Game : MonoBehaviour
         if (!hasChosenStart)
         {
             hasChosenStart = true;
-            setChooseN(RowEffected.PlayerHand, activeDeck.sendCardToGraveyard, 3, activeDeck.getRowByType(RowEffected.PlayerHand).Count, new List<CardType>() { CardType.King }, RowEffected.None, State.CHOOSE_N, false);
+            ChooseNController.setChooseN(RowEffected.PlayerHand, activeDeck.sendCardToGraveyard, 3, activeDeck.getRowByType(RowEffected.PlayerHand).Count, new List<CardType>() { CardType.King }, RowEffected.None, State.CHOOSE_N, false);
         }
 
 
@@ -240,7 +237,7 @@ public class Game : MonoBehaviour
                                 if (state == State.CHOOSE_N)
                                 {
                                     Debug.Log("selected!" + selected.cardName);
-                                    chooseCard(selected);
+                                    ChooseNController.chooseCard(selected, player);
                                 }
                                 else
                                 {
@@ -376,7 +373,7 @@ public class Game : MonoBehaviour
     public static void skipActiveCardEffects()
     {
         activeCard.zeroSkipSelectionCounts();
-        endChooseN(activeDeck.getRowByType(RowEffected.ChooseN));
+        ChooseNController.endChooseN(activeDeck.getRowByType(RowEffected.ChooseN), player);
         if (CardModel.isUnit(activeCard.cardType) && activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerHand)).Contains(activeCard))
         {
             PlayController.Play(activeCard, activeDeck.getRowByType(CardModel.getPlayableRow(player, activeCard.cardType)), null, player);
@@ -394,93 +391,6 @@ public class Game : MonoBehaviour
     }
 
 
-    public void chooseCard(Card cardClone)
-    {
-
-        Debug.Log("Choosing Card: " + cardClone.cardName);
-        Row row = activeDeck.getRowByType(chooseNRow);
-        Row displayRow = activeDeck.getRowByType(RowEffected.ChooseN);
-
-        displayRow.Remove(cardClone);
-        Card realCard = row[row.IndexOf(cardClone)];
-        if (activeCard != null)
-        {
-            activeCard.chooseNRemain--;
-        }
-        row.chooseNRemain--;
-        chooseNAction.Invoke(row, chooseNSendRow, realCard);
-
-        cardClone.Destroy();
-        reorganizeGroup();
-
-        if (row.chooseNRemain <= 0)
-        {
-            endChooseN(displayRow);
-        }
-    }
-
-    public static void endChooseN(Row displayRow)
-    {
-        activeDeck.getRowByType(RowEffected.Skip).setVisibile(false);
-        Debug.Log("Setting Invisible");
-        displayRow.setVisibile(false);
-        activeDeck.disactiveAllInDeck(false);
-        if (activeCard == null || activeCard.doneMultiSelection(player))
-        {
-            state = State.FREE;
-        }
-        else
-        {
-            state = State.MULTISTEP;
-            TargetController.ShowTargets(activeCard, player);
-        }
-    }
-
-    public static void setChooseN(RowEffected chooseRow, System.Action<Row, RowEffected, Card> action, int numChoose, int numShow, List<CardType> exclude, RowEffected sendRow, State newState, bool skipable)
-    {
-
-        Row row = activeDeck.getRowByType(chooseRow);
-        row.chooseNRemain = row.Count > numChoose ? numChoose : row.Count;
-        state = newState;
-
-        Debug.Log(state);
-        Debug.Log("setting up choice");
-        float cardHorizontalSpacing = Card.getBaseWidth() * 1.025f;
-        float cardThickness = Card.getBaseThickness();
-        float attachmentVerticalSpacing = Card.getBaseHeight() * 0.2f;
-        Row displayRow = activeDeck.getRowByType(RowEffected.ChooseN);
-        chooseNRow = chooseRow;
-        chooseNSendRow = sendRow;
-        chooseNAction = action;
-        while (displayRow.Count > 0)
-        {
-            Card clone = displayRow[0];
-            displayRow.Remove(clone);
-            clone.Destroy();
-
-        }
-        int revealed = 0;
-        for (int i = 0; revealed < numShow && i < row.Count; i++)
-        {
-            if (!exclude.Contains(row[i].cardType) && (state != State.REVEAL || !row[i].beenRevealed))
-            {
-                Card clone = Instantiate(row[i]) as Card;
-                clone.setVisible(true);
-                displayRow.Add(clone);
-                revealed++;
-                if (state == State.REVEAL)
-                {
-                    row[i].beenRevealed = true;
-                }
-            }
-        }
-        if (skipable)
-        {
-            activeDeck.getRowByType(RowEffected.Skip).setVisibile(true);
-        }
-        reorganizeRow(cardHorizontalSpacing, cardThickness, attachmentVerticalSpacing, displayRow, displayRow.center);
-        displayRow.setActivateRowCardTargets(true, true);
-    }
 
 
     public static void reorganizeGroup()
@@ -495,7 +405,7 @@ public class Game : MonoBehaviour
         }
     }
 
-    private static void reorganizeRow(float cardHorizontalSpacing, float cardThickness, float attachmentVerticalSpacing, Row row, Vector3 centerVector)
+    public static void reorganizeRow(float cardHorizontalSpacing, float cardThickness, float attachmentVerticalSpacing, Row row, Vector3 centerVector)
     {
 
         if (row.Count > 0)
