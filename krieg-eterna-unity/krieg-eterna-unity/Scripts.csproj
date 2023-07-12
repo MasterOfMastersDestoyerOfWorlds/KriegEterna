@@ -42,7 +42,6 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\SideEffectControllers\TelescopeController.cs" />
      <Compile Include="Assets\Scripts\Enums\StrengthModType.cs" />
-     <Compile Include="Assets\Scripts\MenuScript.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\SideEffectControllers\PowerGraveyardController.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\SideEffectControllers\EnemyDrawController.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\KingController.cs" />
@@ -62,6 +61,7 @@
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\RowTargetController.cs" />
      <Compile Include="Assets\Scripts\CardModel.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\EnemyDestroyController.cs" />
+     <Compile Include="Assets\Scripts\Menu\MenuButton.cs" />
      <Compile Include="Assets\Scripts\Enums\State.cs" />
      <Compile Include="Assets\Scripts\Game.cs" />
      <Compile Include="Assets\Scripts\Enums\DestroyType.cs" />
@@ -70,15 +70,16 @@
      <Compile Include="Assets\Scripts\HealthDiamond.cs" />
      <Compile Include="Assets\Scripts\Controllers\PowerController.cs" />
      <Compile Include="Assets\Scripts\Enums\RowEffected.cs" />
+     <Compile Include="Assets\Scripts\Menu\MenuAreas.cs" />
      <Compile Include="Assets\Scripts\Card.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\Score.cs" />
      <Compile Include="Assets\Scripts\Enums\ChooseCardType.cs" />
      <Compile Include="Assets\Scripts\Target.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\SetAsideController.cs" />
+     <Compile Include="Assets\Scripts\Menu\MenuManager.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\MoveController.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\PlayerDestroyController.cs" />
-     <Compile Include="Assets\Scripts\LoadScene.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\PlayInRowController.cs" />
      <Compile Include="Assets\Scripts\Controllers\TargetController.cs" />
      <Compile Include="Assets\Scripts\Areas.cs" />

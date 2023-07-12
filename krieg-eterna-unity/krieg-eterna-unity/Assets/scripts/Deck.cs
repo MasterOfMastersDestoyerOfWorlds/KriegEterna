@@ -47,7 +47,7 @@ public class Deck : MonoBehaviour
         new Row(false, false, false, RowEffected.PlayerSetAside, new List<RowEffected>() { RowEffected.PlayerSetAside, RowEffected.Player , RowEffected.Played, RowEffected.SetAside}, areas.getUnitGraveyardCenterVector),
         new Row(false, false, false, RowEffected.EnemySetAside, new List<RowEffected>() { RowEffected.EnemySetAside, RowEffected.Enemy , RowEffected.Played, RowEffected.SetAside}, areas.getUnitGraveyardCenterVector),
         new Row(false, true, false, RowEffected.ChooseN, new List<RowEffected>() { RowEffected.ChooseN }, areas.getCenterFront),
-        new Row(true, RowEffected.Pass, "Pass", areas.getPassButtonCenterVector, Game.playerPass),
+        new Row(false, RowEffected.Pass, "Pass", areas.getPassButtonCenterVector, Game.playerPass),
         new Row(false, RowEffected.Skip,"Skip" , areas.getSkipButtonCenterVector, () => Game.skipActiveCardEffects())
         };
         Debug.Log("Making Deck");
