@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using TMPro;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -36,6 +36,7 @@ public class CardModel : MonoBehaviour
 
     public int[] isSpecial;
     public string spriteFolder = "Images";
+
     /* 
      * > isSpecial table of values:
      * [1] - gold card
@@ -254,6 +255,7 @@ public class CardModel : MonoBehaviour
         }
         return RowEffected.Enemy;
     }
+
     public static RowEffected getPlayableRow(RowEffected player, CardType type)
     {
         switch (type)

@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Card : MonoBehaviour
 {
@@ -81,12 +81,14 @@ public class Card : MonoBehaviour
     private static GameObject cardModelGameObject;
     private static CardModel cardModel;
 
+    TMP_Text scoreText;
+
     void Awake()
     {
         if (cardModelGameObject == null)
         {
             cardModelGameObject = GameObject.Instantiate(Resources.Load("Prefabs/CardModel") as GameObject, transform.position, transform.rotation);
-            cardModel = cardModelGameObject.GetComponent<CardModel>();  
+            cardModel = cardModelGameObject.GetComponent<CardModel>();
             cardModel.readTextFile();
         }
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -96,6 +98,10 @@ public class Card : MonoBehaviour
             setBaseScale();
         }
         baseLoc = this.transform.position;
+        Transform cardObj = this.transform.Find("Card 1");
+        Transform textObj = cardObj.Find("Score");
+        scoreText = textObj.GetComponent<TMP_Text>();
+        updateStrengthText(this.strength);
     }
 
     public void scaleBig()
@@ -210,6 +216,10 @@ public class Card : MonoBehaviour
         this.chooseShowN = cardModel.chooseShowN[index];
         this.chooseCardType = cardModel.chooseCardType[index];
         this.playInRow = cardModel.playInRow[index];
+        this.scoreText.colorGradient = ColorGradientType.getTextGradient(this.cardType);
+        this.scoreText.outlineColor = ColorGradientType.getTextOutline(this.cardType);
+        this.scoreText.fontSharedMaterial.SetColor(ShaderUtilities.ID_Outline2Color, ColorGradientType.getTextOutline2(this.cardType));
+        updateStrengthText(this.strength);
         this.resetSelectionCounts();
         this.loadCardBackMaterial();
     }
@@ -231,11 +241,14 @@ public class Card : MonoBehaviour
         this.setAsideRemain = this.setAside;
         this.graveyardCardDrawRemain = this.graveyardCardDraw;
         this.chooseNRemain = this.chooseN;
-        if(attach && strengthModType == StrengthModType.Adjacent){
+        if (attach && strengthModType == StrengthModType.Adjacent)
+        {
             this.attachmentsRemaining = 2;
-        }else if (attach){
+        }
+        else if (attach)
+        {
             this.attachmentsRemaining = 1;
-        }       
+        }
         this.strengthConditionPassed = false;
         this.strengthMultiple = 0;
 
@@ -261,16 +274,17 @@ public class Card : MonoBehaviour
         this.playerCardReturnRemain = 0;
         this.setAsideRemain = 0;
         this.graveyardCardDrawRemain = 0;
-        if(strengthModType == StrengthModType.Adjacent){
+        if (strengthModType == StrengthModType.Adjacent)
+        {
             this.attachmentsRemaining = 0;
         }
     }
 
     public bool canSkip()
     {
-        return this.playerCardDestroyRemain <= 0 && 
-        (this.setAsideRemain <= 0 || (this.setAsideType != SetAsideType.King && this.setAsideType != SetAsideType.Player)) 
-        && this.moveRemain <= 0 
+        return this.playerCardDestroyRemain <= 0 &&
+        (this.setAsideRemain <= 0 || (this.setAsideType != SetAsideType.King && this.setAsideType != SetAsideType.Player))
+        && this.moveRemain <= 0
         && (this.attachmentsRemaining <= 0 || strengthModType == StrengthModType.Adjacent);
     }
 
@@ -278,7 +292,7 @@ public class Card : MonoBehaviour
     {
         return (this.playerCardDrawRemain <= 0 || this.cardDrawType != CardDrawType.Either) && this.playerCardDestroyRemain <= 0
         && (this.playerCardReturnRemain <= 0 || this.cardReturnType == CardReturnType.SwitchSidesRoundEnd)
-        && (this.enemyCardDestroyRemain <= 0  || this.destroyType == DestroyType.RoundEnd)
+        && (this.enemyCardDestroyRemain <= 0 || this.destroyType == DestroyType.RoundEnd)
         && this.setAsideRemain <= 0 && this.moveRemain <= 0 && this.attachmentsRemaining <= 0;
     }
 
@@ -304,17 +318,19 @@ public class Card : MonoBehaviour
         Material material = getCardFrontMaterial();
         material.SetInt("_Flash", state ? 1 : 0);
         this.targetActive = state;
+        updateStrengthText(this.calculatedStrength);
     }
     public void setVisible(bool state)
     {
         Material material = getCardFrontMaterial();
         material.SetInt("_Transparent", state ? 0 : 1);
+        updateStrengthText(this.calculatedStrength);
     }
 
     public bool isVisible()
     {
         Material material = getCardFrontMaterial();
-        return material.GetInt("_Transparent") == 0 ? true: false;
+        return material.GetInt("_Transparent") == 0 ? true : false;
     }
     public bool isTargetActive()
     {
@@ -387,25 +403,43 @@ public class Card : MonoBehaviour
     {
         return 0.1f;
     }
-    public int calculateBaseStrength(){
-        int str = strength;
-        foreach(Card attachment in attachments){
-            switch(attachment.strengthModType){
-                case StrengthModType.Set: str = (int)attachment.strengthModifier;break;
+    public int calculateBaseStrength()
+    {
+        int calculatedStrength = strength;
+        foreach (Card attachment in attachments)
+        {
+            switch (attachment.strengthModType)
+            {
+                case StrengthModType.Set: calculatedStrength = (int)attachment.strengthModifier; break;
                 default: break;
             }
         }
-        foreach(Card attachment in attachments){
-            switch(attachment.strengthModType){
-                case StrengthModType.Add: str += (int)attachment.strengthModifier;break;
-                case StrengthModType.Adjacent:str += (int)attachment.strengthModifier;break;
-                case StrengthModType.Multiply:str += (int)(attachment.strengthModifier * attachment.strengthMultiple);break;
-                case StrengthModType.None:break;
+        foreach (Card attachment in attachments)
+        {
+            switch (attachment.strengthModType)
+            {
+                case StrengthModType.Add: calculatedStrength += (int)attachment.strengthModifier; break;
+                case StrengthModType.Adjacent: calculatedStrength += (int)attachment.strengthModifier; break;
+                case StrengthModType.Multiply: calculatedStrength += (int)(attachment.strengthModifier * attachment.strengthMultiple); break;
+                case StrengthModType.None: break;
                 default: break;
             }
         }
-        return str;
+        updateStrengthText(calculatedStrength);
+        return calculatedStrength;
     }
+    public void updateStrengthText(int strength)
+    {
+        if (this.isVisible() && strength > 0)
+        {
+            this.scoreText.text = strength.ToString();
+        }
+        else
+        {
+            this.scoreText.text = "";
+        }
+    }
+
     public void attachCard(Card c)
     {
         attachments.Add(c);
@@ -513,36 +547,6 @@ public class Card : MonoBehaviour
         this.isSpecial = isSpecial;
     }
 
-    /// <summary>
-    /// Flip card
-    /// </summary>
-    /// <param name="x">true if you want to flip in x axis</param>
-    /// <param name="y">true if you want to flip in y axis</param>
-    public void flip(bool x, bool y)
-    {
-        if (x == true)
-        {
-            if (spriteRenderer.flipX == true)
-                spriteRenderer.flipX = false;
-            else
-                spriteRenderer.flipX = true;
-        }
-        if (y == true)
-        {
-            if (spriteRenderer.flipY == true)
-                spriteRenderer.flipY = false;
-            else
-                spriteRenderer.flipY = true;
-        }
-    }
-
-    /// <summary>
-    /// Mirror transformation around (0,0,0) point of Desk
-    /// </summary>
-    public void mirrorTransform()
-    {
-        transform.position = new Vector3(transform.position.x * -1 + 4.39f, transform.position.y * -1 + 1.435f, transform.position.z);
-    }
     public void Destroy()
     {
         foreach (Transform child in transform)

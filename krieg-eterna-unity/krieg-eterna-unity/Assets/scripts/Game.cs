@@ -284,7 +284,10 @@ public class Game : MonoBehaviour
                 else
                 {
                     activeDeck.disactiveAllInDeck(true);
-                    activeCard.LogSelectionsRemaining();
+                    if (activeCard != null)
+                    {
+                        activeCard.LogSelectionsRemaining();
+                    }
                 }
                 reorganizeGroup();
             }

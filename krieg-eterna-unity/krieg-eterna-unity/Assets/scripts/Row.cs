@@ -251,6 +251,7 @@ public class Row : List<Card>
             if(card.calculatedStrength < 1 && card.strength > 0){
                 card.calculatedStrength = 1;
             }
+            card.updateStrengthText(card.calculatedStrength);
         }
         foreach(Card card in this){
             score += card.calculatedStrength;

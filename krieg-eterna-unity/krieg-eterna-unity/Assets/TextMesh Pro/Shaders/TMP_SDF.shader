@@ -14,6 +14,10 @@ Properties {
 	_OutlineWidth		("Outline Thickness", Range(0, 1)) = 0
 	_OutlineSoftness	("Outline Softness", Range(0,1)) = 0
 
+	
+	[HDR]_Outline2Color	("Outline Color", Color) = (0,0,0,1)
+	_Outline2Width		("Outline Thickness", Range(0, 1)) = 0
+
 	_Bevel				("Bevel", Range(0,1)) = 0.5
 	_BevelOffset		("Bevel Offset", Range(-0.5,0.5)) = 0
 	_BevelWidth			("Bevel Width", Range(-.5,0.5)) = 0
@@ -249,17 +253,21 @@ SubShader {
 			float	sd = (bias - c) * scale;
 
 			float outline = (_OutlineWidth * _ScaleRatioA) * scale;
+			float outline2 = (_Outline2Width * _ScaleRatioA) * scale;
 			float softness = (_OutlineSoftness * _ScaleRatioA) * scale;
 
 			half4 faceColor = _FaceColor;
 			half4 outlineColor = _OutlineColor;
+			half4 outline2Color = _Outline2Color;
 
 			faceColor.rgb *= input.color.rgb;
 
 			faceColor *= tex2D(_FaceTex, input.textures.xy + float2(_FaceUVSpeedX, _FaceUVSpeedY) * _Time.y);
 			outlineColor *= tex2D(_OutlineTex, input.textures.zw + float2(_OutlineUVSpeedX, _OutlineUVSpeedY) * _Time.y);
+			outline2Color *= tex2D(_OutlineTex, input.textures.zw + float2(_OutlineUVSpeedX, _OutlineUVSpeedY) * _Time.y);
 
 			faceColor = GetColor(sd, faceColor, outlineColor, outline, softness);
+			faceColor = GetColor(sd, faceColor, outline2Color, outline2, softness);
 
 		#if BEVEL_ON
 			float3 dxy = float3(0.5 / _TextureWidth, 0.5 / _TextureHeight, 0);

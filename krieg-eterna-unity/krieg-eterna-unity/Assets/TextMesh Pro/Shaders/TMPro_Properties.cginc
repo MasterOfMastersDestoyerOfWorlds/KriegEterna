@@ -11,6 +11,8 @@ uniform float		_OutlineUVSpeedX;
 uniform float		_OutlineUVSpeedY;
 uniform fixed4		_OutlineColor;				// RGBA : Color + Opacity
 uniform float		_OutlineWidth;				// v[ 0, 1]
+uniform fixed4		_Outline2Color;				// RGBA : Color + Opacity
+uniform float		_Outline2Width;				// v[ 0, 1]
 
 uniform float		_Bevel;						// v[ 0, 1]
 uniform float		_BevelOffset;				// v[-1, 1]

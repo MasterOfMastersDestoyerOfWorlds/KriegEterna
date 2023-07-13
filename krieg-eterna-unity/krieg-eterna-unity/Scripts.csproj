@@ -40,8 +40,8 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Controllers\EffectControllers\SideEffectControllers\TelescopeController.cs" />
      <Compile Include="Assets\Scripts\Enums\StrengthModType.cs" />
+     <Compile Include="Assets\Scripts\Controllers\EffectControllers\SideEffectControllers\TelescopeController.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\SideEffectControllers\PowerGraveyardController.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\SideEffectControllers\EnemyDrawController.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\KingController.cs" />
@@ -76,6 +76,7 @@
      <Compile Include="Assets\Scripts\Score.cs" />
      <Compile Include="Assets\Scripts\Enums\ChooseCardType.cs" />
      <Compile Include="Assets\Scripts\Target.cs" />
+     <Compile Include="Assets\Scripts\Enums\ColorGradientType.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\SetAsideController.cs" />
      <Compile Include="Assets\Scripts\Menu\MenuManager.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\MoveController.cs" />
