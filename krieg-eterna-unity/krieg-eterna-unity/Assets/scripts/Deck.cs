@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
@@ -78,7 +78,7 @@ public class Deck : MonoBehaviour
         for (int cardIndex = 0; cardIndex < FRONTS_NUMBER; cardIndex++)
         {
 
-            int cardId = uniqueValues[Random.Range(0, uniqueValues.Count)];
+            int cardId = uniqueValues[UnityEngine.Random.Range(0, uniqueValues.Count)];
 
             Card clone = Instantiate(baseCard) as Card;
             clone.tag = "CloneCard";
@@ -376,6 +376,25 @@ public class Deck : MonoBehaviour
                     if (card.isTargetActive())
                     {
                         cardTargets.Add(card);
+                    }
+                }
+
+            }
+        }
+        return cardTargets;
+    }
+    public List<Tuple<Card, RowEffected>> getActiveCardTargetsAndRows()
+    {
+        List<Tuple<Card, RowEffected>> cardTargets = new List<Tuple<Card, RowEffected>>();
+        foreach (Row row in rows)
+        {
+            if (row.isPlayer)
+            {
+                foreach (Card card in row)
+                {
+                    if (card.isTargetActive())
+                    {
+                        cardTargets.Add(new Tuple<Card, RowEffected>(card, row.uniqueType));
                     }
                 }
 
@@ -713,7 +732,7 @@ public class Deck : MonoBehaviour
     {
         foreach (Card c in getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerHand)))
         {
-            if (c.isPlayable(this, player))
+            if (c.isPlayable(player))
             {
                 return c;
             }

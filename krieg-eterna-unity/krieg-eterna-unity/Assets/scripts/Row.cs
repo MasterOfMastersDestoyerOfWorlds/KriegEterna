@@ -2,7 +2,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro; 
+using TMPro;
 
 public class Row : List<Card>
 {
@@ -18,22 +18,22 @@ public class Row : List<Card>
     public bool wide;
     public bool flipped;
 
-    public  bool isButton;
+    public bool isButton;
     public string buttonText;
     public System.Action buttonAction;
 
     public int score;
 
     public GameObject scoreDisplayObject;
-    public TMP_Text  scoreDisplay;
+    public TMP_Text scoreDisplay;
 
     public int chooseNRemain;
 
-    
-    private static  GameObject targetGameObject;
+
+    private static GameObject targetGameObject;
     private static Target baseTarget;
 
-    
+
 
     public bool cardTargetsActivated = false;
 
@@ -62,7 +62,7 @@ public class Row : List<Card>
         this.wide = wide;
         this.flipped = flipped;
         this.isButton = false;
-        scoreDisplayObject = GameObject.Instantiate(Resources.Load("Prefabs/Score") as GameObject, scoreDisplayCenterMethod.Invoke(), new Quaternion(0f,0f,0f,0f));
+        scoreDisplayObject = GameObject.Instantiate(Resources.Load("Prefabs/Score") as GameObject, scoreDisplayCenterMethod.Invoke(), new Quaternion(0f, 0f, 0f, 0f));
         scoreDisplay = scoreDisplayObject.GetComponent<TMP_Text>();
         setupTarget();
     }
@@ -76,7 +76,7 @@ public class Row : List<Card>
         this.buttonAction = buttonAction;
         this.name = uniqueType.ToString();
         this.uniqueType = uniqueType;
-        this.rowType = new List<RowEffected>(){uniqueType, RowEffected.Button};
+        this.rowType = new List<RowEffected>() { uniqueType, RowEffected.Button };
         this.centerMethod = centerMethod;
         this.wide = false;
         this.flipped = false;
@@ -90,28 +90,36 @@ public class Row : List<Card>
         {
             c.setVisible(state);
         }
-        if(isButton){
-            if(state){
+        if (isButton)
+        {
+            if (state)
+            {
                 target.setText(buttonText);
                 target.setButtonVisible();
-            }else {
+            }
+            else
+            {
                 target.setText("");
             }
         }
 
     }
-    public bool isVisible(){
+    public bool isVisible()
+    {
 
-        if(isButton){
+        if (isButton)
+        {
             return target.isVisible();
         }
 
-        if(this.Count == 0){
+        if (this.Count == 0)
+        {
             return false;
         }
         foreach (Card c in this)
         {
-            if(!c.isVisible()){
+            if (!c.isVisible())
+            {
                 return false;
             }
         }
@@ -188,13 +196,15 @@ public class Row : List<Card>
         float score = 0f;
         float rowMultiple = 1f;
         RowEffected enemy = CardModel.getEnemy(player);
-        
+
         bool halfFlag = false;
         foreach (Card card in this)
         {
-            if (card.rowMultiple != 0){
+            if (card.rowMultiple != 0)
+            {
                 rowMultiple = rowMultiple * card.rowMultiple;
-                if(card.rowMultiple < 1){
+                if (card.rowMultiple < 1)
+                {
                     halfFlag = true;
                 }
             }
@@ -207,7 +217,7 @@ public class Row : List<Card>
             if (playerKingRowType != RowEffected.None && !halfFlag)
             {
                 RowEffected fullRow = CardModel.getFullRow(this.uniqueType);
-                
+
                 rowMultiple = rowMultiple * (playerKingRow.hasType(fullRow) ? 2 : 1);
                 Card playerKing = playerKingRow[0];
                 if (playerKing.rowMultiple > 0 && this.hasType(playerKing.rowEffected))
@@ -231,33 +241,40 @@ public class Row : List<Card>
             new List<Card>(),
             new List<Card>(),
         };
-        foreach (Card card in this){
+        foreach (Card card in this)
+        {
             int strength = card.calculateBaseStrength();
             card.calculatedStrength = strength;
-            if( strength <= 3 && strength > 0){
-                strengthGroupingList[strength-1].Add(card);
+            if (strength <= 3 && strength > 0)
+            {
+                strengthGroupingList[strength - 1].Add(card);
             }
         }
-        foreach (List<Card> strengthGrouping in strengthGroupingList){
+        foreach (List<Card> strengthGrouping in strengthGroupingList)
+        {
             int numAdjacent = strengthGrouping.Count - strengthGrouping.Count % 2;
-            for(int i =0; i < numAdjacent; i ++){
+            for (int i = 0; i < numAdjacent; i++)
+            {
                 Card card = strengthGrouping[i];
-                card.calculatedStrength = card.calculatedStrength *2;
+                card.calculatedStrength = card.calculatedStrength * 2;
             }
         }
         foreach (Card card in this)
         {
-            card.calculatedStrength =  (int)Mathf.Floor( ((float)card.calculatedStrength) * rowMultiple);
-            if(card.calculatedStrength < 1 && card.strength > 0){
+            card.calculatedStrength = (int)Mathf.Floor(((float)card.calculatedStrength) * rowMultiple);
+            if (card.calculatedStrength < 1 && card.strength > 0)
+            {
                 card.calculatedStrength = 1;
             }
             card.updateStrengthText(card.calculatedStrength);
         }
-        foreach(Card card in this){
+        foreach (Card card in this)
+        {
             score += card.calculatedStrength;
         }
         this.score = (int)score;
-        if(scoreDisplay != null){
+        if (scoreDisplay != null)
+        {
             scoreDisplay.text = score + "";
         }
         return score;
@@ -315,8 +332,9 @@ public class Row : List<Card>
     }
     public void setupTarget()
     {
-        if(baseTarget == null){
-            targetGameObject = GameObject.Instantiate(Resources.Load("Prefabs/Target") as GameObject, new Vector3(0f,0f,0f), new Quaternion(0,0,0,0));
+        if (baseTarget == null)
+        {
+            targetGameObject = GameObject.Instantiate(Resources.Load("Prefabs/Target") as GameObject, new Vector3(0f, 0f, 0f), new Quaternion(0, 0, 0, 0));
             baseTarget = targetGameObject.GetComponent<Target>();
         }
 
@@ -381,5 +399,15 @@ public class Row : List<Card>
     public bool isTypeUnique(RowEffected type)
     {
         return this.uniqueType == type;
+    }
+
+    internal bool isButtonClickable(RowEffected player)
+    {
+        if (player == RowEffected.Player)
+        {
+            return this.isButton && this.isVisible();
+        }else{
+            return true;
+        }
     }
 }

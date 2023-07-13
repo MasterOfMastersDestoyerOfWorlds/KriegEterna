@@ -337,8 +337,9 @@ public class Card : MonoBehaviour
         return this.targetActive;
     }
 
-    public bool isPlayable(Deck deck, RowEffected player)
+    public bool isPlayable(RowEffected player)
     {
+        Deck deck = Game.activeDeck;
         List<Row> playerRows = deck.getRowsByType(CardModel.getRowFromSide(player, RowEffected.PlayerPlayable));
         int playerRowsSum = 0;
         List<Row> enemyRows = deck.getRowsByType(CardModel.getRowFromSide(player, RowEffected.EnemyPlayable));

@@ -33,6 +33,7 @@ public class Game : MonoBehaviour
     public static bool enemyPassed;
     public static bool playerPassed;
     public static RowEffected player;
+    public EnemyControllerInterface enemyController;
     private GameObject playerDownNameTextObject;
     private Text playerDownNameText;
 
@@ -95,6 +96,7 @@ public class Game : MonoBehaviour
         round = RoundType.RoundOne;
         turnsLeft = int.MaxValue;
         player = RowEffected.Player;
+        enemyController = new RandomBot();
 
     }
 
@@ -107,18 +109,19 @@ public class Game : MonoBehaviour
     public void Update()
     {
 
-        // Updating numberOfCards
+        // Setting up initial card choice
         // ---------------------------------------------------------------------------------------------------------------
         if (!hasChosenStart)
         {
             hasChosenStart = true;
             ChooseNController.setChooseN(RowEffected.PlayerHand, activeDeck.sendCardToGraveyard, 3, activeDeck.getRowByType(RowEffected.PlayerHand).Count, new List<CardType>() { CardType.King }, RowEffected.None, State.CHOOSE_N, false);
+            activeDeck.getRowByType(RowEffected.Pass).setVisibile(false);
         }
 
 
         RowEffected player = RowEffected.Player;
         // Picking card
-        // ---------------------------------------------------------------------------------------------------------------
+        // -------------------------------------------------------------- -------------------------------------------------
         Vector3 mouseRelativePosition = new Vector3(0f, 0f, 0f);
         if (Mouse.current != null)
         {
@@ -149,6 +152,13 @@ public class Game : MonoBehaviour
                 }
             }
         }
+
+        if ( !enemyPassed && state != State.BLOCKED && player == RowEffected.Enemy)
+        {
+            List<Move> moveList = Move.getPossibleMoves(player);
+            enemyController.NextMove(moveList);
+        }
+
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame && state != State.BLOCKED)
         {
 
@@ -173,8 +183,8 @@ public class Game : MonoBehaviour
 
                         Debug.Log("Click Registered On Deck");
                         clickOnTarget = true;
-                        Debug.Log("clicked on: " + c.ToString() + " isPlayable: " + c.isPlayable(activeDeck, player) + " active: " + c.isTargetActive());
-                        if (c.isTargetActive() && (CardModel.isUnit(c.cardType) || c.isPlayable(activeDeck, player)))
+                        Debug.Log("clicked on: " + c.ToString() + " isPlayable: " + c.isPlayable(player) + " active: " + c.isTargetActive());
+                        if (c.isTargetActive() && (CardModel.isUnit(c.cardType) || c.isPlayable(player)))
                         {
                             PlayController.Play(c, null, null, player);
                             c.setTargetActive(false);
@@ -305,6 +315,9 @@ public class Game : MonoBehaviour
     private void turnOver()
     {
         activeDeck.getRowByType(RowEffected.Skip).setVisibile(false);
+        if(player == RowEffected.Player){
+            activeDeck.getRowByType(RowEffected.Pass).setVisibile(true);
+        }
         if (turnsLeft != int.MaxValue && turnsLeft > 0)
         {
             turnsLeft--;

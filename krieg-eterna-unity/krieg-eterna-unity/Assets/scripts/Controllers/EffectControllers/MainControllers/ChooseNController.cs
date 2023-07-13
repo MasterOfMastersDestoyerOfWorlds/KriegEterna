@@ -4,7 +4,7 @@ using System;
 public class ChooseNController : EffectControllerInterface
 {
 
-    private static RowEffected chooseNRow;
+    public static RowEffected chooseNRow;
     private static RowEffected chooseNSendRow;
     private static System.Action<Row, RowEffected, Card> chooseNAction;
     public void Play(Card c, Row targetRow, Card targetCard, RowEffected player)

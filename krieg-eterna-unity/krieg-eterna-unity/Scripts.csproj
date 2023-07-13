@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\SideEffectControllers\GraveyardDrawController.cs" />
      <Compile Include="Assets\Scripts\Enums\CardReturnType.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\TelescopeTargetController.cs" />
+     <Compile Include="Assets\Scripts\Controllers\EnemyControllers\Bot\RandomBot.cs" />
      <Compile Include="Assets\Scripts\Row.cs" />
      <Compile Include="Assets\Scripts\Enums\CardDrawType.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\AttachController.cs" />
@@ -81,6 +82,7 @@
      <Compile Include="Assets\Scripts\Menu\MenuManager.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\MoveController.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\PlayerDestroyController.cs" />
+     <Compile Include="Assets\Scripts\Controllers\EnemyControllers\EnemyControllerInterface.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\PlayInRowController.cs" />
      <Compile Include="Assets\Scripts\Controllers\TargetController.cs" />
      <Compile Include="Assets\Scripts\Areas.cs" />
