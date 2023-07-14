@@ -34,7 +34,7 @@ Burden	Power	Double the strength of your opponent's strongest\rrow. In the next 
 Crusade	Power	Send all of the strongest units on both sides of\rthe Melee row to the graveyard.	0			1	MaxAll							1			Melee									FALSE
 Death	Power	Choose one unit in the opponent's field to send\rto the graveyard.	0			0	Unit							1			EnemyPlayable									FALSE
 Death2	Power	Choose one unit in the opponent's field to send\rto the graveyard.	0			0	Unit							1			EnemyPlayable									FALSE
-EmperorDemise	Power	If a King is on the field, set it aside until the start\rof the next round.	0															1	EitherKing							FALSE
+EmperorDemise	Power	If a King is on the field, set it aside until the start\rof the next round.	0														King	1	EitherKing							FALSE
 Enlightenment	Power	Reveal two power cards in your opponent's hand.\rDraw a unit card.	0	1	Unit										2		EnemyHand									FALSE
 Execution	Power	Send your King to the graveyard.\rIf your King was on the field, draw three units;\rif it was in your hand, draw four.	0	3	Unit	1	King																			FALSE
 Famine	Power	The strongest units from each player's hand are\rsent to the graveyard.	0			1	Max							1			BothHand									FALSE
@@ -49,7 +49,7 @@ Relic	Power	Move a unit to any row.	0					1	Move								All									FALSE
 Resurrection	Power	Choose one unit from the graveyard and play it\ron your side of the field.	0														PlayerHand					1	UnitGraveyard	-1	Unit	FALSE
 Ruin	Power	Discard up to three cards from your hand.\rAdd three times the number of discarded cards\rto the base strength of a unit.	0							3	Multiply						UnitGraveyard			TRUE		3	PlayerHand	-1	Unit	TRUE
 Styx	Power	Pick a card from the top three in the power\rgraveyard, and add that card to your hand.	0														PlayerHand					1	PowerGraveyard	3	Power	FALSE
-Usury	Power	Set aside one of your units on the field until the\rstart of the next round. Draw two cards at the\rend of this round.	0	2	RoundEnd													2	Player							FALSE
+Usury	Power	Set aside one of your units on the field until the\rstart of the next round. Draw two cards at the\rend of this round.	0	2	RoundEnd												PlayerPlayable	2	Player							FALSE
 Void	Power	The round ends after your next turn.	0							1	RoundAdvance															FALSE
 War	Power	Send a card from your hand to the graveyard.\rYour opponent then discards the strongest unit\rin their hand.	0			1	MaxAll							1			Ranged									FALSE
 Wrath	Power	Send one of your units on the field and two of\ryour opponent's to the graveyard.	0			1	Unit							2			EnemyPlayable									FALSE

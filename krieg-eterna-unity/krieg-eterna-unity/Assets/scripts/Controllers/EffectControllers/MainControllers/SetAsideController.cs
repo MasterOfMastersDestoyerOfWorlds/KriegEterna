@@ -24,17 +24,23 @@ public class SetAsideController : EffectControllerInterface
     public void Target(Card c, RowEffected player)
     {
         Deck deck = Game.activeDeck;
-        RowEffected playerKing = CardModel.getRowFromSide(player, RowEffected.PlayerKing);
-        RowEffected enemyKing = CardModel.getRowFromSide(player, RowEffected.EnemyKing);
-        RowEffected eitherKing = CardModel.getRowFromSide(player, RowEffected.King);
-        RowEffected enemy = CardModel.getEnemy(player);
         switch (c.setAsideType)
         {
-            case SetAsideType.King: deck.activateRowsByType(true, true, playerKing); break;
-            case SetAsideType.EnemyKing: deck.activateRowsByType(true, true, enemyKing); break;
-            case SetAsideType.EitherKing: deck.activateRowsByType(true, true, eitherKing); break;
-            case SetAsideType.Enemy: deck.activateRowsByType(true, true, enemy); break;
-            case SetAsideType.Player: deck.activateRowsByType(true, true, player); break;
+            case SetAsideType.King: deck.activateRowsByType(true, true, 
+            CardModel.getRowFromSide(player, RowEffected.PlayerKing)); 
+            break;
+            case SetAsideType.EnemyKing: deck.activateRowsByType(true, true, 
+            CardModel.getRowFromSide(player, RowEffected.EnemyKing)); 
+            break;
+            case SetAsideType.EitherKing: deck.activateRowsByType(true, true, 
+            CardModel.getRowFromSide(player, RowEffected.King)); 
+            break;
+            case SetAsideType.Enemy: deck.activateRowsByType(true, true, 
+            CardModel.getRowFromSide(player, RowEffected.EnemyPlayable)); 
+            break;
+            case SetAsideType.Player: deck.activateRowsByType(true, true, 
+            CardModel.getRowFromSide(player, RowEffected.PlayerPlayable)); 
+            break;
         }
     }
     public bool TargetCondition(Card c, RowEffected player)

@@ -120,7 +120,7 @@ public class Deck : MonoBehaviour
             }
         }
         dealHand(numPowers, numUnits, numKings, choosePower, chooseUnit, chooseKing, RowEffected.PlayerHand);
-        dealHand(numPowers - 2, numUnits - 1, numKings, enemyPower, enemyUnit, enemyKing, RowEffected.EnemyHand);
+        dealHand(numPowers, numUnits, numKings, enemyPower, enemyUnit, enemyKing, RowEffected.EnemyHand);
         getRowByType(RowEffected.EnemyHand).setVisibile(false);
         updateRowCenters();
     }
@@ -407,7 +407,7 @@ public class Deck : MonoBehaviour
         List<Row> rowTargets = new List<Row>();
         foreach (Row row in rows)
         {
-            if (row.target != null && row.target.isFlashing())
+            if (row.target != null && row.target.isTargetActive())
             {
                 rowTargets.Add(row);
             }
@@ -417,31 +417,33 @@ public class Deck : MonoBehaviour
 
     public void activateRowsByType(bool state, bool individualCards, RowEffected type)
     {
-        Debug.Log("Activating Row: " + type);
+        Debug.Log("Activating Type: " + type);
         List<Row> rowList = getRowsByType(type);
         foreach (Row row in rowList)
         {
+            Debug.Log("Activating Row: " + row + " Count: " + Game.activeDeck.getRowByType(row.uniqueType).Count);
             row.setActivateRowCardTargets(state, individualCards);
         }
     }
     public void activateAllRowsByType(bool state, bool individualCards, List<RowEffected> types)
     {
 
-        foreach (RowEffected row in types)
+        foreach (RowEffected type in types)
         {
-            Debug.Log("Activating Row: " + row);
-            this.activateRowsByType(state, individualCards, row);
+            Debug.Log("Activating Row: " + type + " Count: " + Game.activeDeck.getRowByType(type).Count);
+            this.activateRowsByType(state, individualCards, type);
         }
     }
     public void activateRowsByTypeExclude(bool state, bool individualCards, RowEffected type, RowEffected exclude)
     {
-
-        Debug.Log("Activating Row: " + type);
+        
+        Debug.Log("Activating Type: " + type + " Exclude: " + exclude);
         List<Row> rowList = getRowsByType(type);
         foreach (Row row in rowList)
         {
             if (row.uniqueType != exclude)
-            {
+            { 
+                Debug.Log("Activating Row: " + type + " Count: " + Game.activeDeck.getRowByType(row.uniqueType).Count);
                 row.setActivateRowCardTargets(state, individualCards);
             }
         }
@@ -945,6 +947,14 @@ public class Deck : MonoBehaviour
             
             Debug.Log(graveyardRowList[i] + " " + graveyardList[i]);
             sendCardToGraveyard(graveyardRowList[i], RowEffected.None, graveyardList[i]);
+        }
+    }
+
+    internal void sendListToGraveyard(List<Card> discardList, RowEffected currentRow)
+    {
+        Row r  = getRowByType(currentRow);
+        foreach(Card c in discardList){
+            sendCardToGraveyard(r, RowEffected.None, c);
         }
     }
 }

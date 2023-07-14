@@ -5,14 +5,6 @@ using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
 
-// TODO - check if SetActive method of GameObject objects works - yes? Correct system of transparent object
-// TODO - areas size matched to deck size so player can disactivate card clicking into deck area at the edges
-
-// TODO - Drag and drop system
-// TODO - Allign cards with value - increasing. Sorting method to replace cards.
-// TODO - Switching players canvas - image like in real gwent
-// TODO - Hide active card after second click on it
-// TODO - BUG when players put all cards in first tour
 
 public class Game : MonoBehaviour
 {
@@ -45,6 +37,8 @@ public class Game : MonoBehaviour
     private Player player1;
     private Player player2;
 
+    List<Move> moveList;
+
 
 
     private GameObject giveUpButtonObject;
@@ -52,6 +46,9 @@ public class Game : MonoBehaviour
     public static readonly int NUM_POWERS = 4;
     public static readonly int NUM_UNITS = 9;
     public static readonly int NUM_KINGS = 1;
+    public static readonly int NUM_DISCARD_START = 3;
+
+    public static int enemyDiscarded = 0;
 
     void Awake()
     {
@@ -90,13 +87,13 @@ public class Game : MonoBehaviour
         List<string> enemyPower = new List<string>();
         List<string> enemyUnit = new List<string>();
         List<string> enemyKing = new List<string>();
+        enemyController = new RandomBot();
         activeDeck.buildDeck(NUM_POWERS, NUM_UNITS, NUM_KINGS, choosePower, chooseUnit, chooseKing, chooseUnitGraveyard, choosePowerGraveyard, enemyPower, enemyUnit, enemyKing);
         hasChosenStart = false;
         roundEndCards = new List<Card>();
         round = RoundType.RoundOne;
         turnsLeft = int.MaxValue;
         player = RowEffected.Player;
-        enemyController = new RandomBot();
 
     }
 
@@ -108,18 +105,35 @@ public class Game : MonoBehaviour
 
     public void Update()
     {
-
         // Setting up initial card choice
         // ---------------------------------------------------------------------------------------------------------------
+        Debug.Log("playerPassed " + playerPassed + " enemyPassed: " + enemyPassed + " player: " + player);
         if (!hasChosenStart)
         {
             hasChosenStart = true;
-            ChooseNController.setChooseN(RowEffected.PlayerHand, activeDeck.sendCardToGraveyard, 3, activeDeck.getRowByType(RowEffected.PlayerHand).Count, new List<CardType>() { CardType.King }, RowEffected.None, State.CHOOSE_N, false);
+            ChooseNController.setChooseN(RowEffected.PlayerHand, activeDeck.sendCardToGraveyard, NUM_DISCARD_START, activeDeck.getRowByType(RowEffected.PlayerHand).Count, new List<CardType>() { CardType.King }, RowEffected.None, State.CHOOSE_N, false);
             activeDeck.getRowByType(RowEffected.Pass).setVisibile(false);
         }
+        if (enemyDiscarded < NUM_DISCARD_START)
+        {
+            List<Card> discardList = enemyController.ChooseDiscard(NUM_DISCARD_START - enemyDiscarded);
+            enemyDiscarded += discardList.Count;
+            activeDeck.sendListToGraveyard(discardList, RowEffected.EnemyHand);
+        }
 
+        if (state == State.FREE && !enemyPassed && activeDeck.getRowByType(RowEffected.EnemyHand).Count <= 0)
+        {
+            Debug.Log("````````````````No Cards in Enemy Hand, AutoPassing!!!!!!!!!");
+            enemyPassed = true;
+            player = RowEffected.Player;
+        }
+        if (state == State.FREE && !playerPassed && activeDeck.getRowByType(RowEffected.PlayerHand).Count <= 0)
+        {
+            Debug.Log("````````````````No Cards in Player Hand, AutoPassing!!!!!!!!!!!!");
+            playerPassed = true;
+            player = RowEffected.Enemy;
+        }
 
-        RowEffected player = RowEffected.Player;
         // Picking card
         // -------------------------------------------------------------- -------------------------------------------------
         Vector3 mouseRelativePosition = new Vector3(0f, 0f, 0f);
@@ -153,10 +167,26 @@ public class Game : MonoBehaviour
             }
         }
 
-        if ( !enemyPassed && state != State.BLOCKED && player == RowEffected.Enemy)
+        if (!enemyPassed && state != State.BLOCKED && player == RowEffected.Enemy)
         {
-            List<Move> moveList = Move.getPossibleMoves(player);
-            enemyController.NextMove(moveList);
+            if (moveList == null)
+            {
+                moveList = Move.getPossibleMoves(player);
+            }
+            Move nextMove = enemyController.NextMove(moveList);
+            Debug.Log(nextMove);
+            if (nextMove != null)
+            {
+                if (nextMove.isButton)
+                {
+                    activeDeck.getRowByType(nextMove.targetRow).buttonAction.Invoke();
+                }
+                else
+                {
+                    PlayController.Play(nextMove);
+                    TargetController.ShowTargets(nextMove);
+                }
+            }
         }
 
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame && state != State.BLOCKED)
@@ -183,8 +213,9 @@ public class Game : MonoBehaviour
 
                         Debug.Log("Click Registered On Deck");
                         clickOnTarget = true;
+                        bool canPlay = (CardModel.isUnit(c.cardType) || c.isPlayable(player));
                         Debug.Log("clicked on: " + c.ToString() + " isPlayable: " + c.isPlayable(player) + " active: " + c.isTargetActive());
-                        if (c.isTargetActive() && (CardModel.isUnit(c.cardType) || c.isPlayable(player)))
+                        if (c.isTargetActive() && canPlay)
                         {
                             PlayController.Play(c, null, null, player);
                             c.setTargetActive(false);
@@ -196,14 +227,19 @@ public class Game : MonoBehaviour
                             }
                             break;
                         }
-                        activeDeck.disactiveAllInDeck(false);
-                        activeCard = c;
-                        TargetController.ShowTargets(c, player);
+                        else if (canPlay)
+                        {
+                            activeDeck.disactiveAllInDeck(false);
+                            activeCard = c;
+                            TargetController.ShowTargets(c, player);
 
-                        Debug.Log("Setting Card Active: " + c.cardName);
-                        activeCard.setBaseLoc();
-                        activeCard.transform.position += new Vector3(0, Card.getBaseHeight() / 3, 0f);
-                        state = State.ACTIVE_CARD;
+                            Debug.Log("Setting Card Active: " + c.cardName);
+                            activeCard.setBaseLoc();
+                            activeCard.transform.position += new Vector3(0, Card.getBaseHeight() / 3, 0f);
+                            state = State.ACTIVE_CARD;
+                        }else{
+                            Debug.Log("!!!!!!!!!!!!!!!!!!!!!!Cannot Play!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                        }
                     }
                 }
             }
@@ -315,7 +351,8 @@ public class Game : MonoBehaviour
     private void turnOver()
     {
         activeDeck.getRowByType(RowEffected.Skip).setVisibile(false);
-        if(player == RowEffected.Player){
+        if (player == RowEffected.Player)
+        {
             activeDeck.getRowByType(RowEffected.Pass).setVisibile(true);
         }
         if (turnsLeft != int.MaxValue && turnsLeft > 0)
@@ -334,7 +371,7 @@ public class Game : MonoBehaviour
             {
                 foreach (Card c in row)
                 {
-                    Debug.Log(c.setAsideReturnRow);
+                    Debug.Log("Returning: " + c.cardName + " to Hand: "+c.setAsideReturnRow);
                     Row returnRow = activeDeck.getRowByType(c.setAsideReturnRow);
                     returnRow.Add(c);
                 }
@@ -344,7 +381,7 @@ public class Game : MonoBehaviour
             state = State.ROUND_END;
             foreach (Card c in roundEndCards)
             {
-                PlayController.Play(c, activeDeck.getCardRow(c), null, player);
+                PlayController.Play(c, activeDeck.getCardRow(c), null, c.playerPlayed);
             }
             state = State.FREE;
             activeDeck.sendAllToGraveYard(RowEffected.CleanUp, (Row r) =>

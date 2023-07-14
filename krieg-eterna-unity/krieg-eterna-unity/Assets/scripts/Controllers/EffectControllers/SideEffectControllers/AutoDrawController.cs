@@ -4,7 +4,7 @@ public class AutoDrawController : EffectControllerInterface
     public void Play(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
         Deck deck = Game.activeDeck;
-        Debug.Log("Card Draw");
+        Debug.Log("Card Draw type:" + c.cardDrawType + " amount: " + c.playerCardDrawRemain);
         if (c.cardDrawType == CardDrawType.Unit || (c.cardDrawType == CardDrawType.RoundEnd && Game.state == State.ROUND_END))
         {
             int cardsDrawn = 0;

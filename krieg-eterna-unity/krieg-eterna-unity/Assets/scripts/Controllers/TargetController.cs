@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 public class TargetController
 {
@@ -12,5 +13,9 @@ public class TargetController
         Game.reorganizeGroup();
     }
 
+    internal static void ShowTargets(Move nextMove)
+    {
+        ShowTargets(nextMove.c, nextMove.player);
+    }
 }
 

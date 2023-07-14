@@ -81,6 +81,8 @@ public class Card : MonoBehaviour
     private static GameObject cardModelGameObject;
     private static CardModel cardModel;
 
+    public RowEffected playerPlayed;
+
     TMP_Text scoreText;
 
     void Awake()
@@ -315,8 +317,11 @@ public class Card : MonoBehaviour
 
     public void setTargetActive(bool state)
     {
-        Material material = getCardFrontMaterial();
-        material.SetInt("_Flash", state ? 1 : 0);
+        if (Game.player == RowEffected.Player)
+        {
+            Material material = getCardFrontMaterial();
+            material.SetInt("_Flash", state ? 1 : 0);
+        }
         this.targetActive = state;
         updateStrengthText(this.calculatedStrength);
     }
@@ -354,24 +359,24 @@ public class Card : MonoBehaviour
         {
             enemyRowsSum += enemyRows[i].Count;
         }
-        if (this.destroyType == DestroyType.Unit && this.playerCardDestroy + this.playerCardReturn > playerRowsSum)
+        if (this.destroyType == DestroyType.Unit && (this.playerCardDestroy > playerRowsSum  || (this.playerCardReturn > 0 && playerRowsSum - this.playerCardDestroy <= 0 )) )
         {
+            Debug.Log("Cannot Play Cond 1! : Destroy Type Unit : " + (this.playerCardDestroy + this.playerCardReturn) + " > " + playerRowsSum);
             return false;
         }
         if (this.setAsideType == SetAsideType.Player && this.setAside > playerRowsSum)
         {
-            return false;
-        }
-        if (this.setAsideType == SetAsideType.Enemy && this.setAside > enemyRowsSum)
-        {
+            Debug.Log("Cannot Play Cond 2! : Set Aside Type Player : " + this.setAside + " > " + playerRowsSum);
             return false;
         }
         if (this.setAsideType == SetAsideType.EnemyKing && enemyKingRow == RowEffected.None)
         {
+            Debug.Log("Cannot Play Cond 4! : Set Aside Type EnemyKing :  enemyKingRow is None! ");
             return false;
         }
         if (this.setAsideType == SetAsideType.King && playerKingRow == RowEffected.None)
         {
+            Debug.Log("Cannot Play Cond 5! : Set Aside Type y+King :  playerKingRow  is None! ");
             return false;
         }
 

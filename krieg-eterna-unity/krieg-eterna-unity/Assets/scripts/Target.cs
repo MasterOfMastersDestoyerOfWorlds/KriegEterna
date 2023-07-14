@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro; 
+using TMPro;
 
 public class Target : MonoBehaviour
 {
@@ -17,11 +17,12 @@ public class Target : MonoBehaviour
     private static float screenWidth;
 
     public bool flashing;
+    private bool targetActive = false;
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D cardColider;
 
-    
-    TMP_Text  text;
+
+    TMP_Text text;
     private bool buttonVisible = false;
 
     private Material material;
@@ -59,7 +60,8 @@ public class Target : MonoBehaviour
         cardObj.transform.localScale = new Vector3((width / cardDims.x) * cardObj.transform.localScale.x, 1, (height / cardDims.y) * cardObj.transform.localScale.z);
         cardColider.size = new Vector2(width, height);
     }
-    public void setText(string str){
+    public void setText(string str)
+    {
         text.text = str;
     }
     public void setBaseLoc()
@@ -76,6 +78,11 @@ public class Target : MonoBehaviour
     }
 
     public bool isFlashing()
+    {
+        return this.flashing;
+    }
+
+    public bool isTargetActive()
     {
         return this.flashing;
     }
@@ -103,7 +110,8 @@ public class Target : MonoBehaviour
         return baseWidth;
     }
 
-    public bool ContainsMouse(Vector3 mousePos){
+    public bool ContainsMouse(Vector3 mousePos)
+    {
         mousePos.z = this.transform.position.z;
         return this.cardColider.bounds.Contains(mousePos);
     }
@@ -129,17 +137,20 @@ public class Target : MonoBehaviour
         }
         return this.material;
     }
-    public void setFlashing(bool state)
+    public void setTargetActive(bool state)
     {
-        
-        if (state)
+        if (Game.player == RowEffected.Player)
         {
-            this.setFlashing();
+            if (state)
+            {
+                this.setFlashing();
+            }
+            else
+            {
+                this.setNotFlashing();
+            }
         }
-        else
-        {
-            this.setNotFlashing();
-        }
+        this.targetActive = state;
     }
     public void setButtonVisible()
     {

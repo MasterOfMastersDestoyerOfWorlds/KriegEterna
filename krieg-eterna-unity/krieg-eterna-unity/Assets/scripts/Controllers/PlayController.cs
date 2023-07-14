@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 public class PlayController
@@ -51,6 +52,7 @@ public class PlayController
                 deck.getRowByType(RowEffected.Skip).setVisibile(true);
             }
         }
+        c.playerPlayed = player;
         Game.reorganizeGroup();
     }
     
@@ -74,5 +76,9 @@ public class PlayController
         Debug.Log(Game.state);
     }
 
-
+    internal static void Play(Move nextMove)
+    {
+        Play(nextMove.c, Game.activeDeck.getRowByType(nextMove.targetRow), nextMove.targetCard, nextMove.player);
+        nextMove.executedMove = true;
+    }
 }

@@ -323,7 +323,7 @@ public class Row : List<Card>
         }
         else
         {
-            this.target.setFlashing(state);
+            this.target.setTargetActive(state);
         }
     }
     public void centerRow()

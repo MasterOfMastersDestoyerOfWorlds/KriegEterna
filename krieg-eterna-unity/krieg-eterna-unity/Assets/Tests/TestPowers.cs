@@ -28,6 +28,7 @@ namespace KriegTests
             new TestCase
             {
                 testName = "BurdenRoundTwo",
+                playerHandCount = 1,
                 scoreRows = new List<(RowEffected, int)>{
                     (RowEffected.PlayerRanged, 4),
                 },
@@ -38,6 +39,7 @@ namespace KriegTests
                     new Click("Grenadier2", RowEffected.EnemyRanged, RowEffected.EnemyRanged, RowEffected.UnitGraveyard, false),
                     new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.UnitGraveyard, false),
                     new ClickRow("Pass", RowEffected.Pass),
+                    new Click("Soldier2", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerHand, false),
                     new Click("Soldier", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
                     new Click("Soldier", RowEffected.PlayerHand, RowEffected.PlayerRanged, RowEffected.PlayerRanged, true),
                 }
@@ -307,11 +309,12 @@ namespace KriegTests
             new TestCase
             {
                 testName = "Usury",
-                playerHandCount = 3,
+                playerHandCount = 4,
                 round = RoundType.RoundTwo,
                 clicks = new List<Click>{
                     new Click("Usury", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerSetAside, RowEffected.PlayerHand, true),
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerSetAside, RowEffected.PlayerHand, true),
                     new ClickRow("EndRound", RowEffected.Pass),
                     new ClickRow("UnitDeck", RowEffected.UnitDeck),
                     new ClickRow("PowerDeck", RowEffected.PowerDeck),

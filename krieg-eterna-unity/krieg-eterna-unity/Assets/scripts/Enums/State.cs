@@ -6,5 +6,6 @@ public enum State
     MULTISTEP,
     REVEAL,
     ROUND_END,
-    BLOCKED
+    BLOCKED,
+    
 };

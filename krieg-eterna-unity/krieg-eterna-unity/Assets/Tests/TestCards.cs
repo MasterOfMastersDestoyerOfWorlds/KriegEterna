@@ -187,13 +187,14 @@ namespace KriegTests
             Row displayRow = deck.getRowByType(RowEffected.ChooseN);
             displayRow.setVisibile(false);
             deck.disactiveAllInDeck(false);
-            Game.state = State.FREE;
-            Game.round = RoundType.RoundOne;
-            Game.player = RowEffected.Player;
-            Game.playerPassed = false;
-            Game.enemyPassed = true;
             Game.lastPlayedCard = null;
             Game.roundEndCards = new List<Card>();
+            Game.state = State.BLOCKED;
+            Game.playerPassed = false;
+            Game.enemyPassed = true;
+            Game.enemyDiscarded = Game.NUM_DISCARD_START;
+            Game.player = RowEffected.Player;
+            Game.round = RoundType.RoundOne;
             Game.reorganizeGroup();
         }
 
@@ -249,6 +250,9 @@ namespace KriegTests
                     }
                 }
             }
+            
+            
+            Game.state = State.FREE;
 
             //Do clicks on Cards
             for (int i = 0; i < clicks.Count; i++)
