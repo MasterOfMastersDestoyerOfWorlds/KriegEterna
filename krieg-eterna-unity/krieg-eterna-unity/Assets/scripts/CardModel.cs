@@ -395,6 +395,8 @@ public class CardModel : MonoBehaviour
                 case RowEffected.PlayerSwitchBack: return RowEffected.EnemySwitchBack;
                 case RowEffected.EnemySwitchFront: return RowEffected.PlayerSwitchFront;
                 case RowEffected.EnemySwitchBack: return RowEffected.PlayerSwitchBack;
+                case RowEffected.PlayerChooseN: return RowEffected.EnemyChooseN;
+                case RowEffected.EnemyChooseN: return RowEffected.PlayerChooseN;
             }
         }
 

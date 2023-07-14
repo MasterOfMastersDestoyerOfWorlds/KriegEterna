@@ -33,11 +33,13 @@ public class Row : List<Card>
     private static GameObject targetGameObject;
     private static Target baseTarget;
 
+    bool cardVisibility;
+
 
 
     public bool cardTargetsActivated = false;
 
-    public Row(bool isPlayer, bool wide, bool flipped, RowEffected uniqueType, List<RowEffected> rowType, System.Func<Vector3> centerMethod)
+    public Row(bool isPlayer, bool wide, bool flipped, bool visibility, RowEffected uniqueType, List<RowEffected> rowType, System.Func<Vector3> centerMethod)
     {
         this.isPlayer = isPlayer;
         this.isScoring = false;
@@ -48,9 +50,10 @@ public class Row : List<Card>
         this.wide = wide;
         this.flipped = flipped;
         this.isButton = false;
+        this.cardVisibility = visibility;
         setupTarget();
     }
-    public Row(bool isPlayer, bool wide, bool flipped, RowEffected uniqueType, List<RowEffected> rowType, System.Func<Vector3> centerMethod, System.Func<Vector3> scoreDisplayCenterMethod)
+    public Row(bool isPlayer, bool wide, bool flipped, bool visibility, RowEffected uniqueType, List<RowEffected> rowType, System.Func<Vector3> centerMethod, System.Func<Vector3> scoreDisplayCenterMethod)
     {
         this.isPlayer = isPlayer;
         this.isScoring = true;
@@ -61,6 +64,7 @@ public class Row : List<Card>
         this.scoreDisplayCenterMethod = scoreDisplayCenterMethod;
         this.wide = wide;
         this.flipped = flipped;
+        this.cardVisibility = visibility;
         this.isButton = false;
         scoreDisplayObject = GameObject.Instantiate(Resources.Load("Prefabs/Score") as GameObject, scoreDisplayCenterMethod.Invoke(), new Quaternion(0f, 0f, 0f, 0f));
         scoreDisplay = scoreDisplayObject.GetComponent<TMP_Text>();
@@ -82,6 +86,13 @@ public class Row : List<Card>
         this.flipped = false;
         setupTarget();
         setVisibile(visible);
+    }
+
+    public new void Add(Card card)
+    {
+        base.Add(card);
+        card.setVisible(cardVisibility);
+        
     }
 
     public void setVisibile(bool state)

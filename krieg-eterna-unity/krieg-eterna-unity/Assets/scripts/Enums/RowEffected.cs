@@ -1,4 +1,4 @@
-public enum RowEffected 
+public enum RowEffected
 {
     All = 1,
     Melee = 2,
@@ -37,7 +37,7 @@ public enum RowEffected
     EnemySetAside = 35,
     Enemy = 36,
     Player = 37,
-    ChooseN = 38,
+    PlayerChooseN = 38,
     King = 39,
     MeleeFull = 40,
     RangedFull = 41,
@@ -45,7 +45,7 @@ public enum RowEffected
     PlayerMax = 43,
     Played = 44,
     Pass = 45,
-    Skip=46,
+    Skip = 46,
     PlayableGraveyard = 47,
     Graveyard = 48,
     Button = 49,
@@ -53,8 +53,9 @@ public enum RowEffected
     CleanUp = 51,
     PlayerSwitchFront = 52,
     PlayerSwitchBack = 53,
-
     EnemySwitchFront = 54,
     EnemySwitchBack = 55,
+    EnemyChooseN = 56,
+    ChooseN = 57,
     None = 0
 };

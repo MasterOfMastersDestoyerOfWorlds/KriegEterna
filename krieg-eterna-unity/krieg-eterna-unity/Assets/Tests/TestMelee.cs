@@ -164,7 +164,7 @@ namespace KriegTests
                     new Click("Scout", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
                     new Click("Scout", RowEffected.PlayerHand, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
                     new Click(true, "Fate", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.EnemyHand, false),
-                    new Click(false, "Execution", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.ChooseN, true),
+                    new Click(false, "Execution", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.PlayerChooseN, true),
                     new Click(false, "Spy", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.EnemyHand, false),
                 }
             },

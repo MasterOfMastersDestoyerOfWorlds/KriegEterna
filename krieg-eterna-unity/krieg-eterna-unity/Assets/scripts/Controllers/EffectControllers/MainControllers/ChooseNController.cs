@@ -62,13 +62,14 @@ public class ChooseNController : EffectControllerInterface
         Row row = activeDeck.getRowByType(chooseRow);
         row.chooseNRemain = row.Count > numChoose ? numChoose : row.Count;
         Game.state = newState;
+        RowEffected player = Game.player;
 
         Debug.Log(Game.state);
         Debug.Log("setting up choice");
         float cardHorizontalSpacing = Card.getBaseWidth() * 1.025f;
         float cardThickness = Card.getBaseThickness();
         float attachmentVerticalSpacing = Card.getBaseHeight() * 0.2f;
-        Row displayRow = activeDeck.getRowByType(RowEffected.ChooseN);
+        Row displayRow = activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerChooseN));
         chooseNRow = chooseRow;
         chooseNSendRow = sendRow;
         chooseNAction = action;
@@ -108,7 +109,7 @@ public class ChooseNController : EffectControllerInterface
         Card activeCard = Game.activeCard;
         Debug.Log("Choosing Card: " + cardClone.cardName);
         Row row = activeDeck.getRowByType(chooseNRow);
-        Row displayRow = activeDeck.getRowByType(RowEffected.ChooseN);
+        Row displayRow = activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerChooseN));
 
         displayRow.Remove(cardClone);
         Card realCard = row[row.IndexOf(cardClone)];

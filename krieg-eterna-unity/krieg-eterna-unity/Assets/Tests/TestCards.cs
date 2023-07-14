@@ -184,7 +184,7 @@ namespace KriegTests
             powers = deck.getRowByType(RowEffected.PowerDeck);
             units = deck.getRowByType(RowEffected.UnitDeck);
             kings = deck.getRowByType(RowEffected.KingDeck);
-            Row displayRow = deck.getRowByType(RowEffected.ChooseN);
+            Row displayRow = deck.getRowByType(RowEffected.PlayerChooseN);
             displayRow.setVisibile(false);
             deck.disactiveAllInDeck(false);
             Game.lastPlayedCard = null;
@@ -241,7 +241,7 @@ namespace KriegTests
                     }
                     else
                     {
-                        if (clicks[i].dealRow != RowEffected.ChooseN)
+                        if (clicks[i].dealRow != RowEffected.PlayerChooseN)
                         {
                             clicks[i].card = deck.getRowByType(clicks[i].dealRow).getCardByName(cardName);
                         }else{
@@ -261,7 +261,7 @@ namespace KriegTests
                 {
                     Card c = clicks[i].card;
                     Card clickCard = c;
-                    if(clicks[i].dealRow == RowEffected.ChooseN){
+                    if(clicks[i].dealRow == RowEffected.PlayerChooseN){
                         clickCard = deck.getRowByType(clicks[i].dealRow).getCardByName(clicks[i].name);
                     }
                     InputSystem.Update();
@@ -305,7 +305,7 @@ namespace KriegTests
             }
             Assert.AreEqual(State.FREE, Game.state);
             Assert.AreEqual(testCase.round, Game.round);
-            Assert.AreEqual(false, deck.getRowByType(RowEffected.ChooseN).isVisible(), "ChooseN row is Visible!");
+            Assert.AreEqual(false, deck.getRowByType(RowEffected.PlayerChooseN).isVisible(), "ChooseN row is Visible!");
 
             Assert.AreEqual(testCase.playerHandCount, deck.getRowByType(RowEffected.PlayerHand).Count, $"{deck.getRowByType(RowEffected.PlayerHand)}");
             Assert.AreEqual(testCase.enemyHandCount, deck.getRowByType(RowEffected.EnemyHand).Count, $"{deck.getRowByType(RowEffected.EnemyHand)}");

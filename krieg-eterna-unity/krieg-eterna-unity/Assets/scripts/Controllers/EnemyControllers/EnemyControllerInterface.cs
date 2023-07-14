@@ -95,7 +95,7 @@ public class Move
             Row chooseRow = deck.getRowByType(ChooseNController.chooseNRow);
             foreach (Card c in chooseRow)
             {
-                moveList.Add(new Move(activeCard, c, RowEffected.ChooseN, player, false));
+                moveList.Add(new Move(activeCard, c, CardModel.getRowFromSide(player, RowEffected.PlayerChooseN), player, false));
             }
         }
         List<Row> buttonRows = deck.getRowsByType(RowEffected.Button);

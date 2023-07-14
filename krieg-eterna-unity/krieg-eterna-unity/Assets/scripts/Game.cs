@@ -187,6 +187,9 @@ public class Game : MonoBehaviour
                 {
                     PlayController.Play(nextMove);
                     TargetController.ShowTargets(nextMove);
+                    if(state == State.REVEAL){
+                        state = State.FREE;
+                    }
                     turnOver();
                 }
             }
@@ -198,7 +201,7 @@ public class Game : MonoBehaviour
             Debug.Log("--------------------------------------------------------------------");
             if (state == State.REVEAL)
             {
-                activeDeck.getRowByType(RowEffected.ChooseN).setVisibile(false);
+                activeDeck.getRowByType(RowEffected.PlayerChooseN).setVisibile(false);
                 state = State.FREE;
                 return;
             }
@@ -432,7 +435,7 @@ public class Game : MonoBehaviour
     public static void skipActiveCardEffects()
     {
         activeCard.zeroSkipSelectionCounts();
-        ChooseNController.endChooseN(activeDeck.getRowByType(RowEffected.ChooseN), player);
+        ChooseNController.endChooseN(activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerChooseN)), player);
         if (CardModel.isUnit(activeCard.cardType) && activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerHand)).Contains(activeCard))
         {
             PlayController.Play(activeCard, activeDeck.getRowByType(CardModel.getPlayableRow(player, activeCard.cardType)), null, player);
