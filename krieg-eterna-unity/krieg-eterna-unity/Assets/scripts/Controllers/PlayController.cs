@@ -5,6 +5,9 @@ public class PlayController
 {
     public static void Play(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
+        if(!c.isVisible()){
+            c.setVisible(true);
+        }
         Deck deck = Game.activeDeck;
         Debug.Log("Playing: " + c.cardName + " Type: " + c.cardType);
         if (targetRow != null)

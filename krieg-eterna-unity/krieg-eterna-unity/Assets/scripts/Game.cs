@@ -20,6 +20,7 @@ public class Game : MonoBehaviour
     public static RoundType round;
 
     private static bool hasChosenStart;
+    private static bool setupComplete;
 
     public static int turnsLeft;
     public static bool enemyPassed;
@@ -90,6 +91,7 @@ public class Game : MonoBehaviour
         enemyController = new RandomBot();
         activeDeck.buildDeck(NUM_POWERS, NUM_UNITS, NUM_KINGS, choosePower, chooseUnit, chooseKing, chooseUnitGraveyard, choosePowerGraveyard, enemyPower, enemyUnit, enemyKing);
         hasChosenStart = false;
+        setupComplete = false;
         roundEndCards = new List<Card>();
         round = RoundType.RoundOne;
         turnsLeft = int.MaxValue;
@@ -107,7 +109,6 @@ public class Game : MonoBehaviour
     {
         // Setting up initial card choice
         // ---------------------------------------------------------------------------------------------------------------
-        Debug.Log("playerPassed " + playerPassed + " enemyPassed: " + enemyPassed + " player: " + player);
         if (!hasChosenStart)
         {
             hasChosenStart = true;
@@ -166,7 +167,8 @@ public class Game : MonoBehaviour
                 }
             }
         }
-
+        // Doing Enemy Turn
+        // ---------------------------------------------------------------------------------------------------------------
         if (!enemyPassed && state != State.BLOCKED && player == RowEffected.Enemy)
         {
             if (moveList == null)
@@ -185,6 +187,7 @@ public class Game : MonoBehaviour
                 {
                     PlayController.Play(nextMove);
                     TargetController.ShowTargets(nextMove);
+                    turnOver();
                 }
             }
         }
@@ -340,7 +343,10 @@ public class Game : MonoBehaviour
             else
             {
                 activeDeck.scoreRows(RowEffected.All);
-                if (state == State.FREE || activeDeck.getRowByType(CardModel.getHandRow(player)).Count == 0)
+                if(!setupComplete && state == State.FREE){
+                    setupComplete = true;
+                }
+                else if (state == State.FREE || activeDeck.getRowByType(CardModel.getHandRow(player)).Count == 0)
                 {
                     turnOver();
                 }
