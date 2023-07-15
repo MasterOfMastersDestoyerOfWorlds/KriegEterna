@@ -27,11 +27,11 @@ public class Game : MonoBehaviour
     public static bool playerPassed;
     public static RowEffected player;
     public EnemyControllerInterface enemyController;
-    private GameObject playerDownNameTextObject;
-    private Text playerDownNameText;
+    private Text playerNameText;
+    private Text playerCardCountText;
 
-    private GameObject playerUpNameTextObject;
-    private Text playerUpNameText;
+    private Text enemyNameText;
+    private Text enemyCardCountText;
 
     private GameObject player1Object;
     private GameObject player2Object;
@@ -66,11 +66,17 @@ public class Game : MonoBehaviour
         GameObject.Instantiate(Resources.Load("Prefabs/Canvas") as GameObject, transform.position, transform.rotation);
 
 
-        playerDownNameTextObject = GameObject.Find("DownPlayerName");
-        playerDownNameText = playerDownNameTextObject.GetComponent<Text>();
+        GameObject playerNameTextObject = GameObject.Find("PlayerName");
+        playerNameText = playerNameTextObject.GetComponent<Text>();
 
-        playerUpNameTextObject = GameObject.Find("UpPlayerName");
-        playerUpNameText = playerUpNameTextObject.GetComponent<Text>();
+        GameObject playerCardCountTextObject = GameObject.Find("PlayerCardCount");
+        playerCardCountText = playerCardCountTextObject.GetComponent<Text>();
+
+        GameObject enemyNameTextObject = GameObject.Find("EnemyName");
+        enemyNameText = enemyNameTextObject.GetComponent<Text>();
+
+        GameObject enemyCardCountTextObject = GameObject.Find("EnemyCardCount");
+        enemyCardCountText = enemyCardCountTextObject.GetComponent<Text>();
 
         List<string> choosePower = new List<string>();
         choosePower.Add("Redemption");
@@ -135,6 +141,9 @@ public class Game : MonoBehaviour
             player = RowEffected.Enemy;
         }
 
+        enemyCardCountText.text = activeDeck.getRowByType(RowEffected.EnemyHand).Count.ToString();
+        playerCardCountText.text = activeDeck.getRowByType(RowEffected.PlayerHand).Count.ToString();
+
         // Picking card
         // -------------------------------------------------------------- -------------------------------------------------
         Vector3 mouseRelativePosition = new Vector3(0f, 0f, 0f);
@@ -171,6 +180,7 @@ public class Game : MonoBehaviour
         // ---------------------------------------------------------------------------------------------------------------
         if (!enemyPassed && state != State.BLOCKED && player == RowEffected.Enemy)
         {
+            Debug.Log("+++++++++++++++++++++++++++++++++++++++ Enemy Turn+++++++++++++++++++++++++++++++++++++");
             if (moveList == null)
             {
                 moveList = Move.getPossibleMoves(player);
@@ -183,15 +193,27 @@ public class Game : MonoBehaviour
                 {
                     activeDeck.getRowByType(nextMove.targetRow).buttonAction.Invoke();
                 }
+                else if (nextMove.activate)
+                {
+                    activeCard = nextMove.c;
+                    TargetController.ShowTargets(nextMove);
+                    state = State.ACTIVE_CARD;
+                }
                 else
                 {
                     PlayController.Play(nextMove);
                     TargetController.ShowTargets(nextMove);
-                    if(state == State.REVEAL){
+                    activeDeck.scoreRows(RowEffected.All);
+                    if (state == State.REVEAL)
+                    {
                         state = State.FREE;
                     }
+                }
+                if (state == State.FREE)
+                {
                     turnOver();
                 }
+                moveList = null;
             }
         }
 
@@ -205,7 +227,7 @@ public class Game : MonoBehaviour
                 state = State.FREE;
                 return;
             }
-            Debug.Log("Click Registered! State: " + state);
+            Debug.Log("Click Registered! State: " + state + " player: " + player);
             bool clickOnTarget = false;
             Row playerHand = activeDeck.getRowByType(RowEffected.PlayerHand);
 
@@ -243,7 +265,9 @@ public class Game : MonoBehaviour
                             activeCard.setBaseLoc();
                             activeCard.transform.position += new Vector3(0, Card.getBaseHeight() / 3, 0f);
                             state = State.ACTIVE_CARD;
-                        }else{
+                        }
+                        else
+                        {
                             Debug.Log("!!!!!!!!!!!!!!!!!!!!!!Cannot Play!!!!!!!!!!!!!!!!!!!!!!!!!!");
                         }
                     }
@@ -339,6 +363,10 @@ public class Game : MonoBehaviour
                     if (activeCard != null)
                     {
                         activeCard.LogSelectionsRemaining();
+                        if (activeCard.doneMultiSelection(player))
+                        {
+                            state = State.FREE;
+                        }
                     }
                 }
                 reorganizeGroup();
@@ -346,7 +374,8 @@ public class Game : MonoBehaviour
             else
             {
                 activeDeck.scoreRows(RowEffected.All);
-                if(!setupComplete && state == State.FREE){
+                if (!setupComplete && state == State.FREE)
+                {
                     setupComplete = true;
                 }
                 else if (state == State.FREE || activeDeck.getRowByType(CardModel.getHandRow(player)).Count == 0)
@@ -359,6 +388,7 @@ public class Game : MonoBehaviour
 
     private void turnOver()
     {
+        activeDeck.scoreRows(RowEffected.All);
         activeDeck.getRowByType(RowEffected.Skip).setVisibile(false);
         if (player == RowEffected.Player)
         {
@@ -380,7 +410,7 @@ public class Game : MonoBehaviour
             {
                 foreach (Card c in row)
                 {
-                    Debug.Log("Returning: " + c.cardName + " to Hand: "+c.setAsideReturnRow);
+                    Debug.Log("Returning: " + c.cardName + " to Hand: " + c.setAsideReturnRow);
                     Row returnRow = activeDeck.getRowByType(c.setAsideReturnRow);
                     returnRow.Add(c);
                 }
@@ -526,5 +556,14 @@ public class Game : MonoBehaviour
             case RoundType.RoundTwo: return RoundType.FinalRound;
             default: return RoundType.GameFinished;
         }
+    }
+
+    internal static bool canPass()
+    {
+        return state == State.FREE;
+    }
+    internal static bool canSkip()
+    {
+        return (state == State.MULTISTEP || state == State.CHOOSE_N) && activeCard.canSkip();
     }
 }

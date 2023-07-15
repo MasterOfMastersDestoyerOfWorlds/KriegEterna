@@ -48,8 +48,8 @@ public class Deck : MonoBehaviour
         new Row(false, false, false, true, RowEffected.EnemySetAside, new List<RowEffected>() { RowEffected.EnemySetAside, RowEffected.Enemy , RowEffected.Played, RowEffected.SetAside}, areas.getUnitGraveyardCenterVector),
         new Row(false, true, false, true, RowEffected.PlayerChooseN, new List<RowEffected>() { RowEffected.PlayerChooseN, RowEffected.ChooseN }, areas.getCenterFront),
         new Row(false, true, false, false, RowEffected.EnemyChooseN, new List<RowEffected>() { RowEffected.EnemyChooseN, RowEffected.ChooseN }, areas.getCenterFront),
-        new Row(false, RowEffected.Pass, "Pass", areas.getPassButtonCenterVector, Game.playerPass),
-        new Row(false, RowEffected.Skip,"Skip" , areas.getSkipButtonCenterVector, () => Game.skipActiveCardEffects())
+        new Row(false, RowEffected.Pass, "Pass", areas.getPassButtonCenterVector, Game.playerPass, Game.canPass),
+        new Row(false, RowEffected.Skip,"Skip" , areas.getSkipButtonCenterVector, () => Game.skipActiveCardEffects(), Game.canSkip)
         };
         Debug.Log("Making Deck");
     }
@@ -307,6 +307,7 @@ public class Deck : MonoBehaviour
 
     public void disactiveAllInDeck(bool multistep)
     {
+        Debug.Log("Disactivating all in deck multistep: " + multistep);
         foreach (Row row in rows)
         {
             foreach (Card c in row)
@@ -323,7 +324,7 @@ public class Deck : MonoBehaviour
                     c.resetTransform();
                 }
             }
-            if (row.target != null)
+            if (row.target != null && !row.hasType(RowEffected.ChooseN))
             {
                 row.target.setNotFlashing();
                 row.cardTargetsActivated = false;

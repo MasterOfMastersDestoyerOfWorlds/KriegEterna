@@ -21,6 +21,7 @@ public class Row : List<Card>
     public bool isButton;
     public string buttonText;
     public System.Action buttonAction;
+    public System.Func<bool> canButton;
 
     public int score;
 
@@ -71,13 +72,14 @@ public class Row : List<Card>
         setupTarget();
     }
 
-    public Row(bool visible, RowEffected uniqueType, string buttonText, System.Func<Vector3> centerMethod, System.Action buttonAction)
+    public Row(bool visible, RowEffected uniqueType, string buttonText, System.Func<Vector3> centerMethod, System.Action buttonAction, System.Func<bool> canButton)
     {
         this.isPlayer = false;
         this.isScoring = false;
         this.isButton = true;
         this.buttonText = buttonText;
         this.buttonAction = buttonAction;
+        this.canButton = canButton;
         this.name = uniqueType.ToString();
         this.uniqueType = uniqueType;
         this.rowType = new List<RowEffected>() { uniqueType, RowEffected.Button };
@@ -92,7 +94,7 @@ public class Row : List<Card>
     {
         base.Add(card);
         card.setVisible(cardVisibility);
-        
+
     }
 
     public void setVisibile(bool state)
@@ -417,8 +419,10 @@ public class Row : List<Card>
         if (player == RowEffected.Player)
         {
             return this.isButton && this.isVisible();
-        }else{
-            return true;
+        }
+        else
+        {
+            return this.canButton.Invoke();
         }
     }
 }
