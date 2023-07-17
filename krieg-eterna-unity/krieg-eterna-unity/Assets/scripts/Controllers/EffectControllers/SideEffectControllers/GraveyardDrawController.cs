@@ -5,7 +5,7 @@ public class GraveyardDrawController : EffectControllerInterface
     {
         Deck deck = Game.activeDeck;
         Debug.Log("Graveyard Card Draw");
-        deck.drawCardGraveyard(c, targetCard);
+        deck.drawCardGraveyard(c, targetCard, CardModel.getHandRow(player));
     }
     public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)
     {

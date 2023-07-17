@@ -35,7 +35,7 @@ namespace KriegTests
 
         private InputTestFixture inputTester;
 
-
+        public static bool testEnemyController = true;
         public static IEnumerable TestCases()
         {
             List<TestCaseCollection> caseCollections = new List<TestCaseCollection>(){
@@ -56,17 +56,20 @@ namespace KriegTests
                     TestCase t = collection.getCases()[i];
                     t.player = RowEffected.Player;
                     yield return t;
-                    TestCase enemyCase = new TestCase
+                    if (testEnemyController)
                     {
-                        testName = "Enemy" + t.testName,
-                        playerHandCount = t.playerHandCount,
-                        enemyHandCount = t.enemyHandCount,
-                        player = RowEffected.Enemy,
-                        round = t.round,
-                        clicks = t.clicks,
-                        scoreRows = t.scoreRows,
-                    };
-                    yield return enemyCase;
+                        TestCase enemyCase = new TestCase
+                        {
+                            testName = "Enemy" + t.testName,
+                            playerHandCount = t.playerHandCount,
+                            enemyHandCount = t.enemyHandCount,
+                            player = RowEffected.Enemy,
+                            round = t.round,
+                            clicks = t.clicks,
+                            scoreRows = t.scoreRows,
+                        };
+                        yield return enemyCase;
+                    }
                 }
             }
 

@@ -22,11 +22,16 @@ public class Move
 
     public Move(Card c, Card targetCard, RowEffected targetRow, RowEffected player, bool isButton, bool activate)
     {
-        if(targetCard == null && targetRow == RowEffected.None){
+        if (targetCard == null && targetRow == RowEffected.None)
+        {
             name = c.cardName;
-        } else if (targetCard != null){
+        }
+        else if (targetCard != null)
+        {
             name = targetCard.cardName;
-        } else if (targetRow != RowEffected.None){
+        }
+        else if (targetRow != RowEffected.None)
+        {
             name = System.Enum.GetName(typeof(RowEffected), targetRow);
         }
         this.c = c;
@@ -38,8 +43,9 @@ public class Move
         this.isButton = isButton;
     }
 
-    public override string ToString(){
-        return "ActiveCard: " + c + " targetCard: " + targetCard + " targetRow: " + targetRow + " player: " + player + " executedMove? " + executedMove; 
+    public override string ToString()
+    {
+        return "ActiveCard: " + c + " targetCard: " + targetCard + " targetRow: " + targetRow + " player: " + player + " executedMove? " + executedMove;
     }
 
     public static bool movePossible(Move m)
@@ -91,15 +97,22 @@ public class Move
         else if (state == State.MULTISTEP || state == State.ACTIVE_CARD)
         {
             List<Tuple<Card, RowEffected>> possibleTargets = deck.getActiveCardTargetsAndRows();
-            if(possibleTargets.Count == 0){
+            if (possibleTargets.Count == 0)
+            {
                 Debug.Log("No possible card targets");
             }
             foreach (Tuple<Card, RowEffected> pair in possibleTargets)
             {
-                moveList.Add(new Move(activeCard, pair.Item1, pair.Item2, player, false, false));
+                RowEffected row = pair.Item2;
+                if (activeCard.Equals(pair.Item1))
+                {
+                    row = RowEffected.None;
+                }
+                moveList.Add(new Move(activeCard, pair.Item1, row, player, false, false));
             }
             List<Row> possibleRowTargets = deck.getActiveRowTargets();
-            if(possibleRowTargets.Count == 0){
+            if (possibleRowTargets.Count == 0)
+            {
                 Debug.Log("No possible row targets");
             }
             foreach (Row r in possibleRowTargets)

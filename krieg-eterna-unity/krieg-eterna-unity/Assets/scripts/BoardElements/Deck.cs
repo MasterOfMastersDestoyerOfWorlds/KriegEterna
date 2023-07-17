@@ -327,6 +327,7 @@ public class Deck : MonoBehaviour
             if (row.target != null && !row.hasType(RowEffected.ChooseN))
             {
                 row.target.setNotFlashing();
+                row.target.setTargetActive(false);
                 row.cardTargetsActivated = false;
             }
         }
@@ -371,8 +372,6 @@ public class Deck : MonoBehaviour
         List<Card> cardTargets = new List<Card>();
         foreach (Row row in rows)
         {
-            if (row.isPlayer)
-            {
                 foreach (Card card in row)
                 {
                     if (card.isTargetActive())
@@ -380,8 +379,6 @@ public class Deck : MonoBehaviour
                         cardTargets.Add(card);
                     }
                 }
-
-            }
         }
         return cardTargets;
     }
@@ -405,7 +402,7 @@ public class Deck : MonoBehaviour
         List<Row> rowTargets = new List<Row>();
         foreach (Row row in rows)
         {
-            if (row.target != null && row.target.isTargetActive())
+            if (row.target != null && (row.target.isTargetActive() || row.target.isEnemyRowTargetActive()))
             {
                 rowTargets.Add(row);
             }
@@ -561,7 +558,7 @@ public class Deck : MonoBehaviour
         c.resetSelectionCounts();
         if (currentRow.uniqueType == RowEffected.UnitGraveyard && c.graveyardCardDrawRemain > 0)
         {
-            drawCardGraveyard(c, null);
+            drawCardGraveyard(c, null, playerHand);
         }
         getRowByType(playerHand).Add(c);
     }
@@ -575,7 +572,7 @@ public class Deck : MonoBehaviour
         Game.activeCard.strengthMultiple++;
         if (currentRow.uniqueType == RowEffected.UnitGraveyard && c.graveyardCardDrawRemain > 0)
         {
-            drawCardGraveyard(c, null);
+            drawCardGraveyard(c, null, playerHand);
         }
         getRowByType(playerHand).Add(c);
     }
@@ -623,7 +620,7 @@ public class Deck : MonoBehaviour
         }
     }
 
-    public void drawCardGraveyard(Card c, Card targetCard)
+    public void drawCardGraveyard(Card c, Card targetCard, RowEffected playerHand)
     {
 
         Debug.Log("Drawing from Graveyard: " + c.cardName + targetCard);
@@ -636,7 +633,7 @@ public class Deck : MonoBehaviour
             {
                 Card drawC = graveyard[graveyard.Count - 1];
                 graveyard.Remove(drawC);
-                getRowByType(RowEffected.PlayerHand).Add(drawC);
+                getRowByType(playerHand).Add(drawC);
                 cardsDrawn++;
                 if (i == 0 && drawC.strength < c.strengthCondition)
                 {

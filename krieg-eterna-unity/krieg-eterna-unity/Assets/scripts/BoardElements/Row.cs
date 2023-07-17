@@ -354,6 +354,7 @@ public class Row : List<Card>
         this.center = centerMethod.Invoke();
         Target clone = GameObject.Instantiate(baseTarget) as Target;
         clone.setNotFlashing();
+        clone.setTargetActive(false);
         clone.tag = "CloneTarget";
         if (this.wide)
         {

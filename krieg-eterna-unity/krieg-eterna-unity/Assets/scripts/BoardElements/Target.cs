@@ -87,6 +87,11 @@ public class Target : MonoBehaviour
         return this.flashing;
     }
 
+    public bool isEnemyRowTargetActive()
+    {
+        return this.targetActive;
+    }
+
     public Bounds getBounds()
     {
         return this.cardColider.bounds;
