@@ -84,8 +84,8 @@
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.4\Editor\Animation\AnimationOffsetMenu.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.4\Editor\Window\WindowConstants.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.4\Editor\Utilities\AnimatedPropertyUtility.cs" />
-     <Compile Include="Library\PackageCache\com.unity.timeline@1.6.4\Editor\Actions\ActionContext.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.4\Editor\treeview\TimelineClipHandle.cs" />
+     <Compile Include="Library\PackageCache\com.unity.timeline@1.6.4\Editor\Actions\ActionContext.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.4\Editor\Manipulators\Move\IMoveItemMode.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.4\Editor\treeview\ManipulationsTimeline.cs" />
      <Compile Include="Library\PackageCache\com.unity.timeline@1.6.4\Editor\Utilities\Range.cs" />

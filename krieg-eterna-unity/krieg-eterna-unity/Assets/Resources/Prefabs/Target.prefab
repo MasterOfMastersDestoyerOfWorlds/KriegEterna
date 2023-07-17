@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3214791271459200887}
   - component: {fileID: 7912303232073325921}
   - component: {fileID: 856439457591699594}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 4874126678125670354, guid: fa2d36329c27493499c55a8620b884a1, type: 3}
   - {fileID: -3846018093981099296, guid: fa2d36329c27493499c55a8620b884a1, type: 3}
-  - {fileID: 2100000, guid: 18463bcc38742784093b087125a76e80, type: 2}
+  - {fileID: 2100000, guid: ec9aeb1da4b137e4fb06cc21ab6ed6fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,7 +94,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1743969669487708396}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Card 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 1376248033062303027}
   - component: {fileID: 8008035515585874148}
   - component: {fileID: 2857039715570396177}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 4940037241487726615}
   - component: {fileID: 8042410825548395009}
   - component: {fileID: 4207111885519150467}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}

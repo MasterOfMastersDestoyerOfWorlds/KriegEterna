@@ -66,8 +66,8 @@
      <Compile Include="Assets\Scripts\BoardElements\HealthDiamond.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\EnemyDestroyController.cs" />
      <Compile Include="Assets\Scripts\Menu\MenuButton.cs" />
-     <Compile Include="Assets\Scripts\Enums\State.cs" />
      <Compile Include="Assets\Scripts\BoardElements\Areas.cs" />
+     <Compile Include="Assets\Scripts\Enums\State.cs" />
      <Compile Include="Assets\Scripts\Game.cs" />
      <Compile Include="Assets\Scripts\Enums\DestroyType.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\SideEffectControllers\AutoDrawController.cs" />

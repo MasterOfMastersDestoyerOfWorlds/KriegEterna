@@ -162,6 +162,15 @@ public class Target : MonoBehaviour
         this.buttonVisible = true;
         this.getMaterial().SetInt("_Transparent", 0);
     }
+
+    public void setLayer(string layerName){
+        LayerMask l = LayerMask.NameToLayer(layerName);
+        foreach (Transform g in transform.GetComponentsInChildren<Transform>())
+        {
+            g.gameObject.layer = l;
+        }
+        gameObject.layer = l;
+    }
     public void setFlashing()
     {
         this.flashing = true;
@@ -172,8 +181,8 @@ public class Target : MonoBehaviour
     public void setNotFlashing()
     {
         flashing = false;
-        this.getMaterial().SetInt("_Flash", 1);
-        this.getMaterial().SetInt("_TransparentFlash", 1);
+        this.getMaterial().SetInt("_Flash", 0);
+        this.getMaterial().SetInt("_TransparentFlash", 0);
         this.getMaterial().SetInt("_Transparent", 1);
     }
 }
