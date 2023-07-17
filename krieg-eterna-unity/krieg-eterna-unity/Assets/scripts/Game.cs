@@ -26,7 +26,7 @@ public class Game : MonoBehaviour
     public static bool enemyPassed;
     public static bool playerPassed;
     public static RowEffected player;
-    public EnemyControllerInterface enemyController;
+    public static EnemyControllerInterface enemyController;
     private Text playerNameText;
     private Text playerCardCountText;
 
@@ -181,10 +181,16 @@ public class Game : MonoBehaviour
         if (!enemyPassed && state != State.BLOCKED && player == RowEffected.Enemy)
         {
             Debug.Log("+++++++++++++++++++++++++++++++++++++++ Enemy Turn+++++++++++++++++++++++++++++++++++++");
-            if (moveList == null)
+
+            moveList = Move.getPossibleMoves(player);
+            if (moveList != null)
             {
-                moveList = Move.getPossibleMoves(player);
+                Debug.Log("Enemy Hand: " + activeDeck.getRowByType(RowEffected.EnemyHand) + " size: " + moveList.Count);
+                foreach(Move m in moveList){
+                    Debug.Log("\t" + m);
+                }
             }
+
             Move nextMove = enemyController.NextMove(moveList);
             Debug.Log(nextMove);
             if (nextMove != null)

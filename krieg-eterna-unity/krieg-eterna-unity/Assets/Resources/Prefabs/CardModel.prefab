@@ -94,113 +94,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1513207389515896979}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c01c17a49049d5a4bab77a670576d274, type: 3}
+  m_Script: {fileID: 11500000, guid: 638b72c9580855944b6e6dcccd8d8da6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smallFronts:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  bigFronts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  names:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  smallFronts: []
+  bigFronts: []
+  names: []
   cardTypes: 
   strength: 
   playerCardDraw: 
@@ -224,5 +123,7 @@ MonoBehaviour:
   chooseN: 
   chooseRow: 
   chooseShowN: 
-  isSpecial: 0000000000000000000000000000000000000000000000000000000001000000010000000100000001000000010000000000000000000000000000000000000000000000010000000000000000000000000000000600000002000000020000000300000003000000040000000200000005000000050000000500000005000000060000000400000006000000
+  chooseCardType: 
+  playInRow: 
+  isSpecial: 
   spriteFolder: Images

@@ -13,11 +13,11 @@ public class RowTargetController : EffectControllerInterface
         }
         if (CardModel.rowIsUnique(c.rowEffected))
         {
-            deck.activateRowsByType(true, true, c.rowEffected);
+            deck.activateRowsByType(true, true, CardModel.getRowFromSide(player, c.rowEffected));
         }
         else
         {
-            deck.activateRowsByType(true, false, c.rowEffected);
+            deck.activateRowsByType(true, false, CardModel.getRowFromSide(player, c.rowEffected));
         }
         
     }

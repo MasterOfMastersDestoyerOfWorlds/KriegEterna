@@ -287,6 +287,17 @@ public class CardModel : MonoBehaviour
         return false;
     }
 
+    public static bool isDisplayRow(RowEffected type)
+    {
+        switch (type)
+        {
+            case RowEffected.PlayerChooseN: return true;
+            case RowEffected.EnemyChooseN: return true;
+            case RowEffected.ChooseN: return true;
+        }
+        return false;
+    }
+
     public static RowEffected getPlayableRow(RowEffected player, RowEffected type)
     {
         switch (type)

@@ -5,11 +5,12 @@ namespace KriegTests
     using TestCase = TestCards.TestCase;
     using Click = TestCards.Click;
     using ClickRow = TestCards.ClickRow;
-    using System.Collections;
     using System.Collections.Generic;
-    public class TestWeather
+    public class TestWeather : TestCaseCollection
     {
-        public static List<TestCase> cases = new List<TestCase>(){
+        public override List<TestCase> getCases()
+        {
+            return new List<TestCase>(){
             new TestCase
             {
                 testName = "ClearSkies",
@@ -20,7 +21,7 @@ namespace KriegTests
                 },
                 clicks = new List<Click>{
                     new Click("Storm", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("Player Siege", RowEffected.PlayerSiege),                   
+                    new ClickRow("Player Siege", RowEffected.PlayerSiege),
                     new Click("Siege", RowEffected.EnemySiege, RowEffected.EnemySiege, RowEffected.EnemySiege, false),
                     new Click("Mortar", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
                     new Click("Fog", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
@@ -67,13 +68,14 @@ namespace KriegTests
                     (RowEffected.PlayerSiege, 3),
                 },
                 clicks = new List<Click>{
-                    new Click("Storm", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiege, true), 
-                    new ClickRow("Enemy Siege", RowEffected.EnemySiege),          
+                    new Click("Storm", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiege, true),
+                    new ClickRow("Enemy Siege", RowEffected.EnemySiege),
                     new Click("Storm", RowEffected.PlayerHand, RowEffected.PlayerSiege, RowEffected.EnemySiege, false),
                     new Click("Siege", RowEffected.EnemySiege, RowEffected.EnemySiege, RowEffected.EnemySiege, false),
                     new Click("Mortar", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
                 }
             },
         };
+        }
     }
 }

@@ -4,14 +4,14 @@ namespace KriegTests
 
     using TestCase = TestCards.TestCase;
     using Click = TestCards.Click;
-    using ClickRow = TestCards.ClickRow;
-    using System.Collections;
     using System.Collections.Generic;
-    public class TestDecoys
+    public class TestDecoys : TestCaseCollection
     {
-        public static List<TestCase> cases = new List<TestCase>(){
+        public override List<TestCase> getCases()
+        {
+            return new List<TestCase>(){
 
-             new TestCase
+            new TestCase
             {
                 testName = "Jester",
                 playerHandCount = 1,
@@ -82,5 +82,6 @@ namespace KriegTests
                 }
             }
         };
+        }
     }
 }

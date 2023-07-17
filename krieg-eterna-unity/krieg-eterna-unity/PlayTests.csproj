@@ -47,6 +47,7 @@
      <Compile Include="Assets\Tests\TestSpys.cs" />
      <Compile Include="Assets\Tests\TestMelee.cs" />
      <Compile Include="Assets\Tests\TestCards.cs" />
+     <Compile Include="Assets\Tests\TestCaseCollection.cs" />
      <Compile Include="Assets\Tests\TestPowers.cs" />
      <Compile Include="Assets\Tests\TestDecoys.cs" />
      <None Include="Assets\Tests\PlayTests.asmdef" />

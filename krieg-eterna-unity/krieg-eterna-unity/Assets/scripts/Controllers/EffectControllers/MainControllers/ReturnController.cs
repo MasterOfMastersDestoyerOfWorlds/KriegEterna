@@ -11,7 +11,7 @@ public class ReturnController : EffectControllerInterface
         if (c.cardReturnType == CardReturnType.Unit)
         {
 
-            int cardsRemaining = deck.countCardsInRows(c.rowEffected);
+            int cardsRemaining = deck.countCardsInRows(CardModel.getRowFromSide(player, c.rowEffected));
             if (c.playerCardReturnRemain > cardsRemaining)
             {
                 c.playerCardReturnRemain = cardsRemaining - 1;
@@ -23,6 +23,9 @@ public class ReturnController : EffectControllerInterface
             if (c.playerCardReturnRemain <= 0 && c.cardType == CardType.Decoy)
             {
                 int index = targetRow.IndexOf(targetCard);
+                if(index < 0 || index > targetRow.Count){
+                    Debug.Log("REEEE: row:" + targetRow + " card:" + targetCard.cardName);
+                }
                 targetRow.Insert(index, c);
             }
             deck.addCardToHand(targetRow, playerHand, targetCard);

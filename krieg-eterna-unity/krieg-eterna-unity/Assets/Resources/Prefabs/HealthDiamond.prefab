@@ -31,7 +31,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -47,10 +47,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4181235532634759295}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3f48a56614c1274fbd385d75b682cd1, type: 3}
+  m_Script: {fileID: 11500000, guid: 8173f5c747e690640aa54eedb6484642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  healthSprite: {fileID: 0}
 --- !u!212 &8857686819713042319
 SpriteRenderer:
   m_ObjectHideFlags: 0

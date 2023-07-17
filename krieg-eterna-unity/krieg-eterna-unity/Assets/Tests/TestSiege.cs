@@ -7,9 +7,11 @@ namespace KriegTests
     using ClickRow = TestCards.ClickRow;
     using System.Collections;
     using System.Collections.Generic;
-    public class TestSiege
+    public class TestSiege : TestCaseCollection
     {
-        public static List<TestCase> cases = new List<TestCase>(){
+        public override List<TestCase> getCases()
+        {
+            return new List<TestCase>(){
             new TestCase
             {
                 testName = "Armada",
@@ -178,5 +180,6 @@ namespace KriegTests
                 }
             },
         };
+        }
     }
 }

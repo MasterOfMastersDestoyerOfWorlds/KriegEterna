@@ -5,11 +5,12 @@ namespace KriegTests
     using TestCase = TestCards.TestCase;
     using Click = TestCards.Click;
     using ClickRow = TestCards.ClickRow;
-    using System.Collections;
     using System.Collections.Generic;
-    public class TestKings
+    public class TestKings : TestCaseCollection
     {
-        public static List<TestCase> cases = new List<TestCase>(){
+        public override List<TestCase> getCases()
+        {
+            return new List<TestCase>(){
 
             new TestCase
             {
@@ -61,7 +62,7 @@ namespace KriegTests
                 playerHandCount = 1,
                 clicks = new List<Click>{
                     new Click("Storm", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("Player Siege", RowEffected.PlayerSiege),  
+                    new ClickRow("Player Siege", RowEffected.PlayerSiege),
                     new Click("SunKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiegeKing, true),
                     new ClickRow("PlayerSiegeKing", RowEffected.PlayerSiegeKing),
                     new ClickRow("UnitDeck", RowEffected.UnitDeck),
@@ -145,5 +146,6 @@ namespace KriegTests
                 }
             },
         };
+        }
     }
 }

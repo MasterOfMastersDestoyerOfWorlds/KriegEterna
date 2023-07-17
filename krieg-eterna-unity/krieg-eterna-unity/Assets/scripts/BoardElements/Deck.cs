@@ -390,16 +390,12 @@ public class Deck : MonoBehaviour
         List<Tuple<Card, RowEffected>> cardTargets = new List<Tuple<Card, RowEffected>>();
         foreach (Row row in rows)
         {
-            if (row.isPlayer)
+            foreach (Card card in row)
             {
-                foreach (Card card in row)
+                if (card.isTargetActive())
                 {
-                    if (card.isTargetActive())
-                    {
-                        cardTargets.Add(new Tuple<Card, RowEffected>(card, row.uniqueType));
-                    }
+                    cardTargets.Add(new Tuple<Card, RowEffected>(card, row.uniqueType));
                 }
-
             }
         }
         return cardTargets;

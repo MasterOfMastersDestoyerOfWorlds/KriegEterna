@@ -38,45 +38,36 @@ namespace KriegTests
 
         public static IEnumerable TestCases()
         {
-
-            foreach (TestCase t in TestDecoys.cases)
+            List<TestCaseCollection> caseCollections = new List<TestCaseCollection>(){
+                new TestDecoys(),
+                new TestMelee(),
+                new TestRanged(),
+                new TestSiege(),
+                new TestWeather(),
+                new TestSpys(),
+                new TestPowers(),
+                new TestKings(),
+            };
+            for (int j = 0; j < caseCollections.Count; j++)
             {
-                yield return t;
-            }
-
-            foreach (TestCase t in TestMelee.cases)
-            {
-                yield return t;
-            }
-
-            foreach (TestCase t in TestRanged.cases)
-            {
-                yield return t;
-            }
-
-            foreach (TestCase t in TestSiege.cases)
-            {
-                yield return t;
-            }
-
-            foreach (TestCase t in TestWeather.cases)
-            {
-                yield return t;
-            }
-
-            foreach (TestCase t in TestSpys.cases)
-            {
-                yield return t;
-            }
-
-            foreach (TestCase t in TestPowers.cases)
-            {
-                yield return t;
-            }
-
-            foreach (TestCase t in TestKings.cases)
-            {
-                yield return t;
+                TestCaseCollection collection = caseCollections[j];
+                for (int i = 0; i < collection.getCases().Count; i++)
+                {
+                    TestCase t = collection.getCases()[i];
+                    t.player = RowEffected.Player;
+                    yield return t;
+                    TestCase enemyCase = new TestCase
+                    {
+                        testName = "Enemy" + t.testName,
+                        playerHandCount = t.playerHandCount,
+                        enemyHandCount = t.enemyHandCount,
+                        player = RowEffected.Enemy,
+                        round = t.round,
+                        clicks = t.clicks,
+                        scoreRows = t.scoreRows,
+                    };
+                    yield return enemyCase;
+                }
             }
 
         }
@@ -87,6 +78,9 @@ namespace KriegTests
             public string testName;
             public int playerHandCount;
             public int enemyHandCount;
+
+            public RowEffected player;
+
             public RoundType round;
             public List<Click> clicks;
             public List<(RowEffected, int)> scoreRows;
@@ -222,6 +216,16 @@ namespace KriegTests
         [UnityTest]
         public IEnumerator TestCard([ValueSource(nameof(TestCases))] TestCase testCase)
         {
+            TestBot enemyController = null;
+            if (testCase.player == RowEffected.Enemy)
+            {
+                Game.playerPassed = true;
+                Game.enemyPassed = false;
+                Game.player = RowEffected.Enemy;
+                enemyController = new TestBot();
+                Game.enemyController = enemyController;
+
+            }
 
             Debug.Log("Starting Test:" + testCase.testName);
             List<Click> clicks = testCase.clicks;
@@ -232,90 +236,119 @@ namespace KriegTests
                 if (!clicks[i].isRowTarget)
                 {
                     string cardName = clicks[i].name;
+                    RowEffected dealRow = CardModel.getRowFromSide(testCase.player, clicks[i].dealRow);
                     if (!dealtCards.Contains(cardName))
                     {
                         dealtCards.Add(cardName);
-                        Card c = deck.dealCardToRow(cardName, clicks[i].dealRow);
+                        Card c = deck.dealCardToRow(cardName, dealRow);
                         clicks[i].card = c;
-                        c.beenRevealed = clicks[i].setRevealed;                   
+                        c.beenRevealed = clicks[i].setRevealed;
                     }
                     else
                     {
-                        if (clicks[i].dealRow != RowEffected.PlayerChooseN)
+                        if (dealRow != RowEffected.PlayerChooseN)
                         {
-                            clicks[i].card = deck.getRowByType(clicks[i].dealRow).getCardByName(cardName);
-                        }else{
-                            clicks[i].card = deck.getCardByName(clicks[i].name);
+                            clicks[i].card = deck.getRowByType(dealRow).getCardByName(cardName);
+                        }
+                        else
+                        {
+                            clicks[i].card = deck.getCardByName(cardName);
                         }
                     }
                 }
             }
-            
-            
+
+
             Game.state = State.FREE;
 
             //Do clicks on Cards
             for (int i = 0; i < clicks.Count; i++)
             {
+                RowEffected dealRow = CardModel.getRowFromSide(testCase.player, clicks[i].dealRow);
+                RowEffected rowAfterClick = CardModel.getRowFromSide(testCase.player, clicks[i].rowAfterClick);
                 if (clicks[i].click && !clicks[i].isRowTarget)
                 {
                     Card c = clicks[i].card;
                     Card clickCard = c;
-                    if(clicks[i].dealRow == RowEffected.PlayerChooseN){
-                        clickCard = deck.getRowByType(clicks[i].dealRow).getCardByName(clicks[i].name);
+                    if (CardModel.isDisplayRow(dealRow))
+                    {
+                        clickCard = deck.getRowByType(dealRow).getCardByName(clicks[i].name);
                     }
-                    InputSystem.Update();
-                    MousePositioning(clickCard.transform);
-                    ClickOnCard(clickCard.transform);
+                    if (testCase.player == RowEffected.Enemy)
+                    {
+                        enemyController.nextMoveName = clicks[i].name;
+                    }
+                    else
+                    {
+                        InputSystem.Update();
+                        MousePositioning(clickCard.transform);
+                        ClickOnCard(clickCard.transform);
+                        yield return null;
+                        MouseUnClick();
+                    }
                     yield return null;
-                    MouseUnClick();
-                    yield return null;
-                    Debug.Log(deck.getRowByType(clicks[i].rowAfterClick));
-                    Debug.Log(clicks[i].rowAfterClick);
+
+                    Debug.Log(deck.getRowByType(rowAfterClick));
+                    Debug.Log(rowAfterClick);
                     Debug.Log(c);
                     Debug.Log(deck.getCardRow(c));
-                    Assert.AreEqual(true, deck.getRowByType(clicks[i].rowAfterClick).ContainsIncludeAttachments(c),
-                    $"row after click cardName: {clicks[i].name}, Expected Row: {clicks[i].rowAfterClick}  {deck.getRowByType(clicks[i].rowAfterClick)}, Actual Row: {deck.getCardRow(c).uniqueType} {deck.getRowByType(deck.getCardRow(c).uniqueType)}");
+                    Assert.AreEqual(true, deck.getRowByType(rowAfterClick).ContainsIncludeAttachments(c),
+                    $"row after click cardName: {clicks[i].name}, Expected Row: {rowAfterClick}  {deck.getRowByType(rowAfterClick)}, Actual Row: {deck.getCardRow(c).uniqueType} {deck.getRowByType(deck.getCardRow(c).uniqueType)}");
                 }
                 else if (clicks[i].isRowTarget)
                 {
                     InputSystem.Update();
                     ClickRow click = (ClickRow)clicks[i];
-                    Row row = deck.getRowByType(click.targetRow);
-                    MousePositioning(row.target.transform);
-                    ClickOnCard(row.target.transform);
-                    yield return null;
-                    MouseUnClick();
+                    Row row = deck.getRowByType(CardModel.getRowFromSide(testCase.player, click.targetRow));
+                    if (testCase.player == RowEffected.Enemy)
+                    {
+                        enemyController.nextMoveName = System.Enum.GetName(typeof(RowEffected), CardModel.getRowFromSide(testCase.player, click.targetRow));
+                    }
+                    else
+                    {
+                        MousePositioning(row.target.transform);
+                        ClickOnCard(row.target.transform);
+                        yield return null;
+                        MouseUnClick();
+                    }
                     yield return null;
                 }
             }
-
+            if (testCase.player == RowEffected.Enemy)
+            {
+                enemyController.nextMoveName = "";
+            }
             yield return null;
 
             //Check final Card Locations
 
             for (int i = 0; i < clicks.Count; i++)
             {
+                RowEffected finalRow = CardModel.getRowFromSide(testCase.player, clicks[i].finalRow);
                 if (!clicks[i].isRowTarget)
                 {
                     Card c = clicks[i].card;
-                    Assert.AreEqual(true, deck.getRowByType(clicks[i].finalRow).ContainsIncludeAttachments(c),
-                    $"final row cardName: {clicks[i].name}, Expected Row: {clicks[i].finalRow} {deck.getRowByType(clicks[i].finalRow)}, Actual Row: {deck.getCardRow(c).uniqueType} {deck.getRowByType(deck.getCardRow(c).uniqueType)}");
+                    Assert.AreEqual(true, deck.getRowByType(finalRow).ContainsIncludeAttachments(c),
+                    $"final row cardName: {clicks[i].name}, Expected Row: {finalRow} {deck.getRowByType(finalRow)}, Actual Row: {deck.getCardRow(c).uniqueType} {deck.getRowByType(deck.getCardRow(c).uniqueType)}");
                 }
             }
             Assert.AreEqual(State.FREE, Game.state);
             Assert.AreEqual(testCase.round, Game.round);
             Assert.AreEqual(false, deck.getRowByType(RowEffected.PlayerChooseN).isVisible(), "ChooseN row is Visible!");
+            Assert.AreEqual(false, deck.getRowByType(RowEffected.EnemyChooseN).isVisible(), "ChooseN row is Visible!");
 
-            Assert.AreEqual(testCase.playerHandCount, deck.getRowByType(RowEffected.PlayerHand).Count, $"{deck.getRowByType(RowEffected.PlayerHand)}");
-            Assert.AreEqual(testCase.enemyHandCount, deck.getRowByType(RowEffected.EnemyHand).Count, $"{deck.getRowByType(RowEffected.EnemyHand)}");
+            RowEffected playerHand = CardModel.getRowFromSide(testCase.player, RowEffected.PlayerHand);
+            RowEffected enemyHand = CardModel.getRowFromSide(testCase.player, RowEffected.EnemyHand);
+            Assert.AreEqual(testCase.playerHandCount, deck.getRowByType(playerHand).Count, $"{deck.getRowByType(playerHand)}");
+            Assert.AreEqual(testCase.enemyHandCount, deck.getRowByType(enemyHand).Count, $"{deck.getRowByType(enemyHand)}");
 
 
             if (testCase.scoreRows != null)
             {
                 foreach ((RowEffected, int) rowPair in testCase.scoreRows)
                 {
-                    Assert.AreEqual(rowPair.Item2, deck.getRowByType(rowPair.Item1).scoreRow(deck, CardModel.getPlayerFromRow(rowPair.Item1)), $"{deck.getRowByType(rowPair.Item1)}");
+                    RowEffected row = CardModel.getRowFromSide(testCase.player, rowPair.Item1);
+                    Assert.AreEqual(rowPair.Item2, deck.getRowByType(row).scoreRow(deck, CardModel.getPlayerFromRow(row)), $"{deck.getRowByType(row)}");
                 }
             }
         }

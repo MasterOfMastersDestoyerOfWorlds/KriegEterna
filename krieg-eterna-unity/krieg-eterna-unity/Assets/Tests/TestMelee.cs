@@ -7,9 +7,11 @@ namespace KriegTests
     using ClickRow = TestCards.ClickRow;
     using System.Collections;
     using System.Collections.Generic;
-    public class TestMelee
+    public class TestMelee : TestCaseCollection
     {
-        public static List<TestCase> cases = new List<TestCase>(){
+        public override List<TestCase> getCases()
+        {
+            return new List<TestCase>(){
             new TestCase
             {
                 testName = "Calvary",
@@ -157,7 +159,7 @@ namespace KriegTests
 
             new TestCase
             {
-                testName = "ScoutReveal", 
+                testName = "ScoutReveal",
                 enemyHandCount = 3,
                 clicks = new List<Click>{
 
@@ -185,5 +187,6 @@ namespace KriegTests
                 }
             },
         };
+        }
     }
 }

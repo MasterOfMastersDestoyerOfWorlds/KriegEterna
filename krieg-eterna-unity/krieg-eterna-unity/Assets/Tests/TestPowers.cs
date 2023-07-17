@@ -7,9 +7,11 @@ namespace KriegTests
     using ClickRow = TestCards.ClickRow;
     using System.Collections;
     using System.Collections.Generic;
-    public class TestPowers
+    public class TestPowers : TestCaseCollection
     {
-        public static List<TestCase> cases = new List<TestCase>(){
+        public override List<TestCase> getCases()
+        {
+            return new List<TestCase>(){
             new TestCase
             {
                 testName = "BurdenRoundOne",
@@ -453,5 +455,6 @@ namespace KriegTests
                 }
             },
         };
+        }
     }
 }
