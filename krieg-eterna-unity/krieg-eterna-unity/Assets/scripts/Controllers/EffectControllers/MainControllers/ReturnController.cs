@@ -53,6 +53,7 @@ public class ReturnController : EffectControllerInterface
             c.playerCardReturnRemain--;
             if (Game.lastPlayedCard != null)
             {
+                //Todo: separate enemy and player last card played
                 Row row = deck.getCardRow(Game.lastPlayedCard);
                 deck.addCardToHand(row, playerHand, Game.lastPlayedCard);
             }

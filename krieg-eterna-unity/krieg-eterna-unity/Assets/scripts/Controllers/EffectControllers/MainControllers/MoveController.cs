@@ -27,13 +27,14 @@ public class MoveController : EffectControllerInterface
     public void Target(Card c, RowEffected player)
     {
         Deck deck = Game.activeDeck;
+        RowEffected row = CardModel.getRowFromSide(player, c.rowEffected);
         if (c.cardReturnType == CardReturnType.Move)
         {
-            deck.activateRowsByTypeExclude(true, false, c.rowEffected, c.moveRow);
+            deck.activateRowsByTypeExclude(true, false, row, c.moveRow);
         }
         else if (c.cardReturnType == CardReturnType.Swap)
         {
-            deck.activateRowsByTypeExclude(true, true, c.rowEffected, c.moveRow);
+            deck.activateRowsByTypeExclude(true, true, row, c.moveRow);
         }
     }
     public bool TargetCondition(Card c, RowEffected player)
