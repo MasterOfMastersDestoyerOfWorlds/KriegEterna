@@ -11,7 +11,9 @@ public class ChooseNController : EffectControllerInterface
     {
         Deck deck = Game.activeDeck;
         Debug.Log("Setting up Choose N");
-        Row row = deck.getRowByType(c.chooseRow);
+        
+        RowEffected chooseRow = CardModel.getRowFromSide(player, c.chooseRow);
+        Row row = deck.getRowByType(chooseRow);
         if (row.Count > 0)
         {
             RowEffected sendRow = CardModel.getRowFromSide(player, c.rowEffected);
@@ -20,7 +22,7 @@ public class ChooseNController : EffectControllerInterface
             {
                 chooseAction = deck.addCardToHandMultiply;
             }
-            setChooseN(c.chooseRow, chooseAction, c.chooseN, c.chooseShowN > 0 ? c.chooseShowN : row.Count, CardModel.chooseToCardTypeExclude(c.chooseCardType), sendRow, State.CHOOSE_N, true);
+            setChooseN(chooseRow, chooseAction, c.chooseN, c.chooseShowN > 0 ? c.chooseShowN : row.Count, CardModel.chooseToCardTypeExclude(c.chooseCardType), sendRow, State.CHOOSE_N, true);
         }
     }
     public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player){
@@ -119,6 +121,9 @@ public class ChooseNController : EffectControllerInterface
         }
         row.chooseNRemain--;
         chooseNAction.Invoke(row, chooseNSendRow, realCard);
+
+        Debug.Log("Choose Row result : " +  activeDeck.getRowByType(chooseNRow));
+        Debug.Log("hand result : " +  activeDeck.getRowByType(CardModel.getHandRow(player)));
 
         cardClone.Destroy();
         Game.reorganizeGroup();

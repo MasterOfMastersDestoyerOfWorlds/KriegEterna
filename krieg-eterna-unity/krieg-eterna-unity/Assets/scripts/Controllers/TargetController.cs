@@ -7,7 +7,11 @@ public class TargetController
     {
         Deck deck = Game.activeDeck;
         Debug.Log("Showing Targets for: " + c.cardName + " " + c.cardType);
-
+        if(Game.state != State.CHOOSE_N && Game.state != State.MULTISTEP){
+            deck.disactiveAllInDeck(false);
+        }else{
+            deck.disactiveAllInDeck(true);
+        }
         PowerController.TargetPower(c, player);
 
         Game.reorganizeGroup();

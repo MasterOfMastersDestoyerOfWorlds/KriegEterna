@@ -97,10 +97,6 @@ public class Move
         else if (state == State.MULTISTEP || state == State.ACTIVE_CARD)
         {
             List<Tuple<Card, RowEffected>> possibleTargets = deck.getActiveCardTargetsAndRows();
-            if (possibleTargets.Count == 0)
-            {
-                Debug.Log("No possible card targets");
-            }
             foreach (Tuple<Card, RowEffected> pair in possibleTargets)
             {
                 RowEffected row = pair.Item2;
@@ -111,10 +107,6 @@ public class Move
                 moveList.Add(new Move(activeCard, pair.Item1, row, player, false, false));
             }
             List<Row> possibleRowTargets = deck.getActiveRowTargets();
-            if (possibleRowTargets.Count == 0)
-            {
-                Debug.Log("No possible row targets");
-            }
             foreach (Row r in possibleRowTargets)
             {
                 moveList.Add(new Move(activeCard, null, r.uniqueType, player, false, false));
@@ -122,10 +114,11 @@ public class Move
         }
         else if (state == State.CHOOSE_N)
         {
-            Row chooseRow = deck.getRowByType(ChooseNController.chooseNRow);
-            foreach (Card c in chooseRow)
+            RowEffected rowtype = CardModel.getRowFromSide(player, RowEffected.PlayerChooseN);
+            Row virtualChooseRow = deck.getRowByType(rowtype);
+            foreach (Card c in virtualChooseRow)
             {
-                moveList.Add(new Move(activeCard, c, CardModel.getRowFromSide(player, RowEffected.PlayerChooseN), player, false, false));
+                moveList.Add(new Move(activeCard, c, rowtype, player, false, false));
             }
         }
         List<Row> buttonRows = deck.getRowsByType(RowEffected.Button);

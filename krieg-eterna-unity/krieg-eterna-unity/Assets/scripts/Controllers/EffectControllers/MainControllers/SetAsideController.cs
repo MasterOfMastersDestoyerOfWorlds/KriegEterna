@@ -6,8 +6,9 @@ public class SetAsideController : EffectControllerInterface
     public void Play(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
         Deck deck = Game.activeDeck;
-        int cardsRemaining = deck.countCardsInRows(c.rowEffected);
-        Debug.Log(" SetAside remaining: " + c.setAsideRemain + " cardsRemaining " + cardsRemaining + " row: " + c.rowEffected);
+        RowEffected row = CardModel.getRowFromSide(player, c.rowEffected);
+        int cardsRemaining = deck.countCardsInRows(row);
+        Debug.Log(" SetAside remaining: " + c.setAsideRemain + " cardsRemaining " + cardsRemaining + " row: " + row);
         if (c.setAsideRemain > cardsRemaining)
         {
             c.setAsideRemain = cardsRemaining - 1;

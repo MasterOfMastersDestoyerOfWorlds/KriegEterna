@@ -317,7 +317,7 @@ namespace KriegTests
                     new Click("Usury", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerSetAside, RowEffected.PlayerHand, true),
                     new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerSetAside, RowEffected.PlayerHand, true),
-                    new ClickRow("EndRound", RowEffected.Pass),
+                    new ClickRow("Pass", RowEffected.Pass),
                     new ClickRow("UnitDeck", RowEffected.UnitDeck),
                     new ClickRow("PowerDeck", RowEffected.PowerDeck),
                 }
@@ -341,7 +341,7 @@ namespace KriegTests
                 clicks = new List<Click>{
                     new Click("Void", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new Click("Void", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
-                    new ClickRow("EndRound", RowEffected.Pass),
+                    new ClickRow("Pass", RowEffected.Pass),
                     new Click("Knight11", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
                     new Click("Knight11", RowEffected.PlayerHand, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
                 }

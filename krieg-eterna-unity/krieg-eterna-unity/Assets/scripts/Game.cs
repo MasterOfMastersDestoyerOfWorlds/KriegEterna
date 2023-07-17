@@ -128,19 +128,6 @@ public class Game : MonoBehaviour
             activeDeck.sendListToGraveyard(discardList, RowEffected.EnemyHand);
         }
 
-        if (state == State.FREE && !enemyPassed && activeDeck.getRowByType(RowEffected.EnemyHand).Count <= 0)
-        {
-            Debug.Log("````````````````No Cards in Enemy Hand, AutoPassing!!!!!!!!!");
-            enemyPassed = true;
-            player = RowEffected.Player;
-        }
-        if (state == State.FREE && !playerPassed && activeDeck.getRowByType(RowEffected.PlayerHand).Count <= 0)
-        {
-            Debug.Log("````````````````No Cards in Player Hand, AutoPassing!!!!!!!!!!!!");
-            playerPassed = true;
-            player = RowEffected.Enemy;
-        }
-
         enemyCardCountText.text = activeDeck.getRowByType(RowEffected.EnemyHand).Count.ToString();
         playerCardCountText.text = activeDeck.getRowByType(RowEffected.PlayerHand).Count.ToString();
 
@@ -180,13 +167,14 @@ public class Game : MonoBehaviour
         // ---------------------------------------------------------------------------------------------------------------
         if (!enemyPassed && state != State.BLOCKED && player == RowEffected.Enemy)
         {
-            Debug.Log("+++++++++++++++++++++++++++++++++++++++ Enemy Turn+++++++++++++++++++++++++++++++++++++");
+            Debug.Log("+++++++++++++++++++++++++++++++++++++++ Enemy Turn " + state + "+++++++++++++++++++++++++++++++++++++");
 
             moveList = Move.getPossibleMoves(player);
             if (moveList != null)
             {
                 Debug.Log("Enemy Hand: " + activeDeck.getRowByType(RowEffected.EnemyHand) + " size: " + moveList.Count);
-                foreach(Move m in moveList){
+                foreach (Move m in moveList)
+                {
                     Debug.Log("\t" + m);
                 }
             }
@@ -207,8 +195,15 @@ public class Game : MonoBehaviour
                 }
                 else
                 {
-                    PlayController.Play(nextMove);
-                    TargetController.ShowTargets(nextMove);
+                    if (state == State.CHOOSE_N)
+                    {
+                        ChooseNController.chooseCard(nextMove.targetCard, player);
+                    }
+                    else
+                    {
+                        PlayController.Play(nextMove);
+                        TargetController.ShowTargets(nextMove);
+                    }
                     activeDeck.scoreRows(RowEffected.All);
                     if (state == State.REVEAL)
                     {
@@ -219,6 +214,8 @@ public class Game : MonoBehaviour
                 {
                     turnOver();
                 }
+
+                activeCard.LogSelectionsRemaining();
                 moveList = null;
             }
         }
@@ -394,6 +391,7 @@ public class Game : MonoBehaviour
 
     private void turnOver()
     {
+        Debug.Log("TURN OVER: " + playerPassed + " enemypassed: " + enemyPassed);
         activeDeck.scoreRows(RowEffected.All);
         activeDeck.getRowByType(RowEffected.Skip).setVisibile(false);
         if (player == RowEffected.Player)
@@ -403,6 +401,7 @@ public class Game : MonoBehaviour
         if (turnsLeft != int.MaxValue && turnsLeft > 0)
         {
             turnsLeft--;
+            Debug.Log("Turns Left: " + turnsLeft);
         }
         if ((enemyPassed && playerPassed) || turnsLeft == 0)
         {
@@ -465,7 +464,14 @@ public class Game : MonoBehaviour
     }
     public static void playerPass()
     {
-        playerPassed = true;
+        if (player == RowEffected.Player)
+        {
+            playerPassed = true;
+        }
+        else
+        {
+            enemyPassed = true;
+        }
     }
 
     public static void skipActiveCardEffects()

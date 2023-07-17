@@ -9,7 +9,7 @@ public class EnemyDestroyController : EffectControllerInterface
         Debug.Log("Destroying Enemy Card");
         if (c.destroyType == DestroyType.Unit)
         {
-            int cardsRemaining = deck.countCardsInRows(c.rowEffected);
+            int cardsRemaining = deck.countCardsInRows(CardModel.getRowFromSide(player, c.rowEffected));
             if (c.enemyCardDestroyRemain > cardsRemaining)
             {
                 c.enemyCardDestroyRemain = cardsRemaining - 1;

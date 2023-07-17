@@ -249,7 +249,7 @@ namespace KriegTests
                     }
                     else
                     {
-                        if (dealRow != RowEffected.PlayerChooseN)
+                        if (!CardModel.isDisplayRow(dealRow))
                         {
                             clicks[i].card = deck.getRowByType(dealRow).getCardByName(cardName);
                         }
@@ -290,11 +290,6 @@ namespace KriegTests
                         MouseUnClick();
                     }
                     yield return null;
-
-                    Debug.Log(deck.getRowByType(rowAfterClick));
-                    Debug.Log(rowAfterClick);
-                    Debug.Log(c);
-                    Debug.Log(deck.getCardRow(c));
                     Assert.AreEqual(true, deck.getRowByType(rowAfterClick).ContainsIncludeAttachments(c),
                     $"row after click cardName: {clicks[i].name}, Expected Row: {rowAfterClick}  {deck.getRowByType(rowAfterClick)}, Actual Row: {deck.getCardRow(c).uniqueType} {deck.getRowByType(deck.getCardRow(c).uniqueType)}");
                 }

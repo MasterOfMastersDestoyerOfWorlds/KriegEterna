@@ -287,7 +287,7 @@ public class Card : MonoBehaviour
         return this.playerCardDestroyRemain <= 0 &&
         (this.setAsideRemain <= 0 || (this.setAsideType != SetAsideType.King && this.setAsideType != SetAsideType.Player))
         && this.moveRemain <= 0
-        && (this.attachmentsRemaining <= 0 || strengthModType == StrengthModType.Adjacent);
+        && (this.attachmentsRemaining <= 0 || strengthModType == StrengthModType.Adjacent || strengthModType == StrengthModType.Multiply);
     }
 
     public bool doneMultiSelection(RowEffected player)
