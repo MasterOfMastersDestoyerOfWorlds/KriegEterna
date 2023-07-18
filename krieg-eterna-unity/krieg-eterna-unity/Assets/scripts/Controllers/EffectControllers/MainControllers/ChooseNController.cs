@@ -89,6 +89,7 @@ public class ChooseNController : EffectControllerInterface
             {
                 Card clone = GameObject.Instantiate(row[i]) as Card;
                 clone.setVisible(true);
+                clone.setLayer("Display", "DisplayBloom");
                 displayRow.Add(clone);
                 revealed++;
                 if (Game.state == State.REVEAL)

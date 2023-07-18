@@ -85,6 +85,7 @@ public class Card : MonoBehaviour
     public RowEffected playerPlayed;
 
     TMP_Text scoreText;
+    private GameObject targetObj;
 
     void Awake()
     {
@@ -103,6 +104,7 @@ public class Card : MonoBehaviour
         baseLoc = this.transform.position;
         Transform cardObj = this.transform.Find("Card 1");
         Transform textObj = cardObj.Find("Score");
+        targetObj = cardObj.Find("Target").gameObject;
         scoreText = textObj.GetComponent<TMP_Text>();
         updateStrengthText(this.strength);
     }
@@ -360,7 +362,7 @@ public class Card : MonoBehaviour
         {
             enemyRowsSum += enemyRows[i].Count;
         }
-        if (this.destroyType == DestroyType.Unit && (this.playerCardDestroy > playerRowsSum  || (this.playerCardReturn > 0 && playerRowsSum - this.playerCardDestroy <= 0 )) )
+        if (this.destroyType == DestroyType.Unit && (this.playerCardDestroy > playerRowsSum || (this.playerCardReturn > 0 && playerRowsSum - this.playerCardDestroy <= 0)))
         {
             Debug.Log("Cannot Play Cond 1! : Destroy Type Unit : " + (this.playerCardDestroy + this.playerCardReturn) + " > " + playerRowsSum);
             return false;
@@ -521,6 +523,16 @@ public class Card : MonoBehaviour
         }
         return this.targetMaterial;
     }
+    private GameObject getTargetObject()
+    {
+        if (this.targetObj == null)
+        {
+            GameObject child = this.transform.GetChild(0).gameObject;
+            GameObject childOfChild = child.transform.Find("Target").gameObject;
+            this.targetObj = childOfChild;
+        }
+        return this.targetObj;
+    }
     public void loadCardFrontMaterial()
     {
         this.getCardFrontMaterial().SetTexture("_Texture2D", cardModel.getSmallFront(index));
@@ -530,6 +542,18 @@ public class Card : MonoBehaviour
         Material backMaterial = this.getCardBackMaterial();
         backMaterial.SetTexture("_Texture2D", cardModel.getCardBack(index));
         backMaterial.SetInt("_Flash", 0);
+    }
+
+    public void setLayer(string layerName, string blurLayerName)
+    {
+        LayerMask l = LayerMask.NameToLayer(layerName);
+        LayerMask bl = LayerMask.NameToLayer(blurLayerName);
+        foreach (Transform g in transform.GetComponentsInChildren<Transform>())
+        {
+            g.gameObject.layer = l;
+        }
+        getTargetObject().layer = bl;
+        gameObject.layer = l;
     }
 
     public void setCardType(CardType cardType)
