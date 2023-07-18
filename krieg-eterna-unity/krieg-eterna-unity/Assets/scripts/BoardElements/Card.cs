@@ -77,6 +77,7 @@ public class Card : MonoBehaviour
 
     private Material material;
     private Material backMaterial;
+    private Material targetMaterial;
 
     private static GameObject cardModelGameObject;
     private static CardModel cardModel;
@@ -319,8 +320,8 @@ public class Card : MonoBehaviour
     {
         if (Game.player == RowEffected.Player)
         {
-            Material material = getCardFrontMaterial();
-            material.SetInt("_Flash", state ? 1 : 0);
+            Material material = getTargetMaterial();
+            material.SetInt("_Transparent", state ? 0 : 1);
         }
         this.targetActive = state;
         updateStrengthText(this.calculatedStrength);
@@ -508,6 +509,17 @@ public class Card : MonoBehaviour
             this.material = meshRend.materials[2];
         }
         return this.material;
+    }
+    private Material getTargetMaterial()
+    {
+        if (this.targetMaterial == null)
+        {
+            GameObject child = this.transform.GetChild(0).gameObject;
+            GameObject childOfChild = child.transform.Find("Target").gameObject;
+            MeshRenderer meshRend = childOfChild.GetComponent<MeshRenderer>();
+            this.targetMaterial = meshRend.materials[2];
+        }
+        return this.targetMaterial;
     }
     public void loadCardFrontMaterial()
     {
