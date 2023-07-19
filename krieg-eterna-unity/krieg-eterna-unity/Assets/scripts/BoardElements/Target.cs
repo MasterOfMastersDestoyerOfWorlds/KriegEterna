@@ -138,7 +138,7 @@ public class Target : MonoBehaviour
             GameObject child = this.transform.GetChild(0).gameObject;
             GameObject childOfChild = child.transform.GetChild(0).gameObject;
             MeshRenderer meshRend = childOfChild.GetComponent<MeshRenderer>();
-            this.material = meshRend.materials[2];
+            this.material = meshRend.materials[0];
         }
         return this.material;
     }

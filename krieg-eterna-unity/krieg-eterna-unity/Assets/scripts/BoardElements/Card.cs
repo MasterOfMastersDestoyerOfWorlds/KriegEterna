@@ -519,7 +519,7 @@ public class Card : MonoBehaviour
             GameObject child = this.transform.GetChild(0).gameObject;
             GameObject childOfChild = child.transform.Find("Target").gameObject;
             MeshRenderer meshRend = childOfChild.GetComponent<MeshRenderer>();
-            this.targetMaterial = meshRend.materials[2];
+            this.targetMaterial = meshRend.materials[0];
         }
         return this.targetMaterial;
     }
