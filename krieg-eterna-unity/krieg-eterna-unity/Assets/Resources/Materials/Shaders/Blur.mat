@@ -124,6 +124,7 @@ Material:
     - _QueueControl: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _RectHeight: 0.833
     - _RectWidth: 0.7
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -131,7 +132,7 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _Transparent: 0
+    - _Transparent: 1
     - _TransparentFlash: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
