@@ -60,7 +60,6 @@ GameObject:
   - component: {fileID: 4483460803687029947}
   - component: {fileID: 7484558634723899705}
   - component: {fileID: 2168448290118825350}
-  - component: {fileID: 751192108193116283}
   - component: {fileID: 3448173629640173085}
   m_Layer: 3
   m_Name: Bloom Camera
@@ -137,14 +136,6 @@ Camera:
   m_StereoSeparation: 0.022
 --- !u!124 &2168448290118825350
 Behaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2972044803090388259}
-  m_Enabled: 1
---- !u!81 &751192108193116283
-AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -501,7 +492,6 @@ GameObject:
   - component: {fileID: 4524938618319832254}
   - component: {fileID: 4600280767120030895}
   - component: {fileID: 2240200699723841154}
-  - component: {fileID: 5772003150403841440}
   - component: {fileID: 552642410486883777}
   m_Layer: 6
   m_Name: Display Normal Camera
@@ -578,14 +568,6 @@ Camera:
   m_StereoSeparation: 0.022
 --- !u!124 &2240200699723841154
 Behaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4805437807845889720}
-  m_Enabled: 1
---- !u!81 &5772003150403841440
-AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -697,7 +679,6 @@ GameObject:
   - component: {fileID: 4051216487490790714}
   - component: {fileID: 1104083081437691412}
   - component: {fileID: 82553214704590173}
-  - component: {fileID: 84421153935695544}
   - component: {fileID: 3467240152506895783}
   m_Layer: 7
   m_Name: Display Bloom Camera
@@ -780,14 +761,6 @@ Behaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7910550635762404516}
   m_Enabled: 1
---- !u!81 &84421153935695544
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7910550635762404516}
-  m_Enabled: 1
 --- !u!114 &3467240152506895783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -843,7 +816,6 @@ GameObject:
   - component: {fileID: 1081869398336645323}
   - component: {fileID: 5892560475975850996}
   - component: {fileID: 8615374524829496753}
-  - component: {fileID: 787811076656445202}
   - component: {fileID: 438467110825723405}
   m_Layer: 3
   m_Name: Normal Camera
@@ -920,14 +892,6 @@ Camera:
   m_StereoSeparation: 0.022
 --- !u!124 &8615374524829496753
 Behaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8511607178424654510}
-  m_Enabled: 1
---- !u!81 &787811076656445202
-AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}

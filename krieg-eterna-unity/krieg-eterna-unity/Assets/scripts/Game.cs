@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
+using Steamworks;
 
 
 public class Game : MonoBehaviour
@@ -51,12 +52,16 @@ public class Game : MonoBehaviour
 
     public static int enemyDiscarded = 0;
 
+    public static SteamManager steamManager;
+
     void Awake()
     {
         GameObject camera = GameObject.Instantiate(Resources.Load("Prefabs/Main Camera") as GameObject, new Vector3(0f, 0f, -100f), transform.rotation);
         camera.tag = "MainCamera";
         GameObject deckObject = GameObject.Instantiate(Resources.Load("Prefabs/Deck") as GameObject, transform.position, transform.rotation);
         activeDeck = deckObject.GetComponent<Deck>();
+        GameObject steamManagerObj = GameObject.Instantiate(Resources.Load("Prefabs/SteamManager") as GameObject, transform.position, transform.rotation);
+        steamManager = deckObject.GetComponent<SteamManager>();
         player2Object = GameObject.Instantiate(Resources.Load("Prefabs/Player") as GameObject, transform.position, transform.rotation);
         player1Object = GameObject.Instantiate(Resources.Load("Prefabs/Player") as GameObject, transform.position, transform.rotation);
         player1 = player1Object.GetComponent<Player>();
@@ -109,6 +114,25 @@ public class Game : MonoBehaviour
     {
 
         reorganizeGroup();
+        if (SteamManager.Initialized)
+        {
+            string name = SteamFriends.GetPersonaName();
+            EFriendFlags fflag = EFriendFlags.k_EFriendFlagAll;
+            int numFriends = SteamFriends.GetFriendCount(fflag);
+            Debug.Log("****STEAM INFO****");
+            for (int i = 0; i < numFriends; i++)
+            {
+                CSteamID f = SteamFriends.GetFriendByIndex(i, fflag);
+                string friendName = SteamFriends.GetFriendPersonaName(f);
+                Debug.Log(friendName);
+                FriendGameInfo_t fGame;
+                bool playingGame = SteamFriends.GetFriendGamePlayed(f, out fGame);
+                if(playingGame){
+                    Debug.Log("playing game: " + fGame.m_gameID.AppID());
+                }
+            }
+            Debug.Log(name);
+        }
     }
 
     public void Update()
