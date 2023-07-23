@@ -21,7 +21,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CardFrontMat
-  m_Shader: {fileID: -6465566751694194690, guid: dde1b576ff8f6c64ebf0775c3a12c7df, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: dde1b576ff8f6c64ebf0775c3a12c7df,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -81,7 +82,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: 5de00daa97152514b8bed13754877869, type: 3}
+        m_Texture: {fileID: 2800000, guid: f587735d7c7e93b4eb5d8a7e55c25e46, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2DAsset_fbdb8a4356d24f12b2e1eaa2e9e43380_Out_0:
