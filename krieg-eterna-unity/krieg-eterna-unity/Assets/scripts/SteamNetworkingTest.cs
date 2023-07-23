@@ -12,7 +12,7 @@ public class SteamNetworkingTest : MonoBehaviour {
 
 	public void OnEnable() {
 		// You'd typically get this from a Lobby. Hardcoding it so that we don't need to integrate the whole lobby system with the networking.
-		m_RemoteSteamId = new CSteamID(0);
+		m_RemoteSteamId = new CSteamID(76561199527818303);
 
 		m_P2PSessionRequest = Callback<P2PSessionRequest_t>.Create(OnP2PSessionRequest);
 		m_P2PSessionConnectFail = Callback<P2PSessionConnectFail_t>.Create(OnP2PSessionConnectFail);

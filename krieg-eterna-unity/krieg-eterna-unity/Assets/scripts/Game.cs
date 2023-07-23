@@ -124,7 +124,7 @@ public class Game : MonoBehaviour
             {
                 CSteamID f = SteamFriends.GetFriendByIndex(i, fflag);
                 string friendName = SteamFriends.GetFriendPersonaName(f);
-                Debug.Log(friendName);
+                Debug.Log("Friend: " + friendName + " id: " + f);
                 FriendGameInfo_t fGame;
                 bool playingGame = SteamFriends.GetFriendGamePlayed(f, out fGame);
                 if(playingGame){
