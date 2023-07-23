@@ -19,13 +19,22 @@ public class MenuButton : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D cardColider;
 
-    
-    TMP_Text  text;
+
+    TMP_Text text;
+    private string buttonText;
     private bool buttonVisible = false;
 
     private Material material;
     private Func<Vector3> centerFunction;
+    private Func<Vector3> mouseOverFunction;
+    private bool inMouseOverPos;
     public Action buttonAction;
+
+
+    float lerpDuration = 0.1f;
+    float timeElapsed;
+    private Vector3 startLoc;
+    private Vector3 targetLoc;
 
     void Awake()
     {
@@ -37,10 +46,12 @@ public class MenuButton : MonoBehaviour
         text = textObj.GetComponent<TMP_Text>();
         text.text = "";
         baseLoc = this.transform.position;
+        timeElapsed = lerpDuration;
         flashing = false;
         this.setNotFlashing();
     }
-    public void setText(string str){
+    public void setText(string str)
+    {
         text.text = str;
     }
     public void setBaseLoc()
@@ -84,7 +95,8 @@ public class MenuButton : MonoBehaviour
         return baseWidth;
     }
 
-    public bool ContainsMouse(Vector3 mousePos){
+    public bool ContainsMouse(Vector3 mousePos)
+    {
         mousePos.z = this.transform.position.z;
         return this.cardColider.bounds.Contains(mousePos);
     }
@@ -112,7 +124,7 @@ public class MenuButton : MonoBehaviour
     }
     public void setFlashing(bool state)
     {
-        
+
         if (state)
         {
             this.setFlashing();
@@ -122,9 +134,16 @@ public class MenuButton : MonoBehaviour
             this.setNotFlashing();
         }
     }
+    public void setButtonNotVisible()
+    {
+        this.buttonVisible = false;
+        this.text.alpha = 0f;
+        this.getMaterial().SetInt("_Transparent", 1);
+    }
     public void setButtonVisible()
     {
         this.buttonVisible = true;
+        this.text.alpha = 100f;
         this.getMaterial().SetInt("_Transparent", 0);
     }
     public void setFlashing()
@@ -142,17 +161,57 @@ public class MenuButton : MonoBehaviour
         this.getMaterial().SetInt("_Transparent", 1);
     }
 
-    internal void setUp(string name, Func<Vector3> centerFunction, Action buttonAction, bool visible)
+    internal void setUp(string name, Func<Vector3> centerFunction, Func<Vector3> mouseOverFunction, Action buttonAction, bool visible)
     {
         this.name = name;
         this.text.text = name;
+        this.buttonText = name;
         this.transform.position = centerFunction.Invoke();
+        this.baseLoc = this.transform.position;
+        this.startLoc = this.transform.position;
+        this.targetLoc = this.transform.position;
         this.centerFunction = centerFunction;
+        this.mouseOverFunction = mouseOverFunction;
+        this.inMouseOverPos = false;
         this.buttonAction = buttonAction;
-        if(visible){
+        if (visible)
+        {
             this.setButtonVisible();
             this.setFlashing();
         }
+        else
+        {
+            this.setButtonNotVisible();
+            this.setNotFlashing();
+        }
         setBaseLoc();
+    }
+    internal void mouseOver(bool mouseOver)
+    {
+        if (mouseOver)
+        {
+            if (!inMouseOverPos)
+            {
+                inMouseOverPos = true;
+                startLoc = this.transform.position;
+                targetLoc = mouseOverFunction.Invoke();
+                timeElapsed = 0f;
+            }
+        }
+        else
+        {
+            if (inMouseOverPos)
+            {
+                inMouseOverPos = false;
+                startLoc = this.transform.position;
+                targetLoc = centerFunction.Invoke();
+                timeElapsed = 0f;
+            }
+        }
+        if (timeElapsed < lerpDuration)
+        {
+            this.transform.position = Vector3.Lerp(startLoc, targetLoc, timeElapsed / lerpDuration);
+            timeElapsed += Time.deltaTime;
+        }
     }
 }

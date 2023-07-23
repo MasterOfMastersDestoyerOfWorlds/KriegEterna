@@ -31,8 +31,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Searcher.Editor", "Un
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Burst", "Unity.Burst.csproj", "{60205306-0b0e-b4ec-d0c6-600ba42871e2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Services.Core.Environments.Editor", "Unity.Services.Core.Environments.Editor.csproj", "{225b0f81-88c9-a60f-0e37-4e2543b4c440}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scripts", "Scripts.csproj", "{45a038ac-91e6-fccc-be86-e02f43593987}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Services.Core.Editor", "Unity.Services.Core.Editor.csproj", "{d71b26d6-0fc5-40cf-5d04-dd5afc47b786}"
@@ -164,8 +162,6 @@ Global
 		{efb1cb48-bfe9-a4f9-4d55-6eb1c82f2b7d}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60205306-0b0e-b4ec-d0c6-600ba42871e2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{60205306-0b0e-b4ec-d0c6-600ba42871e2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{225b0f81-88c9-a60f-0e37-4e2543b4c440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{225b0f81-88c9-a60f-0e37-4e2543b4c440}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45a038ac-91e6-fccc-be86-e02f43593987}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{45a038ac-91e6-fccc-be86-e02f43593987}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{d71b26d6-0fc5-40cf-5d04-dd5afc47b786}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

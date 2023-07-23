@@ -37,7 +37,18 @@ public class MenuAreas : MonoBehaviour
         updateScreenBounds();
         Vector3 centerFront = new Vector3(
             botLeft.x,
-            (botLeft.y * (0.5f) ) + (botLeft.y/5)*spacer,
+            (botLeft.y * (0.5f) ) + (botLeft.y/5)*(-1)*spacer,
+            -5f);
+        return centerFront;
+    }
+
+    public Vector3 getMouseOverLocFromBot(int spacer)
+    {
+        
+        updateScreenBounds();
+        Vector3 centerFront = new Vector3(
+            botLeft.x + topRight.x/20,
+            (botLeft.y * (0.5f) ) + (botLeft.y/5)*(-1)*spacer,
             -5f);
         return centerFront;
     }

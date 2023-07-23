@@ -152,7 +152,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 140.52, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -205,8 +205,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6594828419715469135}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.893401, y: -0, z: -0.03829}
-  m_LocalScale: {x: 248.79686, y: 392.7761, z: 3.1443167}
+  m_LocalPosition: {x: 1.206178, y: -0, z: -0.03829}
+  m_LocalScale: {x: 317.51904, y: 392.7761, z: 3.1443167}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4818761434043303842}
@@ -242,7 +242,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: -876546973899608171, guid: 4af743c49a7b340408b11772eb923781, type: 3}
+  - {fileID: 2100000, guid: d6c90709f6348994bb5e17edbfd578ce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -299,8 +299,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 152.07648, y: 0}
-  m_SizeDelta: {x: 310.687, y: 49.23}
+  m_AnchoredPosition: {x: 145.1386, y: 0.7303}
+  m_SizeDelta: {x: 296.8113, y: 47.7694}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &7727054212938799530
 MeshRenderer:
@@ -364,7 +364,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Settings
+  m_text: Customize Rules
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b3f6f56e80e4627429cbbf692590745c, type: 2}
   m_sharedMaterial: {fileID: 7415723871894747115, guid: b3f6f56e80e4627429cbbf692590745c, type: 2}
@@ -398,12 +398,12 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 32
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 8.9
-  m_wordSpacing: 0
-  m_lineSpacing: 42.57
+  m_characterSpacing: 0.3
+  m_wordSpacing: 1.49
+  m_lineSpacing: 50.61
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -427,7 +427,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 98.56588, y: 1.0416737, z: -2.9764824, w: 4.1666927}
+  m_margin: {x: 98.56588, y: 1.0416737, z: 10.8992195, w: 4.1666927}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
