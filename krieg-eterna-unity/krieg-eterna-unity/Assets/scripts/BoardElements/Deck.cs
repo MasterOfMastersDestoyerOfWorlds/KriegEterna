@@ -789,6 +789,15 @@ public class Deck : MonoBehaviour
             r.scoreRow(this, CardModel.getPlayerFromRow(r.uniqueType));
         }
     }
+    public int totalScore(RowEffected rowType)
+    {
+        int total = 0;
+        foreach (Row r in getRowsByType(rowType))
+        {
+            total += r.score;
+        }
+        return total;
+    }
 
     public List<RowEffected> getMaxScoreRows(RowEffected rowType)
     {

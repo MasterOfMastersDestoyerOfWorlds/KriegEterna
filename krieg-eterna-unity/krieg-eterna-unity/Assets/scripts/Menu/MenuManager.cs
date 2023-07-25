@@ -149,7 +149,6 @@ public class MenuManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Update");
         Vector3 mouseRelativePosition = new Vector3(0f, 0f, 0f);
         if (Mouse.current != null)
         {

@@ -11,6 +11,7 @@ public class Areas : MonoBehaviour
     static float width;
 
     float kingPadding = 4.5f;
+    float infoPadding = 2f;
 
     void Awake()
     {
@@ -127,7 +128,7 @@ public class Areas : MonoBehaviour
         updateScreenBounds();
         Vector3 skip = new Vector3(
             topRight.x - width * 2.5f,
-            center.y - height*2,
+            center.y - height * 2,
             0f);
         return skip;
     }
@@ -137,7 +138,7 @@ public class Areas : MonoBehaviour
         updateScreenBounds();
         Vector3 skip = new Vector3(
             topRight.x - width * 1.5f,
-            center.y - height*2f,
+            center.y - height * 2f,
             0f);
         return skip;
     }
@@ -163,7 +164,7 @@ public class Areas : MonoBehaviour
     }
 
     public Vector3 getSiegeKingCenterVector()
-    {        
+    {
         updateScreenBounds();
         Vector3 kingCenter = new Vector3(
             botLeft.x + width * kingPadding,
@@ -171,6 +172,27 @@ public class Areas : MonoBehaviour
             0f);
         return kingCenter;
     }
+
+    public Vector3 getPlayerInfoCenterVector()
+    {
+        updateScreenBounds();
+        Vector3 kingCenter = new Vector3(
+            botLeft.x + width * infoPadding,
+            botLeft.y + height * 2.5f,
+            0f);
+        return kingCenter;
+    }
+
+    public Vector3 getEnemyInfoCenterVector()
+    {
+        updateScreenBounds();
+        Vector3 kingCenter = new Vector3(
+            botLeft.x + width * infoPadding,
+            botLeft.y + height * 5.5f,
+            0f);
+        return kingCenter;
+    }
+
 
 
     public Vector3 getMeleeRowCenterVector()
@@ -189,7 +211,7 @@ public class Areas : MonoBehaviour
     }
 
     public Vector3 getSiegeRowCenterVector()
-    {   
+    {
         Debug.Log(getCenterBottom());
         return getCenterBottom() + new Vector3(0f, Card.getBaseHeight(), 0f);
     }
@@ -227,7 +249,7 @@ public class Areas : MonoBehaviour
     }
 
     public Vector3 getEnemySiegeKingCenterVector()
-    {        
+    {
         updateScreenBounds();
         Vector3 kingCenter = new Vector3(
             botLeft.x + width * kingPadding,

@@ -5,6 +5,7 @@ using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
 using Steamworks;
+using TMPro;
 
 public class Game : MonoBehaviour
 {
@@ -30,11 +31,17 @@ public class Game : MonoBehaviour
     public static bool playerPassed;
     public static RowEffected player;
     public static EnemyControllerInterface enemyController;
-    private Text playerNameText;
-    private Text playerCardCountText;
+    private TMP_Text playerNameText;
+    private TMP_Text playerPassedText;
+    private TMP_Text playerCardCountText;
+    private TMP_Text playerTotalScoreText;
+    private TMP_Text playerRoundsWonText;
 
-    private Text enemyNameText;
-    private Text enemyCardCountText;
+    private TMP_Text enemyNameText;
+    private TMP_Text enemyPassedText;
+    private TMP_Text enemyCardCountText;
+    private TMP_Text enemyTotalScoreText;
+    private TMP_Text enemyRoundsWonText;
 
     private GameObject player1Object;
     private GameObject player2Object;
@@ -68,6 +75,9 @@ public class Game : MonoBehaviour
 
     List<Card> cardsToLoad;
 
+    GameObject playerInfo;
+    GameObject enemyInfo;
+
     void Awake()
     {
         var totaltime = System.Diagnostics.Stopwatch.StartNew();
@@ -82,26 +92,49 @@ public class Game : MonoBehaviour
         player1 = player1Object.GetComponent<Player>();
         player2 = player2Object.GetComponent<Player>();
 
-
-        GameObject.Instantiate(Resources.Load("Prefabs/Canvas") as GameObject, transform.position, transform.rotation);
-
         GameObject loadingScreenObj = GameObject.Find("LoadingScreen(Clone)");
-        if(loadingScreenObj == null){
+        if (loadingScreenObj == null)
+        {
             loadingScreenObj = GameObject.Instantiate(Resources.Load("Prefabs/LoadingScreen") as GameObject, new Vector3(0f, 0f, -10f), transform.rotation);
         }
         loadingScreen = loadingScreenObj.GetComponent<LoadingScreen>();
 
-        GameObject playerNameTextObject = GameObject.Find("PlayerName");
-        playerNameText = playerNameTextObject.GetComponent<Text>();
 
-        GameObject playerCardCountTextObject = GameObject.Find("PlayerCardCount");
-        playerCardCountText = playerCardCountTextObject.GetComponent<Text>();
+        //Player Info Setup
+        playerInfo = GameObject.Instantiate(Resources.Load("Prefabs/PlayerInfo") as GameObject, activeDeck.areas.getPlayerInfoCenterVector(), transform.rotation);
 
-        GameObject enemyNameTextObject = GameObject.Find("EnemyName");
-        enemyNameText = enemyNameTextObject.GetComponent<Text>();
+        GameObject playerNameTextObject = playerInfo.transform.Find("PlayerName").gameObject;
+        playerNameText = playerNameTextObject.GetComponent<TMP_Text>();
+        playerNameText.text = "Player";
 
-        GameObject enemyCardCountTextObject = GameObject.Find("EnemyCardCount");
-        enemyCardCountText = enemyCardCountTextObject.GetComponent<Text>();
+        GameObject playerPassedTextObject = playerInfo.transform.Find("Passed").gameObject;
+        playerPassedText = playerPassedTextObject.GetComponent<TMP_Text>();
+
+        GameObject playerCardCountTextObject = playerInfo.transform.Find("HandCount").Find("Score").gameObject;
+        playerCardCountText = playerCardCountTextObject.GetComponent<TMP_Text>();
+
+        GameObject playerTotalScoreTextObject = playerInfo.transform.Find("TotalScore").Find("Score").gameObject;
+        playerTotalScoreText = playerTotalScoreTextObject.GetComponent<TMP_Text>();
+
+        GameObject playerRoundsWonTextObject = playerInfo.transform.Find("RoundsWon").Find("Score").gameObject;
+        playerRoundsWonText = playerRoundsWonTextObject.GetComponent<TMP_Text>();
+
+
+        //Enemy Info Setup
+        enemyInfo = GameObject.Instantiate(Resources.Load("Prefabs/PlayerInfo") as GameObject, activeDeck.areas.getEnemyInfoCenterVector(), transform.rotation);
+
+        GameObject enemyNameTextObject = enemyInfo.transform.Find("PlayerName").gameObject;
+        enemyNameText = enemyNameTextObject.GetComponent<TMP_Text>();
+        enemyNameText.text = "Enemy";
+
+        GameObject enemyCardCountTextObject = enemyInfo.transform.Find("HandCount").Find("Score").gameObject;
+        enemyCardCountText = enemyCardCountTextObject.GetComponent<TMP_Text>();
+
+        GameObject enemyTotalScoreTextObject = enemyInfo.transform.Find("TotalScore").Find("Score").gameObject;
+        enemyTotalScoreText = enemyTotalScoreTextObject.GetComponent<TMP_Text>();
+
+        GameObject enemyRoundsWonTextObject = enemyInfo.transform.Find("RoundsWon").Find("Score").gameObject;
+        enemyRoundsWonText = enemyRoundsWonTextObject.GetComponent<TMP_Text>();
 
 
         enemyController = new RandomBot();
@@ -174,7 +207,7 @@ public class Game : MonoBehaviour
                     var co = StartCoroutine(c.loadCardFrontAsync());
                 }
             }
-            else if(!loadingDone)
+            else if (!loadingDone)
             {
                 bool allLoaded = true;
                 foreach (Card c in cardsToLoad)
@@ -186,7 +219,7 @@ public class Game : MonoBehaviour
                 }
                 if (allLoaded)
                 {
-                    
+
                     ChooseNController.setChooseN(RowEffected.PlayerHand, activeDeck.sendCardToGraveyard, NUM_DISCARD_START, activeDeck.getRowByType(RowEffected.PlayerHand).Count, new List<CardType>() { CardType.King }, RowEffected.None, State.CHOOSE_N, false);
                     activeDeck.getRowByType(RowEffected.Pass).setVisibile(false);
                     state = State.LOADING;
@@ -281,7 +314,7 @@ public class Game : MonoBehaviour
                             PlayController.Play(nextMove);
                             TargetController.ShowTargets(nextMove);
                         }
-                        activeDeck.scoreRows(RowEffected.All);
+                        playerInfoUpdate();
                         if (state == State.REVEAL)
                         {
                             state = State.FREE;
@@ -453,7 +486,7 @@ public class Game : MonoBehaviour
                 }
                 else
                 {
-                    activeDeck.scoreRows(RowEffected.All);
+                    playerInfoUpdate();
                     if (!setupComplete && state == State.FREE)
                     {
                         setupComplete = true;
@@ -470,7 +503,7 @@ public class Game : MonoBehaviour
     private void turnOver()
     {
         Debug.Log("TURN OVER: " + playerPassed + " enemypassed: " + enemyPassed);
-        activeDeck.scoreRows(RowEffected.All);
+        playerInfoUpdate();
         activeDeck.getRowByType(RowEffected.Skip).setVisibile(false);
         if (player == RowEffected.Player)
         {
@@ -655,5 +688,14 @@ public class Game : MonoBehaviour
     internal static bool canSkip()
     {
         return (state == State.MULTISTEP || state == State.CHOOSE_N) && activeCard.canSkip();
+    }
+    
+    private void playerInfoUpdate()
+    {
+        activeDeck.scoreRows(RowEffected.All);
+        enemyTotalScoreText.text = activeDeck.totalScore(RowEffected.Enemy).ToString();
+        playerTotalScoreText.text = activeDeck.totalScore(RowEffected.Player).ToString();
+        playerPassedText.text = "Passed: " + playerPassed;
+        playerPassedText.text = "Passed: " + enemyPassed;
     }
 }
