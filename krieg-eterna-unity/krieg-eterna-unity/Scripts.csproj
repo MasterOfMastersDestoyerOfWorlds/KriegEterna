@@ -87,6 +87,7 @@
      <Compile Include="Assets\Scripts\BoardElements\Deck.cs" />
      <Compile Include="Assets\Scripts\Controllers\EnemyControllers\EnemyControllerInterface.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\PlayInRowController.cs" />
+     <Compile Include="Assets\Scripts\LoadingScreen.cs" />
      <Compile Include="Assets\Scripts\SteamManager.cs" />
      <Compile Include="Assets\Scripts\Controllers\TargetController.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\PlayerDrawController.cs" />

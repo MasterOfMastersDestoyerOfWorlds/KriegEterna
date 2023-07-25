@@ -7,5 +7,6 @@ public enum State
     REVEAL,
     ROUND_END,
     BLOCKED,
+    LOADING,
     
 };

@@ -6,13 +6,14 @@ using System;
 using UnityEngine.InputSystem;
 using Steamworks;
 
-
 public class Game : MonoBehaviour
 {
     public static Card activeCard;
     public static Card lastPlayedCard;
     private static int activePlayerNumber;
     public static State state = State.FREE;
+
+    public static bool testing = false;
 
     public static Deck activeDeck;
 
@@ -21,6 +22,7 @@ public class Game : MonoBehaviour
     public static RoundType round;
 
     private static bool hasChosenStart;
+    private static bool loadingDone;
     private static bool setupComplete;
 
     public static int turnsLeft;
@@ -44,6 +46,7 @@ public class Game : MonoBehaviour
 
 
     private GameObject giveUpButtonObject;
+    private LoadingScreen loadingScreen;
 
     public static readonly int NUM_POWERS = 4;
     public static readonly int NUM_UNITS = 9;
@@ -54,8 +57,20 @@ public class Game : MonoBehaviour
 
     public static SteamManager steamManager;
 
+    List<string> choosePower = new List<string>();
+    List<string> chooseUnit = new List<string>();
+    List<string> chooseKing = new List<string>();
+    List<string> chooseUnitGraveyard = new List<string>();
+    List<string> choosePowerGraveyard = new List<string>();
+    List<string> enemyPower = new List<string>();
+    List<string> enemyUnit = new List<string>();
+    List<string> enemyKing = new List<string>();
+
+    List<Card> cardsToLoad;
+
     void Awake()
     {
+        var totaltime = System.Diagnostics.Stopwatch.StartNew();
         GameObject camera = GameObject.Instantiate(Resources.Load("Prefabs/Main Camera") as GameObject, new Vector3(0f, 0f, -100f), transform.rotation);
         camera.tag = "MainCamera";
         GameObject deckObject = GameObject.Instantiate(Resources.Load("Prefabs/Deck") as GameObject, transform.position, transform.rotation);
@@ -70,6 +85,11 @@ public class Game : MonoBehaviour
 
         GameObject.Instantiate(Resources.Load("Prefabs/Canvas") as GameObject, transform.position, transform.rotation);
 
+        GameObject loadingScreenObj = GameObject.Find("LoadingScreen(Clone)");
+        if(loadingScreenObj == null){
+            loadingScreenObj = GameObject.Instantiate(Resources.Load("Prefabs/LoadingScreen") as GameObject, new Vector3(0f, 0f, -10f), transform.rotation);
+        }
+        loadingScreen = loadingScreenObj.GetComponent<LoadingScreen>();
 
         GameObject playerNameTextObject = GameObject.Find("PlayerName");
         playerNameText = playerNameTextObject.GetComponent<Text>();
@@ -83,38 +103,24 @@ public class Game : MonoBehaviour
         GameObject enemyCardCountTextObject = GameObject.Find("EnemyCardCount");
         enemyCardCountText = enemyCardCountTextObject.GetComponent<Text>();
 
-        List<string> choosePower = new List<string>();
-        choosePower.Add("Redemption");
-        choosePower.Add("Frost");
-        choosePower.Add("Spy");
-        choosePower.Add("Jester");
-        List<string> chooseUnit = new List<string>();
-        chooseUnit.Add("Juggernaut");
-        List<string> chooseKing = new List<string>();
-        chooseKing.Add("TraitorKing");
-        List<string> chooseUnitGraveyard = new List<string>();
-        chooseUnitGraveyard.Add("Crusader");
-        chooseUnitGraveyard.Add("Knight");
-        List<string> choosePowerGraveyard = new List<string>();
-        List<string> enemyPower = new List<string>();
-        List<string> enemyUnit = new List<string>();
-        List<string> enemyKing = new List<string>();
+
         enemyController = new RandomBot();
-        activeDeck.buildDeck(NUM_POWERS, NUM_UNITS, NUM_KINGS, choosePower, chooseUnit, chooseKing, chooseUnitGraveyard, choosePowerGraveyard, enemyPower, enemyUnit, enemyKing);
         hasChosenStart = false;
         setupComplete = false;
+        loadingDone = false;
         roundEndCards = new List<Card>();
         round = RoundType.RoundOne;
         turnsLeft = int.MaxValue;
         player = RowEffected.Player;
-
+        totaltime.Stop();
+        Debug.Log("total build Time elapsed: " + totaltime.Elapsed);
     }
 
     void Start()
     {
 
         reorganizeGroup();
-        if (SteamManager.Initialized)
+        /*if (SteamManager.Initialized)
         {
             string name = SteamFriends.GetPersonaName();
             EFriendFlags fflag = EFriendFlags.k_EFriendFlagAll;
@@ -132,7 +138,7 @@ public class Game : MonoBehaviour
                 }
             }
             Debug.Log(name);
-        }
+        }*/
     }
 
     public void Update()
@@ -141,273 +147,321 @@ public class Game : MonoBehaviour
         // ---------------------------------------------------------------------------------------------------------------
         if (!hasChosenStart)
         {
+            var sw = System.Diagnostics.Stopwatch.StartNew();
+            activeDeck.buildDeck(NUM_POWERS, NUM_UNITS, NUM_KINGS, choosePower, chooseUnit, chooseKing, chooseUnitGraveyard, choosePowerGraveyard, enemyPower, enemyUnit, enemyKing);
+            sw.Stop();
+            Debug.Log("buildDeck Time elapsed: " + sw.Elapsed);
+            Debug.Log("Startup Time: " + Time.deltaTime);
             hasChosenStart = true;
-            ChooseNController.setChooseN(RowEffected.PlayerHand, activeDeck.sendCardToGraveyard, NUM_DISCARD_START, activeDeck.getRowByType(RowEffected.PlayerHand).Count, new List<CardType>() { CardType.King }, RowEffected.None, State.CHOOSE_N, false);
-            activeDeck.getRowByType(RowEffected.Pass).setVisibile(false);
-        }
-        if (enemyDiscarded < NUM_DISCARD_START)
-        {
-            List<Card> discardList = enemyController.ChooseDiscard(NUM_DISCARD_START - enemyDiscarded);
-            enemyDiscarded += discardList.Count;
-            activeDeck.sendListToGraveyard(discardList, RowEffected.EnemyHand);
+            state = State.LOADING;
         }
 
-        enemyCardCountText.text = activeDeck.getRowByType(RowEffected.EnemyHand).Count.ToString();
-        playerCardCountText.text = activeDeck.getRowByType(RowEffected.PlayerHand).Count.ToString();
-
-        // Picking card
-        // -------------------------------------------------------------- -------------------------------------------------
-        Vector3 mouseRelativePosition = new Vector3(0f, 0f, 0f);
-        if (Mouse.current != null)
+        if (state == State.LOADING)
         {
-            mouseRelativePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        }
-        mouseRelativePosition.z = 0f;
-        // Right click to inspect card
-        // ---------------------------------------------------------------------------------------------------------------
-        if (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame)
-        {
-            if (state != State.MULTISTEP && state != State.CHOOSE_N)
+            if (loadingDone)
             {
-                activeDeck.disactiveAllInDeck(false);
-            }
-            else
-            {
-                activeDeck.disactiveAllInDeck(true);
-            }
-            reorganizeGroup();
-            List<Card> cards = activeDeck.getVisibleCards(state);
-            foreach (Card c in cards)
-            {
-                if (c.ContainsMouse(mouseRelativePosition))
+                if (loadingScreen.FadeOut())
                 {
-                    c.scaleBig();
-                    c.transform.position = activeDeck.areas.getCenterFrontBig();
-                    break;
+                    state = State.CHOOSE_N;
+                }
+            }
+            if (cardsToLoad == null)
+            {
+                cardsToLoad = activeDeck.getVisibleCards(state);
+                foreach (Card c in cardsToLoad)
+                {
+                    Debug.Log("Loading:  " + c.cardName);
+                    var co = StartCoroutine(c.loadCardFrontAsync());
+                }
+            }
+            else if(!loadingDone)
+            {
+                bool allLoaded = true;
+                foreach (Card c in cardsToLoad)
+                {
+                    if (!c.textureLoaded)
+                    {
+                        allLoaded = false;
+                    }
+                }
+                if (allLoaded)
+                {
+                    
+                    ChooseNController.setChooseN(RowEffected.PlayerHand, activeDeck.sendCardToGraveyard, NUM_DISCARD_START, activeDeck.getRowByType(RowEffected.PlayerHand).Count, new List<CardType>() { CardType.King }, RowEffected.None, State.CHOOSE_N, false);
+                    activeDeck.getRowByType(RowEffected.Pass).setVisibile(false);
+                    state = State.LOADING;
+                    reorganizeGroup();
+                    loadingDone = true;
                 }
             }
         }
-        // Doing Enemy Turn
-        // ---------------------------------------------------------------------------------------------------------------
-        if (!enemyPassed && state != State.BLOCKED && player == RowEffected.Enemy)
+        else
         {
-            Debug.Log("+++++++++++++++++++++++++++++++++++++++ Enemy Turn " + state + "+++++++++++++++++++++++++++++++++++++");
-
-            moveList = Move.getPossibleMoves(player);
-            if (moveList != null)
+            if (enemyDiscarded < NUM_DISCARD_START)
             {
-                Debug.Log("Enemy Hand: " + activeDeck.getRowByType(RowEffected.EnemyHand) + " size: " + moveList.Count);
-                foreach (Move m in moveList)
-                {
-                    Debug.Log("\t" + m);
-                }
+                List<Card> discardList = enemyController.ChooseDiscard(NUM_DISCARD_START - enemyDiscarded);
+                enemyDiscarded += discardList.Count;
+                activeDeck.sendListToGraveyard(discardList, RowEffected.EnemyHand);
+                reorganizeGroup();
             }
 
-            Move nextMove = enemyController.NextMove(moveList);
-            Debug.Log(nextMove);
-            if (nextMove != null)
-            {
-                if (nextMove.isButton)
-                {
-                    activeDeck.getRowByType(nextMove.targetRow).buttonAction.Invoke();
-                }
-                else if (nextMove.activate)
-                {
-                    activeCard = nextMove.c;
-                    TargetController.ShowTargets(nextMove);
-                    state = State.ACTIVE_CARD;
-                }
-                else
-                {
-                    if (state == State.CHOOSE_N)
-                    {
-                        ChooseNController.chooseCard(nextMove.targetCard, player);
-                    }
-                    else
-                    {
-                        PlayController.Play(nextMove);
-                        TargetController.ShowTargets(nextMove);
-                    }
-                    activeDeck.scoreRows(RowEffected.All);
-                    if (state == State.REVEAL)
-                    {
-                        state = State.FREE;
-                    }
-                }
-                if (state == State.FREE)
-                {
-                    turnOver();
-                }
+            enemyCardCountText.text = activeDeck.getRowByType(RowEffected.EnemyHand).Count.ToString();
+            playerCardCountText.text = activeDeck.getRowByType(RowEffected.PlayerHand).Count.ToString();
 
-                activeCard.LogSelectionsRemaining();
-                moveList = null;
-            }
-        }
-
-        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame && state != State.BLOCKED)
-        {
-
-            Debug.Log("--------------------------------------------------------------------");
-            if (state == State.REVEAL)
+            // Picking card
+            // -------------------------------------------------------------- -------------------------------------------------
+            Vector3 mouseRelativePosition = new Vector3(0f, 0f, 0f);
+            if (Mouse.current != null)
             {
-                activeDeck.getRowByType(RowEffected.PlayerChooseN).setVisibile(false);
-                state = State.FREE;
-                return;
+                mouseRelativePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             }
-            Debug.Log("Click Registered! State: " + state + " player: " + player);
-            bool clickOnTarget = false;
-            Row playerHand = activeDeck.getRowByType(RowEffected.PlayerHand);
-
-            if (playerHand.Count > 0 && state != State.MULTISTEP && state != State.CHOOSE_N)
-            {
-                for (int i = 0; i < playerHand.Count; i++)
-                {
-                    Card c = playerHand[i];
-                    if (c.ContainsMouse(mouseRelativePosition))
-                    {
-
-                        Debug.Log("Click Registered On Deck");
-                        clickOnTarget = true;
-                        bool canPlay = (CardModel.isUnit(c.cardType) || c.isPlayable(player));
-                        Debug.Log("clicked on: " + c.ToString() + " isPlayable: " + c.isPlayable(player) + " active: " + c.isTargetActive());
-                        if (c.isTargetActive() && canPlay)
-                        {
-                            PlayController.Play(c, null, null, player);
-                            c.setTargetActive(false);
-                            if (state == State.MULTISTEP)
-                            {
-                                activeDeck.disactiveAllInDeck(true);
-                                TargetController.ShowTargets(c, player);
-                                break;
-                            }
-                            break;
-                        }
-                        else if (canPlay)
-                        {
-                            activeDeck.disactiveAllInDeck(false);
-                            activeCard = c;
-                            TargetController.ShowTargets(c, player);
-
-                            Debug.Log("Setting Card Active: " + c.cardName);
-                            activeCard.setBaseLoc();
-                            activeCard.transform.position += new Vector3(0, Card.getBaseHeight() / 3, 0f);
-                            state = State.ACTIVE_CARD;
-                        }
-                        else
-                        {
-                            Debug.Log("!!!!!!!!!!!!!!!!!!!!!!Cannot Play!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                        }
-                    }
-                }
-            }
-            if (!clickOnTarget)
-            {
-                List<Row> activeRowTargets = activeDeck.getActiveRowTargets();
-                for (int i = 0; i < activeRowTargets.Count; i++)
-                {
-                    Row row = activeRowTargets[i];
-                    if (row.target.ContainsMouse(mouseRelativePosition))
-                    {
-                        clickOnTarget = true;
-                        PlayController.Play(activeCard, row, null, player);
-                        if (state != State.MULTISTEP)
-                        {
-                            activeDeck.disactiveAllInDeck(false);
-                        }
-                        else
-                        {
-                            activeDeck.disactiveAllInDeck(true);
-                            TargetController.ShowTargets(activeCard, player);
-                        }
-                        break;
-                    }
-                }
-            }
-            if (!clickOnTarget)
-            {
-                for (int i = 0; i < activeDeck.rows.Count; i++)
-                {
-                    Row row = activeDeck.rows[i];
-                    if (row.cardTargetsActivated)
-                    {
-                        for (int j = 0; j < row.Count; j++)
-                        {
-                            Card selected = row[j];
-                            Debug.Log("Card: " + selected.cardName + " Contains: " + selected.ContainsMouse(mouseRelativePosition) + "Card Location: " + selected.transform.position + " Mouse: " + mouseRelativePosition);
-                            if (selected.ContainsMouse(mouseRelativePosition))
-                            {
-                                Debug.Log("Clicked on Card:" + selected.cardName);
-                                if (state == State.CHOOSE_N)
-                                {
-                                    Debug.Log("selected!" + selected.cardName);
-                                    ChooseNController.chooseCard(selected, player);
-                                }
-                                else
-                                {
-                                    PlayController.Play(activeCard, row, selected, player);
-                                    if (state != State.MULTISTEP)
-                                    {
-                                        activeDeck.disactiveAllInDeck(false);
-                                    }
-                                    else
-                                    {
-                                        TargetController.ShowTargets(activeCard, player);
-                                    }
-                                }
-                                clickOnTarget = true;
-                            }
-                        }
-                        if (clickOnTarget)
-                        {
-                            break;
-                        }
-                    }
-                }
-            }
-            if (!clickOnTarget)
-            {
-                List<Row> buttons = activeDeck.getRowsByType(RowEffected.Button);
-                foreach (Row row in buttons)
-                {
-                    if (row.target.ContainsMouse(mouseRelativePosition) && row.isVisible())
-                    {
-                        row.buttonAction.Invoke();
-                        clickOnTarget = true;
-                        break;
-                    }
-                }
-            }
-            if (!clickOnTarget)
+            mouseRelativePosition.z = 0f;
+            // Right click to inspect card
+            // ---------------------------------------------------------------------------------------------------------------
+            if (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame)
             {
                 if (state != State.MULTISTEP && state != State.CHOOSE_N)
                 {
-                    Debug.Log("No valid click resetting");
                     activeDeck.disactiveAllInDeck(false);
                 }
                 else
                 {
                     activeDeck.disactiveAllInDeck(true);
-                    if (activeCard != null)
+                }
+                reorganizeGroup();
+                List<Card> cards = activeDeck.getVisibleCards(state);
+                foreach (Card c in cards)
+                {
+                    if (c.ContainsMouse(mouseRelativePosition))
                     {
-                        activeCard.LogSelectionsRemaining();
-                        if (activeCard.doneMultiSelection(player))
+                        c.scaleBig();
+                        c.transform.position = activeDeck.areas.getCenterFrontBig();
+                        break;
+                    }
+                }
+            }
+            // Doing Enemy Turn
+            // ---------------------------------------------------------------------------------------------------------------
+            if (!enemyPassed && state != State.BLOCKED && player == RowEffected.Enemy)
+            {
+                Debug.Log("+++++++++++++++++++++++++++++++++++++++ Enemy Turn " + state + "+++++++++++++++++++++++++++++++++++++");
+
+                moveList = Move.getPossibleMoves(player);
+                if (moveList != null)
+                {
+                    Debug.Log("Enemy Hand: " + activeDeck.getRowByType(RowEffected.EnemyHand) + " size: " + moveList.Count);
+                    foreach (Move m in moveList)
+                    {
+                        Debug.Log("\t" + m);
+                    }
+                }
+
+                Move nextMove = enemyController.NextMove(moveList);
+                Debug.Log(nextMove);
+                if (nextMove != null)
+                {
+                    if (nextMove.isButton)
+                    {
+                        activeDeck.getRowByType(nextMove.targetRow).buttonAction.Invoke();
+                    }
+                    else if (nextMove.activate)
+                    {
+                        activeCard = nextMove.c;
+                        TargetController.ShowTargets(nextMove);
+                        state = State.ACTIVE_CARD;
+                    }
+                    else
+                    {
+                        if (state == State.CHOOSE_N)
+                        {
+                            ChooseNController.chooseCard(nextMove.targetCard, player);
+                        }
+                        else
+                        {
+                            PlayController.Play(nextMove);
+                            TargetController.ShowTargets(nextMove);
+                        }
+                        activeDeck.scoreRows(RowEffected.All);
+                        if (state == State.REVEAL)
                         {
                             state = State.FREE;
                         }
                     }
+                    if (state == State.FREE)
+                    {
+                        turnOver();
+                    }
+
+                    activeCard.LogSelectionsRemaining();
+                    moveList = null;
                 }
-                reorganizeGroup();
             }
-            else
+
+            if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame && state != State.BLOCKED)
             {
-                activeDeck.scoreRows(RowEffected.All);
-                if (!setupComplete && state == State.FREE)
+
+                Debug.Log("--------------------------------------------------------------------");
+                if (state == State.REVEAL)
                 {
-                    setupComplete = true;
+                    activeDeck.getRowByType(RowEffected.PlayerChooseN).setVisibile(false);
+                    state = State.FREE;
+                    return;
                 }
-                else if (state == State.FREE || activeDeck.getRowByType(CardModel.getHandRow(player)).Count == 0)
+                Debug.Log("Click Registered! State: " + state + " player: " + player);
+                bool clickOnTarget = false;
+                Row playerHand = activeDeck.getRowByType(RowEffected.PlayerHand);
+
+                if (playerHand.Count > 0 && state != State.MULTISTEP && state != State.CHOOSE_N)
                 {
-                    turnOver();
+                    for (int i = 0; i < playerHand.Count; i++)
+                    {
+                        Card c = playerHand[i];
+                        if (c.ContainsMouse(mouseRelativePosition))
+                        {
+
+                            Debug.Log("Click Registered On Deck");
+                            clickOnTarget = true;
+                            bool canPlay = (CardModel.isUnit(c.cardType) || c.isPlayable(player));
+                            Debug.Log("clicked on: " + c.ToString() + " isPlayable: " + c.isPlayable(player) + " active: " + c.isTargetActive());
+                            if (c.isTargetActive() && canPlay)
+                            {
+                                PlayController.Play(c, null, null, player);
+                                c.setTargetActive(false);
+                                if (state == State.MULTISTEP)
+                                {
+                                    activeDeck.disactiveAllInDeck(true);
+                                    TargetController.ShowTargets(c, player);
+                                    break;
+                                }
+                                break;
+                            }
+                            else if (canPlay)
+                            {
+                                activeDeck.disactiveAllInDeck(false);
+                                activeCard = c;
+                                TargetController.ShowTargets(c, player);
+
+                                Debug.Log("Setting Card Active: " + c.cardName);
+                                activeCard.setBaseLoc();
+                                activeCard.transform.position += new Vector3(0, Card.getBaseHeight() / 3, 0f);
+                                state = State.ACTIVE_CARD;
+                            }
+                            else
+                            {
+                                Debug.Log("!!!!!!!!!!!!!!!!!!!!!!Cannot Play!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                            }
+                        }
+                    }
+                }
+                if (!clickOnTarget)
+                {
+                    List<Row> activeRowTargets = activeDeck.getActiveRowTargets();
+                    for (int i = 0; i < activeRowTargets.Count; i++)
+                    {
+                        Row row = activeRowTargets[i];
+                        if (row.target.ContainsMouse(mouseRelativePosition))
+                        {
+                            clickOnTarget = true;
+                            PlayController.Play(activeCard, row, null, player);
+                            if (state != State.MULTISTEP)
+                            {
+                                activeDeck.disactiveAllInDeck(false);
+                            }
+                            else
+                            {
+                                activeDeck.disactiveAllInDeck(true);
+                                TargetController.ShowTargets(activeCard, player);
+                            }
+                            break;
+                        }
+                    }
+                }
+                if (!clickOnTarget)
+                {
+                    for (int i = 0; i < activeDeck.rows.Count; i++)
+                    {
+                        Row row = activeDeck.rows[i];
+                        if (row.cardTargetsActivated)
+                        {
+                            for (int j = 0; j < row.Count; j++)
+                            {
+                                Card selected = row[j];
+                                Debug.Log("Card: " + selected.cardName + " Contains: " + selected.ContainsMouse(mouseRelativePosition) + "Card Location: " + selected.transform.position + " Mouse: " + mouseRelativePosition);
+                                if (selected.ContainsMouse(mouseRelativePosition))
+                                {
+                                    Debug.Log("Clicked on Card:" + selected.cardName);
+                                    if (state == State.CHOOSE_N)
+                                    {
+                                        Debug.Log("selected!" + selected.cardName);
+                                        ChooseNController.chooseCard(selected, player);
+                                    }
+                                    else
+                                    {
+                                        PlayController.Play(activeCard, row, selected, player);
+                                        if (state != State.MULTISTEP)
+                                        {
+                                            activeDeck.disactiveAllInDeck(false);
+                                        }
+                                        else
+                                        {
+                                            TargetController.ShowTargets(activeCard, player);
+                                        }
+                                    }
+                                    clickOnTarget = true;
+                                }
+                            }
+                            if (clickOnTarget)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (!clickOnTarget)
+                {
+                    List<Row> buttons = activeDeck.getRowsByType(RowEffected.Button);
+                    foreach (Row row in buttons)
+                    {
+                        if (row.target.ContainsMouse(mouseRelativePosition) && row.isVisible())
+                        {
+                            row.buttonAction.Invoke();
+                            clickOnTarget = true;
+                            break;
+                        }
+                    }
+                }
+                if (!clickOnTarget)
+                {
+                    if (state != State.MULTISTEP && state != State.CHOOSE_N)
+                    {
+                        Debug.Log("No valid click resetting");
+                        activeDeck.disactiveAllInDeck(false);
+                    }
+                    else
+                    {
+                        activeDeck.disactiveAllInDeck(true);
+                        if (activeCard != null)
+                        {
+                            activeCard.LogSelectionsRemaining();
+                            if (activeCard.doneMultiSelection(player))
+                            {
+                                state = State.FREE;
+                            }
+                        }
+                    }
+                    reorganizeGroup();
+                }
+                else
+                {
+                    activeDeck.scoreRows(RowEffected.All);
+                    if (!setupComplete && state == State.FREE)
+                    {
+                        setupComplete = true;
+                    }
+                    else if (state == State.FREE || activeDeck.getRowByType(CardModel.getHandRow(player)).Count == 0)
+                    {
+                        turnOver();
+                    }
                 }
             }
         }

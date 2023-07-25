@@ -64,15 +64,17 @@ public class Deck : MonoBehaviour
             List<string> choosePowerGraveyard, List<string> enemyPower,
             List<string> enemyUnit, List<string> enemyKing)
     {
-        List<int> uniqueValues = new List<int>();
+        List<int> uniqueValues = new List<int>(FRONTS_NUMBER);
 
         Debug.Log("generating values");
-
+        var sw = System.Diagnostics.Stopwatch.StartNew();
         for (int cardIndex = 0; cardIndex < FRONTS_NUMBER; cardIndex++)
         {
             uniqueValues.Add(cardIndex);
         }
-
+        sw.Stop();
+        Debug.Log("indexlist setup Time elapsed: " + sw.Elapsed);
+        sw.Restart();
         Row powers = getRowByType(RowEffected.PowerDeck);
         Row units = getRowByType(RowEffected.UnitDeck);
         Row kings = getRowByType(RowEffected.KingDeck);
@@ -86,7 +88,6 @@ public class Deck : MonoBehaviour
             clone.setIndex(cardId);
             clone.setIsSpecial(clone.getCardModel().getIsSpecial(cardId));
             clone.setBaseLoc();
-            Debug.Log("Making Card: " + clone.cardName);
             if (CardModel.isPower(clone.cardType))
             {
                 powers.Add(clone);
@@ -101,7 +102,9 @@ public class Deck : MonoBehaviour
             }
             uniqueValues.Remove(cardId);
         }
-
+        sw.Stop();
+        Debug.Log("card cloning Time elapsed: " + sw.Elapsed);
+        sw.Restart();       
         Debug.Log("Dealing Player Cards");
         while (chooseUnitGraveyard.Count + choosePowerGraveyard.Count > 0)
         {
@@ -109,14 +112,14 @@ public class Deck : MonoBehaviour
             {
                 Card card = units.getCardByName(chooseUnitGraveyard[0]);
                 chooseUnitGraveyard.RemoveAt(0);
-                card.loadCardFrontMaterial();
+                card.loadCardFront();
                 this.sendCardToGraveyard(units, RowEffected.None, card);
             }
             else if (choosePowerGraveyard.Count > 0)
             {
                 Card card = powers.getCardByName(choosePowerGraveyard[0]);
                 choosePowerGraveyard.RemoveAt(0);
-                card.loadCardFrontMaterial();
+                card.loadCardFront();
                 this.sendCardToGraveyard(powers, RowEffected.None, card);
             }
         }
@@ -124,6 +127,8 @@ public class Deck : MonoBehaviour
         dealHand(numPowers, numUnits, numKings, enemyPower, enemyUnit, enemyKing, RowEffected.EnemyHand);
         getRowByType(RowEffected.EnemyHand).setVisibile(false);
         updateRowCenters();
+        sw.Stop();
+        Debug.Log("card dealing Time elapsed: " + sw.Elapsed);
     }
 
     public void dealHand(int numPowers, int numUnits, int numKings,
@@ -172,7 +177,6 @@ public class Deck : MonoBehaviour
                 kings.Remove(card);
                 numKings--;
             }
-            card.loadCardFrontMaterial();
             getRowByType(playerHand).Add(card);
             numCards = numPowers + numUnits + numKings;
 
@@ -216,7 +220,7 @@ public class Deck : MonoBehaviour
         }
         Card card = deck.getCardByName(cardName);
         deck.Remove(card);
-        card.loadCardFrontMaterial();
+        card.loadCardFront();
         card.resetSelectionCounts();
         getRowByType(row).Add(card);
         return card;
@@ -259,7 +263,7 @@ public class Deck : MonoBehaviour
             }
             kings.Remove(card);
         }
-        card.loadCardFrontMaterial();
+        card.loadCardFront();
         getRowByType(row).Add(card);
     }
 
@@ -607,7 +611,7 @@ public class Deck : MonoBehaviour
                 c.resetSelectionCounts();
                 drawDeck.Remove(c);
                 getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerHand)).Add(c);
-                c.loadCardFrontMaterial();
+                c.loadCardFront();
             }
             else
             {

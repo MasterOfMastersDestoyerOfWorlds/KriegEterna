@@ -65,6 +65,7 @@ public class SteamManager : MonoBehaviour
     protected static bool s_EverInitialized = false;
 
     protected static SteamManager s_instance;
+    
     protected static SteamManager Instance
     {
         get
@@ -185,7 +186,6 @@ public class SteamManager : MonoBehaviour
 
         // Register our Steam Callbacks
         NetworkingTest = gameObject.AddComponent<SteamNetworkingTest>();
-
         s_EverInitialized = true;
     }
 
@@ -233,7 +233,7 @@ public class SteamManager : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (!m_bInitialized)
+        if (!m_bInitialized ||  Game.testing)
         {
             return;
         }
@@ -255,7 +255,7 @@ public class SteamManager : MonoBehaviour
             GUILayout.Label("Steamworks is not Initialized");
             return;
         }
-
+        /*
         GUILayout.Label("[" + ((int)m_State + 1) + " / " + (int)EGUIState.MAX_STATES + "] " + m_State.ToString());
 
         switch (m_State)
@@ -263,7 +263,7 @@ public class SteamManager : MonoBehaviour
             case EGUIState.SteamNetworking:
                 NetworkingTest.RenderOnGUI();
                 break;
-        }
+        }*/
     }
 
     public static void PrintArray(string name, IList arr)

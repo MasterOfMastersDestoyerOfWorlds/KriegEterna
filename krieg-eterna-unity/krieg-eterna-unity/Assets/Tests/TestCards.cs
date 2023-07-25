@@ -6,10 +6,6 @@ using UnityEngine.TestTools;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
-using UnityEngine.TestTools;
-using UnityEngine.InputSystem.Controls;
-using UnityEngine.InputSystem.Layouts;
-using UnityEngine.InputSystem.Utilities;
 
 namespace KriegTests
 {
@@ -148,8 +144,10 @@ namespace KriegTests
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
+            Game.testing = true;
             SceneManager.sceneLoaded += OnSceneLoaded;
             SceneManager.LoadScene("deskScene", LoadSceneMode.Single);
+            
             // SceneManager.LoadScene("Main");
         }
 

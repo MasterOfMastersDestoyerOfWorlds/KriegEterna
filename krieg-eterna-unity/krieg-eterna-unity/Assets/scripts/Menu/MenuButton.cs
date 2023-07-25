@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System;
+using System.Collections;
 
 public class MenuButton : MonoBehaviour
 {
@@ -24,11 +25,13 @@ public class MenuButton : MonoBehaviour
     private string buttonText;
     private bool buttonVisible = false;
 
+    public bool implemented;
+
     private Material material;
     private Func<Vector3> centerFunction;
     private Func<Vector3> mouseOverFunction;
     private bool inMouseOverPos;
-    public Action buttonAction;
+    public Func<IEnumerator> buttonAction;
 
 
     float lerpDuration = 0.1f;
@@ -142,16 +145,22 @@ public class MenuButton : MonoBehaviour
     }
     public void setButtonVisible()
     {
-        this.buttonVisible = true;
-        this.text.alpha = 100f;
-        this.getMaterial().SetInt("_Transparent", 0);
+        if (implemented)
+        {
+            this.buttonVisible = true;
+            this.text.alpha = 100f;
+            this.getMaterial().SetInt("_Transparent", 0);
+        }
     }
     public void setFlashing()
     {
-        this.flashing = true;
-        this.getMaterial().SetInt("_Flash", 1);
-        this.getMaterial().SetInt("_TransparentFlash", 1);
-        this.getMaterial().SetInt("_Transparent", 0);
+        if (implemented)
+        {
+            this.flashing = true;
+            this.getMaterial().SetInt("_Flash", 1);
+            this.getMaterial().SetInt("_TransparentFlash", 1);
+            this.getMaterial().SetInt("_Transparent", 0);
+        }
     }
     public void setNotFlashing()
     {
@@ -161,7 +170,7 @@ public class MenuButton : MonoBehaviour
         this.getMaterial().SetInt("_Transparent", 1);
     }
 
-    internal void setUp(string name, Func<Vector3> centerFunction, Func<Vector3> mouseOverFunction, Action buttonAction, bool visible)
+    internal void setUp(string name, Func<Vector3> centerFunction, Func<Vector3> mouseOverFunction, Func<IEnumerator> buttonAction, bool visible, bool implemented)
     {
         this.name = name;
         this.text.text = name;
@@ -174,7 +183,8 @@ public class MenuButton : MonoBehaviour
         this.mouseOverFunction = mouseOverFunction;
         this.inMouseOverPos = false;
         this.buttonAction = buttonAction;
-        if (visible)
+        this.implemented = implemented;
+        if (visible && implemented)
         {
             this.setButtonVisible();
             this.setFlashing();

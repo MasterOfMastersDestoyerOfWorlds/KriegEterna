@@ -79,7 +79,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 1
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &9198280108677232115
 MonoBehaviour:
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 5062301364988974506}
   - component: {fileID: 8854289746066810366}
   - component: {fileID: 7886351523967578924}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 3155950494184196135}
   - component: {fileID: 8407677381177049558}
   - component: {fileID: 81476845704173233}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Panel (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 1626719410444558916}
   - component: {fileID: 1985875037457093980}
   - component: {fileID: 2578480326145907150}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Logo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,8 +353,8 @@ RectTransform:
   m_GameObject: {fileID: 7561988236552568835}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.4, y: 2.4, z: 2.4}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.043290004, y: 0.043284994, z: 0.10388399}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5062301364988974506}
   - {fileID: 4955720488956453344}

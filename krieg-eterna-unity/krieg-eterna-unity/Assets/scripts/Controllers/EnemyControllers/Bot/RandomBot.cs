@@ -12,7 +12,9 @@ public class RandomBot : EnemyControllerInterface
         List<int> indexes = new List<int>();
         for (int i = 0; i < hand.Count; i++)
         {
-            indexes.Add(i);
+            if(hand[i].cardType != CardType.King){
+                indexes.Add(i);
+            }
         }
         List<Card> listDiscard = new List<Card>();
         for (int i = 0; i < numDiscard; i++)

@@ -95,7 +95,6 @@ public class Row : List<Card>
     {
         base.Add(card);
         card.setVisible(cardVisibility);
-
     }
 
     public void setVisibile(bool state)

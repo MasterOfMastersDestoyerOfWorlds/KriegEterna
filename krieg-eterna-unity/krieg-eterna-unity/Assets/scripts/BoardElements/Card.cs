@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using TMPro;
 
@@ -6,6 +7,8 @@ public class Card : MonoBehaviour
 {
     public int index;
     public string cardName;
+
+    public Texture2D tex;
     public CardType cardType;
     public int strength;
     public int calculatedStrength;
@@ -86,6 +89,7 @@ public class Card : MonoBehaviour
 
     TMP_Text scoreText;
     private GameObject targetObj;
+    public bool textureLoaded;
 
     void Awake()
     {
@@ -107,6 +111,7 @@ public class Card : MonoBehaviour
         targetObj = cardObj.Find("Target").gameObject;
         scoreText = textObj.GetComponent<TMP_Text>();
         updateStrengthText(this.strength);
+        textureLoaded = false;
     }
 
     public void scaleBig()
@@ -533,9 +538,27 @@ public class Card : MonoBehaviour
         }
         return this.targetObj;
     }
-    public void loadCardFrontMaterial()
+    public IEnumerator loadCardFrontAsync()
+    {
+
+        this.textureLoaded = false;
+        ResourceRequest resourceRequest = Resources.LoadAsync<Texture2D>("Images/" + cardModel.smallFronts[index]);
+        yield return resourceRequest;
+        tex = resourceRequest.asset as Texture2D;
+        while (!resourceRequest.isDone)
+        {
+            yield return null;
+        }
+        if (resourceRequest.isDone)
+        {
+            this.textureLoaded = true;
+            this.getCardFrontMaterial().SetTexture("_Texture2D", tex);
+        }
+    }
+    public void loadCardFront()
     {
         this.getCardFrontMaterial().SetTexture("_Texture2D", cardModel.getSmallFront(index));
+        //this.textureLoaded = true;
     }
     public void loadCardBackMaterial()
     {

@@ -9,6 +9,13 @@ public class SteamNetworkingTest : MonoBehaviour {
 	protected Callback<P2PSessionRequest_t> m_P2PSessionRequest;
 	protected Callback<P2PSessionConnectFail_t> m_P2PSessionConnectFail;
 	protected Callback<SocketStatusCallback_t> m_SocketStatusCallback;
+    protected Callback<LobbyCreated_t> m_LobbyCreated_t;
+
+	protected Callback<LobbyChatUpdate_t> m_LobbyChatUpdate_t;
+
+	
+	
+    public CSteamID lobbyId;
 
 	public void OnEnable() {
 		// You'd typically get this from a Lobby. Hardcoding it so that we don't need to integrate the whole lobby system with the networking.
@@ -17,6 +24,9 @@ public class SteamNetworkingTest : MonoBehaviour {
 		m_P2PSessionRequest = Callback<P2PSessionRequest_t>.Create(OnP2PSessionRequest);
 		m_P2PSessionConnectFail = Callback<P2PSessionConnectFail_t>.Create(OnP2PSessionConnectFail);
 		m_SocketStatusCallback = Callback<SocketStatusCallback_t>.Create(OnSocketStatusCallback);
+		m_LobbyCreated_t = Callback<LobbyCreated_t>.Create(OnLobbyCreated);
+		m_LobbyChatUpdate_t = Callback<LobbyChatUpdate_t>.Create(OnLobbyStateChange);
+		DontDestroyOnLoad(gameObject);
 	}
 
 	void OnDisable() {
@@ -24,6 +34,9 @@ public class SteamNetworkingTest : MonoBehaviour {
 		if (!m_RemoteSteamId.IsValid()) {
 			SteamNetworking.CloseP2PSessionWithUser(m_RemoteSteamId);
 		}
+		if(lobbyId != null){
+        	SteamMatchmaking.LeaveLobby( lobbyId);
+        }
 	}
 
 	enum MsgType : uint {
@@ -139,6 +152,26 @@ public class SteamNetworkingTest : MonoBehaviour {
 		GUILayout.EndScrollView();
 		GUILayout.EndVertical();
 	}
+
+	//Todo need some sort of loading symbol and timeout
+    private void OnLobbyCreated(LobbyCreated_t param)
+    {
+        Debug.Log("Lobby created? " + param.m_eResult);
+
+        this.lobbyId = new CSteamID(param.m_ulSteamIDLobby);
+        SteamFriends.ActivateGameOverlayInviteDialog( lobbyId );
+
+    }
+
+	private void OnLobbyStateChange(LobbyChatUpdate_t param)
+    {
+		if(param.m_rgfChatMemberStateChange == ((uint)EChatMemberStateChange.k_EChatMemberStateChangeEntered)){
+        	Debug.Log("User Joined? " + param.m_ulSteamIDUserChanged);
+		}else{
+			Debug.Log("User Left? " + param.m_ulSteamIDUserChanged);
+		}
+
+    }
 
 	void OnP2PSessionRequest(P2PSessionRequest_t pCallback) {
 		Debug.Log("[" + P2PSessionRequest_t.k_iCallback + " - P2PSessionRequest] - " + pCallback.m_steamIDRemote);
