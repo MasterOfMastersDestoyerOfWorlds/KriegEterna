@@ -11,6 +11,7 @@ public interface EnemyControllerInterface
 public class Move
 {
     public string name;
+    public int id;
     public Card c;
     public Card targetCard;
     public RowEffected targetRow;
@@ -25,14 +26,18 @@ public class Move
         if (targetCard == null && targetRow == RowEffected.None)
         {
             name = c.cardName;
+            this.id = c.index;
         }
         else if (targetCard != null)
         {
             name = targetCard.cardName;
+            this.id = targetCard.index;
         }
         else if (targetRow != RowEffected.None)
         {
+            //TODO: need to flip to enemies perspective
             name = System.Enum.GetName(typeof(RowEffected), targetRow);
+            this.id = Card.cardModel.names.Count + (int)CardModel.getRowFromSide(RowEffected.Enemy, targetRow);
         }
         this.c = c;
         this.targetCard = targetCard;

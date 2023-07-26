@@ -7,6 +7,7 @@ public class LoadingScreen : MonoBehaviour
 {
 
     public static float FADE_SPEED = 1.5f;
+
     void Awake()
     {
         DontDestroyOnLoad(gameObject);

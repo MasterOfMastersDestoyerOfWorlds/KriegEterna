@@ -83,7 +83,8 @@ public class Card : MonoBehaviour
     private Material targetMaterial;
 
     private static GameObject cardModelGameObject;
-    private static CardModel cardModel;
+    
+    public static CardModel cardModel;
 
     public RowEffected playerPlayed;
 

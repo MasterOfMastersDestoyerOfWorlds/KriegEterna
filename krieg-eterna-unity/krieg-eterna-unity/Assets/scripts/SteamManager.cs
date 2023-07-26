@@ -58,7 +58,7 @@ public class SteamManager : MonoBehaviour
     private bool m_bInitialized = false;
 
 
-    private SteamNetworkingTest NetworkingTest;
+    public SteamNetworkingTest NetworkingTest;
 
     SteamAPIWarningMessageHook_t SteamAPIWarningMessageHook;
 

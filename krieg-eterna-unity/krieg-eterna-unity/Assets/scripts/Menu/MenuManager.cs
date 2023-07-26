@@ -11,6 +11,7 @@ public class MenuManager : MonoBehaviour
 
     MenuPage mainMenu;
     MenuPage pvpMenu;
+    MenuPage lobbyMenu;
 
     public bool sceneLoaded;
 
@@ -21,6 +22,9 @@ public class MenuManager : MonoBehaviour
     GameObject logoObject;
 
     LoadingScreen loadingScreen;
+    
+	protected Callback<LobbyChatUpdate_t> m_LobbyChatUpdate_t;
+    protected Callback<SteamNetworkingMessagesSessionRequest_t> m_SteamNetworkingMessagesSessionRequest_t;
 
 
 
@@ -53,11 +57,21 @@ public class MenuManager : MonoBehaviour
             makeButton("Customize Rules", () => areas.getButtonLocFromBot(0), () => areas.getMouseOverLocFromBot(0), showPvPCustomizationOptions, false, false),
             makeButton("Back", () => areas.getButtonLocFromBot(0), () => areas.getMouseOverLocFromBot(0), backButton, false, true),
         });
+        lobbyMenu = new MenuPage(false, new List<MenuButton>(){
+            makeButton("Waiting . . .", () => areas.getButtonLocFromBot(1), () => areas.getMouseOverLocFromBot(1), () => {return null;}, false, true),
+            makeButton("Customize Rules", () => areas.getButtonLocFromBot(0), () => areas.getMouseOverLocFromBot(0), showPvPCustomizationOptions, false, false),
+            makeButton("Close Lobby", () => areas.getButtonLocFromBot(0), () => areas.getMouseOverLocFromBot(0), closeLobby, false, true),
+        });
 
         menuPages = new List<MenuPage>(){
             mainMenu,
-            pvpMenu
+            pvpMenu,
+            lobbyMenu
         };
+
+        
+		m_LobbyChatUpdate_t = Callback<LobbyChatUpdate_t>.Create(OnLobbyStateChange);
+        m_SteamNetworkingMessagesSessionRequest_t = Callback<SteamNetworkingMessagesSessionRequest_t>.Create(OnSessionOpen);
     }
 
     MenuButton makeButton(string name, Func<Vector3> centerFunction, Func<Vector3> mouseOverFunction, Func<IEnumerator> buttonAction, bool visible, bool implemented)
@@ -93,6 +107,27 @@ public class MenuManager : MonoBehaviour
 
     public IEnumerator loadGame()
     {
+        Debug.Log("Loading Game...");
+        steamManager.NetworkingTest.setSeed();
+        steamManager.NetworkingTest.isNetworkGame = false;
+        setAllNotVisible();
+        while(!loadingScreen.FadeIn()){
+            yield return null;
+        }
+        var load = SceneManager.LoadSceneAsync("deskScene", LoadSceneMode.Single);
+        while (!load.isDone)
+        {
+            yield return null;
+        }
+    }
+
+    public IEnumerator startNetworkGame()
+    {
+        if(steamManager.NetworkingTest.host){    
+            steamManager.NetworkingTest.setSeed();
+            steamManager.NetworkingTest.sendNextMessage(PacketType.SEED, steamManager.NetworkingTest.seed);
+        }
+        steamManager.NetworkingTest.isNetworkGame = true;
         Debug.Log("Loading Game...");
         setAllNotVisible();
         while(!loadingScreen.FadeIn()){
@@ -130,8 +165,19 @@ public class MenuManager : MonoBehaviour
     IEnumerator startLobby()
     {
         Debug.Log("StartLobby!");
+        steamManager.NetworkingTest.lobbyUpdated = false;
         SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, 2);
         return null;
+    }
+
+    IEnumerator closeLobby()
+    {
+        Debug.Log("LeavingLobby!");
+        while(!steamManager.NetworkingTest.lobbyUpdated){
+            yield return null;
+        }
+        SteamMatchmaking.LeaveLobby(steamManager.NetworkingTest.lobbyId);
+        goToMenuPage(mainMenu);
     }
 
     IEnumerator showPvPCustomizationOptions()
@@ -176,5 +222,23 @@ public class MenuManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnLobbyStateChange(LobbyChatUpdate_t param)
+    {
+		if(param.m_rgfChatMemberStateChange == ((uint)EChatMemberStateChange.k_EChatMemberStateChangeEntered)){
+        	Debug.Log("User Joined? " + param.m_ulSteamIDUserChanged);
+			StartCoroutine(startNetworkGame());
+		}else{
+			Debug.Log("User Left? " + param.m_ulSteamIDUserChanged);
+            StartCoroutine(closeLobby());
+		}
+
+    }
+
+    private void OnSessionOpen(SteamNetworkingMessagesSessionRequest_t param)
+    {
+        Debug.Log("StartingGame");
+		StartCoroutine(startNetworkGame());
     }
 }

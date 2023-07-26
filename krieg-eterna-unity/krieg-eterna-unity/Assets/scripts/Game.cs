@@ -85,8 +85,12 @@ public class Game : MonoBehaviour
         camera.tag = "MainCamera";
         GameObject deckObject = GameObject.Instantiate(Resources.Load("Prefabs/Deck") as GameObject, transform.position, transform.rotation);
         activeDeck = deckObject.GetComponent<Deck>();
-        GameObject steamManagerObj = GameObject.Instantiate(Resources.Load("Prefabs/SteamManager") as GameObject, transform.position, transform.rotation);
-        steamManager = deckObject.GetComponent<SteamManager>();
+        GameObject steamManagerObj = GameObject.Find("SteamManager(Clone)");
+        if (steamManagerObj == null)
+        {
+            steamManagerObj = GameObject.Instantiate(Resources.Load("Prefabs/SteamManager") as GameObject, transform.position, transform.rotation);
+            steamManager = steamManagerObj.GetComponent<SteamManager>();
+        }
         player2Object = GameObject.Instantiate(Resources.Load("Prefabs/Player") as GameObject, transform.position, transform.rotation);
         player1Object = GameObject.Instantiate(Resources.Load("Prefabs/Player") as GameObject, transform.position, transform.rotation);
         player1 = player1Object.GetComponent<Player>();
@@ -137,7 +141,14 @@ public class Game : MonoBehaviour
         enemyRoundsWonText = enemyRoundsWonTextObject.GetComponent<TMP_Text>();
 
 
-        enemyController = new RandomBot();
+        if (!steamManager.NetworkingTest.isNetworkGame)
+        {
+            enemyController = new RandomBot();
+        }
+        else
+        {
+            enemyController = new NetworkBot();
+        }
         hasChosenStart = false;
         setupComplete = false;
         loadingDone = false;
@@ -344,7 +355,7 @@ public class Game : MonoBehaviour
                 bool clickOnTarget = false;
                 Row playerHand = activeDeck.getRowByType(RowEffected.PlayerHand);
 
-                if (playerHand.Count > 0 && state != State.MULTISTEP && state != State.CHOOSE_N)
+                if (playerHand.Count > 0 && state != State.MULTISTEP && state != State.CHOOSE_N && player == RowEffected.Player)
                 {
                     for (int i = 0; i < playerHand.Count; i++)
                     {
@@ -373,7 +384,12 @@ public class Game : MonoBehaviour
                                 activeDeck.disactiveAllInDeck(false);
                                 activeCard = c;
                                 TargetController.ShowTargets(c, player);
-
+                                SteamNetworkingTest net = Game.steamManager.NetworkingTest;
+                                if (net.isNetworkGame)
+                                {
+                                    Move move = new Move(c, null, RowEffected.None, player, false, true);
+                                    net.sendNextMessage(PacketType.MOVE, move.id);
+                                }
                                 Debug.Log("Setting Card Active: " + c.cardName);
                                 activeCard.setBaseLoc();
                                 activeCard.transform.position += new Vector3(0, Card.getBaseHeight() / 3, 0f);
@@ -386,7 +402,7 @@ public class Game : MonoBehaviour
                         }
                     }
                 }
-                if (!clickOnTarget)
+                if (!clickOnTarget && player == RowEffected.Player)
                 {
                     List<Row> activeRowTargets = activeDeck.getActiveRowTargets();
                     for (int i = 0; i < activeRowTargets.Count; i++)
@@ -409,7 +425,7 @@ public class Game : MonoBehaviour
                         }
                     }
                 }
-                if (!clickOnTarget)
+                if (!clickOnTarget && player == RowEffected.Player)
                 {
                     for (int i = 0; i < activeDeck.rows.Count; i++)
                     {
@@ -459,6 +475,12 @@ public class Game : MonoBehaviour
                         {
                             row.buttonAction.Invoke();
                             clickOnTarget = true;
+                            SteamNetworkingTest net = Game.steamManager.NetworkingTest;
+                            if (net.isNetworkGame)
+                            {
+                                Move move = new Move(null, null, row.uniqueType, player, true, false);
+                                net.sendNextMessage(PacketType.MOVE, move.id);
+                            }
                             break;
                         }
                     }
@@ -689,7 +711,7 @@ public class Game : MonoBehaviour
     {
         return (state == State.MULTISTEP || state == State.CHOOSE_N) && activeCard.canSkip();
     }
-    
+
     private void playerInfoUpdate()
     {
         activeDeck.scoreRows(RowEffected.All);

@@ -8,6 +8,11 @@ public class PlayController
         if(!c.isVisible()){
             c.setVisible(true);
         }
+        SteamNetworkingTest net = Game.steamManager.NetworkingTest;
+        if(net.isNetworkGame){
+            Move move = new Move(c, targetCard, targetRow.uniqueType, player, false, false);
+            net.sendNextMessage(PacketType.MOVE, move.id);
+        }
         Deck deck = Game.activeDeck;
         Debug.Log("Playing: " + c.cardName + " Type: " + c.cardType);
         if (targetRow != null)
