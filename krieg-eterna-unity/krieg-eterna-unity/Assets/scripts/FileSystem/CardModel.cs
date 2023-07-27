@@ -57,18 +57,15 @@ public class CardModel : MonoBehaviour
 
     public void readTextFile()
     {
-        StreamReader inp_stm = new StreamReader("Assets/Resources/CardSheet.tsv");
-        List<string> stringList = new List<string>();
+        TextAsset bindata = Resources.Load("CardSheet") as TextAsset;
+        string[] lines = bindata.text.Split("\n".ToCharArray());
+        List<string> stringList = new List<string>(); 
         smallFronts = new List<string>();
         names = new List<string>();
-        while (!inp_stm.EndOfStream)
+        foreach(string line in lines)
         {
-            string inp_ln = inp_stm.ReadLine();
-
-            stringList.Add(inp_ln);
+            stringList.Add(line);
         }
-
-        inp_stm.Close();
 
         // start from second row
         for (int i = 1; i < stringList.Count; i++)
