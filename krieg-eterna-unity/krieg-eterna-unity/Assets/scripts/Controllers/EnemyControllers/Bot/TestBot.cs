@@ -27,7 +27,7 @@ public class TestBot : EnemyControllerInterface
         List<Card> listDiscard = new List<Card>();
         for (int i = 0; i < numDiscard; i++)
         {
-            int idx = Random.Range(0, indexes.Count);
+            int idx = Game.random.Next(indexes.Count);
             int rIdx = indexes[idx];
             indexes.RemoveAt(idx);
             listDiscard.Add(hand[rIdx]);

@@ -18,6 +18,32 @@ public class Areas : MonoBehaviour
         updateScreenBounds();
     }
 
+    public static void scaleToScreenSize(Transform transform)
+    {
+        Vector3 topRight = Camera.main.ViewportToScreenPoint(new Vector3(1f, 1f, 0f));
+        Vector3 botLeft = Camera.main.ViewportToScreenPoint(new Vector3(0f, 0f, 0f));
+        float screenHeight = Mathf.Abs(topRight.y - botLeft.y);
+        Debug.Log("ScreenHieght: " + screenHeight);
+        float screenWidth = Mathf.Abs(topRight.x - botLeft.x);
+        Debug.Log("ScreenWidth: " + screenWidth);
+
+        float oldScreenRatio = 1920f / 1080f;
+        float newScreenRatio = screenWidth / screenHeight;
+        float scaleFacx = 0f;
+        float scaleFacy = 0f;
+        scaleFacx = newScreenRatio / oldScreenRatio;
+        scaleFacy = 1f;
+
+        Debug.Log("scqle factorx: " + scaleFacx);
+        Debug.Log("new Width: " + scaleFacx * screenWidth);
+        Debug.Log("new Widthscale : " + scaleFacx * transform.localScale.x);
+        Debug.Log("scqle round: " + Mathf.Round(1080f / screenHeight));
+        Debug.Log("scqle ratioy: " + scaleFacy);
+        Debug.Log("new Height: " + scaleFacy * screenHeight);
+        Debug.Log("new Widthscale : " + scaleFacy * transform.localScale.y);
+        transform.localScale = new Vector3(transform.localScale.x * scaleFacx, transform.localScale.y *scaleFacy, 1);
+    }
+
     private void updateScreenBounds()
     {
         topRight = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, 0f));
@@ -53,7 +79,7 @@ public class Areas : MonoBehaviour
         Vector3 centerFront = new Vector3(
             center.x,
             center.y,
-            -6f);
+            70f);
         return centerFront;
     }
 
@@ -143,36 +169,6 @@ public class Areas : MonoBehaviour
         return skip;
     }
 
-    public Vector3 getMeleeKingCenterVector()
-    {
-        updateScreenBounds();
-        Vector3 kingCenter = new Vector3(
-            botLeft.x + width * kingPadding,
-            botLeft.y + height * 3.5f,
-            0f);
-        return kingCenter;
-    }
-
-    public Vector3 getRangedKingCenterVector()
-    {
-        updateScreenBounds();
-        Vector3 kingCenter = new Vector3(
-            botLeft.x + width * kingPadding,
-            botLeft.y + height * 2.5f,
-            0f);
-        return kingCenter;
-    }
-
-    public Vector3 getSiegeKingCenterVector()
-    {
-        updateScreenBounds();
-        Vector3 kingCenter = new Vector3(
-            botLeft.x + width * kingPadding,
-            botLeft.y + height * 1.5f,
-            0f);
-        return kingCenter;
-    }
-
     public Vector3 getPlayerInfoCenterVector()
     {
         updateScreenBounds();
@@ -202,7 +198,7 @@ public class Areas : MonoBehaviour
 
     public Vector3 getScoreDisplayCenterVector(System.Func<Vector3> centerRowMethod)
     {
-        return centerRowMethod.Invoke() - new Vector3(Card.getBaseWidth() * 5, 0f, 0f);
+        return centerRowMethod.Invoke() - new Vector3(Card.getBaseWidth() * 4.75f, 0f, 0f);
     }
 
     public Vector3 getRangedRowCenterVector()
@@ -228,34 +224,9 @@ public class Areas : MonoBehaviour
         return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 6, 0f);
     }
 
-    public Vector3 getEnemyMeleeKingCenterVector()
+    public Vector3 getKingCenterVector(System.Func<Vector3> centerRowMethod)
     {
-        updateScreenBounds();
-        Vector3 kingCenter = new Vector3(
-            botLeft.x + width * kingPadding,
-            botLeft.y + height * 4.5f,
-            0f);
-        return kingCenter;
-    }
-
-    public Vector3 getEnemyRangedKingCenterVector()
-    {
-        updateScreenBounds();
-        Vector3 kingCenter = new Vector3(
-            botLeft.x + width * kingPadding,
-            botLeft.y + height * 5.5f,
-            0f);
-        return kingCenter;
-    }
-
-    public Vector3 getEnemySiegeKingCenterVector()
-    {
-        updateScreenBounds();
-        Vector3 kingCenter = new Vector3(
-            botLeft.x + width * kingPadding,
-            botLeft.y + height * 6.5f,
-            0f);
-        return kingCenter;
+        return centerRowMethod.Invoke() - new Vector3(Card.getBaseWidth() * 4, 0f, 0f);
     }
 
     private enum CardGroup { DECK, SWORD, BOW, TREBUCHET, SPECIAL1, SPECIAL2, SWORD2 };

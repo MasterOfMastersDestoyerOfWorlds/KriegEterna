@@ -92,6 +92,8 @@ public class Card : MonoBehaviour
     private GameObject targetObj;
     public bool textureLoaded;
 
+    public LayerMask defaultLayerMask;
+
     void Awake()
     {
         if (cardModelGameObject == null)
@@ -113,6 +115,7 @@ public class Card : MonoBehaviour
         scoreText = textObj.GetComponent<TMP_Text>();
         updateStrengthText(this.strength);
         textureLoaded = false;
+        defaultLayerMask = LayerMask.NameToLayer("Default");
     }
 
     public void scaleBig()
@@ -120,6 +123,8 @@ public class Card : MonoBehaviour
         isBig = true;
         Transform cardObj = this.transform.Find("Card 1");
         bigFac = 4;
+        
+        this.setLayer("Big", false);
         Debug.Log("big scale: " + this.cardName + "bigFac" + bigFac + "scalex " + bigFac * baseScalex + " scaley " + bigFac * baseScalez);
         cardObj.transform.localScale = new Vector3(bigFac * baseScalex, 1, bigFac * baseScalez);
     }
@@ -128,6 +133,7 @@ public class Card : MonoBehaviour
         Debug.Log("resetting scale: " + this.cardName + "scalex " + baseScalex + " scaley " + baseScalez);
         isBig = false;
         Transform cardObj = this.transform.Find("Card 1");
+        this.resetLayerToDefault();
         cardObj.transform.localScale = new Vector3(baseScalex, 1, baseScalez);
     }
 
@@ -568,15 +574,26 @@ public class Card : MonoBehaviour
         backMaterial.SetInt("_Flash", 0);
     }
 
-    public void setLayer(string layerName, string blurLayerName)
+    public void setLayer(string layerName, bool defaultLayer)
     {
         LayerMask l = LayerMask.NameToLayer(layerName);
-        LayerMask bl = LayerMask.NameToLayer(blurLayerName);
         foreach (Transform g in transform.GetComponentsInChildren<Transform>())
         {
             g.gameObject.layer = l;
         }
-        getTargetObject().layer = bl;
+        if(defaultLayer){
+            defaultLayerMask = l;
+        }
+        gameObject.layer = l;
+    }
+
+    public void resetLayerToDefault()
+    {
+        LayerMask l = defaultLayerMask;
+        foreach (Transform g in transform.GetComponentsInChildren<Transform>())
+        {
+            g.gameObject.layer = l;
+        }
         gameObject.layer = l;
     }
 

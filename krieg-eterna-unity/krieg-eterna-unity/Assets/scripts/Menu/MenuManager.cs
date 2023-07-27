@@ -22,8 +22,8 @@ public class MenuManager : MonoBehaviour
     GameObject logoObject;
 
     LoadingScreen loadingScreen;
-    
-	protected Callback<LobbyChatUpdate_t> m_LobbyChatUpdate_t;
+
+    protected Callback<LobbyChatUpdate_t> m_LobbyChatUpdate_t;
     protected Callback<SteamNetworkingMessagesSessionRequest_t> m_SteamNetworkingMessagesSessionRequest_t;
 
 
@@ -39,12 +39,16 @@ public class MenuManager : MonoBehaviour
 
         logoObject = GameObject.Instantiate(Resources.Load("Prefabs/Logo") as GameObject, new Vector3(0f, 0f, 0f), transform.rotation);
 
+        Areas.scaleToScreenSize(logoObject.transform);
+
         GameObject steamManagerObj = GameObject.Instantiate(Resources.Load("Prefabs/SteamManager") as GameObject, transform.position, transform.rotation);
         steamManager = steamManagerObj.GetComponent<SteamManager>();
 
-        GameObject loadingScreenObj =  GameObject.Instantiate(Resources.Load("Prefabs/LoadingScreen") as GameObject, new Vector3(0f, 0f, -10f), transform.rotation);
+        GameObject loadingScreenObj = GameObject.Instantiate(Resources.Load("Prefabs/LoadingScreen") as GameObject, new Vector3(0f, 0f, -10f), transform.rotation);
         loadingScreen = loadingScreenObj.GetComponent<LoadingScreen>();
         loadingScreen.setVisibile(false);
+        loadingScreen.setRoundTextVisibile(false);
+        Areas.scaleToScreenSize(loadingScreen.transform);
 
         mainMenu = new MenuPage(true, new List<MenuButton>(){
             makeButton("Campaign", () => areas.getButtonLocFromBot(1), () => areas.getMouseOverLocFromBot(1), loadGame, true, true),
@@ -69,10 +73,11 @@ public class MenuManager : MonoBehaviour
             lobbyMenu
         };
 
-        
-		m_LobbyChatUpdate_t = Callback<LobbyChatUpdate_t>.Create(OnLobbyStateChange);
+
+        m_LobbyChatUpdate_t = Callback<LobbyChatUpdate_t>.Create(OnLobbyStateChange);
         m_SteamNetworkingMessagesSessionRequest_t = Callback<SteamNetworkingMessagesSessionRequest_t>.Create(OnSessionOpen);
     }
+
 
     MenuButton makeButton(string name, Func<Vector3> centerFunction, Func<Vector3> mouseOverFunction, Func<IEnumerator> buttonAction, bool visible, bool implemented)
     {
@@ -111,7 +116,9 @@ public class MenuManager : MonoBehaviour
         steamManager.NetworkingTest.setSeed();
         steamManager.NetworkingTest.isNetworkGame = false;
         setAllNotVisible();
-        while(!loadingScreen.FadeIn()){
+
+        while (!loadingScreen.FadeIn())
+        {
             yield return null;
         }
         var load = SceneManager.LoadSceneAsync("deskScene", LoadSceneMode.Single);
@@ -123,14 +130,16 @@ public class MenuManager : MonoBehaviour
 
     public IEnumerator startNetworkGame()
     {
-        if(steamManager.NetworkingTest.host){    
+        if (steamManager.NetworkingTest.host)
+        {
             steamManager.NetworkingTest.setSeed();
             steamManager.NetworkingTest.sendNextMessage(PacketType.SEED, steamManager.NetworkingTest.seed);
         }
         steamManager.NetworkingTest.isNetworkGame = true;
         Debug.Log("Loading Game...");
         setAllNotVisible();
-        while(!loadingScreen.FadeIn()){
+        while (!loadingScreen.FadeIn())
+        {
             yield return null;
         }
         var load = SceneManager.LoadSceneAsync("deskScene", LoadSceneMode.Single);
@@ -173,7 +182,8 @@ public class MenuManager : MonoBehaviour
     IEnumerator closeLobby()
     {
         Debug.Log("LeavingLobby!");
-        while(!steamManager.NetworkingTest.lobbyUpdated){
+        while (!steamManager.NetworkingTest.lobbyUpdated)
+        {
             yield return null;
         }
         SteamMatchmaking.LeaveLobby(steamManager.NetworkingTest.lobbyId);
@@ -213,7 +223,7 @@ public class MenuManager : MonoBehaviour
                     {
                         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
                         {
-                            
+
                             StartCoroutine(button.buttonAction.Invoke());
                             return;
                         }
@@ -226,19 +236,22 @@ public class MenuManager : MonoBehaviour
 
     private void OnLobbyStateChange(LobbyChatUpdate_t param)
     {
-		if(param.m_rgfChatMemberStateChange == ((uint)EChatMemberStateChange.k_EChatMemberStateChangeEntered)){
-        	Debug.Log("User Joined? " + param.m_ulSteamIDUserChanged);
-			StartCoroutine(startNetworkGame());
-		}else{
-			Debug.Log("User Left? " + param.m_ulSteamIDUserChanged);
+        if (param.m_rgfChatMemberStateChange == ((uint)EChatMemberStateChange.k_EChatMemberStateChangeEntered))
+        {
+            Debug.Log("User Joined? " + param.m_ulSteamIDUserChanged);
+            StartCoroutine(startNetworkGame());
+        }
+        else
+        {
+            Debug.Log("User Left? " + param.m_ulSteamIDUserChanged);
             StartCoroutine(closeLobby());
-		}
+        }
 
     }
 
     private void OnSessionOpen(SteamNetworkingMessagesSessionRequest_t param)
     {
         Debug.Log("StartingGame");
-		StartCoroutine(startNetworkGame());
+        StartCoroutine(startNetworkGame());
     }
 }

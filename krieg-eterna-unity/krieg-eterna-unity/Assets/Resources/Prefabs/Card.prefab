@@ -112,8 +112,7 @@ MonoBehaviour:
   m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8c0abbada77d289489abd228286dd902, type: 2}
-  m_sharedMaterial: {fileID: 4678162326103187059, guid: 8c0abbada77d289489abd228286dd902,
-    type: 2}
+  m_sharedMaterial: {fileID: 4678162326103187059, guid: 8c0abbada77d289489abd228286dd902, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -227,7 +226,7 @@ GameObject:
   - component: {fileID: 1209775115340944828}
   - component: {fileID: 5880261236108351402}
   - component: {fileID: 4014511051494826561}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -432,6 +431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   cardName: 
+  tex: {fileID: 0}
   cardType: 0
   strength: 0
   calculatedStrength: 0
@@ -483,6 +483,7 @@ MonoBehaviour:
   baseLoc: {x: 0, y: 0, z: 0}
   attachments: []
   playerPlayed: 0
+  textureLoaded: 0
 --- !u!61 &1917623507754670842
 BoxCollider2D:
   m_ObjectHideFlags: 0

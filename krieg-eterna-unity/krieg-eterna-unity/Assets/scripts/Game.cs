@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
-using Steamworks;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
@@ -29,10 +28,14 @@ public class Game : MonoBehaviour
     public static int turnsLeft;
     public static bool enemyPassed;
     public static bool playerPassed;
+    public static int playerRoundsWon;
+    public static int enemyRoundsWon;
     public static RowEffected player;
     public static EnemyControllerInterface enemyController;
     private TMP_Text playerNameText;
     private TMP_Text playerPassedText;
+    
+    public static int playerTotalScore;
     private TMP_Text playerCardCountText;
     private TMP_Text playerTotalScoreText;
     private TMP_Text playerRoundsWonText;
@@ -41,6 +44,7 @@ public class Game : MonoBehaviour
     private TMP_Text enemyPassedText;
     private TMP_Text enemyCardCountText;
     private TMP_Text enemyTotalScoreText;
+    public static int enemyTotalScore;
     private TMP_Text enemyRoundsWonText;
 
     private GameObject player1Object;
@@ -63,6 +67,7 @@ public class Game : MonoBehaviour
     public static int enemyDiscarded = 0;
 
     public static SteamManager steamManager;
+    public static SteamNetworkingTest net;
 
     List<string> choosePower = new List<string>();
     List<string> chooseUnit = new List<string>();
@@ -78,6 +83,8 @@ public class Game : MonoBehaviour
     GameObject playerInfo;
     GameObject enemyInfo;
 
+    public static System.Random random;
+
     void Awake()
     {
         var totaltime = System.Diagnostics.Stopwatch.StartNew();
@@ -88,9 +95,11 @@ public class Game : MonoBehaviour
         GameObject steamManagerObj = GameObject.Find("SteamManager(Clone)");
         if (steamManagerObj == null)
         {
-            steamManagerObj = GameObject.Instantiate(Resources.Load("Prefabs/SteamManager") as GameObject, transform.position, transform.rotation);
-            steamManager = steamManagerObj.GetComponent<SteamManager>();
+            steamManagerObj = GameObject.Instantiate(Resources.Load("Prefabs/SteamManager") as GameObject, transform.position, transform.rotation);    
         }
+        steamManager = steamManagerObj.GetComponent<SteamManager>();
+        net = steamManager.NetworkingTest;
+        random = net.random;
         player2Object = GameObject.Instantiate(Resources.Load("Prefabs/Player") as GameObject, transform.position, transform.rotation);
         player1Object = GameObject.Instantiate(Resources.Load("Prefabs/Player") as GameObject, transform.position, transform.rotation);
         player1 = player1Object.GetComponent<Player>();
@@ -123,6 +132,7 @@ public class Game : MonoBehaviour
         GameObject playerRoundsWonTextObject = playerInfo.transform.Find("RoundsWon").Find("Score").gameObject;
         playerRoundsWonText = playerRoundsWonTextObject.GetComponent<TMP_Text>();
 
+        Areas.scaleToScreenSize(playerInfo.transform);
 
         //Enemy Info Setup
         enemyInfo = GameObject.Instantiate(Resources.Load("Prefabs/PlayerInfo") as GameObject, activeDeck.areas.getEnemyInfoCenterVector(), transform.rotation);
@@ -130,6 +140,9 @@ public class Game : MonoBehaviour
         GameObject enemyNameTextObject = enemyInfo.transform.Find("PlayerName").gameObject;
         enemyNameText = enemyNameTextObject.GetComponent<TMP_Text>();
         enemyNameText.text = "Enemy";
+
+        GameObject enemyPassedTextObject = enemyInfo.transform.Find("Passed").gameObject;
+        enemyPassedText = enemyPassedTextObject.GetComponent<TMP_Text>();
 
         GameObject enemyCardCountTextObject = enemyInfo.transform.Find("HandCount").Find("Score").gameObject;
         enemyCardCountText = enemyCardCountTextObject.GetComponent<TMP_Text>();
@@ -139,9 +152,9 @@ public class Game : MonoBehaviour
 
         GameObject enemyRoundsWonTextObject = enemyInfo.transform.Find("RoundsWon").Find("Score").gameObject;
         enemyRoundsWonText = enemyRoundsWonTextObject.GetComponent<TMP_Text>();
+        Areas.scaleToScreenSize(enemyInfo.transform);
 
-
-        if (!steamManager.NetworkingTest.isNetworkGame)
+        if (!net.isNetworkGame)
         {
             enemyController = new RandomBot();
         }
@@ -384,7 +397,6 @@ public class Game : MonoBehaviour
                                 activeDeck.disactiveAllInDeck(false);
                                 activeCard = c;
                                 TargetController.ShowTargets(c, player);
-                                SteamNetworkingTest net = Game.steamManager.NetworkingTest;
                                 if (net.isNetworkGame)
                                 {
                                     Move move = new Move(c, null, RowEffected.None, player, false, true);
@@ -475,7 +487,6 @@ public class Game : MonoBehaviour
                         {
                             row.buttonAction.Invoke();
                             clickOnTarget = true;
-                            SteamNetworkingTest net = Game.steamManager.NetworkingTest;
                             if (net.isNetworkGame)
                             {
                                 Move move = new Move(null, null, row.uniqueType, player, true, false);
@@ -539,7 +550,6 @@ public class Game : MonoBehaviour
         if ((enemyPassed && playerPassed) || turnsLeft == 0)
         {
             Debug.Log("Round Over");
-            round = nextRound(round);
             enemyPassed = false;
             playerPassed = false;
             turnsLeft = int.MaxValue;
@@ -560,7 +570,31 @@ public class Game : MonoBehaviour
             {
                 PlayController.Play(c, activeDeck.getCardRow(c), null, c.playerPlayed);
             }
-            state = State.FREE;
+            //Score
+            playerInfoUpdate();
+            bool playerWon = false;
+            bool draw = false;
+            if (enemyTotalScore < playerTotalScore)
+            {
+                playerRoundsWon++;
+                playerWon = true;
+            }
+            else if (playerTotalScore < enemyTotalScore)
+            {
+                enemyRoundsWon++;
+                playerWon = false;
+            }
+            else
+            {
+                draw = true;
+                //TODO: need to make tie breaker or go back to prev round
+            }
+            round = nextRound(round);
+            StartCoroutine(roundText(round, playerWon, draw));
+            if (round != RoundType.GameFinished)
+            {
+                state = State.FREE;
+            }
             activeDeck.sendAllToGraveYard(RowEffected.CleanUp, (Row r) =>
             {
                 List<Card> remove = new List<Card>();
@@ -698,7 +732,7 @@ public class Game : MonoBehaviour
         switch (round)
         {
             case RoundType.RoundOne: return RoundType.RoundTwo;
-            case RoundType.RoundTwo: return RoundType.FinalRound;
+            case RoundType.RoundTwo: return Math.Abs(playerRoundsWon - enemyRoundsWon) > 1 ? RoundType.GameFinished : RoundType.FinalRound;
             default: return RoundType.GameFinished;
         }
     }
@@ -715,9 +749,41 @@ public class Game : MonoBehaviour
     private void playerInfoUpdate()
     {
         activeDeck.scoreRows(RowEffected.All);
-        enemyTotalScoreText.text = activeDeck.totalScore(RowEffected.Enemy).ToString();
-        playerTotalScoreText.text = activeDeck.totalScore(RowEffected.Player).ToString();
+        enemyTotalScore = activeDeck.totalScore(RowEffected.Enemy);
+        enemyTotalScoreText.text = enemyTotalScore.ToString();
+        enemyRoundsWonText.text = enemyRoundsWon.ToString();
+        enemyPassedText.text = "Passed: " + enemyPassed;
+        playerTotalScore = activeDeck.totalScore(RowEffected.Player);
+        playerTotalScoreText.text = playerTotalScore.ToString();
+        playerRoundsWonText.text = playerRoundsWon.ToString();
         playerPassedText.text = "Passed: " + playerPassed;
-        playerPassedText.text = "Passed: " + enemyPassed;
+    }
+    private void battleOver(){
+        if(net.isNetworkGame){
+            SceneManager.LoadSceneAsync("menuScene");
+        }else{
+            //TODO Score screen, damage loot etc.
+        }
+    }
+    private IEnumerator roundText(RoundType round, bool playerWon, bool draw)
+    {
+        if(round != RoundType.GameFinished){
+            loadingScreen.roundText.text = draw ? "Draw" : playerWon ? "Round Won" : "Round Lost";
+        }else{
+            loadingScreen.roundText.text = draw ? "Draw" : playerWon ? "Battle Won" : "Battle Lost";
+        }
+        loadingScreen.setRoundTextVisibile(false);
+        while (!loadingScreen.FadeInRoundText())
+        {
+            yield return null;
+        }
+
+        while (!loadingScreen.FadeOutRoundText())
+        {
+            yield return null;
+        }
+        if(round == RoundType.GameFinished){
+            battleOver();
+        }
     }
 }
