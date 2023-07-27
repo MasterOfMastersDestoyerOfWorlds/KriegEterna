@@ -53,7 +53,6 @@ public class LoadingScreen : MonoBehaviour
             float a = m.GetFloat("_Alpha");
             float newAlpha = Mathf.Clamp(a + Time.deltaTime * FADE_SPEED, 0, 1);
             m.SetFloat("_Alpha", newAlpha);
-            Debug.Log("REEEEE: " + m.name + " " + newAlpha);
             minalpha = newAlpha;
         }
         if (minalpha >= 1)
@@ -72,6 +71,7 @@ public class LoadingScreen : MonoBehaviour
     {
         TMP_Text text = transform.Find("RoundText").GetComponent<TMP_Text>();
         float newAlpha = Mathf.Clamp(text.alpha + Time.deltaTime * FADE_SPEED, 0, 1);
+        Debug.Log("REEEEE: " + text.text + " " + newAlpha);
         text.alpha = newAlpha;
         if (newAlpha >= 1)
         {

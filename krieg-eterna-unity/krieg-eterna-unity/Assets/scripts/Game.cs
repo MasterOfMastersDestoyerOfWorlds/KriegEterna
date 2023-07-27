@@ -34,7 +34,7 @@ public class Game : MonoBehaviour
     public static EnemyControllerInterface enemyController;
     private TMP_Text playerNameText;
     private TMP_Text playerPassedText;
-    
+
     public static int playerTotalScore;
     private TMP_Text playerCardCountText;
     private TMP_Text playerTotalScoreText;
@@ -95,7 +95,7 @@ public class Game : MonoBehaviour
         GameObject steamManagerObj = GameObject.Find("SteamManager(Clone)");
         if (steamManagerObj == null)
         {
-            steamManagerObj = GameObject.Instantiate(Resources.Load("Prefabs/SteamManager") as GameObject, transform.position, transform.rotation);    
+            steamManagerObj = GameObject.Instantiate(Resources.Load("Prefabs/SteamManager") as GameObject, transform.position, transform.rotation);
         }
         steamManager = steamManagerObj.GetComponent<SteamManager>();
         net = steamManager.NetworkingTest;
@@ -297,6 +297,11 @@ public class Game : MonoBehaviour
                     }
                 }
             }
+            if (enemyPassed && player == RowEffected.Enemy)
+            {
+                player = RowEffected.Player;
+                Debug.LogError("+++++++++++++++++++++++++++++++++++++++" + player.ToString() + " Turn Round:" + round.ToString() + "+++++++++++++++++++++++++++++++++++++");
+            }
             // Doing Enemy Turn
             // ---------------------------------------------------------------------------------------------------------------
             if (!enemyPassed && state != State.BLOCKED && player == RowEffected.Enemy)
@@ -338,7 +343,8 @@ public class Game : MonoBehaviour
                             PlayController.Play(nextMove);
                             TargetController.ShowTargets(nextMove);
                         }
-                        playerInfoUpdate();
+
+                        scoreAndUpdate();
                         if (state == State.REVEAL)
                         {
                             state = State.FREE;
@@ -354,7 +360,7 @@ public class Game : MonoBehaviour
                 }
             }
 
-            if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame && state != State.BLOCKED)
+            if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame && state != State.BLOCKED && !playerPassed)
             {
 
                 Debug.Log("--------------------------------------------------------------------");
@@ -519,7 +525,8 @@ public class Game : MonoBehaviour
                 }
                 else
                 {
-                    playerInfoUpdate();
+
+                    scoreAndUpdate();
                     if (!setupComplete && state == State.FREE)
                     {
                         setupComplete = true;
@@ -536,7 +543,6 @@ public class Game : MonoBehaviour
     private void turnOver()
     {
         Debug.Log("TURN OVER: " + playerPassed + " enemypassed: " + enemyPassed);
-        playerInfoUpdate();
         activeDeck.getRowByType(RowEffected.Skip).setVisibile(false);
         if (player == RowEffected.Player)
         {
@@ -571,7 +577,7 @@ public class Game : MonoBehaviour
                 PlayController.Play(c, activeDeck.getCardRow(c), null, c.playerPlayed);
             }
             //Score
-            playerInfoUpdate();
+            updateScores();
             bool playerWon = false;
             bool draw = false;
             if (enemyTotalScore < playerTotalScore)
@@ -614,6 +620,8 @@ public class Game : MonoBehaviour
             });
 
             roundEndCards = new List<Card>();
+            reorganizeGroup();
+            playerInfoTextUpdate();
             return;
         }
         if (!enemyPassed && !playerPassed)
@@ -624,10 +632,11 @@ public class Game : MonoBehaviour
         {
             player = RowEffected.Player;
         }
-        else if (enemyPassed && !playerPassed)
+        else if (!enemyPassed && playerPassed)
         {
             player = RowEffected.Enemy;
         }
+        playerInfoTextUpdate();
     }
     public static void playerPass()
     {
@@ -746,43 +755,62 @@ public class Game : MonoBehaviour
         return (state == State.MULTISTEP || state == State.CHOOSE_N) && activeCard.canSkip();
     }
 
-    private void playerInfoUpdate()
+    private void updateScores()
     {
         activeDeck.scoreRows(RowEffected.All);
         enemyTotalScore = activeDeck.totalScore(RowEffected.Enemy);
+        playerTotalScore = activeDeck.totalScore(RowEffected.Player);
+    }
+    private void playerInfoTextUpdate()
+    {
         enemyTotalScoreText.text = enemyTotalScore.ToString();
         enemyRoundsWonText.text = enemyRoundsWon.ToString();
         enemyPassedText.text = "Passed: " + enemyPassed;
-        playerTotalScore = activeDeck.totalScore(RowEffected.Player);
         playerTotalScoreText.text = playerTotalScore.ToString();
         playerRoundsWonText.text = playerRoundsWon.ToString();
         playerPassedText.text = "Passed: " + playerPassed;
     }
-    private void battleOver(){
-        if(net.isNetworkGame){
+    private void scoreAndUpdate()
+    {
+        updateScores();
+        playerInfoTextUpdate();
+    }
+    private void battleOver()
+    {
+        if (net.isNetworkGame)
+        {
             SceneManager.LoadSceneAsync("menuScene");
-        }else{
+        }
+        else
+        {
             //TODO Score screen, damage loot etc.
         }
     }
     private IEnumerator roundText(RoundType round, bool playerWon, bool draw)
     {
-        if(round != RoundType.GameFinished){
+        if (round != RoundType.GameFinished)
+        {
             loadingScreen.roundText.text = draw ? "Draw" : playerWon ? "Round Won" : "Round Lost";
-        }else{
+        }
+        else
+        {
             loadingScreen.roundText.text = draw ? "Draw" : playerWon ? "Battle Won" : "Battle Lost";
         }
         loadingScreen.setRoundTextVisibile(false);
         while (!loadingScreen.FadeInRoundText())
         {
+            Debug.Log("Fading in roundText");
             yield return null;
         }
 
         while (!loadingScreen.FadeOutRoundText())
         {
+            Debug.Log("Fading out roundText");
             yield return null;
         }
-        if(round == RoundType.GameFinished){
+        if (round == RoundType.GameFinished)
+        {
+            Debug.Log("GAME OVER");
             battleOver();
         }
     }

@@ -96,7 +96,10 @@ public class Move
             Row hand = deck.getRowByType(CardModel.getHandRow(player));
             foreach (Card c in hand)
             {
-                moveList.Add(new Move(c, null, RowEffected.None, player, false, true));
+                if (c.isPlayable(RowEffected.Enemy))
+                {
+                    moveList.Add(new Move(c, null, RowEffected.None, player, false, true));
+                }
             }
         }
         else if (state == State.MULTISTEP || state == State.ACTIVE_CARD)

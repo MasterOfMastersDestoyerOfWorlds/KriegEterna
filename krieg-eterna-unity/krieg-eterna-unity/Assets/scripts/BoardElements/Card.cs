@@ -374,6 +374,9 @@ public class Card : MonoBehaviour
         {
             enemyRowsSum += enemyRows[i].Count;
         }
+        
+        Debug.Log("Player Rows Sum: " + playerRowsSum);
+        Debug.Log("Enemy Rows Sum: " + enemyRowsSum);
         if (this.destroyType == DestroyType.Unit && (this.playerCardDestroy > playerRowsSum || (this.playerCardReturn > 0 && playerRowsSum - this.playerCardDestroy <= 0)))
         {
             Debug.Log("Cannot Play Cond 1! : Destroy Type Unit : " + (this.playerCardDestroy + this.playerCardReturn) + " > " + playerRowsSum);
