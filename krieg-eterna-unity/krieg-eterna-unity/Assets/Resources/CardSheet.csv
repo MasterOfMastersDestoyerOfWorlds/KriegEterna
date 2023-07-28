@@ -47,7 +47,7 @@ Plague	Power	Set a unit's base strength to one.	0							1	Set									TRUE						
 Redemption	Power	If your King is on the field, return it to your hand.\rThe top card in the graveyard is played on your\rside of the field.	0					1	King			1					UnitGraveyard									FALSE
 Relic	Power	Move a unit to any row.	0					1	Move								All									FALSE
 Resurrection	Power	Choose one unit from the graveyard and play it\ron your side of the field.	0														PlayerHand					1	UnitGraveyard	-1	Unit	FALSE
-Ruin	Power	Discard up to three cards from your hand.\rAdd three times the number of discarded cards\rto the base strength of a unit.	0							3	Multiply						UnitGraveyard			TRUE		3	PlayerHand	-1	Unit	TRUE
+Ruin	Power	Discard up to three cards from your hand.\rAdd three times the number of discarded cards\rto the base strength of a unit.	0							3	AddMultiple						UnitGraveyard			TRUE		3	PlayerHand	-1	Unit	TRUE
 Styx	Power	Pick a card from the top three in the power\rgraveyard, and add that card to your hand.	0														PlayerHand					1	PowerGraveyard	3	Power	FALSE
 Usury	Power	Set aside one of your units on the field until the\rstart of the next round. Draw two cards at the\rend of this round.	0	2	RoundEnd												PlayerPlayable	2	Player							FALSE
 Void	Power	The round ends after your next turn.	0							1	RoundAdvance															FALSE

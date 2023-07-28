@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Target
-  m_Shader: {fileID: -6465566751694194690, guid: 49a48daa4e6e96b4cb942d5604651613, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 8ba0d9f456cbcaf47b414de0a2e36ec5, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -29,7 +29,7 @@ Material:
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 1999
+  m_CustomRenderQueue: 1997
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -125,6 +125,7 @@ Material:
     - _QueueControl: 1
     - _QueueOffset: 1
     - _ReceiveShadows: 1
+    - _RectHeight: 0.833
     - _RectWidth: 0.7
     - _SampleGI: 0
     - _Smoothness: 0.674
@@ -133,7 +134,7 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _Transparent: 0
+    - _Transparent: 1
     - _TransparentFlash: 0
     - _WorkflowMode: 1
     - _ZWrite: 1

@@ -47,7 +47,8 @@ public class MenuManager : MonoBehaviour
         GameObject loadingScreenObj = GameObject.Instantiate(Resources.Load("Prefabs/LoadingScreen") as GameObject, new Vector3(0f, 0f, -10f), transform.rotation);
         loadingScreen = loadingScreenObj.GetComponent<LoadingScreen>();
         loadingScreen.setVisibile(false);
-        loadingScreen.setRoundTextVisibile(false);
+        loadingScreen.setTextVisibile(loadingScreen.roundText, false);
+        loadingScreen.setTextVisibile(loadingScreen.displayRowText, false);
         Areas.scaleToScreenSize(loadingScreen.transform);
 
         mainMenu = new MenuPage(true, new List<MenuButton>(){

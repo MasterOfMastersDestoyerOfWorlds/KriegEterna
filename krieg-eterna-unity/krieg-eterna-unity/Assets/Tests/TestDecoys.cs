@@ -79,7 +79,17 @@ namespace KriegTests
                 clicks = new List<Click>{
                     new Click("Fortress", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
                     new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
-                }
+                },
+                scoreRows = new List<(RowEffected, int)>(){(RowEffected.PlayerMelee, 1)}
+            },
+            new TestCase
+            {
+                testName = "FortressScoring",
+                clicks = new List<Click>{
+                    new Click("Fortress", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiege, true),
+                    new Click("Armada", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, true),
+                },
+                scoreRows = new List<(RowEffected, int)>(){(RowEffected.PlayerSiege, 2)}
             }
         };
         }

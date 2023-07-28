@@ -48,7 +48,7 @@ public class PlayController
             RowEffected enemyHand = CardModel.getRowFromSide(player, RowEffected.EnemyHand);
             if (c.enemyReveal > 0 && deck.getRowByType(enemyHand).Count > 0)
             {
-                ChooseNController.setChooseN(enemyHand, null, 0, c.enemyReveal, new List<CardType>() { CardType.King, CardType.Melee, CardType.Ranged, CardType.Siege }, RowEffected.None, State.REVEAL, false);
+                ChooseNController.setChooseN(enemyHand, "", null, "", 0, c.enemyReveal, new List<CardType>() { CardType.King, CardType.Melee, CardType.Ranged, CardType.Siege }, RowEffected.None, State.REVEAL, false);
 
             }
         }

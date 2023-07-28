@@ -303,7 +303,7 @@ public class Card : MonoBehaviour
         return this.playerCardDestroyRemain <= 0 &&
         (this.setAsideRemain <= 0 || (this.setAsideType != SetAsideType.King && this.setAsideType != SetAsideType.Player))
         && this.moveRemain <= 0
-        && (this.attachmentsRemaining <= 0 || strengthModType == StrengthModType.Adjacent || strengthModType == StrengthModType.Multiply);
+        && (this.attachmentsRemaining <= 0 || strengthModType == StrengthModType.Adjacent || strengthModType == StrengthModType.AddMultiple);
     }
 
     public bool doneMultiSelection(RowEffected player)
@@ -445,7 +445,8 @@ public class Card : MonoBehaviour
             {
                 case StrengthModType.Add: calculatedStrength += (int)attachment.strengthModifier; break;
                 case StrengthModType.Adjacent: calculatedStrength += (int)attachment.strengthModifier; break;
-                case StrengthModType.Multiply: calculatedStrength += (int)(attachment.strengthModifier * attachment.strengthMultiple); break;
+                case StrengthModType.AddMultiple: calculatedStrength += (int)(attachment.strengthModifier * attachment.strengthMultiple); break;
+                case StrengthModType.Multiply: calculatedStrength = (int)(Mathf.Max(((float)calculatedStrength) * attachment.strengthModifier, 1)); break;
                 case StrengthModType.None: break;
                 default: break;
             }

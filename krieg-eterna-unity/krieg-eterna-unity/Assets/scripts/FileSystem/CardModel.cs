@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 
 public class CardModel : MonoBehaviour
 {
@@ -409,5 +410,24 @@ public class CardModel : MonoBehaviour
         }
 
         return generalRow;
+    }
+
+    internal static string getRowName(RowEffected chooseRow)
+    {
+        switch(chooseRow){
+                case RowEffected.PlayerMelee: return "your Melee row";
+                case RowEffected.PlayerRanged: return "your Ranged row";
+                case RowEffected.PlayerSiege: return "your Siege row";
+                case RowEffected.PlayerHand: return "your hand";
+                case RowEffected.EnemyHand: return "your opponent's hand";
+                case RowEffected.EnemyMelee: return "your opponent's Melee row";
+                case RowEffected.EnemyRanged: return "your opponent's Ranged row";
+                case RowEffected.EnemySiege: return "your opponent's Siege row";
+                case RowEffected.Graveyard: return "the Unit Graveyard";
+                case RowEffected.PowerGraveyard: return "the Power Graveyard";
+                case RowEffected.UnitDeck: return "the Unit Deck";
+                case RowEffected.PowerDeck: return "the Power Deck";
+        }
+        return chooseRow.ToString();
     }
 }

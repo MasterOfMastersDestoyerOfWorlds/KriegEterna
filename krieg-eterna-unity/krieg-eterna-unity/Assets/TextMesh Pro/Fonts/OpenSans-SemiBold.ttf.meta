@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bbdca75ecf09011489977d0c5385c390
+guid: 85ea5280da902c349a4aa7e6904f9d69
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,9 +9,8 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Highlander
-  fallbackFontReferences:
-  - {fileID: 12800000, guid: c0a54a76830bf6347ba70d48348fb7c3, type: 3}
+  - Open Sans
+  fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

@@ -147,7 +147,6 @@ namespace KriegTests
             Game.testing = true;
             SceneManager.sceneLoaded += OnSceneLoaded;
             SceneManager.LoadScene("deskScene", LoadSceneMode.Single);
-            
             // SceneManager.LoadScene("Main");
         }
 

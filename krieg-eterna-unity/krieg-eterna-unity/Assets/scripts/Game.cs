@@ -57,7 +57,7 @@ public class Game : MonoBehaviour
 
 
     private GameObject giveUpButtonObject;
-    private LoadingScreen loadingScreen;
+    public static LoadingScreen loadingScreen;
 
     public static readonly int NUM_POWERS = 4;
     public static readonly int NUM_UNITS = 9;
@@ -101,13 +101,19 @@ public class Game : MonoBehaviour
         GameObject deckObject = GameObject.Instantiate(Resources.Load("Prefabs/Deck") as GameObject, transform.position, transform.rotation);
         activeDeck = deckObject.GetComponent<Deck>();
         GameObject steamManagerObj = GameObject.Find("SteamManager(Clone)");
+        bool makeRand= false;
         if (steamManagerObj == null)
         {
             steamManagerObj = GameObject.Instantiate(Resources.Load("Prefabs/SteamManager") as GameObject, transform.position, transform.rotation);
+            makeRand = true;
         }
         steamManager = steamManagerObj.GetComponent<SteamManager>();
         net = steamManager.NetworkingTest;
+        if(makeRand){
+            net.random = new System.Random();
+        }
         random = net.random;
+
         player2Object = GameObject.Instantiate(Resources.Load("Prefabs/Player") as GameObject, transform.position, transform.rotation);
         player1Object = GameObject.Instantiate(Resources.Load("Prefabs/Player") as GameObject, transform.position, transform.rotation);
         player1 = player1Object.GetComponent<Player>();
@@ -252,7 +258,7 @@ public class Game : MonoBehaviour
                 if (allLoaded)
                 {
 
-                    ChooseNController.setChooseN(RowEffected.PlayerHand, activeDeck.sendCardToGraveyard, NUM_DISCARD_START, activeDeck.getRowByType(RowEffected.PlayerHand).Count, new List<CardType>() { CardType.King }, RowEffected.None, State.CHOOSE_N, false);
+                    ChooseNController.setChooseN(RowEffected.PlayerHand, CardModel.getRowName(RowEffected.PlayerHand), activeDeck.sendCardToGraveyard, "discard.", NUM_DISCARD_START, activeDeck.getRowByType(RowEffected.PlayerHand).Count, new List<CardType>() { CardType.King }, RowEffected.None, State.CHOOSE_N, false);
                     activeDeck.getRowByType(RowEffected.Pass).setVisibile(false);
                     state = State.LOADING;
                     reorganizeGroup();
@@ -604,7 +610,7 @@ public class Game : MonoBehaviour
                 //TODO: need to make tie breaker or go back to prev round
             }
             round = nextRound(round);
-            StartCoroutine(roundText(round, playerWon, draw));
+            StartCoroutine(loadingScreen.roundTextFlash(round, playerWon, draw));
             if (round != RoundType.GameFinished)
             {
                 state = State.FREE;
@@ -783,7 +789,7 @@ public class Game : MonoBehaviour
         updateScores();
         playerInfoTextUpdate();
     }
-    private void battleOver()
+    public static void battleOver()
     {
         if (net.isNetworkGame)
         {
@@ -797,30 +803,5 @@ public class Game : MonoBehaviour
             SceneManager.LoadSceneAsync("menuScene");
         }
     }
-    private IEnumerator roundText(RoundType round, bool playerWon, bool draw)
-    {
-        if (round != RoundType.GameFinished)
-        {
-            loadingScreen.roundText.text = draw ? "Draw" : playerWon ? "Round Won" : "Round Lost";
-        }
-        else
-        {
-            loadingScreen.roundText.text = draw ? "Draw" : playerWon ? "Battle Won" : "Battle Lost";
-        }
-        loadingScreen.setRoundTextVisibile(false);
-        while (!loadingScreen.FadeInRoundText())
-        {
-            yield return null;
-        }
 
-        while (!loadingScreen.FadeOutRoundText())
-        {
-            yield return null;
-        }
-        if (round == RoundType.GameFinished)
-        {
-            Debug.Log("GAME OVER");
-            battleOver();
-        }
-    }
 }
