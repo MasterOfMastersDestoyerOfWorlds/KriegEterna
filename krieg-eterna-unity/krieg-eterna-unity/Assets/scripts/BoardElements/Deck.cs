@@ -177,7 +177,7 @@ public class Deck : MonoBehaviour
                 kings.Remove(card);
                 numKings--;
             }
-            getRowByType(playerHand).Add(card);
+            getRowByType(playerHand).Add(card); 
             numCards = numPowers + numUnits + numKings;
 
         }
@@ -552,6 +552,7 @@ public class Deck : MonoBehaviour
         //c.resetSelectionCounts();
         RowEffected graveyard = CardModel.isPower(c.cardType) ? RowEffected.PowerGraveyard : (CardModel.isUnit(c.cardType) ? RowEffected.UnitGraveyard : RowEffected.KingGraveyard);
         this.getRowByType(graveyard).Add(c);
+        c.updateStrengthText(0);
     }
 
     public void addCardToHand(Row currentRow, RowEffected playerHand, Card c)

@@ -83,6 +83,8 @@ public class Game : MonoBehaviour
     GameObject playerInfo;
     GameObject enemyInfo;
 
+    public static Camera shadowCamera;
+
     public static System.Random random;
 
     void Awake()
@@ -90,6 +92,12 @@ public class Game : MonoBehaviour
         var totaltime = System.Diagnostics.Stopwatch.StartNew();
         GameObject camera = GameObject.Instantiate(Resources.Load("Prefabs/Main Camera") as GameObject, new Vector3(0f, 0f, -100f), transform.rotation);
         camera.tag = "MainCamera";
+        Transform shadowCameraObj = camera.transform.Find("Shadow Camera");
+        if (shadowCameraObj != null)
+        {
+            shadowCamera = shadowCameraObj.GetComponent<Camera>();
+            shadowCamera.enabled = false;
+        }
         GameObject deckObject = GameObject.Instantiate(Resources.Load("Prefabs/Deck") as GameObject, transform.position, transform.rotation);
         activeDeck = deckObject.GetComponent<Deck>();
         GameObject steamManagerObj = GameObject.Find("SteamManager(Clone)");
@@ -784,6 +792,9 @@ public class Game : MonoBehaviour
         else
         {
             //TODO Score screen, damage loot etc.
+            //probably want to keep the cards in memory
+            //Should we start loading them on the front menu?
+            SceneManager.LoadSceneAsync("menuScene");
         }
     }
     private IEnumerator roundText(RoundType round, bool playerWon, bool draw)
@@ -799,13 +810,11 @@ public class Game : MonoBehaviour
         loadingScreen.setRoundTextVisibile(false);
         while (!loadingScreen.FadeInRoundText())
         {
-            Debug.Log("Fading in roundText");
             yield return null;
         }
 
         while (!loadingScreen.FadeOutRoundText())
         {
-            Debug.Log("Fading out roundText");
             yield return null;
         }
         if (round == RoundType.GameFinished)

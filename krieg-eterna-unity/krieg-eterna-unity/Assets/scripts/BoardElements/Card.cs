@@ -88,7 +88,7 @@ public class Card : MonoBehaviour
 
     public RowEffected playerPlayed;
 
-    TMP_Text scoreText;
+    public TMP_Text scoreText;
     private GameObject targetObj;
     public bool textureLoaded;
 
@@ -113,6 +113,7 @@ public class Card : MonoBehaviour
         Transform textObj = cardObj.Find("Score");
         targetObj = cardObj.Find("Target").gameObject;
         scoreText = textObj.GetComponent<TMP_Text>();
+        this.calculatedStrength = this.strength;
         updateStrengthText(this.strength);
         textureLoaded = false;
         defaultLayerMask = LayerMask.NameToLayer("Default");

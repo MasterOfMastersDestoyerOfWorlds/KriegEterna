@@ -45,6 +45,7 @@ public class ChooseNController : EffectControllerInterface
         activeDeck.getRowByType(RowEffected.Skip).setVisibile(false);
         Debug.Log("Setting Invisible");
         displayRow.setVisibile(false);
+        Game.shadowCamera.enabled = false;
         activeDeck.disactiveAllInDeck(false);
         if (activeCard == null || activeCard.doneMultiSelection(player))
         {
@@ -59,12 +60,16 @@ public class ChooseNController : EffectControllerInterface
 
     public static void setChooseN(RowEffected chooseRow, System.Action<Row, RowEffected, Card> action, int numChoose, int numShow, List<CardType> exclude, RowEffected sendRow, State newState, bool skipable)
     {
+        
         Deck activeDeck = Game.activeDeck;
         Card activeCard = Game.activeCard;
         Row row = activeDeck.getRowByType(chooseRow);
         row.chooseNRemain = row.Count > numChoose ? numChoose : row.Count;
         Game.state = newState;
         RowEffected player = Game.player;
+        if(player == RowEffected.Player){
+            Game.shadowCamera.enabled = true;
+        }
 
         Debug.Log(Game.state);
         Debug.Log("setting up choice");

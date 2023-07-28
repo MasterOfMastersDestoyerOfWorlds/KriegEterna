@@ -9,6 +9,8 @@ public class LoadingScreen : MonoBehaviour
 {
 
     public static float FADE_SPEED = 1.5f;
+    
+    public static float TEXT_FADE_SPEED = 1f;
     public TMP_Text roundText;
     void Awake()
     {
@@ -70,8 +72,7 @@ public class LoadingScreen : MonoBehaviour
     public bool FadeInRoundText()
     {
         TMP_Text text = transform.Find("RoundText").GetComponent<TMP_Text>();
-        float newAlpha = Mathf.Clamp(text.alpha + Time.deltaTime * FADE_SPEED, 0, 1);
-        Debug.Log("REEEEE: " + text.text + " " + newAlpha);
+        float newAlpha = Mathf.Clamp(text.alpha + Time.deltaTime * TEXT_FADE_SPEED, 0, 1);
         text.alpha = newAlpha;
         if (newAlpha >= 1)
         {
@@ -82,7 +83,7 @@ public class LoadingScreen : MonoBehaviour
 
     public bool FadeOutRoundText()
     {
-        float newAlpha = Mathf.Clamp(roundText.alpha - Time.deltaTime * FADE_SPEED, 0, 1);
+        float newAlpha = Mathf.Clamp(roundText.alpha - Time.deltaTime * TEXT_FADE_SPEED, 0, 1);
         roundText.alpha = newAlpha;
         if( newAlpha <= 0){
             return true;

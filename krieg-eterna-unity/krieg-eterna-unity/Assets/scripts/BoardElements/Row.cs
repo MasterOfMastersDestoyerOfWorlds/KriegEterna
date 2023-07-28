@@ -93,8 +93,15 @@ public class Row : List<Card>
 
     public new void Add(Card card)
     {
-        base.Add(card);
-        card.setVisible(cardVisibility);
+        if (this.Contains(card))
+        {
+            Debug.LogError("Row: " + rowType + " Already Contains Card!");
+        }
+        else
+        {
+            base.Add(card);
+            card.setVisible(cardVisibility);
+        }
     }
 
     public void setVisibile(bool state)
