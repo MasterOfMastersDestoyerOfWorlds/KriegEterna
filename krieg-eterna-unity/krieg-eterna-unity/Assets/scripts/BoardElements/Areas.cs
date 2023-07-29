@@ -53,6 +53,16 @@ public class Areas : MonoBehaviour
         return centerBottom;
     }
 
+    public Vector3 getCenterTop()
+    {
+        updateScreenBounds();
+        Vector3 centerBottom = new Vector3(
+            0f,
+            topRight.y + height / 2,
+            -2f);
+        return centerBottom;
+    }
+
     public Vector3 getCenterFront()
     {
         updateScreenBounds();
@@ -75,7 +85,13 @@ public class Areas : MonoBehaviour
 
     public Vector3 getDeckCenterVector()
     {
-        return getCenterBottom();
+        return getCenterBottom() + new Vector3(0,0,-20f);
+    }
+
+
+    public Vector3 getDeckCenterTopVector()
+    {
+        return getCenterTop();
     }
 
 
@@ -193,25 +209,25 @@ public class Areas : MonoBehaviour
 
     public Vector3 getRangedRowCenterVector()
     {
-        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 2, 0f);
+        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 2, -5f);
     }
 
     public Vector3 getSiegeRowCenterVector()
     {
         Debug.Log(getCenterBottom());
-        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight(), 0f);
+        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight(), -10f);
     }
     public Vector3 getEnemyMeleeRowCenterVector()
     {
-        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 4, 0f);
+        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 4, 5f);
     }
     public Vector3 getEnemyRangedRowCenterVector()
     {
-        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 5, 0f);
+        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 5, 10f);
     }
     public Vector3 getEnemySiegeRowCenterVector()
     {
-        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 6, 0f);
+        return getCenterBottom() + new Vector3(0f, Card.getBaseHeight() * 6, 15f);
     }
 
     public Vector3 getKingCenterVector(System.Func<Vector3> centerRowMethod)
