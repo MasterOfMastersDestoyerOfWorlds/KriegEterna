@@ -215,6 +215,7 @@ public class Card : MonoBehaviour
     {
         this.index = index;
         this.cardName = cardModel.names[index];
+        this.name = cardName;
         this.cardType = cardModel.cardTypes[index];
         this.strength = cardModel.strength[index];
         this.playerCardDraw = cardModel.playerCardDraw[index];

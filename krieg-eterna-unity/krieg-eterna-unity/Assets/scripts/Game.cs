@@ -650,7 +650,7 @@ public class Game : MonoBehaviour
 
             roundEndCards = new List<Card>();
             reorganizeGroup();
-            playerInfoTextUpdate();
+            scoreAndUpdate();
             return;
         }
         if (!enemyPassed && !playerPassed)
