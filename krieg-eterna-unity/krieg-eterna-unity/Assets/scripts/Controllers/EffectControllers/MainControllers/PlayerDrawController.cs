@@ -26,7 +26,7 @@ public class PlayerDrawController : EffectControllerInterface
         Deck deck = Game.activeDeck;
         switch (c.cardDrawType)
         {
-            case CardDrawType.Either: deck.activateRowsByType(true, false, RowEffected.DrawableDeck); break;
+            case CardDrawType.Either: deck.activateRowsByType(true, false, false, RowEffected.DrawableDeck); break;
             case CardDrawType.Unit: c.setTargetActive(true); break;
             case CardDrawType.Power: c.setTargetActive(true); break;
         }

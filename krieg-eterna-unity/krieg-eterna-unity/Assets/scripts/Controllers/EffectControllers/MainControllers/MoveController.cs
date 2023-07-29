@@ -30,11 +30,11 @@ public class MoveController : EffectControllerInterface
         RowEffected row = CardModel.getRowFromSide(player, c.rowEffected);
         if (c.cardReturnType == CardReturnType.Move)
         {
-            deck.activateRowsByTypeExclude(true, false, row, c.moveRow);
+            deck.activateRowsByTypeExclude(true, false, false, row, c.moveRow);
         }
         else if (c.cardReturnType == CardReturnType.Swap)
         {
-            deck.activateRowsByTypeExclude(true, true, row, c.moveRow);
+            deck.activateRowsByTypeExclude(true, true, true, row, c.moveRow);
         }
     }
     public bool TargetCondition(Card c, RowEffected player)

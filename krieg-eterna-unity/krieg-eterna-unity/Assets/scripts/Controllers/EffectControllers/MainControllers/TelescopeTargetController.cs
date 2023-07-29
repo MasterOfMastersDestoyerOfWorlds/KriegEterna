@@ -11,7 +11,7 @@ public class TelescopeTargetController : EffectControllerInterface
         Debug.Log(r + " " + r.Count);
         if (r.Count > 0)
         {
-            deck.getRowByType(playableRow).setActivateRowCardTargets(true, true);
+            deck.getRowByType(playableRow).setActivateRowCardTargets(true, true, true);
         }
         else
         {

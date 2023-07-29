@@ -182,6 +182,7 @@ namespace KriegTests
             displayRow.setVisibile(false);
             deck.disactiveAllInDeck(false);
             Game.lastPlayedCard = null;
+            Game.enemyLastPlayedCard = null;
             Game.roundEndCards = new List<Card>();
             Game.state = State.BLOCKED;
             Game.playerPassed = false;

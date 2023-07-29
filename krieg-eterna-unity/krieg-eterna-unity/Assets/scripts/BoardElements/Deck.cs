@@ -32,9 +32,9 @@ public class Deck : MonoBehaviour
         new Row(true, true, false, true, RowEffected.EnemyMelee, new List<RowEffected>() {RowEffected.EnemyMelee, RowEffected.EnemyPlayable, RowEffected.All, RowEffected.Melee, RowEffected.EnemySwitchFront, RowEffected.Enemy, RowEffected.MeleeFull , RowEffected.Played, RowEffected.CleanUp}, areas.getEnemyMeleeRowCenterVector, () => areas.getScoreDisplayCenterVector(areas.getEnemyMeleeRowCenterVector)),
         new Row(true, true, false, true, RowEffected.EnemyRanged, new List<RowEffected>() {RowEffected.EnemyRanged, RowEffected.EnemyPlayable, RowEffected.All, RowEffected.Ranged, RowEffected.EnemySwitchFront, RowEffected.Enemy, RowEffected.RangedFull , RowEffected.Played, RowEffected.CleanUp}, areas.getEnemyRangedRowCenterVector, () => areas.getScoreDisplayCenterVector(areas.getEnemyRangedRowCenterVector)),
         new Row(true, true, false, true, RowEffected.EnemySiege, new List<RowEffected>() {RowEffected.EnemySiege, RowEffected.EnemyPlayable, RowEffected.All, RowEffected.Siege, RowEffected.Enemy, RowEffected.SiegeFull , RowEffected.Played, RowEffected.CleanUp}, areas.getEnemySiegeRowCenterVector, () => areas.getScoreDisplayCenterVector(areas.getEnemySiegeRowCenterVector)),
-        new Row(false, false, true, true, RowEffected.UnitDeck, new List<RowEffected>() { RowEffected.DrawableDeck, RowEffected.UnitDeck }, areas.getUnitDeckCenterVector),
-        new Row(false, false, true, true, RowEffected.PowerDeck, new List<RowEffected>() { RowEffected.DrawableDeck, RowEffected.PowerDeck }, areas.getPowerDeckCenterVector),
-        new Row(false, false, true, true, RowEffected.KingDeck, new List<RowEffected>() { RowEffected.KingDeck }, areas.getKingDeckCenterVector),
+        new Row(false, false, true, true, RowEffected.UnitDeck, new List<RowEffected>() { RowEffected.DrawableDeck, RowEffected.UnitDeck, RowEffected.Deck }, areas.getUnitDeckCenterVector),
+        new Row(false, false, true, true, RowEffected.PowerDeck, new List<RowEffected>() { RowEffected.DrawableDeck, RowEffected.PowerDeck, RowEffected.Deck }, areas.getPowerDeckCenterVector),
+        new Row(false, false, true, true, RowEffected.KingDeck, new List<RowEffected>() { RowEffected.KingDeck, RowEffected.Deck }, areas.getKingDeckCenterVector),
         new Row(false, false, false, true, RowEffected.UnitGraveyard, new List<RowEffected>() { RowEffected.UnitGraveyard , RowEffected.Played, RowEffected.PlayableGraveyard, RowEffected.Graveyard}, areas.getUnitGraveyardCenterVector),
         new Row(false, false, false, true, RowEffected.PowerGraveyard, new List<RowEffected>() { RowEffected.PowerGraveyard , RowEffected.Played, RowEffected.PlayableGraveyard, RowEffected.Graveyard}, areas.getPowerGraveyardCenterVector),
         new Row(false, false, false, true, RowEffected.KingGraveyard, new List<RowEffected>() { RowEffected.KingGraveyard , RowEffected.Played, RowEffected.Graveyard}, areas.getKingGraveyardCenterVector),
@@ -104,7 +104,7 @@ public class Deck : MonoBehaviour
         }
         sw.Stop();
         Debug.Log("card cloning Time elapsed: " + sw.Elapsed);
-        sw.Restart();       
+        sw.Restart();
         Debug.Log("Dealing Player Cards");
         while (chooseUnitGraveyard.Count + choosePowerGraveyard.Count > 0)
         {
@@ -177,7 +177,7 @@ public class Deck : MonoBehaviour
                 kings.Remove(card);
                 numKings--;
             }
-            getRowByType(playerHand).Add(card); 
+            getRowByType(playerHand).Add(card);
             numCards = numPowers + numUnits + numKings;
 
         }
@@ -376,13 +376,13 @@ public class Deck : MonoBehaviour
         List<Card> cardTargets = new List<Card>();
         foreach (Row row in rows)
         {
-                foreach (Card card in row)
+            foreach (Card card in row)
+            {
+                if (card.isTargetActive())
                 {
-                    if (card.isTargetActive())
-                    {
-                        cardTargets.Add(card);
-                    }
+                    cardTargets.Add(card);
                 }
+            }
         }
         return cardTargets;
     }
@@ -414,52 +414,72 @@ public class Deck : MonoBehaviour
         return rowTargets;
     }
 
-    public void activateRowsByType(bool state, bool individualCards, RowEffected type)
+    public void activateRowsByType(bool state, bool individualCards, bool unitsOnly, RowEffected type)
     {
         Debug.Log("Activating Type: " + type);
         List<Row> rowList = getRowsByType(type);
         foreach (Row row in rowList)
         {
             Debug.Log("Activating Row: " + row + " Count: " + Game.activeDeck.getRowByType(row.uniqueType).Count);
-            row.setActivateRowCardTargets(state, individualCards);
+            row.setActivateRowCardTargets(state, individualCards, unitsOnly);
         }
     }
-    public void activateAllRowsByType(bool state, bool individualCards, List<RowEffected> types)
+    public void activateAllRowsByType(bool state, bool individualCards, bool unitsOnly, List<RowEffected> types)
     {
 
         foreach (RowEffected type in types)
         {
             Debug.Log("Activating Row: " + type + " Count: " + Game.activeDeck.getRowByType(type).Count);
-            this.activateRowsByType(state, individualCards, type);
+            this.activateRowsByType(state, individualCards, unitsOnly, type);
         }
     }
-    public void activateRowsByTypeExclude(bool state, bool individualCards, RowEffected type, RowEffected exclude)
+    public void activateRowsByTypeExclude(bool state, bool individualCards, bool unitsOnly, RowEffected type, RowEffected exclude)
     {
-        
+
         Debug.Log("Activating Type: " + type + " Exclude: " + exclude);
         List<Row> rowList = getRowsByType(type);
         foreach (Row row in rowList)
         {
             if (row.uniqueType != exclude)
-            { 
+            {
                 Debug.Log("Activating Row: " + type + " Count: " + Game.activeDeck.getRowByType(row.uniqueType).Count);
-                row.setActivateRowCardTargets(state, individualCards);
+                row.setActivateRowCardTargets(state, individualCards, unitsOnly);
             }
         }
     }
 
-    public int countCardsInRows(RowEffected type)
+    public int countCardsInRows(RowEffected rowType)
     {
         int sum = 0;
         foreach (Row row in rows)
         {
-            if (row.hasType(type))
+            if (row.hasType(rowType))
             {
                 sum += row.Count;
             }
         }
         return sum;
     }
+
+    public int countUnitsInRows(RowEffected rowType)
+    {
+        int sum = 0;
+        foreach (Row row in rows)
+        {
+            if (row.hasType(rowType))
+            {
+                foreach (Card c in row)
+                {
+                    if (CardModel.isUnit(c.cardType))
+                    {
+                        sum++;
+                    }
+                }
+            }
+        }
+        return sum;
+    }
+
 
     public List<Row> getRowsByType(RowEffected type)
     {
@@ -654,21 +674,22 @@ public class Deck : MonoBehaviour
         c.graveyardCardDrawRemain -= cardsDrawn;
     }
 
-    public void setCardAside(Row currentRow, Card c, SetAsideType setAsideType)
+    public void setCardAside(Row currentRow, Card c, SetAsideType setAsideType, RowEffected player)
     {
-        RowEffected player = CardModel.getPlayerFromRow(currentRow.uniqueType);
         Debug.Log("GREMLIN: card: " + c.cardName + " player: " + player + " row: " + currentRow.uniqueType + " setAsideType: " + c.setAsideType);
+        RowEffected setAsideRow = CardModel.getRowFromSide(player, RowEffected.PlayerSetAside);
+        RowEffected enemySetAside = CardModel.getRowFromSide(RowEffected.Enemy, setAsideRow);
         switch (setAsideType)
         {
-            case SetAsideType.King: c.setAsideReturnRow = getKingRow(player); break;
-            case SetAsideType.EnemyKing: c.setAsideReturnRow = getKingRow(player); break;
-            case SetAsideType.EitherKing: c.setAsideReturnRow = getKingRow(player); break;
-            case SetAsideType.Enemy: c.setAsideReturnRow = CardModel.getRowFromSide(player, RowEffected.EnemyHand); break;
+            case SetAsideType.King: c.setAsideReturnRow = c.currentRow; break;
+            case SetAsideType.EnemyKing: c.setAsideReturnRow = c.currentRow; setAsideRow = enemySetAside; break;
+            case SetAsideType.EitherKing: c.setAsideReturnRow = c.currentRow; setAsideRow = CardModel.getRowFromSide(CardModel.getPlayerFromRow(c.currentRow), RowEffected.PlayerSetAside); break;
+            case SetAsideType.Enemy: c.setAsideReturnRow = CardModel.getRowFromSide(player, RowEffected.EnemyHand); setAsideRow = enemySetAside; break;
             case SetAsideType.Player: c.setAsideReturnRow = CardModel.getRowFromSide(player, RowEffected.PlayerHand); break;
         }
         Debug.Log(c.setAsideReturnRow);
         currentRow.Remove(c);
-        getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerSetAside)).Add(c);
+        getRowByType(setAsideRow).Add(c);
 
     }
 
@@ -952,8 +973,8 @@ public class Deck : MonoBehaviour
             }
         }
         for (int i = 0; i < graveyardList.Count; i++)
-        {   
-            
+        {
+
             Debug.Log(graveyardRowList[i] + " " + graveyardList[i]);
             sendCardToGraveyard(graveyardRowList[i], RowEffected.None, graveyardList[i]);
         }
@@ -961,8 +982,10 @@ public class Deck : MonoBehaviour
 
     internal void sendListToGraveyard(List<Card> discardList, RowEffected currentRow)
     {
-        Row r  = getRowByType(currentRow);
-        foreach(Card c in discardList){
+        Row r = getRowByType(currentRow);
+        foreach (Card c in discardList)
+        {
+            MoveLogger.logEnemyDiscard(c, RowEffected.Enemy);
             sendCardToGraveyard(r, RowEffected.None, c);
         }
     }

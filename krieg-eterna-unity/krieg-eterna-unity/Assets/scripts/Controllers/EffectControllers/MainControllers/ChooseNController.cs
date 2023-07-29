@@ -125,7 +125,7 @@ public class ChooseNController : EffectControllerInterface
             activeDeck.getRowByType(RowEffected.Skip).setVisibile(true);
         }
         Game.reorganizeRow(cardHorizontalSpacing, cardThickness, attachmentVerticalSpacing, displayRow, displayRow.center);
-        displayRow.setActivateRowCardTargets(true, true);
+        displayRow.setActivateRowCardTargets(true, true, false);
     }
 
     public static void chooseCard(Card cardClone, RowEffected player)
@@ -133,6 +133,7 @@ public class ChooseNController : EffectControllerInterface
         Deck activeDeck = Game.activeDeck;
         Card activeCard = Game.activeCard;
         Debug.Log("Choosing Card: " + cardClone.cardName);
+        MoveLogger.logChooseCard(cardClone, player);
         Row row = activeDeck.getRowByType(chooseNRow);
         Row displayRow = activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerChooseN));
 

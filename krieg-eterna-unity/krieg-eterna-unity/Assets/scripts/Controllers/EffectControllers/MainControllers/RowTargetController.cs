@@ -9,15 +9,16 @@ public class RowTargetController : EffectControllerInterface
         RowEffected enemyPlayable = CardModel.getRowFromSide(player, RowEffected.EnemyPlayable);
         if (c.rowEffected == RowEffected.EnemyMax)
         {
-            deck.activateAllRowsByType(true, false, deck.getMaxScoreRows(enemyPlayable));
+            deck.activateAllRowsByType(true, false, false, deck.getMaxScoreRows(enemyPlayable));
         }
         if (CardModel.rowIsUnique(c.rowEffected))
         {
-            deck.activateRowsByType(true, true, CardModel.getRowFromSide(player, c.rowEffected));
+            //WHEN is this called?
+            deck.activateRowsByType(true, true, true, CardModel.getRowFromSide(player, c.rowEffected));
         }
         else
         {
-            deck.activateRowsByType(true, false, CardModel.getRowFromSide(player, c.rowEffected));
+            deck.activateRowsByType(true, false, false, CardModel.getRowFromSide(player, c.rowEffected));
         }
         
     }

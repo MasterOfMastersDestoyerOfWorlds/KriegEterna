@@ -23,9 +23,7 @@ public class Areas : MonoBehaviour
         Vector3 topRight = Camera.main.ViewportToScreenPoint(new Vector3(1f, 1f, 0f));
         Vector3 botLeft = Camera.main.ViewportToScreenPoint(new Vector3(0f, 0f, 0f));
         float screenHeight = Mathf.Abs(topRight.y - botLeft.y);
-        Debug.Log("ScreenHieght: " + screenHeight);
         float screenWidth = Mathf.Abs(topRight.x - botLeft.x);
-        Debug.Log("ScreenWidth: " + screenWidth);
 
         float oldScreenRatio = 1920f / 1080f;
         float newScreenRatio = screenWidth / screenHeight;
@@ -33,14 +31,6 @@ public class Areas : MonoBehaviour
         float scaleFacy = 0f;
         scaleFacx = newScreenRatio / oldScreenRatio;
         scaleFacy = 1f;
-
-        Debug.Log("scqle factorx: " + scaleFacx);
-        Debug.Log("new Width: " + scaleFacx * screenWidth);
-        Debug.Log("new Widthscale : " + scaleFacx * transform.localScale.x);
-        Debug.Log("scqle round: " + Mathf.Round(1080f / screenHeight));
-        Debug.Log("scqle ratioy: " + scaleFacy);
-        Debug.Log("new Height: " + scaleFacy * screenHeight);
-        Debug.Log("new Widthscale : " + scaleFacy * transform.localScale.y);
         transform.localScale = new Vector3(transform.localScale.x * scaleFacx, transform.localScale.y *scaleFacy, 1);
     }
 

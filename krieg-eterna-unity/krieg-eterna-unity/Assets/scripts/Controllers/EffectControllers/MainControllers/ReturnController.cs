@@ -11,7 +11,7 @@ public class ReturnController : EffectControllerInterface
         if (c.cardReturnType == CardReturnType.Unit)
         {
 
-            int cardsRemaining = deck.countCardsInRows(CardModel.getRowFromSide(player, c.rowEffected));
+            int cardsRemaining = deck.countUnitsInRows(CardModel.getRowFromSide(player, c.rowEffected));
             if (c.playerCardReturnRemain > cardsRemaining)
             {
                 c.playerCardReturnRemain = cardsRemaining - 1;
@@ -51,11 +51,12 @@ public class ReturnController : EffectControllerInterface
         else if (c.cardReturnType == CardReturnType.LastPlayedCard)
         {
             c.playerCardReturnRemain--;
-            if (Game.lastPlayedCard != null)
+            Card lastPlayed = Game.getLastCardPlayed(player) ;
+            if (lastPlayed != null)
             {
                 //Todo: separate enemy and player last card played
-                Row row = deck.getCardRow(Game.lastPlayedCard);
-                deck.addCardToHand(row, playerHand, Game.lastPlayedCard);
+                Row row = deck.getCardRow(lastPlayed);
+                deck.addCardToHand(row, playerHand, lastPlayed);
             }
 
         }
@@ -72,12 +73,16 @@ public class ReturnController : EffectControllerInterface
         {
             case CardReturnType.King: c.setTargetActive(true); break;
             case CardReturnType.LastPlayedCard: c.setTargetActive(true); break;
-            case CardReturnType.Unit: deck.activateRowsByType(true, true, CardModel.getRowFromSide(player, c.rowEffected)); break;
-            default: deck.activateRowsByType(true, true, playerPlayable); break;
+            case CardReturnType.Unit: deck.activateRowsByType(true, true, true, CardModel.getRowFromSide(player, c.rowEffected)); break;
+            default: deck.activateRowsByType(true, true, true, playerPlayable); break;
         }
     }
     public bool TargetCondition(Card c, RowEffected player)
     {
-        return c.playerCardReturnRemain > 0;
+        if(c.cardReturnType == CardReturnType.LastPlayedCard){
+            Card lastPlayed = Game.getLastCardPlayed(player);
+            return lastPlayed != null;
+        }
+        return c.playerCardReturnRemain > 0 ;
     }
 }

@@ -2,6 +2,9 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using System;
+using System.IO;
+using System.Reflection;
 
 public class Card : MonoBehaviour
 {
@@ -83,7 +86,7 @@ public class Card : MonoBehaviour
     private Material targetMaterial;
 
     private static GameObject cardModelGameObject;
-    
+
     public static CardModel cardModel;
 
     public RowEffected playerPlayed;
@@ -93,6 +96,9 @@ public class Card : MonoBehaviour
     public bool textureLoaded;
 
     public LayerMask defaultLayerMask;
+    private static FileStream moveLogFile;
+    private static StreamWriter sw;
+    public RowEffected currentRow;
 
     void Awake()
     {
@@ -124,7 +130,7 @@ public class Card : MonoBehaviour
         isBig = true;
         Transform cardObj = this.transform.Find("Card 1");
         bigFac = 4;
-        
+
         this.setLayer("Big", false);
         Debug.Log("big scale: " + this.cardName + "bigFac" + bigFac + "scalex " + bigFac * baseScalex + " scaley " + bigFac * baseScalez);
         cardObj.transform.localScale = new Vector3(bigFac * baseScalex, 1, bigFac * baseScalez);
@@ -375,7 +381,7 @@ public class Card : MonoBehaviour
         {
             enemyRowsSum += enemyRows[i].Count;
         }
-        
+
         Debug.Log("Player Rows Sum: " + playerRowsSum);
         Debug.Log("Enemy Rows Sum: " + enemyRowsSum);
         if (this.destroyType == DestroyType.Unit && (this.playerCardDestroy > playerRowsSum || (this.playerCardReturn > 0 && playerRowsSum - this.playerCardDestroy <= 0)))
@@ -586,7 +592,8 @@ public class Card : MonoBehaviour
         {
             g.gameObject.layer = l;
         }
-        if(defaultLayer){
+        if (defaultLayer)
+        {
             defaultLayerMask = l;
         }
         gameObject.layer = l;

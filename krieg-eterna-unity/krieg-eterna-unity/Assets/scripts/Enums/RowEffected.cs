@@ -57,5 +57,6 @@ public enum RowEffected
     EnemySwitchBack = 55,
     EnemyChooseN = 56,
     ChooseN = 57,
+    Deck = 58,
     None = 0
 };

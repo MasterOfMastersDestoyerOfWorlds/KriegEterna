@@ -7,7 +7,13 @@ public class SetAsideController : EffectControllerInterface
     {
         Deck deck = Game.activeDeck;
         RowEffected row = CardModel.getRowFromSide(player, c.rowEffected);
-        int cardsRemaining = deck.countCardsInRows(row);
+        int cardsRemaining;
+        if (c.setAsideType == SetAsideType.King || c.setAsideType == SetAsideType.EitherKing || c.setAsideType == SetAsideType.EnemyKing)
+        {
+            cardsRemaining = deck.countCardsInRows(row);
+        }else{
+            cardsRemaining = deck.countUnitsInRows(row);
+        }
         Debug.Log(" SetAside remaining: " + c.setAsideRemain + " cardsRemaining " + cardsRemaining + " row: " + row);
         if (c.setAsideRemain > cardsRemaining)
         {
@@ -17,9 +23,10 @@ public class SetAsideController : EffectControllerInterface
         {
             c.setAsideRemain--;
         }
-        deck.setCardAside(targetRow, targetCard, c.setAsideType);
+        deck.setCardAside(targetRow, targetCard, c.setAsideType, player);
     }
-    public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player){
+    public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)
+    {
         return c.setAsideRemain > 0;
     }
     public void Target(Card c, RowEffected player)
@@ -27,26 +34,31 @@ public class SetAsideController : EffectControllerInterface
         Deck deck = Game.activeDeck;
         switch (c.setAsideType)
         {
-            case SetAsideType.King: deck.activateRowsByType(true, true, 
-            CardModel.getRowFromSide(player, RowEffected.PlayerKing)); 
-            break;
-            case SetAsideType.EnemyKing: deck.activateRowsByType(true, true, 
-            CardModel.getRowFromSide(player, RowEffected.EnemyKing)); 
-            break;
-            case SetAsideType.EitherKing: deck.activateRowsByType(true, true, 
-            CardModel.getRowFromSide(player, RowEffected.King)); 
-            break;
-            case SetAsideType.Enemy: deck.activateRowsByType(true, true, 
-            CardModel.getRowFromSide(player, RowEffected.EnemyPlayable)); 
-            break;
-            case SetAsideType.Player: deck.activateRowsByType(true, true, 
-            CardModel.getRowFromSide(player, RowEffected.PlayerPlayable)); 
-            break;
+            case SetAsideType.King:
+                deck.activateRowsByType(true, true, false,
+            CardModel.getRowFromSide(player, RowEffected.PlayerKing));
+                break;
+            case SetAsideType.EnemyKing:
+                deck.activateRowsByType(true, true, false,
+            CardModel.getRowFromSide(player, RowEffected.EnemyKing));
+                break;
+            case SetAsideType.EitherKing:
+                deck.activateRowsByType(true, true, false,
+            CardModel.getRowFromSide(player, RowEffected.King));
+                break;
+            case SetAsideType.Enemy:
+                deck.activateRowsByType(true, true, true,
+            CardModel.getRowFromSide(player, RowEffected.EnemyPlayable));
+                break;
+            case SetAsideType.Player:
+                deck.activateRowsByType(true, true, true,
+            CardModel.getRowFromSide(player, RowEffected.PlayerPlayable));
+                break;
         }
     }
     public bool TargetCondition(Card c, RowEffected player)
     {
         return c.setAsideRemain > 0;
     }
-    
+
 }

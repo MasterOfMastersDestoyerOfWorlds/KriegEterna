@@ -9,7 +9,7 @@ public class EnemyDestroyController : EffectControllerInterface
         Debug.Log("Destroying Enemy Card");
         if (c.destroyType == DestroyType.Unit)
         {
-            int cardsRemaining = deck.countCardsInRows(CardModel.getRowFromSide(player, c.rowEffected));
+            int cardsRemaining = deck.countUnitsInRows(CardModel.getRowFromSide(player, c.rowEffected));
             if (c.enemyCardDestroyRemain > cardsRemaining)
             {
                 c.enemyCardDestroyRemain = cardsRemaining - 1;
@@ -46,7 +46,7 @@ public class EnemyDestroyController : EffectControllerInterface
     {
         Deck deck = Game.activeDeck;
         RowEffected enemyPlayable = CardModel.getRowFromSide(player, RowEffected.EnemyPlayable);
-        deck.activateRowsByType(true, true, enemyPlayable);
+        deck.activateRowsByType(true, true, true, enemyPlayable);
     }
     public bool TargetCondition(Card c, RowEffected player)
     {

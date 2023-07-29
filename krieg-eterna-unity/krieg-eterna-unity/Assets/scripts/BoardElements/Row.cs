@@ -99,9 +99,23 @@ public class Row : List<Card>
         }
         else
         {
+
+            if (!this.hasType(RowEffected.Deck) && !this.hasType(RowEffected.ChooseN) && !this.hasType(RowEffected.Graveyard))
+            {
+                MoveLogger.logRowAdd(card, uniqueType, Game.player);
+            }
+            card.currentRow = this.uniqueType;
             base.Add(card);
             card.setVisible(cardVisibility);
         }
+    }
+    public new bool Remove(Card card)
+    {
+        if (!this.hasType(RowEffected.Deck) && !this.hasType(RowEffected.ChooseN) && !this.hasType(RowEffected.Graveyard))
+        {
+            MoveLogger.logRowRemove(card, uniqueType, Game.player);
+        }
+        return base.Remove(card);
     }
 
     public void setVisibile(bool state)
@@ -331,13 +345,17 @@ public class Row : List<Card>
 
 
 
-    public void setActivateRowCardTargets(bool state, bool individualCards)
+    public void setActivateRowCardTargets(bool state, bool individualCards, bool unitsOnly)
     {
         if (individualCards)
         {
             for (int i = 0; i < this.Count; i++)
             {
-                this[i].setTargetActive(state);
+                Card c = this[i];
+                if (!unitsOnly || CardModel.isUnitOrSpy(c.cardType))
+                {
+                    c.setTargetActive(state);
+                }
             }
             cardTargetsActivated = state;
         }

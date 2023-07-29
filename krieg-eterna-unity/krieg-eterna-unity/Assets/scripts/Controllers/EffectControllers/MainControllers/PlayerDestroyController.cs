@@ -78,7 +78,7 @@ public class PlayerDestroyController : EffectControllerInterface
         RowEffected playerPlayable = CardModel.getRowFromSide(player, RowEffected.PlayerPlayable);
         switch (c.destroyType)
         {
-            case DestroyType.Unit: deck.activateRowsByType(true, true, playerPlayable); break;
+            case DestroyType.Unit: deck.activateRowsByType(true, true, true, playerPlayable); break;
             default: c.setTargetActive(true); break;
         }
     }

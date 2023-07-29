@@ -48,6 +48,7 @@
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\SideEffectControllers\PowerGraveyardController.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\SideEffectControllers\EnemyDrawController.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\KingController.cs" />
+     <Compile Include="Assets\Scripts\FileSystem\MoveLogger.cs" />
      <Compile Include="Assets\Scripts\Enums\SetAsideType.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\MainControllers\SpyController.cs" />
      <Compile Include="Assets\Scripts\Controllers\EffectControllers\SideEffectControllers\WeatherController.cs" />

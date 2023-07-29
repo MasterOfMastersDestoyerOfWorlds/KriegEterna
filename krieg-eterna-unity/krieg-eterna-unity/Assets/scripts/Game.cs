@@ -10,6 +10,7 @@ public class Game : MonoBehaviour
 {
     public static Card activeCard;
     public static Card lastPlayedCard;
+    public static Card enemyLastPlayedCard;
     private static int activePlayerNumber;
     public static State state = State.FREE;
 
@@ -183,6 +184,8 @@ public class Game : MonoBehaviour
         round = RoundType.RoundOne;
         turnsLeft = int.MaxValue;
         player = RowEffected.Player;
+        MoveLogger.newLogFile();
+        MoveLogger.logSeed(net.seed);
         totaltime.Stop();
         Debug.Log("total build Time elapsed: " + totaltime.Elapsed);
     }
@@ -210,6 +213,11 @@ public class Game : MonoBehaviour
             }
             Debug.Log(name);
         }*/
+    }
+
+    void OnDestroy(){
+        MoveLogger.flushLogs();
+        MoveLogger.closeLogs();
     }
 
     public void Update()
@@ -343,6 +351,7 @@ public class Game : MonoBehaviour
                     if (nextMove.isButton)
                     {
                         activeDeck.getRowByType(nextMove.targetRow).buttonAction.Invoke();
+                        MoveLogger.logButtonPress(player, nextMove.targetRow);
                     }
                     else if (nextMove.activate)
                     {
@@ -511,6 +520,7 @@ public class Game : MonoBehaviour
                         {
                             row.buttonAction.Invoke();
                             clickOnTarget = true;
+                            MoveLogger.logButtonPress(row.uniqueType, player);
                             if (net.isNetworkGame)
                             {
                                 Move move = new Move(null, null, row.uniqueType, player, true, false);
@@ -561,6 +571,7 @@ public class Game : MonoBehaviour
     private void turnOver()
     {
         Debug.Log("TURN OVER: " + playerPassed + " enemypassed: " + enemyPassed);
+        MoveLogger.logTurnOver(player);
         activeDeck.getRowByType(RowEffected.Skip).setVisibile(false);
         if (player == RowEffected.Player)
         {
@@ -808,4 +819,20 @@ public class Game : MonoBehaviour
         }
     }
 
+    internal static Card getLastCardPlayed(RowEffected player)
+    {
+        if(player == RowEffected.Enemy){
+            return enemyLastPlayedCard;
+        }else{
+            return lastPlayedCard;
+        }   
+    }
+    internal static void setLastCardPlayed(Card c, RowEffected player)
+    {
+        if(player == RowEffected.Enemy){
+            enemyLastPlayedCard = c;
+        }else{
+            lastPlayedCard = c;
+        }   
+    }
 }

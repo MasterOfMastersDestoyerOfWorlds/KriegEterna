@@ -17,7 +17,7 @@ public class SpyController : EffectControllerInterface
         Deck deck = Game.activeDeck;
         if (!CardModel.rowIsUnique(c.rowEffected))
         {
-            deck.activateRowsByType(true, false, CardModel.getRowFromSide(player, c.rowEffected));
+            deck.activateRowsByType(true, false, false, CardModel.getRowFromSide(player, c.rowEffected));
         }
         else
         {

@@ -6,7 +6,7 @@ public class AttachController : EffectControllerInterface
     public void Play(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
         Deck deck = Game.activeDeck;
-        int cardsRemaining = deck.countCardsInRows(targetRow.uniqueType);
+        int cardsRemaining = deck.countUnitsInRows(targetRow.uniqueType);
         Debug.Log(" attachments remaining: " + c.attachmentsRemaining + " cardsRemaining " + cardsRemaining + " row: " + targetRow);
         if (c.attachmentsRemaining > cardsRemaining)
         {
@@ -30,7 +30,7 @@ public class AttachController : EffectControllerInterface
     public void Target(Card c, RowEffected player)
     {
         Deck deck = Game.activeDeck;
-        deck.activateRowsByType(true, true, RowEffected.All);
+        deck.activateRowsByType(true, true, true, RowEffected.All);
     }
     public bool TargetCondition(Card c, RowEffected player)
     {

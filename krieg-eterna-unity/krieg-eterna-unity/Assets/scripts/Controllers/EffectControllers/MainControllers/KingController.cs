@@ -8,8 +8,8 @@ public class KingController : EffectControllerInterface
         targetRow.Add(c);
         RowEffected enemySide = CardModel.getRowFromSide(player, RowEffected.EnemyPlayable);
         RowEffected playerSide = CardModel.getRowFromSide(player, RowEffected.PlayerPlayable);
-        int cardsRemaining = Game.activeDeck.countCardsInRows(enemySide);
-        int cardsRemainingPlayer = Game.activeDeck.countCardsInRows(playerSide);
+        int cardsRemaining = Game.activeDeck.countUnitsInRows(enemySide);
+        int cardsRemainingPlayer = Game.activeDeck.countUnitsInRows(playerSide);
         Debug.Log(c.cardName + " setAside: " + c.setAsideRemain);
         if (c.setAsideRemain > cardsRemaining)
         {
@@ -36,7 +36,7 @@ public class KingController : EffectControllerInterface
     {
         Deck deck = Game.activeDeck;
         RowEffected playerKing = CardModel.getRowFromSide(player, RowEffected.PlayerKing);
-        deck.activateRowsByType(true, false, playerKing);
+        deck.activateRowsByType(true, false, false, playerKing);
     }
     public bool TargetCondition(Card c, RowEffected player)
     {

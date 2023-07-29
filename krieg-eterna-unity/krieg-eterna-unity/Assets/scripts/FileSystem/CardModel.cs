@@ -232,6 +232,11 @@ public class CardModel : MonoBehaviour
         return type == CardType.Melee || type == CardType.Ranged ||
                 type == CardType.Switch || type == CardType.Siege;
     }
+    public static bool isUnitOrSpy(CardType type)
+    {
+        return type == CardType.Melee || type == CardType.Ranged ||
+                type == CardType.Switch || type == CardType.Siege || type == CardType.Spy;
+    }
     public static bool isPower(CardType type)
     {
         return type == CardType.Power || type == CardType.Spy ||
@@ -332,15 +337,15 @@ public class CardModel : MonoBehaviour
             case RowEffected.PlayerRangedKing: return RowEffected.Player;
             case RowEffected.PlayerSwitchFront: return RowEffected.Player;
             case RowEffected.PlayerSwitchBack: return RowEffected.Player;
+            case RowEffected.PlayerKing: return RowEffected.Player;
+            case RowEffected.PlayerHand: return RowEffected.Player;
+            case RowEffected.PlayerSiegeKing: return RowEffected.Player;
+            case RowEffected.PlayerMax: return RowEffected.Player;
             case RowEffected.EnemySwitchFront: return RowEffected.Enemy;
             case RowEffected.EnemySwitchBack: return RowEffected.Enemy;
-            case RowEffected.PlayerSiegeKing: return RowEffected.Player;
             case RowEffected.EnemyPlayable: return RowEffected.Enemy;
-            case RowEffected.PlayerHand: return RowEffected.Player;
             case RowEffected.EnemyKing: return RowEffected.Enemy;
-            case RowEffected.PlayerKing: return RowEffected.Player;
             case RowEffected.EnemyMax: return RowEffected.Enemy;
-            case RowEffected.PlayerMax: return RowEffected.Player;
             case RowEffected.EnemyHand: return RowEffected.Enemy;
             case RowEffected.EnemyMelee: return RowEffected.Enemy;
             case RowEffected.EnemyRanged: return RowEffected.Enemy;
