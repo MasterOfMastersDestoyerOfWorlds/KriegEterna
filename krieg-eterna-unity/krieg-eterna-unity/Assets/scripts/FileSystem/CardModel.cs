@@ -423,7 +423,7 @@ public class CardModel : MonoBehaviour
                 case RowEffected.EnemyMelee: return "your opponent's Melee row";
                 case RowEffected.EnemyRanged: return "your opponent's Ranged row";
                 case RowEffected.EnemySiege: return "your opponent's Siege row";
-                case RowEffected.Graveyard: return "the Unit Graveyard";
+                case RowEffected.UnitGraveyard: return "the Unit Graveyard";
                 case RowEffected.PowerGraveyard: return "the Power Graveyard";
                 case RowEffected.UnitDeck: return "the Unit Deck";
                 case RowEffected.PowerDeck: return "the Power Deck";

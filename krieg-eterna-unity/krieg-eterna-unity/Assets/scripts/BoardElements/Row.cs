@@ -87,7 +87,7 @@ public class Row : List<Card>
         this.wide = false;
         this.flipped = false;
         setupTarget();
-        target.setLayer("Default");
+        target.setLayer("UI");
         setVisibile(visible);
     }
 

@@ -323,8 +323,12 @@ public class Game : MonoBehaviour
                 Debug.Log("+++++++++++++++++++++++++++++++++++++++ Enemy Turn " + state + "+++++++++++++++++++++++++++++++++++++");
 
                 moveList = Move.getPossibleMoves(player);
+                
                 if (moveList != null)
                 {
+                    if(moveList.Count == 0){
+                        Debug.LogError("reee I have no moves");
+                    }
                     Debug.Log("Enemy Hand: " + activeDeck.getRowByType(RowEffected.EnemyHand) + " size: " + moveList.Count);
                     foreach (Move m in moveList)
                     {

@@ -10,7 +10,7 @@ public class LoadingScreen : MonoBehaviour
 
     public static float FADE_SPEED = 1.5f;
 
-    public static float TEXT_FADE_SPEED = 1f;
+    public static float TEXT_FADE_SPEED = 0.5f;
     public TMP_Text roundText;
     public TMP_Text displayRowText;
     bool flashDisplayText = false;

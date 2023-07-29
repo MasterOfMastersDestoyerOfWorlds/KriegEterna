@@ -13,7 +13,7 @@ WinterKing	King	Double the strength of a row.\rThe Melee row fights at half stre
 Calvary	Melee	 	4																							TRUE
 Calvary2	Melee	 	4																							TRUE
 Calvary3	Melee	 	4																							TRUE
-Crusader	Melee	If drawn from the graveyard,\rdraw another unit from the graveyard.	2									1					UnitGraveyard									TRUE
+Crusader	Melee	If drawn from the graveyard,\rdraw another unit from the graveyard.	2									1														TRUE
 Halberdier	Melee	 	2																							TRUE
 Knight	Melee	 	2																							TRUE
 Knight10	Melee	 	2																							TRUE
