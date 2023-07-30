@@ -320,7 +320,6 @@ public class Deck : MonoBehaviour
                 {
                     c.setTargetActive(false);
                     c.resetTransform();
-
                 }
                 if (c.isBig)
                 {

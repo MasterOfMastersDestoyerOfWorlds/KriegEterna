@@ -48,7 +48,6 @@ public class ChooseNController : EffectControllerInterface
         Deck activeDeck = Game.activeDeck;
         Card activeCard = Game.activeCard;
         activeDeck.getRowByType(RowEffected.Skip).setVisibile(false);
-        Debug.Log("Setting Invisible");
         displayRow.setVisibile(false);
         Game.shadowCamera.enabled = false;
         activeDeck.disactiveAllInDeck(false);

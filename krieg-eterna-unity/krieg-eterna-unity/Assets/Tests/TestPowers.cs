@@ -259,6 +259,18 @@ namespace KriegTests
             },
             new TestCase
             {
+                testName = "ResurrectionSkip",
+                playerHandCount = 0,
+                clicks = new List<Click>{
+                    new Click("Resurrection", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new Click("Resurrection", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
+                    new Click("Knight", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
+                    new Click("Knight3", RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, false),
+                    new ClickRow("Skip", RowEffected.Skip)
+                }
+            },
+            new TestCase
+            {
                 testName = "Ruin",
                 scoreRows = new List<(RowEffected, int)>{
                     (RowEffected.PlayerMelee, 11),

@@ -102,7 +102,7 @@ public class Game : MonoBehaviour
         GameObject deckObject = GameObject.Instantiate(Resources.Load("Prefabs/Deck") as GameObject, transform.position, transform.rotation);
         activeDeck = deckObject.GetComponent<Deck>();
         GameObject steamManagerObj = GameObject.Find("SteamManager(Clone)");
-        bool makeRand= false;
+        bool makeRand = false;
         if (steamManagerObj == null)
         {
             steamManagerObj = GameObject.Instantiate(Resources.Load("Prefabs/SteamManager") as GameObject, transform.position, transform.rotation);
@@ -110,7 +110,8 @@ public class Game : MonoBehaviour
         }
         steamManager = steamManagerObj.GetComponent<SteamManager>();
         net = steamManager.NetworkingTest;
-        if(makeRand){
+        if (makeRand)
+        {
             net.random = new System.Random();
         }
         random = net.random;
@@ -215,7 +216,8 @@ public class Game : MonoBehaviour
         }*/
     }
 
-    void OnDestroy(){
+    void OnDestroy()
+    {
         MoveLogger.flushLogs();
         MoveLogger.closeLogs();
     }
@@ -331,10 +333,11 @@ public class Game : MonoBehaviour
                 Debug.Log("+++++++++++++++++++++++++++++++++++++++ Enemy Turn " + state + "+++++++++++++++++++++++++++++++++++++");
 
                 moveList = Move.getPossibleMoves(player);
-                
+
                 if (moveList != null)
                 {
-                    if(moveList.Count == 0){
+                    if (moveList.Count == 0)
+                    {
                         Debug.LogError("reee I have no moves");
                     }
                     Debug.Log("Enemy Hand: " + activeDeck.getRowByType(RowEffected.EnemyHand) + " size: " + moveList.Count);
@@ -480,7 +483,6 @@ public class Game : MonoBehaviour
                             for (int j = 0; j < row.Count; j++)
                             {
                                 Card selected = row[j];
-                                Debug.Log("Card: " + selected.cardName + " Contains: " + selected.ContainsMouse(mouseRelativePosition) + "Card Location: " + selected.transform.position + " Mouse: " + mouseRelativePosition);
                                 if (selected.ContainsMouse(mouseRelativePosition))
                                 {
                                     Debug.Log("Clicked on Card:" + selected.cardName);
@@ -518,6 +520,7 @@ public class Game : MonoBehaviour
                     {
                         if (row.target.ContainsMouse(mouseRelativePosition) && row.isVisible())
                         {
+                            Debug.Log("Button: " + row.uniqueType + " Clicked!");
                             row.buttonAction.Invoke();
                             clickOnTarget = true;
                             MoveLogger.logButtonPress(row.uniqueType, player);
@@ -682,10 +685,17 @@ public class Game : MonoBehaviour
     public static void skipActiveCardEffects()
     {
         activeCard.zeroSkipSelectionCounts();
-        ChooseNController.endChooseN(activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerChooseN)), player);
-        if (CardModel.isUnit(activeCard.cardType) && activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerHand)).Contains(activeCard))
+        if (state == State.CHOOSE_N)
+        {
+            ChooseNController.endChooseN(activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerChooseN)), player);
+        }
+        else if (CardModel.isUnit(activeCard.cardType) && activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerHand)).Contains(activeCard))
         {
             PlayController.Play(activeCard, activeDeck.getRowByType(CardModel.getPlayableRow(player, activeCard.cardType)), null, player);
+        }
+        if (activeCard.doneMultiSelection(player))
+        {
+            state = State.FREE;
         }
     }
     private void gameOver()
@@ -821,18 +831,24 @@ public class Game : MonoBehaviour
 
     internal static Card getLastCardPlayed(RowEffected player)
     {
-        if(player == RowEffected.Enemy){
+        if (player == RowEffected.Enemy)
+        {
             return enemyLastPlayedCard;
-        }else{
+        }
+        else
+        {
             return lastPlayedCard;
-        }   
+        }
     }
     internal static void setLastCardPlayed(Card c, RowEffected player)
     {
-        if(player == RowEffected.Enemy){
+        if (player == RowEffected.Enemy)
+        {
             enemyLastPlayedCard = c;
-        }else{
+        }
+        else
+        {
             lastPlayedCard = c;
-        }   
+        }
     }
 }

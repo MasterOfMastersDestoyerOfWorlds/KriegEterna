@@ -4,6 +4,7 @@ namespace KriegTests
 
     using TestCase = TestCards.TestCase;
     using Click = TestCards.Click;
+    using ClickRow = TestCards.ClickRow;
     using System.Collections.Generic;
     public class TestDecoys : TestCaseCollection
     {
@@ -50,6 +51,19 @@ namespace KriegTests
                     new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
                     new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerHand, RowEffected.PlayerHand, true),
                     new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
+                }
+            },
+
+            new TestCase
+            {
+                testName = "ShipwreckSkip",
+                playerHandCount = 1,
+                clicks = new List<Click>{
+                    new Click("Shipwreck", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
+                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerHand, RowEffected.PlayerHand, true),
+                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, false),
+                    new ClickRow("Skip", RowEffected.Skip)
                 }
             },
              new TestCase

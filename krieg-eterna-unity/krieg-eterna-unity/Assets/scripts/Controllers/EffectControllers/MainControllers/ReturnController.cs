@@ -10,8 +10,9 @@ public class ReturnController : EffectControllerInterface
         Debug.Log("Returning Card");
         if (c.cardReturnType == CardReturnType.Unit)
         {
-
-            int cardsRemaining = deck.countUnitsInRows(CardModel.getRowFromSide(player, c.rowEffected));
+            RowEffected rowEffected = CardModel.getRowFromSide(player, c.rowEffected);
+            Row playerHandRow = deck.getRowByType(playerHand);
+            int cardsRemaining = deck.countUnitsInRows(rowEffected);
             if (c.playerCardReturnRemain > cardsRemaining)
             {
                 c.playerCardReturnRemain = cardsRemaining - 1;
@@ -20,13 +21,14 @@ public class ReturnController : EffectControllerInterface
             {
                 c.playerCardReturnRemain--;
             }
-            if (c.playerCardReturnRemain <= 0 && c.cardType == CardType.Decoy)
+            if (playerHandRow.Contains(c) && c.cardType == CardType.Decoy)
             {
                 int index = targetRow.IndexOf(targetCard);
                 if(index < 0 || index > targetRow.Count){
                     Debug.Log("REEEE: row:" + targetRow + " card:" + targetCard.cardName);
                 }
                 targetRow.Insert(index, c);
+                playerHandRow.Remove(c);
             }
             deck.addCardToHand(targetRow, playerHand, targetCard);
         }
