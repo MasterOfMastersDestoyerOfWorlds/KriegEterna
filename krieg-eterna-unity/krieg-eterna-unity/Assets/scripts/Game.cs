@@ -446,6 +446,7 @@ public class Game : MonoBehaviour
                             else
                             {
                                 Debug.Log("!!!!!!!!!!!!!!!!!!!!!!Cannot Play!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                clickOnTarget = false;
                             }
                         }
                     }
@@ -696,6 +697,12 @@ public class Game : MonoBehaviour
         if (activeCard.doneMultiSelection(player))
         {
             state = State.FREE;
+            activeDeck.disactiveAllInDeck(false);
+        }
+        else
+        {
+            activeDeck.disactiveAllInDeck(true);
+            TargetController.ShowTargets(activeCard, player);
         }
     }
     private void gameOver()
