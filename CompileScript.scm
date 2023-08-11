@@ -463,9 +463,9 @@
 		
 		;Render Strength Box
 		(gimp-message "Strength Box")
-		(set! strength-back-layer (car (gimp-layer-new image (* 0.52 strength-width) (* 0.8 strength-height) 1 "desc background" back-opacity 0)))
+		(set! strength-back-layer (car (gimp-layer-new image (* 0.6 strength-width) (* 0.845 strength-height) 1 "desc background" back-opacity 0)))
 		(gimp-image-insert-layer image strength-back-layer 0 (car (gimp-image-get-item-position image layer)))
-		(gimp-layer-set-offsets strength-back-layer (- (- image-width (/ image-width 5.85))  buffer) (+ buffer (/ image-width 5)))
+		(gimp-layer-set-offsets strength-back-layer (- (- image-width (/ image-width 5.65))  buffer) (+ buffer (/ image-width 5)))
 		(gimp-selection-all image)
 		(gimp-drawable-edit-fill strength-back-layer 1)
 		(gimp-selection-layer-alpha strength-back-layer)
