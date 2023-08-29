@@ -4,4 +4,5 @@ UnityPackageManager
 obj
 .vs
 Assets/InitTestScene*
+Logs/*
 bin
