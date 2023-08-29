@@ -15,6 +15,8 @@ public class SteamNetworkingTest : MonoBehaviour
     protected Callback<SocketStatusCallback_t> m_SocketStatusCallback;
     protected Callback<LobbyCreated_t> m_LobbyCreated_t;
 
+    protected Callback<GameLobbyJoinRequested_t> m_GameLobbyJoinRequested_t;
+
     protected Callback<LobbyChatUpdate_t> m_LobbyChatUpdate_t;
 
     protected Callback<SteamNetworkingMessagesSessionRequest_t> m_SteamNetworkingMessagesSessionRequest_t;
@@ -37,6 +39,7 @@ public class SteamNetworkingTest : MonoBehaviour
         m_P2PSessionConnectFail = Callback<P2PSessionConnectFail_t>.Create(OnP2PSessionConnectFail);
         m_SocketStatusCallback = Callback<SocketStatusCallback_t>.Create(OnSocketStatusCallback);
         m_LobbyCreated_t = Callback<LobbyCreated_t>.Create(OnLobbyCreated);
+        m_GameLobbyJoinRequested_t = Callback<GameLobbyJoinRequested_t>.Create(OnGameLobbyJoinRequested);
         m_LobbyChatUpdate_t = Callback<LobbyChatUpdate_t>.Create(OnLobbyStateChange);
         m_SteamNetworkingMessagesSessionRequest_t = Callback<SteamNetworkingMessagesSessionRequest_t>.Create(OnSessionOpen);
         DontDestroyOnLoad(gameObject);
@@ -193,7 +196,7 @@ public class SteamNetworkingTest : MonoBehaviour
 
     void OnP2PSessionRequest(P2PSessionRequest_t pCallback)
     {
-        Debug.Log("[" + P2PSessionRequest_t.k_iCallback + " - P2PSessionRequest] - " + pCallback.m_steamIDRemote);
+        Debug.LogError("[" + P2PSessionRequest_t.k_iCallback + " - P2PSessionRequest] - " + pCallback.m_steamIDRemote);
 
         bool ret = SteamNetworking.AcceptP2PSessionWithUser(pCallback.m_steamIDRemote);
         print("SteamNetworking.AcceptP2PSessionWithUser(" + pCallback.m_steamIDRemote + ") - " + ret);
@@ -203,25 +206,29 @@ public class SteamNetworkingTest : MonoBehaviour
 
     void OnP2PSessionConnectFail(P2PSessionConnectFail_t pCallback)
     {
-        Debug.Log("[" + P2PSessionConnectFail_t.k_iCallback + " - P2PSessionConnectFail] - " + pCallback.m_steamIDRemote + " -- " + pCallback.m_eP2PSessionError);
+        Debug.LogError("[" + P2PSessionConnectFail_t.k_iCallback + " - P2PSessionConnectFail] - " + pCallback.m_steamIDRemote + " -- " + pCallback.m_eP2PSessionError);
     }
 
     void OnSocketStatusCallback(SocketStatusCallback_t pCallback)
     {
-        Debug.Log("[" + SocketStatusCallback_t.k_iCallback + " - SocketStatusCallback] - " + pCallback.m_hSocket + " -- " + pCallback.m_hListenSocket + " -- " + pCallback.m_steamIDRemote + " -- " + pCallback.m_eSNetSocketState);
+        Debug.LogError("[" + SocketStatusCallback_t.k_iCallback + " - SocketStatusCallback] - " + pCallback.m_hSocket + " -- " + pCallback.m_hListenSocket + " -- " + pCallback.m_steamIDRemote + " -- " + pCallback.m_eSNetSocketState);
+    }
+
+    void OnGameLobbyJoinRequested (GameLobbyJoinRequested_t param){
+        SteamMatchmaking.JoinLobby(param.m_steamIDLobby);
     }
     private void OnLobbyStateChange(LobbyChatUpdate_t param)
     {
         if (param.m_rgfChatMemberStateChange == ((uint)EChatMemberStateChange.k_EChatMemberStateChangeEntered))
         {
-            Debug.Log("User Joined? " + param.m_ulSteamIDUserChanged);
+            Debug.LogError("User Joined? " + param.m_ulSteamIDUserChanged);
             m_RemoteSteamId = new CSteamID(param.m_ulSteamIDUserChanged);
             m_RemoteSteamNetworkingIdentity = new SteamNetworkingIdentity();
             m_RemoteSteamNetworkingIdentity.SetSteamID(m_RemoteSteamId);
         }
         else
         {
-            Debug.Log("User Left? " + param.m_ulSteamIDUserChanged);
+            Debug.LogError("User Left? " + param.m_ulSteamIDUserChanged);
             m_RemoteSteamId = new CSteamID(0);
 			isNetworkGame = false;
         }
@@ -248,7 +255,7 @@ public class SteamNetworkingTest : MonoBehaviour
         }
         else
         {
-            Debug.Log("No Message recieved");
+            Debug.LogError("No Message recieved");
 			return (PacketType.NONE, -1);
         }
 
