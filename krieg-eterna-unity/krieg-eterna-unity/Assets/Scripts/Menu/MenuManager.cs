@@ -77,8 +77,8 @@ public class MenuManager : MonoBehaviour
 
         m_LobbyChatUpdate_t = Callback<LobbyChatUpdate_t>.Create(OnLobbyStateChange);
         m_SteamNetworkingMessagesSessionRequest_t = Callback<SteamNetworkingMessagesSessionRequest_t>.Create(OnSessionOpen);
-         var args = System.Environment.GetCommandLineArgs();
-
+        
+        var args = System.Environment.GetCommandLineArgs();
         // we really only care if we have 2 or more if we just want the lobbyid.
         if (args.Length >= 2)
         {
@@ -92,7 +92,7 @@ public class MenuManager : MonoBehaviour
                     {
                         if (lobbyID > 0)
                         {
-                            SteamMatchmaking.JoinLobby(lobbyID);
+                            SteamMatchmaking.JoinLobby(new CSteamID(lobbyID));
                         }
                     }
                     break;
