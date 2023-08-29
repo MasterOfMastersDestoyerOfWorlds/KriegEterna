@@ -77,6 +77,28 @@ public class MenuManager : MonoBehaviour
 
         m_LobbyChatUpdate_t = Callback<LobbyChatUpdate_t>.Create(OnLobbyStateChange);
         m_SteamNetworkingMessagesSessionRequest_t = Callback<SteamNetworkingMessagesSessionRequest_t>.Create(OnSessionOpen);
+         var args = System.Environment.GetCommandLineArgs();
+
+        // we really only care if we have 2 or more if we just want the lobbyid.
+        if (args.Length >= 2)
+        {
+            // loop to the 2nd last one, because we are gonna do a + 1
+            // the lobbyID is straight after +connect_lobby
+            for (int i = 0; i < args.Length - 1; i++)
+            {
+                if (args[i].ToLower() == "+connect_lobby")
+                {
+                    if (ulong.TryParse(args[i + 1], out ulong lobbyID))
+                    {
+                        if (lobbyID > 0)
+                        {
+                            SteamMatchmaking.JoinLobby(lobbyID);
+                        }
+                    }
+                    break;
+                }
+            }
+        }
     }
 
 
@@ -224,7 +246,7 @@ public class MenuManager : MonoBehaviour
                     {
                         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
                         {
-
+                            //null exception
                             StartCoroutine(button.buttonAction.Invoke());
                             return;
                         }
