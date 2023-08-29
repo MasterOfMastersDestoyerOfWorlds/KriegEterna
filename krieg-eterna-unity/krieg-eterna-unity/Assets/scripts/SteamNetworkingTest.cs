@@ -182,7 +182,7 @@ public class SteamNetworkingTest : MonoBehaviour
     //Todo need some sort of loading symbol and timeout
     private void OnLobbyCreated(LobbyCreated_t param)
     {
-        Debug.Log("Lobby created? " + param.m_eResult);
+        Debug.LogError("Lobby created? " + param.m_eResult);
         this.lobbyId = new CSteamID(param.m_ulSteamIDLobby);
         lobbyUpdated = true;
         host = true;

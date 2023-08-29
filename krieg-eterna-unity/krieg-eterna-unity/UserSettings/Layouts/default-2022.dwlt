@@ -17,9 +17,9 @@ MonoBehaviour:
     x: 0
     y: 43.2
     width: 1536
-    height: 868.8
+    height: 772.8
   m_ShowMode: 4
-  m_Title: Test Runner
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -45,7 +45,7 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 1536
-    height: 868.8
+    height: 772.8
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 848.8
+    y: 752.8
     width: 1536
     height: 20
   m_MinSize: {x: 0, y: 0}
@@ -115,11 +115,11 @@ MonoBehaviour:
     x: 0
     y: 30
     width: 1536
-    height: 818.8
+    height: 722.8
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 141
+  controlID: 85
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -140,11 +140,11 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 1185.6
-    height: 818.8
+    height: 722.8
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 142
+  controlID: 38
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,11 +165,11 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 1185.6
-    height: 581.6
+    height: 513.6
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 143
+  controlID: 39
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -188,7 +188,7 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 323.2
-    height: 581.6
+    height: 513.6
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 15}
@@ -214,7 +214,7 @@ MonoBehaviour:
     x: 323.2
     y: 0
     width: 862.39996
-    height: 581.6
+    height: 513.6
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 16}
@@ -246,9 +246,9 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 581.6
+    y: 513.6
     width: 1185.6
-    height: 237.20001
+    height: 209.20001
   m_MinSize: {x: 101, y: 121}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 25}
@@ -277,11 +277,11 @@ MonoBehaviour:
     x: 1185.6
     y: 0
     width: 350.40002
-    height: 818.8
+    height: 722.8
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 195
+  controlID: 86
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -300,7 +300,7 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 350.40002
-    height: 383.2
+    height: 337.6
   m_MinSize: {x: 276, y: 71}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 26}
@@ -324,11 +324,11 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 383.2
+    y: 337.6
     width: 350.40002
-    height: 435.59998
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+    height: 385.19998
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 27}
   m_Panes:
   - {fileID: 27}
@@ -357,7 +357,7 @@ MonoBehaviour:
     x: 323.2
     y: 73.6
     width: 860.39996
-    height: 560.6
+    height: 492.59998
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -413,22 +413,22 @@ MonoBehaviour:
       x: 0
       y: 21
       width: 860.39996
-      height: 539.6
-    m_Scale: {x: 0.5601562, y: 0.5601562}
-    m_Translation: {x: 430.19998, y: 269.8}
+      height: 471.59998
+    m_Scale: {x: 0.5458333, y: 0.5458333}
+    m_Translation: {x: 430.19998, y: 235.79999}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -768
-      y: -481.65134
-      width: 1536
-      height: 963.3027
+      x: -788.1527
+      y: -432
+      width: 1576.3054
+      height: 864
     m_MinimalGUI: 1
-  m_defaultScale: 0.5601562
-  m_LastWindowPixelSize: {x: 1075.5, y: 700.75}
+  m_defaultScale: 0.5458333
+  m_LastWindowPixelSize: {x: 1075.5, y: 615.75}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -457,7 +457,7 @@ MonoBehaviour:
     x: 0
     y: 73.6
     width: 322.2
-    height: 560.6
+    height: 492.59998
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -473,7 +473,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: d6effeff88f0feff461fffffe61fffff9c20ffff844fffff1cfbffff
+      m_ExpandedIDs: 1cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -520,7 +520,7 @@ MonoBehaviour:
     x: 323.2
     y: 73.6
     width: 860.39996
-    height: 560.6
+    height: 492.59998
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -879,9 +879,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 14.242631, y: -2.783043, z: 0.2}
+    m_Target: {x: 0, y: 0, z: 0}
     speed: 2
-    m_Value: {x: 14.242631, y: -2.783043, z: 0.2}
+    m_Value: {x: 0, y: 0, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -890,7 +890,7 @@ MonoBehaviour:
   m_ValidateTrueMetals: 0
   m_DoValidateTrueMetals: 0
   m_SceneViewState:
-    m_AlwaysRefresh: 1
+    m_AlwaysRefresh: 0
     showFog: 1
     showSkybox: 1
     showFlares: 1
@@ -909,35 +909,35 @@ MonoBehaviour:
       m_Size: {x: 1, y: 1}
     yGrid:
       m_Fade:
-        m_Target: 1
-        speed: 2
-        m_Value: 1
-      m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
-      m_Pivot: {x: 0, y: 0, z: 0}
-      m_Size: {x: 0.25, y: 0.25}
-    zGrid:
-      m_Fade:
         m_Target: 0
         speed: 2
         m_Value: 0
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 0.25, y: 0.25}
+    zGrid:
+      m_Fade:
+        m_Target: 1
+        speed: 2
+        m_Value: 1
+      m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
+      m_Pivot: {x: 0, y: 0, z: 0}
+      m_Size: {x: 1, y: 1}
     m_ShowGrid: 1
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+    m_Target: {x: 0, y: 0, z: 0, w: 1}
     speed: 2
-    m_Value: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+    m_Value: {x: -0, y: 0, z: -0, w: -1}
   m_Size:
-    m_Target: 19.904585
+    m_Target: 9.928565
     speed: 2
-    m_Value: 19.904585
+    m_Value: 9.928565
   m_Ortho:
-    m_Target: 0
+    m_Target: 1
     speed: 2
-    m_Value: 0
+    m_Value: 1
   m_CameraSettings:
     m_Speed: 1
     m_SpeedNormalized: 0.5
@@ -5938,7 +5938,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 666d0000
     m_LastClickedID: 28006
-    m_ExpandedIDs: 00000000226900002469000026690000286900002a6900002c6900002e690000306900003269000034690000
+    m_ExpandedIDs: 00000000186900001a6900001c690000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -5966,7 +5966,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000226900002469000026690000286900002a6900002c6900002e690000306900003269000034690000
+    m_ExpandedIDs: 00000000186900001a6900001c690000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -6043,9 +6043,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 655.2
+    y: 587.2
     width: 1184.6
-    height: 216.20001
+    height: 188.20001
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -6079,7 +6079,7 @@ MonoBehaviour:
     x: 1185.6
     y: 73.6
     width: 349.40002
-    height: 362.2
+    height: 316.6
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -6124,9 +6124,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 1185.6
-    y: 456.80002
+    y: 411.2
     width: 349.40002
-    height: 414.59998
+    height: 364.19998
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -6138,12 +6138,12 @@ MonoBehaviour:
     m_SaveData: []
     m_OverlaysVisible: 1
   m_Spl:
-    ID: 228
+    ID: 124
     splitterInitialOffset: 114.2
     currentActiveSplitter: -1
     realSizes:
-    - 117.400024
-    - 232.20003
+    - 98.4
+    - 195.20001
     relativeSizes:
     - 0.3358124
     - 0.6641876
@@ -6153,7 +6153,7 @@ MonoBehaviour:
     maxSizes:
     - 0
     - 0
-    lastTotalSize: 349.6
+    lastTotalSize: 293.6
     splitSize: 6
     xOffset: 0
     m_Version: 1
@@ -6256,176 +6256,175 @@ MonoBehaviour:
 
         (0.00, -8.35, -2.00)
 
-        (0.00,
-        -8.35, -2.00)
+        (0.00, -8.35,
+        -2.00)
 
-        Setting Target: Target(Clone)(Clone) (Target) On:
-        PlayerSiege
-
-        Setting Target: Target(Clone)(Clone) (Target) On: EnemyMelee
+        Setting Target: Target(Clone)(Clone) (Target) On: PlayerSiege
 
         Setting
-        Target: Target(Clone)(Clone) (Target) On: EnemyRanged
+        Target: Target(Clone)(Clone) (Target) On: EnemyMelee
 
         Setting Target:
-        Target(Clone)(Clone) (Target) On: EnemySiege
+        Target(Clone)(Clone) (Target) On: EnemyRanged
 
         Setting Target: Target(Clone)(Clone)
-        (Target) On: UnitDeck
+        (Target) On: EnemySiege
 
         Setting Target: Target(Clone)(Clone) (Target)
-        On: PowerDeck
+        On: UnitDeck
 
-        Setting Target: Target(Clone)(Clone) (Target) On:
-        KingDeck
-
-        Setting Target: Target(Clone)(Clone) (Target) On: UnitGraveyard
+        Setting Target: Target(Clone)(Clone) (Target) On: PowerDeck
 
         Setting
-        Target: Target(Clone)(Clone) (Target) On: PowerGraveyard
+        Target: Target(Clone)(Clone) (Target) On: KingDeck
+
+        Setting Target:
+        Target(Clone)(Clone) (Target) On: UnitGraveyard
+
+        Setting Target:
+        Target(Clone)(Clone) (Target) On: PowerGraveyard
+
+        Setting Target:
+        Target(Clone)(Clone) (Target) On: KingGraveyard
+
+        Setting Target:
+        Target(Clone)(Clone) (Target) On: PlayerMeleeKing
+
+        Setting Target:
+        Target(Clone)(Clone) (Target) On: PlayerRangedKing
+
+        (0.00, -8.35,
+        -2.00)
+
+        Setting Target: Target(Clone)(Clone) (Target) On: PlayerSiegeKing
 
         Setting
-        Target: Target(Clone)(Clone) (Target) On: KingGraveyard
+        Target: Target(Clone)(Clone) (Target) On: EnemyMeleeKing
 
         Setting
-        Target: Target(Clone)(Clone) (Target) On: PlayerMeleeKing
+        Target: Target(Clone)(Clone) (Target) On: EnemyRangedKing
 
         Setting
-        Target: Target(Clone)(Clone) (Target) On: PlayerRangedKing
+        Target: Target(Clone)(Clone) (Target) On: EnemySiegeKing
 
-        (0.00,
-        -8.35, -2.00)
+        Setting
+        Target: Target(Clone)(Clone) (Target) On: PlayerSetAside
 
-        Setting Target: Target(Clone)(Clone) (Target) On:
-        PlayerSiegeKing
+        Setting
+        Target: Target(Clone)(Clone) (Target) On: EnemySetAside
 
-        Setting Target: Target(Clone)(Clone) (Target) On:
-        EnemyMeleeKing
+        Setting
+        Target: Target(Clone)(Clone) (Target) On: PlayerChooseN
 
-        Setting Target: Target(Clone)(Clone) (Target) On:
-        EnemyRangedKing
+        Setting
+        Target: Target(Clone)(Clone) (Target) On: EnemyChooseN
 
-        Setting Target: Target(Clone)(Clone) (Target) On:
-        EnemySiegeKing
+        Setting Target:
+        Target(Clone)(Clone) (Target) On: Pass
 
-        Setting Target: Target(Clone)(Clone) (Target) On:
-        PlayerSetAside
+        Setting Target: Target(Clone)(Clone)
+        (Target) On: Skip
 
-        Setting Target: Target(Clone)(Clone) (Target) On:
-        EnemySetAside
-
-        Setting Target: Target(Clone)(Clone) (Target) On:
-        PlayerChooseN
-
-        Setting Target: Target(Clone)(Clone) (Target) On:
-        EnemyChooseN
-
-        Setting Target: Target(Clone)(Clone) (Target) On:
-        Pass
-
-        Setting Target: Target(Clone)(Clone) (Target) On: Skip
-
-        Making
-        Deck
+        Making Deck
 
         Player creating - P1
 
-        Player creating - P1
+        Player
+        creating - P1
 
-        total
-        build Time elapsed: 00:00:01.2007639
+        total build Time elapsed: 00:00:01.2007639
 
-        Reorganizing all rows
-
-        (0.00,
-        -8.35, -2.00)
+        Reorganizing
+        all rows
 
         (0.00, -8.35, -2.00)
 
-        generating values
+        (0.00, -8.35, -2.00)
 
-        indexlist
-        setup Time elapsed: 00:00:00.0000038
+        generating
+        values
 
-        card cloning Time elapsed:
-        00:00:00.1281115
+        indexlist setup Time elapsed: 00:00:00.0000038
+
+        card
+        cloning Time elapsed: 00:00:00.1281115
 
         Dealing Player Cards
 
-        Cards Left to Deal:
-        14
+        Cards
+        Left to Deal: 14
 
         Cards Left to Deal: 13
 
-        Cards Left to Deal: 12
-
-        Cards
-        Left to Deal: 11
-
-        Cards Left to Deal: 10
-
-        Cards Left to
-        Deal: 9
-
-        Cards Left to Deal: 8
-
-        Cards Left to Deal: 7
-
-        Cards
-        Left to Deal: 6
-
-        Cards Left to Deal: 5
-
         Cards Left to Deal:
-        4
-
-        Cards Left to Deal: 3
-
-        Cards Left to Deal: 2
-
-        Cards
-        Left to Deal: 1
-
-        Cards Left to Deal: 14
-
-        Cards Left to
-        Deal: 13
-
-        Cards Left to Deal: 12
+        12
 
         Cards Left to Deal: 11
 
+        Cards Left to Deal: 10
+
         Cards
-        Left to Deal: 10
+        Left to Deal: 9
 
-        Cards Left to Deal: 9
+        Cards Left to Deal: 8
 
-        Cards Left to
-        Deal: 8
-
-        Cards Left to Deal: 7
+        Cards Left to Deal:
+        7
 
         Cards Left to Deal: 6
 
-        Cards
-        Left to Deal: 5
+        Cards Left to Deal: 5
 
-        Cards Left to Deal: 4
+        Cards
+        Left to Deal: 4
+
+        Cards Left to Deal: 3
 
         Cards Left to Deal:
-        3
-
-        Cards Left to Deal: 2
+        2
 
         Cards Left to Deal: 1
 
-        (0.00,
-        -8.35, -2.00)
+        Cards Left to Deal: 14
+
+        Cards
+        Left to Deal: 13
+
+        Cards Left to Deal: 12
+
+        Cards Left to Deal:
+        11
+
+        Cards Left to Deal: 10
+
+        Cards Left to Deal: 9
+
+        Cards
+        Left to Deal: 8
+
+        Cards Left to Deal: 7
+
+        Cards Left to Deal:
+        6
+
+        Cards Left to Deal: 5
+
+        Cards Left to Deal: 4
+
+        Cards
+        Left to Deal: 3
+
+        Cards Left to Deal: 2
+
+        Cards Left to Deal:
+        1
 
         (0.00, -8.35, -2.00)
 
-        card dealing Time
-        elapsed: 00:00:00.0094254
+        (0.00, -8.35, -2.00)
+
+        card
+        dealing Time elapsed: 00:00:00.0094254
 
         buildDeck Time elapsed: 00:00:00.1407469
 
@@ -6497,44 +6496,44 @@ MonoBehaviour:
 
         Loading:  WinterKing
 
-        Disactivating all in deck
-        multistep: False
+        Disactivating all in deck multistep:
+        False
 
         Reorganizing all rows
 
-        Cards Left to
-        Deal: 14
+        Cards Left to Deal: 14
 
-        Cards Left to Deal: 13
+        Cards
+        Left to Deal: 13
 
         Cards Left to Deal: 12
 
-        Cards
-        Left to Deal: 11
+        Cards Left to Deal:
+        11
 
         Cards Left to Deal: 10
 
-        Cards Left to
-        Deal: 9
+        Cards Left to Deal: 9
 
-        Cards Left to Deal: 8
+        Cards
+        Left to Deal: 8
 
         Cards Left to Deal: 7
 
-        Cards
-        Left to Deal: 6
+        Cards Left to Deal:
+        6
 
         Cards Left to Deal: 5
 
-        Cards Left to Deal:
-        4
+        Cards Left to Deal: 4
 
-        Cards Left to Deal: 3
+        Cards
+        Left to Deal: 3
 
         Cards Left to Deal: 2
 
-        Cards
-        Left to Deal: 1
+        Cards Left to Deal:
+        1
 
         TearDown Base
 
@@ -11724,7 +11723,7 @@ MonoBehaviour:
         UnityEngine.SetupCoroutine:InvokeMoveNext
         (System.Collections.IEnumerator,intptr)
 
-        
+
 
 '
       notRunnable: 0
@@ -13734,7 +13733,7 @@ MonoBehaviour:
         UnityEngine.SetupCoroutine:InvokeMoveNext
         (System.Collections.IEnumerator,intptr)
 
-        
+
 
 '
       notRunnable: 0
@@ -14076,7 +14075,7 @@ MonoBehaviour:
         UnityEngine.SetupCoroutine:InvokeMoveNext
         (System.Collections.IEnumerator,intptr)
 
-        
+
 
 '
       notRunnable: 0
@@ -14262,7 +14261,7 @@ MonoBehaviour:
         Game:Update
         () (at Assets/Scripts/Game.cs:373)
 
-        
+
 
 '
       notRunnable: 0
@@ -14347,7 +14346,7 @@ MonoBehaviour:
         UnityEngine.SetupCoroutine:InvokeMoveNext
         (System.Collections.IEnumerator,intptr)
 
-        
+
 
 '
       notRunnable: 0
@@ -14429,7 +14428,7 @@ MonoBehaviour:
         UnityEngine.SetupCoroutine:InvokeMoveNext
         (System.Collections.IEnumerator,intptr)
 
-        
+
 
 '
       notRunnable: 0
@@ -14511,7 +14510,7 @@ MonoBehaviour:
         UnityEngine.SetupCoroutine:InvokeMoveNext
         (System.Collections.IEnumerator,intptr)
 
-        
+
 
 '
       notRunnable: 0
@@ -16592,8 +16591,8 @@ MonoBehaviour:
         Click
         Registered! State: ACTIVE_CARD player: Player
 
-        Click Registered
-        On Deck
+        Click Registered On
+        Deck
 
         Player Rows Sum: 4
 
@@ -16604,8 +16603,8 @@ MonoBehaviour:
 
         Enemy Rows Sum: 3
 
-        clicked on: Type: Power
-        Name: Crusade card with strength: 0 isPlayable: True active: True
+        clicked on: Type: Power Name:
+        Crusade card with strength: 0 isPlayable: True active: True
 
         Playing:
         Crusade Type: Power
@@ -16667,8 +16666,7 @@ MonoBehaviour:
 
         TURN OVER: False enemypassed: True
 
-        TearDown
-        Base
+        TearDown Base
 
 '
       stacktrace: 
@@ -20741,8 +20739,8 @@ MonoBehaviour:
         Click
         Registered! State: ACTIVE_CARD player: Player
 
-        Click Registered
-        On Deck
+        Click Registered On
+        Deck
 
         Player Rows Sum: 2
 
@@ -20753,8 +20751,8 @@ MonoBehaviour:
 
         Enemy Rows Sum: 3
 
-        clicked on: Type: Power
-        Name: War card with strength: 0 isPlayable: True active: True
+        clicked on: Type: Power Name:
+        War card with strength: 0 isPlayable: True active: True
 
         Playing:
         War Type: Power
@@ -20781,43 +20779,42 @@ MonoBehaviour:
 
         playerCardDraw: 0
 
-        playerCardDestroy:
-        0
+        playerCardDestroy: 0
 
-        playerCardReturn: 0
+        playerCardReturn:
+        0
 
         enemyCardDestroy: 0
 
-        chooseN:
-        0
+        chooseN: 0
 
-        chooseNRemain: 0
+        chooseNRemain:
+        0
 
         chooseShowN: 0
 
         move: 0
 
-        setAside:
-        0
+        setAside: 0
 
-        reveal: 0
+        reveal:
+        0
 
         attachmentsRemaining: 0
 
-        strengthConditionPassed:
-        False
+        strengthConditionPassed: False
 
-        Done with card: War
+        Done
+        with card: War
 
         FREE
 
-        Reorganizing
-        all rows
+        Reorganizing all rows
 
-        TURN OVER: False enemypassed: True
+        TURN
+        OVER: False enemypassed: True
 
-        TearDown
-        Base
+        TearDown Base
 
 '
       stacktrace: 
@@ -23813,7 +23810,7 @@ MonoBehaviour:
       Base"
     m_ResultStacktrace: 
     m_TestListState:
-      scrollPos: {x: 0, y: 0}
+      scrollPos: {x: 0, y: 98}
       m_SelectedIDs: 24f9050e
       m_LastClickedID: 235272484
       m_ExpandedIDs: 05004889df839d92aad244a0cbae0ae08863541eacd42e23715b0146801c1b4b02429058e6bf4e73ffffff7f
