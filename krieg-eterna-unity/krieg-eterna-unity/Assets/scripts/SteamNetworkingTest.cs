@@ -215,6 +215,7 @@ public class SteamNetworkingTest : MonoBehaviour
     }
 
     void OnGameLobbyJoinRequested (GameLobbyJoinRequested_t param){
+        Debug.LogError("Joining Lobby: " + param.m_steamIDLobby + " Invite From Friend: " + param.m_steamIDFriend);
         SteamMatchmaking.JoinLobby(param.m_steamIDLobby);
     }
     private void OnLobbyStateChange(LobbyChatUpdate_t param)

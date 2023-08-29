@@ -6,3 +6,4 @@ obj
 Assets/InitTestScene*
 Logs/*
 bin
+*.csproj
