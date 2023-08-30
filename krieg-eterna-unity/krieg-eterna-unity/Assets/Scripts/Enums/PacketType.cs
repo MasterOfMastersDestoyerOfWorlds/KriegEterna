@@ -1,7 +1,7 @@
 public enum PacketType{
-    SEED,
-    MOVE,
-    DISCARD,
-    NONE
+    SEED=1,
+    MOVE=2,
+    DISCARD=3,
+    NONE=0
 
 }

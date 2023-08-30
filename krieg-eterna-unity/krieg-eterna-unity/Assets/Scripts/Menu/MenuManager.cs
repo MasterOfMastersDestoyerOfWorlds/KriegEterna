@@ -153,18 +153,31 @@ public class MenuManager : MonoBehaviour
 
     public IEnumerator startNetworkGame()
     {
-        if (steamManager.NetworkingTest.host)
-        {
-            steamManager.NetworkingTest.setSeed();
-            steamManager.NetworkingTest.sendNextMessage(PacketType.SEED, steamManager.NetworkingTest.seed);
-        }
-        steamManager.NetworkingTest.isNetworkGame = true;
-        Debug.Log("Loading Game...");
-        setAllNotVisible();
+                
         while (!loadingScreen.FadeIn())
         {
             yield return null;
         }
+        
+        Debug.LogError("Setting up Network Game");
+        if (steamManager.NetworkingTest.host)
+        {
+            steamManager.NetworkingTest.setSeed();
+            
+            Debug.LogError("Is Host Setting up Seed: " + steamManager.NetworkingTest.seed );
+            steamManager.NetworkingTest.sendNextMessage(PacketType.SEED, steamManager.NetworkingTest.seed);
+        }else{
+            (PacketType, int) message = steamManager.NetworkingTest.getNextMessage();
+            while(message.Item1 == PacketType.NONE){
+                message = steamManager.NetworkingTest.getNextMessage();
+                yield return null;
+            }
+        }
+        steamManager.NetworkingTest.isNetworkGame = true;
+        Debug.LogError("Loading Network Game...");
+        setAllNotVisible();
+
+
         var load = SceneManager.LoadSceneAsync("deskScene", LoadSceneMode.Single);
         while (!load.isDone)
         {

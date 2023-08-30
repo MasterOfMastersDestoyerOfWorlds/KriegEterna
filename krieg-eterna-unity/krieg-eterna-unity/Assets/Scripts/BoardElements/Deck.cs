@@ -80,7 +80,9 @@ public class Deck : MonoBehaviour
         Row kings = getRowByType(RowEffected.KingDeck);
         for (int cardIndex = 0; cardIndex < FRONTS_NUMBER; cardIndex++)
         {
-
+            if(Game.random == null){
+                break;
+            }
             int cardId = uniqueValues[Game.random.Next(uniqueValues.Count)];
 
             Card clone = Instantiate(baseCard) as Card;

@@ -3,6 +3,7 @@ using System.Collections;
 using Steamworks;
 using System;
 using System.Runtime.InteropServices;
+using System.Text;
 
 public class SteamNetworkingTest : MonoBehaviour
 {
@@ -28,7 +29,9 @@ public class SteamNetworkingTest : MonoBehaviour
     public CSteamID lobbyId;
     internal bool lobbyUpdated = false;
     internal bool host = false;
-	internal bool isNetworkGame = false;
+    internal bool isNetworkGame = false;
+
+    internal bool lobbyOverride = true;
 
     public void OnEnable()
     {
@@ -189,8 +192,15 @@ public class SteamNetworkingTest : MonoBehaviour
         this.lobbyId = new CSteamID(param.m_ulSteamIDLobby);
         lobbyUpdated = true;
         host = true;
-		isNetworkGame = true;
-        SteamFriends.ActivateGameOverlayInviteDialog(lobbyId);
+        isNetworkGame = true;
+        if (lobbyOverride)
+        {
+            SteamMatchmaking.InviteUserToLobby(lobbyId, m_RemoteSteamId);
+        }
+        else
+        {
+            SteamFriends.ActivateGameOverlayInviteDialog(lobbyId);
+        }
 
     }
 
@@ -214,7 +224,8 @@ public class SteamNetworkingTest : MonoBehaviour
         Debug.LogError("[" + SocketStatusCallback_t.k_iCallback + " - SocketStatusCallback] - " + pCallback.m_hSocket + " -- " + pCallback.m_hListenSocket + " -- " + pCallback.m_steamIDRemote + " -- " + pCallback.m_eSNetSocketState);
     }
 
-    void OnGameLobbyJoinRequested (GameLobbyJoinRequested_t param){
+    void OnGameLobbyJoinRequested(GameLobbyJoinRequested_t param)
+    {
         Debug.LogError("Joining Lobby: " + param.m_steamIDLobby + " Invite From Friend: " + param.m_steamIDFriend);
         SteamMatchmaking.JoinLobby(param.m_steamIDLobby);
     }
@@ -231,7 +242,7 @@ public class SteamNetworkingTest : MonoBehaviour
         {
             Debug.LogError("User Left? " + param.m_ulSteamIDUserChanged);
             m_RemoteSteamId = new CSteamID(0);
-			isNetworkGame = false;
+            isNetworkGame = false;
         }
 
     }
@@ -241,29 +252,40 @@ public class SteamNetworkingTest : MonoBehaviour
         this.random = new System.Random(seed);
     }
 
-	public (PacketType, int) getNextMessage()
+    public (PacketType, int) getNextMessage()
     {
+
         IntPtr[] messages = new IntPtr[1];
         int messagesRecieved = SteamNetworkingMessages.ReceiveMessagesOnChannel(0, messages, 1);
+        Debug.LogError("Getting next Message, num received on channel: " + messagesRecieved);
         if (messagesRecieved > 0)
         {
-            (PacketType, int) message = unpackMessage(messages[0].ToInt64());
-			if(message.Item1 == PacketType.SEED){
-            	this.random = new System.Random();
-			}
+            string str = messages[0].ToString();
+            Debug.LogError(str);
+            Debug.LogError(BitConverter.ToString(Encoding.ASCII.GetBytes(str)));
+            SteamNetworkingMessage_t netMessage = Marshal.PtrToStructure<SteamNetworkingMessage_t>(messages[0]);
+            byte[] messageBytes = new byte[netMessage.m_cbSize];
+            Marshal.Copy(netMessage.m_pData, messageBytes, 0, messageBytes.Length);
+            (PacketType, int) message = unpackMessage(messageBytes);
+            if (message.Item1 == PacketType.SEED)
+            {
+                this.random = new System.Random(message.Item2);
+            }
             SteamNetworkingMessage_t.Release(messages[0]);
-			return message;
+            Debug.LogError("Message type recieved: " + message.Item1 + " Message: " + message.Item2);
+            return message;
         }
         else
         {
-            Debug.LogError("No Message recieved");
-			return (PacketType.NONE, -1);
+            Debug.Log("No Message recieved");
+            return (PacketType.NONE, -1);
         }
 
     }
 
-	public void sendNextMessage(PacketType type, int message)
+    public void sendNextMessage(PacketType type, int message)
     {
+        Debug.LogError("Sending Message: type:" + type.ToString() + " message: " + message + " recipiant: " + m_RemoteSteamNetworkingIdentity.GetSteamID());
         byte[] bytes = new byte[sizeof(int) + sizeof(uint)];
         using (System.IO.MemoryStream ms = new System.IO.MemoryStream(bytes))
         using (System.IO.BinaryWriter b = new System.IO.BinaryWriter(ms))
@@ -271,38 +293,51 @@ public class SteamNetworkingTest : MonoBehaviour
             b.Write((uint)type);
             b.Write(message);
         }
+        Debug.LogError("Bytes Sent: " + BitConverter.ToString(bytes));
         GCHandle pinnedArray = GCHandle.Alloc(bytes, GCHandleType.Pinned);
         IntPtr pointer = pinnedArray.AddrOfPinnedObject();
-        SteamNetworkingMessages.SendMessageToUser(ref m_RemoteSteamNetworkingIdentity, pointer, (uint)bytes.Length, 8, 0);
+        EResult result = SteamNetworkingMessages.SendMessageToUser(ref m_RemoteSteamNetworkingIdentity, pointer, (uint)bytes.Length, 8, 0);
+        Debug.LogError("Send Message Result: " + result.ToString());
         pinnedArray.Free();
     }
 
     private void OnSessionOpen(SteamNetworkingMessagesSessionRequest_t param)
     {
         m_RemoteSteamNetworkingIdentity = param.m_identityRemote;
+        SteamNetworkingMessages.AcceptSessionWithUser(ref m_RemoteSteamNetworkingIdentity);
         IntPtr[] messages = new IntPtr[1];
         int messagesRecieved = SteamNetworkingMessages.ReceiveMessagesOnChannel(0, messages, 1);
         if (messagesRecieved > 0)
         {
-            (PacketType, int) message = unpackMessage(messages[0].ToInt64());
-			if(message.Item1 == PacketType.SEED){
-            this.random = new System.Random();
-			}else{
-				Debug.LogError("REEEEEE first message not seed");
-			}
+            string str = messages[0].ToString();
+            Debug.LogError(str);
+            Debug.LogError(BitConverter.ToString(Encoding.ASCII.GetBytes(str)));
+            SteamNetworkingMessage_t netMessage = Marshal.PtrToStructure<SteamNetworkingMessage_t>(messages[0]);
+            byte[] messageBytes = new byte[netMessage.m_cbSize];
+            Marshal.Copy(netMessage.m_pData, messageBytes, 0, messageBytes.Length);
+            (PacketType, int) message = unpackMessage(messageBytes);
+            if (message.Item1 == PacketType.SEED)
+            {
+                this.random = new System.Random();
+            }
+            else
+            {
+                Debug.LogError("REEEEEE first message not seed");
+            }
             SteamNetworkingMessage_t.Release(messages[0]);
         }
         else
         {
-            Debug.Log("F, no message then how did the sesh get opened?");
+            Debug.LogError("F, no message then how did the sesh get opened?");
 
         }
 
     }
-    static (PacketType, int) unpackMessage(long packedMessage)
+    static (PacketType, int) unpackMessage(byte[] packedMessage)
     {
-        int message = (int)(packedMessage & uint.MaxValue);
-        PacketType messageType = (PacketType)(packedMessage >> 32);
+        Debug.LogError("Message Recieved: " + BitConverter.ToString(packedMessage));
+        int message = BitConverter.ToInt32(packedMessage, 4);
+        PacketType messageType = (PacketType)BitConverter.ToInt32(packedMessage, 0);
         return (messageType, message);
     }
 }
