@@ -80,7 +80,8 @@ public class Deck : MonoBehaviour
         Row kings = getRowByType(RowEffected.KingDeck);
         for (int cardIndex = 0; cardIndex < FRONTS_NUMBER; cardIndex++)
         {
-            if(Game.random == null){
+            if (Game.random == null)
+            {
                 break;
             }
             int cardId = uniqueValues[Game.random.Next(uniqueValues.Count)];
@@ -125,8 +126,16 @@ public class Deck : MonoBehaviour
                 this.sendCardToGraveyard(powers, RowEffected.None, card);
             }
         }
-        dealHand(numPowers, numUnits, numKings, choosePower, chooseUnit, chooseKing, RowEffected.PlayerHand);
-        dealHand(numPowers, numUnits, numKings, enemyPower, enemyUnit, enemyKing, RowEffected.EnemyHand);
+        if (!Game.net.isNetworkGame || Game.net.host)
+        {
+            dealHand(numPowers, numUnits, numKings, choosePower, chooseUnit, chooseKing, RowEffected.PlayerHand);
+            dealHand(numPowers, numUnits, numKings, enemyPower, enemyUnit, enemyKing, RowEffected.EnemyHand);
+        }
+        else
+        {
+            dealHand(numPowers, numUnits, numKings, enemyPower, enemyUnit, enemyKing, RowEffected.EnemyHand);
+            dealHand(numPowers, numUnits, numKings, choosePower, chooseUnit, chooseKing, RowEffected.PlayerHand);
+        }
         getRowByType(RowEffected.EnemyHand).setVisibile(false);
         updateRowCenters();
         sw.Stop();
