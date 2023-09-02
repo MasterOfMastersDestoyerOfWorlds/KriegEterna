@@ -12,13 +12,24 @@ namespace KriegTests
         {
             return new List<TestCase>(){
 
-            new TestCase
+             new TestCase
             {
-                testName = "Jester",
+                testName = "JesterEnemy",
                 playerHandCount = 1,
                 clicks = new List<Click>{
                     new Click("Jester", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemyMelee, true),
-                    new Click("Knight", RowEffected.EnemyMelee, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
+                    new Click("Knight2", RowEffected.EnemyMelee, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
+                }
+            },
+             new TestCase
+            {
+                testName = "JesterPlayer",
+                playerHandCount = 1,
+                clicks = new List<Click>{
+                    new Click("Jester", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemyMelee, true),
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
+                    new Click("Knight2", RowEffected.PlayerMelee, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
                 }
             },
 
@@ -27,18 +38,56 @@ namespace KriegTests
                 testName = "Retreat",
                 playerHandCount = 1,
                 clicks = new List<Click>{
-                    new Click("Retreat", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
-                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
+                    new Click("Retreat", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerSetAside, RowEffected.PlayerMelee, true),
+                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerRanged, true),
+                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerRanged, true),
+                    new ClickRow("Pass", RowEffected.Pass),
+                }
+            },
+
+            new TestCase
+            {
+                testName = "RetreatSkip",
+                playerHandCount = 1,
+                clicks = new List<Click>{
+                    new Click("Retreat", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
+                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerRanged, true),
+                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, false),
+                    new ClickRow("Skip", RowEffected.Skip),
+                    new ClickRow("Pass", RowEffected.Pass),
+                }
+            },
+             new TestCase
+            {
+                testName = "RetreatHalfAvailable",
+                playerHandCount = 1,
+                clicks = new List<Click>{
+                    new Click("Retreat", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerSetAside, RowEffected.PlayerMelee, true),
+                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerRanged, true),
+                    new ClickRow("Pass", RowEffected.Pass),
                 }
             },
 
              new TestCase
             {
-                testName = "Sack",
+                testName = "SackEnemy",
                 playerHandCount = 1,
                 clicks = new List<Click>{
                     new Click("Sack", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemyMelee, true),
-                    new Click("Knight", RowEffected.EnemyMelee, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
+                    new Click("Knight2", RowEffected.EnemyMelee, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
+                }
+            },
+             new TestCase
+            {
+                testName = "SackPlayer",
+                playerHandCount = 1,
+                clicks = new List<Click>{
+                    new Click("Sack", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemyMelee, true),
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
+                    new Click("Knight2", RowEffected.PlayerMelee, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
                 }
             },
 
@@ -48,22 +97,22 @@ namespace KriegTests
                 playerHandCount = 2,
                 clicks = new List<Click>{
                     new Click("Shipwreck", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
-                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
-                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerHand, RowEffected.PlayerHand, true),
-                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerSetAside, RowEffected.PlayerMelee, true),
+                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerRanged, true),
+                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerRanged, true),
+                    new ClickRow("Pass", RowEffected.Pass),
                 }
             },
-
             new TestCase
             {
                 testName = "ShipwreckSkip",
                 playerHandCount = 1,
                 clicks = new List<Click>{
                     new Click("Shipwreck", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
-                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
-                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerHand, RowEffected.PlayerHand, true),
+                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerRanged, true),
                     new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, false),
-                    new ClickRow("Skip", RowEffected.Skip)
+                    new ClickRow("Skip", RowEffected.Skip),
+                    new ClickRow("Pass", RowEffected.Pass),
                 }
             },
              new TestCase
@@ -72,8 +121,9 @@ namespace KriegTests
                 playerHandCount = 1,
                 clicks = new List<Click>{
                     new Click("Shipwreck", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
-                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
-                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerSetAside, RowEffected.PlayerMelee, true),
+                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerRanged, true),
+                    new ClickRow("Pass", RowEffected.Pass),
                 }
             },
 
@@ -83,8 +133,32 @@ namespace KriegTests
                 playerHandCount = 1,
                 clicks = new List<Click>{
                     new Click("Feint", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
-                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
-                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerSetAside, RowEffected.PlayerMelee, true),
+                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerRanged, true),
+                    new ClickRow("Pass", RowEffected.Pass),
+                }
+            },
+            new TestCase
+            {
+                testName = "FeintSkip",
+                playerHandCount = 1,
+                clicks = new List<Click>{
+                    new Click("Feint", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
+                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerRanged, true),
+                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, false),
+                    new ClickRow("Skip", RowEffected.Skip),
+                    new ClickRow("Pass", RowEffected.Pass),
+                }
+            },
+             new TestCase
+            {
+                testName = "FeintHalfAvailable",
+                playerHandCount = 1,
+                clicks = new List<Click>{
+                    new Click("Feint", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerSetAside, RowEffected.PlayerMelee, true),
+                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerRanged, true),
+                    new ClickRow("Pass", RowEffected.Pass),
                 }
             },
             new TestCase

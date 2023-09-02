@@ -43,6 +43,7 @@ namespace KriegTests
                 new TestSpys(),
                 new TestPowers(),
                 new TestKings(),
+                new TestSwitch(),
             };
             for (int j = 0; j < caseCollections.Count; j++)
             {

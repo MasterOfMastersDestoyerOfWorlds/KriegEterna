@@ -18,7 +18,7 @@ public class PlayerDestroyController : EffectControllerInterface
                 c.strengthConditionPassed = true;
             }
         }
-        else if (c.destroyType == DestroyType.King)
+        else if (c.destroyType == DestroyType.PlayerKing)
         {
             Card king = playerHandRow.getKing();
             if (king != null)

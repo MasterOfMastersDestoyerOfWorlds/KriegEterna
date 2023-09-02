@@ -1,7 +1,7 @@
 public enum DestroyType 
 {
     Unit=1,
-    King=2,
+    PlayerKing=2,
     Max=3,
     MaxAll=4,
     RoundEnd=5,

@@ -202,14 +202,6 @@ namespace KriegTests
                     new Click("Waterworks", RowEffected.PlayerHand, RowEffected.PlayerRanged, RowEffected.PlayerRanged, true),
                 }
             },
-            new TestCase
-            {
-                testName = "Juggernaut",
-                clicks = new List<Click>{
-                    new Click("Juggernaut", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
-                    new ClickRow("PlayerRanged", RowEffected.PlayerRanged),
-                }
-            },
         };
         }
     }

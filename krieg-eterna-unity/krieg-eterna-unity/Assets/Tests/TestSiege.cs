@@ -102,22 +102,6 @@ namespace KriegTests
             },
             new TestCase
             {
-                testName = "Officer3",
-                clicks = new List<Click>{
-                    new Click("Officer3", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiege, true),
-                    new Click("Officer3", RowEffected.PlayerHand, RowEffected.PlayerSiege, RowEffected.PlayerSiege, true),
-                                    }
-            },
-            new TestCase
-            {
-                testName = "Officer4",
-                clicks = new List<Click>{
-                    new Click("Officer4", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiege, true),
-                    new Click("Officer4", RowEffected.PlayerHand, RowEffected.PlayerSiege, RowEffected.PlayerSiege, true),
-                                    }
-            },
-            new TestCase
-            {
                 testName = "Siege",
                 clicks = new List<Click>{
                     new Click("Siege", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiege, true),

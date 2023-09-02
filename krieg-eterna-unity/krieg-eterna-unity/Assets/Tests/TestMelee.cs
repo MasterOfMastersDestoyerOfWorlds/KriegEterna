@@ -142,14 +142,6 @@ namespace KriegTests
             },
             new TestCase
             {
-                testName = "Officer",
-                clicks = new List<Click>{
-                    new Click("Officer", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
-                    new Click("Officer", RowEffected.PlayerHand, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
-                }
-            },
-            new TestCase
-            {
                 testName = "Scout",
                 clicks = new List<Click>{
                     new Click("Scout", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
@@ -176,14 +168,6 @@ namespace KriegTests
                 clicks = new List<Click>{
                     new Click("Square", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
                     new Click("Square", RowEffected.PlayerHand, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
-                }
-            },
-            new TestCase
-            {
-                testName = "Juggernaut",
-                clicks = new List<Click>{
-                    new Click("Juggernaut", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
-                    new ClickRow("PlayerMelee", RowEffected.PlayerMelee),
                 }
             },
         };
