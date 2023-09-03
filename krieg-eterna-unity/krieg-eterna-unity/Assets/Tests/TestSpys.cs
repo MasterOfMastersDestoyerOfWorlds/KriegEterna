@@ -26,6 +26,48 @@ namespace KriegTests
             },
             new TestCase
             {
+                testName = "AssassinRoundEnd",
+                playerHandCount = 2,
+                enemyHandCount = 1,
+                clicks = new List<Click>{
+                    new Click("Assassin", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemyHand, true),
+                    new ClickRow("EnemyRanged", RowEffected.EnemyRanged),
+                    new ClickRow("UnitDeck", RowEffected.UnitDeck),
+                    new ClickRow("PowerDeck", RowEffected.PowerDeck),
+                    new ClickRow("Pass", RowEffected.Pass)
+                }
+            },
+            new TestCase
+            {
+                testName = "AssassinRoundEndGraveyard",
+                playerHandCount = 2,
+                clicks = new List<Click>{
+                    new Click("Assassin", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new ClickRow("EnemyRanged", RowEffected.EnemyRanged),
+                    new ClickRow("UnitDeck", RowEffected.UnitDeck),
+                    new ClickRow("PowerDeck", RowEffected.PowerDeck),
+                    new Click("Death", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new Click("Assassin", RowEffected.EnemyRanged, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
+                    new ClickRow("Pass", RowEffected.Pass)
+                }
+            },
+            new TestCase
+            {
+                testName = "AssassinRoundEndSwitchSides",
+                playerHandCount = 3,
+                clicks = new List<Click>{
+                    new Click("Assassin", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerHand, true),
+                    new ClickRow("EnemyMelee", RowEffected.EnemyMelee),
+                    new ClickRow("PowerDeck", RowEffected.PowerDeck),
+                    new ClickRow("PowerDeck", RowEffected.PowerDeck),
+                    new Click("Relic", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new Click("Assassin", RowEffected.EnemyRanged, RowEffected.EnemyRanged, RowEffected.PlayerHand, true),
+                    new ClickRow("PlayerMelee", RowEffected.PlayerMelee),
+                    new ClickRow("Pass", RowEffected.Pass)
+                }
+            },
+            new TestCase
+            {
                 testName = "Minister",
                 playerHandCount = 2,
                 clicks = new List<Click>{

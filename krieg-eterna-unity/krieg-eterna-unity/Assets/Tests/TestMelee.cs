@@ -148,18 +148,34 @@ namespace KriegTests
                     new Click("Scout", RowEffected.PlayerHand, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
                 }
             },
-
             new TestCase
             {
-                testName = "ScoutReveal",
-                enemyHandCount = 3,
+                testName = "ScoutOneCard",
+                scoreRows = new List<(RowEffected, int)>(){(RowEffected.PlayerMelee, 4)},
                 clicks = new List<Click>{
-
                     new Click("Scout", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
-                    new Click("Scout", RowEffected.PlayerHand, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
-                    new Click(true, "Fate", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.EnemyHand, false),
-                    new Click(false, "Execution", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.PlayerChooseN, true),
-                    new Click(false, "Spy", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.EnemyHand, false),
+                    new Click("Knight2", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
+                }
+            },
+            new TestCase
+            {
+                testName = "ScoutTwoCards",
+                scoreRows = new List<(RowEffected, int)>(){(RowEffected.PlayerMelee, 13)},
+                clicks = new List<Click>{
+                    new Click("Scout", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
+                    new Click("Knight2", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
+                }
+            },
+            new TestCase
+            {
+                testName = "ScoutSkipOne",
+                scoreRows = new List<(RowEffected, int)>(){(RowEffected.PlayerMelee, 6)},
+                clicks = new List<Click>{
+                    new Click("Scout", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
+                    new Click("Knight2", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
+                    new ClickRow("Skip", RowEffected.Skip),
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, false),
                 }
             },
             new TestCase

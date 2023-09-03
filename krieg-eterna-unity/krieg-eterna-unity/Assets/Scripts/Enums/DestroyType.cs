@@ -5,6 +5,8 @@ public enum DestroyType
     Max=3,
     MaxAll=4,
     RoundEnd=5,
+    NUnits=6,
+    
     None = 0
 
 };

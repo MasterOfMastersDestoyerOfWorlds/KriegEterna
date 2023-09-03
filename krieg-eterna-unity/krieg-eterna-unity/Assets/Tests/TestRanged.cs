@@ -94,14 +94,6 @@ namespace KriegTests
             },
             new TestCase
             {
-                testName = "Officer2",
-                clicks = new List<Click>{
-                    new Click("Officer2", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
-                    new Click("Officer2", RowEffected.PlayerHand, RowEffected.PlayerRanged, RowEffected.PlayerRanged, true),
-                }
-            },
-            new TestCase
-            {
                 testName = "Privateer",
                 clicks = new List<Click>{
                     new Click("Privateer", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),

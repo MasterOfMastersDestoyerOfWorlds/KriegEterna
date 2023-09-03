@@ -3,69 +3,67 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using System.Linq;
 
 public class CardModel : MonoBehaviour
 {
     public List<string> smallFronts;
     public Texture2D[] bigFronts;
-    public List<string> names;
-    public List<CardType> cardTypes;
-    public List<int> strength;
-    public List<int> playerCardDraw;
-    public List<CardDrawType> cardDrawType;
-    public List<int> playerCardDestroy;
-    public List<DestroyType> destroyType;
-    public List<int> playerCardReturn;
-    public List<CardReturnType> cardReturnType;
-    public List<float> strengthModifier;
-    public List<StrengthModType> strengthModType;
-    public List<int> graveyardCardDraw;
-    public List<int> enemyCardDraw;
-    public List<int> enemyCardDestroy;
-    public List<int> enemyReveal;
-    public List<float> rowMultiple;
-    public List<RowEffected> rowEffected;
-    public List<int> setAside;
-    public List<SetAsideType> setAsideType;
-    public List<bool> attach;
-    public List<int> strengthCondition;
-    public List<int> chooseN;
-    public List<RowEffected> chooseRow;
-    public List<int> chooseShowN;
-    public List<ChooseCardType> chooseCardType;
-    public List<bool> playInRow;
+    public DataColumn<string> names = new DataColumn<string>("CardName");
+    public DataColumn<CardType> cardTypes = new DataColumn<CardType>("CardType");
+    public DataColumn<int> strength = new DataColumn<int>("Strength");
+    public DataColumn<int> playerCardDraw = new DataColumn<int>("PlayerCardDraw");
+    public DataColumn<CardDrawType> cardDrawType = new DataColumn<CardDrawType>("CardDrawType");
+    public DataColumn<int> playerCardDestroy = new DataColumn<int>("PlayerCardDestroy");
+    public DataColumn<DestroyType> destroyType = new DataColumn<DestroyType>("DestroyType");
+    public DataColumn<int> playerCardReturn = new DataColumn<int>("PlayerCardReturn");
+    public DataColumn<CardReturnType> cardReturnType = new DataColumn<CardReturnType>("CardReturnType");
+    public DataColumn<float> strengthModifier = new DataColumn<float>("StrengthModifier");
+    public DataColumn<bool> strengthModRow = new DataColumn<bool>("StrengthModRow");
+    public DataColumn<StrengthModType> strengthModType = new DataColumn<StrengthModType>("StrengthModType");
+    public DataColumn<int> graveyardCardDraw = new DataColumn<int>("GraveyardCardDraw");
+    public DataColumn<int> enemyCardDraw = new DataColumn<int>("EnemyCardDraw");
+    public DataColumn<int> enemyCardDestroy = new DataColumn<int>("EnemyCardDestroy");
+    public DataColumn<int> enemyReveal = new DataColumn<int>("EnemyReveal");
+    public DataColumn<float> rowMultiple = new DataColumn<float>("RowMultiple");
+    public DataColumn<RowEffected> rowEffected = new DataColumn<RowEffected>("EffectedRow");
+    public DataColumn<bool> clearWeather = new DataColumn<bool>("ClearWeather");
+    public DataColumn<int> setAside = new DataColumn<int>("SetAside");
+    public DataColumn<SetAsideType> setAsideType = new DataColumn<SetAsideType>("SetAsideType");
+    public DataColumn<bool> attach = new DataColumn<bool>("Attach");
+    public DataColumn<int> strengthCondition = new DataColumn<int>("StengthCondition");
+    public DataColumn<int> chooseN = new DataColumn<int>("ChooseN");
+    public DataColumn<RowEffected> chooseRow = new DataColumn<RowEffected>("ChooseRow");
+    public DataColumn<int> chooseShowN = new DataColumn<int>("ChooseShowN");
+    public DataColumn<ChooseCardType> chooseCardType = new DataColumn<ChooseCardType>("ChooseCardType");
+    public DataColumn<bool> chooseSkippable = new DataColumn<bool>("ChooseSkippable");
+    public DataColumn<bool> playInRow = new DataColumn<bool>("PlayInRow");
+    public DataColumn<bool> playNextRound = new DataColumn<bool>("PlayNextRound");
+    public DataColumn<bool> isAltEffect = new DataColumn<bool>("IsAltEffect");
+    public DataColumn<string> mainCardName = new DataColumn<string>("MainCardName");
+    public DataColumn<bool> protect = new DataColumn<bool>("Protect");
+    public DataColumn<RowEffected> autoPlaceRow = new DataColumn<RowEffected>("AutoPlaceRow");
+    public static List<IDataColumn> columns = new List<IDataColumn>();
 
     public int[] isSpecial;
     public string spriteFolder = "Images";
-
-    /* 
-     * > isSpecial table of values:
-     * [1] - gold card
-     * [2] - spy card
-     * [3] - manekin card
-     * [4] - destroy card
-     * [5] - weather card
-     * [6] - gold spy
-     *
-     * > Power table of values:
-     * [0+] - normal
-     * [-1] - sword weather
-     * [-2] - bow weather
-     * [-3] - trebuchet weather
-     * [-4] - clean weather
-     */
-
 
     public void readTextFile()
     {
         TextAsset bindata = Resources.Load("CardSheet") as TextAsset;
         string[] lines = bindata.text.Split("\n".ToCharArray());
-        List<string> stringList = new List<string>(); 
+        List<string> stringList = new List<string>();
         smallFronts = new List<string>();
-        names = new List<string>();
-        foreach(string line in lines)
+        foreach (string line in lines)
         {
             stringList.Add(line);
+        }
+        string[] colNames = stringList[0].Split("	".ToCharArray());
+        for (int i = 0; i < colNames.Length; i++)
+        {
+            string name = colNames[i];
+            IDataColumn info = columns.Find((x) => x.columnName == name);
+            info.columnIdx = i;
         }
 
         // start from second row
@@ -77,11 +75,12 @@ public class CardModel : MonoBehaviour
                 temp[j] = temp[j].Trim();  //removed the blank spaces
             }
             smallFronts.Add(temp[0]);
-            names.Add(temp[0]);
-
-            cardTypes.Add((CardType)System.Enum.Parse(typeof(CardType), temp[1], true));
-
-            AddOptional(temp, strength, 3);
+            foreach (IDataColumn dataColumn in columns)
+            {
+                dataColumn.AddOptional(temp);
+            }
+            /*
+            AddOptional(temp, strength, strength.info.columnIdx);
             AddTypePair(temp, playerCardDraw, 4, cardDrawType, 5);
             AddTypePair(temp, playerCardDestroy, 6, destroyType, 7);
             AddTypePair(temp, playerCardReturn, 8, cardReturnType, 9);
@@ -99,82 +98,11 @@ public class CardModel : MonoBehaviour
             AddOptional(temp, chooseShowN, 24);
             AddOptionalType(temp, chooseCardType, 25);
             AddOptionalBool(temp, playInRow, 26);
+            */
         }
     }
 
-    private void AddOptional(string[] temp, List<int> numList, int indexNum)
-    {
-        if (!System.String.IsNullOrEmpty(temp[indexNum]))
-        {
-            numList.Add(int.Parse(temp[indexNum]));
-        }
-        else
-        {
-            numList.Add(0);
-        }
-    }
-    private void AddOptionalBool(string[] temp, List<bool> boolList, int indexBool)
-    {
-        if (!System.String.IsNullOrEmpty(temp[indexBool]))
-        {
-            boolList.Add(bool.Parse(temp[indexBool]));
-        }
-        else
-        {
-            boolList.Add(false);
-        }
-    }
 
-    private void AddOptionalFloat(string[] temp, List<float> typeList, int indexType)
-    {
-        if (!System.String.IsNullOrEmpty(temp[indexType]))
-        {
-            typeList.Add(float.Parse(temp[indexType]));
-        }
-        else
-        {
-            typeList.Add(0f);
-        }
-    }
-
-    private void AddOptionalType<T>(string[] temp, List<T> typeList, int indexType)
-    {
-        if (!System.String.IsNullOrEmpty(temp[indexType]))
-        {
-            typeList.Add((T)System.Enum.Parse(typeof(T), temp[indexType], true));
-        }
-        else
-        {
-            typeList.Add(default(T));
-        }
-    }
-
-    private void AddTypePair<T>(string[] temp, List<int> numList, int indexNum, List<T> typeList, int indexType)
-    {
-        if (!System.String.IsNullOrEmpty(temp[indexNum]))
-        {
-            numList.Add(int.Parse(temp[indexNum]));
-            typeList.Add((T)System.Enum.Parse(typeof(T), temp[indexType], true));
-        }
-        else
-        {
-            numList.Add(0);
-            typeList.Add(default(T));
-        }
-    }
-    private void AddTypePairFloat<T>(string[] temp, List<float> numList, int indexNum, List<T> typeList, int indexType)
-    {
-        if (!System.String.IsNullOrEmpty(temp[indexNum]))
-        {
-            numList.Add(float.Parse(temp[indexNum]));
-            typeList.Add((T)System.Enum.Parse(typeof(T), temp[indexType], true));
-        }
-        else
-        {
-            numList.Add(0);
-            typeList.Add(default(T));
-        }
-    }
 
     public Texture2D getCardBack(int index)
     {
@@ -422,19 +350,20 @@ public class CardModel : MonoBehaviour
 
     internal static string getRowName(RowEffected chooseRow)
     {
-        switch(chooseRow){
-                case RowEffected.PlayerMelee: return "your Melee row";
-                case RowEffected.PlayerRanged: return "your Ranged row";
-                case RowEffected.PlayerSiege: return "your Siege row";
-                case RowEffected.PlayerHand: return "your hand";
-                case RowEffected.EnemyHand: return "your opponent's hand";
-                case RowEffected.EnemyMelee: return "your opponent's Melee row";
-                case RowEffected.EnemyRanged: return "your opponent's Ranged row";
-                case RowEffected.EnemySiege: return "your opponent's Siege row";
-                case RowEffected.UnitGraveyard: return "the Unit Graveyard";
-                case RowEffected.PowerGraveyard: return "the Power Graveyard";
-                case RowEffected.UnitDeck: return "the Unit Deck";
-                case RowEffected.PowerDeck: return "the Power Deck";
+        switch (chooseRow)
+        {
+            case RowEffected.PlayerMelee: return "your Melee row";
+            case RowEffected.PlayerRanged: return "your Ranged row";
+            case RowEffected.PlayerSiege: return "your Siege row";
+            case RowEffected.PlayerHand: return "your hand";
+            case RowEffected.EnemyHand: return "your opponent's hand";
+            case RowEffected.EnemyMelee: return "your opponent's Melee row";
+            case RowEffected.EnemyRanged: return "your opponent's Ranged row";
+            case RowEffected.EnemySiege: return "your opponent's Siege row";
+            case RowEffected.UnitGraveyard: return "the Unit Graveyard";
+            case RowEffected.PowerGraveyard: return "the Power Graveyard";
+            case RowEffected.UnitDeck: return "the Unit Deck";
+            case RowEffected.PowerDeck: return "the Power Deck";
         }
         return chooseRow.ToString();
     }
