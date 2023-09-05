@@ -25,7 +25,7 @@ public class WeatherController : EffectControllerInterface
     }
     public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
-        return (c.rowMultiple > 0 || c.clearWeather) && Game.state != State.ROUND_END;
+        return (c.rowMultiple > 0 || c.cardType == CardType.Weather || c.clearWeather) && Game.state != State.ROUND_END;
     }
     public bool IsSideEffect(Card c, RowEffected player) => true;
 }

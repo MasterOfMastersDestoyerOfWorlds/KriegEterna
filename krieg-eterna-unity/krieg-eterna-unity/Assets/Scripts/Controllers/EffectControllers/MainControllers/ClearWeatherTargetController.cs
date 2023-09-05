@@ -14,7 +14,7 @@ public class ClearWeatherTargetController : EffectControllerInterface
     }
     public bool TargetCondition(Card c, RowEffected player)
     {
-        return  c.rowEffected == RowEffected.Weather;
+        return  c.clearWeather;
     }
 
 }

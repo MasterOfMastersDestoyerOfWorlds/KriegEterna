@@ -191,7 +191,9 @@ namespace KriegTests
             Game.enemyDiscarded = Game.NUM_DISCARD_START;
             Game.player = RowEffected.Player;
             Game.round = RoundType.RoundOne;
+            Game.setupComplete = true;
             Game.reorganizeGroup();
+            deck.getRowByType(RowEffected.Pass).setVisibile(true);
         }
 
         [TearDown]
@@ -218,13 +220,13 @@ namespace KriegTests
         [UnityTest]
         public IEnumerator TestCard([ValueSource(nameof(TestCases))] TestCase testCase)
         {
-            TestBot enemyController = null;
+            TestBot enemyController = new TestBot();
+            Game.enemyController = enemyController;
             if (testCase.player == RowEffected.Enemy)
             {
                 Game.playerPassed = true;
                 Game.enemyPassed = false;
                 Game.player = RowEffected.Enemy;
-                enemyController = new TestBot();
                 Game.enemyController = enemyController;
 
             }
@@ -280,19 +282,20 @@ namespace KriegTests
                     {
                         clickCard = deck.getRowByType(dealRow).getCardByName(clicks[i].name);
                     }
-                    if (testCase.player == RowEffected.Enemy)
+                    if (Game.player == RowEffected.Enemy)
                     {
                         enemyController.nextMoveName = clicks[i].name;
+                        Debug.Log("Doing Enemy Click: " + clicks[i].name);
+                        game.Update();
                     }
                     else
                     {
+                        Debug.Log("Doing Player Click: " + clickCard.cardName);
                         InputSystem.Update();
                         MousePositioning(clickCard.transform);
                         ClickOnCard(clickCard.transform);
-                        yield return null;
                         MouseUnClick();
                     }
-                    yield return null;
                     Assert.AreEqual(true, deck.getRowByType(rowAfterClick).ContainsIncludeAttachments(c),
                     $"row after click cardName: {clicks[i].name}, Expected Row: {rowAfterClick}  {deck.getRowByType(rowAfterClick)}, Actual Row: {deck.getCardRow(c).uniqueType} {deck.getRowByType(deck.getCardRow(c).uniqueType)}");
                 }
@@ -300,19 +303,22 @@ namespace KriegTests
                 {
                     InputSystem.Update();
                     ClickRow click = (ClickRow)clicks[i];
-                    Row row = deck.getRowByType(CardModel.getRowFromSide(testCase.player, click.targetRow));
-                    if (testCase.player == RowEffected.Enemy)
+                    Row row = deck.getRowByType(CardModel.getRowFromSide(Game.player, click.targetRow));
+                    if (Game.player == RowEffected.Enemy)
                     {
-                        enemyController.nextMoveName = System.Enum.GetName(typeof(RowEffected), CardModel.getRowFromSide(testCase.player, click.targetRow));
+                        Debug.Log("Doing Enemy Row Click: " + CardModel.getRowFromSide(Game.player, click.targetRow) + " " + System.Enum.GetName(typeof(RowEffected), CardModel.getRowFromSide(Game.player, click.targetRow)) + " "  +enemyController);
+                        enemyController.nextMoveName = System.Enum.GetName(typeof(RowEffected), CardModel.getRowFromSide(Game.player, click.targetRow));
+
+                        game.Update();
                     }
                     else
                     {
+                        Debug.Log("Doing Player Row Click: " + click.targetRow);
                         MousePositioning(row.target.transform);
                         ClickOnCard(row.target.transform);
-                        yield return null;
                         MouseUnClick();
                     }
-                    yield return null;
+
                 }
             }
             if (testCase.player == RowEffected.Enemy)
@@ -380,6 +386,7 @@ namespace KriegTests
             MouseClick();
             Assert.AreEqual((Vector2)Camera.main.WorldToScreenPoint(transform.position), Mouse.current.position.ReadValue());
             Debug.Log("Mouse Position BeforeUpdate: " + Mouse.current.position.ReadValue());
+
             game.Update();
         }
 

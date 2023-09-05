@@ -348,6 +348,7 @@ public class Card : MonoBehaviour
 
     public void LogSelectionsRemaining()
     {
+        /*
         Debug.Log("Remaining Selections: " + cardName);
         Debug.Log("playerCardDraw: " + this.playerCardDrawRemain);
         Debug.Log("playerCardDestroy: " + this.playerCardDestroyRemain);
@@ -360,16 +361,16 @@ public class Card : MonoBehaviour
         Debug.Log("setAside: " + this.setAsideRemain);
         Debug.Log("reveal: " + this.enemyReveal);
         Debug.Log("attachmentsRemaining: " + this.attachmentsRemaining);
-        Debug.Log("strengthConditionPassed: " + this.strengthConditionPassed);
+        Debug.Log("strengthConditionPassed: " + this.strengthConditionPassed);*/
     }
 
     public bool shouldScoreThisRound(){
-        return !(this.playNextRound && this.roundEndRemoveType == RoundEndRemoveType.Protect);
+        return !this.playNextRound || this.roundEndRemoveType == RoundEndRemoveType.Remove;
     }
 
     public void setTargetActive(bool state)
     {
-        Debug.Log("Setting Target Active : " + this);
+        //Debug.Log("Setting Target Active : " + this);
         if (Game.player == RowEffected.Player)
         {
             Material material = getTargetMaterial();

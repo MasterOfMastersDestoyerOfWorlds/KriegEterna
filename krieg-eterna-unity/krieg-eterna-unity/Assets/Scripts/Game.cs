@@ -24,7 +24,7 @@ public class Game : MonoBehaviour
 
     private static bool hasChosenStart;
     private static bool loadingDone;
-    private static bool setupComplete;
+    public static bool setupComplete;
 
     public static int turnsLeft;
     public static bool enemyPassed;
@@ -479,7 +479,7 @@ public class Game : MonoBehaviour
                     for (int i = 0; i < activeDeck.rows.Count; i++)
                     {
                         Row row = activeDeck.rows[i];
-                                                if (row.cardTargetsActivated)
+                        if (row.cardTargetsActivated)
                         {
                             for (int j = 0; j < row.Count; j++)
                             {
@@ -561,6 +561,7 @@ public class Game : MonoBehaviour
                     scoreAndUpdate();
                     if (!setupComplete && state == State.FREE)
                     {
+                        Debug.Log("Setup Commplete");
                         setupComplete = true;
                     }
                     else if (state == State.FREE || activeDeck.getRowByType(CardModel.getHandRow(player)).Count == 0)
@@ -577,10 +578,6 @@ public class Game : MonoBehaviour
         Debug.Log("TURN OVER: " + playerPassed + " enemypassed: " + enemyPassed);
         MoveLogger.logTurnOver(player);
         activeDeck.getRowByType(RowEffected.Skip).setVisibile(false);
-        if (player == RowEffected.Player)
-        {
-            activeDeck.getRowByType(RowEffected.Pass).setVisibile(true);
-        }
         if (turnsLeft != int.MaxValue && turnsLeft > 0)
         {
             turnsLeft--;
@@ -669,6 +666,10 @@ public class Game : MonoBehaviour
         else if (!enemyPassed && playerPassed)
         {
             player = RowEffected.Enemy;
+        }
+        if (player == RowEffected.Player)
+        {
+            activeDeck.getRowByType(RowEffected.Pass).setVisibile(true);
         }
         playerInfoTextUpdate();
     }

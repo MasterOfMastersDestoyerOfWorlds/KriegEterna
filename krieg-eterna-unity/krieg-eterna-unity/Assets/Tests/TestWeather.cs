@@ -138,6 +138,7 @@ namespace KriegTests
             {
                 testName = "OmenSiege",
                 playerHandCount = 2,
+                round = RoundType.RoundTwo,
                 scoreRows = new List<(RowEffected, int)>{
                     (RowEffected.EnemySiege, 6),
                     (RowEffected.PlayerSiege, 12),
@@ -148,6 +149,7 @@ namespace KriegTests
                     new ClickRow("Pass", RowEffected.Pass),
                     new Click("Mortar", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiege, true),
                     new Click("Mortar", RowEffected.PlayerHand, RowEffected.PlayerSiege, RowEffected.PlayerSiege, true),
+                    new ClickRow("Pass", RowEffected.Pass),
                     new Click("Minister", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemySiege, true),
                     new Click("Minister", RowEffected.PlayerHand, RowEffected.EnemySiege, RowEffected.EnemySiege, true),
                     new ClickRow("UnitDeck", RowEffected.UnitDeck),
@@ -158,6 +160,7 @@ namespace KriegTests
             {
                 testName = "OmenMelee",
                 playerHandCount = 2,
+                round = RoundType.RoundTwo,
                 scoreRows = new List<(RowEffected, int)>{
                     (RowEffected.PlayerMelee, 4),
                     (RowEffected.EnemySiege, 3),
@@ -168,6 +171,7 @@ namespace KriegTests
                     new ClickRow("Pass", RowEffected.Pass),
                     new Click("Knight", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
                     new Click("Knight", RowEffected.PlayerHand, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
+                    new ClickRow("Pass", RowEffected.Pass),
                     new Click("Minister", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemySiege, true),
                     new Click("Minister", RowEffected.PlayerHand, RowEffected.EnemySiege, RowEffected.EnemySiege, true),
                     new ClickRow("UnitDeck", RowEffected.UnitDeck),
@@ -193,6 +197,7 @@ namespace KriegTests
             {
                 testName = "EclipseRanged",
                 playerHandCount = 2,
+                round = RoundType.RoundTwo,
                 scoreRows = new List<(RowEffected, int)>{
                     (RowEffected.EnemyRanged, 4),
                     (RowEffected.PlayerRanged, 4),
@@ -203,6 +208,7 @@ namespace KriegTests
                     new ClickRow("Pass", RowEffected.Pass),
                     new Click("Soldier", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
                     new Click("Soldier", RowEffected.PlayerHand, RowEffected.PlayerRanged, RowEffected.PlayerRanged, true),
+                    new ClickRow("Pass", RowEffected.Pass),
                     new Click("Saboteur", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemyRanged, true),
                     new Click("Saboteur", RowEffected.PlayerHand, RowEffected.EnemyRanged, RowEffected.EnemyRanged, true),
                     new ClickRow("UnitDeck", RowEffected.UnitDeck),
@@ -213,6 +219,7 @@ namespace KriegTests
             {
                 testName = "EclipseMelee",
                 playerHandCount = 2,
+                round = RoundType.RoundTwo,
                 scoreRows = new List<(RowEffected, int)>{
                     (RowEffected.PlayerMelee, 4),
                     (RowEffected.EnemySiege, 3),
@@ -223,6 +230,7 @@ namespace KriegTests
                     new ClickRow("Pass", RowEffected.Pass),
                     new Click("Knight", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
                     new Click("Knight", RowEffected.PlayerHand, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
+                    new ClickRow("Pass", RowEffected.Pass),
                     new Click("Minister", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemySiege, true),
                     new Click("Minister", RowEffected.PlayerHand, RowEffected.EnemySiege, RowEffected.EnemySiege, true),
                     new ClickRow("UnitDeck", RowEffected.UnitDeck),
@@ -250,6 +258,7 @@ namespace KriegTests
             {
                 testName = "SolsticeRanged",
                 playerHandCount = 2,
+                round = RoundType.RoundTwo,
                 scoreRows = new List<(RowEffected, int)>{
                     (RowEffected.EnemyRanged, 4),
                     (RowEffected.PlayerRanged, 4),
@@ -260,6 +269,7 @@ namespace KriegTests
                     new ClickRow("Pass", RowEffected.Pass),
                     new Click("Soldier", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
                     new Click("Soldier", RowEffected.PlayerHand, RowEffected.PlayerRanged, RowEffected.PlayerRanged, true),
+                    new ClickRow("Pass", RowEffected.Pass),
                     new Click("Saboteur", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemyRanged, true),
                     new Click("Saboteur", RowEffected.PlayerHand, RowEffected.EnemyRanged, RowEffected.EnemyRanged, true),
                     new ClickRow("UnitDeck", RowEffected.UnitDeck),
@@ -270,6 +280,7 @@ namespace KriegTests
             {
                 testName = "SolsticeSiege",
                 playerHandCount = 2,
+                round = RoundType.RoundTwo,
                 scoreRows = new List<(RowEffected, int)>{
                     (RowEffected.EnemySiege, 6),
                     (RowEffected.PlayerSiege, 12),
@@ -280,6 +291,7 @@ namespace KriegTests
                     new ClickRow("Pass", RowEffected.Pass),
                     new Click("Mortar", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiege, true),
                     new Click("Mortar", RowEffected.PlayerHand, RowEffected.PlayerSiege, RowEffected.PlayerSiege, true),
+                    new ClickRow("Pass", RowEffected.Pass),
                     new Click("Minister", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemySiege, true),
                     new Click("Minister", RowEffected.PlayerHand, RowEffected.EnemySiege, RowEffected.EnemySiege, true),
                     new ClickRow("UnitDeck", RowEffected.UnitDeck),
@@ -296,7 +308,6 @@ namespace KriegTests
                 clicks = new List<Click>{
                     new Click("Plague", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemyMelee, true),
                     new ClickRow("Enemy Siege", RowEffected.EnemyMelee),
-                    new Click("Solstice", RowEffected.PlayerHand, RowEffected.PlayerSiege, RowEffected.EnemySiege, false),
                     new Click("Siege", RowEffected.EnemySiege, RowEffected.EnemySiege, RowEffected.EnemySiege, false),
                     new Click("Mortar", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
                 }
@@ -304,6 +315,8 @@ namespace KriegTests
             new TestCase
             {
                 testName = "PlagueRanged",
+                round = RoundType.RoundTwo,
+                playerHandCount = 2,
                 scoreRows = new List<(RowEffected, int)>{
                     (RowEffected.EnemyRanged, 1),
                     (RowEffected.PlayerRanged, 1),
@@ -314,6 +327,7 @@ namespace KriegTests
                     new ClickRow("Pass", RowEffected.Pass),
                     new Click("Soldier", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
                     new Click("Soldier", RowEffected.PlayerHand, RowEffected.PlayerRanged, RowEffected.PlayerRanged, true),
+                    new ClickRow("Pass", RowEffected.Pass),
                     new Click("Saboteur", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemyRanged, true),
                     new Click("Saboteur", RowEffected.PlayerHand, RowEffected.EnemyRanged, RowEffected.EnemyRanged, true),
                     new ClickRow("UnitDeck", RowEffected.UnitDeck),
@@ -323,7 +337,7 @@ namespace KriegTests
             new TestCase
             {
                 testName = "PlagueSiege",
-                playerHandCount = 2,
+                round = RoundType.RoundTwo,
                 scoreRows = new List<(RowEffected, int)>{
                     (RowEffected.PlayerSiege, 2),
                 },
@@ -333,10 +347,9 @@ namespace KriegTests
                     new ClickRow("Pass", RowEffected.Pass),
                     new Click("Mortar", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiege, true),
                     new Click("Mortar", RowEffected.PlayerHand, RowEffected.PlayerSiege, RowEffected.PlayerSiege, true),
+                    new ClickRow("Pass", RowEffected.Pass),
                     new Click("Siege", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiege, true),
                     new Click("Siege", RowEffected.PlayerHand, RowEffected.PlayerSiege, RowEffected.PlayerSiege, true),
-                    new ClickRow("UnitDeck", RowEffected.UnitDeck),
-                    new ClickRow("UnitDeck", RowEffected.UnitDeck),
                 }
             },
         };

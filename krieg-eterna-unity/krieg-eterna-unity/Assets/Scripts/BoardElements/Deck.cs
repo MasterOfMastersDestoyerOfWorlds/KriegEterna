@@ -477,7 +477,7 @@ public class Deck : MonoBehaviour
     }
     public void resetCard(Row currentRow, Card c)
     {
-        Debug.Log("reseting Card: " + c + " " + currentRow.uniqueType);
+        //Debug.Log("reseting Card: " + c + " " + currentRow.uniqueType);
         currentRow.Remove(c);
         c.setTargetActive(false);
         foreach (Card attachment in c.attachments)

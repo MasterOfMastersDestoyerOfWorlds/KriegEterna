@@ -95,7 +95,7 @@ public class Row : List<Card>
     {
         if (this.Contains(card))
         {
-            Debug.LogError("Row: " + this + " Already Contains Card! " + card + " iscurrentClone? " + card.isClone + " isOtherClone? " + this.Find((x) => x.Equals(card)).isClone);
+            Debug.Log("Row: " + this + " Already Contains Card! " + card + " iscurrentClone? " + card.isClone + " isOtherClone? " + this.Find((x) => x.Equals(card)).isClone);
         }
         else
         {
@@ -235,6 +235,7 @@ public class Row : List<Card>
         bool halfFlag = false;
         foreach (Card card in this)
         {
+            Debug.Log(card + " should Score? " + card.shouldScoreThisRound() + " " + card.roundEndRemoveType);
             if (card.rowMultiple != 0 && card.shouldScoreThisRound())
             {
                 rowMultiple = rowMultiple * card.rowMultiple;
@@ -279,6 +280,9 @@ public class Row : List<Card>
         foreach (Card card in this)
         {
             card.calculatedStrength = card.strength;
+        }
+        foreach (Card card in this)
+        {
             card.calculateBaseStrength(StrengthModType.Set, this);
             card.calculateBaseStrength(StrengthModType.Add, this);
             card.calculateBaseStrength(StrengthModType.Subtract, this);
