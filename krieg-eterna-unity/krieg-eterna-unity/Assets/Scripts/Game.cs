@@ -479,7 +479,7 @@ public class Game : MonoBehaviour
                     for (int i = 0; i < activeDeck.rows.Count; i++)
                     {
                         Row row = activeDeck.rows[i];
-                        if (row.cardTargetsActivated)
+                                                if (row.cardTargetsActivated)
                         {
                             for (int j = 0; j < row.Count; j++)
                             {
@@ -592,17 +592,6 @@ public class Game : MonoBehaviour
             enemyPassed = false;
             playerPassed = false;
             turnsLeft = int.MaxValue;
-            List<Row> setAsideRows = activeDeck.getRowsByType(RowEffected.SetAside);
-            foreach (Row row in setAsideRows)
-            {
-                foreach (Card c in row)
-                {
-                    Debug.Log("Returning: " + c.cardName + " to Hand: " + c.setAsideReturnRow);
-                    Row returnRow = activeDeck.getRowByType(c.setAsideReturnRow);
-                    returnRow.Add(c);
-                }
-                row.RemoveAll(delegate (Card a) { return true; });
-            }
 
             state = State.ROUND_END;
             foreach (Card c in roundEndCards)
@@ -651,6 +640,18 @@ public class Game : MonoBehaviour
                 }
                 return remove;
             });
+
+            List<Row> setAsideRows = activeDeck.getRowsByType(RowEffected.SetAside);
+            foreach (Row row in setAsideRows)
+            {
+                foreach (Card c in row)
+                {
+                    Debug.Log("Returning: " + c.cardName + " to Hand: " + c.setAsideReturnRow);
+                    Row returnRow = activeDeck.getRowByType(c.setAsideReturnRow);
+                    returnRow.Add(c);
+                }
+                row.RemoveAll(delegate (Card a) { return true; });
+            }
 
             roundEndCards = new List<Card>();
             reorganizeGroup();

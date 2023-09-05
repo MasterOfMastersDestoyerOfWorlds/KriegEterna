@@ -1,12 +1,12 @@
 public enum StrengthModType 
 {
-    Add = 1 ,
-    Subtract = 1 ,
-    AddRowCount = 1 ,
-    AddMultiple = 2,
-    Set = 3,
-    Adjacent = 4,
-    RoundAdvance = 5,
-    Multiply = 6,
+    Add = 2 ,
+    Subtract = 3 ,
+    AddRowCount = 4 ,
+    AddMultiple = 5,
+    Set = 1,
+    Adjacent = 6,
+    RoundAdvance = 8,
+    Multiply = 7,
     None = 0
 };

@@ -25,6 +25,7 @@ public class Card : MonoBehaviour
     public int playerCardReturnRemain;
     public CardReturnType cardReturnType;
     public float strengthModifier;
+    public bool strengthModRow;
     public float strengthMultiple;
     public StrengthModType strengthModType;
     public int graveyardCardDraw;
@@ -36,6 +37,7 @@ public class Card : MonoBehaviour
     public int enemyReveal;
     public float rowMultiple;
     public RowEffected rowEffected;
+    public bool clearWeather;
     public int setAside;
     public int setAsideRemain;
     public RowEffected setAsideReturnRow;
@@ -45,11 +47,18 @@ public class Card : MonoBehaviour
     public int strengthCondition;
     public bool strengthConditionPassed;
     public int chooseN;
+    public ChooseNAction chooseNAction;
     public RowEffected chooseRow;
     public int chooseShowN;
     public int chooseNRemain;
     public ChooseCardType chooseCardType;
+    public bool chooseSkippable;
     public bool playInRow;
+    public bool playNextRound;
+    public bool isAltEffect;
+    public string mainCardName;
+    public bool protect;
+    public RowEffected autoPlaceRow;
     public int moveRemain;
     public Card moveCard;
     public RowEffected moveRow;
@@ -65,6 +74,7 @@ public class Card : MonoBehaviour
 
     public List<Card> attachments;
 
+    public List<Card> altEffects;
 
     private static float baseHeight;
     private static float baseWidth;
@@ -99,6 +109,8 @@ public class Card : MonoBehaviour
     private static FileStream moveLogFile;
     private static StreamWriter sw;
     public RowEffected currentRow;
+
+    public bool isClone = false;
 
     void Awake()
     {
@@ -214,33 +226,46 @@ public class Card : MonoBehaviour
     public void setIndex(int index)
     {
         this.index = index;
-        this.cardName = cardModel.names[index];
+        if (index > CardModel.names.Count)
+        {
+            Debug.LogError("Out of Bounds! expected max index: " + (cardModel.numCardEffects - 1) + " got: " + index + " num card names:" + CardModel.names.Count);
+        }
+        this.cardName = CardModel.names[index];
         this.name = cardName;
-        this.cardType = cardModel.cardTypes[index];
-        this.strength = cardModel.strength[index];
-        this.playerCardDraw = cardModel.playerCardDraw[index];
-        this.cardDrawType = cardModel.cardDrawType[index];
-        this.playerCardDestroy = cardModel.playerCardDestroy[index];
-        this.destroyType = cardModel.destroyType[index];
-        this.playerCardReturn = cardModel.playerCardReturn[index];
-        this.cardReturnType = cardModel.cardReturnType[index];
-        this.strengthModifier = cardModel.strengthModifier[index];
-        this.strengthModType = cardModel.strengthModType[index];
-        this.graveyardCardDraw = cardModel.graveyardCardDraw[index];
-        this.enemyCardDraw = cardModel.enemyCardDraw[index];
-        this.enemyCardDestroy = cardModel.enemyCardDestroy[index];
-        this.enemyReveal = cardModel.enemyReveal[index];
-        this.rowMultiple = cardModel.rowMultiple[index];
-        this.rowEffected = cardModel.rowEffected[index];
-        this.setAside = cardModel.setAside[index];
-        this.setAsideType = cardModel.setAsideType[index];
-        this.attach = cardModel.attach[index];
-        this.strengthCondition = cardModel.strengthCondition[index];
-        this.chooseN = cardModel.chooseN[index];
-        this.chooseRow = cardModel.chooseRow[index];
-        this.chooseShowN = cardModel.chooseShowN[index];
-        this.chooseCardType = cardModel.chooseCardType[index];
-        this.playInRow = cardModel.playInRow[index];
+        this.cardType = CardModel.cardTypes[index];
+        this.strength = CardModel.strength[index];
+        this.playerCardDraw = CardModel.playerCardDraw[index];
+        this.cardDrawType = CardModel.cardDrawType[index];
+        this.playerCardDestroy = CardModel.playerCardDestroy[index];
+        this.destroyType = CardModel.destroyType[index];
+        this.playerCardReturn = CardModel.playerCardReturn[index];
+        this.cardReturnType = CardModel.cardReturnType[index];
+        this.strengthModifier = CardModel.strengthModifier[index];
+        this.strengthModRow = CardModel.strengthModRow[index];
+        this.strengthModType = CardModel.strengthModType[index];
+        this.graveyardCardDraw = CardModel.graveyardCardDraw[index];
+        this.enemyCardDraw = CardModel.enemyCardDraw[index];
+        this.enemyCardDestroy = CardModel.enemyCardDestroy[index];
+        this.enemyReveal = CardModel.enemyReveal[index];
+        this.rowMultiple = CardModel.rowMultiple[index];
+        this.rowEffected = CardModel.rowEffected[index];
+        this.clearWeather = CardModel.clearWeather[index];
+        this.setAside = CardModel.setAside[index];
+        this.setAsideType = CardModel.setAsideType[index];
+        this.attach = CardModel.attach[index];
+        this.strengthCondition = CardModel.strengthCondition[index];
+        this.chooseN = CardModel.chooseN[index];
+        this.chooseNAction = CardModel.chooseNAction[index];
+        this.chooseRow = CardModel.chooseRow[index];
+        this.chooseShowN = CardModel.chooseShowN[index];
+        this.chooseCardType = CardModel.chooseCardType[index];
+        this.chooseSkippable = CardModel.chooseSkippable[index];
+        this.playInRow = CardModel.playInRow[index];
+        this.playNextRound = CardModel.playNextRound[index];
+        this.isAltEffect = CardModel.isAltEffect[index];
+        this.mainCardName = CardModel.mainCardName[index];
+        this.protect = CardModel.protect[index];
+        this.autoPlaceRow = CardModel.autoPlaceRow[index];
         this.scoreText.colorGradient = ColorGradientType.getTextGradient(this.cardType);
         this.scoreText.outlineColor = ColorGradientType.getTextOutline(this.cardType);
         this.scoreText.fontSharedMaterial.SetColor(ShaderUtilities.ID_Outline2Color, ColorGradientType.getTextOutline2(this.cardType));
@@ -338,8 +363,13 @@ public class Card : MonoBehaviour
         Debug.Log("strengthConditionPassed: " + this.strengthConditionPassed);
     }
 
+    public bool shouldScoreThisRound(){
+        return !(this.playNextRound && this.roundEndRemoveType == RoundEndRemoveType.Protect);
+    }
+
     public void setTargetActive(bool state)
     {
+        Debug.Log("Setting Target Active : " + this);
         if (Game.player == RowEffected.Player)
         {
             Material material = getTargetMaterial();
@@ -372,6 +402,8 @@ public class Card : MonoBehaviour
         int playerRowsSum = 0;
         List<Row> enemyRows = deck.getRowsByType(CardModel.getRowFromSide(player, RowEffected.EnemyPlayable));
         int enemyRowsSum = 0;
+        List<Row> returnRows = deck.getRowsByType(CardModel.getRowFromSide(player, this.rowEffected));
+        int returnRowsSum = 0;
         RowEffected playerKingRow = deck.getKingRow(player);
         RowEffected enemyKingRow = deck.getKingRow(CardModel.getEnemy(player));
         for (int i = 0; i < playerRows.Count; i++)
@@ -382,10 +414,16 @@ public class Card : MonoBehaviour
         {
             enemyRowsSum += enemyRows[i].Count;
         }
+        for (int i = 0; i < returnRows.Count; i++)
+        {
+            if (!returnRows[i].hasType(CardModel.getRowFromSide(player, RowEffected.PlayerPlayable)))
+                returnRowsSum += returnRows[i].Count;
+        }
 
         Debug.Log("Player Rows Sum: " + playerRowsSum);
         Debug.Log("Enemy Rows Sum: " + enemyRowsSum);
-        if (this.destroyType == DestroyType.Unit && (this.playerCardDestroy > playerRowsSum || (this.playerCardReturn > 0 && playerRowsSum - this.playerCardDestroy <= 0)))
+        Debug.Log("Return Rows Sum: " + returnRowsSum);
+        if (this.destroyType == DestroyType.Unit && (this.playerCardDestroy > playerRowsSum || (((playerRowsSum - this.playerCardDestroy) + returnRowsSum) - this.playerCardReturn < 0)))
         {
             Debug.Log("Cannot Play Cond 1! : Destroy Type Unit : " + (this.playerCardDestroy + this.playerCardReturn) + " > " + playerRowsSum);
             return false;
@@ -435,30 +473,53 @@ public class Card : MonoBehaviour
     {
         return 0.1f;
     }
-    public int calculateBaseStrength()
+    private void applyOperation(StrengthModType operation, Card c, Row row)
     {
-        int calculatedStrength = strength;
-        foreach (Card attachment in attachments)
+        if (strength > 0)
         {
-            switch (attachment.strengthModType)
+            switch (operation)
             {
-                case StrengthModType.Set: calculatedStrength = (int)attachment.strengthModifier; break;
-                default: break;
-            }
-        }
-        foreach (Card attachment in attachments)
-        {
-            switch (attachment.strengthModType)
-            {
-                case StrengthModType.Add: calculatedStrength += (int)attachment.strengthModifier; break;
-                case StrengthModType.Adjacent: calculatedStrength += (int)attachment.strengthModifier; break;
-                case StrengthModType.AddMultiple: calculatedStrength += (int)(attachment.strengthModifier * attachment.strengthMultiple); break;
-                case StrengthModType.Multiply: calculatedStrength = (int)(Mathf.Max(((float)calculatedStrength) * attachment.strengthModifier, 1)); break;
+                case StrengthModType.Set: calculatedStrength = (int)c.strengthModifier; break;
+                case StrengthModType.Add: calculatedStrength += (int)c.strengthModifier; break;
+                case StrengthModType.Adjacent: calculatedStrength += (int)c.strengthModifier; break;
+                case StrengthModType.AddMultiple: calculatedStrength += (int)(c.strengthModifier * c.strengthMultiple); break;
+                case StrengthModType.AddRowCount: calculatedStrength += row.Count; break;
+                case StrengthModType.Subtract: calculatedStrength -= (int)c.strengthModifier; break;
+                case StrengthModType.Multiply: calculatedStrength = (int)Mathf.Max(calculatedStrength * c.strengthModifier, 1); break;
                 case StrengthModType.None: break;
                 default: break;
             }
+            if (calculatedStrength < 1 && this.strength > 0)
+            {
+                calculatedStrength = 1;
+            }
+            updateStrengthText(calculatedStrength);
         }
-        updateStrengthText(calculatedStrength);
+    }
+    public int calculateBaseStrength(StrengthModType operation, Row row)
+    {
+        if (operation == this.strengthModType && this.strengthModRow)
+        {
+            foreach (Card c in row)
+            {
+                c.applyOperation(operation, this, row);
+            }
+        }
+        foreach (Card attachment in attachments)
+        {
+            if (operation == attachment.strengthModType)
+            {
+                Debug.Log("Op: " + operation + " " + this.calculatedStrength);
+                applyOperation(operation, attachment, row);
+                if (attachment.strengthModRow)
+                {
+                    foreach (Card c in row)
+                    {
+                        c.applyOperation(operation, attachment, row);
+                    }
+                }
+            }
+        }
         return calculatedStrength;
     }
     public void updateStrengthText(int strength)
@@ -501,11 +562,14 @@ public class Card : MonoBehaviour
 
     public override string ToString()
     {
-        return "Type: " + this.cardType + " Name: " + this.cardName + " card with strength: " + this.strength;
+        return "Type: " + this.cardType + " Name: " + this.cardName + " card with strength: " + this.strength + " clone: " + isClone;
     }
 
     public override bool Equals(object c)
     {
+        if(c == null){
+            return false;
+        }
         if (c.GetType() == typeof(Card))
         {
             return this.cardName.Equals(((Card)c).cardName);
@@ -561,7 +625,7 @@ public class Card : MonoBehaviour
     {
 
         this.textureLoaded = false;
-        ResourceRequest resourceRequest = Resources.LoadAsync<Texture2D>("Images/" + cardModel.smallFronts[index]);
+        ResourceRequest resourceRequest = Resources.LoadAsync<Texture2D>("Images/" + CardModel.smallFronts[index]);
         yield return resourceRequest;
         tex = resourceRequest.asset as Texture2D;
         while (!resourceRequest.isDone)

@@ -214,7 +214,6 @@ public class Areas : MonoBehaviour
 
     public Vector3 getSiegeRowCenterVector()
     {
-        Debug.Log(getCenterBottom());
         return getCenterBottom() + new Vector3(0f, Card.getBaseHeight(), -10f);
     }
     public Vector3 getEnemyMeleeRowCenterVector()

@@ -45,7 +45,7 @@ public class EnemyDestroyController : EffectControllerInterface
     public void Target(Card c, RowEffected player)
     {
         Deck deck = Game.activeDeck;
-        RowEffected enemyPlayable = CardModel.getRowFromSide(player, RowEffected.EnemyPlayable);
+        RowEffected enemyPlayable = CardModel.getRowFromSide(player, c.rowEffected);
         deck.activateRowsByType(true, true, true, enemyPlayable);
     }
     public bool TargetCondition(Card c, RowEffected player)

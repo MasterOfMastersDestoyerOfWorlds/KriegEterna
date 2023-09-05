@@ -29,7 +29,7 @@ namespace KriegTests
                     new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, false),
                     new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, false),
                     new Click("ClearSkies", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("Player Melee", RowEffected.PlayerMelee),
+                    new Click("ClearSkies", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
                 }
             },
             new TestCase
@@ -186,7 +186,7 @@ namespace KriegTests
                     new ClickRow("Enemy Melee", RowEffected.EnemyMelee),
                     new Click("Eclipse", RowEffected.PlayerHand, RowEffected.PlayerMelee, RowEffected.EnemyMelee, false),
                     new Click("Knight", RowEffected.EnemyMelee, RowEffected.EnemyMelee, RowEffected.EnemyMelee, false),
-                    new Click("Knight2", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, false),
+                    new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, false),
                 }
             },
             new TestCase

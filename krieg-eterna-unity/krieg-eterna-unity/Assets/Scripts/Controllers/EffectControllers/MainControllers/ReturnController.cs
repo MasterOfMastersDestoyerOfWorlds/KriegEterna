@@ -24,7 +24,8 @@ public class ReturnController : EffectControllerInterface
             if (playerHandRow.Contains(c) && c.cardType == CardType.Decoy)
             {
                 int index = targetRow.IndexOf(targetCard);
-                if(index < 0 || index > targetRow.Count){
+                if (index < 0 || index > targetRow.Count)
+                {
                     Debug.Log("REEEE: row:" + targetRow + " card:" + targetCard.cardName);
                 }
                 targetRow.Insert(index, c);
@@ -53,7 +54,7 @@ public class ReturnController : EffectControllerInterface
         else if (c.cardReturnType == CardReturnType.LastPlayedCard)
         {
             c.playerCardReturnRemain--;
-            Card lastPlayed = Game.getLastCardPlayed(player) ;
+            Card lastPlayed = Game.getLastCardPlayed(player);
             if (lastPlayed != null)
             {
                 //Todo: separate enemy and player last card played
@@ -81,10 +82,11 @@ public class ReturnController : EffectControllerInterface
     }
     public bool TargetCondition(Card c, RowEffected player)
     {
-        if(c.cardReturnType == CardReturnType.LastPlayedCard){
+        if (c.cardReturnType == CardReturnType.LastPlayedCard)
+        {
             Card lastPlayed = Game.getLastCardPlayed(player);
             return lastPlayed != null;
         }
-        return c.playerCardReturnRemain > 0 ;
+        return c.playerCardReturnRemain > 0;
     }
 }

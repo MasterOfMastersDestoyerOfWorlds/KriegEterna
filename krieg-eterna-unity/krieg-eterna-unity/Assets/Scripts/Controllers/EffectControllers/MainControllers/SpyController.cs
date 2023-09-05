@@ -6,6 +6,7 @@ public class SpyController : EffectControllerInterface
     public void Play(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
             targetRow.Add(c);
+            Game.roundEndCards.Add(c);
             Debug.Log("Added Spy to Row: " + targetRow);
     }
     public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)

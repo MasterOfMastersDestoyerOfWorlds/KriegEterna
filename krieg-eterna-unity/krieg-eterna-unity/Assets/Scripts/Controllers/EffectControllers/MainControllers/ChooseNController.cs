@@ -20,11 +20,16 @@ public class ChooseNController : EffectControllerInterface
         if (row.Count > 0)
         {
             RowEffected sendRow = CardModel.getRowFromSide(player, c.rowEffected);
-            Action<Row, RowEffected, Card> chooseAction = deck.addCardToHand;
-            if (c.strengthModType == StrengthModType.AddMultiple)
+            Action<Row, RowEffected, Card> chooseAction = null;
+            switch (c.chooseNAction)
             {
-                chooseAction = deck.addCardToHandMultiply;
+                case ChooseNAction.AddHand: chooseAction = deck.addCardToHand;break;
+                case ChooseNAction.SendGraveyard: chooseAction = deck.sendCardToGraveyard;break;
+                case ChooseNAction.SendGraveyardMultiply: chooseAction = deck.sendCardToGraveyardMultiply;break;
+                case ChooseNAction.SetAside: chooseAction = deck.setCardAside;break;
             }
+             
+
             setChooseN(chooseRow, CardModel.getRowName(chooseRow), chooseAction, "add to your hand.", c.chooseN, c.chooseShowN > 0 ? c.chooseShowN : row.Count, CardModel.chooseToCardTypeExclude(c.chooseCardType), sendRow, State.CHOOSE_N, true);
         }
     }

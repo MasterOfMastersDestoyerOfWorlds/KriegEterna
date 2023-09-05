@@ -95,7 +95,7 @@ public class Row : List<Card>
     {
         if (this.Contains(card))
         {
-            Debug.LogError("Row: " + rowType + " Already Contains Card!");
+            Debug.LogError("Row: " + this + " Already Contains Card! " + card + " iscurrentClone? " + card.isClone + " isOtherClone? " + this.Find((x) => x.Equals(card)).isClone);
         }
         else
         {
@@ -120,6 +120,7 @@ public class Row : List<Card>
 
     public void setVisibile(bool state)
     {
+        Debug.Log("Setting Row Visible: " + state + " " + uniqueType);
         foreach (Card c in this)
         {
             c.setVisible(state);
@@ -234,7 +235,7 @@ public class Row : List<Card>
         bool halfFlag = false;
         foreach (Card card in this)
         {
-            if (card.rowMultiple != 0)
+            if (card.rowMultiple != 0 && card.shouldScoreThisRound())
             {
                 rowMultiple = rowMultiple * card.rowMultiple;
                 if (card.rowMultiple < 1)
@@ -277,11 +278,21 @@ public class Row : List<Card>
         };
         foreach (Card card in this)
         {
-            int strength = card.calculateBaseStrength();
-            card.calculatedStrength = strength;
-            if (strength <= 3 && strength > 0)
+            card.calculatedStrength = card.strength;
+            card.calculateBaseStrength(StrengthModType.Set, this);
+            card.calculateBaseStrength(StrengthModType.Add, this);
+            card.calculateBaseStrength(StrengthModType.Subtract, this);
+            card.calculateBaseStrength(StrengthModType.AddRowCount, this);
+            card.calculateBaseStrength(StrengthModType.AddMultiple, this);
+            card.calculateBaseStrength(StrengthModType.Adjacent, this);
+            card.calculateBaseStrength(StrengthModType.Multiply, this);
+            card.calculateBaseStrength(StrengthModType.RoundAdvance, this);
+        }
+        foreach (Card card in this)
+        {
+            if (card.calculatedStrength <= 3 && card.calculatedStrength > 1)
             {
-                strengthGroupingList[strength - 1].Add(card);
+                strengthGroupingList[card.calculatedStrength - 1].Add(card);
             }
         }
         foreach (List<Card> strengthGrouping in strengthGroupingList)

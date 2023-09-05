@@ -180,7 +180,7 @@ namespace KriegTests
             units = deck.getRowByType(RowEffected.UnitDeck);
             kings = deck.getRowByType(RowEffected.KingDeck);
             Row displayRow = deck.getRowByType(RowEffected.PlayerChooseN);
-            displayRow.setVisibile(false);
+            ChooseNController.endChooseN(displayRow, RowEffected.Player);
             deck.disactiveAllInDeck(false);
             Game.lastPlayedCard = null;
             Game.enemyLastPlayedCard = null;
@@ -243,6 +243,10 @@ namespace KriegTests
                     {
                         dealtCards.Add(cardName);
                         Card c = deck.dealCardToRow(cardName, dealRow);
+                        if (c == null)
+                        {
+                            Debug.LogError("Card Not Found: " + cardName);
+                        }
                         clicks[i].card = c;
                         c.beenRevealed = clicks[i].setRevealed;
                     }
@@ -321,12 +325,33 @@ namespace KriegTests
 
             for (int i = 0; i < clicks.Count; i++)
             {
-                RowEffected finalRow = CardModel.getRowFromSide(testCase.player, clicks[i].finalRow);
+                RowEffected finalRowType = CardModel.getRowFromSide(testCase.player, clicks[i].finalRow);
                 if (!clicks[i].isRowTarget)
                 {
                     Card c = clicks[i].card;
-                    Assert.AreEqual(true, deck.getRowByType(finalRow).ContainsIncludeAttachments(c),
-                    $"final row cardName: {clicks[i].name}, Expected Row: {finalRow} {deck.getRowByType(finalRow)}, Actual Row: {deck.getCardRow(c).uniqueType} {deck.getRowByType(deck.getCardRow(c).uniqueType)}");
+                    Row finalRow = deck.getRowByType(finalRowType);
+                    if (finalRow == null)
+                    {
+                        Debug.LogError("Row not found: " + finalRowType);
+                    }
+                    Row actualRow = deck.getCardRow(c);
+                    if (actualRow == null)
+                    {
+                        if (c == null)
+                        {
+                            Debug.LogError("CARD IF EFFING NULL: " + clicks);
+                            foreach (Click card in clicks)
+                            {
+                                if (card.card == null)
+                                {
+                                    Debug.LogError("CARD IF EFFING NULL: " + card.name);
+                                }
+                            }
+                        }
+                        Debug.LogError("Could not Find Card: " + c + " suspect row: " + c.currentRow);
+                    }
+                    Assert.AreEqual(true, finalRow.ContainsIncludeAttachments(c),
+                    $"final row cardName: {clicks[i].name}, Expected Row: {finalRow} {finalRow}, Actual Row: {deck.getCardRow(c).uniqueType} {deck.getRowByType(deck.getCardRow(c).uniqueType)}");
                 }
             }
             Assert.AreEqual(State.FREE, Game.state);

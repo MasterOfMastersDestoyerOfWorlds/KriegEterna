@@ -15,6 +15,7 @@ public static class PowerController
         new PlayerDrawController(),
         new ChooseNController(),
         new AttachController(),
+        new ClearWeatherTargetController(),
         new RowTargetController(),
         new DefaultTargetController(),
     };
@@ -26,6 +27,7 @@ public static class PowerController
         new GraveyardDrawController(),
         new PowerGraveyardController(),
         new SwitchSidesRoundEndController(),
+        new PlayNextRoundController(),
         new TelescopeController(),
         new WeatherController()
     };

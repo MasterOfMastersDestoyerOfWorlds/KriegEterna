@@ -7,49 +7,59 @@ using System.Linq;
 
 public class CardModel : MonoBehaviour
 {
-    public List<string> smallFronts;
-    public Texture2D[] bigFronts;
-    public DataColumn<string> names = new DataColumn<string>("CardName");
-    public DataColumn<CardType> cardTypes = new DataColumn<CardType>("CardType");
-    public DataColumn<int> strength = new DataColumn<int>("Strength");
-    public DataColumn<int> playerCardDraw = new DataColumn<int>("PlayerCardDraw");
-    public DataColumn<CardDrawType> cardDrawType = new DataColumn<CardDrawType>("CardDrawType");
-    public DataColumn<int> playerCardDestroy = new DataColumn<int>("PlayerCardDestroy");
-    public DataColumn<DestroyType> destroyType = new DataColumn<DestroyType>("DestroyType");
-    public DataColumn<int> playerCardReturn = new DataColumn<int>("PlayerCardReturn");
-    public DataColumn<CardReturnType> cardReturnType = new DataColumn<CardReturnType>("CardReturnType");
-    public DataColumn<float> strengthModifier = new DataColumn<float>("StrengthModifier");
-    public DataColumn<bool> strengthModRow = new DataColumn<bool>("StrengthModRow");
-    public DataColumn<StrengthModType> strengthModType = new DataColumn<StrengthModType>("StrengthModType");
-    public DataColumn<int> graveyardCardDraw = new DataColumn<int>("GraveyardCardDraw");
-    public DataColumn<int> enemyCardDraw = new DataColumn<int>("EnemyCardDraw");
-    public DataColumn<int> enemyCardDestroy = new DataColumn<int>("EnemyCardDestroy");
-    public DataColumn<int> enemyReveal = new DataColumn<int>("EnemyReveal");
-    public DataColumn<float> rowMultiple = new DataColumn<float>("RowMultiple");
-    public DataColumn<RowEffected> rowEffected = new DataColumn<RowEffected>("EffectedRow");
-    public DataColumn<bool> clearWeather = new DataColumn<bool>("ClearWeather");
-    public DataColumn<int> setAside = new DataColumn<int>("SetAside");
-    public DataColumn<SetAsideType> setAsideType = new DataColumn<SetAsideType>("SetAsideType");
-    public DataColumn<bool> attach = new DataColumn<bool>("Attach");
-    public DataColumn<int> strengthCondition = new DataColumn<int>("StengthCondition");
-    public DataColumn<int> chooseN = new DataColumn<int>("ChooseN");
-    public DataColumn<RowEffected> chooseRow = new DataColumn<RowEffected>("ChooseRow");
-    public DataColumn<int> chooseShowN = new DataColumn<int>("ChooseShowN");
-    public DataColumn<ChooseCardType> chooseCardType = new DataColumn<ChooseCardType>("ChooseCardType");
-    public DataColumn<bool> chooseSkippable = new DataColumn<bool>("ChooseSkippable");
-    public DataColumn<bool> playInRow = new DataColumn<bool>("PlayInRow");
-    public DataColumn<bool> playNextRound = new DataColumn<bool>("PlayNextRound");
-    public DataColumn<bool> isAltEffect = new DataColumn<bool>("IsAltEffect");
-    public DataColumn<string> mainCardName = new DataColumn<string>("MainCardName");
-    public DataColumn<bool> protect = new DataColumn<bool>("Protect");
-    public DataColumn<RowEffected> autoPlaceRow = new DataColumn<RowEffected>("AutoPlaceRow");
+    public static List<string> smallFronts;
+    public static Texture2D[] bigFronts;
+    //DO NOT MOVE COLUMN LIST BELOW COLUMNS
+    //DO NOT MOVE COLUMN LIST BELOW COLUMNS
     public static List<IDataColumn> columns = new List<IDataColumn>();
+    //DO NOT MOVE COLUMN LIST BELOW COLUMNS
+    //DO NOT MOVE COLUMN LIST BELOW COLUMNS
+    public static DataColumn<string> names = new DataColumn<string>("CardName", false);
+    public static DataColumn<string> effectText = new DataColumn<string>("EffectText", true);
+    public static DataColumn<CardType> cardTypes = new DataColumn<CardType>("CardType", false);
+    public static DataColumn<int> strength = new DataColumn<int>("Strength", false);
+    public static DataColumn<int> playerCardDraw = new DataColumn<int>("PlayerCardDraw");
+    public static DataColumn<CardDrawType> cardDrawType = new DataColumn<CardDrawType>("CardDrawType");
+    public static DataColumn<int> playerCardDestroy = new DataColumn<int>("PlayerCardDestroy");
+    public static DataColumn<DestroyType> destroyType = new DataColumn<DestroyType>("DestroyType");
+    public static DataColumn<int> playerCardReturn = new DataColumn<int>("PlayerCardReturn");
+    public static DataColumn<CardReturnType> cardReturnType = new DataColumn<CardReturnType>("CardReturnType");
+    public static DataColumn<float> strengthModifier = new DataColumn<float>("StrengthModifier");
+    public static DataColumn<bool> strengthModRow = new DataColumn<bool>("StrengthModRow");
+    public static DataColumn<StrengthModType> strengthModType = new DataColumn<StrengthModType>("StrengthModType");
+    public static DataColumn<int> graveyardCardDraw = new DataColumn<Int32>("GraveyardCardDraw");
+    public static DataColumn<int> enemyCardDraw = new DataColumn<int>("EnemyCardDraw");
+    public static DataColumn<int> enemyCardDestroy = new DataColumn<int>("EnemyCardDestroy");
+    public static DataColumn<int> enemyReveal = new DataColumn<int>("EnemyReveal");
+    public static DataColumn<float> rowMultiple = new DataColumn<float>("RowMultiple");
+    public static DataColumn<RowEffected> rowEffected = new DataColumn<RowEffected>("EffectedRow");
+    public static DataColumn<bool> clearWeather = new DataColumn<bool>("ClearWeather");
+    public static DataColumn<int> setAside = new DataColumn<int>("SetAside");
+    public static DataColumn<SetAsideType> setAsideType = new DataColumn<SetAsideType>("SetAsideType");
+    public static DataColumn<bool> attach = new DataColumn<bool>("Attach");
+    public static DataColumn<int> strengthCondition = new DataColumn<int>("StengthCondition");
+    public static DataColumn<int> chooseN = new DataColumn<int>("ChooseN");
+    public static DataColumn<ChooseNAction> chooseNAction = new DataColumn<ChooseNAction>("ChooseNAction");
+    public static DataColumn<RowEffected> chooseRow = new DataColumn<RowEffected>("ChooseRow");
+    public static DataColumn<int> chooseShowN = new DataColumn<int>("ChooseShowN");
+    public static DataColumn<ChooseCardType> chooseCardType = new DataColumn<ChooseCardType>("ChooseCardType");
+    public static DataColumn<bool> chooseSkippable = new DataColumn<bool>("ChooseSkippable");
+    public static DataColumn<bool> playInRow = new DataColumn<bool>("PlayInRow");
+    public static DataColumn<bool> playNextRound = new DataColumn<bool>("PlayNextRound");
+    public static DataColumn<bool> isAltEffect = new DataColumn<bool>("IsAltEffect");
+    public static DataColumn<string> mainCardName = new DataColumn<string>("MainCardName");
+    public static DataColumn<bool> protect = new DataColumn<bool>("Protect");
+    public static DataColumn<RowEffected> autoPlaceRow = new DataColumn<RowEffected>("AutoPlaceRow");
+    public int numCardEffects;
 
     public int[] isSpecial;
     public string spriteFolder = "Images";
 
     public void readTextFile()
     {
+        if(columns == null){
+
+        }
         TextAsset bindata = Resources.Load("CardSheet") as TextAsset;
         string[] lines = bindata.text.Split("\n".ToCharArray());
         List<string> stringList = new List<string>();
@@ -59,13 +69,20 @@ public class CardModel : MonoBehaviour
             stringList.Add(line);
         }
         string[] colNames = stringList[0].Split("	".ToCharArray());
+        
+        Debug.Log("------------------------------------------------- ");
         for (int i = 0; i < colNames.Length; i++)
         {
             string name = colNames[i];
-            IDataColumn info = columns.Find((x) => x.columnName == name);
-            info.columnIdx = i;
+            IDataColumn info = columns.Find((x) => x.columnName == System.Text.RegularExpressions.Regex.Replace(name, @"\s+", ""));
+            if(info != null){
+                info.columnIdx = i;
+            }
+            else{
+                Debug.LogError("MISSING COLUMN NAME: " + name);
+            }
         }
-
+        numCardEffects = stringList.Count - 1;
         // start from second row
         for (int i = 1; i < stringList.Count; i++)
         {
@@ -77,7 +94,7 @@ public class CardModel : MonoBehaviour
             smallFronts.Add(temp[0]);
             foreach (IDataColumn dataColumn in columns)
             {
-                dataColumn.AddOptional(temp);
+                dataColumn.AddOptional(temp, i);
             }
             /*
             AddOptional(temp, strength, strength.info.columnIdx);

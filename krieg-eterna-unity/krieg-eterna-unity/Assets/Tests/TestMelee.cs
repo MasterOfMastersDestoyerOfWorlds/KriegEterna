@@ -154,7 +154,7 @@ namespace KriegTests
                 scoreRows = new List<(RowEffected, int)>(){(RowEffected.PlayerMelee, 4)},
                 clicks = new List<Click>{
                     new Click("Scout", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
-                    new Click("Knight2", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
+                    new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
                 }
             },
             new TestCase
@@ -163,7 +163,7 @@ namespace KriegTests
                 scoreRows = new List<(RowEffected, int)>(){(RowEffected.PlayerMelee, 13)},
                 clicks = new List<Click>{
                     new Click("Scout", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
-                    new Click("Knight2", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
+                    new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
                     new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
                 }
             },
@@ -173,7 +173,7 @@ namespace KriegTests
                 scoreRows = new List<(RowEffected, int)>(){(RowEffected.PlayerMelee, 6)},
                 clicks = new List<Click>{
                     new Click("Scout", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
-                    new Click("Knight2", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
+                    new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
                     new ClickRow("Skip", RowEffected.Skip),
                     new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, false),
                 }

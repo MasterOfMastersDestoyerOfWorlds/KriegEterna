@@ -5,6 +5,7 @@ public enum SetAsideType
     Enemy = 3,
     Player = 4,
     EitherKing = 5,
-    PlayerHand = 4,
+    AutoPlay = 6,
+    AutoPlayHand = 7,
     None  = 0
 };

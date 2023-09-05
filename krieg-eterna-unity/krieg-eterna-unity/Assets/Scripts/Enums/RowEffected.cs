@@ -64,5 +64,6 @@ public enum RowEffected
     ChooseN = 62,
     Deck = 63,
     Weather= 64,
+    BothMax = 65,
     None = 0
 };

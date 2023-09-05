@@ -13,7 +13,7 @@ public class Deck : MonoBehaviour
     public List<Row> rows;
     private GameObject areasObject;
 
-    private static int FRONTS_NUMBER = 102;
+    private static int FRONTS_NUMBER = 112;
     // TODO - remove max amount of cards in each range group
 
     void Awake()
@@ -231,6 +231,7 @@ public class Deck : MonoBehaviour
         Row powers = getRowByType(RowEffected.PowerDeck);
         Row units = getRowByType(RowEffected.UnitDeck);
         Row kings = getRowByType(RowEffected.KingDeck);
+        List<Card> alts = new List<Card>();
         for (int cardIndex = 0; cardIndex < FRONTS_NUMBER; cardIndex++)
         {
             if (Game.random == null)
@@ -244,7 +245,11 @@ public class Deck : MonoBehaviour
             clone.setIndex(cardId);
             clone.setIsSpecial(clone.getCardModel().getIsSpecial(cardId));
             clone.setBaseLoc();
-            if (CardModel.isPower(clone.cardType))
+            if (clone.isAltEffect)
+            {
+                alts.Add(clone);
+            }
+            else if (CardModel.isPower(clone.cardType))
             {
                 powers.Add(clone);
             }
@@ -257,6 +262,15 @@ public class Deck : MonoBehaviour
                 kings.Add(clone);
             }
             uniqueValues.Remove(cardId);
+        }
+        foreach (Card c in alts)
+        {
+            Card main = this.getCardInDeckByName(c.mainCardName);
+            if (main == null)
+            {
+                Debug.LogError("Unknown Card: " + c.mainCardName);
+            }
+            main.altEffects.Add(c);
         }
         sw.Stop();
         Debug.Log("card cloning Time elapsed: " + sw.Elapsed);
@@ -359,6 +373,19 @@ public class Deck : MonoBehaviour
         }
         return null;
     }
+    public Card getCardInDeckByName(string cardName)
+    {
+        List<Row> searchRows = getRowsByType(RowEffected.Deck);
+        foreach (Row r in searchRows)
+        {
+            Card c = r.getCardByName(cardName);
+            if (c != null)
+            {
+                return c;
+            }
+        }
+        return null;
+    }
     public Card dealCardToRow(string cardName, RowEffected row)
     {
 
@@ -441,7 +468,7 @@ public class Deck : MonoBehaviour
             {
                 if (r.Contains(c))
                 {
-                    resetCard(r, c);
+                    resetCard(r, r.Find((x) => x.Equals(c)));
                 }
 
 
@@ -450,6 +477,7 @@ public class Deck : MonoBehaviour
     }
     public void resetCard(Row currentRow, Card c)
     {
+        Debug.Log("reseting Card: " + c + " " + currentRow.uniqueType);
         currentRow.Remove(c);
         c.setTargetActive(false);
         foreach (Card attachment in c.attachments)
@@ -457,8 +485,16 @@ public class Deck : MonoBehaviour
             resetCard(currentRow, attachment);
         }
         c.attachments.RemoveAll(delegate (Card c) { return true; });
-        RowEffected deck = CardModel.isPower(c.cardType) ? RowEffected.PowerDeck : (CardModel.isUnit(c.cardType) ? RowEffected.UnitDeck : RowEffected.KingDeck);
-        this.getRowByType(deck).Add(c);
+        if (c.isClone)
+        {
+            c.Destroy();
+            Debug.Log("Reeeeeeee");
+        }
+        else
+        {
+            RowEffected deck = CardModel.isPower(c.cardType) ? RowEffected.PowerDeck : (CardModel.isUnit(c.cardType) ? RowEffected.UnitDeck : RowEffected.KingDeck);
+            this.getRowByType(deck).Add(c);
+        }
     }
 
 
@@ -656,14 +692,35 @@ public class Deck : MonoBehaviour
         }
         return rowList;
     }
+    public List<Card> getCardsInRowsByCardType(RowEffected rowType, CardType type)
+    {
+        List<Card> cardList = new List<Card>();
+        foreach (Row row in rows)
+        {
+            if (row.hasType(rowType))
+            {
+                foreach (Card c in row)
+                {
+                    if (c.cardType == type)
+                    {
+                        cardList.Add(c);
+                    }
+                }
+            }
+        }
+        return cardList;
+    }
     public List<Card> getCardsInRowByType(RowEffected type)
     {
         List<Card> cardList = new List<Card>();
         foreach (Row row in rows)
         {
-            foreach (Card c in row)
+            if (row.hasType(type))
             {
-                cardList.Add(c);
+                foreach (Card c in row)
+                {
+                    cardList.Add(c);
+                }
             }
         }
         return cardList;
@@ -730,12 +787,19 @@ public class Deck : MonoBehaviour
     public void sendCardToGraveyard(Row currentRow, RowEffected playerHand, Card c)
     {
         currentRow.Remove(c);
-        c.setTargetActive(false);
-        c.clearAttachments(this);
-        //c.resetSelectionCounts();
-        RowEffected graveyard = CardModel.isPower(c.cardType) ? RowEffected.PowerGraveyard : (CardModel.isUnit(c.cardType) ? RowEffected.UnitGraveyard : RowEffected.KingGraveyard);
-        this.getRowByType(graveyard).Add(c);
-        c.updateStrengthText(0);
+        if (c.isClone)
+        {
+            Destroy(c);
+        }
+        else
+        {
+            c.setTargetActive(false);
+            c.clearAttachments(this);
+            //c.resetSelectionCounts();
+            RowEffected graveyard = CardModel.isPower(c.cardType) ? RowEffected.PowerGraveyard : (CardModel.isUnit(c.cardType) ? RowEffected.UnitGraveyard : RowEffected.KingGraveyard);
+            this.getRowByType(graveyard).Add(c);
+            c.updateStrengthText(0);
+        }
     }
 
     public void addCardToHand(Row currentRow, RowEffected playerHand, Card c)
@@ -763,6 +827,12 @@ public class Deck : MonoBehaviour
             drawCardGraveyard(c, null, playerHand);
         }
         getRowByType(playerHand).Add(c);
+    }
+
+    public void sendCardToGraveyardMultiply(Row currentRow, RowEffected playerHand, Card c)
+    {
+        Game.activeCard.strengthMultiple++;
+        sendCardToGraveyard(currentRow, playerHand, c);
     }
 
     public RowEffected getKingRow(RowEffected player)
@@ -837,6 +907,11 @@ public class Deck : MonoBehaviour
         c.graveyardCardDrawRemain -= cardsDrawn;
     }
 
+    public void setCardAside(Row currentRow, RowEffected playerHand, Card c)
+    {
+        this.setCardAside(currentRow, c, Game.activeCard.setAsideType, CardModel.getPlayerFromRow(playerHand));
+    }
+
     public void setCardAside(Row currentRow, Card c, SetAsideType setAsideType, RowEffected player)
     {
         Debug.Log("GREMLIN: card: " + c.cardName + " player: " + player + " row: " + currentRow.uniqueType + " setAsideType: " + c.setAsideType);
@@ -849,12 +924,15 @@ public class Deck : MonoBehaviour
             case SetAsideType.EitherKing: c.setAsideReturnRow = c.currentRow; setAsideRow = CardModel.getRowFromSide(CardModel.getPlayerFromRow(c.currentRow), RowEffected.PlayerSetAside); break;
             case SetAsideType.Enemy: c.setAsideReturnRow = CardModel.getRowFromSide(player, RowEffected.EnemyHand); setAsideRow = enemySetAside; break;
             case SetAsideType.Player: c.setAsideReturnRow = CardModel.getRowFromSide(player, RowEffected.PlayerHand); break;
+            case SetAsideType.AutoPlay: c.setAsideReturnRow = CardModel.getRowFromSide(player, c.autoPlaceRow); break;
         }
         Debug.Log(c.setAsideReturnRow);
         currentRow.Remove(c);
         getRowByType(setAsideRow).Add(c);
 
     }
+
+
 
 
     /// <summary>
@@ -1004,36 +1082,6 @@ public class Deck : MonoBehaviour
             }
         }
         return maxRows;
-    }
-
-    public void clearAllWeatherEffects()
-    {
-        Debug.Log("Clearing all weather");
-        List<Row> scoringRows = getRowsByType(RowEffected.All);
-        for (int i = 0; i < scoringRows.Count; i++)
-        {
-            Row row = scoringRows[i];
-            Card weatherCard = clearWeatherRow(row);
-            Debug.Log(weatherCard);
-            if (row.isPlayer && weatherCard != null)
-            {
-                getRowByType(RowEffected.PowerGraveyard).Add(weatherCard);
-            }
-        }
-    }
-    private Card clearWeatherRow(Row row)
-    {
-        Card ret = null;
-        for (int i = 0; i < row.Count; i++)
-        {
-            ret = row.Find(isWeather);
-            row.RemoveAll(isWeather);
-        }
-        return ret;
-    }
-    private static bool isWeather(Card c)
-    {
-        return c.cardType == CardType.Weather;
     }
 
     public Row getCardRow(Card card)

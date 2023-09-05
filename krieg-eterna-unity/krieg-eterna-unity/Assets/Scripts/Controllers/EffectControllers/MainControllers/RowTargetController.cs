@@ -14,6 +14,8 @@ public class RowTargetController : EffectControllerInterface
         if (CardModel.rowIsUnique(c.rowEffected))
         {
             //WHEN is this called?
+            
+            c.setTargetActive(true);
             deck.activateRowsByType(true, true, true, CardModel.getRowFromSide(player, c.rowEffected));
         }
         else

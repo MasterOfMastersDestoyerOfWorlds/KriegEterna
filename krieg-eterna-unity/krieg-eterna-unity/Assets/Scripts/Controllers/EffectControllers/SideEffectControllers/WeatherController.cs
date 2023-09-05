@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 public class WeatherController : EffectControllerInterface
 {
@@ -9,22 +10,22 @@ public class WeatherController : EffectControllerInterface
         {
             targetRow.Add(c);
         }
-        if (c.rowMultiple == 1 && c.rowEffected == RowEffected.All)
+        if (c.clearWeather)
         {
-            deck.clearAllWeatherEffects();
-            if(c.cardType == CardType.Weather){
-                deck.getRowByType(RowEffected.PowerGraveyard).Add(c);
-            }
+            Debug.Log("Clearing all weather");
+            deck.sendAllToGraveYard(RowEffected.All, (Row r) =>  r.FindAll((x)=> x.cardType == CardType.Weather) );
         }
-        else if(c.cardType == CardType.Weather){
-            RowEffected row = CardModel.getPlayableRow(player, c.rowEffected);
-            deck.getRowByType(row).Add(c); 
-            deck.getRowByType(CardModel.getRowFromSide(RowEffected.Enemy, row)).Add(c);
+        else if (c.cardType == CardType.Weather)
+        {
+            targetRow.Add(c);
+            Card clone = GameObject.Instantiate(c) as Card;
+            clone.isClone = true;
+            deck.getRowByType(CardModel.getRowFromSide(RowEffected.Enemy, targetRow.uniqueType)).Add(clone);
         }
     }
     public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
-        return c.rowMultiple > 0 && Game.state != State.ROUND_END;
+        return (c.rowMultiple > 0 || c.clearWeather) && Game.state != State.ROUND_END;
     }
     public bool IsSideEffect(Card c, RowEffected player) => true;
 }

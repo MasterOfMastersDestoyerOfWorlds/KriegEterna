@@ -37,7 +37,7 @@ public class Move
         {
             //TODO: need to flip to enemies perspective
             name = System.Enum.GetName(typeof(RowEffected), targetRow);
-            this.id = Card.cardModel.names.Count + (int)CardModel.getRowFromSide(RowEffected.Enemy, targetRow);
+            this.id = CardModel.names.Count + (int)CardModel.getRowFromSide(RowEffected.Enemy, targetRow);
         }
         this.c = c;
         this.targetCard = targetCard;

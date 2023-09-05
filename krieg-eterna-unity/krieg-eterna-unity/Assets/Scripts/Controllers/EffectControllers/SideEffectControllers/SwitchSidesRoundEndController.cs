@@ -5,26 +5,17 @@ public class SwitchSidesRoundEndController : EffectControllerInterface
     {
         Deck deck = Game.activeDeck;
         Debug.Log("Switch Sides Round End");
-        if (Game.state != State.ROUND_END)
-        {
-            Debug.Log("Adding card to Round End List");
-            Game.roundEndCards.Add(c);
-            c.roundEndRemoveType = RoundEndRemoveType.Protect;
+        Row oppositeRow = deck.getRowByType(CardModel.getRowFromSide(RowEffected.Enemy, targetRow.uniqueType));
+        Debug.Log("Swaping Rows: " + c + " from row: " + targetRow + " to row" + oppositeRow);
+        targetRow.Remove(c);
+        oppositeRow.Add(c);
+        Debug.Log("Swaping Rows: " + c + " from row: " + targetRow + " to row" + oppositeRow);
+        c.playerCardReturnRemain = 0;
 
-        }
-        else
-        {
-            Row oppositeRow = deck.getRowByType(CardModel.getRowFromSide(RowEffected.Enemy, targetRow.uniqueType));
-            Debug.Log("Swaping Rows: " + c + " from row: " + targetRow + " to row" + oppositeRow);
-            targetRow.Remove(c);
-            oppositeRow.Add(c);
-            Debug.Log("Swaping Rows: " + c + " from row: " + targetRow + " to row" + oppositeRow);
-            c.playerCardReturnRemain = 0;
-        }
     }
     public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
-        return c.cardReturnType == CardReturnType.SwitchSidesRoundEnd;
+        return c.cardReturnType == CardReturnType.SwitchSidesRoundEnd && Game.state == State.ROUND_END;
     }
     public bool IsSideEffect(Card c, RowEffected player) => true;
 }

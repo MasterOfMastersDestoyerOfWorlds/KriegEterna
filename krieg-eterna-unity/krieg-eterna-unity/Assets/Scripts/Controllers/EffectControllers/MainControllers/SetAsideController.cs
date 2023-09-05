@@ -11,7 +11,9 @@ public class SetAsideController : EffectControllerInterface
         if (c.setAsideType == SetAsideType.King || c.setAsideType == SetAsideType.EitherKing || c.setAsideType == SetAsideType.EnemyKing)
         {
             cardsRemaining = deck.countCardsInRows(row);
-        }else{
+        }
+        else
+        {
             cardsRemaining = deck.countUnitsInRows(row);
         }
         Debug.Log(" SetAside remaining: " + c.setAsideRemain + " cardsRemaining " + cardsRemaining + " row: " + row);
@@ -23,7 +25,24 @@ public class SetAsideController : EffectControllerInterface
         {
             c.setAsideRemain--;
         }
+        
+        RowEffected playerHand = CardModel.getHandRow(player);
+        Row playerHandRow = deck.getRowByType(playerHand);
+        if (playerHandRow.Contains(c) && c.cardType == CardType.Decoy)
+        {
+            int index = targetRow.IndexOf(targetCard);
+            if (index < 0 || index > targetRow.Count)
+            {
+                Debug.Log("REEEE: row:" + targetRow + " card:" + targetCard.cardName);
+            }
+            targetRow.Insert(index, c);
+            playerHandRow.Remove(c);
+        }
+        
+
         deck.setCardAside(targetRow, targetCard, c.setAsideType, player);
+
+
     }
     public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
@@ -51,6 +70,10 @@ public class SetAsideController : EffectControllerInterface
             CardModel.getRowFromSide(player, RowEffected.EnemyPlayable));
                 break;
             case SetAsideType.Player:
+                deck.activateRowsByType(true, true, true,
+            CardModel.getRowFromSide(player, RowEffected.PlayerPlayable));
+                break;
+            case SetAsideType.AutoPlay:
                 deck.activateRowsByType(true, true, true,
             CardModel.getRowFromSide(player, RowEffected.PlayerPlayable));
                 break;
