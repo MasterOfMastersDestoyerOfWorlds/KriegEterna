@@ -49,12 +49,6 @@ public class PlayController
             {
                 deck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerHand)).Remove(c);
             }
-            RowEffected enemyHand = CardModel.getRowFromSide(player, RowEffected.EnemyHand);
-            if (c.enemyReveal > 0 && deck.getRowByType(enemyHand).Count > 0)
-            {
-                ChooseNController.setChooseN(enemyHand, "", null, "", 0, c.enemyReveal, new List<CardType>() { CardType.King, CardType.Melee, CardType.Ranged, CardType.Siege }, RowEffected.None, State.REVEAL, false);
-
-            }
         }
         if (Game.state == State.MULTISTEP)
         {
@@ -71,7 +65,7 @@ public class PlayController
     public static void updateStateBasedOnCardState(Card c, RowEffected player)
     {
         c.LogSelectionsRemaining();
-        if (Game.state == State.CHOOSE_N)
+        if (Game.state == State.CHOOSE_N || Game.state == State.REVEAL)
         {
             return;
         }

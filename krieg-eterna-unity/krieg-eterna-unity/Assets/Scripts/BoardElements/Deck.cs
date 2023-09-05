@@ -793,6 +793,7 @@ public class Deck : MonoBehaviour
         }
         else
         {
+            Game.roundEndCards.Remove(c);
             c.setTargetActive(false);
             c.clearAttachments(this);
             //c.resetSelectionCounts();

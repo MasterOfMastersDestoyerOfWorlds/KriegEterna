@@ -29,6 +29,7 @@ namespace KriegTests
                 testName = "AssassinRoundEnd",
                 playerHandCount = 2,
                 enemyHandCount = 1,
+                round = RoundType.RoundTwo,
                 clicks = new List<Click>{
                     new Click("Assassin", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.EnemyHand, true),
                     new ClickRow("EnemyRanged", RowEffected.EnemyRanged),
@@ -41,6 +42,7 @@ namespace KriegTests
             {
                 testName = "AssassinRoundEndGraveyard",
                 playerHandCount = 2,
+                round = RoundType.RoundTwo,
                 clicks = new List<Click>{
                     new Click("Assassin", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new ClickRow("EnemyRanged", RowEffected.EnemyRanged),
@@ -55,13 +57,14 @@ namespace KriegTests
             {
                 testName = "AssassinRoundEndSwitchSides",
                 playerHandCount = 3,
+                round = RoundType.RoundTwo,
                 clicks = new List<Click>{
                     new Click("Assassin", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerHand, true),
                     new ClickRow("EnemyMelee", RowEffected.EnemyMelee),
                     new ClickRow("PowerDeck", RowEffected.PowerDeck),
                     new ClickRow("PowerDeck", RowEffected.PowerDeck),
                     new Click("Relic", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new Click("Assassin", RowEffected.EnemyRanged, RowEffected.EnemyRanged, RowEffected.PlayerHand, true),
+                    new Click("Assassin", RowEffected.EnemyMelee, RowEffected.EnemyMelee, RowEffected.PlayerHand, true),
                     new ClickRow("PlayerMelee", RowEffected.PlayerMelee),
                     new ClickRow("Pass", RowEffected.Pass)
                 }

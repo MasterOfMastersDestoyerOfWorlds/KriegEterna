@@ -364,7 +364,8 @@ public class Card : MonoBehaviour
         Debug.Log("strengthConditionPassed: " + this.strengthConditionPassed);*/
     }
 
-    public bool shouldScoreThisRound(){
+    public bool shouldScoreThisRound()
+    {
         return !this.playNextRound || this.roundEndRemoveType == RoundEndRemoveType.Remove;
     }
 
@@ -510,15 +511,18 @@ public class Card : MonoBehaviour
         {
             if (operation == attachment.strengthModType)
             {
-                Debug.Log("Op: " + operation + " " + this.calculatedStrength);
                 applyOperation(operation, attachment, row);
                 if (attachment.strengthModRow)
                 {
                     foreach (Card c in row)
                     {
-                        c.applyOperation(operation, attachment, row);
+                        if (!c.Equals(this))
+                        {
+                            c.applyOperation(operation, attachment, row);
+                        }
                     }
                 }
+                Debug.Log("Op: " + operation + " " + this.calculatedStrength);
             }
         }
         return calculatedStrength;
@@ -568,7 +572,8 @@ public class Card : MonoBehaviour
 
     public override bool Equals(object c)
     {
-        if(c == null){
+        if (c == null)
+        {
             return false;
         }
         if (c.GetType() == typeof(Card))
@@ -642,7 +647,7 @@ public class Card : MonoBehaviour
     public void loadCardFront()
     {
         this.getCardFrontMaterial().SetTexture("_Texture2D", cardModel.getSmallFront(index));
-        //this.textureLoaded = true;
+        this.textureLoaded = true;
     }
     public void loadCardBackMaterial()
     {

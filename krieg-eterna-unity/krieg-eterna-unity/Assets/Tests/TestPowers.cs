@@ -91,7 +91,6 @@ namespace KriegTests
             {
                 testName = "EnlightenmentRevealOne",
                 enemyHandCount = 1,
-                playerHandCount = 1,
                 clicks = new List<Click>{
                     new Click("Enlightenment", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new Click("Enlightenment", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
@@ -102,13 +101,25 @@ namespace KriegTests
             {
                 testName = "EnlightenmentRevealThree",
                 enemyHandCount = 3,
-                playerHandCount = 1,
                 clicks = new List<Click>{
                     new Click("Enlightenment", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new Click("Enlightenment", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
                     new Click(false, "Fate", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.PlayerChooseN, false),
                     new Click(false, "Execution", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.PlayerChooseN, true),
                     new Click(false, "Famine", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.PlayerChooseN, false),
+                }
+            },
+            new TestCase
+            {
+                testName = "EnlightenmentRevealThreeOneUnit",
+                enemyHandCount = 4,
+                clicks = new List<Click>{
+                    new Click("Enlightenment", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new Click("Enlightenment", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
+                    new Click(false, "Fate", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.PlayerChooseN, false),
+                    new Click(false, "Execution", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.PlayerChooseN, true),
+                    new Click(false, "Famine", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.PlayerChooseN, false),
+                    new Click(false, "Knight", RowEffected.EnemyHand, RowEffected.EnemyHand, RowEffected.EnemyHand, false),
                 }
             },
             new TestCase

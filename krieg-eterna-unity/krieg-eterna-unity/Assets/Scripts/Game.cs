@@ -229,6 +229,7 @@ public class Game : MonoBehaviour
         if (!hasChosenStart)
         {
             var sw = System.Diagnostics.Stopwatch.StartNew();
+            choosePower.Add("Enlightenment");
             activeDeck.buildDeck(NUM_POWERS, NUM_UNITS, NUM_KINGS, choosePower, chooseUnit, chooseKing, chooseUnitGraveyard, choosePowerGraveyard, enemyPower, enemyUnit, enemyKing);
             sw.Stop();
             Debug.Log("buildDeck Time elapsed: " + sw.Elapsed);
@@ -377,7 +378,7 @@ public class Game : MonoBehaviour
                         scoreAndUpdate();
                         if (state == State.REVEAL)
                         {
-                            state = State.FREE;
+                            ChooseNController.endChooseN(activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerChooseN)), player);
                         }
                     }
                     if (state == State.FREE)
@@ -396,8 +397,8 @@ public class Game : MonoBehaviour
                 Debug.Log("--------------------------------------------------------------------");
                 if (state == State.REVEAL)
                 {
-                    activeDeck.getRowByType(RowEffected.PlayerChooseN).setVisibile(false);
-                    state = State.FREE;
+                    ChooseNController.endChooseN(activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerChooseN)), player);
+                    turnOver();
                     return;
                 }
                 Debug.Log("Click Registered! State: " + state + " player: " + player);
@@ -559,6 +560,7 @@ public class Game : MonoBehaviour
                 {
 
                     scoreAndUpdate();
+                    Debug.Log("End of Sub-Turn");
                     if (!setupComplete && state == State.FREE)
                     {
                         Debug.Log("Setup Commplete");

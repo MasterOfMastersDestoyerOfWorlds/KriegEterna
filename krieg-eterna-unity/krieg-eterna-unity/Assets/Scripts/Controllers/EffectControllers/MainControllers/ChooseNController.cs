@@ -23,12 +23,12 @@ public class ChooseNController : EffectControllerInterface
             Action<Row, RowEffected, Card> chooseAction = null;
             switch (c.chooseNAction)
             {
-                case ChooseNAction.AddHand: chooseAction = deck.addCardToHand;break;
-                case ChooseNAction.SendGraveyard: chooseAction = deck.sendCardToGraveyard;break;
-                case ChooseNAction.SendGraveyardMultiply: chooseAction = deck.sendCardToGraveyardMultiply;break;
-                case ChooseNAction.SetAside: chooseAction = deck.setCardAside;break;
+                case ChooseNAction.AddHand: chooseAction = deck.addCardToHand; break;
+                case ChooseNAction.SendGraveyard: chooseAction = deck.sendCardToGraveyard; break;
+                case ChooseNAction.SendGraveyardMultiply: chooseAction = deck.sendCardToGraveyardMultiply; break;
+                case ChooseNAction.SetAside: chooseAction = deck.setCardAside; break;
             }
-             
+
 
             setChooseN(chooseRow, CardModel.getRowName(chooseRow), chooseAction, "add to your hand.", c.chooseN, c.chooseShowN > 0 ? c.chooseShowN : row.Count, CardModel.chooseToCardTypeExclude(c.chooseCardType), sendRow, State.CHOOSE_N, true);
         }
@@ -109,17 +109,25 @@ public class ChooseNController : EffectControllerInterface
 
         }
         int revealed = 0;
+        Debug.Log(row.Count + " " + row + " " + numShow);
         for (int i = 0; revealed < numShow && i < row.Count; i++)
         {
-            if (!exclude.Contains(row[i].cardType) && (Game.state != State.REVEAL || !row[i].beenRevealed))
+
+            Debug.Log("Revealing: " + row[i].cardName + " " + row[i].cardType);
+            if (!exclude.Contains(row[i].cardType))
             {
                 Card clone = GameObject.Instantiate(row[i]) as Card;
                 clone.setVisible(true);
+                if (!clone.textureLoaded)
+                {
+                    clone.loadCardFront();
+                }
                 clone.setLayer("Display", true);
                 displayRow.Add(clone);
                 revealed++;
                 if (Game.state == State.REVEAL)
                 {
+                    Debug.Log("Revealing: " + clone.cardName);
                     row[i].beenRevealed = true;
                 }
             }
@@ -149,7 +157,8 @@ public class ChooseNController : EffectControllerInterface
             activeCard.chooseNRemain--;
         }
         row.chooseNRemain--;
-        if(flashCoroutine != null){
+        if (flashCoroutine != null)
+        {
             Game.loadingScreen.displayRowText.text = string.Format(displayText, row.chooseNRemain);
         }
         chooseNAction.Invoke(row, chooseNSendRow, realCard);

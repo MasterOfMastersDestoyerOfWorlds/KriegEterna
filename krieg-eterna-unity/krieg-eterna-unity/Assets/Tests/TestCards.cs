@@ -257,10 +257,19 @@ namespace KriegTests
                         if (!CardModel.isDisplayRow(dealRow))
                         {
                             clicks[i].card = deck.getRowByType(dealRow).getCardByName(cardName);
+                            if (clicks[i].card == null)
+                            {
+                                clicks[i].card = deck.getCardByName(cardName);
+                                Debug.Log("Card Not Found: " + cardName);
+                            }
                         }
                         else
                         {
                             clicks[i].card = deck.getCardByName(cardName);
+                            if (clicks[i].card == null)
+                            {
+                                Debug.LogError("Card Not Found: " + cardName);
+                            }
                         }
                     }
                 }
@@ -290,6 +299,7 @@ namespace KriegTests
                     }
                     else
                     {
+                        Debug.Log(clicks[i].card);
                         Debug.Log("Doing Player Click: " + clickCard.cardName);
                         InputSystem.Update();
                         MousePositioning(clickCard.transform);
@@ -306,7 +316,7 @@ namespace KriegTests
                     Row row = deck.getRowByType(CardModel.getRowFromSide(Game.player, click.targetRow));
                     if (Game.player == RowEffected.Enemy)
                     {
-                        Debug.Log("Doing Enemy Row Click: " + CardModel.getRowFromSide(Game.player, click.targetRow) + " " + System.Enum.GetName(typeof(RowEffected), CardModel.getRowFromSide(Game.player, click.targetRow)) + " "  +enemyController);
+                        Debug.Log("Doing Enemy Row Click: " + CardModel.getRowFromSide(Game.player, click.targetRow) + " " + System.Enum.GetName(typeof(RowEffected), CardModel.getRowFromSide(Game.player, click.targetRow)) + " " + enemyController);
                         enemyController.nextMoveName = System.Enum.GetName(typeof(RowEffected), CardModel.getRowFromSide(Game.player, click.targetRow));
 
                         game.Update();

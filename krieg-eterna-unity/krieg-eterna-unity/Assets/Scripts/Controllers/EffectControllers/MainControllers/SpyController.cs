@@ -11,7 +11,7 @@ public class SpyController : EffectControllerInterface
     }
     public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
-        return Game.state != State.MULTISTEP && c.cardType == CardType.Spy && c.rowEffected != RowEffected.None;
+        return Game.state != State.MULTISTEP && c.cardType == CardType.Spy && c.rowEffected != RowEffected.None && Game.state != State.ROUND_END;
     }
     public void Target(Card c, RowEffected player)
     {

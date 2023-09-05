@@ -71,7 +71,7 @@ public class ReturnController : EffectControllerInterface
     public void Target(Card c, RowEffected player)
     {
         Deck deck = Game.activeDeck;
-        RowEffected playerPlayable = CardModel.getRowFromSide(player, RowEffected.PlayerPlayable);
+        RowEffected playerPlayable = CardModel.getRowFromSide(player, c.rowEffected);
         switch (c.cardReturnType)
         {
             case CardReturnType.King: c.setTargetActive(true); break;

@@ -19,7 +19,7 @@ public class PlayerDrawController : EffectControllerInterface
     }
     public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
-        return c.playerCardDrawRemain > 0 && c.cardDrawType == CardDrawType.Either;
+        return c.playerCardDrawRemain > 0 && c.cardDrawType == CardDrawType.Either && Game.state != State.ROUND_END;
     }
     public void Target(Card c, RowEffected player)
     {
