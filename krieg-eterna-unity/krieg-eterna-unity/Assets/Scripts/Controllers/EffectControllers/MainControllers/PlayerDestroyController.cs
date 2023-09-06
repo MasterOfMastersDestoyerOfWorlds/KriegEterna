@@ -35,25 +35,10 @@ public class PlayerDestroyController : EffectControllerInterface
         }
         else if (c.destroyType == DestroyType.MaxAll)
         {
-            List<Row> destroyRows = deck.getRowsByType(c.rowEffected);
-            List<Card> graveyardList = new List<Card>();
-            List<Row> graveyardRowList = new List<Row>();
-            foreach (Row r in destroyRows)
-            {
-                int max = deck.maxStrength(r.uniqueType);
-                foreach (Card destroyCard in r)
-                {
-                    if (destroyCard.calculatedStrength == max)
-                    {
-                        graveyardList.Add(destroyCard);
-                        graveyardRowList.Add(r);
-                    }
-                }
-            }
-            for (int i = 0; i < graveyardList.Count; i++)
-            {
-                deck.sendCardToGraveyard(graveyardRowList[i], RowEffected.None, graveyardList[i]);
-            }
+            List<RowEffected> enemyMaxRows = deck.getMaxScoreRows(CardModel.getRowFromSide(player, RowEffected.PlayerPlayable));
+            List<RowEffected> playerMaxRows = deck.getMaxScoreRows(CardModel.getRowFromSide(player, RowEffected.EnemyPlayable));
+            destroyMaxInRows(deck, c, playerMaxRows);
+            destroyMaxInRows(deck, c, enemyMaxRows);
             c.playerCardDestroyRemain = 0;
             c.enemyCardDestroyRemain = 0;
         }
@@ -68,8 +53,10 @@ public class PlayerDestroyController : EffectControllerInterface
             Game.roundEndCards.Add(c);
         }
     }
+
     public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
+        Deck deck = Game.activeDeck;
         return c.playerCardDestroyRemain > 0;
     }
     public void Target(Card c, RowEffected player)
@@ -84,7 +71,31 @@ public class PlayerDestroyController : EffectControllerInterface
     }
     public bool TargetCondition(Card c, RowEffected player)
     {
+        Deck deck = Game.activeDeck;
         return c.playerCardDestroyRemain > 0;
+    }
+
+
+    private void destroyMaxInRows(Deck deck, Card c, List<RowEffected> rows)
+    {
+        if (rows.Count > 0)
+        {
+            RowEffected rowType = rows[0];
+            Row row = deck.getRowByType(rowType);
+            List<Card> graveyardList = new List<Card>();
+            int max = deck.maxStrength(rowType);
+            foreach (Card destroyCard in row)
+            {
+                if (destroyCard.calculatedStrength == max)
+                {
+                    graveyardList.Add(destroyCard);
+                }
+            }
+            for (int i = 0; i < graveyardList.Count; i++)
+            {
+                deck.sendCardToGraveyard(row, RowEffected.None, graveyardList[i]);
+            }
+        }
     }
 
 }
