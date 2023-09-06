@@ -63,6 +63,27 @@ namespace KriegTests
             },
             new TestCase
             {
+                testName = "CrusadeJustPlayer",
+                clicks = new List<Click>{
+                    new Click("Crusade", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new Click("Crusade", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
+                    new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, false),
+                    new Click("Grenadier2", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.UnitGraveyard, false),
+                }
+            },
+            new TestCase
+            {
+                testName = "CrusadeCannotPlay",
+                playerHandCount = 1,
+                clicks = new List<Click>{
+                    new Click("Crusade", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerHand, true),
+                    new Click("Crusade", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerHand, true),
+                    new Click("Calvary", RowEffected.EnemyMelee, RowEffected.EnemyMelee, RowEffected.EnemyMelee, false),
+                    new Click("Calvary3", RowEffected.EnemyMelee, RowEffected.EnemyMelee, RowEffected.EnemyMelee, false),
+                }
+            },
+            new TestCase
+            {
                 testName = "EmperorDemisePlayer",
                 clicks = new List<Click>{
                     new Click("EmperorDemise", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),

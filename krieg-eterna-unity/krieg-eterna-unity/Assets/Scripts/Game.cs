@@ -447,7 +447,7 @@ public class Game : MonoBehaviour
                             else
                             {
                                 Debug.Log("!!!!!!!!!!!!!!!!!!!!!!Cannot Play!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                                clickOnTarget = false;
+                                clickOnTarget = true;
                             }
                         }
                     }

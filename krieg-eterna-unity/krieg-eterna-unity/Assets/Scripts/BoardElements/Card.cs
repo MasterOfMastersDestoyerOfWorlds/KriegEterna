@@ -430,9 +430,14 @@ public class Card : MonoBehaviour
             Debug.Log("Cannot Play Cond 1! : Destroy Type Unit : " + (this.playerCardDestroy + this.playerCardReturn) + " > " + playerRowsSum);
             return false;
         }
+        if (this.destroyType == DestroyType.MaxAll && playerRowsSum == 0)
+        {
+            Debug.Log("Cannot Play Cond 2! : Destroy Type Max : " + playerRowsSum + " == 0");
+            return false;
+        }
         if (this.setAsideType == SetAsideType.Player && this.setAside > playerRowsSum)
         {
-            Debug.Log("Cannot Play Cond 2! : Set Aside Type Player : " + this.setAside + " > " + playerRowsSum);
+            Debug.Log("Cannot Play Cond 3! : Set Aside Type Player : " + this.setAside + " > " + playerRowsSum);
             return false;
         }
         if (this.setAsideType == SetAsideType.EnemyKing && enemyKingRow == RowEffected.None)
