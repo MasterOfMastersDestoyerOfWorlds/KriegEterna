@@ -229,7 +229,7 @@ public class Game : MonoBehaviour
         if (!hasChosenStart)
         {
             var sw = System.Diagnostics.Stopwatch.StartNew();
-            choosePower.Add("ClearSkies");
+            choosePower.Add("Smuggler");
             activeDeck.buildDeck(NUM_POWERS, NUM_UNITS, NUM_KINGS, choosePower, chooseUnit, chooseKing, chooseUnitGraveyard, choosePowerGraveyard, enemyPower, enemyUnit, enemyKing);
             sw.Stop();
             Debug.Log("buildDeck Time elapsed: " + sw.Elapsed);
@@ -435,6 +435,7 @@ public class Game : MonoBehaviour
                                 activeCard.setBaseLoc();
                                 activeCard.transform.position += new Vector3(0, Card.getBaseHeight() / 3, 0f);
                                 state = State.ACTIVE_CARD;
+                                break;
                             }
                             else
                             {

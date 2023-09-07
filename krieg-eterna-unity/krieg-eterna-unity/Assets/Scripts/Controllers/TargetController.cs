@@ -16,6 +16,7 @@ public class TargetController
             deck.disactiveAllInDeck(true);
         }
         PowerController.TargetPower(c, player);
+        Game.reorganizeGroup();
     }
 
     internal static void ShowTargets(Move nextMove)

@@ -300,7 +300,7 @@ namespace KriegTests
                     else
                     {
                         Debug.Log(clicks[i].card);
-                        Debug.Log("Doing Player Click: " + clickCard.cardName);
+                        Debug.Log("Doing Player Click: " + clickCard.cardName  + " Expected Transform: " + clickCard.transform.position);
                         InputSystem.Update();
                         MousePositioning(clickCard.transform);
                         ClickOnCard(clickCard.transform);
@@ -323,7 +323,8 @@ namespace KriegTests
                     }
                     else
                     {
-                        Debug.Log("Doing Player Row Click: " + click.targetRow);
+                        Debug.Log("Doing Player Row Click: " + click.targetRow + " Expected Transform: " + row.target.transform.position);
+                        InputSystem.Update();
                         MousePositioning(row.target.transform);
                         ClickOnCard(row.target.transform);
                         MouseUnClick();
