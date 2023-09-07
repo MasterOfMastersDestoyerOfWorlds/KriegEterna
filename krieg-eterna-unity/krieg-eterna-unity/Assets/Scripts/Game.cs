@@ -229,7 +229,7 @@ public class Game : MonoBehaviour
         if (!hasChosenStart)
         {
             var sw = System.Diagnostics.Stopwatch.StartNew();
-            choosePower.Add("Enlightenment");
+            choosePower.Add("ClearSkies");
             activeDeck.buildDeck(NUM_POWERS, NUM_UNITS, NUM_KINGS, choosePower, chooseUnit, chooseKing, chooseUnitGraveyard, choosePowerGraveyard, enemyPower, enemyUnit, enemyKing);
             sw.Stop();
             Debug.Log("buildDeck Time elapsed: " + sw.Elapsed);
@@ -386,7 +386,7 @@ public class Game : MonoBehaviour
             if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame && state != State.BLOCKED && !playerPassed)
             {
 
-                Debug.Log("--------------------------------------------------------------------");
+                Debug.Log("--------------------------------------------------------------------" + state);
                 if (state == State.REVEAL)
                 {
                     ChooseNController.endChooseN(activeDeck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerChooseN)), player);
@@ -481,13 +481,13 @@ public class Game : MonoBehaviour
                                 {
                                     Debug.Log("Clicked on Card:" + selected.cardName);
                                     PlayController.Play(activeCard, row, selected, player);
-                                    if (state != State.MULTISTEP)
+                                    if (state == State.MULTISTEP || state == State.CHOOSE_N)
                                     {
-                                        activeDeck.disactiveAllInDeck(false);
+                                        TargetController.ShowTargets(activeCard, player);
                                     }
                                     else
                                     {
-                                        TargetController.ShowTargets(activeCard, player);
+                                        activeDeck.disactiveAllInDeck(false);
                                     }
 
                                     clickOnTarget = true;
@@ -526,6 +526,7 @@ public class Game : MonoBehaviour
                     {
                         Debug.Log("No valid click resetting");
                         activeDeck.disactiveAllInDeck(false);
+                        shadowCamera.enabled = false;
                     }
                     else
                     {

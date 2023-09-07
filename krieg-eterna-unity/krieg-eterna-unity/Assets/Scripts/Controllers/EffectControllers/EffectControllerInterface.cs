@@ -6,5 +6,6 @@ public interface EffectControllerInterface
     public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player) => false;
     public bool TargetCondition(Card c, RowEffected player) => false;
     public bool IsSideEffect(Card c, RowEffected player) => false;
+    public bool ShoudlReorganizeGroup() => true;
     
 }

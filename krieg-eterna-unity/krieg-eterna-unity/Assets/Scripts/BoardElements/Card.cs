@@ -65,6 +65,7 @@ public class Card : MonoBehaviour
     public Card moveCard;
     public RowEffected moveRow;
     private bool targetActive = false;
+    private bool visible = false;
     public bool isBig = false;
     public float bigFac = 2;
     public int isSpecial;
@@ -106,6 +107,7 @@ public class Card : MonoBehaviour
     public TMP_Text strengthText;
     public TMP_Text effectDescriptionText;
     
+    Transform effectDescriptionTextObj;
     private GameObject targetObj;
     public bool textureLoaded;
 
@@ -133,7 +135,7 @@ public class Card : MonoBehaviour
         baseLoc = this.transform.position;
         Transform cardObj = this.transform.Find("Card 1");
         Transform strengthTextObj = cardObj.Find("Score");
-        Transform effectDescriptionTextObj = cardObj.Find("EffectDescription");
+        effectDescriptionTextObj = cardObj.Find("EffectDescription");
         targetObj = cardObj.Find("Target").gameObject;
         strengthText = strengthTextObj.GetComponent<TMP_Text>();
         effectDescriptionText = effectDescriptionTextObj.GetComponent<TMP_Text>();
@@ -142,6 +144,7 @@ public class Card : MonoBehaviour
         textureLoaded = false;
         defaultLayerMask = LayerMask.NameToLayer("Default");
     }
+
 
     public void scaleBig()
     {
@@ -237,7 +240,6 @@ public class Card : MonoBehaviour
     public void setEffectFromCardModel(int index)
     {
         this.cardName = CardModel.names[index];
-        Debug.Log("REEE: " + cardName);
         this.name = cardName;
         this.cardType = CardModel.cardTypes[index];
         this.strength = CardModel.strength[index];
@@ -292,12 +294,20 @@ public class Card : MonoBehaviour
             Debug.LogError("Out of Bounds! expected max index: " + (cardModel.numCardEffects - 1) + " got: " + index + " num card names:" + CardModel.names.Count);
         }
         setEffectFromCardModel(index);
-        if(this.isAltEffect){
+        if (this.isAltEffect)
+        {
             this.strengthText.text = "";
             this.setVisible(false);
             this.effectDescriptionText.text = this.effectDescription;
             this.effectDescriptionText.alpha = 0;
-        }else{
+            this.cardColider = effectDescriptionTextObj.GetComponent<BoxCollider2D>();
+            this.targetObj.transform.localScale = new Vector3(14.2f, 3.81f, 1);
+            Material targetMaterial = this.getTargetMaterial();
+            targetMaterial.SetFloat("_RectWidth", 0.79f);
+            targetMaterial.SetFloat("_RectHeight", 0.67f);
+        }
+        else
+        {
             this.effectDescriptionText.text = "";
         }
         this.loadCardBackMaterial();
@@ -422,15 +432,24 @@ public class Card : MonoBehaviour
     }
     public void setVisible(bool state)
     {
-        Material material = getCardFrontMaterial();
-        material.SetInt("_Transparent", state ? 0 : 1);
-        updateStrengthText(this.calculatedStrength);
+        if (!this.isAltEffect)
+        {
+            Material material = getCardFrontMaterial();
+            material.SetInt("_Transparent", state ? 0 : 1);
+            updateStrengthText(this.calculatedStrength);
+        }
+        else
+        {
+            Material material = getCardFrontMaterial();
+            material.SetInt("_Transparent", 1);
+            this.effectDescriptionText.alpha = state ? 1 : 0;
+        }
+        this.visible = state;
     }
 
     public bool isVisible()
     {
-        Material material = getCardFrontMaterial();
-        return material.GetInt("_Transparent") == 0 ? true : false;
+        return this.visible;
     }
     public bool isTargetActive()
     {
@@ -669,6 +688,7 @@ public class Card : MonoBehaviour
             GameObject child = this.transform.GetChild(0).gameObject;
             GameObject childOfChild = child.transform.Find("Target").gameObject;
             this.targetObj = childOfChild;
+
         }
         return this.targetObj;
     }

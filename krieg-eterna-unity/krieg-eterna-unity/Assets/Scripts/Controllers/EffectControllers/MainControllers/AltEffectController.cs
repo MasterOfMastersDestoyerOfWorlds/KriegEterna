@@ -36,10 +36,11 @@ public class AltEffectController : EffectControllerInterface
         Row displayRow = deck.getRowByType(displayRowType);
         List<Card> effects = c.altEffects;
         c.scaleBig();
+        Game.shadowCamera.enabled = true;
         Deck activeDeck = Game.activeDeck;
         Card activeCard = Game.activeCard;
         Debug.Log("setting up choice");
-        float cardHorizontalSpacing = Card.getBaseWidth() * 4f;
+        float cardHorizontalSpacing = Card.getBaseWidth() * 2.5f;
         float cardThickness = Card.getBaseThickness();
         float attachmentVerticalSpacing = Card.getBaseHeight();
         while (displayRow.Count > 0)
@@ -63,6 +64,14 @@ public class AltEffectController : EffectControllerInterface
 
     public bool TargetCondition(Card c, RowEffected player)
     {
+        Debug.Log("AltEffectController: ");
+        
+        Debug.Log("AltEffectController: " + c.altEffects.Count);
+        Debug.Log("AltEffectController: " + !c.isEffectSet);
         return c.altEffects.Count > 0 && !c.isEffectSet;
+    }
+    
+    public bool ShoudlReorganizeGroup(){
+        return false;
     }
 }

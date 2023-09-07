@@ -3,6 +3,7 @@ using UnityEngine;
 public static class PowerController
 {
     public static List<EffectControllerInterface> mainControllerList = new List<EffectControllerInterface>(){
+        new AltEffectController(),
         new TelescopeTargetController(),
         new KingController(),
         new ChooseNController(),
@@ -44,6 +45,10 @@ public static class PowerController
             {
                 Debug.Log("Controller: " + controller);
                 controller.Play(c, targetRow, targetCard, player);
+                if (controller.ShoudlReorganizeGroup())
+                {
+                    Game.reorganizeGroup();
+                }
                 break;
             }
         }
@@ -58,6 +63,7 @@ public static class PowerController
                     controller.Play(c, targetRow, targetCard, player);
                 }
             }
+            Game.reorganizeGroup();
         }
 
         Debug.Log("Done Playing Power Card: " + c + " targetRow:" + targetRow);

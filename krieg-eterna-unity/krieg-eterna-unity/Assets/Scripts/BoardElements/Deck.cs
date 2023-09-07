@@ -532,6 +532,9 @@ public class Deck : MonoBehaviour
                     c.resetScale();
                     c.resetTransform();
                 }
+                if (c.isAltEffect){
+                    c.setVisible(false);
+                }
             }
             if (row.target != null && !row.hasType(RowEffected.ChooseN))
             {

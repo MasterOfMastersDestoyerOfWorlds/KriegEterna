@@ -60,12 +60,17 @@ public class ChooseNController : EffectControllerInterface
         return c.chooseNRemain > 0;
     }
 
+    public bool ShoudlReorganizeGroup(){
+        return false;
+    }
+
     public static void endChooseN(Row displayRow, RowEffected player)
     {
         Deck activeDeck = Game.activeDeck;
         Card activeCard = Game.activeCard;
         activeDeck.getRowByType(RowEffected.Skip).setVisibile(false);
         displayRow.setVisibile(false);
+        displayRow.cardTargetsActivated = false;
         Game.shadowCamera.enabled = false;
         activeDeck.disactiveAllInDeck(false);
         if (flashCoroutine != null)

@@ -6,6 +6,11 @@ public class PlayController
 {
     public static void Play(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
+        if (c == null && Game.state == State.CHOOSE_N)
+        {
+            ChooseNController.chooseCard(targetCard, player);
+            return;
+        }
         if (!c.isVisible())
         {
             c.setVisible(true);
@@ -40,10 +45,22 @@ public class PlayController
         {
             switch (c.cardType)
             {
-                case CardType.Melee: deck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerMelee)).Add(c); c.zeroSelectionCounts(); break;
-                case CardType.Ranged: deck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerRanged)).Add(c); c.zeroSelectionCounts(); break;
-                case CardType.Siege: deck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerSiege)).Add(c); c.zeroSelectionCounts(); break;
-                case CardType.Switch: targetRow.Add(c); c.zeroSelectionCounts(); break;
+                case CardType.Melee:
+                    deck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerMelee)).Add(c);
+                    c.zeroSelectionCounts();
+                    Game.reorganizeGroup(); break;
+                case CardType.Ranged:
+                    deck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerRanged)).Add(c);
+                    c.zeroSelectionCounts();
+                    Game.reorganizeGroup(); break;
+                case CardType.Siege:
+                    deck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerSiege)).Add(c);
+                    c.zeroSelectionCounts();
+                    Game.reorganizeGroup(); break;
+                case CardType.Switch:
+                    targetRow.Add(c);
+                    c.zeroSelectionCounts();
+                    Game.reorganizeGroup(); break;
                 default: PowerController.PlayPower(c, targetRow, targetCard, player); break;
             }
         }
@@ -64,7 +81,6 @@ public class PlayController
             }
         }
         c.playerPlayed = player;
-        Game.reorganizeGroup();
     }
 
     public static void updateStateBasedOnCardState(Card c, RowEffected player)
