@@ -57,6 +57,8 @@ public class Card : MonoBehaviour
     public bool playNextRound;
     public bool isAltEffect;
     public string mainCardName;
+    public string effectDescription;
+    public bool isEffectSet = false;
     public bool protect;
     public RowEffected autoPlaceRow;
     public int moveRemain;
@@ -101,7 +103,9 @@ public class Card : MonoBehaviour
 
     public RowEffected playerPlayed;
 
-    public TMP_Text scoreText;
+    public TMP_Text strengthText;
+    public TMP_Text effectDescriptionText;
+    
     private GameObject targetObj;
     public bool textureLoaded;
 
@@ -128,9 +132,11 @@ public class Card : MonoBehaviour
         }
         baseLoc = this.transform.position;
         Transform cardObj = this.transform.Find("Card 1");
-        Transform textObj = cardObj.Find("Score");
+        Transform strengthTextObj = cardObj.Find("Score");
+        Transform effectDescriptionTextObj = cardObj.Find("EffectDescription");
         targetObj = cardObj.Find("Target").gameObject;
-        scoreText = textObj.GetComponent<TMP_Text>();
+        strengthText = strengthTextObj.GetComponent<TMP_Text>();
+        effectDescriptionText = effectDescriptionTextObj.GetComponent<TMP_Text>();
         this.calculatedStrength = this.strength;
         updateStrengthText(this.strength);
         textureLoaded = false;
@@ -139,13 +145,18 @@ public class Card : MonoBehaviour
 
     public void scaleBig()
     {
-        isBig = true;
-        Transform cardObj = this.transform.Find("Card 1");
-        bigFac = 4;
+        if (!isBig)
+        {
+            isBig = true;
+            Transform cardObj = this.transform.Find("Card 1");
+            bigFac = 4;
 
-        this.setLayer("Big", false);
-        Debug.Log("big scale: " + this.cardName + "bigFac" + bigFac + "scalex " + bigFac * baseScalex + " scaley " + bigFac * baseScalez);
-        cardObj.transform.localScale = new Vector3(bigFac * baseScalex, 1, bigFac * baseScalez);
+            this.setLayer("Big", false);
+            Debug.Log("big scale: " + this.cardName + "bigFac" + bigFac + "scalex " + bigFac * baseScalex + " scaley " + bigFac * baseScalez);
+            cardObj.transform.localScale = new Vector3(bigFac * baseScalex, 1, bigFac * baseScalez);
+
+            this.transform.position = Game.activeDeck.areas.getCenterFrontBig();
+        }
     }
     public void resetScale()
     {
@@ -223,14 +234,10 @@ public class Card : MonoBehaviour
     }
 
 
-    public void setIndex(int index)
+    public void setEffectFromCardModel(int index)
     {
-        this.index = index;
-        if (index > CardModel.names.Count)
-        {
-            Debug.LogError("Out of Bounds! expected max index: " + (cardModel.numCardEffects - 1) + " got: " + index + " num card names:" + CardModel.names.Count);
-        }
         this.cardName = CardModel.names[index];
+        Debug.Log("REEE: " + cardName);
         this.name = cardName;
         this.cardType = CardModel.cardTypes[index];
         this.strength = CardModel.strength[index];
@@ -264,13 +271,35 @@ public class Card : MonoBehaviour
         this.playNextRound = CardModel.playNextRound[index];
         this.isAltEffect = CardModel.isAltEffect[index];
         this.mainCardName = CardModel.mainCardName[index];
+        this.effectDescription = CardModel.effectDescription[index];
         this.protect = CardModel.protect[index];
         this.autoPlaceRow = CardModel.autoPlaceRow[index];
-        this.scoreText.colorGradient = ColorGradientType.getTextGradient(this.cardType);
-        this.scoreText.outlineColor = ColorGradientType.getTextOutline(this.cardType);
-        this.scoreText.fontSharedMaterial.SetColor(ShaderUtilities.ID_Outline2Color, ColorGradientType.getTextOutline2(this.cardType));
+        this.strengthText.colorGradient = ColorGradientType.getTextGradient(this.cardType);
+        this.strengthText.outlineColor = ColorGradientType.getTextOutline(this.cardType);
+        this.strengthText.fontSharedMaterial.SetColor(ShaderUtilities.ID_Outline2Color, ColorGradientType.getTextOutline2(this.cardType));
+        this.effectDescriptionText.colorGradient = ColorGradientType.getTextGradient(this.cardType);
+        this.effectDescriptionText.outlineColor = ColorGradientType.getTextOutline(this.cardType);
+        this.effectDescriptionText.fontSharedMaterial.SetColor(ShaderUtilities.ID_Outline2Color, ColorGradientType.getTextOutline2(this.cardType));
         updateStrengthText(this.strength);
         this.resetSelectionCounts();
+    }
+
+    public void initCard(int index)
+    {
+        this.index = index;
+        if (index > CardModel.names.Count)
+        {
+            Debug.LogError("Out of Bounds! expected max index: " + (cardModel.numCardEffects - 1) + " got: " + index + " num card names:" + CardModel.names.Count);
+        }
+        setEffectFromCardModel(index);
+        if(this.isAltEffect){
+            this.strengthText.text = "";
+            this.setVisible(false);
+            this.effectDescriptionText.text = this.effectDescription;
+            this.effectDescriptionText.alpha = 0;
+        }else{
+            this.effectDescriptionText.text = "";
+        }
         this.loadCardBackMaterial();
     }
 
@@ -280,6 +309,12 @@ public class Card : MonoBehaviour
         return this.index;
     }
 
+    public void setEffect(Card effect)
+    {
+        this.setEffectFromCardModel(effect.index);
+        this.isEffectSet = true;
+
+    }
     public void resetSelectionCounts()
     {
         this.roundEndRemoveType = RoundEndRemoveType.Remove;
@@ -291,6 +326,7 @@ public class Card : MonoBehaviour
         this.setAsideRemain = this.setAside;
         this.graveyardCardDrawRemain = this.graveyardCardDraw;
         this.chooseNRemain = this.chooseN;
+        this.isEffectSet = this.isAltEffect;
         if (attach && strengthModType == StrengthModType.Adjacent)
         {
             this.attachmentsRemaining = 2;
@@ -332,6 +368,10 @@ public class Card : MonoBehaviour
 
     public bool canSkip()
     {
+        if (Game.state == State.CHOOSE_N)
+        {
+            return this.chooseSkippable;
+        }
         return this.playerCardDestroyRemain <= 0 &&
         (this.setAsideRemain <= 0 || (this.setAsideType != SetAsideType.King && this.setAsideType != SetAsideType.Player))
         && this.moveRemain <= 0
@@ -341,9 +381,9 @@ public class Card : MonoBehaviour
     public bool doneMultiSelection(RowEffected player)
     {
         return (this.playerCardDrawRemain <= 0 || this.cardDrawType != CardDrawType.Either) && this.playerCardDestroyRemain <= 0
-        && (this.playerCardReturnRemain <= 0 || this.cardReturnType == CardReturnType.SwitchSidesRoundEnd)
+        && (this.playerCardReturnRemain <= 0 || this.cardReturnType == CardReturnType.SwitchSidesRoundEnd || this.cardReturnType == CardReturnType.LastPlayedCard)
         && (this.enemyCardDestroyRemain <= 0 || this.destroyType == DestroyType.RoundEnd)
-        && this.setAsideRemain <= 0 && this.moveRemain <= 0 && this.attachmentsRemaining <= 0;
+        && this.setAsideRemain <= 0 && this.moveRemain <= 0 && this.attachmentsRemaining <= 0 && this.chooseNRemain <= 0;
     }
 
     public void LogSelectionsRemaining()
@@ -536,11 +576,11 @@ public class Card : MonoBehaviour
     {
         if (this.isVisible() && strength > 0)
         {
-            this.scoreText.text = strength.ToString();
+            this.strengthText.text = strength.ToString();
         }
         else
         {
-            this.scoreText.text = "";
+            this.strengthText.text = "";
         }
     }
 

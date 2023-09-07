@@ -13,7 +13,7 @@ public class PlayerDestroyController : EffectControllerInterface
         if (c.destroyType == DestroyType.Unit)
         {
             deck.sendCardToGraveyard(targetRow, RowEffected.None, targetCard);
-            if (c.strengthCondition > 0 && targetCard.calculatedStrength > c.strengthCondition)
+            if (c.strengthCondition > 0 && targetCard.calculatedStrength >= c.strengthCondition)
             {
                 c.strengthConditionPassed = true;
             }

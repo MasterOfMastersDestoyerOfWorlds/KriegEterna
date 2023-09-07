@@ -269,7 +269,7 @@ public class Game : MonoBehaviour
                 if (allLoaded)
                 {
 
-                    ChooseNController.setChooseN(RowEffected.PlayerHand, CardModel.getRowName(RowEffected.PlayerHand), activeDeck.sendCardToGraveyard, "discard.", NUM_DISCARD_START, activeDeck.getRowByType(RowEffected.PlayerHand).Count, new List<CardType>() { CardType.King }, RowEffected.None, State.CHOOSE_N, false);
+                    ChooseNController.setChooseN(RowEffected.PlayerHand, CardModel.getRowName(RowEffected.PlayerHand), activeDeck.sendCardToGraveyard, "discard.", NUM_DISCARD_START, activeDeck.getRowByType(RowEffected.PlayerHand).Count, CardModel.chooseToCardTypeExclude(ChooseCardType.UnitOrPower), null, RowEffected.None, State.CHOOSE_N, false);
                     activeDeck.getRowByType(RowEffected.Pass).setVisibile(false);
                     state = State.LOADING;
                     reorganizeGroup();
@@ -317,7 +317,6 @@ public class Game : MonoBehaviour
                     if (c.ContainsMouse(mouseRelativePosition))
                     {
                         c.scaleBig();
-                        c.transform.position = activeDeck.areas.getCenterFrontBig();
                         break;
                     }
                 }
@@ -365,15 +364,8 @@ public class Game : MonoBehaviour
                     }
                     else
                     {
-                        if (state == State.CHOOSE_N)
-                        {
-                            ChooseNController.chooseCard(nextMove.targetCard, player);
-                        }
-                        else
-                        {
-                            PlayController.Play(nextMove);
-                            TargetController.ShowTargets(nextMove);
-                        }
+                        PlayController.Play(nextMove);
+                        TargetController.ShowTargets(nextMove);
 
                         scoreAndUpdate();
                         if (state == State.REVEAL)
@@ -488,23 +480,16 @@ public class Game : MonoBehaviour
                                 if (selected.ContainsMouse(mouseRelativePosition))
                                 {
                                     Debug.Log("Clicked on Card:" + selected.cardName);
-                                    if (state == State.CHOOSE_N)
+                                    PlayController.Play(activeCard, row, selected, player);
+                                    if (state != State.MULTISTEP)
                                     {
-                                        Debug.Log("selected!" + selected.cardName);
-                                        ChooseNController.chooseCard(selected, player);
+                                        activeDeck.disactiveAllInDeck(false);
                                     }
                                     else
                                     {
-                                        PlayController.Play(activeCard, row, selected, player);
-                                        if (state != State.MULTISTEP)
-                                        {
-                                            activeDeck.disactiveAllInDeck(false);
-                                        }
-                                        else
-                                        {
-                                            TargetController.ShowTargets(activeCard, player);
-                                        }
+                                        TargetController.ShowTargets(activeCard, player);
                                     }
+
                                     clickOnTarget = true;
                                 }
                             }
@@ -520,7 +505,7 @@ public class Game : MonoBehaviour
                     List<Row> buttons = activeDeck.getRowsByType(RowEffected.Button);
                     foreach (Row row in buttons)
                     {
-                        if (row.target.ContainsMouse(mouseRelativePosition) && row.isVisible())
+                        if (row.target.ContainsMouse(mouseRelativePosition) && row.isVisible() && row.canButton())
                         {
                             Debug.Log("Button: " + row.uniqueType + " Clicked!");
                             row.buttonAction.Invoke();

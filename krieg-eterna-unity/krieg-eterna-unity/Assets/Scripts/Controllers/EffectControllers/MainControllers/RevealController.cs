@@ -12,7 +12,7 @@ public class RevealController : EffectControllerInterface
         if(numShow < 0){
             numShow = Game.activeDeck.getRowByType(enemyHand).Count;
         }
-        ChooseNController.setChooseN(enemyHand, "", null, "", 0, numShow, new List<CardType>() { CardType.King, CardType.Melee, CardType.Ranged, CardType.Siege, CardType.Switch }, RowEffected.None, State.REVEAL, false);
+        ChooseNController.setChooseN(enemyHand, "", null, "", 0, numShow, CardModel.chooseToCardTypeExclude(ChooseCardType.Power), null, RowEffected.None, State.REVEAL, false);
     }
     public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)
     {

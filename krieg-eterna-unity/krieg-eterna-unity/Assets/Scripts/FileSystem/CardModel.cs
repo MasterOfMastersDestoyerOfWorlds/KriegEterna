@@ -48,6 +48,7 @@ public class CardModel : MonoBehaviour
     public static DataColumn<bool> playNextRound = new DataColumn<bool>("PlayNextRound");
     public static DataColumn<bool> isAltEffect = new DataColumn<bool>("IsAltEffect");
     public static DataColumn<string> mainCardName = new DataColumn<string>("MainCardName");
+    public static DataColumn<string> effectDescription = new DataColumn<string>("EffectDescription");
     public static DataColumn<bool> protect = new DataColumn<bool>("Protect");
     public static DataColumn<RowEffected> autoPlaceRow = new DataColumn<RowEffected>("AutoPlaceRow");
     public int numCardEffects;
@@ -319,6 +320,7 @@ public class CardModel : MonoBehaviour
         {
             case ChooseCardType.Unit: return new List<CardType>() { CardType.Power, CardType.Decoy, CardType.Spy, CardType.Weather, CardType.King };
             case ChooseCardType.Power: return new List<CardType>() { CardType.Melee, CardType.Ranged, CardType.Siege, CardType.Switch, CardType.King };
+            case ChooseCardType.UnitOrPower: return new List<CardType>() { CardType.King };
             case ChooseCardType.King: return new List<CardType>() { CardType.Melee, CardType.Ranged, CardType.Siege, CardType.Switch, CardType.Power, CardType.Decoy, CardType.Spy, CardType.Weather };
         }
         return null;

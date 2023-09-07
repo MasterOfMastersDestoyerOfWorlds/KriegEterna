@@ -65,5 +65,8 @@ public enum RowEffected
     Deck = 63,
     Weather= 64,
     BothMax = 65,
-    None = 0
+    None = 0,
+    AltEffectRow = 66,
+    EnemyAltEffectRow = 67,
+    PlayerAltEffectRow = 68
 };

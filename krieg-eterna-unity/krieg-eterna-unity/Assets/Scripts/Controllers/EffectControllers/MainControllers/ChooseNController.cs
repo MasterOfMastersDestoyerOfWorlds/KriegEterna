@@ -17,20 +17,29 @@ public class ChooseNController : EffectControllerInterface
 
         RowEffected chooseRow = CardModel.getRowFromSide(player, c.chooseRow);
         Row row = deck.getRowByType(chooseRow);
-        if (row.Count > 0)
+
+        if (Game.state != State.CHOOSE_N)
         {
-            RowEffected sendRow = CardModel.getRowFromSide(player, c.rowEffected);
-            Action<Row, RowEffected, Card> chooseAction = null;
-            switch (c.chooseNAction)
+            if (row.Count > 0)
             {
-                case ChooseNAction.AddHand: chooseAction = deck.addCardToHand; break;
-                case ChooseNAction.SendGraveyard: chooseAction = deck.sendCardToGraveyard; break;
-                case ChooseNAction.SendGraveyardMultiply: chooseAction = deck.sendCardToGraveyardMultiply; break;
-                case ChooseNAction.SetAside: chooseAction = deck.setCardAside; break;
+                RowEffected sendRow = CardModel.getRowFromSide(player, c.rowEffected);
+                Action<Row, RowEffected, Card> chooseAction = null;
+                string actionName = "error";
+                switch (c.chooseNAction)
+                {
+                    case ChooseNAction.AddHand: chooseAction = deck.addCardToHand; actionName = "add to your hand."; break;
+                    case ChooseNAction.SendGraveyard: chooseAction = deck.sendCardToGraveyard; actionName = "send to the graveyard."; break;
+                    case ChooseNAction.SendGraveyardMultiply: chooseAction = deck.sendCardToGraveyardMultiply; actionName = "send to the graveyard."; break;
+                    case ChooseNAction.AutoPlay: chooseAction = deck.autoPlay; actionName = "play on the field."; break;
+                    case ChooseNAction.SetAside: chooseAction = deck.setCardAside; actionName = "set aside till the next round."; break;
+                }
+
+
+                setChooseN(chooseRow, CardModel.getRowName(chooseRow), chooseAction, actionName, c.chooseN, c.chooseShowN > 0 ? c.chooseShowN : row.Count, CardModel.chooseToCardTypeExclude(c.chooseCardType), c, sendRow, State.CHOOSE_N, c.chooseSkippable);
             }
+        }else{
+            chooseCard(targetCard, player);
 
-
-            setChooseN(chooseRow, CardModel.getRowName(chooseRow), chooseAction, "add to your hand.", c.chooseN, c.chooseShowN > 0 ? c.chooseShowN : row.Count, CardModel.chooseToCardTypeExclude(c.chooseCardType), sendRow, State.CHOOSE_N, true);
         }
     }
     public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)
@@ -40,7 +49,10 @@ public class ChooseNController : EffectControllerInterface
 
     public void Target(Card c, RowEffected player)
     {
-        c.setTargetActive(true);
+        if (Game.state != State.CHOOSE_N)
+        {
+            c.setTargetActive(true);
+        }
     }
 
     public bool TargetCondition(Card c, RowEffected player)
@@ -72,7 +84,7 @@ public class ChooseNController : EffectControllerInterface
         }
     }
 
-    public static void setChooseN(RowEffected chooseRow, string rowName, System.Action<Row, RowEffected, Card> action, string actionName, int numChoose, int numShow, List<CardType> exclude, RowEffected sendRow, State newState, bool skipable)
+    public static void setChooseN(RowEffected chooseRow, string rowName, System.Action<Row, RowEffected, Card> action, string actionName, int numChoose, int numShow, List<CardType> exclude, Card excludeCard, RowEffected sendRow, State newState, bool skipable)
     {
 
         Deck activeDeck = Game.activeDeck;
@@ -112,10 +124,9 @@ public class ChooseNController : EffectControllerInterface
         Debug.Log(row.Count + " " + row + " " + numShow);
         for (int i = 0; revealed < numShow && i < row.Count; i++)
         {
-
-            Debug.Log("Revealing: " + row[i].cardName + " " + row[i].cardType);
-            if (!exclude.Contains(row[i].cardType))
+            if (!exclude.Contains(row[i].cardType) && !row[i].Equals(excludeCard))
             {
+                Debug.Log("Revealing: " + row[i].cardName + " " + row[i].cardType);
                 Card clone = GameObject.Instantiate(row[i]) as Card;
                 clone.setVisible(true);
                 if (!clone.textureLoaded)

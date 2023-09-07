@@ -27,7 +27,12 @@ public class PlayController
         {
             Debug.Log(" TargetCard: " + targetCard.cardName);
         }
-        if (CardModel.isUnit(c.cardType) && c.strengthModType == StrengthModType.Adjacent && targetRow != null)
+        if (Game.state == State.CHOOSE_N)
+        {
+            Debug.Log("ChooseN selected!" + c.cardName);
+            PowerController.PlayPower(c, targetRow, targetCard, player);
+        }
+        else if (CardModel.isUnit(c.cardType) && c.strengthModType == StrengthModType.Adjacent && targetRow != null)
         {
             PowerController.PlayPower(c, targetRow, targetCard, RowEffected.Player);
         }

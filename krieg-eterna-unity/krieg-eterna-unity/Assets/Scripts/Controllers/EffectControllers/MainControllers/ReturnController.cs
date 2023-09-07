@@ -51,22 +51,10 @@ public class ReturnController : EffectControllerInterface
                 deck.addCardToHand(kingRow, playerHand, kingRow[0]);
             }
         }
-        else if (c.cardReturnType == CardReturnType.LastPlayedCard)
-        {
-            c.playerCardReturnRemain--;
-            Card lastPlayed = Game.getLastCardPlayed(player);
-            if (lastPlayed != null)
-            {
-                //Todo: separate enemy and player last card played
-                Row row = deck.getCardRow(lastPlayed);
-                deck.addCardToHand(row, playerHand, lastPlayed);
-            }
-
-        }
     }
     public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
-        return c.playerCardReturnRemain > 0;
+        return c.playerCardReturnRemain > 0 && c.cardReturnType != CardReturnType.LastPlayedCard;
     }
     public void Target(Card c, RowEffected player)
     {
@@ -82,11 +70,6 @@ public class ReturnController : EffectControllerInterface
     }
     public bool TargetCondition(Card c, RowEffected player)
     {
-        if (c.cardReturnType == CardReturnType.LastPlayedCard)
-        {
-            Card lastPlayed = Game.getLastCardPlayed(player);
-            return lastPlayed != null;
-        }
-        return c.playerCardReturnRemain > 0;
+        return c.playerCardReturnRemain > 0 && c.cardReturnType != CardReturnType.LastPlayedCard;
     }
 }

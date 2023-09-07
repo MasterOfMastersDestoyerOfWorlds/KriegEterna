@@ -72,3 +72,4 @@ UnityEngine.SpatialTracking.csproj
 UnityEngine.TestRunner.csproj
 UnityEngine.XR.LegacyInputHelpers.csproj
 Logs/shadercompiler-UnityShaderCompiler.exe0.log
+UserSettings/Layouts/*

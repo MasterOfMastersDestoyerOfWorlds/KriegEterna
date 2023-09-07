@@ -5,6 +5,7 @@ public static class PowerController
     public static List<EffectControllerInterface> mainControllerList = new List<EffectControllerInterface>(){
         new TelescopeTargetController(),
         new KingController(),
+        new ChooseNController(),
         new PlayInRowController(),
         new SpyController(),
         new PlayerDestroyController(),
@@ -13,7 +14,6 @@ public static class PowerController
         new ReturnController(),
         new SetAsideController(),
         new PlayerDrawController(),
-        new ChooseNController(),
         new RevealController(),
         new AttachController(),
         new CardReturnRoundEndController(),
@@ -31,7 +31,9 @@ public static class PowerController
         new SwitchSidesRoundEndController(),
         new PlayNextRoundController(),
         new TelescopeController(),
-        new WeatherController()
+        new WeatherController(),
+        new LastPlayedReturnController(),
+        new CardDrawRoundEndSetupController(),
     };
     public static void PlayPower(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
@@ -47,7 +49,7 @@ public static class PowerController
         }
         if (c.doneMultiSelection(player))
         {
-            Debug.Log("Done MultiSelection, Doing Side Effects");
+            Debug.Log("Done MultiSelection, Doing Side Effects: " + c);
             foreach (EffectControllerInterface controller in sideEffectControllerList)
             {
                 if (controller.PlayCondition(c, targetRow, targetCard, player))
@@ -58,7 +60,7 @@ public static class PowerController
             }
         }
 
-        Debug.Log("Done Playing Power Card targetRow:" + targetRow);
+        Debug.Log("Done Playing Power Card: " + c + " targetRow:" + targetRow);
     }
 
     public static void TargetPower(Card c, RowEffected player)

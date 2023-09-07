@@ -13,7 +13,7 @@ public class Deck : MonoBehaviour
     public List<Row> rows;
     private GameObject areasObject;
 
-    private static int FRONTS_NUMBER = 112;
+    private static int FRONTS_NUMBER = 118;
     // TODO - remove max amount of cards in each range group
 
     void Awake()
@@ -201,6 +201,12 @@ public class Deck : MonoBehaviour
         new Row(false, true, false, false, RowEffected.EnemyChooseN, new List<RowEffected>() {
             RowEffected.EnemyChooseN,
             RowEffected.ChooseN }, areas.getCenterFront),
+        new Row(false, true, false, true, RowEffected.PlayerAltEffectRow, new List<RowEffected>() {
+            RowEffected.PlayerAltEffectRow,
+            RowEffected.AltEffectRow }, areas.getSiegeRowCenterVector),
+        new Row(false, true, false, false, RowEffected.EnemyAltEffectRow, new List<RowEffected>() {
+            RowEffected.EnemyAltEffectRow,
+            RowEffected.AltEffectRow }, areas.getSiegeRowCenterVector),
         new Row(false, RowEffected.Pass, "Pass", areas.getPassButtonCenterVector, Game.playerPass, Game.canPass),
         new Row(false, RowEffected.Skip,"Skip" , areas.getSkipButtonCenterVector, () => Game.skipActiveCardEffects(), Game.canSkip)
         };
@@ -242,7 +248,7 @@ public class Deck : MonoBehaviour
 
             Card clone = Instantiate(baseCard) as Card;
             clone.tag = "CloneCard";
-            clone.setIndex(cardId);
+            clone.initCard(cardId);
             clone.setIsSpecial(clone.getCardModel().getIsSpecial(cardId));
             clone.setBaseLoc();
             if (clone.isAltEffect)
@@ -789,7 +795,7 @@ public class Deck : MonoBehaviour
         currentRow.Remove(c);
         if (c.isClone)
         {
-            Destroy(c);
+            c.Destroy();
         }
         else
         {
@@ -1200,5 +1206,11 @@ public class Deck : MonoBehaviour
             MoveLogger.logEnemyDiscard(c, RowEffected.Enemy);
             sendCardToGraveyard(r, RowEffected.None, c);
         }
+    }
+
+    internal void autoPlay(Row currentRow, RowEffected playerHand, Card c)
+    {
+        currentRow.Remove(c);
+        getRowByType(CardModel.getRowFromSide(CardModel.getPlayerFromRow(playerHand), c.autoPlaceRow)).Add(c);
     }
 }
