@@ -18,7 +18,14 @@ public class AltEffectController : EffectControllerInterface
         Game.shadowCamera.enabled = false;
         deck.disactiveAllInDeck(false);
         Game.state = State.MULTISTEP;
-        TargetController.ShowTargets(c, player);
+        if (c.canAutoPlayAltEffect)
+        {
+            PlayController.Play(c, targetRow, targetCard, player);
+        }
+        else
+        {
+            TargetController.ShowTargets(c, player);
+        }
     }
     public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
@@ -65,13 +72,14 @@ public class AltEffectController : EffectControllerInterface
     public bool TargetCondition(Card c, RowEffected player)
     {
         Debug.Log("AltEffectController: ");
-        
+
         Debug.Log("AltEffectController: " + c.altEffects.Count);
         Debug.Log("AltEffectController: " + !c.isEffectSet);
         return c.altEffects.Count > 0 && !c.isEffectSet;
     }
-    
-    public bool ShoudlReorganizeGroup(){
+
+    public bool ShoudlReorganizeGroup()
+    {
         return false;
     }
 }

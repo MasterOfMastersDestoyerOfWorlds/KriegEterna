@@ -56,6 +56,7 @@ public class Card : MonoBehaviour
     public bool playInRow;
     public bool playNextRound;
     public bool isAltEffect;
+    public bool canAutoPlayAltEffect;
     public string mainCardName;
     public string effectDescription;
     public bool isEffectSet = false;
@@ -272,6 +273,7 @@ public class Card : MonoBehaviour
         this.playInRow = CardModel.playInRow[index];
         this.playNextRound = CardModel.playNextRound[index];
         this.isAltEffect = CardModel.isAltEffect[index];
+        this.canAutoPlayAltEffect = CardModel.canAutoPlayAltEffect[index];
         this.mainCardName = CardModel.mainCardName[index];
         this.effectDescription = CardModel.effectDescription[index];
         this.protect = CardModel.protect[index];

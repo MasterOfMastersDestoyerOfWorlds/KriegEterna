@@ -47,6 +47,7 @@ public class CardModel : MonoBehaviour
     public static DataColumn<bool> playInRow = new DataColumn<bool>("PlayInRow");
     public static DataColumn<bool> playNextRound = new DataColumn<bool>("PlayNextRound");
     public static DataColumn<bool> isAltEffect = new DataColumn<bool>("IsAltEffect");
+    public static DataColumn<bool> canAutoPlayAltEffect = new DataColumn<bool>("CanAutoPlayAltEffect");
     public static DataColumn<string> mainCardName = new DataColumn<string>("MainCardName");
     public static DataColumn<string> effectDescription = new DataColumn<string>("EffectDescription");
     public static DataColumn<bool> protect = new DataColumn<bool>("Protect");

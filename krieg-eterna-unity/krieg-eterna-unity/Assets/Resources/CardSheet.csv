@@ -1,119 +1,119 @@
-CardName	CardType	EffectText	Strength	PlayerCardDraw	CardDrawType	PlayerCardDestroy	DestroyType	PlayerCardReturn	CardReturnType	StrengthModifier	StrengthModRow	StrengthModType	GraveyardCardDraw	EnemyCardDraw	EnemyCardDestroy	EnemyReveal	RowMultiple	EffectedRow	ClearWeather	SetAside	SetAsideType	Attach	StengthCondition	ChooseN	ChooseNAction	ChooseRow	ChooseShowN	ChooseCardType	ChooseSkippable	PlayInRow	PlayNextRound	IsAltEffect	MainCardName	EffectDescription	Protect	AutoPlaceRow
-Feint	Decoy	Set aside up to three of your units on the field\runtil the next round.	0															PlayerPlayable	FALSE	3	AutoPlay	FALSE								TRUE	FALSE	FALSE			FALSE	None
-Fortress	Decoy	Attach to a unit on the field. Its strength is halved\rthis round. This unit remains on the field to fight\rin the next round at double strength. This unit\rcannot be moved or sent to the graveyard.	0					0	DoubleAtRoundEnd	0.5	FALSE	Multiply						All	FALSE			TRUE								TRUE	FALSE	FALSE			TRUE	None
-Jester	Decoy	Send one of your units on the field to the\rgraveyard. Swap this card with any unit on either\rside of the field, and add that card to your hand.	0			1	Unit	1	Unit									All	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	None
-Retreat	Decoy	Set aside up to three of your units on the field\runtil the next round.	0															PlayerPlayable	FALSE	3	AutoPlay	FALSE								TRUE	FALSE	FALSE			FALSE	None
-Sack	Decoy	Send one of your units on the field to the\rgraveyard. Swap this card with any unit on either\rside of the field, and add that card to your hand.	0			1	Unit	1	Unit									All	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	None
-Shipwreck	Decoy	Set aside up to three of your units on the field\runtil the next round.	0															PlayerPlayable	FALSE	3	AutoPlay	FALSE								TRUE	FALSE	FALSE			FALSE	None
-LionKing	King	Double the strength of one of your rows.\rHalve the strength of all Range rows this round,\ror set aside two of your opponent's units until\rthe next round.	0															None	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	None
-LionKingSetAside	King	Double the strength of one of your rows.\rHalve the strength of all Range rows this round,\ror set aside two of your opponent's units until\rthe next round.	0															EnemyPlayable	FALSE	2	Enemy	FALSE								TRUE	FALSE	TRUE	LionKing	Set Aside 2	FALSE	None
-LionKingHalveRange	King	Double the strength of one of your rows.\rHalve the strength of all Range rows this round,\ror set aside two of your opponent's units until\rthe next round.	0														0.5	Ranged	FALSE			FALSE								TRUE	FALSE	TRUE	LionKing	Halve Range Row	FALSE	None
-SunKing	King	Double the strength of one of your rows.\rClear all weather effects, move a weather effect\rto any row, or draw a card.	0															None	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	None
-SunKingClearWeather	King	Double the strength of one of your rows.\rClear all weather effects, move a weather effect\rto any row, or draw a card.	0															Weather	TRUE			FALSE								TRUE	FALSE	TRUE	SunKing	Clear Weather	FALSE	None
-SunKingDraw	King	Double the strength of one of your rows.\rClear all weather effects, move a weather effect\rto any row, or draw a card.	0	1	Either													None	FALSE			FALSE								TRUE	FALSE	TRUE	SunKing	Draw One Card	FALSE	None
-SunKingMoveWeather	King	Double the strength of one of your rows.\rClear all weather effects, move a weather effect\rto any row, or draw a card.	0					1	MoveWeather									Weather	FALSE			FALSE								TRUE	FALSE	TRUE	SunKing	Move Weather	FALSE	None
-TerrorKing	King	Double the strength of one of your rows.\rHalve the strength of all Siege rows this round,\ror send a unit to the graveyard.	0															None	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	None
-TerrorKingHalveSiege	King	Double the strength of one of your rows.\rHalve the strength of all Siege rows this round,\ror send a unit to the graveyard.	0														0.5	Siege	FALSE			FALSE								TRUE	FALSE	TRUE	TerrorKing	Halve Siege Row	FALSE	None
-TerrorKingDestroy	King	Double the strength of one of your rows.\rHalve the strength of all Siege rows this round,\ror send a unit to the graveyard.	0			0	Unit								1			All	FALSE			FALSE								TRUE	FALSE	TRUE	TerrorKing	Send Unit to Graveyard	FALSE	None
-TraitorKing	King	Double the strength of a row.\rSwap one unit on the field with your opponent,\ror draw a card.	0															None	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	None
-TraitorKingSwap	King	Double the strength of a row.\rSwap one unit on the field with your opponent,\ror draw a card.	0					1	Swap									EnemyPlayable	FALSE			FALSE								TRUE	FALSE	TRUE	TraitorKing	Swap One Unit	FALSE	None
-TraitorKingDraw	King	Double the strength of a row.\rSwap one unit on the field with your opponent,\ror draw a card.	0	1	Either													None	FALSE			FALSE								TRUE	FALSE	TRUE	TraitorKing	Draw One Card	FALSE	None
-WinterKing	King	Double the strength of one of your rows.\rHalve the strength of all Melee rows this round,\ror send a unit to the graveyard.	0															None	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	None
-WinterKingHalveMelee	King	Double the strength of one of your rows.\rHalve the strength of all Melee rows this round,\ror send a unit to the graveyard.	0														0.5	Melee	FALSE			FALSE								TRUE	FALSE	TRUE	WinterKing	Halve Melee Row	FALSE	None
-WinterKingDestroy	King	Double the strength of one of your rows.\rHalve the strength of all Melee rows this round,\ror send a unit to the graveyard.	0			0	Unit								1			All	FALSE			FALSE								TRUE	FALSE	TRUE	WinterKing	Send Unit to Graveyard	FALSE	None
-Calvary	Melee	 	4															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerMelee
-Calvary2	Melee	 	4															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerMelee
-Calvary3	Melee	 	4															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerMelee
-Crusader	Melee	If drawn from the graveyard, draw the top unit\rfrom the graveyard.	2										1					PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerMelee
-Halberdier	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerMelee
-Knight	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerMelee
-Knight10	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerMelee
-Knight11	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerMelee
-Knight12	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerMelee
-Knight3	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerMelee
-Knight4	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerMelee
-Knight5	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerMelee
-Knight6	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerMelee
-Knight7	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerMelee
-Knight9	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerMelee
-Landsknecht	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerMelee
-MusketLine	Melee	 	5															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerMelee
-Scout	Melee	Add one base strength to up to two units in this\rrow.	1							1	FALSE	Adjacent						PlayerMelee	FALSE			TRUE								TRUE	FALSE	FALSE			FALSE	PlayerMelee
-Square	Melee	 	3															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerMelee
-Burden	Power	At the end of the round, double the strength\rof your opponent's strongest row. In the next\rround, double the strongest row on your side.	0					0	SwitchSidesRoundEnd								2	EnemyMax	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	None
-Crusade	Power	Find your strongest row. Send your highest total\rstrength unit and all equally strong units in that\rrow to the graveyard. All other players then do\rthe same.	0			1	MaxAll								1			BothMax	FALSE			FALSE								FALSE	FALSE	FALSE			FALSE	None
-Death	Power	Send one unit on the field to the graveyard.	0			0	Unit								1			All	FALSE			FALSE								FALSE	FALSE	FALSE			FALSE	None
-Death2	Power	Send one unit on the field to the graveyard.	0			0	Unit								1			All	FALSE			FALSE								FALSE	FALSE	FALSE			FALSE	None
-EmperorDemise	Power	Choose a King on the field; set it aside until the\rstart of the next round.	0															King	FALSE	1	EitherKing	FALSE								FALSE	FALSE	FALSE			FALSE	None
-Enlightenment	Power	Your opponent reveals all power cards in their\rhand.	0													-1		EnemyHand	FALSE			FALSE								FALSE	FALSE	FALSE			FALSE	None
-Execution	Power	Send your King to the graveyard.\rIf your King was on the field, draw three units;\rif it was in your hand, draw four.	0	3	Unit	1	PlayerKing											None	FALSE			FALSE								FALSE	FALSE	FALSE			FALSE	None
-Famine	Power	Attach to a unit on the field. Every unit in its row\rhas minus one base strength.	0							1	TRUE	Subtract						All	FALSE			TRUE								TRUE	FALSE	FALSE			FALSE	None
-Fate	Power	Discard one card from your hand, then return the\rlast card you played to your hand.	0					1	LastPlayedCard									None	FALSE			FALSE		1	SendGraveyard	PlayerHand	-1	UnitOrPower	FALSE	TRUE	FALSE	FALSE			FALSE	None
-Feast2	Power	Attach to a unit on the field. Add the number of\runits in its row to its base strength.	0							1	FALSE	AddRowCount						None	FALSE			TRUE								TRUE	FALSE	FALSE			FALSE	None
-Feast3	Power	Attach to a unit on the field. Add the number of\runits in its row to its base strength.	0							1	FALSE	AddRowCount						None	FALSE			TRUE								TRUE	FALSE	FALSE			FALSE	None
-Grail	Power	Take the top two units in the graveyard and play\rthem on your side of the field.	0										2					UnitGraveyard	FALSE			FALSE								FALSE	FALSE	FALSE			FALSE	None
-Offering	Power	Send one of your units on the field to the\rgraveyard. If its total strength was less than six,\rdraw two cards; otherwise, draw three.	0	2	Either	1	Unit											None	FALSE			FALSE	6							FALSE	FALSE	FALSE			FALSE	None
-Redemption	Power	If your King is on the field, return it to your hand.	0					1	King									PlayerKing	FALSE			FALSE								FALSE	FALSE	FALSE			FALSE	None
-Relic	Power	Move a unit to any row.	0					1	Move									All	FALSE			FALSE								FALSE	FALSE	FALSE			FALSE	None
-Resurrection	Power	Choose one unit from the graveyard and play it\ron your side of the field.	0															PlayerHand	FALSE			FALSE		1	AutoPlay	UnitGraveyard	-1	Unit	FALSE	FALSE	FALSE	FALSE			FALSE	None
-Ruin	Power	Attach to a unit on the field and discard up\rto three cards from your hand. Add five times\rthe number of discarded cards to the unit's base\rstrength.	0							5	FALSE	AddMultiple						UnitGraveyard	FALSE			TRUE		3	SendGraveyardMultiply	PlayerHand	-1	UnitOrPower	TRUE	TRUE	FALSE	FALSE			FALSE	None
-Styx	Power	Pick a card from the top three in the power\rgraveyard, and add that card to your hand.	0															PlayerHand	FALSE			FALSE		1	AddHand	PowerGraveyard	3	Power	FALSE	FALSE	FALSE	FALSE			FALSE	None
-Usury	Power	Set aside three units from your hand to play at\rthe start of the next round. Draw two cards at the\rend of this round.	0	2	RoundEnd													PlayerHand	FALSE		AutoPlay	FALSE		3	SetAside	PlayerHand	-1	Unit	FALSE	FALSE	FALSE	FALSE			FALSE	None
-Void	Power	The round ends after your next turn ends.	0							1	FALSE	RoundAdvance						None	FALSE			FALSE								FALSE	FALSE	FALSE			FALSE	None
-War	Power	Send any number of your units on the field to the\rgraveyard. All other players then send the same\rnumber of units to the graveyard.	0			1	NUnits								1			PlayerPlayable	FALSE			FALSE								FALSE	FALSE	FALSE			FALSE	None
-Wrath	Power	Send one of your units on the field and two of\ryour opponent's units to the graveyard.	0			1	Unit								2			EnemyPlayable	FALSE			FALSE								FALSE	FALSE	FALSE			FALSE	None
-Archer	Ranged	 	2															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerRanged
-Archer2	Ranged	 	2															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerRanged
-Bowman	Ranged	 	2															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerRanged
-Bowman2	Ranged	 	2															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerRanged
-Grenadier	Ranged	 	4															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerRanged
-Grenadier2	Ranged	 	4															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerRanged
-Militia	Ranged	 	2															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerRanged
-Musketeer	Ranged	 	3															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerRanged
-Musketeer2	Ranged	 	3															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerRanged
-Musketeer3	Ranged	 	3															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerRanged
-Privateer	Ranged	 	4															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerRanged
-Privateer2	Ranged	 	4															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerRanged
-Privateer3	Ranged	 	4															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerRanged
-Privateer4	Ranged	 	4															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerRanged
-Riflemen	Ranged	 	3															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerRanged
-Soldier	Ranged	 	2															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerRanged
-Soldier2	Ranged	 	2															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerRanged
-Telescope	Ranged	Add one base strength to up to two units in this\rrow.	1							1	FALSE	Adjacent						PlayerRanged	FALSE			TRUE								TRUE	FALSE	FALSE			FALSE	PlayerRanged
-Waterworks	Ranged	 	5															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerRanged
-Armada	Siege	 	5															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerSiege
-Armada2	Siege	 	5															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerSiege
-Assault	Siege	 	3															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerSiege
-Assault2	Siege	 	3															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerSiege
-Assault3	Siege	 	3															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerSiege
-Cannon	Siege	 	4															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerSiege
-Cannon2	Siege	 	4															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerSiege
-Cannon3	Siege	 	4															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerSiege
-Cannon4	Siege	 	4															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerSiege
-Catapult	Siege	 	3															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerSiege
-Mortar	Siege	 	6															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerSiege
-Siege	Siege	 	2															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerSiege
-Siege2	Siege	 	2															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerSiege
-Siege3	Siege	 	2															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerSiege
-Tower	Siege	Add one base strength to up to two units in this\rrow.	1							1	FALSE	Adjacent						PlayerSiege	FALSE			TRUE								TRUE	FALSE	FALSE			FALSE	PlayerSiege
-Assassin	Spy	Play in any of your opponent's rows, then draw\rtwo cards. At the end of the round, this card\rreturns to the player's hand whose side of the\rfield it is on.	5	2	Either			0	RoundEnd									EnemyPlayable	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	None
-Minister	Spy	Play in your opponent's Siege row, then draw\rtwo cards. At the end of the round, this card\rreturns to the player's hand whose side of the\rfield it is on.	3	2	Either			0	RoundEnd									EnemySiege	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	None
-Saboteur	Spy	Play in your opponent's Range row, then draw\rtwo cards. At the end of the round, this card\rreturns to the player's hand whose side of the\rfield it is on.	2	2	Either			0	RoundEnd									EnemyRanged	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	None
-Smuggler	Spy	Draw two cards, your opponent draws one.	0	2	Either									1				None	FALSE			FALSE								FALSE	FALSE	FALSE			FALSE	None
-Spy	Spy	Play in your opponent's Melee row, then draw\rtwo cards. At the end of the round, this card\rreturns to the player's hand whose side of the\rfield it is on.	2	2	Either			0	RoundEnd									EnemyMelee	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	None
-Zealot	Spy	Play in your opponent's Melee row, then draw\rtwo cards. At the end of the round, this card\rreturns to the player's hand whose side of the\rfield it is on.	4	2	Either			0	RoundEnd									EnemyMelee	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	None
-Officer	Switch	This unit can also be played in the Siege row.	3															PlayerMeleeOrSiege	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerMelee
-Officer2	Switch	This unit can also be played in the Range row.	3															PlayerMeleeOrRanged	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerMelee
-Officer3	Switch	This unit can also be played in the Melee row.	3															PlayerMeleeOrSiege	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerSiege
-Officer4	Switch	This unit can also be played in the Range row.	3															PlayerRangedOrSiege	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerSiege
-Juggernaut	Switch	This unit can also be played in the Range row.	2															PlayerMeleeOrRanged	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	PlayerMelee
-Omen	Weather	Double the strength of all Siege rows or all\rMelee rows next round.	0														2	MeleeOrSiege	FALSE			FALSE								TRUE	TRUE	FALSE			FALSE	None
-ClearSkies	Weather	Clear all weather effects, or move a weather\reffect to any row.	0															None	FALSE			FALSE								FALSE	FALSE	FALSE			FALSE	None
-ClearSkiesClearWeather	Weather	Clear all weather effects, or move a weather\reffect to any row.	0															Weather	TRUE			FALSE								FALSE	FALSE	TRUE	ClearSkies	Clear Weather	FALSE	None
-ClearSkiesMoveWeather	Weather	Clear all weather effects, or move a weather\reffect to any row.	0					1	MoveWeather									Weather	FALSE			FALSE								FALSE	FALSE	TRUE	ClearSkies	Move Weather	FALSE	None
-Eclipse	Weather	Double the strength of all Melee rows or all\rRange rows next round.	0														2	MeleeOrRanged	FALSE			FALSE								TRUE	TRUE	FALSE			FALSE	None
-Fog	Weather	Halve the strength of all Range rows or all Siege\rrows this round.	0														0.5	RangedOrSiege	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	None
-Frost	Weather	Halve the strength of all Melee rows or all Range\rrows this round.	0														0.5	MeleeOrRanged	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	None
-Plague	Weather	Choose a row. In the next round, set all units in\rthat row to one base strength, for all players.	0							1	TRUE	Set						All	FALSE			FALSE								TRUE	TRUE	FALSE			FALSE	None
-Solstice	Weather	Double the strength of all Range rows or all\rSiege rows next round.	0														2	RangedOrSiege	FALSE			FALSE								TRUE	TRUE	FALSE			FALSE	None
-Storm	Weather	Halve the strength of all Siege rows or all Melee\rrows this round.	0														0.5	MeleeOrSiege	FALSE			FALSE								TRUE	FALSE	FALSE			FALSE	None
+CardName	CardType	EffectText	Strength	PlayerCardDraw	CardDrawType	PlayerCardDestroy	DestroyType	PlayerCardReturn	CardReturnType	StrengthModifier	StrengthModRow	StrengthModType	GraveyardCardDraw	EnemyCardDraw	EnemyCardDestroy	EnemyReveal	RowMultiple	EffectedRow	ClearWeather	SetAside	SetAsideType	Attach	StengthCondition	ChooseN	ChooseNAction	ChooseRow	ChooseShowN	ChooseCardType	ChooseSkippable	PlayInRow	PlayNextRound	IsAltEffect	CanAutoPlayAltEffect	MainCardName	EffectDescription	Protect	AutoPlaceRow
+Feint	Decoy	Set aside up to three of your units on the field\runtil the next round.	0															PlayerPlayable	FALSE	3	AutoPlay	FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	None
+Fortress	Decoy	Attach to a unit on the field. Its strength is halved\rthis round. This unit remains on the field to fight\rin the next round at double strength. This unit\rcannot be moved or sent to the graveyard.	0					0	DoubleAtRoundEnd	0.5	FALSE	Multiply						All	FALSE			TRUE								TRUE	FALSE	FALSE	FALSE			TRUE	None
+Jester	Decoy	Send one of your units on the field to the\rgraveyard. Swap this card with any unit on either\rside of the field, and add that card to your hand.	0			1	Unit	1	Unit									All	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	None
+Retreat	Decoy	Set aside up to three of your units on the field\runtil the next round.	0															PlayerPlayable	FALSE	3	AutoPlay	FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	None
+Sack	Decoy	Send one of your units on the field to the\rgraveyard. Swap this card with any unit on either\rside of the field, and add that card to your hand.	0			1	Unit	1	Unit									All	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	None
+Shipwreck	Decoy	Set aside up to three of your units on the field\runtil the next round.	0															PlayerPlayable	FALSE	3	AutoPlay	FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	None
+LionKing	King	Double the strength of one of your rows.\rHalve the strength of all Range rows this round,\ror set aside two of your opponent's units until\rthe next round.	0															None	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	None
+LionKingSetAside	King	Double the strength of one of your rows.\rHalve the strength of all Range rows this round,\ror set aside two of your opponent's units until\rthe next round.	0															EnemyPlayable	FALSE	2	Enemy	FALSE								TRUE	FALSE	TRUE	FALSE	LionKing	Set Aside 2	FALSE	None
+LionKingHalveRange	King	Double the strength of one of your rows.\rHalve the strength of all Range rows this round,\ror set aside two of your opponent's units until\rthe next round.	0														0.5	Ranged	FALSE			FALSE								TRUE	FALSE	TRUE	TRUE	LionKing	Halve Range Row	FALSE	None
+SunKing	King	Double the strength of one of your rows.\rClear all weather effects, move a weather effect\rto any row, or draw a card.	0															None	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	None
+SunKingClearWeather	King	Double the strength of one of your rows.\rClear all weather effects, move a weather effect\rto any row, or draw a card.	0															Weather	TRUE			FALSE								TRUE	FALSE	TRUE	TRUE	SunKing	Clear Weather	FALSE	None
+SunKingDraw	King	Double the strength of one of your rows.\rClear all weather effects, move a weather effect\rto any row, or draw a card.	0	1	Either													None	FALSE			FALSE								TRUE	FALSE	TRUE	FALSE	SunKing	Draw 1 Card	FALSE	None
+SunKingMoveWeather	King	Double the strength of one of your rows.\rClear all weather effects, move a weather effect\rto any row, or draw a card.	0					1	MoveWeather									Weather	FALSE			FALSE								TRUE	FALSE	TRUE	FALSE	SunKing	Move Weather	FALSE	None
+TerrorKing	King	Double the strength of one of your rows.\rHalve the strength of all Siege rows this round,\ror send a unit to the graveyard.	0															None	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	None
+TerrorKingHalveSiege	King	Double the strength of one of your rows.\rHalve the strength of all Siege rows this round,\ror send a unit to the graveyard.	0														0.5	Siege	FALSE			FALSE								TRUE	FALSE	TRUE	TRUE	TerrorKing	Halve Siege Row	FALSE	None
+TerrorKingDestroy	King	Double the strength of one of your rows.\rHalve the strength of all Siege rows this round,\ror send a unit to the graveyard.	0			0	Unit								1			All	FALSE			FALSE								TRUE	FALSE	TRUE	FALSE	TerrorKing	Draw 1 Card	FALSE	None
+TraitorKing	King	Double the strength of a row.\rSwap one unit on the field with your opponent,\ror draw a card.	0															None	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	None
+TraitorKingSwap	King	Double the strength of a row.\rSwap one unit on the field with your opponent,\ror draw a card.	0					1	Swap									EnemyPlayable	FALSE			FALSE								TRUE	FALSE	TRUE	FALSE	TraitorKing	Swap 1 Unit	FALSE	None
+TraitorKingDraw	King	Double the strength of a row.\rSwap one unit on the field with your opponent,\ror draw a card.	0	1	Either													None	FALSE			FALSE								TRUE	FALSE	TRUE	FALSE	TraitorKing	Draw 1 Card	FALSE	None
+WinterKing	King	Double the strength of one of your rows.\rHalve the strength of all Melee rows this round,\ror send a unit to the graveyard.	0															None	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	None
+WinterKingHalveMelee	King	Double the strength of one of your rows.\rHalve the strength of all Melee rows this round,\ror send a unit to the graveyard.	0														0.5	Melee	FALSE			FALSE								TRUE	FALSE	TRUE	TRUE	WinterKing	Halve Melee Row	FALSE	None
+WinterKingDestroy	King	Double the strength of one of your rows.\rHalve the strength of all Melee rows this round,\ror send a unit to the graveyard.	0			0	Unit								1			All	FALSE			FALSE								TRUE	FALSE	TRUE	FALSE	WinterKing	Destroy 1 Unit	FALSE	None
+Calvary	Melee	 	4															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerMelee
+Calvary2	Melee	 	4															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerMelee
+Calvary3	Melee	 	4															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerMelee
+Crusader	Melee	If drawn from the graveyard, draw the top unit\rfrom the graveyard.	2										1					PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerMelee
+Halberdier	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerMelee
+Knight	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerMelee
+Knight10	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerMelee
+Knight11	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerMelee
+Knight12	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerMelee
+Knight3	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerMelee
+Knight4	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerMelee
+Knight5	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerMelee
+Knight6	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerMelee
+Knight7	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerMelee
+Knight9	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerMelee
+Landsknecht	Melee	 	2															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerMelee
+MusketLine	Melee	 	5															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerMelee
+Scout	Melee	Add one base strength to up to two units in this\rrow.	1							1	FALSE	Adjacent						PlayerMelee	FALSE			TRUE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerMelee
+Square	Melee	 	3															PlayerMelee	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerMelee
+Burden	Power	At the end of the round, double the strength\rof your opponent's strongest row. In the next\rround, double the strongest row on your side.	0					0	SwitchSidesRoundEnd								2	EnemyMax	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	None
+Crusade	Power	Find your strongest row. Send your highest total\rstrength unit and all equally strong units in that\rrow to the graveyard. All other players then do\rthe same.	0			1	MaxAll								1			BothMax	FALSE			FALSE								FALSE	FALSE	FALSE	FALSE			FALSE	None
+Death	Power	Send one unit on the field to the graveyard.	0			0	Unit								1			All	FALSE			FALSE								FALSE	FALSE	FALSE	FALSE			FALSE	None
+Death2	Power	Send one unit on the field to the graveyard.	0			0	Unit								1			All	FALSE			FALSE								FALSE	FALSE	FALSE	FALSE			FALSE	None
+EmperorDemise	Power	Choose a King on the field; set it aside until the\rstart of the next round.	0															King	FALSE	1	EitherKing	FALSE								FALSE	FALSE	FALSE	FALSE			FALSE	None
+Enlightenment	Power	Your opponent reveals all power cards in their\rhand.	0													-1		EnemyHand	FALSE			FALSE								FALSE	FALSE	FALSE	FALSE			FALSE	None
+Execution	Power	Send your King to the graveyard.\rIf your King was on the field, draw three units;\rif it was in your hand, draw four.	0	3	Unit	1	PlayerKing											None	FALSE			FALSE								FALSE	FALSE	FALSE	FALSE			FALSE	None
+Famine	Power	Attach to a unit on the field. Every unit in its row\rhas minus one base strength.	0							1	TRUE	Subtract						All	FALSE			TRUE								TRUE	FALSE	FALSE	FALSE			FALSE	None
+Fate	Power	Discard one card from your hand, then return the\rlast card you played to your hand.	0					1	LastPlayedCard									None	FALSE			FALSE		1	SendGraveyard	PlayerHand	-1	UnitOrPower	FALSE	TRUE	FALSE	FALSE	FALSE			FALSE	None
+Feast2	Power	Attach to a unit on the field. Add the number of\runits in its row to its base strength.	0							1	FALSE	AddRowCount						None	FALSE			TRUE								TRUE	FALSE	FALSE	FALSE			FALSE	None
+Feast3	Power	Attach to a unit on the field. Add the number of\runits in its row to its base strength.	0							1	FALSE	AddRowCount						None	FALSE			TRUE								TRUE	FALSE	FALSE	FALSE			FALSE	None
+Grail	Power	Take the top two units in the graveyard and play\rthem on your side of the field.	0										2					UnitGraveyard	FALSE			FALSE								FALSE	FALSE	FALSE	FALSE			FALSE	None
+Offering	Power	Send one of your units on the field to the\rgraveyard. If its total strength was less than six,\rdraw two cards; otherwise, draw three.	0	2	Either	1	Unit											None	FALSE			FALSE	6							FALSE	FALSE	FALSE	FALSE			FALSE	None
+Redemption	Power	If your King is on the field, return it to your hand.	0					1	King									PlayerKing	FALSE			FALSE								FALSE	FALSE	FALSE	FALSE			FALSE	None
+Relic	Power	Move a unit to any row.	0					1	Move									All	FALSE			FALSE								FALSE	FALSE	FALSE	FALSE			FALSE	None
+Resurrection	Power	Choose one unit from the graveyard and play it\ron your side of the field.	0															PlayerHand	FALSE			FALSE		1	AutoPlay	UnitGraveyard	-1	Unit	FALSE	FALSE	FALSE	FALSE	FALSE			FALSE	None
+Ruin	Power	Attach to a unit on the field and discard up\rto three cards from your hand. Add five times\rthe number of discarded cards to the unit's base\rstrength.	0							5	FALSE	AddMultiple						UnitGraveyard	FALSE			TRUE		3	SendGraveyardMultiply	PlayerHand	-1	UnitOrPower	TRUE	TRUE	FALSE	FALSE	FALSE			FALSE	None
+Styx	Power	Pick a card from the top three in the power\rgraveyard, and add that card to your hand.	0															PlayerHand	FALSE			FALSE		1	AddHand	PowerGraveyard	3	Power	FALSE	FALSE	FALSE	FALSE	FALSE			FALSE	None
+Usury	Power	Set aside three units from your hand to play at\rthe start of the next round. Draw two cards at the\rend of this round.	0	2	RoundEnd													PlayerHand	FALSE		AutoPlay	FALSE		3	SetAside	PlayerHand	-1	Unit	FALSE	FALSE	FALSE	FALSE	FALSE			FALSE	None
+Void	Power	The round ends after your next turn ends.	0							1	FALSE	RoundAdvance						None	FALSE			FALSE								FALSE	FALSE	FALSE	FALSE			FALSE	None
+War	Power	Send any number of your units on the field to the\rgraveyard. All other players then send the same\rnumber of units to the graveyard.	0			1	NUnits								1			PlayerPlayable	FALSE			FALSE								FALSE	FALSE	FALSE	FALSE			FALSE	None
+Wrath	Power	Send one of your units on the field and two of\ryour opponent's units to the graveyard.	0			1	Unit								2			EnemyPlayable	FALSE			FALSE								FALSE	FALSE	FALSE	FALSE			FALSE	None
+Archer	Ranged	 	2															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerRanged
+Archer2	Ranged	 	2															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerRanged
+Bowman	Ranged	 	2															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerRanged
+Bowman2	Ranged	 	2															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerRanged
+Grenadier	Ranged	 	4															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerRanged
+Grenadier2	Ranged	 	4															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerRanged
+Militia	Ranged	 	2															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerRanged
+Musketeer	Ranged	 	3															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerRanged
+Musketeer2	Ranged	 	3															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerRanged
+Musketeer3	Ranged	 	3															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerRanged
+Privateer	Ranged	 	4															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerRanged
+Privateer2	Ranged	 	4															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerRanged
+Privateer3	Ranged	 	4															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerRanged
+Privateer4	Ranged	 	4															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerRanged
+Riflemen	Ranged	 	3															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerRanged
+Soldier	Ranged	 	2															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerRanged
+Soldier2	Ranged	 	2															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerRanged
+Telescope	Ranged	Add one base strength to up to two units in this\rrow.	1							1	FALSE	Adjacent						PlayerRanged	FALSE			TRUE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerRanged
+Waterworks	Ranged	 	5															PlayerRanged	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerRanged
+Armada	Siege	 	5															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerSiege
+Armada2	Siege	 	5															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerSiege
+Assault	Siege	 	3															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerSiege
+Assault2	Siege	 	3															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerSiege
+Assault3	Siege	 	3															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerSiege
+Cannon	Siege	 	4															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerSiege
+Cannon2	Siege	 	4															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerSiege
+Cannon3	Siege	 	4															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerSiege
+Cannon4	Siege	 	4															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerSiege
+Catapult	Siege	 	3															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerSiege
+Mortar	Siege	 	6															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerSiege
+Siege	Siege	 	2															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerSiege
+Siege2	Siege	 	2															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerSiege
+Siege3	Siege	 	2															PlayerSiege	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerSiege
+Tower	Siege	Add one base strength to up to two units in this\rrow.	1							1	FALSE	Adjacent						PlayerSiege	FALSE			TRUE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerSiege
+Assassin	Spy	Play in any of your opponent's rows, then draw\rtwo cards. At the end of the round, this card\rreturns to the player's hand whose side of the\rfield it is on.	5	2	Either			0	RoundEnd									EnemyPlayable	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	None
+Minister	Spy	Play in your opponent's Siege row, then draw\rtwo cards. At the end of the round, this card\rreturns to the player's hand whose side of the\rfield it is on.	3	2	Either			0	RoundEnd									EnemySiege	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	None
+Saboteur	Spy	Play in your opponent's Range row, then draw\rtwo cards. At the end of the round, this card\rreturns to the player's hand whose side of the\rfield it is on.	2	2	Either			0	RoundEnd									EnemyRanged	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	None
+Smuggler	Spy	Draw two cards, your opponent draws one.	0	2	Either									1				None	FALSE			FALSE								FALSE	FALSE	FALSE	FALSE			FALSE	None
+Spy	Spy	Play in your opponent's Melee row, then draw\rtwo cards. At the end of the round, this card\rreturns to the player's hand whose side of the\rfield it is on.	2	2	Either			0	RoundEnd									EnemyMelee	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	None
+Zealot	Spy	Play in your opponent's Melee row, then draw\rtwo cards. At the end of the round, this card\rreturns to the player's hand whose side of the\rfield it is on.	4	2	Either			0	RoundEnd									EnemyMelee	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	None
+Officer	Switch	This unit can also be played in the Siege row.	3															PlayerMeleeOrSiege	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerMelee
+Officer2	Switch	This unit can also be played in the Range row.	3															PlayerMeleeOrRanged	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerMelee
+Officer3	Switch	This unit can also be played in the Melee row.	3															PlayerMeleeOrSiege	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerSiege
+Officer4	Switch	This unit can also be played in the Range row.	3															PlayerRangedOrSiege	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerSiege
+Juggernaut	Switch	This unit can also be played in the Range row.	2															PlayerMeleeOrRanged	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	PlayerMelee
+Omen	Weather	Double the strength of all Siege rows or all\rMelee rows next round.	0														2	MeleeOrSiege	FALSE			FALSE								TRUE	TRUE	FALSE	FALSE			FALSE	None
+ClearSkies	Weather	Clear all weather effects, or move a weather\reffect to any row.	0															None	FALSE			FALSE								FALSE	FALSE	FALSE	FALSE			FALSE	None
+ClearSkiesClearWeather	Weather	Clear all weather effects, or move a weather\reffect to any row.	0															Weather	TRUE			FALSE								FALSE	FALSE	TRUE	TRUE	ClearSkies	Clear Weather	FALSE	None
+ClearSkiesMoveWeather	Weather	Clear all weather effects, or move a weather\reffect to any row.	0					1	MoveWeather									Weather	FALSE			FALSE								FALSE	FALSE	TRUE	FALSE	ClearSkies	Move Weather	FALSE	None
+Eclipse	Weather	Double the strength of all Melee rows or all\rRange rows next round.	0														2	MeleeOrRanged	FALSE			FALSE								TRUE	TRUE	FALSE	FALSE			FALSE	None
+Fog	Weather	Halve the strength of all Range rows or all Siege\rrows this round.	0														0.5	RangedOrSiege	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	None
+Frost	Weather	Halve the strength of all Melee rows or all Range\rrows this round.	0														0.5	MeleeOrRanged	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	None
+Plague	Weather	Choose a row. In the next round, set all units in\rthat row to one base strength, for all players.	0							1	TRUE	Set						All	FALSE			FALSE								TRUE	TRUE	FALSE	FALSE			FALSE	None
+Solstice	Weather	Double the strength of all Range rows or all\rSiege rows next round.	0														2	RangedOrSiege	FALSE			FALSE								TRUE	TRUE	FALSE	FALSE			FALSE	None
+Storm	Weather	Halve the strength of all Siege rows or all Melee\rrows this round.	0														0.5	MeleeOrSiege	FALSE			FALSE								TRUE	FALSE	FALSE	FALSE			FALSE	None
