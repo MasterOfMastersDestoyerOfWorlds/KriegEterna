@@ -12,7 +12,7 @@ public class AltEffectController : EffectControllerInterface
 
         RowEffected displayRowType = CardModel.getRowFromSide(player, RowEffected.PlayerAltEffectRow);
         Row displayRow = deck.getRowByType(displayRowType);
-        List<Card> effects = c.altEffects;
+        List<AltEffect> effects = c.altEffects;
         deck.getRowByType(RowEffected.Skip).setVisibile(false);
         displayRow.setVisibile(false);
         Game.shadowCamera.enabled = false;
@@ -41,7 +41,7 @@ public class AltEffectController : EffectControllerInterface
 
         RowEffected displayRowType = CardModel.getRowFromSide(player, RowEffected.PlayerAltEffectRow);
         Row displayRow = deck.getRowByType(displayRowType);
-        List<Card> effects = c.altEffects;
+        List<AltEffect> effects = c.altEffects;
         c.scaleBig();
         Game.shadowCamera.enabled = true;
         Deck activeDeck = Game.activeDeck;
@@ -50,22 +50,29 @@ public class AltEffectController : EffectControllerInterface
         float cardHorizontalSpacing = Card.getBaseWidth() * 2.5f;
         float cardThickness = Card.getBaseThickness();
         float attachmentVerticalSpacing = Card.getBaseHeight();
-        while (displayRow.Count > 0)
-        {
-            Card clone = displayRow[0];
-            displayRow.Remove(clone);
-        }
+        displayRow.RemoveAll((x) => true);
+        int playable = 0;
         for (int i = 0; i < effects.Count; i++)
         {
-            Card effect = effects[i];
+            AltEffect effect = effects[i];
+
             Debug.Log("Revealing: " + effect.cardName + " " + effect.cardType);
             effect.setVisible(true);
             effect.setLayer("Display", true);
             displayRow.Add(effect);
+            if (effect.isPlayable(player))
+            {
+                effect.setTargetActive(true);
+                playable++;
+            }
+        }
+        if (playable > 0)
+        {
+            displayRow.cardTargetsActivated = true;
         }
         Debug.Log(displayRow.Count + " " + displayRow);
         Game.reorganizeRow(cardHorizontalSpacing, cardThickness, attachmentVerticalSpacing, displayRow, displayRow.center);
-        displayRow.setActivateRowCardTargets(true, true, false);
+
         deck.getRowByType(RowEffected.Skip).setVisibile(false);
     }
 

@@ -79,6 +79,10 @@ public static class PowerController
             {
                 Debug.Log("Target Controller: " + controller);
                 controller.Target(c, player);
+                if (controller.ShoudlReorganizeGroup())
+                {
+                    Game.reorganizeGroup();
+                }
                 break;
             }
         }

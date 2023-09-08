@@ -237,7 +237,7 @@ public class Deck : MonoBehaviour
         Row powers = getRowByType(RowEffected.PowerDeck);
         Row units = getRowByType(RowEffected.UnitDeck);
         Row kings = getRowByType(RowEffected.KingDeck);
-        List<Card> alts = new List<Card>();
+        List<AltEffect> alts = new List<AltEffect>();
         for (int cardIndex = 0; cardIndex < FRONTS_NUMBER; cardIndex++)
         {
             if (Game.random == null)
@@ -245,31 +245,38 @@ public class Deck : MonoBehaviour
                 break;
             }
             int cardId = uniqueValues[Game.random.Next(uniqueValues.Count)];
-
-            Card clone = Instantiate(baseCard) as Card;
+            Card clone = Instantiate(baseCard);
             clone.tag = "CloneCard";
-            clone.initCard(cardId);
-            clone.setIsSpecial(clone.getCardModel().getIsSpecial(cardId));
-            clone.setBaseLoc();
-            if (clone.isAltEffect)
+            if (CardModel.isAltEffect[cardId])
             {
-                alts.Add(clone);
+                AltEffect effect = clone.gameObject.AddComponent<AltEffect>();
+                effect.initCard(cardId);
+                effect.setIsSpecial(clone.getCardModel().getIsSpecial(cardId));
+                effect.setBaseLoc();
+                alts.Add(effect);
             }
-            else if (CardModel.isPower(clone.cardType))
+            else
             {
-                powers.Add(clone);
+                clone.initCard(cardId);
+                clone.setIsSpecial(clone.getCardModel().getIsSpecial(cardId));
+                clone.setBaseLoc();
+                if (CardModel.isPower(clone.cardType))
+                {
+                    powers.Add(clone);
+                }
+                else if (CardModel.isUnit(clone.cardType))
+                {
+                    units.Add(clone);
+                }
+                else if (clone.cardType == CardType.King)
+                {
+                    kings.Add(clone);
+                }
             }
-            else if (CardModel.isUnit(clone.cardType))
-            {
-                units.Add(clone);
-            }
-            else if (clone.cardType == CardType.King)
-            {
-                kings.Add(clone);
-            }
+
             uniqueValues.Remove(cardId);
         }
-        foreach (Card c in alts)
+        foreach (AltEffect c in alts)
         {
             Card main = this.getCardInDeckByName(c.mainCardName);
             if (main == null)
@@ -491,6 +498,8 @@ public class Deck : MonoBehaviour
             resetCard(currentRow, attachment);
         }
         c.attachments.RemoveAll(delegate (Card c) { return true; });
+        
+        c.resetSelectionCounts();
         if (c.isClone)
         {
             c.Destroy();
@@ -532,7 +541,8 @@ public class Deck : MonoBehaviour
                     c.resetScale();
                     c.resetTransform();
                 }
-                if (c.isAltEffect){
+                if (c.isAltEffect)
+                {
                     c.setVisible(false);
                 }
             }
@@ -679,6 +689,25 @@ public class Deck : MonoBehaviour
                 foreach (Card c in row)
                 {
                     if (CardModel.isUnit(c.cardType))
+                    {
+                        sum++;
+                    }
+                }
+            }
+        }
+        return sum;
+    }
+
+    public int countWeatherInRows(RowEffected rowType)
+    {
+        int sum = 0;
+        foreach (Row row in rows)
+        {
+            if (row.hasType(rowType))
+            {
+                foreach (Card c in row)
+                {
+                    if (CardType.Weather == c.cardType)
                     {
                         sum++;
                     }

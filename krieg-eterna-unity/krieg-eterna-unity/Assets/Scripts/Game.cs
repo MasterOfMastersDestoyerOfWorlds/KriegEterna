@@ -229,7 +229,8 @@ public class Game : MonoBehaviour
         if (!hasChosenStart)
         {
             var sw = System.Diagnostics.Stopwatch.StartNew();
-            choosePower.Add("Smuggler");
+            choosePower.Add("ClearSkies");
+            chooseKing.Add("LionKing");
             activeDeck.buildDeck(NUM_POWERS, NUM_UNITS, NUM_KINGS, choosePower, chooseUnit, chooseKing, chooseUnitGraveyard, choosePowerGraveyard, enemyPower, enemyUnit, enemyKing);
             sw.Stop();
             Debug.Log("buildDeck Time elapsed: " + sw.Elapsed);

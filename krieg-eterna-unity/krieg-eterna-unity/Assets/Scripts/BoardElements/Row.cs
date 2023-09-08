@@ -121,6 +121,7 @@ public class Row : List<Card>
     public void setVisibile(bool state)
     {
         Debug.Log("Setting Row Visible: " + state + " " + uniqueType);
+
         foreach (Card c in this)
         {
             c.setVisible(state);

@@ -65,8 +65,8 @@ public class Card : MonoBehaviour
     public int moveRemain;
     public Card moveCard;
     public RowEffected moveRow;
-    private bool targetActive = false;
-    private bool visible = false;
+    protected bool targetActive = false;
+    protected bool visible = false;
     public bool isBig = false;
     public float bigFac = 2;
     public int isSpecial;
@@ -78,7 +78,7 @@ public class Card : MonoBehaviour
 
     public List<Card> attachments;
 
-    public List<Card> altEffects;
+    public List<AltEffect> altEffects;
 
     private static float baseHeight;
     private static float baseWidth;
@@ -93,7 +93,7 @@ public class Card : MonoBehaviour
     private static float screenWidth;
 
     private SpriteRenderer spriteRenderer;
-    private BoxCollider2D cardColider;
+    public BoxCollider2D cardColider;
 
     private Material material;
     private Material backMaterial;
@@ -107,9 +107,9 @@ public class Card : MonoBehaviour
 
     public TMP_Text strengthText;
     public TMP_Text effectDescriptionText;
-    
-    Transform effectDescriptionTextObj;
-    private GameObject targetObj;
+
+    public Transform effectDescriptionTextObj;
+    public GameObject targetObj;
     public bool textureLoaded;
 
     public LayerMask defaultLayerMask;
@@ -134,6 +134,7 @@ public class Card : MonoBehaviour
             setBaseScale();
         }
         baseLoc = this.transform.position;
+        attachments = new List<Card>();
         Transform cardObj = this.transform.Find("Card 1");
         Transform strengthTextObj = cardObj.Find("Score");
         effectDescriptionTextObj = cardObj.Find("EffectDescription");
@@ -288,7 +289,7 @@ public class Card : MonoBehaviour
         this.resetSelectionCounts();
     }
 
-    public void initCard(int index)
+    public virtual void initCard(int index)
     {
         this.index = index;
         if (index > CardModel.names.Count)
@@ -296,22 +297,7 @@ public class Card : MonoBehaviour
             Debug.LogError("Out of Bounds! expected max index: " + (cardModel.numCardEffects - 1) + " got: " + index + " num card names:" + CardModel.names.Count);
         }
         setEffectFromCardModel(index);
-        if (this.isAltEffect)
-        {
-            this.strengthText.text = "";
-            this.setVisible(false);
-            this.effectDescriptionText.text = this.effectDescription;
-            this.effectDescriptionText.alpha = 0;
-            this.cardColider = effectDescriptionTextObj.GetComponent<BoxCollider2D>();
-            this.targetObj.transform.localScale = new Vector3(14.2f, 3.81f, 1);
-            Material targetMaterial = this.getTargetMaterial();
-            targetMaterial.SetFloat("_RectWidth", 0.79f);
-            targetMaterial.SetFloat("_RectHeight", 0.67f);
-        }
-        else
-        {
-            this.effectDescriptionText.text = "";
-        }
+        this.effectDescriptionText.text = "";
         this.loadCardBackMaterial();
     }
 
@@ -338,7 +324,7 @@ public class Card : MonoBehaviour
         this.setAsideRemain = this.setAside;
         this.graveyardCardDrawRemain = this.graveyardCardDraw;
         this.chooseNRemain = this.chooseN;
-        this.isEffectSet = this.isAltEffect;
+        this.isEffectSet = false;
         if (attach && strengthModType == StrengthModType.Adjacent)
         {
             this.attachmentsRemaining = 2;
@@ -432,20 +418,11 @@ public class Card : MonoBehaviour
         this.targetActive = state;
         updateStrengthText(this.calculatedStrength);
     }
-    public void setVisible(bool state)
+    public virtual void setVisible(bool state)
     {
-        if (!this.isAltEffect)
-        {
-            Material material = getCardFrontMaterial();
-            material.SetInt("_Transparent", state ? 0 : 1);
-            updateStrengthText(this.calculatedStrength);
-        }
-        else
-        {
-            Material material = getCardFrontMaterial();
-            material.SetInt("_Transparent", 1);
-            this.effectDescriptionText.alpha = state ? 1 : 0;
-        }
+        Material material = getCardFrontMaterial();
+        material.SetInt("_Transparent", state ? 0 : 1);
+        updateStrengthText(this.calculatedStrength);
         this.visible = state;
     }
 
@@ -467,6 +444,7 @@ public class Card : MonoBehaviour
         int enemyRowsSum = 0;
         List<Row> returnRows = deck.getRowsByType(CardModel.getRowFromSide(player, this.rowEffected));
         int returnRowsSum = 0;
+        int weatherSum = deck.countWeatherInRows(RowEffected.All);
         RowEffected playerKingRow = deck.getKingRow(player);
         RowEffected enemyKingRow = deck.getKingRow(CardModel.getEnemy(player));
         for (int i = 0; i < playerRows.Count; i++)
@@ -509,6 +487,10 @@ public class Card : MonoBehaviour
         if (this.setAsideType == SetAsideType.King && playerKingRow == RowEffected.None)
         {
             Debug.Log("Cannot Play Cond 5! : Set Aside Type y+King :  playerKingRow  is None! ");
+            return false;
+        }
+        if(this.cardReturnType == CardReturnType.MoveWeather && weatherSum <= 0){
+            Debug.Log("Cannot Play Cond 6! : there are no weather cards to move!");
             return false;
         }
 
@@ -661,7 +643,7 @@ public class Card : MonoBehaviour
         return this.backMaterial;
     }
 
-    private Material getCardFrontMaterial()
+    protected Material getCardFrontMaterial()
     {
         if (this.material == null)
         {
@@ -672,7 +654,7 @@ public class Card : MonoBehaviour
         }
         return this.material;
     }
-    private Material getTargetMaterial()
+    protected Material getTargetMaterial()
     {
         if (this.targetMaterial == null)
         {

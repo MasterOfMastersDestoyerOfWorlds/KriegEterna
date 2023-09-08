@@ -70,6 +70,7 @@ public class PlayController
             if (c.doneMultiSelection(player))
             {
                 deck.getRowByType(CardModel.getRowFromSide(player, RowEffected.PlayerHand)).Remove(c);
+                Game.reorganizeGroup();
             }
         }
         if (Game.state == State.MULTISTEP)

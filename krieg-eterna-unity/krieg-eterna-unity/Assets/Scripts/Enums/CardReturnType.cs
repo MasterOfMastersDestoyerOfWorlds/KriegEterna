@@ -4,12 +4,12 @@ public enum CardReturnType
     King = 2,
     LastPlayedCard = 3,
     Move = 4,
-    MoveWeather = 4,
-    Swap = 5,
-    SwitchSidesRoundEnd = 6,
-    ProtectAtRoundEnd = 7,
-    RoundEnd = 8,
-    DoubleAtRoundEnd = 9,
+    MoveWeather = 5,
+    Swap = 6,
+    SwitchSidesRoundEnd = 7,
+    ProtectAtRoundEnd = 8,
+    RoundEnd = 9,
+    DoubleAtRoundEnd = 10,
     None = 0
 
 };

@@ -13,7 +13,7 @@ namespace KriegTests
             return new List<TestCase>(){
             new TestCase
             {
-                testName = "ClearSkies",
+                testName = "ClearSkiesClearWeather",
                 scoreRows = new List<(RowEffected, int)>{
                     (RowEffected.EnemySiege, 2),
                     (RowEffected.PlayerSiege, 6),
@@ -29,7 +29,7 @@ namespace KriegTests
                     new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, false),
                     new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, false),
                     new Click("ClearSkies", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new Click("ClearSkies", RowEffected.PlayerHand, RowEffected.PowerGraveyard, RowEffected.PowerGraveyard, true),
+                    new Click("ClearSkiesClearWeather", RowEffected.PlayerAltEffectRow, RowEffected.PlayerAltEffectRow, RowEffected.PlayerAltEffectRow, true),
                 }
             },
             new TestCase
