@@ -18,6 +18,8 @@ public class AltEffect : Card
             Debug.LogError("Out of Bounds! expected max index: " + (cardModel.numCardEffects - 1) + " got: " + index + " num card names:" + CardModel.names.Count);
         }
         setEffectFromCardModel(index);
+        this.cardName = CardModel.names[index];
+        this.name = cardName;
         this.strengthText.text = "";
         this.setVisible(false);
         this.effectDescriptionText.text = this.effectDescription;
@@ -32,10 +34,10 @@ public class AltEffect : Card
 
     public override void setVisible(bool state)
     {
-            Material material = getCardFrontMaterial();
-            material.SetInt("_Transparent", 1);
-            this.effectDescriptionText.alpha = state ? 1 : 0;
-            this.visible = state;
+        Material material = getCardFrontMaterial();
+        material.SetInt("_Transparent", 1);
+        this.effectDescriptionText.alpha = state ? 1 : 0;
+        this.visible = state;
     }
 
 }

@@ -241,8 +241,6 @@ public class Card : MonoBehaviour
 
     public void setEffectFromCardModel(int index)
     {
-        this.cardName = CardModel.names[index];
-        this.name = cardName;
         this.cardType = CardModel.cardTypes[index];
         this.strength = CardModel.strength[index];
         this.playerCardDraw = CardModel.playerCardDraw[index];
@@ -296,6 +294,9 @@ public class Card : MonoBehaviour
         {
             Debug.LogError("Out of Bounds! expected max index: " + (cardModel.numCardEffects - 1) + " got: " + index + " num card names:" + CardModel.names.Count);
         }
+        
+        this.cardName = CardModel.names[index];
+        this.name = cardName;
         setEffectFromCardModel(index);
         this.effectDescriptionText.text = "";
         this.loadCardBackMaterial();

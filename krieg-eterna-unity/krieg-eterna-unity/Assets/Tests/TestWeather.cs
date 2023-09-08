@@ -5,6 +5,7 @@ namespace KriegTests
     using TestCase = TestCards.TestCase;
     using Click = TestCards.Click;
     using ClickRow = TestCards.ClickRow;
+    using ClickAltEffect = TestCards.ClickAltEffect;
     using System.Collections.Generic;
     public class TestWeather : TestCaseCollection
     {
@@ -29,7 +30,7 @@ namespace KriegTests
                     new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, false),
                     new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, false),
                     new Click("ClearSkies", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new Click("ClearSkiesClearWeather", RowEffected.PlayerAltEffectRow, RowEffected.PlayerAltEffectRow, RowEffected.PlayerAltEffectRow, true),
+                    new ClickAltEffect("ClearSkiesClearWeather", RowEffected.PlayerAltEffectRow),
                 }
             },
             new TestCase

@@ -101,6 +101,7 @@ namespace KriegTests
             public bool click;
             public bool setRevealed = false;
             public bool isRowTarget;
+            public bool isAltEffect;
 
             public Click(string cardName, RowEffected dealRow, RowEffected rowAfterClick, RowEffected finalRow, bool click)
             {
@@ -111,6 +112,7 @@ namespace KriegTests
                 this.finalRow = finalRow;
                 this.click = click;
                 this.isRowTarget = false;
+                this.isAltEffect = false;
             }
             public Click(bool setRevealed, string cardName, RowEffected dealRow, RowEffected rowAfterClick, RowEffected finalRow, bool click)
             {
@@ -122,6 +124,7 @@ namespace KriegTests
                 this.click = click;
                 this.setRevealed = setRevealed;
                 this.isRowTarget = false;
+                this.isAltEffect = false;
             }
         }
 
@@ -136,7 +139,25 @@ namespace KriegTests
                 this.name = rowName;
                 this.targetRow = row;
                 this.isRowTarget = true;
+                this.isAltEffect = false;
             }
+
+        }
+
+        public class ClickAltEffect : Click
+        {
+            public RowEffected targetRow;
+            public ClickAltEffect(string cardName, RowEffected dealRow, RowEffected rowAfterClick, RowEffected finalRow, bool click) : base(cardName, dealRow, rowAfterClick, finalRow, click)
+            {
+            }
+            public ClickAltEffect(string effectName, RowEffected row) : base(effectName, row, row, row, true)
+            {
+                this.name = effectName;
+                this.targetRow = row;
+                this.isRowTarget = false;
+                this.isAltEffect = true;
+            }
+
 
         }
 
@@ -237,7 +258,7 @@ namespace KriegTests
             List<string> dealtCards = new List<string>();
             for (int i = 0; i < clicks.Count; i++)
             {
-                if (!clicks[i].isRowTarget)
+                if (!clicks[i].isRowTarget && !clicks[i].isAltEffect)
                 {
                     string cardName = clicks[i].name;
                     RowEffected dealRow = CardModel.getRowFromSide(testCase.player, clicks[i].dealRow);
@@ -287,6 +308,10 @@ namespace KriegTests
                 {
                     Card c = clicks[i].card;
                     Card clickCard = c;
+                    if (clicks[i].isAltEffect)
+                    {
+                        clickCard = deck.getRowByType(dealRow).getCardByName(clicks[i].name);
+                    }
                     if (CardModel.isDisplayRow(dealRow))
                     {
                         clickCard = deck.getRowByType(dealRow).getCardByName(clicks[i].name);
@@ -300,14 +325,17 @@ namespace KriegTests
                     else
                     {
                         Debug.Log(clicks[i].card);
-                        Debug.Log("Doing Player Click: " + clickCard.cardName  + " Expected Transform: " + clickCard.transform.position);
+                        Debug.Log("Doing Player Click: " + clickCard.cardName + " Expected Transform: " + clickCard.transform.position);
                         InputSystem.Update();
                         MousePositioning(clickCard.transform);
                         ClickOnCard(clickCard.transform);
                         MouseUnClick();
                     }
-                    Assert.AreEqual(true, deck.getRowByType(rowAfterClick).ContainsIncludeAttachments(c),
-                    $"row after click cardName: {clicks[i].name}, Expected Row: {rowAfterClick}  {deck.getRowByType(rowAfterClick)}, Actual Row: {deck.getCardRow(c).uniqueType} {deck.getRowByType(deck.getCardRow(c).uniqueType)}");
+                    if (!clicks[i].isAltEffect)
+                    {
+                        Assert.AreEqual(true, deck.getRowByType(rowAfterClick).ContainsIncludeAttachments(c),
+                        $"row after click cardName: {clicks[i].name}, Expected Row: {rowAfterClick}  {deck.getRowByType(rowAfterClick)}, Actual Row: {deck.getCardRow(c).uniqueType} {deck.getRowByType(deck.getCardRow(c).uniqueType)}");
+                    }
                 }
                 else if (clicks[i].isRowTarget)
                 {
@@ -343,7 +371,7 @@ namespace KriegTests
             for (int i = 0; i < clicks.Count; i++)
             {
                 RowEffected finalRowType = CardModel.getRowFromSide(testCase.player, clicks[i].finalRow);
-                if (!clicks[i].isRowTarget)
+                if (!clicks[i].isRowTarget && !clicks[i].isAltEffect)
                 {
                     Card c = clicks[i].card;
                     Row finalRow = deck.getRowByType(finalRowType);
