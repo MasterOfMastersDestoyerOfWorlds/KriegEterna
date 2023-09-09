@@ -79,12 +79,6 @@ public class ReturnController : EffectControllerInterface
     public bool TargetCondition(Card c, RowEffected player)
     {
         Deck deck = Game.activeDeck;
-        Debug.Log(Game.activeCard.cardName);
-        Debug.Log(c.cardName);
-        Debug.Log(c.playerCardReturnRemain);
-        Debug.Log(c.cardReturnType);
-        Debug.Log(deck.countWeatherInRows(CardModel.getRowFromSide(player, RowEffected.All)));
-
         return c.playerCardReturnRemain > 0 && c.cardReturnType != CardReturnType.LastPlayedCard && (c.cardReturnType != CardReturnType.MoveWeather || deck.countWeatherInRows(CardModel.getRowFromSide(player, RowEffected.All)) > 0);
     }
 }

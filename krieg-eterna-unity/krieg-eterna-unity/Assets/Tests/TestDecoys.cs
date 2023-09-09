@@ -32,6 +32,19 @@ namespace KriegTests
                     new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
                 }
             },
+            
+             new TestCase
+            {
+                testName = "JesterReturnAttachment",
+                playerHandCount = 1,
+                clicks = new List<Click>{
+                    new Click("Feast2", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerHand, true),
+                    new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
+                    new Click("Jester", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
+                    new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
+                }
+            },
 
             new TestCase
             {

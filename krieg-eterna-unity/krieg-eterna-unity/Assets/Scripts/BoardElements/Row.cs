@@ -102,6 +102,7 @@ public class Row : List<Card>
 
             if (!this.hasType(RowEffected.Deck) && !this.hasType(RowEffected.ChooseN) && !this.hasType(RowEffected.Graveyard))
             {
+                Debug.Log("Add: " + card + " from: " + uniqueType);
                 MoveLogger.logRowAdd(card, uniqueType, Game.player);
             }
             card.currentRow = this.uniqueType;
@@ -113,6 +114,7 @@ public class Row : List<Card>
     {
         if (!this.hasType(RowEffected.Deck) && !this.hasType(RowEffected.ChooseN) && !this.hasType(RowEffected.Graveyard))
         {
+            Debug.Log("Remove: " + card + " from: " + uniqueType);
             MoveLogger.logRowRemove(card, uniqueType, Game.player);
         }
         return base.Remove(card);

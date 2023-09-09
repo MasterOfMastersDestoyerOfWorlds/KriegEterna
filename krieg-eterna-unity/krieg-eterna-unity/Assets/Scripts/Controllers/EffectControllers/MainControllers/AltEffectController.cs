@@ -16,10 +16,12 @@ public class AltEffectController : EffectControllerInterface
         deck.getRowByType(RowEffected.Skip).setVisibile(false);
         displayRow.setVisibile(false);
         Game.shadowCamera.enabled = false;
+        displayRow.cardTargetsActivated = false;
         deck.disactiveAllInDeck(false);
         Game.state = State.MULTISTEP;
         if (c.canAutoPlayAltEffect)
         {
+            Debug.Log("AUTOPLAYING");
             PlayController.Play(c, targetRow, targetCard, player);
         }
         else

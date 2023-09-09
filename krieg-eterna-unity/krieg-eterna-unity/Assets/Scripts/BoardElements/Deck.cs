@@ -13,7 +13,7 @@ public class Deck : MonoBehaviour
     public List<Row> rows;
     private GameObject areasObject;
 
-    private static int FRONTS_NUMBER = 118;
+    private static int FRONTS_NUMBER = 121;
     // TODO - remove max amount of cards in each range group
 
     void Awake()

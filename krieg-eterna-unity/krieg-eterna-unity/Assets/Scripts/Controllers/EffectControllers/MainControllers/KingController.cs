@@ -5,7 +5,12 @@ public class KingController : EffectControllerInterface
 {
     public void Play(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
+        Deck deck = Game.activeDeck;
+        RowEffected playerHand = CardModel.getHandRow(player);
+        Row playerHandRow = deck.getRowByType(playerHand);
         targetRow.Add(c);
+        playerHandRow.Remove(c);
+
         RowEffected enemySide = CardModel.getRowFromSide(player, RowEffected.EnemyPlayable);
         RowEffected playerSide = CardModel.getRowFromSide(player, RowEffected.PlayerPlayable);
         int cardsRemaining = Game.activeDeck.countUnitsInRows(enemySide);
@@ -30,7 +35,7 @@ public class KingController : EffectControllerInterface
     }
     public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
-        return Game.state != State.MULTISTEP && c.cardType == CardType.King;
+        return c.cardType == CardType.King && CardModel.isHandRow(c.currentRow);
     }
     public void Target(Card c, RowEffected player)
     {
@@ -40,6 +45,6 @@ public class KingController : EffectControllerInterface
     }
     public bool TargetCondition(Card c, RowEffected player)
     {
-        return Game.state != State.MULTISTEP && c.cardType == CardType.King; ;
+        return c.cardType == CardType.King && CardModel.isHandRow(c.currentRow);
     }
 }

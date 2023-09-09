@@ -197,6 +197,18 @@ public class CardModel : MonoBehaviour
         }
         return RowEffected.PlayerHand;
     }
+    public static bool isHandRow(RowEffected row)
+    {
+        if (row == RowEffected.EnemyHand)
+        {
+            return true;
+        }else if (row == RowEffected.PlayerHand){
+            return true;
+        }else if (row == RowEffected.BothHand){
+            return true;
+        }
+        return false;
+    }
     public static RowEffected getEnemy(RowEffected player)
     {
         if (player == RowEffected.Enemy)

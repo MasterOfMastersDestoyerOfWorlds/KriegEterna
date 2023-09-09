@@ -229,7 +229,8 @@ public class Card : MonoBehaviour
         this.cardName = cardName;
     }
 
-    public bool hasClone(){
+    public bool hasClone()
+    {
         return clone != null;
     }
 
@@ -238,7 +239,8 @@ public class Card : MonoBehaviour
         return this.rowMultiple;
     }
 
-    public Card makeClone(){
+    public Card makeClone()
+    {
         clone = GameObject.Instantiate(this) as Card;
         clone.isClone = true;
         clone.clone = this;
@@ -306,7 +308,7 @@ public class Card : MonoBehaviour
         {
             Debug.LogError("Out of Bounds! expected max index: " + (cardModel.numCardEffects - 1) + " got: " + index + " num card names:" + CardModel.names.Count);
         }
-        
+
         this.cardName = CardModel.names[index];
         this.name = cardName;
         setEffectFromCardModel(index);
@@ -394,7 +396,8 @@ public class Card : MonoBehaviour
         return (this.playerCardDrawRemain <= 0 || this.cardDrawType != CardDrawType.Either) && this.playerCardDestroyRemain <= 0
         && (this.playerCardReturnRemain <= 0 || this.cardReturnType == CardReturnType.SwitchSidesRoundEnd || this.cardReturnType == CardReturnType.LastPlayedCard)
         && (this.enemyCardDestroyRemain <= 0 || this.destroyType == DestroyType.RoundEnd)
-        && this.setAsideRemain <= 0 && this.moveRemain <= 0 && this.attachmentsRemaining <= 0 && this.chooseNRemain <= 0;
+        && this.setAsideRemain <= 0 && this.moveRemain <= 0 && this.attachmentsRemaining <= 0 && this.chooseNRemain <= 0
+        && (this.cardType != CardType.King || !CardModel.isHandRow(this.currentRow));
     }
 
     public void LogSelectionsRemaining()
@@ -433,6 +436,10 @@ public class Card : MonoBehaviour
     }
     public virtual void setVisible(bool state)
     {
+        if (!state)
+        {
+            Debug.Log("Setting Visible: false");
+        }
         Material material = getCardFrontMaterial();
         material.SetInt("_Transparent", state ? 0 : 1);
         updateStrengthText(this.calculatedStrength);
@@ -492,11 +499,12 @@ public class Card : MonoBehaviour
             Debug.Log("Cannot Play Cond 3! : Set Aside Type Player : " + this.setAside + " > " + playerRowsSum);
             return false;
         }
+        /*
         if (this.setAsideType == SetAsideType.Enemy && this.setAside > enemyRowsSum)
         {
             Debug.Log("Cannot Play Cond 4! : Set Aside Type Player : " + this.setAside + " > " + enemyRowsSum);
             return false;
-        }
+        }*/
         if (this.setAsideType == SetAsideType.EnemyKing && enemyKingRow == RowEffected.None)
         {
             Debug.Log("Cannot Play Cond 5! : Set Aside Type EnemyKing :  enemyKingRow is None! ");
@@ -507,7 +515,8 @@ public class Card : MonoBehaviour
             Debug.Log("Cannot Play Cond 6! : Set Aside Type y+King :  playerKingRow  is None! ");
             return false;
         }
-        if(this.cardReturnType == CardReturnType.MoveWeather && weatherSum <= 0){
+        if (this.cardReturnType == CardReturnType.MoveWeather && weatherSum <= 0)
+        {
             Debug.Log("Cannot Play Cond 7! : there are no weather cards to move!");
             return false;
         }
