@@ -86,5 +86,10 @@ public static class PowerController
                 break;
             }
         }
+
+        if (c.doneMultiSelection(player))
+        {
+            Game.state = State.FREE;
+        }
     }
 }

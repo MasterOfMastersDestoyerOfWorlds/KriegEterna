@@ -6,6 +6,7 @@ public class AltEffectController : EffectControllerInterface
 
     public void Play(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
+        
         c.setEffect(targetCard);
         Deck deck = Game.activeDeck;
         Debug.Log("Setting up Alt Effect: " + targetCard);

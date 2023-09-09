@@ -286,6 +286,7 @@ public class Card : MonoBehaviour
         this.playInRow = CardModel.playInRow[index];
         this.playNextRound = CardModel.playNextRound[index];
         this.isAltEffect = CardModel.isAltEffect[index];
+        this.isEffectSet = false;
         this.canAutoPlayAltEffect = CardModel.canAutoPlayAltEffect[index];
         this.mainCardName = CardModel.mainCardName[index];
         this.effectDescription = CardModel.effectDescription[index];
@@ -325,10 +326,11 @@ public class Card : MonoBehaviour
     public void setEffect(Card effect)
     {
         this.setEffectFromCardModel(effect.index);
+        this.setSelectionCounts();
         this.isEffectSet = true;
 
     }
-    public void resetSelectionCounts()
+    public void setSelectionCounts()
     {
         this.roundEndRemoveType = RoundEndRemoveType.Remove;
         this.playerCardDrawRemain = playerCardDraw;
@@ -348,9 +350,21 @@ public class Card : MonoBehaviour
         {
             this.attachmentsRemaining = 1;
         }
+
         this.strengthConditionPassed = false;
         this.strengthMultiple = 0;
 
+    }
+    public void resetSelectionCounts()
+    {
+        if (this.isEffectSet)
+        {
+            this.setEffectFromCardModel(this.index);
+        }
+        else
+        {
+            this.setSelectionCounts();
+        }
     }
 
     public void zeroSelectionCounts()
@@ -436,10 +450,6 @@ public class Card : MonoBehaviour
     }
     public virtual void setVisible(bool state)
     {
-        if (!state)
-        {
-            Debug.Log("Setting Visible: false");
-        }
         Material material = getCardFrontMaterial();
         material.SetInt("_Transparent", state ? 0 : 1);
         updateStrengthText(this.calculatedStrength);

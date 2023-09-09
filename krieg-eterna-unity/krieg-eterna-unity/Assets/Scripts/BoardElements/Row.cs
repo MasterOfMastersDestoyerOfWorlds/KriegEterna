@@ -102,7 +102,6 @@ public class Row : List<Card>
 
             if (!this.hasType(RowEffected.Deck) && !this.hasType(RowEffected.ChooseN) && !this.hasType(RowEffected.Graveyard))
             {
-                Debug.Log("Add: " + card + " from: " + uniqueType);
                 MoveLogger.logRowAdd(card, uniqueType, Game.player);
             }
             card.currentRow = this.uniqueType;
@@ -114,7 +113,6 @@ public class Row : List<Card>
     {
         if (!this.hasType(RowEffected.Deck) && !this.hasType(RowEffected.ChooseN) && !this.hasType(RowEffected.Graveyard))
         {
-            Debug.Log("Remove: " + card + " from: " + uniqueType);
             MoveLogger.logRowRemove(card, uniqueType, Game.player);
         }
         return base.Remove(card);
@@ -384,8 +382,9 @@ public class Row : List<Card>
         }
     }
 
-    public void setActivateRowCardTargets(bool state, bool individualCards, bool unitsOnly)
+    public int setActivateRowCardTargets(bool state, bool individualCards, bool unitsOnly)
     {
+        int sum = 0;
         if (individualCards)
         {
             for (int i = 0; i < this.Count; i++)
@@ -394,13 +393,16 @@ public class Row : List<Card>
                 if (!unitsOnly || CardModel.isUnitOrSpy(c.cardType))
                 {
                     c.setTargetActive(state);
+                    sum ++;
                 }
             }
             cardTargetsActivated = state;
+            return sum;
         }
         else
         {
             this.target.setTargetActive(state);
+            return 0;
         }
     }
     public void centerRow()

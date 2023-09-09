@@ -94,17 +94,67 @@ namespace KriegTests
             },
             new TestCase
             {
-                testName = "SunKing",
+                testName = "SunKingClearWeather",
+                scoreRows = new List<(RowEffected, int)>{
+                    (RowEffected.PlayerSiege, 16),
+                },
+                clicks = new List<Click>{
+                    new Click("Storm", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new ClickRow("Player Siege", RowEffected.PlayerSiege),
+                    new Click("SunKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiegeKing, true),
+                    new ClickAltEffect("SunKingClearWeather", RowEffected.PlayerAltEffectRow),
+                    new ClickRow("PlayerSiegeKing", RowEffected.PlayerSiegeKing),
+                    new Click("Siege", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
+                    new Click("Mortar", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
+                }
+            },
+            new TestCase
+            {
+                testName = "SunKingMoveWeather",
+                scoreRows = new List<(RowEffected, int)>{
+                    (RowEffected.PlayerSiege, 8),
+                },
+                clicks = new List<Click>{
+                    new Click("Storm", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiege, true),
+                    new ClickRow("PlayerMelee", RowEffected.PlayerMelee),
+                    new Click("SunKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiegeKing, true),
+                    new ClickAltEffect("SunKingMoveWeather", RowEffected.PlayerAltEffectRow),
+                    new ClickRow("PlayerSiegeKing", RowEffected.PlayerSiegeKing),
+                    new Click("Storm", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerSiege, true),
+                    new ClickRow("PlayerSiege", RowEffected.PlayerSiege),
+                    new Click("Siege", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
+                    new Click("Mortar", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
+                }
+            },
+            new TestCase
+            {
+                testName = "SunKingDrawOneUnit",
                 scoreRows = new List<(RowEffected, int)>{
                     (RowEffected.PlayerSiege, 16),
                 },
                 playerHandCount = 1,
                 clicks = new List<Click>{
-                    new Click("Storm", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("Player Siege", RowEffected.PlayerSiege),
                     new Click("SunKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiegeKing, true),
+                    new ClickAltEffect("SunKingDraw", RowEffected.PlayerAltEffectRow),
                     new ClickRow("PlayerSiegeKing", RowEffected.PlayerSiegeKing),
-                    new ClickRow("UnitDeck", RowEffected.UnitDeck),
+                    new ClickRow("Unit Deck", RowEffected.UnitDeck),
+                    new Click("Siege", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
+                    new Click("Mortar", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
+                }
+            },
+            
+            new TestCase
+            {
+                testName = "SunKingDrawOnePower",
+                scoreRows = new List<(RowEffected, int)>{
+                    (RowEffected.PlayerSiege, 16),
+                },
+                playerHandCount = 1,
+                clicks = new List<Click>{
+                    new Click("SunKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiegeKing, true),
+                    new ClickAltEffect("SunKingDraw", RowEffected.PlayerAltEffectRow),
+                    new ClickRow("PlayerSiegeKing", RowEffected.PlayerSiegeKing),
+                    new ClickRow("Power Deck", RowEffected.PowerDeck),
                     new Click("Siege", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
                     new Click("Mortar", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
                 }

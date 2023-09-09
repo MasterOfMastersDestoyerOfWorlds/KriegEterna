@@ -649,15 +649,17 @@ public class Deck : MonoBehaviour
         }
     }
 
-    public void activateRowsByType(bool state, bool individualCards, bool unitsOnly, RowEffected type)
+    public int activateRowsByType(bool state, bool individualCards, bool unitsOnly, RowEffected type)
     {
         Debug.Log("Activating Type: " + type);
         List<Row> rowList = getRowsByType(type);
+        int sum = 0;
         foreach (Row row in rowList)
         {
             Debug.Log("Activating Row: " + row + " Count: " + Game.activeDeck.getRowByType(row.uniqueType).Count);
-            row.setActivateRowCardTargets(state, individualCards, unitsOnly);
+            sum += row.setActivateRowCardTargets(state, individualCards, unitsOnly);
         }
+        return sum;
     }
     public void activateAllRowsByType(bool state, bool individualCards, bool unitsOnly, List<RowEffected> types)
     {
