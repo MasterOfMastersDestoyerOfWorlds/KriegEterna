@@ -18,8 +18,7 @@ public class WeatherController : EffectControllerInterface
         else if (c.cardType == CardType.Weather)
         {
             targetRow.Add(c);
-            Card clone = GameObject.Instantiate(c) as Card;
-            clone.isClone = true;
+            Card clone = c.makeClone();
             deck.getRowByType(CardModel.getRowFromSide(RowEffected.Enemy, targetRow.uniqueType)).Add(clone);
         }
     }

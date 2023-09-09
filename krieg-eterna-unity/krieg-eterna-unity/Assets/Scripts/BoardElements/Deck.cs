@@ -45,6 +45,7 @@ public class Deck : MonoBehaviour
             RowEffected.PlayerMeleeOrSiege,
             RowEffected.Player,
             RowEffected.MeleeFull,
+            RowEffected.Weather,
             RowEffected.Played,
             RowEffected.CleanUp}, areas.getMeleeRowCenterVector,  () => areas.getScoreDisplayCenterVector(areas.getMeleeRowCenterVector)),
         new Row(true, true, false, true, RowEffected.PlayerRanged, new List<RowEffected>() {
@@ -58,6 +59,7 @@ public class Deck : MonoBehaviour
             RowEffected.PlayerRangedOrSiege,
             RowEffected.Player,
             RowEffected.RangedFull ,
+            RowEffected.Weather,
             RowEffected.Played,
             RowEffected.CleanUp}, areas.getRangedRowCenterVector, () => areas.getScoreDisplayCenterVector(areas.getRangedRowCenterVector)),
         new Row(true, true, false, true, RowEffected.PlayerSiege, new List<RowEffected>() {
@@ -71,6 +73,7 @@ public class Deck : MonoBehaviour
             RowEffected.PlayerRangedOrSiege,
             RowEffected.Player,
             RowEffected.SiegeFull,
+            RowEffected.Weather,
             RowEffected.Played,
             RowEffected.CleanUp}, areas.getSiegeRowCenterVector, () => areas.getScoreDisplayCenterVector(areas.getSiegeRowCenterVector)),
         new Row(true, true, false, true, RowEffected.EnemyMelee, new List<RowEffected>() {
@@ -84,6 +87,7 @@ public class Deck : MonoBehaviour
             RowEffected.EnemyMeleeOrSiege,
             RowEffected.Enemy,
             RowEffected.MeleeFull,
+            RowEffected.Weather,
             RowEffected.Played,
             RowEffected.CleanUp}, areas.getEnemyMeleeRowCenterVector, () => areas.getScoreDisplayCenterVector(areas.getEnemyMeleeRowCenterVector)),
         new Row(true, true, false, true, RowEffected.EnemyRanged, new List<RowEffected>() {
@@ -97,6 +101,7 @@ public class Deck : MonoBehaviour
             RowEffected.EnemyRangedOrSiege,
             RowEffected.Enemy,
             RowEffected.RangedFull,
+            RowEffected.Weather,
             RowEffected.Played,
             RowEffected.CleanUp}, areas.getEnemyRangedRowCenterVector, () => areas.getScoreDisplayCenterVector(areas.getEnemyRangedRowCenterVector)),
         new Row(true, true, false, true, RowEffected.EnemySiege, new List<RowEffected>() {
@@ -110,6 +115,7 @@ public class Deck : MonoBehaviour
             RowEffected.RangedOrSiege,
             RowEffected.EnemyMeleeOrSiege,
             RowEffected.EnemyRangedOrSiege,
+            RowEffected.Weather,
             RowEffected.Played,
             RowEffected.CleanUp}, areas.getEnemySiegeRowCenterVector, () => areas.getScoreDisplayCenterVector(areas.getEnemySiegeRowCenterVector)),
         new Row(false, false, true, true, RowEffected.UnitDeck, new List<RowEffected>() {
@@ -498,7 +504,7 @@ public class Deck : MonoBehaviour
             resetCard(currentRow, attachment);
         }
         c.attachments.RemoveAll(delegate (Card c) { return true; });
-        
+
         c.resetSelectionCounts();
         if (c.isClone)
         {
@@ -632,6 +638,17 @@ public class Deck : MonoBehaviour
         return rowTargets;
     }
 
+    public void activateRowsByTypeAndCardType(bool state, bool individualCards, CardType cardType, RowEffected type)
+    {
+        Debug.Log("Activating Type: " + type);
+        List<Row> rowList = getRowsByType(type);
+        foreach (Row row in rowList)
+        {
+            Debug.Log("Activating Row: " + row + " Count: " + Game.activeDeck.getRowByType(row.uniqueType).Count);
+            row.setActivateRowCardTargetsByCardType(state, individualCards, cardType);
+        }
+    }
+
     public void activateRowsByType(bool state, bool individualCards, bool unitsOnly, RowEffected type)
     {
         Debug.Log("Activating Type: " + type);
@@ -651,16 +668,16 @@ public class Deck : MonoBehaviour
             this.activateRowsByType(state, individualCards, unitsOnly, type);
         }
     }
-    public void activateRowsByTypeExclude(bool state, bool individualCards, bool unitsOnly, RowEffected type, RowEffected exclude)
+    public void activateRowsByTypeExclude(bool state, bool individualCards, bool unitsOnly, RowEffected type, List<RowEffected> exclude)
     {
 
         Debug.Log("Activating Type: " + type + " Exclude: " + exclude);
         List<Row> rowList = getRowsByType(type);
         foreach (Row row in rowList)
         {
-            if (row.uniqueType != exclude)
+            if (!exclude.Contains(row.uniqueType))
             {
-                Debug.Log("Activating Row: " + type + " Count: " + Game.activeDeck.getRowByType(row.uniqueType).Count);
+                Debug.Log("Activating Row: " + row.uniqueType + " Count: " + Game.activeDeck.getRowByType(row.uniqueType).Count);
                 row.setActivateRowCardTargets(state, individualCards, unitsOnly);
             }
         }

@@ -12,6 +12,11 @@ public class MoveController : EffectControllerInterface
         {
             deck.addCardToHand(deck.getRowByType(c.moveRow), targetRow.uniqueType, c.moveCard);
         }
+        if (c.cardReturnType == CardReturnType.MoveWeather)
+        {
+            deck.addCardToHand(deck.getRowByType(c.moveRow), targetRow.uniqueType, c.moveCard);
+            deck.addCardToHand(deck.getRowByType(CardModel.getRowFromSide(RowEffected.Enemy, c.moveRow)), CardModel.getRowFromSide(RowEffected.Enemy, targetRow.uniqueType), c.moveCard.clone);
+        }
         if (c.cardReturnType == CardReturnType.Swap)
         {
 
@@ -30,11 +35,15 @@ public class MoveController : EffectControllerInterface
         RowEffected row = CardModel.getRowFromSide(player, c.rowEffected);
         if (c.cardReturnType == CardReturnType.Move)
         {
-            deck.activateRowsByTypeExclude(true, false, false, row, c.moveRow);
+            deck.activateRowsByTypeExclude(true, false, false, row, new List<RowEffected> { c.moveRow });
+        }
+        else if (c.cardReturnType == CardReturnType.MoveWeather)
+        {
+            deck.activateRowsByTypeExclude(true, false, false, row, new List<RowEffected> { c.moveRow, CardModel.getRowFromSide(RowEffected.Enemy, c.moveRow) });
         }
         else if (c.cardReturnType == CardReturnType.Swap)
         {
-            deck.activateRowsByTypeExclude(true, true, true, row, c.moveRow);
+            deck.activateRowsByTypeExclude(true, true, true, row, new List<RowEffected> { c.moveRow });
         }
     }
     public bool TargetCondition(Card c, RowEffected player)

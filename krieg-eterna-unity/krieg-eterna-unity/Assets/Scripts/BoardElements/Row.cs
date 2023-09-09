@@ -361,6 +361,27 @@ public class Row : List<Card>
 
 
 
+    public void setActivateRowCardTargetsByCardType(bool state, bool individualCards, CardType cardType)
+    {
+        if (individualCards)
+        {
+            for (int i = 0; i < this.Count; i++)
+            {
+                Card c = this[i];
+                if (c.cardType == cardType)
+                {
+                    Debug.Log("Activating Card: " + c);
+                    c.setTargetActive(state);
+                }
+            }
+            cardTargetsActivated = state;
+        }
+        else
+        {
+            this.target.setTargetActive(state);
+        }
+    }
+
     public void setActivateRowCardTargets(bool state, bool individualCards, bool unitsOnly)
     {
         if (individualCards)

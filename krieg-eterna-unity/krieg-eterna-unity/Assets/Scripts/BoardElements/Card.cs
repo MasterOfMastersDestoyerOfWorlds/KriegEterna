@@ -118,6 +118,7 @@ public class Card : MonoBehaviour
     public RowEffected currentRow;
 
     public bool isClone = false;
+    public Card clone;
 
     void Awake()
     {
@@ -228,9 +229,20 @@ public class Card : MonoBehaviour
         this.cardName = cardName;
     }
 
+    public bool hasClone(){
+        return clone != null;
+    }
+
     public float getRowMultiple()
     {
         return this.rowMultiple;
+    }
+
+    public Card makeClone(){
+        clone = GameObject.Instantiate(this) as Card;
+        clone.isClone = true;
+        clone.clone = this;
+        return clone;
     }
 
     public RowEffected getRowEffected()
@@ -480,18 +492,23 @@ public class Card : MonoBehaviour
             Debug.Log("Cannot Play Cond 3! : Set Aside Type Player : " + this.setAside + " > " + playerRowsSum);
             return false;
         }
+        if (this.setAsideType == SetAsideType.Enemy && this.setAside > enemyRowsSum)
+        {
+            Debug.Log("Cannot Play Cond 4! : Set Aside Type Player : " + this.setAside + " > " + enemyRowsSum);
+            return false;
+        }
         if (this.setAsideType == SetAsideType.EnemyKing && enemyKingRow == RowEffected.None)
         {
-            Debug.Log("Cannot Play Cond 4! : Set Aside Type EnemyKing :  enemyKingRow is None! ");
+            Debug.Log("Cannot Play Cond 5! : Set Aside Type EnemyKing :  enemyKingRow is None! ");
             return false;
         }
         if (this.setAsideType == SetAsideType.King && playerKingRow == RowEffected.None)
         {
-            Debug.Log("Cannot Play Cond 5! : Set Aside Type y+King :  playerKingRow  is None! ");
+            Debug.Log("Cannot Play Cond 6! : Set Aside Type y+King :  playerKingRow  is None! ");
             return false;
         }
         if(this.cardReturnType == CardReturnType.MoveWeather && weatherSum <= 0){
-            Debug.Log("Cannot Play Cond 6! : there are no weather cards to move!");
+            Debug.Log("Cannot Play Cond 7! : there are no weather cards to move!");
             return false;
         }
 

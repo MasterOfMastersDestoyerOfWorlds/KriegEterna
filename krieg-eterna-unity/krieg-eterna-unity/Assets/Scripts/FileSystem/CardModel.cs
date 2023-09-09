@@ -271,6 +271,19 @@ public class CardModel : MonoBehaviour
         }
         return RowEffected.None;
     }
+    public static RowEffected getRowNoPlayer(RowEffected generalRow)
+    {
+        switch (generalRow)
+        {
+            case RowEffected.PlayerMelee: return RowEffected.Melee;
+            case RowEffected.PlayerRanged: return RowEffected.Ranged;
+            case RowEffected.PlayerSiege: return RowEffected.Siege;
+            case RowEffected.EnemyMelee: return RowEffected.Melee;
+            case RowEffected.EnemyRanged: return RowEffected.Ranged;
+            case RowEffected.EnemySiege: return RowEffected.Siege;
+        }
+        return RowEffected.None;
+    }
 
     public static RowEffected getPlayerFromRow(RowEffected generalRow)
     {
