@@ -197,6 +197,18 @@ public class CardModel : MonoBehaviour
         }
         return RowEffected.PlayerHand;
     }
+    public static bool isHandRow(RowEffected row)
+    {
+        if (row == RowEffected.EnemyHand)
+        {
+            return true;
+        }else if (row == RowEffected.PlayerHand){
+            return true;
+        }else if (row == RowEffected.BothHand){
+            return true;
+        }
+        return false;
+    }
     public static RowEffected getEnemy(RowEffected player)
     {
         if (player == RowEffected.Enemy)
@@ -268,6 +280,19 @@ public class CardModel : MonoBehaviour
             case RowEffected.EnemyMelee: return RowEffected.MeleeFull;
             case RowEffected.EnemyRanged: return RowEffected.RangedFull;
             case RowEffected.EnemySiege: return RowEffected.SiegeFull;
+        }
+        return RowEffected.None;
+    }
+    public static RowEffected getRowNoPlayer(RowEffected generalRow)
+    {
+        switch (generalRow)
+        {
+            case RowEffected.PlayerMelee: return RowEffected.Melee;
+            case RowEffected.PlayerRanged: return RowEffected.Ranged;
+            case RowEffected.PlayerSiege: return RowEffected.Siege;
+            case RowEffected.EnemyMelee: return RowEffected.Melee;
+            case RowEffected.EnemyRanged: return RowEffected.Ranged;
+            case RowEffected.EnemySiege: return RowEffected.Siege;
         }
         return RowEffected.None;
     }

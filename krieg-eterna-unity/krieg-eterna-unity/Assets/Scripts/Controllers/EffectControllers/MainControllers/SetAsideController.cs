@@ -25,7 +25,7 @@ public class SetAsideController : EffectControllerInterface
         {
             c.setAsideRemain--;
         }
-        
+
         RowEffected playerHand = CardModel.getHandRow(player);
         Row playerHandRow = deck.getRowByType(playerHand);
         if (playerHandRow.Contains(c) && c.cardType == CardType.Decoy)
@@ -38,7 +38,7 @@ public class SetAsideController : EffectControllerInterface
             targetRow.Insert(index, c);
             playerHandRow.Remove(c);
         }
-        
+
 
         deck.setCardAside(targetRow, targetCard, c.setAsideType, player);
 
@@ -66,8 +66,12 @@ public class SetAsideController : EffectControllerInterface
             CardModel.getRowFromSide(player, RowEffected.King));
                 break;
             case SetAsideType.Enemy:
-                deck.activateRowsByType(true, true, true,
+                int activated = deck.activateRowsByType(true, true, true,
             CardModel.getRowFromSide(player, RowEffected.EnemyPlayable));
+                if (c.setAsideRemain > activated)
+                {
+                    c.setAsideRemain = activated; 
+                }
                 break;
             case SetAsideType.Player:
                 deck.activateRowsByType(true, true, true,

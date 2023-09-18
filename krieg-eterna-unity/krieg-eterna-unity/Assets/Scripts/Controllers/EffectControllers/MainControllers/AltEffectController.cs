@@ -6,6 +6,7 @@ public class AltEffectController : EffectControllerInterface
 
     public void Play(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
+        
         c.setEffect(targetCard);
         Deck deck = Game.activeDeck;
         Debug.Log("Setting up Alt Effect: " + targetCard);
@@ -16,10 +17,12 @@ public class AltEffectController : EffectControllerInterface
         deck.getRowByType(RowEffected.Skip).setVisibile(false);
         displayRow.setVisibile(false);
         Game.shadowCamera.enabled = false;
+        displayRow.cardTargetsActivated = false;
         deck.disactiveAllInDeck(false);
         Game.state = State.MULTISTEP;
         if (c.canAutoPlayAltEffect)
         {
+            Debug.Log("AUTOPLAYING");
             PlayController.Play(c, targetRow, targetCard, player);
         }
         else

@@ -35,6 +35,58 @@ namespace KriegTests
             },
             new TestCase
             {
+                testName = "ClearSkiesMoveWeather",
+                scoreRows = new List<(RowEffected, int)>{
+                    (RowEffected.EnemySiege, 2),
+                    (RowEffected.PlayerSiege, 6),
+                    (RowEffected.PlayerRanged, 4),
+                    (RowEffected.PlayerMelee, 4),
+                },
+                clicks = new List<Click>{
+                    new Click("Storm", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
+                    new ClickRow("Player Siege", RowEffected.PlayerSiege),
+                    new Click("Siege", RowEffected.EnemySiege, RowEffected.EnemySiege, RowEffected.EnemySiege, false),
+                    new Click("Mortar", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
+                    new Click("Fog", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
+                    new ClickRow("Enemy Ranged", RowEffected.EnemyRanged),
+                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, false),
+                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, false),
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, false),
+                    new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, false),
+                    new Click("ClearSkies", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new ClickAltEffect("ClearSkiesMoveWeather", RowEffected.PlayerAltEffectRow),
+                    new Click("Storm", RowEffected.PlayerHand, RowEffected.PlayerSiege, RowEffected.PlayerMelee, true),
+                    new ClickRow("Player Melee", RowEffected.PlayerMelee),
+                }
+            },
+            new TestCase
+            {
+                testName = "ClearSkiesMoveWeatherSameRow",
+                scoreRows = new List<(RowEffected, int)>{
+                    (RowEffected.EnemySiege, 2),
+                    (RowEffected.PlayerSiege, 6),
+                    (RowEffected.PlayerRanged, 2),
+                    (RowEffected.PlayerMelee, 8),
+                },
+                clicks = new List<Click>{
+                    new Click("Storm", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
+                    new ClickRow("Player Siege", RowEffected.PlayerSiege),
+                    new Click("Siege", RowEffected.EnemySiege, RowEffected.EnemySiege, RowEffected.EnemySiege, false),
+                    new Click("Mortar", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
+                    new Click("Fog", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRanged, true),
+                    new ClickRow("Enemy Ranged", RowEffected.EnemyRanged),
+                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, false),
+                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, false),
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, false),
+                    new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, false),
+                    new Click("ClearSkies", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new ClickAltEffect("ClearSkiesMoveWeather", RowEffected.PlayerAltEffectRow),
+                    new Click("Storm", RowEffected.PlayerHand, RowEffected.PlayerSiege, RowEffected.PlayerRanged, true),
+                    new ClickRow("Player Ranged", RowEffected.PlayerRanged),
+                }
+            },
+            new TestCase
+            {
                 testName = "FogRanged",
                 scoreRows = new List<(RowEffected, int)>{
                     (RowEffected.PlayerRanged, 4),

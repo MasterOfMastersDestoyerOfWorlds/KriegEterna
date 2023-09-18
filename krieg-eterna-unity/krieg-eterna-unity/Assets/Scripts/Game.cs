@@ -493,6 +493,7 @@ public class Game : MonoBehaviour
                                     }
 
                                     clickOnTarget = true;
+                                    break;
                                 }
                             }
                             if (clickOnTarget)

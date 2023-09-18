@@ -50,11 +50,18 @@ public class ReturnController : EffectControllerInterface
                 Row kingRow = deck.getRowByType(kingLoc);
                 deck.addCardToHand(kingRow, playerHand, kingRow[0]);
             }
+        }else if(c.cardReturnType == CardReturnType.MoveWeather){
+            c.playerCardReturnRemain--;
+            c.moveRemain++;
+            c.moveCard = targetCard;
+            targetCard.setTargetActive(false);
+            c.moveRow = targetRow.uniqueType;
         }
     }
     public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
-        return c.playerCardReturnRemain > 0 && c.cardReturnType != CardReturnType.LastPlayedCard;
+        Deck deck = Game.activeDeck;
+        return c.playerCardReturnRemain > 0 && c.cardReturnType != CardReturnType.LastPlayedCard && (c.cardReturnType != CardReturnType.MoveWeather || deck.countWeatherInRows(CardModel.getRowFromSide(player, RowEffected.All)) > 0);
     }
     public void Target(Card c, RowEffected player)
     {
@@ -65,11 +72,13 @@ public class ReturnController : EffectControllerInterface
             case CardReturnType.King: c.setTargetActive(true); break;
             case CardReturnType.LastPlayedCard: c.setTargetActive(true); break;
             case CardReturnType.Unit: deck.activateRowsByType(true, true, true, CardModel.getRowFromSide(player, c.rowEffected)); break;
+            case CardReturnType.MoveWeather: deck.activateRowsByTypeAndCardType(true, true, CardType.Weather, CardModel.getRowFromSide(player, c.rowEffected)); break;
             default: deck.activateRowsByType(true, true, true, playerPlayable); break;
         }
     }
     public bool TargetCondition(Card c, RowEffected player)
     {
-        return c.playerCardReturnRemain > 0 && c.cardReturnType != CardReturnType.LastPlayedCard;
+        Deck deck = Game.activeDeck;
+        return c.playerCardReturnRemain > 0 && c.cardReturnType != CardReturnType.LastPlayedCard && (c.cardReturnType != CardReturnType.MoveWeather || deck.countWeatherInRows(CardModel.getRowFromSide(player, RowEffected.All)) > 0);
     }
 }

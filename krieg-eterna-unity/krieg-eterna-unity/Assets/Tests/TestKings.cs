@@ -4,6 +4,7 @@ namespace KriegTests
 
     using TestCase = TestCards.TestCase;
     using Click = TestCards.Click;
+    using ClickAltEffect = TestCards.ClickAltEffect;
     using ClickRow = TestCards.ClickRow;
     using System.Collections.Generic;
     public class TestKings : TestCaseCollection
@@ -14,12 +15,13 @@ namespace KriegTests
 
             new TestCase
             {
-                testName = "LionKing",
+                testName = "LionKingSetAsideTwo",
                 scoreRows = new List<(RowEffected, int)>{
                     (RowEffected.PlayerMelee, 16),
                 },
                 clicks = new List<Click>{
                     new Click("LionKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMeleeKing, true),
+                    new ClickAltEffect("LionKingSetAside", RowEffected.PlayerAltEffectRow),
                     new ClickRow("PlayerMeleeKing", RowEffected.PlayerMeleeKing),
                     new Click("Siege", RowEffected.EnemySiege, RowEffected.EnemySetAside, RowEffected.EnemySetAside, true),
                     new Click("Mortar", RowEffected.EnemySiege, RowEffected.EnemySetAside, RowEffected.EnemySetAside, true),
@@ -36,6 +38,7 @@ namespace KriegTests
                 },
                 clicks = new List<Click>{
                     new Click("LionKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMeleeKing, true),
+                    new ClickAltEffect("LionKingSetAside", RowEffected.PlayerAltEffectRow),
                     new ClickRow("PlayerMeleeKing", RowEffected.PlayerMeleeKing),
                     new Click("Siege", RowEffected.EnemySiege, RowEffected.EnemySetAside, RowEffected.EnemySetAside, true),
                     new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, false),
@@ -43,29 +46,115 @@ namespace KriegTests
             },
             new TestCase
             {
-                testName = "LionKingNoSetAside",
+                testName = "LionKingSetAsideZero",
                 scoreRows = new List<(RowEffected, int)>{
-                    (RowEffected.PlayerRanged, 6),
+                    (RowEffected.PlayerMelee, 4),
                 },
                 clicks = new List<Click>{
-                    new Click("LionKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRangedKing, true),
-                    new ClickRow("PlayerRangedKing", RowEffected.PlayerRangedKing),
-                    new Click("Riflemen", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, false),
+                    new Click("LionKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMeleeKing, true),
+                    new ClickAltEffect("LionKingSetAside", RowEffected.PlayerAltEffectRow),
+                    new ClickRow("PlayerMeleeKing", RowEffected.PlayerMeleeKing),
+                    new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, false),
                 }
             },
             new TestCase
             {
-                testName = "SunKing",
+                testName = "LionKingHalveRanged",
+                scoreRows = new List<(RowEffected, int)>{
+                    (RowEffected.PlayerMelee, 16),
+                    (RowEffected.EnemySiege, 8),
+                    (RowEffected.EnemyRanged, 1),
+                },
+                clicks = new List<Click>{
+                    new Click("LionKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMeleeKing, true),
+                    new ClickAltEffect("LionKingHalveRanged", RowEffected.PlayerAltEffectRow),
+                    new ClickRow("PlayerMeleeKing", RowEffected.PlayerMeleeKing),
+                    new Click("Siege", RowEffected.EnemySiege, RowEffected.EnemySiege, RowEffected.EnemySiege, true),
+                    new Click("Mortar", RowEffected.EnemySiege, RowEffected.EnemySiege, RowEffected.EnemySiege, true),
+                    new Click("Soldier", RowEffected.EnemyRanged, RowEffected.EnemyRanged, RowEffected.EnemyRanged, true),
+                    new Click("Knight", RowEffected.EnemyMelee, RowEffected.EnemyMelee, RowEffected.EnemyMelee, false),
+                    new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, false),
+                    new Click("Knight7", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, false),
+                }
+            },
+            new TestCase
+            {
+                testName = "LionKingNone",
+                scoreRows = new List<(RowEffected, int)>{
+                    (RowEffected.PlayerMelee, 4),
+                    (RowEffected.EnemySiege, 2),
+                },
+                clicks = new List<Click>{
+                    new Click("LionKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMeleeKing, true),
+                    new ClickAltEffect("LionKingNone", RowEffected.PlayerAltEffectRow),
+                    new ClickRow("PlayerMeleeKing", RowEffected.PlayerMeleeKing),
+                    new Click("Siege", RowEffected.EnemySiege, RowEffected.EnemySiege, RowEffected.EnemySiege, true),
+                    new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, false),
+                }
+            },
+            new TestCase
+            {
+                testName = "SunKingClearWeather",
+                scoreRows = new List<(RowEffected, int)>{
+                    (RowEffected.PlayerSiege, 16),
+                },
+                clicks = new List<Click>{
+                    new Click("Storm", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new ClickRow("Player Siege", RowEffected.PlayerSiege),
+                    new Click("SunKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiegeKing, true),
+                    new ClickAltEffect("SunKingClearWeather", RowEffected.PlayerAltEffectRow),
+                    new ClickRow("PlayerSiegeKing", RowEffected.PlayerSiegeKing),
+                    new Click("Siege", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
+                    new Click("Mortar", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
+                }
+            },
+            new TestCase
+            {
+                testName = "SunKingMoveWeather",
+                scoreRows = new List<(RowEffected, int)>{
+                    (RowEffected.PlayerSiege, 8),
+                },
+                clicks = new List<Click>{
+                    new Click("Storm", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiege, true),
+                    new ClickRow("PlayerMelee", RowEffected.PlayerMelee),
+                    new Click("SunKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiegeKing, true),
+                    new ClickAltEffect("SunKingMoveWeather", RowEffected.PlayerAltEffectRow),
+                    new ClickRow("PlayerSiegeKing", RowEffected.PlayerSiegeKing),
+                    new Click("Storm", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerSiege, true),
+                    new ClickRow("PlayerSiege", RowEffected.PlayerSiege),
+                    new Click("Siege", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
+                    new Click("Mortar", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
+                }
+            },
+            new TestCase
+            {
+                testName = "SunKingDrawOneUnit",
                 scoreRows = new List<(RowEffected, int)>{
                     (RowEffected.PlayerSiege, 16),
                 },
                 playerHandCount = 1,
                 clicks = new List<Click>{
-                    new Click("Storm", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new ClickRow("Player Siege", RowEffected.PlayerSiege),
                     new Click("SunKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiegeKing, true),
+                    new ClickAltEffect("SunKingDraw", RowEffected.PlayerAltEffectRow),
                     new ClickRow("PlayerSiegeKing", RowEffected.PlayerSiegeKing),
-                    new ClickRow("UnitDeck", RowEffected.UnitDeck),
+                    new ClickRow("Unit Deck", RowEffected.UnitDeck),
+                    new Click("Siege", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
+                    new Click("Mortar", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
+                }
+            },
+            
+            new TestCase
+            {
+                testName = "SunKingDrawOnePower",
+                scoreRows = new List<(RowEffected, int)>{
+                    (RowEffected.PlayerSiege, 16),
+                },
+                playerHandCount = 1,
+                clicks = new List<Click>{
+                    new Click("SunKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiegeKing, true),
+                    new ClickAltEffect("SunKingDraw", RowEffected.PlayerAltEffectRow),
+                    new ClickRow("PlayerSiegeKing", RowEffected.PlayerSiegeKing),
+                    new ClickRow("Power Deck", RowEffected.PowerDeck),
                     new Click("Siege", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
                     new Click("Mortar", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
                 }
