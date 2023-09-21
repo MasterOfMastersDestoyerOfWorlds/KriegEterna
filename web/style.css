@@ -358,7 +358,7 @@ img {
 }
 
 .rule-paragraph {
-    max-width: 100%;
+    max-width: 50;
     min-width: 50%;
     display: flex;
     align-items: center;
