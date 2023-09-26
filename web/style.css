@@ -360,10 +360,11 @@ img {
 .rule-paragraph {
     max-width: 50;
     min-width: 50%;
-    display: flex;
+    /* display: block; */
     align-items: center;
-    justify-content: flex-start;
-    flex: auto;
+    /*justify-content: flex-start;*/
+    
+    /* flex: auto; */
     text-align: justify;
     vertical-align: middle;
     text-shadow: 0 1px 2px var(--black-alpha75);
@@ -372,9 +373,11 @@ img {
 }
 
 .rule-icon {
-    height: 100%;
+    height: auto;
     float: left;
     margin-right: 10;
+    
+    object-fit: contain; /*magic*/
 }
 
 .two-times {
@@ -745,11 +748,10 @@ img {
 .css-TPcFh {
     color: var(--content-color);
     text-shadow: 0 1px 2px var(--black-alpha75);
-    display: flex;
-    flex-direction: column;
+    /* display: flex; */
+    /* flex-direction: column; */
     align-items: var(--content-align);
-    justify-content: var(--content-justify);
-    height: 100%;
+    height: auto;
     position: relative;
     z-index: 1
 }
@@ -791,7 +793,10 @@ img {
 }
 
 .css-EzJAk {
-    max-width: 100%
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain; /*magic*/
 }
 
 @media(min-width:1024px) {
@@ -845,8 +850,8 @@ img {
 }
 
 .css-UZpTh picture img {
-    width: 100%;
-    height: 100%
+    /* width: 100%; */
+    /* height: 100%; */
 }
 
 
@@ -899,7 +904,7 @@ img {
 }
 
 .product-box {
-    display: flex;
+    /* display: flex; */
     width: 380px;
     max-width: 30%;
     position: relative;
@@ -968,7 +973,8 @@ img {
 
 .css-u6Ex {
     max-width: 100%;
-    height: 100%;
+    height: auto;
+    object-fit: contain;
     float: left;
     margin-right: 10;
 }
@@ -1717,17 +1723,31 @@ html[lang=zh-Hant] .css-4zJQw {
 
 .card-image {
     border-radius: var(--card-border-radius);
+    -webkit-tap-highlight-color: transparent;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
     user-select: none;
-}
-
-.card-image {
     overflow: hidden;
     margin: 0 !important;
     width: 100% !important;
     height: auto !important
 }
 
+.card-image:focus {
+    outline: none !important;
+}
+
 .card-flip {
+    -webkit-tap-highlight-color: transparent;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     position: relative
 }
 

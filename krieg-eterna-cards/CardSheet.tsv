@@ -1,55 +1,19 @@
 Feint	Feint	Set aside up to three of your units on the field\runtil the next round.	Let your plans be dark and impenetrable as the\rnight. When you move, fall like a thunderbolt.	Decoy	
-Crusade	Crusade	Find your strongest row. Send your highest total\rstrength unit and all equally strong units in that\rrow to the graveyard. All other players then do\rthe same.	Deus Vult^!	Power	
-Styx	Styx	Pick a card from the top three in the power\rgraveyard, and add that card to your hand.	\`Not all the gold that is beneath the moon,\rOr ever hath been of these toil-worn souls,\rMight purchase rest for one.\`	Power	
-Knight6	Knight	 	The freedom to choose, that no man can take away;\rnot Caesar, not Commodus, not God himself.	Melee	2
-Minister	Minister	Play in your opponent's Siege row, then draw\rtwo cards. At the end of the round, this card\rreturns to the player's hand whose side of the\rfield it is on.	Though I did wish him dead, I hate the murd'rer,\rlove him murdered.	Spy	3
-Offering	Offering	Send one of your units on the field to the\rgraveyard. If its total strength was less than six,\rdraw two cards; otherwise, draw three.	New life cannot be given for nothing, it would cost\rhim: great striving, great suffering.	Power	
-Privateer	Privateer	 	Beware the phantom dutchman, its crew and its\rcaptain; Beware ye reckless sailor, Beware the\rceaseless jailor^!	Ranged	4
-Saboteur	Saboteur	Play in your opponent's Range row, then draw\rtwo cards. At the end of the round, this card\rreturns to the player's hand whose side of the\rfield it is on.	\`Oh the Humanity^!\`	Spy	3
-Sack	Sack	Send one of your units on the field to the\rgraveyard. Swap this card with any unit on either\rside of the field, and add that card to your hand.	The slave and the noble, the same;\reverywhere the terror of death and slaughter.	Decoy	
-Siege	Siege	 	All my life will be obscured by the doleful addition:\r'In his time, Constantinople was taken and\rplundered.'	Siege	2
-Spy	Spy	Play in your opponent's Melee row, then draw\rtwo cards. At the end of the round, this card\rreturns to the player's hand whose side of the\rfield it is on.	Three may keep a secret, if two are dead.	Spy	2
-War	War	Send any number of your units on the field to the\rgraveyard. All other players then send the same\rnumber of units to the graveyard.	Only iron can save us, And only blood can redeem\rFrom the heavy chains of sin, From the arrogance\rof evil.	Power	
-Zealot	Zealot	Play in your opponent's Melee row, then draw\rtwo cards. At the end of the round, this card\rreturns to the player's hand whose side of the\rfield it is on.	\`He was a heretic, I swear it^!\`	Spy	4
-Archer	Archer	 	\`Please just a little more^! This dream is too sweet for\rwaking^!\` Didn't you know all dreams end?	Ranged	2
-Archer2	Archer	 	\`He was a good outlaw, and did poor men much\rgood.\`	Ranged	2
-Armada	Armada	 	I will make thee a terror, and thou shall be no more:\rthough sought for, thou shall never be found again.	Siege	5
-Armada2	Armada	 	\`And they called it a fleet... Ha^! Nothing more than\ra heap of ash and squandered silver.\`	Siege	5
-Assassin	Assassin	Play in any of your opponent's rows, then draw\rtwo cards. At the end of the round, this card\rreturns to the player's hand whose side of the\rfield it is on.	\`Et tu brute?\`	Spy	5
-Assault	Assault	 	Doomed to flames of woe;\rOur lady of sorrows.	Siege	3
-Assault2	Assault	 	A brave man dies but once,\rA coward daily.	Siege	3
-Assault3	Assault	 	The Kingdom of Heaven is spread out over the earth,\rand men cannot see it.	Siege	3
-Bowman	Bowman	 	They said he could hit an apple off her head,\rbut she was rude and he was peckish.	Ranged	2
-Bowman2	Bowman	 	Tick Tick Tick, Clunk, Thwap, Bullseye^!	Ranged	2
-Burden	Burden	At the end of the round, double the strength\rof your opponent's strongest row. In the next\rround, double the strongest row on your side.	\`More weight^!\` His captors hoisted another stone\ronto his buckling ribs.\r\`More weight^!\`	Power	
+Fortress	Fortress	Attach to any unit on the field. Its strength is\rhalved this round. This unit remains on the field\rto fight in the next round at full strength. This\runit cannot be moved or sent to the graveyard.	Crash against our walls and recede like waves.	Decoy	
+Jester	Jester	Send one of your units on the field to the\rgraveyard. Take any unit on either side of the\rfield, and add that card to your hand.	I have become insane, with long interludes of\rhorrible sanity.	Decoy	
+Retreat	Retreat	Set aside up to three of your units on the field\runtil the next round.	Death is nothing, but to live defeated and inglorious\ris to die daily.	Decoy	
+Sack	Sack	Send one of your units on the field to the\rgraveyard. Take any unit on either side of the\rfield, and add that card to your hand.	The slave and the noble, the same;\reverywhere the terror of death and slaughter.	Decoy	
+Shipwreck	Shipwreck	Set aside up to three of your units on the field\runtil the next round.	\`Land^! Sweet Land^!\`	Decoy	
+LionKing	Lion	Double the strength of one of your rows.\rThen halve the strength of all Range rows this\rround, OR set aside two of your opponent's units\runtil the next round.	\`You may earn salvation under my command,\rbut hardly riches.\`	King	
+SunKing	Sun	Double the strength of one of your rows.\rThen clear all active weather effects, move a\rweather effect to any row, OR draw a card.	\`L'Etat, c'est moi.\`	King	
+TerrorKing	Terror	Double the strength of one of your rows.\rThen halve the strength of all Siege rows this\rround, OR send any unit to the graveyard.	A life most simple and most ordinary and therefore\rmost terrible.	King	
+TraitorKing	Traitor	Double the strength of one of your rows.\rThen swap one unit on the field with your\ropponent, OR draw a card.	\`It will have blood, they say. Blood will have blood.\`	King	
+WinterKing	Winter	Double the strength of one of your rows.\rThen halve the strength of all Melee rows this\rround, OR send any unit to the graveyard.	\`Look on my Works, ye Mighty, and despair^!\`	King	
 Calvary	Cavalry	 	It is a victory which past centuries have never heard,\rinestimable riches have fallen into our hands and\rcountless of the enemy lie slain.	Melee	4
 Calvary2	Cavalry	 	Seven trumpets will sound before the end of the age\rand we will be chosen^!	Melee	4
 Calvary3	Cavalry	 	Fall in love dear maiden, while your lips are red,\rbefore you are cold, for there will be no tomorrow.	Melee	4
-Cannon	Cannon	 	Truth is ever to be found in simplicity, and not in\rthe multiplicity and confusion of things.	Siege	4
-Cannon2	Cannon	 	Dynamite will sooner lead to peace than a thousand\rworld conventions.	Siege	4
-Cannon3	Cannon	 	\`All the guns of Orban could not match our\rfirepower^!\`	Siege	4
-Cannon4	Cannon	 	If they want peace, nations should avoid the\rpin-pricks that precede cannon shots.	Siege	4
-Catapult	Catapult	 	Scipio wept for Carthage.\r\`A day will come when sacred Troy shall perish,\r And Priam and his people shall be slain.\`	Siege	3
-ClearSkies	Gale	Clear all weather effects, or move a weather\reffect to any row.	Doubt the stars are fire; Doubt the sun doth move;\rDoubt truth to be a liar; But never doubt I love.	Weather	
-Crusader	Crusader	If drawn from the graveyard, draw the top unit\rfrom the graveyard.	The more holy the city the greater the desolation.\rJerusalem is the most desolate of all.	Melee	2
-Death	Death	Send one unit on the field to the graveyard.	The dream fades, the curtain falls;\rthe first act as distant as the last.	Power	
-Death2	Death	Send one unit on the field to the graveyard.	Remember that all men must die.	Power	
-Eclipse	Eclipse	Double the strength of all Melee rows or all\rRange rows next round.	\`The heavens align to transcribe our fate.\rFear not, our path is glory bound^!\`	Weather	
-EmperorDemise	Demise	Choose a King on the field; set it aside until the\rstart of the next round.	War is not a river, or a lake,\rbut an ocean of all that is evil.	Power	
-Enlightenment	Epiphany	Your opponent reveals all power cards in their\rhand.	Unless we love the truth, we cannot know it.	Power	
-Execution	Execution	Send your King to the graveyard.\rIf your King was on the field, draw three units;\rif it was in your hand, draw four.	\`It is a far far better thing I do than I have ever\rdone; it is a far far better rest I go to than I have\rever known.\`	Power	
-Famine	Famine	Attach to a unit on the field. Every unit in its row\rhas minus one base strength.	Gnawing, gnashing, tearing, cracking:\rThe bones of gods break too.	Power	
-Fate	Fate	Discard one card from your hand, then return the\rlast card you played to your hand.	The die is cast. Or is it?	Power	
-Feast2	Feast	Attach to a unit on the field. Add the number of\runits in its row to its base strength.	A Black Boar's head was set upon the table and \rall thoughts of matrimony turned to murder.	Power	
-Feast3	Feast	Attach to a unit on the field. Add the number of\runits in its row to its base strength.	In the concert of Europe only the players change,\rthe instruments are forever death and cruelty.	Power	
-Fog	Fog	Halve the strength of all Range rows or all Siege\rrows this round.	\`You can't see which way is up in here^!\`	Weather	
-Fortress	Fortress	Attach to a unit on the field. Its strength is halved\rthis round. This unit remains on the field to fight\rin the next round at double strength. This unit\rcannot be moved or sent to the graveyard.	Crash against our walls and recede like waves.	Decoy	
-Frost	Frost	Halve the strength of all Melee rows or all Range\rrows this round.	The proper function of man is to live, not to exist.	Weather	
-Grail	Grail	Take the top two units in the graveyard and play\rthem on your side of the field.	What is it? The phantom of a cup that comes and\rgoes?	Power	
-Grenadier	Grenadier	 	\`The guard die, but do not surrender^!\`	Ranged	4
-Grenadier2	Grenadier	 	We are sleeping on a volcano. Can't you hear how\rthe earth shakes? The winds of revolt blow,\rthe storm is on the horizon.	Ranged	4
+Crusader	Crusader	 	The more holy the city the greater the desolation.\rJerusalem is the most desolate of all.	Melee	2
 Halberdier	Pike	 	A man is an empty vase, a putrid vessel full of dregs\rand terror.	Melee	2
-Jester	Jester	Send one of your units on the field to the\rgraveyard. Swap this card with any unit on either\rside of the field, and add that card to your hand.	I have become insane, with long interludes of\rhorrible sanity.	Decoy	
 Juggernaut	Juggernaut	This unit can also be played in the Range row.	\`If I enter Sparta, you will be destroyed, never to\rrise again.\`\r\`If.\`	Melee	2
 Knight	Knight	 	Before I am lost, hell must open like a red rose,\rfor the dead to pass.	Melee	2
 Knight10	Knight	 	Is it so wrong to kill a tryant? Better to be hanged a\rtraitor than to live half a man.	Melee	2
@@ -58,48 +22,84 @@ Knight12	Knight	 	We bleed, we tremble; we forget, we smile.\rThe mind turns foo
 Knight3	Knight	 	The folly of man is to pray for what he can obtain of\rhis own deeds.	Melee	2
 Knight4	Knight	 	He took up the grim tool and lopped off the Green\rKnight's head. It rolled to its owner and spoke:\r\`One year hence Gawain^! a blow for a blow^!\`	Melee	2
 Knight5	Knight	 	Seed, Flower, Petal, Dirt.\rLife springs anew.	Melee	2
+Knight6	Knight	 	The freedom to choose, that no man can take away;\rnot Caesar, not Commodus, not God himself.	Melee	2
 Knight7	Knight	 	\`You're a gentleman,\` they used to say.\r\`You shouldn't hack men down with an axe;\rthat's not a gentleman's work.\`	Melee	2
 Knight9	Knight	 	\`We few, we happy few, we band of brothers;\rHe that sheds his blood with me shall be my brother;\rFrom this day to the ending of the world.\`	Melee	2
 Landsknecht	Pike	 	\`Landsknecht LandSTRIKE^!\`	Melee	2
-LionKing	Lion	Double the strength of one of your rows.\rHalve the strength of all Range rows this round,\ror set aside two of your opponent's units until\rthe next round.	\`You may earn salvation under my command,\rbut hardly riches.\`	King	
-Militia	Militia	 	A well placed shot can change the course of nations.	Ranged	2
-Mortar	Mortar	 	Too big to be called a gun.\rMore like a large hunk of iron.	Siege	6
-Musketeer	Musketeer	 	What dire fate could be ours if we have no fear of\rdeath?	Ranged	3
-Musketeer2	Musketeer	 	All for one and one for all,\runited we stand divided we fall.	Ranged	3
-Musketeer3	Musketeer	 	He shall cease to live, or I shall die.\rMine shall be a splendid funeral^!	Ranged	3
 MusketLine	Line	 	Where some states have an army,\rthe Prussian Army has a state.	Melee	5
 Officer	Officer	This unit can also be played in the Siege row.	One murder makes a villain,\rMillions a hero.	Melee	3
 Officer2	Officer	This unit can also be played in the Range row.	Men's ambition and innards strewn on the field,\rWe imagine ourselves a watchmaker and not a\rwatch.	Melee	3
-Officer3	Officer	This unit can also be played in the Melee row.	If there must be war, let it be in my day,\rthat my children might have peace.	Siege	3
-Officer4	Officer	This unit can also be played in the Range row.	They will know us by the roar of our cannons,\rand the fear they find in their hearts.	Siege	3
-Omen	Omen	Double the strength of all Siege rows or all\rMelee rows next round.	Terrible knowledge; terrible price.\rA God does not share.	Weather	
-Plague	Plague	Choose a row. In the next round, set all units in\rthat row to one base strength, for all players.	No bells tolled, and no one wept, for every man\rexpected death; \`This is the end of the world^!\`	Weather	
+Scout	Scout	Add one base strength to up to two other units in\rthis row.	If you know the enemy and know yourself,\ryou need not fear the result of a hundred battles.	Melee	1
+Square	Square	 	The walls of Sparta were its men, and its borders\rthe points of their spears.	Melee	3
+Burden	Burden	At the end of the round, double the strength\rof your opponent's strongest row. In the next\rround, double the strongest row on your side.	\`More weight^!\` His captors hoisted another stone\ronto his buckling ribs.\r\`More weight^!\`	Power	
+Crusade	Crusade	Send your highest total strength unit and all\requally strong units in your strongest row to the\rgraveyard. All other players then do the same.	Deus Vult^!	Power	
+Death	Death	Send any unit on the field to the graveyard.	The dream fades, the curtain falls;\rthe first act as distant as the last.	Power	
+Death2	Death	Send any unit on the field to the graveyard.	Remember that all men must die.	Power	
+EmperorDemise	Demise	Choose any King on the field; set it aside until the\rstart of the next round.	War is not a river, or a lake,\rbut an ocean of all that is evil.	Power	
+Enlightenment	Epiphany	Your opponent reveals all power cards in their\rhand.	Unless we love the truth, we cannot know it.	Power	
+Execution	Execution	Send your King to the graveyard.\rIf your King was on the field, draw three units;\rif it was in your hand, draw four.	\`It is a far far better thing I do than I have ever\rdone; it is a far far better rest I go to than I have\rever known.\`	Power	
+Famine	Famine	Attach to any unit on the field. Every unit in its\rrow has minus one base strength.	Gnawing, gnashing, tearing, cracking:\rThe bones of gods break too.	Power	
+Fate	Fate	Discard one card from your hand, then return the\rlast card you played this round, including your\rKing, to your hand.	The die is cast. Or is it?	Power	
+Feast2	Feast	Attach to any unit on the field. Add the number\rof units in its row at the end of the round to its\rbase strength.	A Black Boar's head was set upon the table and \rall thoughts of matrimony turned to murder.	Power	
+Feast3	Feast	Attach to any unit on the field. Add the number\rof units in its row at the end of the round to its\rbase strength.	In the concert of Europe only the players change,\rthe instruments are forever death and cruelty.	Power	
+Grail	Grail	Take the top two units in the graveyard and play\rthem on your side of the field.	What is it? The phantom of a cup that comes and\rgoes?	Power	
+Offering	Offering	Send one of your units on the field to the\rgraveyard. If its total strength was less than six,\rdraw one card; otherwise, draw two.	New life cannot be given for nothing, it would cost\rhim: great striving, great suffering.	Power	
+Redemption	Redemption	Return your King to your hand if it is on the field.	\`Remember me, when you come into your kingdom.\`	Power	
+Relic	Relic	Move any unit to any row on its side of the field.	Ashes to ashes. Dust to dust. For thou art dust,\rAnd unto dust thou shall return.	Power	
+Resurrection	Pyre	Choose one unit from the graveyard and play it\ron your side of the field.	The blood of martyrs is the seed of the church.	Power	
+Ruin	Ruin	Attach to any unit on the field and discard up\rto three cards from your hand. Add five times\rthe number of discarded cards to the unit's base\rstrength.	Doom has come to the empire.\rWe are fated for lesser days and lesser deeds.	Power	
+Styx	Styx	Pick a card from the top three in the power\rgraveyard, and add that card to your hand.	\`Not all the gold that is beneath the moon,\rOr ever hath been of these toil-worn souls,\rMight purchase rest for one.\`	Power	
+Usury	Usury	Set aside three units from your hand to play at\rthe start of the next round. Draw two cards at the\rend of this round.	\`What I have dreamed in an hour is worth more\rthan what you have done in four.\`	Power	
+Void	Void	The round ends after your next turn ends.	He wished they would shoot him quickly and have\rit done with.	Power	
+War	War	Send any number of your units on the field to the\rgraveyard. All other players then send the same\rnumber of units to the graveyard.	Only iron can save us, And only blood can redeem\rFrom the heavy chains of sin, From the arrogance\rof evil.	Power	
+Wrath	Wrath	Send one of your units on the field and two of\ryour opponent's units to the graveyard.	Something awful, hideous, and suddenly\runderstood... Razumihin turned pale.	Power	
+Archer	Archer	 	\`Please just a little more^! This dream is too sweet for\rwaking^!\` Didn't you know all dreams end?	Ranged	2
+Archer2	Archer	 	\`He was a good outlaw, and did poor men much\rgood.\`	Ranged	2
+Bowman	Bowman	 	They said he could hit an apple off her head,\rbut she was rude and he was peckish.	Ranged	2
+Bowman2	Bowman	 	Tick Tick Tick, Clunk, Thwap, Bullseye^!	Ranged	2
+Grenadier	Grenadier	 	\`The guard die, but do not surrender^!\`	Ranged	4
+Grenadier2	Grenadier	 	We are sleeping on a volcano. Can't you hear how\rthe earth shakes? The winds of revolt blow,\rthe storm is on the horizon.	Ranged	4
+Militia	Militia	 	A well placed shot can change the course of nations.	Ranged	2
+Musketeer	Musketeer	 	What dire fate could be ours if we have no fear of\rdeath?	Ranged	3
+Musketeer2	Musketeer	 	All for one and one for all,\runited we stand divided we fall.	Ranged	3
+Musketeer3	Musketeer	 	He shall cease to live, or I shall die.\rMine shall be a splendid funeral^!	Ranged	3
+Privateer	Privateer	 	Beware the phantom dutchman, its crew and its\rcaptain; Beware ye reckless sailor, Beware the\rceaseless jailor^!	Ranged	4
 Privateer2	Privateer	 	\`Hearts of oak are our ships,\rHearts of oak are our men.\`	Ranged	4
 Privateer3	Privateer	 	\`Soon may the Wellerman come; To bring us sugar\rand tea and rum. One day, when the tonguing is\rdone; We'll take our leave and go^!\`	Ranged	4
 Privateer4	Privateer	 	We sail for Jerusalem for gold and glory;\rLeave faith to the Pope.	Ranged	4
-Redemption	Redemption	If your King is on the field, return it to your hand.	\`Remember me, when you come into your kingdom.\`	Power	
-Relic	Relic	Move a unit to any row.	Ashes to ashes. Dust to dust. For thou art dust,\rAnd unto dust thou shall return.	Power	
-Resurrection	Pyre	Choose one unit from the graveyard and play it\ron your side of the field.	The blood of martyrs is the seed of the church.	Power	
-Retreat	Retreat	Set aside up to three of your units on the field\runtil the next round.	Death is nothing, but to live defeated and inglorious\ris to die daily.	Decoy	
 Riflemen	Riflemen	 	The cannonshot rang all around, but we stood firm\rfor an empire of richer men.	Ranged	3
-Ruin	Ruin	Attach to a unit on the field and discard up\rto three cards from your hand. Add five times\rthe number of discarded cards to the unit's base\rstrength.	Doom has come to the empire.\rWe are fated for lesser days and lesser deeds.	Power	
-Scout	Scout	Add one base strength to up to two units in this\rrow.	If you know the enemy and know yourself,\ryou need not fear the result of a hundred battles.	Melee	1
-Shipwreck	Shipwreck	Set aside up to three of your units on the field\runtil the next round.	\`Land^! Sweet Land^!\`	Decoy	
-Siege2	Siege	 	Their guns sounded from dusk till dawn;\rbut we repelled them all.	Siege	2
-Siege3	Siege	 	\`A horse, A horse. My kingdom for a horse^!\`	Siege	2
-Smuggler	Smuggler	Draw two cards, your opponent draws one.	\`Trinkets and spices from the far reaches of the\rempire^!\` (Best not ask why the prices are so low.)	Spy	
 Soldier	Soldier	 	\`Let the dead bury their dead, but while I have a life,\rI must live.\`	Ranged	2
 Soldier2	Soldier	 	If no one fought except on his own conviction,\rthere would be no wars.	Ranged	2
-Solstice	Solstice	Double the strength of all Range rows or all\rSiege rows next round.	Madness, Murder, Mayhem;\rShadows turn to daggers under the Midnight Sun.	Weather	
-Square	Square	 	The walls of Sparta were its men, and its borders\rthe points of their spears.	Melee	3
-Storm	Storm	Halve the strength of all Siege rows or all Melee\rrows this round.	Hell is not fire; Hell is mud.	Weather	
-SunKing	Sun	Double the strength of one of your rows.\rClear all weather effects, move a weather effect\rto any row, or draw a card.	\`L'Etat, c'est moi.\`	King	
-Telescope	Telescope	Add one base strength to up to two units in this\rrow.	All truths are easy to understand once discovered;\rthe point is to discover them.	Ranged	1
-TerrorKing	Terror	Double the strength of one of your rows.\rHalve the strength of all Siege rows this round,\ror send a unit to the graveyard.	A life most simple and most ordinary and therefore\rmost terrible.	King	
-Tower	Tower	Add one base strength to up to two units in this\rrow.	\`It is said if a man ascended the tower, he could\rbathe in the dew of heaven.\rHere is what remains of their arrogance.\`	Siege	1
-TraitorKing	Traitor	Double the strength of a row.\rSwap one unit on the field with your opponent,\ror draw a card.	\`It will have blood, they say. Blood will have blood.\`	King	
-Usury	Usury	Set aside three units from your hand to play at\rthe start of the next round. Draw two cards at the\rend of this round.	\`What I have dreamed in an hour is worth more\rthan what you have done in four.\`	Power	
-Void	Void	The round ends after your next turn ends.	He wished they would shoot him quickly and have\rit done with.	Power	
+Telescope	Telescope	Add one base strength to up to two other units in\rthis row.	All truths are easy to understand once discovered;\rthe point is to discover them.	Ranged	1
 Waterworks	Breach	 	Behold, divine water rises and becomes an \roverflowing flood.	Ranged	5
-WinterKing	Winter	Double the strength of one of your rows.\rHalve the strength of all Melee rows this round,\ror send a unit to the graveyard.	\`Look on my Works, ye Mighty, and despair^!\`	King	
-Wrath	Wrath	Send one of your units on the field and two of\ryour opponent's units to the graveyard.	Something awful, hideous, and suddenly\runderstood... Razumihin turned pale.	Power	
+Armada	Armada	 	I will make thee a terror, and thou shall be no more:\rthough sought for, thou shall never be found again.	Siege	5
+Armada2	Armada	 	\`And they called it a fleet... Ha^! Nothing more than\ra heap of ash and squandered silver.\`	Siege	5
+Assault	Assault	 	Doomed to flames of woe;\rOur lady of sorrows.	Siege	3
+Assault2	Assault	 	A brave man dies but once,\rA coward daily.	Siege	3
+Assault3	Assault	 	The Kingdom of Heaven is spread out over the earth,\rand men cannot see it.	Siege	3
+Cannon	Cannon	 	Truth is ever to be found in simplicity, and not in\rthe multiplicity and confusion of things.	Siege	4
+Cannon2	Cannon	 	Dynamite will sooner lead to peace than a thousand\rworld conventions.	Siege	4
+Cannon3	Cannon	 	\`All the guns of Orban could not match our\rfirepower^!\`	Siege	4
+Cannon4	Cannon	 	If they want peace, nations should avoid the\rpin-pricks that precede cannon shots.	Siege	4
+Catapult	Catapult	 	Scipio wept for Carthage.\r\`A day will come when sacred Troy shall perish,\r And Priam and his people shall be slain.\`	Siege	3
+Mortar	Mortar	 	Too big to be called a gun.\rMore like a large hunk of iron.	Siege	6
+Officer3	Officer	This unit can also be played in the Melee row.	If there must be war, let it be in my day,\rthat my children might have peace.	Siege	3
+Officer4	Officer	This unit can also be played in the Range row.	They will know us by the roar of our cannons,\rand the fear they find in their hearts.	Siege	3
+Siege	Siege	 	All my life will be obscured by the doleful addition:\r'In his time, Constantinople was taken and\rplundered.'	Siege	2
+Siege2	Siege	 	Their guns sounded from dusk till dawn;\rbut we repelled them all.	Siege	2
+Siege3	Siege	 	\`A horse, A horse. My kingdom for a horse^!\`	Siege	2
+Tower	Tower	Add one base strength to up to two other units in\rthis row.	\`It is said if a man ascended the tower, he could\rbathe in the dew of heaven.\rHere is what remains of their arrogance.\`	Siege	1
+Assassin	Assassin	Play in any of your opponent's rows, then draw\rtwo cards. At the end of the round, this unit\rreturns to the player's hand whose side of the\rfield it is on.	\`Et tu brute?\`	Spy	5
+Minister	Minister	Play in your opponent's Siege row, then draw\rtwo cards. At the end of the round, this unit\rreturns to the player's hand whose side of the\rfield it is on.	Though I did wish him dead, I hate the murd'rer,\rlove him murdered.	Spy	3
+Saboteur	Saboteur	Play in your opponent's Range row, then draw\rtwo cards. At the end of the round, this unit\rreturns to the player's hand whose side of the\rfield it is on.	\`Oh the Humanity^!\`	Spy	3
+Smuggler	Smuggler	Draw two cards, all other players draw one.	\`Trinkets and spices from the far reaches of the\rempire^!\` (Best not ask why the prices are so low.)	Spy	
+Spy	Spy	Play in your opponent's Melee row, then draw\rtwo cards. At the end of the round, this unit\rreturns to the player's hand whose side of the\rfield it is on.	Three may keep a secret, if two are dead.	Spy	2
+Zealot	Zealot	Play in your opponent's Melee row, then draw\rtwo cards. At the end of the round, this unit\rreturns to the player's hand whose side of the\rfield it is on.	\`He was a heretic, I swear it^!\`	Spy	4
+ClearSkies	Gale	Clear all active weather effects, or move a \rweather effect to any row.	Doubt the stars are fire; Doubt the sun doth move;\rDoubt truth to be a liar; But never doubt I love.	Weather	
+Eclipse	Eclipse	Choose the Melee row or the Range row. In the\rnext round, Double the strength of all units in\rthat row, for all players.	\`The heavens align to transcribe our fate.\rFear not, our path is glory bound^!\`	Weather	
+Fog	Fog	Halve the strength of all Range rows or all Siege\rrows this round.	\`You can't see which way is up in here^!\`	Weather	
+Frost	Frost	Halve the strength of all Melee rows or all Range\rrows this round.	The proper function of man is to live, not to exist.	Weather	
+Omen	Omen	Choose the Siege row or the Melee row. In the\rnext round, Double the strength of all units in\rthat row, for all players.	Terrible knowledge; terrible price.\rA God does not share.	Weather	
+Plague	Plague	Choose a row. In the next round, set all units in\rthat row to one base strength, for all players.	No bells tolled, and no one wept, for every man\rexpected death; \`This is the end of the world^!\`	Weather	
+Solstice	Solstice	Choose the Range row or the Siege row. In the\rnext round, Double the strength of all units in\rthat row, for all players.	Madness, Murder, Mayhem;\rShadows turn to daggers under the Midnight Sun.	Weather	
+Storm	Storm	Halve the strength of all Siege rows or all Melee\rrows this round.	Hell is not fire; Hell is mud.	Weather	
