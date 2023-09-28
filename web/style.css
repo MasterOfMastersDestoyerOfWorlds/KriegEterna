@@ -13,14 +13,19 @@
     --white-alpha50: hsla(0, 0%, 100%, 0.5);
     --white-alpha75: hsla(0, 0%, 100%, 0.75);
     --white-alpha90: hsla(0, 0%, 100%, 0.9);
-    --system-font-family: -apple-system, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --base-font-color: var(--white);
-    --base-font-family: "Open Sans", Arial, sans-serif;
+    --system-font-family:
+    -apple-system, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --base-font-color: var(
+    --white);
+    --base-font-family:
+    "Open Sans", Arial, sans-serif;
     --base-font-size: 16px;
     --base-word-spacing: 1px;
-    --strong-font-family: "Gotham Narrow", Arial, serif;
-    --html-background: var(--black);
-    --max-site-width: 1920px;
+    --strong-font-family:
+    "Gotham Narrow", Arial, serif;
+    --html-background: var(
+    --black);
+    --max-site-width: 1920;
     --default-max-content-width: 1440px;
     --site-header-height: 54px;
     --site-header-z-index: 100;
@@ -130,7 +135,7 @@ img {
 
 .css-wvKZk {
     max-width: var(--max-site-width);
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 .css-r-yQo {
@@ -2160,3 +2165,133 @@ input[type=submit].btn--subtle-hover:hover,
     top: calc((24px + 1.4em) / 2);
     font-size: 1rem;
 }
+
+
+        .widget-link {
+            text-decoration: none;
+        }
+
+        .widget {
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            max-width: 680px;
+            max-height: 340px;
+            /* overflow: hidden; */
+            color: black;
+            border: 1px solid #D1D1D1;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+
+        .widget-body-wrapper {
+            width: 100%;
+            height: auto;
+            background-image: url("https://f.tabletopia.com/n/011/839/xha2dkqdnczzqcy1fn7lv6.png?width=1360&height=516&aspect_ratio=1360:516&format=jpeg&quality=80");
+            background-size: 680px 258px;
+        }
+
+        .widget:hover .widget-body {
+            width: 680px;
+            height: 258px;
+            background-image: url("https://f.tabletopia.com/assets/portal/static/9/areas/workshop/content/images/demozone/Widget/widget-bg-shadow.png?width=1360&height=516&aspect_ratio=1360:516");
+            background-size: 680px 258px;
+        }
+
+        .widget-game-box {
+            display: inline-block;
+            width: 170px;
+            height: 258px;
+            background-image: url("https://f.tabletopia.com/assets/portal/static/9/areas/workshop/content/images/demozone/Widget/widget-shadow.png?width=340&height=516&aspect_ratio=340:516");
+            background-size: 170px 258px;
+            font: 0/0 a;
+        }
+
+        .widget-vertical-align-image-helper {
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+        }
+
+        .widget-game-box-image {
+            vertical-align: middle;
+            width: 150px;
+            height: 192px;
+            margin-left: 20px;
+        }
+
+        .widget-play-button {
+            display: inline-block;
+            height: 258px;
+            width: 231px;
+            text-align: center;
+            font: 0/0 a;
+        }
+
+        .widget-play-button-image {
+            vertical-align: middle;
+            width: 199px;
+            height: 72px;
+        }
+
+        .widget-play-button-image-hover {
+            display: none;
+            vertical-align: middle;
+            width: 244px;
+            height: 118px;
+        }
+
+        .widget:hover .widget-play-button-image {
+            display: none;
+        }
+
+        .widget:hover .widget-play-button-image-hover {
+            display: inline;
+        }
+
+        .widget-tt-logo {
+            display: inline-block;
+            width: 112px;
+            height: 258px;
+            font: 0/0 a;
+        }
+
+        .widget-tt-logo-image {
+            vertical-align: top;
+            width: 97px;
+            height: 90px;
+            margin-right: 15px;
+        }
+
+        .widget-footer {
+            margin-left: 20px;
+            height: 82px
+        }
+
+        .widget-trim-text {
+            display: inline-block;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .widget-title {
+            padding-top: 3px;
+            font-size: 22px;
+            color: #9197A3;
+        }
+
+        .widget-subtitle {
+            padding-top: 3px;
+            padding-bottom: 3px;
+            font-size: 14px;
+            color: #9197A3;
+        }
+
+        .widget-serverurl {
+            text-transform: uppercase;
+            color: #9197A3;
+            font-size: 12px;
+        }
