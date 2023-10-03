@@ -1,10 +1,10 @@
+LionKing	Lion	Double the strength of one of your rows.\rThen halve the strength of all Range rows this\rround, Or set aside two of your opponent's units\ron the field until the next round.	\`You may earn salvation under my command,\rbut hardly riches.\`	King	
 Feint	Feint	Set aside up to two of your units on the field\runtil the next round.	Let your plans be dark and impenetrable as the\rnight. When you move, fall like a thunderbolt.	Decoy	
 Fortress	Fortress	Attach to any unit on the field. Its strength is\rhalved this round. This unit remains on the field\rto fight in the next round at full strength. This\runit cannot be moved or sent to the graveyard.	Crash against our walls and recede like waves.	Decoy	
-Jester	Jester	Send one of your units on the field to the\rgraveyard. Take any unit on either side of the\rfield, and add that card to your hand. Send\rall attachments to the graveyard.	I have become insane, with long interludes of\rhorrible sanity.	Decoy	
+Jester	Jester	Send one of your units on the field to the\rgraveyard. Take any unit on either side of the\rfield, and add that card to your hand (send all\rof its attachments to the graveyard).	I have become insane, with long interludes of\rhorrible sanity.	Decoy	
 Retreat	Retreat	Set aside up to two of your units on the field\runtil the next round.	Death is nothing, but to live defeated and inglorious\ris to die daily.	Decoy	
-Sack	Sack	Send one of your units on the field to the\rgraveyard. Take any unit on either side of the\rfield, and add that card to your hand. Send\rall attachments to the graveyard.	The slave and the noble, the same;\reverywhere the terror of death and slaughter.	Decoy	
+Sack	Sack	Send one of your units on the field to the\rgraveyard. Take any unit on either side of the\rfield, and add that card to your hand (send all\rof its attachments to the graveyard).	The slave and the noble, the same;\reverywhere the terror of death and slaughter.	Decoy	
 Shipwreck	Shipwreck	Set aside up to two of your units on the field\runtil the next round.	\`Land^! Sweet Land^!\`	Decoy	
-LionKing	Lion	Double the strength of one of your rows.\rThen halve the strength of all Range rows this\rround, Or set aside two of your opponent's units\runtil the next round.	\`You may earn salvation under my command,\rbut hardly riches.\`	King	
 SunKing	Sun	Double the strength of one of your rows.\rThen clear all active weather effects, move a\rweather effect to any row, Or draw a card.	\`L'Etat, c'est moi.\`	King	
 TerrorKing	Terror	Double the strength of one of your rows.\rThen halve the strength of all Siege rows this\rround, Or send any unit to the graveyard.	A life most simple and most ordinary and therefore\rmost terrible.	King	
 TraitorKing	Traitor	Double the strength of one of your rows.\rThen swap one unit on the field with your\ropponent, Or draw a card.	\`It will have blood, they say. Blood will have blood.\`	King	
@@ -31,25 +31,25 @@ Officer	Officer	This unit can also be played in the Siege row.	One murder makes 
 Officer2	Officer	This unit can also be played in the Range row.	Men's ambition and innards strewn on the field,\rWe imagine ourselves a watchmaker and not a\rwatch.	Melee	3
 Scout	Scout	Add one base strength to up to two other units in\rthis row.	If you know the enemy and know yourself,\ryou need not fear the result of a hundred battles.	Melee	1
 Square	Square	 	The walls of Sparta were its men, and its borders\rthe points of their spears.	Melee	3
-Burden	Burden	At the end of the round, double the strength\rof your opponent's strongest row. In the next\rround, double the strongest row on your side.	\`More weight^!\` His captors hoisted another stone\ronto his buckling ribs.\r\`More weight^!\`	Power	
-Crusade	Crusade	Send your highest total strength unit and all\requally strong units in your strongest row to the\rgraveyard. All other players then do the same.	Deus Vult^!	Power	
+Burden	Burden	At the end of the round, double the strength\rof your opponent's strongest row. At the end of\rthe next round, double the strongest row on\ryour side.	\`More weight^!\` His captors hoisted another stone\ronto his buckling ribs.\r\`More weight^!\`	Power	
+Crusade	Crusade	Send your highest total strength unit in your\rstrongest row and all equally strong units in that\rrow to the graveyard. All other players then do\rthe same.	Deus Vult^!	Power	
 Death	Death	Send any unit on the field to the graveyard.	The dream fades, the curtain falls;\rthe first act as distant as the last.	Power	
 Death2	Death	Send any unit on the field to the graveyard.	Remember that all men must die.	Power	
 EmperorDemise	Demise	Choose any King on the field; set it aside until the\rstart of the next round.	War is not a river, or a lake,\rbut an ocean of all that is evil.	Power	
 Enlightenment	Epiphany	Your opponent reveals all power cards in their\rhand.	Unless we love the truth, we cannot know it.	Power	
 Execution	Execution	Send your King to the graveyard.\rIf your King was on the field, draw three units;\rif it was in your hand, draw four.	\`It is a far far better thing I do than I have ever\rdone; it is a far far better rest I go to than I have\rever known.\`	Power	
-Famine	Famine	Attach to any unit on the field. Subtract one\rbase strength from every unit in its row.	Gnawing, gnashing, tearing, cracking:\rThe bones of gods break too.	Power	
+Famine	Famine	Attach to any unit on the field. Subtract one base\rstrength from every unit in its row.	Gnawing, gnashing, tearing, cracking:\rThe bones of gods break too.	Power	
 Fate	Fate	Discard one card from your hand, then return the\rlast card you played this round, including your\rKing, to your hand.	The die is cast. Or is it?	Power	
-Feast2	Feast	Attach to any unit on the field. Add the number\rof units in its row at the end of the round to its\rbase strength.	A Black Boar's head was set upon the table and \rall thoughts of matrimony turned to murder.	Power	
-Feast3	Feast	Attach to any unit on the field. Add the number\rof units in its row at the end of the round to its\rbase strength.	In the concert of Europe only the players change,\rthe instruments are forever death and cruelty.	Power	
+Feast2	Feast	Attach to any unit on the field. At the end of the\rround, add the number of units in its row to its\rbase strength.	A Black Boar's head was set upon the table and \rall thoughts of matrimony turned to murder.	Power	
+Feast3	Feast	Attach to any unit on the field. At the end of the\rround, add the number of units in its row to its\rbase strength.	In the concert of Europe only the players change,\rthe instruments are forever death and cruelty.	Power	
 Grail	Grail	Take the top two cards in the unit graveyard and\rplay them on your side of the field.	What is it? The phantom of a cup that comes and\rgoes?	Power	
 Offering	Offering	Send one of your units on the field to the\rgraveyard. If its total strength was less than five,\rdraw one card; otherwise, draw two.	New life cannot be given for nothing, it would cost\rhim: great striving, great suffering.	Power	
-Redemption	Redemption	Return your King to your hand if it is on the field.	\`Remember me, when you come into your kingdom.\`	Power	
+Redemption	Redemption	Return your King to your hand if and only if it is\ron the field.	\`Remember me, when you come into your kingdom.\`	Power	
 Relic	Relic	Move any unit to any row on its side of the field.	Ashes to ashes. Dust to dust. For thou art dust,\rAnd unto dust thou shall return.	Power	
 Resurrection	Pyre	Choose one card from the unit graveyard and\rplay it on your side of the field.	The blood of martyrs is the seed of the church.	Power	
 Ruin	Ruin	Attach to any unit on the field and discard up\rto three cards from your hand. Add five times\rthe number of discarded cards to the unit's base\rstrength.	Doom has come to the empire.\rWe are fated for lesser days and lesser deeds.	Power	
 Styx	Styx	Pick a card from the top three in the power\rgraveyard, and add that card to your hand.	\`Not all the gold that is beneath the moon,\rOr ever hath been of these toil-worn souls,\rMight purchase rest for one.\`	Power	
-Usury	Usury	Set aside two units from your hand to play at\rthe start of the next round. Draw one card at the\rend of this round.	\`What I have dreamed in an hour is worth more\rthan what you have done in four.\`	Power	
+Usury	Usury	Set aside three units from your hand to play at\rthe start of the next round. Draw two card at the\rend of this round.	\`What I have dreamed in an hour is worth more\rthan what you have done in four.\`	Power	
 Void	Void	The round ends after your next turn ends.	He wished they would shoot him quickly and have\rit done with.	Power	
 War	War	Send any number of your units on the field to the\rgraveyard. All other players then send the same\rnumber of units to the graveyard.	Only iron can save us, And only blood can redeem\rFrom the heavy chains of sin, From the arrogance\rof evil.	Power	
 Wrath	Wrath	Send one of your units on the field and two of\ryour opponent's units to the graveyard.	Something awful, hideous, and suddenly\runderstood... Razumihin turned pale.	Power	
@@ -96,10 +96,10 @@ Smuggler	Smuggler	Draw two cards, all other players draw one.	\`Trinkets and spi
 Spy	Spy	Play in your opponent's Melee row, then draw\rtwo cards. At the end of the round, this unit\rreturns to the player's hand whose side of the\rfield it is on.	Three may keep a secret, if two are dead.	Spy	2
 Zealot	Zealot	Play in your opponent's Melee row, then draw\rtwo cards. At the end of the round, this unit\rreturns to the player's hand whose side of the\rfield it is on.	\`He was a heretic, I swear it^!\`	Spy	4
 ClearSkies	Gale	Clear all active weather effects, or move a \rweather effect to any row.	Doubt the stars are fire; Doubt the sun doth move;\rDoubt truth to be a liar; But never doubt I love.	Weather	
-Eclipse	Eclipse	Choose the Melee row or the Range row. In the\rnext round, Double the strength of all units in\rthat row, for all players.	\`The heavens align to transcribe our fate.\rFear not, our path is glory bound^!\`	Weather	
+Eclipse	Eclipse	Choose the Melee row or the Range row. In the\rnext round, double the strength of that row,\rfor all players.	\`The heavens align to transcribe our fate.\rFear not, our path is glory bound^!\`	Weather	
 Fog	Fog	Halve the strength of all Range rows or all Siege\rrows this round.	\`You can't see which way is up in here^!\`	Weather	
 Frost	Frost	Halve the strength of all Melee rows or all Range\rrows this round.	The proper function of man is to live, not to exist.	Weather	
-Omen	Omen	Choose the Siege row or the Melee row. In the\rnext round, Double the strength of all units in\rthat row, for all players.	Terrible knowledge; terrible price.\rA God does not share.	Weather	
+Omen	Omen	Choose the Siege row or the Melee row. In the\rnext round, double the strength of that row,\rfor all players.	Terrible knowledge; terrible price.\rA God does not share.	Weather	
 Plague	Plague	Choose a row. In the next round, set all units in\rthat row to one base strength, for all players.	No bells tolled, and no one wept, for every man\rexpected death; \`This is the end of the world^!\`	Weather	
-Solstice	Solstice	Choose the Range row or the Siege row. In the\rnext round, Double the strength of all units in\rthat row, for all players.	Madness, Murder, Mayhem;\rShadows turn to daggers under the Midnight Sun.	Weather	
+Solstice	Solstice	Choose the Range row or the Siege row. In the\rnext round, double the strength of that row,\rfor all players.	Madness, Murder, Mayhem;\rShadows turn to daggers under the Midnight Sun.	Weather	
 Storm	Storm	Halve the strength of all Siege rows or all Melee\rrows this round.	Hell is not fire; Hell is mud.	Weather	
