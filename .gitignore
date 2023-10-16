@@ -1,5 +1,7 @@
 krieg-eterna-cards/out/*
 krieg-eterna-cards/cropped/*
+assets/Blender/DepthMeshes/*
+assets/ZoomShots/*
 krieg-eterna-unity/krieg-eterna-unity/Assets/Resources/Images/*.png
 krieg-eterna-unity/krieg-eterna-unity/Logs/
 base-images/
