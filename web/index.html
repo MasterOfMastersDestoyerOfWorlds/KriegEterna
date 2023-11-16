@@ -116,6 +116,7 @@
                                             <picture>
                                                 <img src="./images/Title.png?w=660" alt="" class="css-EzJAk">
                                             </picture>
+
                                         </div>
                                         <!---->
                                         <!---->
@@ -182,6 +183,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <!--
                                     <div class="swiper-slide product-box" style=" margin-right: 35px;">
                                         
@@ -210,11 +212,23 @@
                                     </div>-->
                                 </div>
                             </div>
+
                         </div>
                         <!---->
                         <!---->
+                        <div class="cap-title card-title">
+                            <br>
+                            <iframe width="560" height="315"
+                                src="https://www.youtube.com/embed/-BgJeJ3vmY4?si=Q_vmnHDEb6qob5vX"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
+                        </div>
                     </div>
                     <!---->
+
+
+
                 </section>
                 <section id="new-cards-showcase" class="gradient odd-gradient">
                     <div class="css-0ErxL css-XorOV css-HBovJ" style="--container-flex-direction:column-reverse;">
@@ -386,14 +400,24 @@
                         <header>
                             <h2 class="cap-title card-title"><span>How To Play</span></h2>
                         </header>
+                        <br />
+                        <a href="./assets/Rules.pdf" download>
+                            Rulebook Download
+                        </a>
                         <br>
+
+                        <p class="rule-paragraph">
+                            Krieg Eterna is a game of strategizing and bluffing your way to victory across a series of
+                            battles against your opponent. Command your army in the field to attack with precision,
+                            deceive enemy officers, and overrun opposing regiments!
+                        </p>
+
                         <h3>Gameplay</h3>
                         <p class="rule-paragraph">
-                            A game of Krieg Eterna is divided into three separate rounds of play, where your objective
-                            is to win more rounds than your opponent.
-                            Each player's side of the field is split into three rows: melee, ranged, and siege. At the
-                            end of each round, the player with the most total strength across all of their rows wins
-                            that round.
+                            A game of Krieg Eterna is divided into three separate rounds of play, where your ultimate
+                            objective is to win more rounds than your opponent. Players take turns playing units and
+                            powers to build the strength of their army. At the end of each round, the player with the
+                            most strength across all of their rows wins that round.
                         </p>
                         <picture>
                             <source srcset="./images/LayoutRender.png?fm=webp" type="image/webp"> <img
@@ -401,18 +425,31 @@
                                 class="css-u6Ex featured-image">
                         </picture>
                         <p class="rule-paragraph">
-                            At the start of the game, each player draws four power cards, nine unit cards, and one King
-                            card, then discards down to 11 cards. Unless a card says otherwise, these are the only cards
-                            drawn for the entire game. Players take turns playing cards until all players say "pass",
-                            after which they score the field, discard all cards on the field to the graveyard, and then
-                            start the next round.
+                            At the start of the game, each player draws 9 unit cards, 4 power cards, and 1 King card.
+                            After review, players must discard 3 of their cards (any type) before play begins. Unless a
+                            card says otherwise, these are the only cards drawn for the entire game. Players then take
+                            turns playing one card at a time until all players have said "pass", after which they score
+                            the field, discard all cards on the field to the graveyards (face up), and start the next
+                            round.
                         </p>
+                        <h3>Playing Field</h3>
+                        <p class="rule-paragraph">
+                            Next is a diagram showing the layout of the playing field. Each player's side of
+                            the field is split into three rows: Melee, Range, and Siege. There is no limit to the number
+                            of cards played in rows, and unit cards may be rearranged within a row at any time.
+                        </p>
+                        <picture>
+                            <source srcset="./images/PlayingField.png?fm=webp" type="image/webp"> <img
+                                src="./images/PlayingField.png" alt="" width="548" height="433" loading="lazy"
+                                class="css-u6Ex featured-image">
+                        </picture>
+
                         <h3>Cards</h3>
                         <p class="rule-paragraph">
-                            There are three separate decks of cards -- the unit deck, power deck, and King deck -- each
-                            with a different colored card-backing. Each deck also has its own graveyard, in which
-                            discarded cards are placed. Within the decks are different card types, indicated by the
-                            symbol in the upper-right corner of a card.
+                            There are three separate decks of cards shared between all players: the unit deck, power
+                            deck, and King deck -- each with a different colored card-backing. Each deck also has its
+                            own graveyard, in which discarded cards are placed face up. Within each deck there are
+                            different card types, indicated by the symbol in the upper-right corner of a card.
                         </p>
 
                         <div class="card-scroll-box">
@@ -476,9 +513,9 @@
                         <h3>Units</h3>
                         <p class="rule-paragraph">
                             The unit deck consists of Melee, Ranged, and Siege cards. All unit cards have a base
-                            strength number in the upper-right corner, indicating how many points they will score for at
-                            the end of a round. The total strength of a unit can be increased beyond the base strength
-                            using the effects of other cards.
+                            strength number in the upper-right corner, indicating how many points they will score at the
+                            end of a round. The total strength of a unit can be increased or decreased beyond the base
+                            strength using the effects of other cards.
 
                         </p>
 
@@ -541,47 +578,64 @@
 
                         <p class="rule-paragraph">
                             <picture>
-                                <source srcset="./images/Melee.png?fm=webp" type="image/webp"> <img
-                                    src="./images/DeluxeDeckRender.png" alt="" width="100" height="100" loading="lazy"
-                                    class="rule-icon featured-image">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <source srcset="./images/Melee.png?fm=webp" type="image/webp"> <img
+                                                src="./images/Melee.png" alt="" width="100" height="100" loading="lazy"
+                                                class="rule-icon featured-image">
+
+                                        </td>
+                                        <td>
+                                            Melee units go in the front row, closest to your opponent.
+                                        </td>
+                                    </tr>
+                                </table>
                             </picture>
-                            Melee units go in the front row, closest to your opponent.
                         </p>
+
 
                         <p class="rule-paragraph">
                             <picture>
-                                <source srcset="./images/Ranged.png?fm=webp" type="image/webp"> <img
-                                    src="./images/DeluxeDeckRender.png" alt="" width="100" height="100" loading="lazy"
-                                    class="rule-icon featured-image">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <source srcset="./images/Ranged.png?fm=webp" type="image/webp"> <img
+                                                src="./images/Ranged.png" alt="" width="100" height="100" loading="lazy"
+                                                class="rule-icon featured-image">
+                                        </td>
+                                        <td>
+                                            Ranged units go in the middle row.
+                                        </td>
+                                    </tr>
+                                </table>
                             </picture>
-                            Ranged units go in the middle row.
                         </p>
+
+
 
                         <p class="rule-paragraph">
                             <picture>
-                                <source srcset="./images/Siege.png?fm=webp" type="image/webp"> <img
-                                    src="./images/DeluxeDeckRender.png" alt="" width="100" height="100" loading="lazy"
-                                    class="rule-icon featured-image">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <source srcset="./images/Siege.png?fm=webp" type="image/webp"> <img
+                                                src="./images/Siege.png" alt="" width="100" height="100" loading="lazy"
+                                                class="rule-icon featured-image">
+                                        </td>
+                                        <td>
+                                            Siege units go in the back row, closest to you.
+                                        </td>
+                                    </tr>
+                                </table>
                             </picture>
-                            Siege units go in the back row, closest to you.
-                        </p>
-
-                        <p class="rule-paragraph">
-                            <picture>
-                                <source srcset="./images/King.png?fm=webp" type="image/webp"> <img
-                                    src="./images/DeluxeDeckRender.png" alt="" width="100" height="100" loading="lazy"
-                                    class="rule-icon featured-image">
-                            </picture>
-                            King cards are in their own deck, and each player should choose one
-                            at random at the start of the game. All King cards allow you to double the strength of one
-                            of your rows,
-                            as well as having some other useful effect.
                         </p>
 
                         <h3>Powers</h3>
                         <p class="rule-paragraph">
-                            The power deck consists of Weather, Spy, Jester, and Power cards. These cards are played to
-                            the side (not in the melee, ranged, or siege rows), unless otherwise indicated.
+                            The power deck consists of Weather, Spy, Jester, and Hex cards, each with a card effect
+                            granting unique abilities. Unless otherwise indicated, these cards are played to the side
+                            (not in the Melee, Range, or Siege rows) and immediately go to the graveyard after use.
                         </p>
 
                         <div class="card-scroll-box">
@@ -655,60 +709,140 @@
                                 </div>
                             </div>
                         </div>
+
+
                         <p class="rule-paragraph">
                             <picture>
-                                <source srcset="./images/Weather.png?fm=webp" type="image/webp"> <img
-                                    src="./images/DeluxeDeckRender.png" alt="" width="100" height="100" loading="lazy"
-                                    class="rule-icon featured-image">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <source srcset="./images/Weather.png?fm=webp" type="image/webp"> <img
+                                                src="./images/Weather.png" alt="" width="100" height="100"
+                                                loading="lazy" class="rule-icon featured-image">
+                                        </td>
+                                        <td>
+                                            Weather cards affect the total strength of one of the rows, for all players.
+                                            Within the affected row, Weather applies individually to each unit; always
+                                            round unit strength down when dividing, with a minimum strength of one per
+                                            unit. Keep Weather cards on the field until their effects end.
+                                        </td>
+                                    </tr>
+                                </table>
                             </picture>
-                            Weather cards halve the strength of one row for all players. Round down
-                            after halving the total strength of the row, with a minimum strength of one per unit in the
-                            row.
                         </p>
+
                         <p class="rule-paragraph">
                             <picture>
-                                <source srcset="./images/Spy.png?fm=webp" type="image/webp"> <img
-                                    src="./images/DeluxeDeckRender.png" alt="" width="100" height="100" loading="lazy"
-                                    class="rule-icon featured-image">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <source srcset="./images/Spy.png?fm=webp" type="image/webp"> <img
+                                                src="./images/Spy.png" alt="" width="100" height="100" loading="lazy"
+                                                class="rule-icon featured-image">
+                                        </td>
+                                        <td>
+                                            Spy cards allow you to draw cards, but are played as units on your
+                                            opponent's side of the field, thereby adding to your opponent's total
+                                            strength. At the end of the round, most Spys go directly to the hand of the
+                                            player whose side of the field they are on, allowing your opponent to turn
+                                            your Spys against you.
+                                        </td>
+                                    </tr>
+                                </table>
                             </picture>
-                            Spy cards allow you to draw cards, but are played on your opponent's side of the field,
-                            thereby adding to your opponent's total strength. They go to the power graveyard at the end
-                            of the round.
                         </p>
+
                         <p class="rule-paragraph">
                             <picture>
-                                <source srcset="./images/Jester.png?fm=webp" type="image/webp"> <img
-                                    src="./images/DeluxeDeckRender.png" alt="" width="100" height="100" loading="lazy"
-                                    class="rule-icon featured-image">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <source srcset="./images/Jester.png?fm=webp" type="image/webp"> <img
+                                                src="./images/Jester.png" alt="" width="100" height="100" loading="lazy"
+                                                class="rule-icon featured-image">
+                                        </td>
+                                        <td>
+                                            Jester cards can return cards on the field back to your hand, or set them
+                                            aside for the next round. Use them to deceive your opponent.
+                                        </td>
+                                    </tr>
+                                </table>
                             </picture>
-                            Jester cards allow you to return cards to your hand, or keep them on the field
-                            for the next round. They remain on the field after being played, until the end of the round.
                         </p>
+
                         <p class="rule-paragraph">
                             <picture>
-                                <source srcset="./images/Power.png?fm=webp" type="image/webp"> <img
-                                    src="./images/DeluxeDeckRender.png" alt="" width="100" height="100" loading="lazy"
-                                    class="rule-icon featured-image">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <source srcset="./images/Power.png?fm=webp" type="image/webp"> <img
+                                                src="./images/Power.png" alt="" width="100" height="100" loading="lazy"
+                                                class="rule-icon featured-image">
+                                        </td>
+                                        <td>
+                                            Hex cards allow for drawing cards, sending cards to the graveyard, or other
+                                            useful effects. Hex cards attached to a specific unit follow with that unit,
+                                            e.g. to the graveyard, another row, or even a player's hand.
+                                        </td>
+                                    </tr>
+                                </table>
                             </picture>
-                            Power cards allow for drawing cards, sending cards to the graveyard, or other
-                            useful effects. Power cards attached to a specific unit follow with that unit. Unless the
-                            word
-                            King is on the Power card, these cards do not affect Kings.
+                        </p>
+
+
+                        <h3>Kings</h3>
+                        <p class="rule-paragraph">
+
+                            The King deck contains all King cards, and each player should choose one at random at the
+                            start of the game. Each player's King card can only be scored in one round per game (i.e. it
+                            does not return to your hand each round).King cards are not affected by other cards, unless
+                            specifically mentioned.
+                        </p>
+
+                        <div class="swiper-slide" style="width: 278.2px; margin-right: 16px;">
+                            <figure>
+                                <div class="card-flip">
+                                    <div tabindex="0" class="card-flip-inner css-ZIY5">
+                                        <div class="card-back">
+                                            <img src="./images/FlagKing.png" alt="" class="card-image"
+                                                unselectable="on">
+                                        </div>
+                                        <div class="card-front">
+                                            <img src="./images/Lion.png" alt="" class="card-image" unselectable="on">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!---->
+                            </figure>
+                        </div>
+
+
+                        <p class="rule-paragraph">
+                            <picture>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <source srcset="./images/King.png?fm=webp" type="image/webp"> <img
+                                                src="./images/King.png" alt="" width="100" height="100" loading="lazy"
+                                                class="rule-icon featured-image">
+                                        </td>
+                                        <td>
+                                            King cards allow you to double the strength of one of your rows, as well as
+                                            having a choice between other unique effects. A King only doubles the row
+                                            while it remains on the field.
+                                        </td>
+                                    </tr>
+                                </table>
+                            </picture>
                         </p>
 
                         <h3>Adjacency</h3>
                         <p class="rule-paragraph">
-
-                            If two units with the same base strength are in the same row, they get an adjacency
-                            bonusbase strength.
-                            which doubles the total strength of both units. You cannot add a third unit to this adjacent
-                            pair,
-                            but you can have multiple pairs on the field.
-                        </p>
-                        <p class="rule-paragraph">
-                            Adjacency bonuses only apply to units with three base strength or less.
-                            Note that adjacency effects can be enabled or broken by Power cards that modify a unit's
-                            base strength.
+                            If two units with the same strength are in the same row, they get an adjacency bonus which
+                            doubles the strength of both units. Adjacency bonuses only apply to units with two or three
+                            strength. You cannot add a third unit to this adjacent pair, but you can have multiple pairs
+                            on the field. Note that adjacency effects can be enabled or broken by power cards that
+                            modify a unit's strength.
                         </p>
 
                         <div class="card-scroll-box">
@@ -749,70 +883,111 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-                        <h3>Scoring</h3>
                         <p class="rule-paragraph">
-                            To calculate the total strength of each unit, start with the base strength number on the
-                            card,
-                            add any power cards that affect base strength (all attached powers should apply), then
-                            multiply by any adjacency bonus.
+                            Example 1: A row has 3 units with base strength 2. Two units form an adjacent pair, but the
+                            third does not get a bonus. The row's total score is: (2 × 2) + (2 × 2) + 2 = 10.
                         </p>
-                        <p class="rule-paragraph">
-                            To calculate the total strength of each row, sum all of the units in the row, then multiply
-                            or divide according to weather and bonuses
-                            (always round down if dividing, with a minimum strength of one per unit for the row).
-                            After adding all rows together, the player with the highest total strength wins the round.
 
-                        </p>
-                        <h3>Caveats</h3>
                         <p class="rule-paragraph">
-                            At the end of a round, Kings cannot return to your hand if they were played on the field or
-                            sent to the graveyard.
+                            Example 2: A row has 2 units with base strength 4. A certain power is then played to
+                            subtract 1 strength from all units in that row. Both units now have strength 3, and so
+                            receive an adjacency bonus. The row's total score is: ((4 - 1) × 2) + ((4 - 1) × 2) = 12.
+                        </p>
+
+                        <h3>Passing</h3>
+
+                        <p class="rule-paragraph">
+                            Before playing any cards on your turn, you may say \'pass\' to signal you are ready to end
+                            the round. Once a player has passed, they may not play any more cards until the next round.
+                            Other players may continue to play cards, taking as many turns as desired before eventually
+                            passing themselves. After all players have passed, the round is scored.
+                        </p>
+                        <h3>Scoring The Round</h3>
+                        <p class="rule-paragraph">
+                            Each of your units on the field contributes its total strength to your score for the round
+                            as follows:
+
+                        <p class="rule-paragraph">
+                            1. Start with each unit's base strength number found in the upper-right corners of the
+                            cards.
+                        </p>
+
+                        <p class="rule-paragraph">
+                            2. Apply all modifiers with keywords: set base strength.
+                        </p>
+
+                        <p class="rule-paragraph">
+                            3. Apply all modifiers with keywords: add or subtract base strength.
+                        </p>
+
+                        <p class="rule-paragraph">
+                            3. If there are adjacency bonuses at this point, double the strength of units forming
+                            adjacent pairs.
+                        </p>
+
+                        <p class="rule-paragraph">
+                            4. Apply all row multipliers (keywords: double or halve strength) from weather effects and
+                            King bonuses to each unit. Always round down if dividing, with a minimum strength of one per
+                            unit.
+                        </p>
+                        </p>
+
+                        <h3>Winning</h3>
+                        <p class="rule-paragraph">
+                            After adding all units' total strengths together, the player with the highest number wins
+                            the round (the size of the victory does not matter).
                         </p>
                         <p class="rule-paragraph">
-                            Doubling and halving effects do not remain if the card causing the effect is removed from
-                            the field. A King's Weather effects can be cleared without removing the King from the field.
+                            The first player to win two rounds wins the game. If no player has won two rounds and no
+                            player can play any cards, the game is a draw.
+                        </p>
+
+                        <h3>Final Details</h3>
+                        <p class="rule-paragraph">
+                            Going first: In the first round, the player who dealt the unit deck (or won the last game)
+                            goes first. In later rounds, the previous round's winner goes first.
                         </p>
                         <p class="rule-paragraph">
-                            After scoring, all cards on the field are sent to their respective graveyard, unless
-                            otherwise noted by a card.
+                            If a card says to draw, you may pick any combination of unit or power cards, unless
+                            otherwise specified. King cards are never drawn after the intial setup.
                         </p>
                         <p class="rule-paragraph">
-                            Before playing any cards on your turn, you may pass. Once a player has passed, they may not
-                            play any more cards until the next round unless otherwise noted by a card.
+                            If an opponent asks, you must tell them the number of unit and power cards you have in your
+                            hand.
                         </p>
                         <p class="rule-paragraph">
-                            Once you have passed, your opponent may play as many cards as they wish before passing
-                            themselves.
+                            Set aside cards do not score for the current round and cannot be affected by other cards
+                            this round. At the start of the next round, return them directly to the field, in their same
+                            row (do this before the first turn is taken). Do not repeat any card effects.
                         </p>
                         <p class="rule-paragraph">
-                            When drawing cards during a round, you can choose to draw any combination of unit or power
-                            cards. King cards cannot be drawn after the game has started.
+                            If a power card has an activation cost (e.g. "send a unit to the graveyard"), you must pay
+                            its price in order to play the card at all. This prevents players from stalling with
+                            unusable/undesired power cards.
+                        </p>
+
+                        <h3>Additional Players</h3>
+                        <p class="rule-paragraph">
+                            When playing Krieg Eterna with more than two players, you can choose to either play in teams
+                            or a free-for-all:
                         </p>
                         <p class="rule-paragraph">
-                            When asked to reveal a power card, reveal a novel card to your opponent.
+                            Players should not show their hands to teammates.
                         </p>
                         <p class="rule-paragraph">
-                            When playing with more than two players split into teams, double the number of cards drawn
-                            and split them amongst each side.
+                            Each player has their own separate set of rows (e.g. teammates do not share rows, adjacency,
+                            or Kings).
                         </p>
                         <p class="rule-paragraph">
-                            When playing with more than two players, once a teammate passes they cannot re-enter the
-                            round. You do not gain the opportunity to play on their turn.
+                            Turn order should alternate between teams.
                         </p>
                         <p class="rule-paragraph">
-                            When playing with more than two players, Power cards should apply once, not once per
-                            opponent.
+                            Teammates can never play on your turn for you, even if you have already passed.
                         </p>
                         <p class="rule-paragraph">
-                            The unit and power graveyards are shared among the players.
-                        </p>
-                        <p class="rule-paragraph">
-                            The player who dealt or won the last round goes first.
-                        </p>
-                        <p class="rule-paragraph">
-                            If no player has won two rounds and no player can play any cards, the game is a draw.
+                            Scoring: In free-for-all, award points based on a player's ranking within each round. In a
+                            team game, the team with the highest combined total strength wins the round.
                         </p>
                     </div>
                 </section>
