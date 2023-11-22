@@ -7,6 +7,7 @@ krieg-eterna-unity/krieg-eterna-unity/Logs/
 base-images/
 web/gif
 assets/GifRenders/
+assets/Audio
  krieg-eterna-unity/krieg-eterna-unity/Assets/InitTestScene*
 assets/Earth
 krieg-eterna-unity/krieg-eterna-unity/*.csproj

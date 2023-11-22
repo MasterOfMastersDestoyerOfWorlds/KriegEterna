@@ -29,7 +29,7 @@
 <body>
     <div class="css-wvKZk"
         style="--theme-button-color--primary:#ffffff; --theme-primary-color--100:#430082; --theme-primary-color--200:#243146; --theme-primary-color--300:#243146; --theme-accent-color:#ffcc33; --theme-link-color:#ffcc33; --theme-link-color--active:#ffcc33; --theme-primary-color--400:#243146; --base-font-color:#ffffff;">
-        <div class="css-toHDM site-header">
+        <div class="header-left site-header">
             <!---->
             <div class="logo">
                 <div class="css-8oEOo">
@@ -42,7 +42,7 @@
                     </a>
                 </div>
                 <nav class="nav">
-                    <ul class="css-74X9i css-SUdY8 css-BA3IM nav-list">
+                    <ul class="nav-links nav-list">
                         <li><a href="#product" class="nav-link">
                                 Products
                             </a>
@@ -58,6 +58,19 @@
                         </li>
 
                     </ul>
+
+                </nav>
+
+                <nav class="nav permanent-nav">
+                    <ul class="nav-links nav-list">
+                        <li class="permanent-nav"><a href="https://www.amazon.com/dp/B0CJHWGZYF?ref=myi_title_dp" class="nav-link"
+                                target="_blank">
+                                Amazon
+                            </a>
+                        </li>
+
+                    </ul>
+
                 </nav>
             </div>
             <div></div>
@@ -73,7 +86,7 @@
                             <div class="css-TXZf4">
                                 <a href="https://www.amazon.com/dp/B0CJHWGZYF?ref=myi_title_dp" target="_blank"
                                     rel="noopener" class="button-highlight css-2dGqW css-aqU36"><span
-                                        class="css-74X9i css-KalfM css-lmKD site-button">
+                                        class="nav-links css-KalfM css-lmKD site-button">
                                         <picture aria-hidden="true"><img src="./images/icon-amazon.svg" alt=""
                                                 loading="lazy" class="css-nrWL3"></picture>
                                         <picture aria-hidden="true" style="display: none;"><img
@@ -120,19 +133,14 @@
                                         </div>
                                         <!---->
                                         <!---->
-                                        <h3 class="top-title"><span>A BATTLE FOR THE AGES</span></h3>
+                                        <h3 data-text="A Battle For The Ages" class="top-title"><span>A Battle For The
+                                                Ages</span></h3>
                                         <div class="top-paragraph">
-                                            <p>Kings and Armies assemble in the fields of Europe. Wether it be for God,
-                                                glory or gold the Continent marches to war, will you give it to them?
-                                                If you want to win it will take strategy, cunning, and a little luck!
+                                            <p>Kings and Armies assemble in the fields of Europe. Whether it be for God,
+                                                glory, or gold the Continent marches to war – will you give it to them?
+                                                If you want to win it will take cunning strategy and a little luck!
                                                 Prepare for battle and bring some friends!</p>
                                         </div>
-                                        <div class="call-to-action">
-                                            <div>
-                                                <p>Available Now</p>
-                                            </div>
-                                        </div>
-                                        <!---->
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +152,7 @@
                     <div class="css-0ErxL css-0vG6H css-kEe4h">
                         <div class="css-3c0LG" style="--container-max-width:540px;">
                             <header class="css-lIRLd">
-                                <h2 class="cap-title" id="product">
+                                <h2 class="cap-title" id="product" data-text="Products">
                                     Products
                                 </h2>
                             </header>
@@ -161,8 +169,9 @@
                                             <img src="./images/DeluxeDeckRender.png" alt="" width="548" height="433"
                                                 loading="lazy" class="css-u6Ex featured-image">
                                         </picture>
-
-                                        <h3 class="product-title">Standard Edition</h3>
+                                        <div>
+                                            <h3 class="product-title" data-text="Standard Edition">Krieg Eterna</h3>
+                                        </div>
                                         <div class="product-desc">
                                             <p>Krieg Eterna is a fast-paced card game in which you strategize and bluff
                                                 your way to victory across a series of battles against your opponent.
@@ -341,9 +350,9 @@
                                 <header>
                                     <h2 class="cap-title card-title"><span>Meet Your Army</span></h2>
                                 </header>
-                                <p class="css-tg8OC">Your units do the fighting and your King and power cards make the
-                                    rounds interesting! You'll have to learn how to use them together in order to win.
-                                    With over 100 unique cards the possibilities are endless!
+                                <p class="css-tg8OC">Your units do the fighting, and your King and power cards make the
+                                    round interesting! You’ll have to learn how to use them together in order to win.
+                                    With over 100 unique cards, the possibilities are endless!
                                 </p>
                             </div>
                         </div>
@@ -586,7 +595,7 @@
                                                 class="rule-icon featured-image">
 
                                         </td>
-                                        <td>
+                                        <td class="table-paragraph">
                                             Melee units go in the front row, closest to your opponent.
                                         </td>
                                     </tr>
@@ -604,7 +613,7 @@
                                                 src="./images/Ranged.png" alt="" width="100" height="100" loading="lazy"
                                                 class="rule-icon featured-image">
                                         </td>
-                                        <td>
+                                        <td class="table-paragraph">
                                             Ranged units go in the middle row.
                                         </td>
                                     </tr>
@@ -623,7 +632,7 @@
                                                 src="./images/Siege.png" alt="" width="100" height="100" loading="lazy"
                                                 class="rule-icon featured-image">
                                         </td>
-                                        <td>
+                                        <td class="table-paragraph">
                                             Siege units go in the back row, closest to you.
                                         </td>
                                     </tr>
@@ -710,7 +719,7 @@
                             </div>
                         </div>
 
-                        
+
                         <p class="rule-paragraph">
                             <picture>
                                 <table>
@@ -720,7 +729,7 @@
                                                 src="./images/Weather.png" alt="" width="100" height="100"
                                                 loading="lazy" class="rule-icon featured-image">
                                         </td>
-                                        <td>
+                                        <td class="table-paragraph">
                                             Weather cards affect the total strength of one of the rows, for all players.
                                             Within the affected row, Weather applies individually to each unit; always
                                             round unit strength down when dividing, with a minimum strength of one per
@@ -741,7 +750,7 @@
                                                 src="./images/Spy.png" alt="" width="100" height="100" loading="lazy"
                                                 class="rule-icon featured-image">
                                         </td>
-                                        <td>
+                                        <td class="table-paragraph">
                                             Spy cards allow you to draw cards, but are played as units on your
                                             opponent's side of the field, thereby adding to your opponent's total
                                             strength. At the end of the round, most Spys go directly to the hand of the
@@ -762,7 +771,7 @@
                                                 src="./images/Jester.png" alt="" width="100" height="100" loading="lazy"
                                                 class="rule-icon featured-image">
                                         </td>
-                                        <td>
+                                        <td class="table-paragraph">
                                             Jester cards can return cards on the field back to your hand, or set them
                                             aside for the next round. Use them to deceive your opponent.
                                         </td>
@@ -780,7 +789,7 @@
                                                 src="./images/Power.png" alt="" width="100" height="100" loading="lazy"
                                                 class="rule-icon featured-image">
                                         </td>
-                                        <td>
+                                        <td class="table-paragraph">
                                             Hex cards allow for drawing cards, sending cards to the graveyard, or other
                                             useful effects. Hex cards attached to a specific unit follow with that unit,
                                             e.g. to the graveyard, another row, or even a player's hand.
@@ -888,12 +897,12 @@
                         </p>
 
                         <p class="rule-paragraph">
-                            3. If there are adjacency bonuses at this point, double the strength of units forming
+                            4. If there are adjacency bonuses at this point, double the strength of units forming
                             adjacent pairs.
                         </p>
 
                         <p class="rule-paragraph">
-                            4. Apply all row multipliers (keywords: double or halve strength) from weather effects and
+                            5. Apply all row multipliers (keywords: double or halve strength) from weather effects and
                             King bonuses to each unit. Always round down if dividing, with a minimum strength of one per
                             unit.
                         </p>
@@ -916,7 +925,7 @@
                         </p>
                         <p class="rule-paragraph">
                             If a card says to draw, you may pick any combination of unit or power cards, unless
-                            otherwise specified. King cards are never drawn after the intial setup.
+                            otherwise specified. King cards are never drawn after the initial setup.
                         </p>
                         <p class="rule-paragraph">
                             If an opponent asks, you must tell them the number of unit and power cards you have in your
@@ -962,7 +971,7 @@
                 <div class="css-FIhpz css-HKbxF css-J8dLz">
                     <div class="css-s6s3f">
                         <div class="social-boxcss-JyHUr">
-                            <h3 class=" css-eOl-G">Social</h3>
+                            <h3 class="social-title">Social</h3>
                             <a target="_blank" href="https://twitter.com/kriegeterna" rel="noopener"
                                 aria-label="Krieg Eterna Twitter Official Account"
                                 class="css-0nDbK css-ripru css-8CChG css-zpwf9"><span class="css-jKFGW"><svg
