@@ -3,8 +3,6 @@
     src: url('/fonts/GargouilleBold.otf');
     descent-override: 30%;
 }
-
-
 :root {
     --black: #000;
     --black-alpha0: transparent;
@@ -28,7 +26,7 @@
     --base-font-size: 20px;
     --base-word-spacing: 1px;
     --strong-font-family:
-        "Gargouille", Arial, serif;
+        "GargouilleBold";
     --html-background: var(--black);
     --max-site-width: 1920;
     --default-max-content-width: 1440px;
@@ -484,11 +482,6 @@ img {
     }
 }
 
-@media screen and (min-width:1600px) {
-    .cap-title {
-        font-size: 42px
-    }
-}
 
 .css-TiYdz {
     overflow: hidden;
@@ -1021,12 +1014,6 @@ img {
     }
 }
 
-@media screen and (min-width:1600px) {
-    .top-title {
-        font-size: 30px
-    }
-}
-
 .top-paragraph {
     color: var(--text-color);
     font-size: 16px;
@@ -1187,11 +1174,6 @@ img {
     }
 }
 
-@media screen and (min-width:1600px) {
-    .product-title {
-        font-size: 25px
-    }
-}
 
 .product-desc {
     padding: 0 16px;
@@ -1284,7 +1266,6 @@ img {
 }
 
 .css-nd7IL .css-ExOVn {
-    font-size: ;
     font-weight: 500;
     text-shadow: 0 1px 3px rgba 0, 0, 0, .29, 0 1px 4px 0 var(--theme-primary-color--300);
     color: var(--white);
@@ -1456,11 +1437,6 @@ html[lang=zh-Hant] .css-lV1Vi {
     }
 }
 
-@media screen and (min-width:1600px) {
-    .card-title.card-title {
-        font-size: 42px
-    }
-}
 
 .css-ysAew {
     padding: 0;
