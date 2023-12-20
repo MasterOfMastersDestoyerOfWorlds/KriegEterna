@@ -664,6 +664,7 @@
 		(file-png-save 1 image layer (string-append (string-append out-folder "/png/") (string-append out-file ".png")) (string-append (string-append out-folder "/png/") (string-append out-file ".png")) 0 0 1 0 0 1 1)
 		(gimp-image-scale image 822 1122)
 		(file-png-save 1 image layer (string-append (string-append out-folder "/png/Downscale/") (string-append out-file ".png")) (string-append (string-append out-folder "/png/Downscale/") (string-append out-file ".png")) 0 9 1 0 0 1 1)
+		(gimp-image-scale image 500 682)
 		(list image layer text effect-text flavor-text)
     )
   )

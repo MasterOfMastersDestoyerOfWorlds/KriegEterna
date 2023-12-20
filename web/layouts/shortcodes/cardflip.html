@@ -1,0 +1,19 @@
+<!--
+	font: image on the front of the card
+	back: image on the back of the card
+-->
+
+<div class="swiper-slide-rules" style="width: 278.2px; margin-right: 16px;">
+	<figure>
+		<div class="card-flip">
+			<div tabindex="0" class="card-flip-inner css-ZIY5">
+				<div class="card-front">
+					<img {{ with .Get "front" }}src="/images/{{.}}.png" {{ end -}} alt="" class="card-image" unselectable="on">
+				</div>
+				<div class="card-back">
+					<img {{ with .Get "back" }}src="/images/{{.}}.png" {{ end -}} alt="" class="card-image" unselectable="on">
+				</div>
+			</div>
+		</div>
+	</figure>
+</div>

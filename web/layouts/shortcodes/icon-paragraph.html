@@ -1,0 +1,18 @@
+<!--
+	icon: icon image from the card
+	text: paragraph text
+-->
+<table class="rule-paragraph">
+	<tr>
+		<td>
+			<source {{ with .Get "icon" }} srcset="/images/{{.}}.png?fm=webp" type="image/webp"> <img
+				src="/images/{{.}}.png" alt="" width="100" height="100" loading="lazy" class="rule-icon featured-image"
+				{{ end }}>
+		</td>
+		<td class="table-paragraph">
+			{{ with .Get "text" }}
+			{{.}}
+			{{ end}}
+		</td>
+	</tr>
+</table>

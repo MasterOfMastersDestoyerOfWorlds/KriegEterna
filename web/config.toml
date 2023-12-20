@@ -1,0 +1,14 @@
+baseURL = 'https://www.kriegeterna.com/'
+languageCode = 'en-us'
+title = 'Krieg Eterna'
+
+[params]
+  favicon = "/favicon.ico"
+  stylesheet = "/style.css"
+  indexarticles = 50
+  taglist = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
