@@ -57,10 +57,12 @@
         {{partial "cardflip" (dict "Params" (dict "big" "true" "front" $title "back" $cardback))}}
 
         <h3 class="{{lower (index $data 4)}}">{{(index $data 1)}}</h3>
+        {{$strength := (index $data 5)}}
+        {{if gt (len $strength) 0}}
         <p class="rule-paragraph">
-            <i>Strength:</i> {{(index $data 5)}}
+            <i>Strength:</i> {{$strength}}
         </p>
-
+        {{end}}
         <p class="rule-paragraph">
             <i>Type:</i> {{$typedesc}}
         </p>
@@ -84,9 +86,11 @@
         <p class="rule-paragraph">
             <i>Flavor Text:</i> {{$flavor}}
         </p>
+        {{if (isset .Params "artwork")}}
         <p class="rule-paragraph">
             Artwork: {{.Params.artwork}}
         </p>
+        {{end}}
         </br>
         {{.Inner}}
 </section>

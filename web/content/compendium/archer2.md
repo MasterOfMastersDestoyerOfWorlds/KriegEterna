@@ -2,7 +2,7 @@
 title: "Archer"
 description: 'Krieg Eterna'
 layout: card
-tags: ['Base Set', 'Archer', 'Ranged']
+tags: ['Base Set', 'Archer', 'Unit', 'Ranged']
 ---
 {{<card-detail-page title="Archer2" artwork="George Douglas, 16th Earl of Morton by Sir William Beechey (18th to 19th Century)">}}
 <p class="rule-paragraph">

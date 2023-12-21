@@ -1,0 +1,7 @@
+---
+title: "Saboteur"
+description: 'Krieg Eterna'
+layout: card
+tags: ['Base Set', 'Power', 'Saboteur', 'Spy']
+---
+{{<card-detail-page title="Saboteur" artwork="The Great Fire of London by Josepha Jane Battlehooke (1675)" />}}
