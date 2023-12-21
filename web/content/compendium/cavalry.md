@@ -1,7 +1,7 @@
 ---
 title: "Cavalry"
 description: 'Krieg Eterna'
-layout: single
-tags: ['Cavalry', 'Melee']
+layout: card
+tags: ['Base Set', 'Cavalry', 'Melee']
 ---
 {{<card-detail-page title="Calvary" artwork="Scotland Forever! by Elizabeth Thompson (1881)" />}}

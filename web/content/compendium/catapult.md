@@ -1,7 +1,7 @@
 ---
 title: "Catapult"
 description: 'Krieg Eterna'
-layout: single
-tags: ['Catapult', 'Siege']
+layout: card
+tags: ['Base Set', 'Catapult', 'Siege']
 ---
 {{<card-detail-page title="Catapult" artwork="Catapulta by Edward Poynter (1868)" />}}

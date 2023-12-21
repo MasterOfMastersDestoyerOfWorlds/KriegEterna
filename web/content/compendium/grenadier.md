@@ -1,7 +1,7 @@
 ---
 title: "Grenadier"
 description: 'Krieg Eterna'
-layout: single
-tags: ['Grenadier', 'Ranged']
+layout: card
+tags: ['Base Set', 'Grenadier', 'Ranged']
 ---
 {{<card-detail-page title="Grenadier" artwork="Le Grenadier by Édouard Detaille (1912)" />}}

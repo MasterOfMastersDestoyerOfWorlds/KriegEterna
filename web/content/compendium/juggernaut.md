@@ -1,7 +1,7 @@
 ---
 title: "Juggernaut"
 description: 'Krieg Eterna'
-layout: single
-tags: ['Juggernaut', 'Melee']
+layout: card
+tags: ['Base Set', 'Juggernaut', 'Melee']
 ---
 {{<card-detail-page title="Juggernaut" artwork="Leonidas at Thermopylae by Jacques-Louis David (1814)" />}}
