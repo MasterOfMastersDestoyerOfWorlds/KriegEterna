@@ -71,7 +71,7 @@ layout: single
             </div>
         </div>
         <br>
-        {{< vid  "https://www.youtube.com/embed/yg5-dz9aM1E?si=bkm7HJy2CCnukqN-">}}
+        {{< vid  "https://www.youtube.com/embed/yg5-dz9aM1E?si=bkm7HJy2CCnukqN-&autoplay=0&origin=http://example.com">}}
     </div>
     {{< news-letter-signup >}}
 </section>
@@ -86,11 +86,11 @@ layout: single
         </div>
         <div class="css-fTdGr">
                     {{< card-scroll-gallery >}}
-                        {{< cardflip front="Traitor" back="FlagKing" >}}
-                        {{< cardflip front="Knight4" back="Flag" >}}
-                        {{< cardflip front="Assassin" back="FlagPower" >}}
-                        {{< cardflip front="Cannon2" back="Flag" >}}
-                        {{< cardflip front="Ruin" back="FlagPower" >}}
+                        {{< cardflip front="Traitor" back="FlagKing" big="false">}}
+                        {{< cardflip front="Knight4" back="Flag" big="false">}}
+                        {{< cardflip front="Assassin" back="FlagPower" big="false">}}
+                        {{< cardflip front="Cannon2" back="Flag" big="false">}}
+                        {{< cardflip front="Ruin" back="FlagPower" big="false">}}
                     {{</ card-scroll-gallery >}}
             <div id="how-to-play"></div>
             <div class="css-pjOS5 css-P-g66 css-EiWA- css-ysAew">

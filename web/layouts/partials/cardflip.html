@@ -1,0 +1,24 @@
+<!--
+	font: image on the front of the card
+	back: image on the back of the card
+-->
+{{$big := eq .Params.big "true"}}
+{{if $big}}
+<div class="swiper-slide-rules card-big">
+{{else}}
+<div class="swiper-slide-rules" style="width: 278.2px; margin-right: 16px;">
+{{end}}
+	<figure>
+		<div class="card-flip">
+			<div tabindex="0" class="card-flip-inner css-ZIY5">
+				<div class="card-front">
+					<img {{ with .Params.front }} {{if $big}} src="/card-images/{{.}}.png" {{else}} src="/images/{{.}}.png" {{end}} {{ end -}} alt="" style="border-radius: 3%" class="card-image"
+						unselectable="on">
+				</div>
+				<div class="card-back">
+					<img {{ with .Params.back }}src="/images/{{.}}.png" {{ end -}} alt="" class="card-image" unselectable="on">
+				</div>
+			</div>
+		</div>
+	</figure>
+</div>

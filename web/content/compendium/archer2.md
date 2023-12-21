@@ -1,0 +1,29 @@
+---
+title: "Archer"
+description: 'Krieg Eterna'
+layout: single
+tags: ['Archer', 'Ranged']
+---
+{{<card-detail-page title="Archer2" artwork="George Douglas, 16th Earl of Morton by Sir William Beechey (18th to 19th Century)">}}
+<p class="rule-paragraph">
+    William Beechey was one of the most prominent portrait artists of the Enlightenment
+    painting the British Royals from "Mad King George" George the Third to Queen Victoria
+    including
+    many other famous and powerful people of his time including prime ministers, dukes, actors,
+    scientists and doctors.
+</p>
+<p class="rule-paragraph">
+    The subject of this painting is George Douglas, 16th Earl of Morton in Scotland who despite
+    the flavor text was probably not fond of poor people. Despite being no Robin Hood, He was a
+    member of the Royal Company of Archers and a Fellow of the Fellow of the Royal Society, the
+    most prestigious scientific institution in Britian.
+</p>
+<img src="/card-images/description-images/quagga.jpg">
+<p class="rule-paragraph">
+    Douglas was probably best know for trying to breed a hybrid of a horse and a quagga, a now
+    exctinct subspecies of Zebra native to South Africa. He apparrently did breed a horse with
+    stripes on its hind legs and neck (pictured above) and this fact was later cited in Charles
+    Darwin's "On The Origin of Species" as an example of telegony, where two male's can impart
+    their gene's in a single offspring, but this was later found to be false.
+</p>
+{{</card-detail-page>}}

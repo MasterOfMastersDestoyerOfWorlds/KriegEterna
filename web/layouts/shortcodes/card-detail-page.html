@@ -1,0 +1,47 @@
+<section class="gradient even-gradient">
+    <br>
+    <div class="css-pjOS5 css-P-g66 css-EiWA- css-ysAew">
+
+        {{$title := (index .Params "title")}}
+        {{partial "cardflip" (dict "Params" (dict "big" "true" "front" $title "back" "Flag"))}}
+        
+        
+                {{$data := 0}}
+        {{ range $i, $r := getCSV "\t" "data/CardSheet.tsv" }}
+            {{ $c := (index . 0) }}
+            {{ if eq $c $title }}
+                {{$data = .}}
+            {{end}}
+        {{ end }}
+        <h3 class="{{lower (index $data 4)}}">{{(index $data 1)}}</h3>
+        <p class="rule-paragraph">
+            <i>Strength:</i> {{(index $data 5)}}
+        </p>
+        
+        {{$type := (index $data 4)}}
+        {{ $type = (replace $type "Ranged" "Ranged Unit")}}
+        {{ $type = (replace $type "Melee" "Melee Unit")}}
+        {{ $type = (replace $type "Siege" "Siege Unit")}}
+        {{ $type = (replace $type "Power" "Hex Power")}}
+        {{ $type = (replace $type "Decoy" "Jester Power")}}
+        {{ $type = (replace $type "Spy" "Spy Power")}}
+        {{ $type = (replace $type "Weather" "Weather Power")}}
+        <p class="rule-paragraph">
+            <i>Type:</i> {{$type}}
+        </p>
+        <p class="rule-paragraph">
+            <i>Draw Duplicate Chance:</i> 4/58
+        </p>
+        {{$s := (index $data 3)}}
+        {{ $s = (replace $s "^" "")}}
+        {{ $s = (replace $s "\\`" "\"")}}
+        {{ $s = (replace $s "\\r" " ")}}
+        <p class="rule-paragraph">
+            <i>Flavor Text:</i> {{$s}}
+        </p>
+        <p class="rule-paragraph">
+            Artwork: {{.Params.artwork}}
+        </p>
+        </br>
+        {{.Inner}}
+</section>
