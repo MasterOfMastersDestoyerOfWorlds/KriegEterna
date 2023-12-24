@@ -1,5 +1,6 @@
 ---
 title: "Privateer"
+code: "Privateer3"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Privateer', 'Unit', 'Ranged']

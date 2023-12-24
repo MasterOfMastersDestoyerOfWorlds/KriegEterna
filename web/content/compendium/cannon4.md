@@ -1,5 +1,6 @@
 ---
 title: "Cannon"
+code: "Cannon4"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Cannon', 'Unit', 'Siege']

@@ -1,5 +1,6 @@
 ---
 title: "Epiphany"
+code: "Enlightenment"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Epiphany', 'Power', 'Hex']

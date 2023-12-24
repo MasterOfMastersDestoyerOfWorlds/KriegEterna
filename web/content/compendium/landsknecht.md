@@ -1,5 +1,6 @@
 ---
 title: "Pike"
+code: "Landsknecht"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Pike', 'Unit', 'Melee']

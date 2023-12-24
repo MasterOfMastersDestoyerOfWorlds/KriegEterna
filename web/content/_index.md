@@ -4,8 +4,6 @@ description: 'Krieg Eterna'
 layout: single
 ---
 
-
-
 <section class="gradient even-gradient">
     <div class="title-wrapper css-UDQ10">
         <div class="css-tqeem">

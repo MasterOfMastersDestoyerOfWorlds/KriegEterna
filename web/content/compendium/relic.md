@@ -1,5 +1,6 @@
 ---
 title: "Relic"
+code: "Relic"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Relic', 'Power', 'Hex']

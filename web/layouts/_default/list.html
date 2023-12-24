@@ -1,0 +1,15 @@
+{{ define "title" -}}
+{{ .Title | title }}
+{{- end }}
+{{ define "main" -}}
+{{ .Content }}
+<ul class="list">
+{{- range.Pages }}
+<li>
+	{{.Params.code}}
+	{{partial "cardflip" (dict "Params" (dict "big" "true" "front" .Params.code "back" .Params.back))}}
+	<a href="{{ .RelPermalink }}">{{ .Title }}</a>
+</li>
+{{- end }}
+</ul>
+{{- end }}

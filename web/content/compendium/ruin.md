@@ -1,5 +1,6 @@
 ---
 title: "Ruin"
+code: "Ruin"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Ruin', 'Power', 'Hex']

@@ -1,5 +1,6 @@
 ---
 title: "Execution"
+code: "Execution"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Execution', 'Power', 'Hex']

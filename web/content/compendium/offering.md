@@ -1,5 +1,6 @@
 ---
 title: "Offering"
+code: "Offering"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Offering', 'Power', 'Hex']

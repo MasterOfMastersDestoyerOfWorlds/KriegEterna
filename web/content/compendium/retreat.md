@@ -1,5 +1,6 @@
 ---
 title: "Retreat"
+code: "Retreat"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Retreat', 'Power', 'Jester']

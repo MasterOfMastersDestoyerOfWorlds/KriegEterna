@@ -1,5 +1,6 @@
 ---
 title: "Line"
+code: "MusketLine"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Line', 'Unit', 'Melee']

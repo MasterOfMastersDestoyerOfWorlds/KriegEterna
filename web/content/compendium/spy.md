@@ -1,5 +1,6 @@
 ---
 title: "Spy"
+code: "Spy"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Power', 'Spy']

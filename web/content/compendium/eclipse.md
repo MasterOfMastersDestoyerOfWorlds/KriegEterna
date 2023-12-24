@@ -1,5 +1,6 @@
 ---
 title: "Eclipse"
+code: "Eclipse"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Eclipse', 'Power', 'Weather']

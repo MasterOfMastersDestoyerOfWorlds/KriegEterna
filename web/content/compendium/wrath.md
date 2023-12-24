@@ -1,5 +1,6 @@
 ---
 title: "Wrath"
+code: "Wrath"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Wrath', 'Power', 'Hex']

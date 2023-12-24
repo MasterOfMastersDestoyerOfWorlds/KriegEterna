@@ -1,5 +1,6 @@
 ---
 title: "Frost"
+code: "Frost"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Frost', 'Power', 'Weather']

@@ -1,5 +1,6 @@
 ---
 title: "War"
+code: "War"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'War', 'Power', 'Hex']

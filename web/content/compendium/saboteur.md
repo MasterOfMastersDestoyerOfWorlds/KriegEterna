@@ -1,5 +1,6 @@
 ---
 title: "Saboteur"
+code: "Saboteur"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Power', 'Saboteur', 'Spy']

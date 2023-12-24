@@ -1,5 +1,6 @@
 ---
 title: "Officer"
+code: "Officer"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Officer', 'Unit', 'Melee']

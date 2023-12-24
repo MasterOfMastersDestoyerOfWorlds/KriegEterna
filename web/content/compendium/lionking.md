@@ -1,5 +1,6 @@
 ---
 title: "Lion King"
+code: "LionKing"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Lion King', 'King']

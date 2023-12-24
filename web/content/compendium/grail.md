@@ -1,5 +1,6 @@
 ---
 title: "Grail"
+code: "Grail"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Grail', 'Power', 'Hex']

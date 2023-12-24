@@ -1,5 +1,6 @@
 ---
 title: "Demise"
+code: "EmperorDemise"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Demise', 'Power', 'Hex']

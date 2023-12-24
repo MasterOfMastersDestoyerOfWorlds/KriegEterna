@@ -1,5 +1,6 @@
 ---
 title: "Terror King"
+code: "TerrorKing"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Terror King', 'King']

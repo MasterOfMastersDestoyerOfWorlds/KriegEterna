@@ -1,5 +1,6 @@
 ---
 title: "Storm"
+code: "Storm"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Storm', 'Power', 'Weather']

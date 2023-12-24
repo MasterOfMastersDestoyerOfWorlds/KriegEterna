@@ -1,5 +1,6 @@
 ---
 title: "Siege"
+code: "Siege3"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Unit', 'Siege']

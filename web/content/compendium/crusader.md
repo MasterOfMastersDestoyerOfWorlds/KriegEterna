@@ -1,5 +1,6 @@
 ---
 title: "Crusader"
+code: "Crusader"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Crusader', 'Unit', 'Melee']

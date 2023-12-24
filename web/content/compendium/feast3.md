@@ -1,5 +1,6 @@
 ---
 title: "Feast"
+code: "Feast3"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Feast', 'Power', 'Hex']

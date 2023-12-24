@@ -1,5 +1,6 @@
 ---
 title: "Bowman"
+code: "Bowman2"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Bowman', 'Unit', 'Ranged']

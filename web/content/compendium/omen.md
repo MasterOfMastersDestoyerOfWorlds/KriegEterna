@@ -1,5 +1,6 @@
 ---
 title: "Omen"
+code: "Omen"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Omen', 'Power', 'Weather']

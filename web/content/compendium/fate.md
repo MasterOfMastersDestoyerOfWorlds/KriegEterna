@@ -1,5 +1,6 @@
 ---
 title: "Fate"
+code: "Fate"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Fate', 'Power', 'Hex']

@@ -1,5 +1,6 @@
 ---
 title: "Shipwreck"
+code: "Shipwreck"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Power', 'Shipwreck', 'Jester']

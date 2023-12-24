@@ -1,5 +1,6 @@
 ---
 title: "Winter King"
+code: "WinterKing"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Winter King', 'King']

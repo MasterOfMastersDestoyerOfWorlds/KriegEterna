@@ -1,5 +1,6 @@
 ---
 title: "Death"
+code: "Death2"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Death', 'Power', 'Hex']

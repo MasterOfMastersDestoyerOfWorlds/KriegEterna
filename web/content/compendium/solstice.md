@@ -1,5 +1,6 @@
 ---
 title: "Solstice"
+code: "Solstice"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Solstice', 'Power', 'Weather']

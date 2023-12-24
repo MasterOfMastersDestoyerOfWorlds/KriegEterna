@@ -1,5 +1,6 @@
 ---
 title: "Knight"
+code: "Knight7"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Knight', 'Unit', 'Melee']

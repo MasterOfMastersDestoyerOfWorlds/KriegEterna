@@ -1,5 +1,6 @@
 ---
 title: "Archer"
+code: "Archer2"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Archer', 'Unit', 'Ranged']

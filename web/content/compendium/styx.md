@@ -1,5 +1,6 @@
 ---
 title: "Styx"
+code: "Styx"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Styx', 'Power', 'Hex']

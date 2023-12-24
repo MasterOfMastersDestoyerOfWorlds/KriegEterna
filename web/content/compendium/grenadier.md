@@ -1,5 +1,6 @@
 ---
 title: "Grenadier"
+code: "Grenadier"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Grenadier', 'Unit', 'Ranged']

@@ -1,5 +1,6 @@
 ---
 title: "Catapult"
+code: "Catapult"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Catapult', 'Unit', 'Siege']

@@ -1,5 +1,6 @@
 ---
 title: "Resurrection"
+code: "Resurrection"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Resurrection', 'Power', 'Hex']

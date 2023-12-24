@@ -1,5 +1,6 @@
 ---
 title: "Juggernaut"
+code: "Juggernaut"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Juggernaut', 'Unit', 'Melee']

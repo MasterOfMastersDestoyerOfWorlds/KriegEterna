@@ -1,5 +1,6 @@
 ---
 title: "Militia"
+code: "Militia"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Militia', 'Unit', 'Ranged']

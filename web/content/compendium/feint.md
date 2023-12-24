@@ -1,5 +1,6 @@
 ---
 title: "Feint"
+code: "Feint"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Feint', 'Power', 'Jester']

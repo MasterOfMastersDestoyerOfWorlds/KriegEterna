@@ -1,5 +1,6 @@
 ---
 title: "Armada"
+code: "Armada2"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Armada', 'Unit', 'Siege']

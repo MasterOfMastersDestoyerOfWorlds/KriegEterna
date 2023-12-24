@@ -1,5 +1,6 @@
 ---
 title: "Famine"
+code: "Famine"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Famine', 'Power', 'Hex']

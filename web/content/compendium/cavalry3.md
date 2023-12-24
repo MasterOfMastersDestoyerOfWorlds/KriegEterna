@@ -1,5 +1,6 @@
 ---
 title: "Cavalry"
+code: "Calvary3"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Cavalry', 'Unit', 'Melee']

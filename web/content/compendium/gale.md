@@ -1,5 +1,6 @@
 ---
 title: "Gale"
+code: "ClearSkies"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Gale', 'Power', 'Weather']

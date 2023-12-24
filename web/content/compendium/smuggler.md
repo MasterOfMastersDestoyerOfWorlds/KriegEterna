@@ -1,5 +1,6 @@
 ---
 title: "Smuggler"
+code: "Smuggler"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Power', 'Smuggler', 'Spy']

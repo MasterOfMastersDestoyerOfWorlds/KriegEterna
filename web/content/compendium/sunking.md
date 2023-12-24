@@ -1,5 +1,6 @@
 ---
 title: "Sun King"
+code: "SunKing"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Sun King', 'King']

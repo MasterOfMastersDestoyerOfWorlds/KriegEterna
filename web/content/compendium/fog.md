@@ -1,5 +1,6 @@
 ---
 title: "Fog"
+code: "Fog"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Fog', 'Power', 'Weather']

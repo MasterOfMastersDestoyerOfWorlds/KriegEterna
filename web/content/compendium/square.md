@@ -1,5 +1,6 @@
 ---
 title: "Square"
+code: "Square"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Square', 'Unit', 'Melee']

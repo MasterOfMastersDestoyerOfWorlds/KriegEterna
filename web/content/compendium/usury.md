@@ -1,5 +1,6 @@
 ---
 title: "Usury"
+code: "Usury"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Usury', 'Power', 'Hex']

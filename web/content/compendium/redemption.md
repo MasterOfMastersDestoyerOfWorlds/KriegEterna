@@ -1,5 +1,6 @@
 ---
 title: "Redemption"
+code: "Redemption"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Redemption', 'Power', 'Hex']

@@ -1,5 +1,6 @@
 ---
 title: "Musketeer"
+code: "Musketeer3"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Musketeer', 'Unit', 'Ranged']

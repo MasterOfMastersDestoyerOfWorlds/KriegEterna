@@ -1,5 +1,6 @@
 ---
 title: "Assault"
+code: "Assault3"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Assault', 'Unit', 'Siege']

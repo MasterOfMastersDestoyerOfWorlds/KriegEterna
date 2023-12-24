@@ -1,5 +1,6 @@
 ---
 title: "Crusade"
+code: "Crusade"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Crusade', 'Power', 'Hex']

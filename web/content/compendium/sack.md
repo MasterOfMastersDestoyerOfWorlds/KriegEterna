@@ -1,5 +1,6 @@
 ---
 title: "Sack"
+code: "Sack"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Power', 'Sack', 'Jester']

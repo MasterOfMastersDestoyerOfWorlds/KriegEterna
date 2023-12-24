@@ -1,5 +1,6 @@
 ---
 title: "Minister"
+code: "Minister"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Power', 'Minister', 'Spy']

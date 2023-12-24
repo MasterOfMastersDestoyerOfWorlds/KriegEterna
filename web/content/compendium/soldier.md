@@ -1,5 +1,6 @@
 ---
 title: "Soldier"
+code: "Soldier"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Unit', 'Soldier', "Ranged"]

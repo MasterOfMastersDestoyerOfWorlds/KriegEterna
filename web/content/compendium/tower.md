@@ -1,5 +1,6 @@
 ---
 title: "Tower"
+code: "Tower"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Tower', 'Unit', 'Siege']

@@ -1,5 +1,6 @@
 ---
 title: "Riflemen"
+code: "Riflemen"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Riflemen', 'Unit', 'Ranged']

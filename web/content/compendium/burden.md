@@ -1,5 +1,6 @@
 ---
 title: "Burden"
+code: "Burden"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Burden', 'Power', 'Hex']

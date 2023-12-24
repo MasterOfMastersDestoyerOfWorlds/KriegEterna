@@ -1,5 +1,6 @@
 ---
 title: "Jester"
+code: "Jester"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Power', 'Jester']

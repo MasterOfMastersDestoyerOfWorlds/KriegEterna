@@ -1,5 +1,6 @@
 ---
 title: "Void"
+code: "Void"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Void', 'Power', 'Hex']

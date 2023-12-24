@@ -1,5 +1,6 @@
 ---
 title: "Traitor King"
+code: "TraitorKing"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Traitor King', 'King']

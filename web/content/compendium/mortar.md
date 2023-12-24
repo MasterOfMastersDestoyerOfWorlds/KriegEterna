@@ -1,5 +1,6 @@
 ---
 title: "Mortar"
+code: "Mortar"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Mortar', 'Unit', 'Siege']

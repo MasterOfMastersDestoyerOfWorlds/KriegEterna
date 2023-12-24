@@ -1,5 +1,6 @@
 ---
 title: "Telescope"
+code: "Telescope"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Telescope', 'Unit', 'Ranged']

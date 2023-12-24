@@ -1,5 +1,6 @@
 ---
 title: "Plague"
+code: "Plague"
 description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Plague', 'Power', 'Weather']
