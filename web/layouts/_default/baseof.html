@@ -63,12 +63,15 @@
 								How To Play
 							</a>
 						</li>
+						<li><a {{ with .GetPage "/compendium" }} href="{{ .RelPermalink }}" {{ end }} class="nav-link">
+								Compendium
+							</a>
+						</li>
 						<li><a  href="https://tabletopia.com/games/krieg-eterna-6kj4f7/play-now" class="nav-link"
 								target="_blank">
 								Play Online
 							</a>
 						</li>
-
 					</ul>
 
 				</nav>
@@ -92,10 +95,6 @@
 			<div
 				style="background-image:url(/images/background.jpg);background-attachment:fixed;background-position:center;background-size:cover;">
 				<main>
-
-					<header>
-						<h1 id="tag_{{ .Title }}">{{ block "title" . }}{{ end }}</h1>
-					</header>
 					{{ block "main" . }}
 					{{ .Content }}
 					{{ end }}

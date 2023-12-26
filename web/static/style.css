@@ -956,10 +956,8 @@ img {
     --wrap-padding--sm: 40px 50px;
     --wrap-padding--md: 60px 80px;
     --wrap-padding--lg: 120px 40px;
-    --wrap-padding: var(
-    --wrap-padding--base);
-    --content-color: var(
-    --white);
+    --wrap-padding: var(--wrap-padding--base);
+    --content-color: var(--white);
     --content-align: center;
     --content-justify: flex-end;
     --content-max-width: 540px;
@@ -968,18 +966,15 @@ img {
     --img-object-position--sm: center;
     --img-object-position--md: left;
     --img-object-position--lg: left;
-    --img-object-position: var(
-    --img-object-position--base);
+    --img-object-position: var(--img-object-position--base);
     --text-aligment--base: center;
     --text-aligment--sm: center;
     --text-aligment--md: center;
     --text-aligment--lg: center;
-    --text-aligment: var(
-    --text-aligment--base);
+    --text-aligment: var(--text-aligment--base);
     --ctas-gap: 24px;
     --ctas-flex-direction: column;
-    --cta-margin: calc(var(
-    --ctas-gap)/2)
+    --cta-margin: calc(var(--ctas-gap)/2)
 }
 
 @media(min-width:768px) {
@@ -2696,3 +2691,75 @@ input[type=submit].btn--subtle-hover:hover,
     display: none;
   }
 }*/
+
+.list {
+    -webkit-text-fill-color: inherit;
+    padding-inline-start: 0px;
+    box-sizing: border-box;
+    z-index: 1;
+    height: auto;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-auto-columns: 1fr;
+    grid-auto-flow: row;
+    display: grid;
+    position: static;
+    list-style-type:none
+}
+
+@media screen and (max-width: 1000px) {
+    .list {
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .list {
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .list {
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.search {
+    width: 400px;
+    max-width: 85vw;
+    position: relative;
+    margin: 0.5rem auto 1.2rem;
+    display: flex;
+}
+
+input#search {
+    all: unset;
+    background: #222;
+    color: #fff;
+    padding: 0.7rem 1rem;
+    border-radius: 5px;
+    width: 100%;
+    justify-content: left;
+    text-align: left;
+}
+
+button#clear-search {
+    all: unset;
+    position: absolute;
+    right: 4px;
+    top: 10px;
+    height: 30px;
+    width: 30px;
+    color: #888;
+    cursor: pointer;
+    transition: color 180ms ease-in-out;
+}
