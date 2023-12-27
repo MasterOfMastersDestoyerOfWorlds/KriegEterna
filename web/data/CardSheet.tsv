@@ -6,9 +6,9 @@ Sack	Sack	Send one of your units on the field to the\rgraveyard. Take any unit o
 Shipwreck	Shipwreck	Set aside up to two of your units on the field\runtil the start of the next round.	\`Land^! Sweet Land^!\`	Decoy		set-aside-decoy
 LionKing	Lion	Double the strength of one of your rows.\rThen halve the strength of all Range rows this\rround, Or set aside two of your opponent's units\ron the field until the start of the next round.	\`You may earn salvation under my command,\rbut hardly riches.\`	King		lion-king
 SunKing	Sun	Double the strength of one of your rows.\rThen clear all active weather effects, Or move a\rweather effect to any row, Or draw a card.	\`L'Etat, c'est moi.\`	King		sun-king
-TerrorKing	Terror	Double the strength of one of your rows.\rThen halve the strength of all Siege rows this\rround, Or send any unit to the graveyard.	A life most simple and most ordinary and therefore\rmost terrible.	King		King
-TraitorKing	Traitor	Double the strength of one of your rows.\rThen swap one unit on the field with your\ropponent, Or draw a card.	\`It will have blood, they say. Blood will have blood.\`	King		King
-WinterKing	Winter	Double the strength of one of your rows.\rThen halve the strength of all Melee rows this\rround, Or send any unit to the graveyard.	\`Look on my Works, ye Mighty, and despair^!\`	King		King
+TerrorKing	Terror	Double the strength of one of your rows.\rThen halve the strength of all Siege rows this\rround, Or send any unit to the graveyard.	A life most simple and most ordinary and therefore\rmost terrible.	King		terror-king
+TraitorKing	Traitor	Double the strength of one of your rows.\rThen swap one unit on the field with your\ropponent, Or draw a card.	\`It will have blood, they say. Blood will have blood.\`	King		traitor-king
+WinterKing	Winter	Double the strength of one of your rows.\rThen halve the strength of all Melee rows this\rround, Or send any unit to the graveyard.	\`Look on my Works, ye Mighty, and despair^!\`	King		winter-king
 Calvary	Cavalry	 	It is a victory which past centuries have never heard,\rinestimable riches have fallen into our hands and\rcountless of the enemy lie slain.	Melee	4	
 Calvary2	Cavalry	 	Seven trumpets will sound before the end of the age\rand we will be chosen^!	Melee	4	
 Calvary3	Cavalry	 	Fall in love dear maiden, while your lips are red,\rbefore you are cold, for there will be no tomorrow.	Melee	4	
@@ -29,7 +29,7 @@ Officer	Officer	This unit can also be played in the Siege row.	One murder makes 
 Officer2	Officer	This unit can also be played in the Range row.	Men's ambition and innards strewn on the field,\rWe imagine ourselves a watchmaker and not a\rwatch.	Melee	3	officer
 Halberdier	Pike	 	A man is an empty vase, a putrid vessel full of dregs\rand terror.	Melee	2	
 Landsknecht	Pike	 	\`Landsknecht LandSTRIKE^!\`	Melee	2	
-Scout	Scout	Add one base strength to up to two other units in\rthis row.	If you know the enemy and know yourself,\ryou need not fear the result of a hundred battles.	Melee	1	
+Scout	Scout	Add one base strength to up to two other units in\rthis row.	If you know the enemy and know yourself,\ryou need not fear the result of a hundred battles.	Melee	1	scout
 Square	Square	 	The walls of Sparta were its men, and its borders\rthe points of their spears.	Melee	3	
 Burden	Burden	At the end of the round, double the strength\rof your opponent's strongest row. At the end of\rthe next round, double your strongest row.	\`More weight^!\` His captors hoisted another stone\ronto his buckling ribs.\r\`More weight^!\`	Power		burden
 Crusade	Crusade	Send your highest total strength unit(s) in your\rstrongest row to the graveyard. All other players\rthen do the same.	Deus Vult^!	Power		crusade
@@ -71,7 +71,7 @@ Privateer4	Privateer	 	We sail for Jerusalem for gold and glory;\rLeave faith to
 Riflemen	Riflemen	 	The cannonshot rang all around, but we stood firm\rfor an empire of richer men.	Ranged	3	
 Soldier	Soldier	 	\`Let the dead bury their dead, but while I have a life,\rI must live.\`	Ranged	2	
 Soldier2	Soldier	 	If no one fought except on his own conviction,\rthere would be no wars.	Ranged	2	
-Telescope	Telescope	Add one base strength to up to two other units in\rthis row.	All truths are easy to understand once discovered;\rthe point is to discover them.	Ranged	1	
+Telescope	Telescope	Add one base strength to up to two other units in\rthis row.	All truths are easy to understand once discovered;\rthe point is to discover them.	Ranged	1	scout
 Armada	Armada	 	I will make thee a terror, and thou shall be no more:\rthough sought for, thou shall never be found again.	Siege	5	
 Armada2	Armada	 	\`And they called it a fleet... Ha^! Nothing more than\ra heap of ash and squandered silver.\`	Siege	5	
 Assault	Assault	 	Doomed to flames of woe;\rOur lady of sorrows.	Siege	3	
@@ -88,7 +88,7 @@ Officer4	Officer	This unit can also be played in the Range row.	They will know u
 Siege	Siege	 	All my life will be obscured by the doleful addition:\r'In his time, Constantinople was taken and\rplundered.'	Siege	2	
 Siege2	Siege	 	Their guns sounded from dusk till dawn;\rbut we repelled them all.	Siege	2	
 Siege3	Siege	 	\`A horse, A horse. My kingdom for a horse^!\`	Siege	2	
-Tower	Tower	Add one base strength to up to two other units in\rthis row.	\`It is said if a man ascended the tower, he could\rbathe in the dew of heaven.\rHere is what remains of their arrogance.\`	Siege	1	
+Tower	Tower	Add one base strength to up to two other units in\rthis row.	\`It is said if a man ascended the tower, he could\rbathe in the dew of heaven.\rHere is what remains of their arrogance.\`	Siege	1	scout
 Assassin	Assassin	Play in any of your opponent's rows, then draw\rtwo cards. At the end of the round, this unit\rreturns to the player's hand whose side of the\rfield it is on.	\`Et tu brute?\`	Spy	5	spy-no-adj
 Minister	Minister	Play in your opponent's Siege row, then draw\rtwo cards. At the end of the round, this unit\rreturns to the player's hand whose side of the\rfield it is on.	Though I did wish him dead, I hate the murd'rer,\rlove him murdered.	Spy	3	spy-adj
 Saboteur	Saboteur	Play in your opponent's Range row, then draw\rtwo cards. At the end of the round, this unit\rreturns to the player's hand whose side of the\rfield it is on.	\`Oh the Humanity^!\`	Spy	3	spy-adj

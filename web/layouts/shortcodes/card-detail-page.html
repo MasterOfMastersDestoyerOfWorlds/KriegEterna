@@ -65,9 +65,6 @@
         <p class="rule-paragraph">
             <i>Type:</i> {{$typedesc}}
         </p>
-        <p class="rule-paragraph">
-            <i>Draw Duplicate Chance:</i> 4/58
-        </p>
         {{$effect := (index $data 2)}}
         {{$effect = (replace $effect "^" "")}}
         {{$effect = (replace $effect "\\`" "\"")}}
