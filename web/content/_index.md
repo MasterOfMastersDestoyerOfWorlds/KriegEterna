@@ -97,7 +97,7 @@ layout: single
                 </div>
                 <p class="css-tg8OC">Your units do the fighting, and your King and power cards make the
                     round interesting! You’ll have to learn how to use them together in order to win.
-                    With over 100 unique cards, the possibilities are endless!
+                    With over <a href="/compendium">100 unique cards</a>, the possibilities are endless!
                 </p>
             </div>
         </div>

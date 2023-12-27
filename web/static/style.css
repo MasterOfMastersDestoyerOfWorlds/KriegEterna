@@ -2706,7 +2706,7 @@ input[type=submit].btn--subtle-hover:hover,
     grid-auto-flow: row;
     display: grid;
     position: static;
-    list-style-type:none
+    list-style-type: none
 }
 
 @media screen and (max-width: 1000px) {
@@ -2762,4 +2762,37 @@ button#clear-search {
     color: #888;
     cursor: pointer;
     transition: color 180ms ease-in-out;
+}
+
+.nextprev {
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: stretch;
+}
+
+.nextprev {
+    width:100%;
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: stretch;
+}
+
+.nextart {
+    float: left;
+    text-align: left;
+}
+
+.prevart {
+    float: right;
+    text-align: right;
+}
+
+.nextart,
+.prevart {
+    width: 200px;
+    min-width: 33%;
 }

@@ -5,7 +5,6 @@
 
         {{$title := (index .Params "title")}}
 
-
         {{$data := 0}}
         {{ range $i, $r := getCSV "\t" "data/CardSheet.tsv" }}
         {{ $c := (index . 0) }}
@@ -78,6 +77,13 @@
             <i>Effect Text:</i> {{$effect}}
         </p>
         {{end}}
+        {{$stratDesc := (index $data 6)}}
+        {{$stratDesc := (lower $stratDesc)}}
+        {{if gt (len $stratDesc) 1}}
+        <p class="rule-paragraph">
+            Strategy: {{partial (printf "strategy-descriptions/%s.html" $stratDesc) .}}
+        </p>
+        {{end}}
 
         {{$flavor := (index $data 3)}}
         {{$flavor = (replace $flavor "^" "")}}
@@ -91,7 +97,11 @@
             Artwork: {{.Params.artwork}}
         </p>
         {{end}}
+
         </br>
         {{ partial "taglist.html" .Page }}
+        </br>
         {{.Inner}}
+        </br>
+        {{ partial "nextprev.html" .Page }}
 </section>
