@@ -1,6 +1,11 @@
 baseURL = 'https://www.kriegeterna.com/'
 languageCode = 'en-us'
 title = 'Krieg Eterna'
+disableKinds = ["RSS"]
+
+[services]
+  [services.rss]
+    limit = 10
 
 [params]
   favicon = "/favicon.ico"

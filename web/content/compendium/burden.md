@@ -13,6 +13,6 @@ This painting depicts the Titan Atlas of Greek mythology, condemned by Zeus to h
 The painting was one of a pair commissioned by Lorenzo de’ Medici as a posthumous tribute to Galileo Galilei.
 </p>
 <p class="rule-paragraph">
-Words uttered by Giles Corey in 1692 as he was being pressed to death with stones after refusing to stand trial for witchcraft.  Caught up in the infamous Salem Witch Trails, Corey is the only person in the United States to be pressed to death, a sentence which was illegal even at the time.  
+Words uttered by Giles Corey in 1692 as he was being pressed to death with stones after refusing to stand trial for witchcraft.  Caught up in the infamous Salem Witch Trials, Corey is the only person in the United States to be pressed to death, a sentence which was illegal even at the time.  
 </p>
 {{</card-detail-page>}}

@@ -1,6 +1,6 @@
 The most straightforward way to use {{partial "carddeadlink.html" (dict "name" .Page.Title)}} is simply to buff your own
 units. However, more subtle use-cases are to create adjacency for your own units, or even to break adjacency for your
 opponent. Remember that {{partial "carddeadlink.html" (dict "name" .Page.Title)}} counts all units in the row, including
-the unit it is attached to. Also, if more units are added to or removed from the row after {{partial "carddeadlink.html"
-(dict "name" .Page.Title)}} is played, the strength contributed by {{partial "carddeadlink.html" (dict "name"
-.Page.Title)}} will reflect this.
+the unit it is attached to. In addition, if more units are added to or removed from the row after {{partial
+"carddeadlink.html" (dict "name" .Page.Title)}} was played, the strength contributed by {{partial "carddeadlink.html"
+(dict "name" .Page.Title)}} should keep updating to reflect the current state of the playing field.
