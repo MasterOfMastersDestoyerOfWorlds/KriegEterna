@@ -36,7 +36,7 @@ layout: single
         <div class="css-3c0LG product-scroll-box" style="--container-max-width:1200px;">
             <div class="product-box-outer">
                 <div class="product-box-wrapper">
-                    <div class="swiper-slide product-box swiper-slide-next" style="margin-right: 35px;">
+                    <div class="swiper-slide product-box swiper-slide-next">
                         <picture>
                             <source srcset="/images/DeluxeDeckRender.png?fm=webp" type="image/webp">
                             <img src="/images/DeluxeDeckRender.png" alt="" width="548" height="433"
@@ -68,7 +68,10 @@ layout: single
                 </div>
             </div>
         </div>
-        <br>
+        </br>
+        </br>
+        </br>
+        </br>
         {{< vid  "https://www.youtube.com/embed/yg5-dz9aM1E?si=bkm7HJy2CCnukqN-&autoplay=0&origin=http://example.com">}}
     </div>
     {{< news-letter-signup >}}

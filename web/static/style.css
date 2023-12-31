@@ -266,6 +266,7 @@ a:active {
 
 img {
     vertical-align: middle;
+    max-width: 100%;
 }
 
 .product-box-outer {
@@ -389,6 +390,7 @@ img {
     --nav-display: block;
     --bar-justify: flex-end;
     margin-right: 0;
+    z-index: 3;
     margin-left: auto;
 }
 
@@ -547,8 +549,11 @@ img {
     margin-right: 10;
 
     object-fit: contain;
+    max-width: none;
     /*magic*/
 }
+
+
 
 .two-times {
     /* height: 100%; */
@@ -1212,11 +1217,12 @@ img {
 }
 
 .css-u6Ex {
-    max-width: 100%;
+    max-width: 70%;
     height: auto;
     object-fit: contain;
-    float: left;
-    margin-right: 10;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
 }
 
 .css-cW5DV {
@@ -2795,4 +2801,202 @@ button#clear-search {
 .prevart {
     width: 200px;
     min-width: 33%;
+}
+body{
+    z-index: 1;
+}
+
+.hiddenMenu
+{
+  text-decoration: none;
+  color: #232323;
+  
+  transition: color 0.3s ease;
+}
+
+.hiddenMenu:hover
+{
+  color: tomato;
+}
+
+
+#menuToggle
+{
+  display: block;
+  position: relative;
+  top: -15px;
+  /* right: 50px; */
+  z-index: 1;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menuToggle input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: relative;
+  top: 28px;
+  left: -4px;
+  cursor: pointer;
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */
+  -webkit-touch-callout: none;
+}
+
+/*
+ * Just a quick hamburger
+ */
+#menuToggle span
+{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  
+  background: #cdcdcd;
+  border-radius: 3px;
+  
+  z-index: 1;
+  
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+#menuToggle span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+/* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+#menuToggle input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #cdcdcd;
+}
+
+/*
+ * But let's hide the middle one.
+ */
+#menuToggle input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+#menuToggle input:checked ~ span:nth-last-child(2)
+{
+  opacity: 1;
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+#menu
+{
+    
+  overflow-x: hidden;
+  position: absolute;
+  width: 250px;
+  margin: -100px 0 0 0;
+  padding: 50px;
+  padding-top: 125px;
+  right: -38%;
+  height: 200vh;
+  
+  background: #000000;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+  
+    display: none;
+    transform: none;
+    opacity: 0;
+
+    transition: opacity 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menu li
+{
+  padding: 10px 0;
+  font-size: 22px;
+
+  overflow-x: hidden;
+}
+
+/*
+ * And let's fade it in from the left
+ */
+#menuToggle input:checked ~ ul
+{
+  transform: none;
+  display: block;
+  transition: opacity 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+  opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+  #menu {
+  }
+}
+
+/* Making the navbar responsive by CSS Media Queries */
+@media (max-width: 700px) {
+  .menu-button-container {
+    display: flex;
+  }
+  .menu {
+    position: relative;
+    top: 0;
+    margin-top: 50px;
+    left: 0;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  #menu-toggle ~ .menu li {
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  #menu-toggle:checked ~ .menu li {
+    border: 1px solid #9f9a9a;
+    height: 2.5em;
+    padding: 0.5em;
+  }
+  .menu > li {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0.5em 0;
+    width: 100%;
+    color: black;
+    background-color: #E8E8E8;
+    
+  }
+  .menu > li:not(:last-child) {
+    border-bottom: 1px solid #444;
+ 
+  }
 }

@@ -68,7 +68,7 @@
 								Compendium
 							</a>
 						</li>
-						<li><a  href="https://tabletopia.com/games/krieg-eterna-6kj4f7/play-now" class="nav-link"
+						<li><a href="https://tabletopia.com/games/krieg-eterna-6kj4f7/play-now" class="nav-link"
 								target="_blank">
 								Play Online
 							</a>
@@ -79,7 +79,8 @@
 
 				<nav class="nav permanent-nav">
 					<ul class="nav-links nav-list">
-						<li class="permanent-nav"><a href="https://www.amazon.com/dp/B0CJHWGZYF?maas=maas_adg_3D8873ABA7D50C8B8D9E95ECC82A19D9_afap_abs&ref_=aa_maas&tag=maas"
+						<li class="permanent-nav"><a
+								href="https://www.amazon.com/dp/B0CJHWGZYF?maas=maas_adg_3D8873ABA7D50C8B8D9E95ECC82A19D9_afap_abs&ref_=aa_maas&tag=maas"
 								class="nav-link" target="_blank">
 								Amazon
 							</a>
@@ -87,6 +88,31 @@
 
 					</ul>
 
+				</nav>
+
+				<nav class="hamnav" role='navigation'>
+					<div id="menuToggle">
+						<input type="checkbox" />
+						<span></span>
+						<span></span>
+						<span></span>
+						<ul id="menu">
+							<li><a {{ with .GetPage "/" }} href="{{ .RelPermalink }}#product" {{end}} class="nav-link">
+									Products
+								</a>
+							</li>
+							<li><a {{ with .GetPage "/how-to-play" }} href="{{ .RelPermalink }}" {{ end }}
+									class="nav-link">
+									How To Play
+								</a>
+							</li>
+							<li><a {{ with .GetPage "/compendium" }} href="{{ .RelPermalink }}" {{ end }}
+									class="nav-link">
+									Compendium
+								</a>
+							</li>
+						</ul>
+					</div>
 				</nav>
 			</div>
 		</div>
@@ -99,8 +125,8 @@
 					{{ block "main" . }}
 					{{ .Content }}
 					{{ end }}
-					{{ if .Param "nextprev" }}{{ partial "nextprev.html" . -}}{{ end -}}	
-					
+					{{ if .Param "nextprev" }}{{ partial "nextprev.html" . -}}{{ end -}}
+
 				</main>
 			</div>
 
