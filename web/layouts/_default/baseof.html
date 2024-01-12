@@ -68,9 +68,8 @@
 								Compendium
 							</a>
 						</li>
-						<li><a href="https://tabletopia.com/games/krieg-eterna-6kj4f7/play-now" class="nav-link"
-								target="_blank">
-								Play Online
+						<li><a {{ with .GetPage "/about-us" }} href="{{ .RelPermalink }}" {{ end }} class="nav-link">
+								About Us
 							</a>
 						</li>
 					</ul>
@@ -109,6 +108,16 @@
 							<li><a {{ with .GetPage "/compendium" }} href="{{ .RelPermalink }}" {{ end }}
 									class="nav-link">
 									Compendium
+								</a>
+							</li>
+							<li><a {{ with .GetPage "/about-us" }} href="{{ .RelPermalink }}" {{ end }}
+									class="nav-link">
+									About Us
+								</a>
+							</li>
+							<li><a {{ with .GetPage "/essays" }} href="{{ .RelPermalink }}" {{ end }}
+									class="nav-link">
+									Essays
 								</a>
 							</li>
 						</ul>
