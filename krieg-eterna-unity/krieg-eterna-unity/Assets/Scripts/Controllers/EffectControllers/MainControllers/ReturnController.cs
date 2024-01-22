@@ -33,7 +33,7 @@ public class ReturnController : EffectControllerInterface
             }
             deck.addCardToHand(targetRow, playerHand, targetCard);
         }
-        else if (c.cardReturnType == CardReturnType.Move || c.cardReturnType == CardReturnType.Swap)
+        else if (c.cardReturnType == CardReturnType.MoveSameSide || c.cardReturnType == CardReturnType.Swap ||  c.cardReturnType == CardReturnType.Move)
         {
             c.playerCardReturnRemain--;
             c.moveRemain++;

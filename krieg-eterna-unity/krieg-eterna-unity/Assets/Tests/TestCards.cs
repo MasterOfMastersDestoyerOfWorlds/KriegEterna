@@ -161,6 +161,15 @@ namespace KriegTests
 
         }
 
+        public class EnemyClick : Click
+        {
+            public RowEffected targetRow;
+            public EnemyClick(string cardName, RowEffected dealRow, RowEffected rowAfterClick, RowEffected finalRow, bool click) : base(cardName, dealRow, rowAfterClick, finalRow, click)
+            {
+            }
+
+        }
+
 
 
         [OneTimeSetUp]

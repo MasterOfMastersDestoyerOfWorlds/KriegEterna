@@ -87,6 +87,7 @@ public class Game : MonoBehaviour
     public static Camera shadowCamera;
 
     public static System.Random random;
+    public static int otherPlayersDestroy;
 
     void Awake()
     {
@@ -229,8 +230,8 @@ public class Game : MonoBehaviour
         if (!hasChosenStart)
         {
             var sw = System.Diagnostics.Stopwatch.StartNew();
-            choosePower.Add("ClearSkies");
-            chooseKing.Add("LionKing");
+            choosePower.Add("Storm");
+            chooseKing.Add("TraitorKing");
             activeDeck.buildDeck(NUM_POWERS, NUM_UNITS, NUM_KINGS, choosePower, chooseUnit, chooseKing, chooseUnitGraveyard, choosePowerGraveyard, enemyPower, enemyUnit, enemyKing);
             sw.Stop();
             Debug.Log("buildDeck Time elapsed: " + sw.Elapsed);

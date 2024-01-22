@@ -18,6 +18,17 @@ public class PlayerDestroyController : EffectControllerInterface
                 c.strengthConditionPassed = true;
             }
         }
+        if (c.destroyType == DestroyType.NUnits)
+        {
+            deck.sendCardToGraveyard(targetRow, RowEffected.None, targetCard);
+            int cardsRemaining = deck.countUnitsInRows(CardModel.getRowFromSide(player, RowEffected.PlayerPlayable));
+            c.playerCardDestroyRemain = cardsRemaining;
+            Game.otherPlayersDestroy++;
+            if (c.strengthCondition > 0 && targetCard.calculatedStrength >= c.strengthCondition)
+            {
+                c.strengthConditionPassed = true;
+            }
+        }
         else if (c.destroyType == DestroyType.PlayerKing)
         {
             Card king = playerHandRow.getKing();
@@ -66,6 +77,7 @@ public class PlayerDestroyController : EffectControllerInterface
         switch (c.destroyType)
         {
             case DestroyType.Unit: deck.activateRowsByType(true, true, true, playerPlayable); break;
+            case DestroyType.NUnits: deck.activateRowsByType(true, true, true, playerPlayable); break;
             default: c.setTargetActive(true); break;
         }
     }

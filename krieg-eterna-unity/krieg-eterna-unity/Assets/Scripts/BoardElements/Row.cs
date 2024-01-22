@@ -251,7 +251,7 @@ public class Row : List<Card>
         if (this.hasType(RowEffected.All))
         {
             Row playerKingRow = deck.getRowByType(playerKingRowType);
-            if (playerKingRowType != RowEffected.None && !halfFlag)
+            if (playerKingRowType != RowEffected.None)
             {
                 RowEffected fullRow = CardModel.getFullRow(this.uniqueType);
 
@@ -263,7 +263,7 @@ public class Row : List<Card>
                     halfFlag = true;
                 }
             }
-            if (enemyKingRowType != RowEffected.None && !halfFlag)
+            if (enemyKingRowType != RowEffected.None)
             {
                 Card enemyKing = deck.getRowByType(enemyKingRowType)[0];
                 if (enemyKing.rowMultiple > 0 && this.hasType(enemyKing.rowEffected))
@@ -309,6 +309,7 @@ public class Row : List<Card>
                 card.calculatedStrength = card.calculatedStrength * 2;
             }
         }
+        Debug.Log(this.uniqueType + " Row Multiple: " + rowMultiple );
         foreach (Card card in this)
         {
             card.calculatedStrength = (int)Mathf.Floor(((float)card.calculatedStrength) * rowMultiple);
@@ -327,6 +328,7 @@ public class Row : List<Card>
         {
             scoreDisplay.text = score + "";
         }
+        Debug.Log(this.uniqueType +" Score: " + score);
         return score;
     }
 

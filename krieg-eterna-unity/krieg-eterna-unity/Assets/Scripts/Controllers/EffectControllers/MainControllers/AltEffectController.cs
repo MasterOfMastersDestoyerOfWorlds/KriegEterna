@@ -29,6 +29,9 @@ public class AltEffectController : EffectControllerInterface
         {
             TargetController.ShowTargets(c, player);
         }
+        c.setVisible(true);
+        c.isAltEffect = false;
+        Debug.Log(c.name  + " isVisible" + c.isVisible());
     }
     public bool PlayCondition(Card c, Row targetRow, Card targetCard, RowEffected player)
     {
