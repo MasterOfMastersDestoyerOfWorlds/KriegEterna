@@ -1,13 +1,13 @@
-{{ if or .Next .Prev -}}
+{{ if or .NextInSection .PrevInSection -}}
 <div id="nextprev" class="nextprev">
-    {{- with .Next -}}
+    {{- with .NextInSection -}}
     <a href="{{ .RelPermalink}}">
         <div class="nextart">Previous:<br>
             {{partial "cardflip" (dict "Params" (dict "big" "true" "front" .Params.code "back" .Params.back
             "disallowFlip" "true"))}}</div>
     </a>
     {{ end -}}
-    {{- with .Prev }}
+    {{- with .PrevInSection }}
     <a href="{{ .RelPermalink}}">
         <div class="prevart">Next:<br>{{partial "cardflip" (dict "Params" (dict "big" "true" "front" .Params.code "back" .Params.back
             "disallowFlip" "true"))}}</div>

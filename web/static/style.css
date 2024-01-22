@@ -3000,3 +3000,15 @@ body{
  
   }
 }
+
+.enlarge-on-hover {
+  transition: transform .2s;
+  z-index: 0;
+}
+
+@media (min-width: 500px) {
+.enlarge-on-hover:hover {
+  transform: scale(1.1);
+  z-index: 1;
+}
+}
