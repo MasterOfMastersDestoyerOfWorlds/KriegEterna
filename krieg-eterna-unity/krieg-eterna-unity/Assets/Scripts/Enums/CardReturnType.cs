@@ -10,6 +10,8 @@ public enum CardReturnType
     ProtectAtRoundEnd = 8,
     RoundEnd = 9,
     DoubleAtRoundEnd = 10,
+    NormalizeAtRoundEnd = 11,
+    MoveSameSide = 12,
     None = 0
 
 };

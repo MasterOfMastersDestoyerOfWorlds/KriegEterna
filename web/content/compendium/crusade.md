@@ -5,4 +5,11 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Crusade', 'Power', 'Hex']
 ---
-{{<card-detail-page title="Crusade" artwork="Saint Gregory the Great by Jusepe de Ribera (1614)" />}}
+{{<card-detail-page title="Crusade" artwork="Saint Gregory the Great by Jusepe de Ribera (1614)" >}}
+<p class="rule-paragraph">
+Pope Gregory the First or later Saint Gregory led an interesting life, presiding as pope in a time when heretical branches of the church were close to Rome and most of northern Europe was still Pagan or Christian in name only. If you like podcasts, Dan Carlin's Hardcore History has a series on this early medieval period in northern Europe called: "Twilight of the Aesir". The slow crusade to convert the north is both fascinating and gruesome as many Pagan belief systems did not have the same relationship with life and death as modern western audiences do and the crusader kings used the church as a means of attaining power and pacifying rowdy regions. 
+</p>
+<p class="rule-paragraph">
+Gregory himself pressured the kings of northern europe to suppress their pagan subjects and tried to stamp out schisms in northern Italy and northern Africa with armies raised by the church. Many of the later Popes used his actions over 6 centuries prior as justification for their invasions and crusades into the Baltics and toward Jerusalem.
+</p>
+{{</card-detail-page>}}

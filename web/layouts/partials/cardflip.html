@@ -1,19 +1,20 @@
 <!--
-	font: image on the front of the card
+	front: image on the front of the card
 	back: image on the back of the card
 -->
 {{$big := eq .Params.big "true"}}
 {{$disallowFlip := eq .Params.disallowFlip "true"}}
+{{$disallowScale := eq .Params.disallowScale "true"}}
 {{if $big}}
 <div class="swiper-slide-rules card-big">
 {{else}}
 <div class="swiper-slide-rules" style="width: 278.2px; margin-right: 16px;">
 {{end}}
 	<figure>
-		<div class="{{if not $disallowFlip}}card-flip{{end}}">
-			<div tabindex="0" class="card-flip-inner css-ZIY5">
+		<div class="{{if not $disallowFlip}}card-flip{{end}} {{if not $disallowScale}}card-scale{{end}}">
+				<div tabindex="0" class="card-flip-inner css-ZIY5">
 				<div class="card-front">
-					<img {{ with .Params.front }} {{if $big}} src="/card-images/{{.}}.webp" {{else}} src="/images/{{.}}.png" {{end}} {{ end -}} alt="" style="border-radius: 3%" class="card-image"
+					<img {{ with .Params.front }} {{if $big}} src="/card-images/{{.}}.webp" {{else}} src="/images/{{.}}.png" {{end}} {{ end -}} alt="" class="card-image"
 						unselectable="on">
 				</div>
 				<div class="card-back">

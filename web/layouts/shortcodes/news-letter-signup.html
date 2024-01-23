@@ -1,7 +1,8 @@
+<div class="css-0ErxL css-0vG6H css-kEe4h">
 <div class="css-pjOS5 css-P-g66 css-EiWA- css-ysAew">
 
 	<div class="title-wrapper">
-		<h3 data-text="A Battle For The Ages"><span>Subscribe to Our Newsletter</span></h3>
+		<h2 data-text="A Battle For The Ages"><span>Subscribe to Our Newsletter</span></h2>
 	</div>
 	<script type="text/javascript">
 		window.addEventListener("load", function () {
@@ -21,10 +22,7 @@
 			});
 		});
 	</script>
-	<br />
-	<div class="subscribe-form__heading">Get on the list for exclusive content!</div>
-
-	<br />
+	<div class="subscribe-form__heading">Join our mailing list for exclusive content!</div>
 	<form method="POST"
 		action="https://script.google.com/macros/s/AKfycbzgiQuUJLFDArvmmRCag_RHvCqlRJ8uuBrashzeFPiX-dWlHZIjjRPwfRspMQY2HRLieg/exec"
 		id="myform" class="subscribe-form__inputs">
@@ -34,13 +32,12 @@
 			<input type="email" required class="subscribe-form__email required" value="" id="footer_mailinglist_email"
 				name="Email">
 		</div>
-
-		<br />
-		<button class="btn btn--secondary subscribe-form__submit" type="submit">Sign
-			up</button>
+		<button class="btn btn--secondary subscribe-form__submit" type="submit">
+			<span>
+				{{ partial "icon-mail.html" . }}
+				Sign up
+			</span>
+		</button>
 	</form>
-
-	<br />
-	<br />
-	<br />
+</div>
 </div>

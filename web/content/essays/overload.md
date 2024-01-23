@@ -1,0 +1,53 @@
+---
+title: "Cognitive Overload in Games"
+code: "Overload"
+description: 'Krieg Eterna'
+layout: card
+---
+
+<section class="gradient even-gradient">
+<div class="css-0ErxL css-0vG6H css-kEe4h">
+<div class="css-pjOS5 css-P-g66 css-EiWA- css-ysAew">
+<div class="title-wrapper">
+    <h2>Cognitive Overload in Games</h2>
+</div>
+    {{< vid  "https://www.youtube.com/embed/qI6uy1OmIxw?si=BuVPwlTpNSprmSrm">}}
+    <p class="rule-paragraph">
+        It is important to understand that the right level of game complexity does not exist for all players. Many people are not interested in playing games much more complex than yahtzee and this is ok. Complexity itself does not make a game  “better”. Complex games simply fit a certain, often more hardcore, audience. But I personally have an odd relationship with complexity: I like extremely complex video games (e.g., EU4, Civilization, Factorio) with lots of rules and depth, but have bounced off similarly complex board games that, at least on the surface, should be right up my alley.
+    </p>
+    <p class="rule-paragraph">
+        Board games have a unique challenge in gaming. As opposed to video games - the rules and mechanics of board games are in the minds of its players rather than being manifested by the game itself. This is similar to the split between movies and novels. For people who read, novels will never be replaced by movies. The possibility space in a novel is limited by the size of the human brain (roughly 2 petabytes of information and all of its variations) and in a movie it is limited by the audio visual space (roughly 2 GB per hour of footage and all of its variations). Both spaces are effectively infinite on human timescales, but the size of what the brain can imagine is still a significantly larger set. In opposition to novels and movies, I think the possibility space inhabited by heavy board games is much much smaller than that of videogames, despite largely existing in the minds of players. 
+    </p>
+    <p class="rule-paragraph">
+        Now it might be useful to define what I mean by a heavy board game since I can already think of counter examples where this is not true. For example, is Dungeons and Dragons a heavy board game? It certainly has heavy board game elements including rules, dice and turns, but when I think of DnD I think of the story that happened, crazy hijinks and the characters our team met along the way. I would consider this a light board game (even though basically anything can happen) because the complexity is in the outcomes and strategies, not the rulebook. On the other end of the open structure to rule based continuum sit most games with physical boards (e.g. Power Plant, Catan, etc.) where basically if you don’t interact in the exact way the game would like, you cannot play the game. In these games, story is minimal except in the framework of the ruleset, and players must load tens to hundreds of rules into their heads for a few hours at a time, creating a collective computer that computes the outcome of one game between the player and their friends.
+    </p>
+    <p class="rule-paragraph">
+        I think (aside from the cozyness of being in a physical place with your friends) you gain very little by playing these games physically rather than digitally. The digital versions of heavy board games have a few advantages: it is much clearer what you can do, points are scored automatically, and  it is basically impossible to cheat aside from teaming on a player (which happens often in physical games as well). Whereas in games with bluffing or story telling (DnD, Poker, Social deduction games), I gain a lot from being in the same place as other people. I know there is a common feeling that a lot of complex games are basically a few people sitting in a room playing solitaire (this has been said a lot about Dominion, and things like attack cards seek to remedy this problem in that game). This isn’t a horrible thing; not every game has to be maximum interaction, and sometimes it’s just nice to sit in a room with people and talk about other things while having something to do. I think where heavy board games fail is that they require your full mental attention just to play because of the rule complexity. It’s hard to use them as a background activity unless you know the game very well (e.g. after playing ~5-10 games of catan you probably don’t need to worry about the rules anymore but for heavier games it might be many more playthroughs), and they often do not generate the story or social interaction that otherwise interests me in more interactive board games.
+    </p>
+    <p class="rule-paragraph">
+        The final point that bothers me about heavy board games is that it is extremely hard to pivot your strategy once you have gotten a bit into the game (sometimes a quarter through, sometimes at the halfway point). Oftentimes, I’ll see some other person’s strategy, realize I’m unlikely to win given my current rate of point acquisition, and then also realize that I’m locked into the strategy I have by board position, the deck I have, or whatever else I decided half an hour before. This can be extremely frustrating because you can see what you should have done, and yet have to wait for the next time you play to implement it – sometimes weeks or months in the future where you might forget what you learned. Even if you're playing more in the same   afternoon, you're basically just waiting out the next hour or so. This gives a large advantage to people who have either played lots of games or played that specific game often, making it less likely that I’d want to play with them in the future (for no fault of their own).
+    </p>
+    <p class="rule-paragraph">
+        Relating this back to videogames, restarting or trying again is much less tedious. Oftentimes you can simply press a button to restart or, as in some of the best games, you will auto restart whatever section you’ve failed (think Celeste, Mario) making the time to learn short. Even in multiplayer video games the situation is improved over board games because, at least in many popular games, there is a near infinite pool of players to play against. This means you don’t have to convince people to get together and collectively learn something in order to learn the game yourself.  So in order to compete with video games board games need to think more carefully about the onboarding process and should aim for shorter over longer games with stacking complexity as the players improve.
+    </p>
+    <p class="rule-paragraph">
+        So why don’t I like heavy board games? I think for four reasons: they fail to offload cognition, they fail to utilize the unique pieces of their medium effectively (i.e., the people in the room), they over-constrain the imagination space, and finally they are tedious to learn and master.
+    </p>
+    <p class="rule-paragraph">
+        The next logical question might be where is the happy middle, or do we need to look outside of board games for inspiration? I think that the light board games I mentioned do not run into the same problems as the heavy ones, but they certainly have their own problems: repetition (e.g., basically every campaign of DnD starts out fairly similarly), overly simplistic mechanisms and large egos getting in the way of the fun (this is a huge problem in social deduction games). In order to scratch the same itch that really good strategy video games do, where you look up and hours have disappeared, scaling down the mechanical complexity from heavy board games won’t do. This strategy leaves the game feeling empty or incomplete since reducing the complexity of the rules isn’t replaced by strategy or complexity in another area (think Monopoly, Sorry, Candy Land).
+    </p>
+    <p class="rule-paragraph">
+        However, I have seen scaling up mechanical complexity from light board games work pretty well. The best example I can think of is a game called Icarus, which is a mix between DnD and Pandemic of all things. It manages to keep the collective storytelling aspects of DnD while also adding the urgency and unintended consequences of Pandemic to create a surprisingly good and replayable game. I think the most promising avenue for making one of these mix games (and ultimately the avenue I pursued while designing Krieg Eterna) is combining poker with more complex games like MtG, Gwent, or Slay the Spire, so that the complexity lies in reading your opponent’s intentions rather than rule complexity. This style of bluffing game is not easily replaced by digital games as much of the information conveyed between players is in body language. 
+    </p>
+    <p class="rule-paragraph">
+        Many of the more complex card games I mentioned rely on deckbuilding to add creativity to the game. I think this is a mistake if you want to make an accessible game  as it raises the cost both financially and cognitively to learn your game. While this is a great way to design a slot machine, it does not make the game better for most players. While a few very skilled or rich  players have a really fun time making new builds and deck compositions, the vast majority simply follow popular builds and therefore do not engage with many of the strategies or mechanics in the game. After all, if you had limited time and money to sink on a game wouldn’t you rather that you at least had a chance of winning and copy the decks of the best players? 
+    </p>
+    <p class="rule-paragraph">
+        Another strategy that I have seen work is having a relatively simple base game paired with layered expansions. The game that I think does this well is Carcassonne, in which the base game is pretty simple and suitable for most players, but included in the box are the rivers, farmers, and abbots expansions. Each one of these expansions is basically invisible to new players, lightening their cognitive load (as they exist in the base game but wouldn’t be scored unless you decided to). If you want to explore more, the expansions offer a good way to ratchet up the complexity one step at a time.
+    </p>
+    <p class="rule-paragraph">
+        Anyway, Happy Holidays and play games! 
+    </p>
+</div>
+</div>
+</section>

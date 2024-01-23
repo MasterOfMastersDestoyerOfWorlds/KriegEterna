@@ -55,22 +55,6 @@ namespace KriegTests
             },
             new TestCase
             {
-                testName = "AssassinRoundEndSwitchSides",
-                playerHandCount = 3,
-                round = RoundType.RoundTwo,
-                clicks = new List<Click>{
-                    new Click("Assassin", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerHand, true),
-                    new ClickRow("EnemyMelee", RowEffected.EnemyMelee),
-                    new ClickRow("PowerDeck", RowEffected.PowerDeck),
-                    new ClickRow("PowerDeck", RowEffected.PowerDeck),
-                    new Click("Relic", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
-                    new Click("Assassin", RowEffected.EnemyMelee, RowEffected.EnemyMelee, RowEffected.PlayerHand, true),
-                    new ClickRow("PlayerMelee", RowEffected.PlayerMelee),
-                    new ClickRow("Pass", RowEffected.Pass)
-                }
-            },
-            new TestCase
-            {
                 testName = "Minister",
                 playerHandCount = 2,
                 clicks = new List<Click>{

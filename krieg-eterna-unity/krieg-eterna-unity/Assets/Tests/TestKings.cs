@@ -112,6 +112,7 @@ namespace KriegTests
             {
                 testName = "SunKingMoveWeather",
                 scoreRows = new List<(RowEffected, int)>{
+                    (RowEffected.PlayerMelee, 2),
                     (RowEffected.PlayerSiege, 8),
                 },
                 clicks = new List<Click>{
@@ -122,6 +123,7 @@ namespace KriegTests
                     new ClickRow("PlayerSiegeKing", RowEffected.PlayerSiegeKing),
                     new Click("Storm", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerSiege, true),
                     new ClickRow("PlayerSiege", RowEffected.PlayerSiege),
+                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, false),
                     new Click("Siege", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
                     new Click("Mortar", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
                 }
@@ -174,20 +176,18 @@ namespace KriegTests
             },
             new TestCase
             {
-                testName = "TraitorKingTwoSwaps",
+                testName = "TraitorKingDrawOnePower",
                 scoreRows = new List<(RowEffected, int)>{
-                    (RowEffected.PlayerSiege, 6),
-                    (RowEffected.EnemyMelee, 8),
-                    (RowEffected.PlayerRanged, 4),
+                    (RowEffected.PlayerSiege, 16),
                 },
+                playerHandCount = 1,
                 clicks = new List<Click>{
-                    new Click("TerrorKing", RowEffected.EnemySiegeKing, RowEffected.EnemySiegeKing, RowEffected.EnemySiegeKing, false),
                     new Click("TraitorKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerSiegeKing, true),
+                    new ClickAltEffect("TraitorKingDraw", RowEffected.PlayerAltEffectRow),
                     new ClickRow("PlayerSiegeKing", RowEffected.PlayerSiegeKing),
-                    new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.EnemyMelee, true),
-                    new Click("Mortar", RowEffected.EnemySiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, true),
-                    new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.EnemyMelee, true),
-                    new Click("Grenadier", RowEffected.EnemyRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, true),
+                    new ClickRow("Power Deck", RowEffected.PowerDeck),
+                    new Click("Siege", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
+                    new Click("Mortar", RowEffected.PlayerSiege, RowEffected.PlayerSiege, RowEffected.PlayerSiege, false),
                 }
             },
             new TestCase
@@ -199,6 +199,7 @@ namespace KriegTests
                 },
                 clicks = new List<Click>{
                     new Click("TraitorKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerRangedKing, true),
+                    new ClickAltEffect("TraitorKingSwap", RowEffected.PlayerAltEffectRow),
                     new ClickRow("PlayerRangedKing", RowEffected.PlayerRangedKing),
                     new Click("Grenadier", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.EnemyRanged, true),
                     new Click("Knight", RowEffected.EnemyMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
@@ -214,6 +215,7 @@ namespace KriegTests
                 clicks = new List<Click>{
                     new Click("TerrorKing", RowEffected.EnemySiegeKing, RowEffected.EnemySiegeKing, RowEffected.EnemySiegeKing, false),
                     new Click("TraitorKing", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMeleeKing, true),
+                    new ClickAltEffect("TraitorKingSwap", RowEffected.PlayerAltEffectRow),
                     new ClickRow("PlayerMeleeKing", RowEffected.PlayerMeleeKing),
                     new Click("Grenadier", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.EnemyRanged, true),
                     new Click("Knight", RowEffected.EnemyMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
