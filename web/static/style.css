@@ -99,7 +99,7 @@ h1, h2, h3 {
     font-family: var(--strong-font-family, "Gargouille", Arial, serif);
     font-kerning: normal;
     letter-spacing: normal;
-    background: linear-gradient(to top, #ff6f00, #ffd900);
+    background: linear-gradient(to top, #ff1e00, #ffd900);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -112,6 +112,57 @@ h1, h2, h3 {
     vertical-align: baseline;
     align-items: center;
 }
+
+
+.ranged {
+    background: linear-gradient(to top, #371b00, #f27100, #efc096);;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.melee {
+    background: linear-gradient(to top, #320101, #e20001, #ffbbbc);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+
+.siege {
+    background: linear-gradient(to top, #5a4200, #fbc00d, #f4ecb4);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.power {
+    background: linear-gradient(to top, #22004a, #7712fb, #d2b4f7);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.decoy {
+    background: linear-gradient(to top, #102f11, #00d303, #bef1bd);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.spy {
+    background: linear-gradient(to top, #232323, #999999, #dcdcdc);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.weather {
+    background: linear-gradient(to top, #13368c, #2024ec, #9bbdeb);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.king {
+    background: linear-gradient(to top, #8e7733, #cbb044, #d2ab17, #f8da2f, #b48c04, #a78722);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
 
 h1 {
     font-size: 6em
@@ -129,20 +180,7 @@ h3 {
     word-spacing: var(--base-word-spacing);
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
-    --black: #000;
-    --black-alpha0: transparent;
-    --black-alpha10: rgba(0, 0, 0, 0.1);
-    --black-alpha25: rgba(0, 0, 0, 0.25);
-    --black-alpha50: rgba(0, 0, 0, 0.5);
-    --black-alpha75: rgba(0, 0, 0, 0.75);
-    --black-alpha90: rgba(0, 0, 0, 0.9);
-    --white: #fff;
-    --white-alpha0: hsla(0, 0%, 100%, 0);
-    --white-alpha10: hsla(0, 0%, 100%, 0.1);
-    --white-alpha25: hsla(0, 0%, 100%, 0.25);
-    --white-alpha50: hsla(0, 0%, 100%, 0.5);
-    --white-alpha75: hsla(0, 0%, 100%, 0.75);
-    --white-alpha90: hsla(0, 0%, 100%, 0.9);
+
     --system-font-family: -apple-system, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --base-font-family: "Open Sans", Arial, sans-serif;
     --base-font-size: 20px;
@@ -178,18 +216,8 @@ h3 {
     --easeInOutQuart: cubic-bezier(0.77, 0, 0.175, 1);
     --easeInOutExpo: cubic-bezier(1, 0, 0, 1);
     --easeInOutBack: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    --swiper-theme-color: #007aff;
-    --theme-button-color--primary: #ffffff;
-    --theme-primary-color--100: #000000;
-    --theme-primary-color--200: #080808;
-    --theme-primary-color--300: #1a1a1a;
-    --theme-primary-color--400: #ffffff;
-    --theme-accent-color: #ffcc33;
-    --theme-link-color: #ffcc33;
-    --theme-link-color--active: #ffcc33;
-    --base-font-color: #ffffff;
-    --theme-odd-section-tint: linear-gradient(180deg, #000000 5%, rgba(0, 0, 0, 0.6) 50%, #000000 95%);
-    --theme-even-section-tint: linear-gradient(180deg, #000000 5%, rgba(0, 0, 0, 0.6) 50%, #000000 95%);
+
+
     --wrap-padding--base: 24px 15px;
     --wrap-padding--sm: 40px 50px;
     --wrap-padding--md: 60px 80px;
@@ -213,15 +241,13 @@ h3 {
     --ctas-gap: 24px;
     --ctas-flex-direction: column;
     --cta-margin: calc(var(--ctas-gap)/2);
-    --shout-out-color: #FFFFFF;
-    --inner-wrap-background: #000000;
+
     color: var(--content-color);
     box-sizing: border-box;
     margin: 0;
     font-family: var(--strong-font-family);
     font-kerning: normal;
     letter-spacing: normal;
-    background: linear-gradient(to top, #f00, #f6ff00);
     background-clip: text;
     -webkit-text-fill-color: transparent;
     z-index: 1;
@@ -235,12 +261,36 @@ h3 {
     max-width: var(--content-max-width);
 }
 
-.ranged {
-    /* background: linear-gradient(to top, hsl(30 100% 20% / 1), hsl(29 100% 59% / 1)); */
-    -webkit-background-clip: text;
-    background-clip: text;
-    background-origin: text;
-    /* margin-top: 0; */
+.colors {
+    --black: #000;
+    --black-alpha0: transparent;
+    --black-alpha10: rgba(0, 0, 0, 0.1);
+    --black-alpha25: rgba(0, 0, 0, 0.25);
+    --black-alpha50: rgba(0, 0, 0, 0.5);
+    --black-alpha75: rgba(0, 0, 0, 0.75);
+    --black-alpha90: rgba(0, 0, 0, 0.9);
+    --white: #fff;
+    --white-alpha0: hsla(0, 0%, 100%, 0);
+    --white-alpha10: hsla(0, 0%, 100%, 0.1);
+    --white-alpha25: hsla(0, 0%, 100%, 0.25);
+    --white-alpha50: hsla(0, 0%, 100%, 0.5);
+    --white-alpha75: hsla(0, 0%, 100%, 0.75);
+    --white-alpha90: hsla(0, 0%, 100%, 0.9);
+    --swiper-theme-color: #007aff;
+    --theme-button-color--primary: #ffffff;
+    --theme-primary-color--100: #000000;
+    --theme-primary-color--200: #080808;
+    --theme-primary-color--300: #1a1a1a;
+    --theme-primary-color--400: #ffffff;
+    background: linear-gradient(to top, #f00, #f6ff00);
+    --shout-out-color: #FFFFFF;
+    --inner-wrap-background: #000000;
+    --theme-accent-color: #ffcc33;
+    --theme-link-color: #ffcc33;
+    --theme-link-color--active: #ffcc33;
+    --base-font-color: #ffffff;
+    --theme-odd-section-tint: linear-gradient(180deg, #001c2c  5%, rgba(0, 0, 0, 0.6) 50%, #001c2c  95%);
+    --theme-even-section-tint: linear-gradient(180deg, #001c2c  5%, rgba(0, 0, 0, 0.6) 50%, #001c2c  95%);
 }
 
 .original {
@@ -1154,7 +1204,8 @@ img {
     --wrap-padding--base: 20px 0 20px;
     --wrap-padding--sm: 30px 0 30px;
     --wrap-padding--md: 40px 0 40px;
-    --wrap-padding: var(--wrap-padding--base)
+    --wrap-padding: var(--wrap-padding--base);
+    margin: 0 auto;
 }
 
 @media(min-width:768px) {
@@ -2793,20 +2844,24 @@ button#clear-search {
 }
 
 .nextart {
-    float: left;
-    text-align: left;
+    float: right;
+    text-align: right;
+    margin-left: 10px;
 }
 
 .prevart {
-    float: right;
-    text-align: right;
+    float: left;
+    text-align: left;
+    margin-right:10px
 }
 
 .nextart,
 .prevart {
-    width: 200px;
+    width: min(200px, 40vw);
     min-width: 33%;
 }
+
+
 body{
     z-index: 1;
 }

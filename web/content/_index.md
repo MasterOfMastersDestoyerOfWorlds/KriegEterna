@@ -69,11 +69,11 @@ layout: single
                 </div>
             </div>
         </div>
-        <!-- </br>
         </br>
         </br>
         </br>
-        {{< vid  "https://www.youtube.com/embed/yg5-dz9aM1E?si=bkm7HJy2CCnukqN-&autoplay=0&origin=http://example.com">}} -->
+        </br>
+        {{< vid  "https://www.youtube.com/embed/yg5-dz9aM1E?si=bkm7HJy2CCnukqN-&autoplay=0&origin=http://example.com">}}
     </div>
 </section>
 
