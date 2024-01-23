@@ -4,9 +4,10 @@ description: 'Krieg Eterna About Us'
 layout: single
 ---
 <section class="gradient even-gradient">
+<div class="css-0ErxL css-0vG6H css-kEe4h">
 <div class="css-pjOS5 css-P-g66 css-EiWA- css-ysAew">
 <div class="title-wrapper">
-    <h3>About Us</h2>
+    <h2>About Us</h2>
 </div>
     <p class="rule-paragraph">
         Thanks for playing our game <b><i>Krieg Eterna!</i></b>
@@ -27,17 +28,19 @@ layout: single
         As for the inspiration for Krieg Eterna’s theme, I had always been toying with the idea of a secret-role game like Avalon set during the Thirty Years’ War. Sitting in history class, I found it fascinating how the German princes in the Holy Roman Empire claimed to be fighting over religion, but would change sides constantly. My idea for the game was that there could be some Protestant princes and some Catholic princes, but you wouldn’t know who was who. I never ended up making that game, but still found the period fascinating. When I started making Krieg Eterna, my mind naturally went back to the Thirty Years’ War, as I thought it could work well with the bluffing mechanics and limited resources. I also think that it’s a pretty unique period of history that embodies the best and worst of humanity. Were the people in power fighting for their ideals, or were they using the ideas of the Reformation as cover for grabbing more power? Probably both, but it’s interesting to think about.
     </p>
     <p class="rule-paragraph">
-        Anyways, thanks for playing our game! We hope to get an expansion out by the end of next year themed around the Vikings and titled <i>Krieg Eterna: Valtyr</i>, but until then: <b><i><u>Best of luck on the Battlefield!</b></i></u>
+        Anyways, thanks for playing our game! We hope to get an expansion out by the end of 2024 themed around the Vikings and titled <i>Krieg Eterna: Valtyr</i>, but until then: <b><i><u>Best of luck on the Battlefield!</b></i></u>
     </p>
-    <p class="rule-paragraph">
-        Andrew and Alex Wollack
+    <p class="rule-paragraph" style="text-align:right">
+        <br>
+        - Andrew and Alex Wollack
     </p>
-    <p class="rule-paragraph">
-        PS: If you could rate our game on <a
+    <p class="rule-paragraph" style="text-align:center">
+        <br>
+        <i>PS: If you could rate our game on <a
 								href="https://www.amazon.com/dp/B0CJHWGZYF?maas=maas_adg_3D8873ABA7D50C8B8D9E95ECC82A19D9_afap_abs&ref_=aa_maas&tag=maas"
 								class="nav-link" target="_blank">
-								Amazon
-							</a> it’d be a big help!
+								Amazon</a> it’d be a big help!</i>
     </p>
+</div>
 </div>
 </section>

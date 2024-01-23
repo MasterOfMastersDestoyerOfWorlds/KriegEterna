@@ -1,7 +1,6 @@
 <section class="gradient even-gradient">
-    <br>
+    <div class="css-0ErxL css-0vG6H css-kEe4h">
     <div class="css-pjOS5 css-P-g66 css-EiWA- css-ysAew">
-
 
         {{$title := (index .Params "title")}}
 
@@ -55,15 +54,16 @@
 
         {{partial "cardflip" (dict "Params" (dict "big" "true" "front" $title "back" $cardback))}}
 
-        <h3 class="{{lower (index $data 4)}}">{{(index $data 1)}}</h3>
+        <h3 class="card-detail-title {{lower (index $data 4)}}">{{(index $data 1)}}</h3>
+        {{ partial "taglist.html" .Page }}
         {{$strength := (index $data 5)}}
         {{if gt (len $strength) 0}}
         <p class="rule-paragraph">
-            <i>Strength:</i> {{$strength}}
+            <span class="rule-word">Strength:</span> {{$strength}}
         </p>
         {{end}}
         <p class="rule-paragraph">
-            <i>Type:</i> {{$typedesc}}
+            <span class="rule-word">Type:</span> {{$typedesc}}
         </p>
         {{$effect := (index $data 2)}}
         {{$effect = (replace $effect "^" "")}}
@@ -71,14 +71,14 @@
         {{$effect = (replace $effect "\\r" " ")}}
         {{if gt (len $effect) 1}}
         <p class="rule-paragraph">
-            <i>Effect Text:</i> {{$effect}}
+            <span class="rule-word">Effect Text:</span> {{$effect}}
         </p>
         {{end}}
         {{$stratDesc := (index $data 6)}}
         {{$stratDesc := (lower $stratDesc)}}
         {{if gt (len $stratDesc) 1}}
         <p class="rule-paragraph">
-            Strategy: {{partial (printf "strategy-descriptions/%s.html" $stratDesc) .}}
+            <span class="rule-word">Strategy:</span> {{partial (printf "strategy-descriptions/%s.html" $stratDesc) .}}
         </p>
         {{end}}
 
@@ -87,18 +87,23 @@
         {{$flavor = (replace $flavor "\\`" "\"")}}
         {{$flavor = (replace $flavor "\\r" " ")}}
         <p class="rule-paragraph">
-            <i>Flavor Text:</i> {{$flavor}}
+            <span class="rule-word">Flavor Text:</span> {{$flavor}}
         </p>
         {{if (isset .Params "artwork")}}
         <p class="rule-paragraph">
-            Artwork: {{.Params.artwork}}
+            <span class="rule-word">Artwork:</span> {{.Params.artwork}}
         </p>
         {{end}}
-
-        </br>
-        {{ partial "taglist.html" .Page }}
-        </br>
-        {{.Inner}}
+        {{ with .Inner }}
+            <p class="rule-paragraph" style="margin-bottom: 0">
+                <span class="rule-word">About the card:</span>
+            </p>
+            {{ . }}
+        {{ else }}
+            <!-- nothing -->
+        {{ end }}
         </br>
         {{ partial "nextprev.html" .Page }}
+    </div>
+    </div>
 </section>

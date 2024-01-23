@@ -40,16 +40,14 @@
 
 <body>
 	{{ if .Site.Menus.main }}{{ partial "nav.html" . }}{{ end -}}
-	<div class="css-wvKZk"
-		style="--theme-button-color--primary:#ffffff; --theme-primary-color--100:#430082; --theme-primary-color--200:#243146; --theme-primary-color--300:#243146; --theme-accent-color:#ffcc33; --theme-link-color:#ffcc33; --theme-link-color--active:#ffcc33; --theme-primary-color--400:#243146; --base-font-color:#ffffff;">
+	<div class="css-wvKZk colors">
 		<div class="header-left site-header">
-			<!---->
 			<div class="logo">
 				<div class="css-8oEOo">
 					<a {{ with .GetPage "/" }} href="{{ .RelPermalink }}" {{ end }}>
 						<picture>
-							<source srcset="/images/krieg-eterna-logo.png?fm=webp" type="image/webp"> <img
-								src="/images/krieg-eterna-logo.png" alt="Krieg Eterna Logo" width="712" height="712"
+							<source srcset="/images/krieg-eterna-simple-logo.png?fm=webp" type="image/webp"> <img
+								src="/images/krieg-eterna-simple-logo.png" alt="Krieg Eterna Logo" width="712" height="712"
 								loading="lazy" class="css-tWFgq">
 						</picture>
 					</a>
@@ -81,7 +79,8 @@
 						<li class="permanent-nav"><a
 								href="https://www.amazon.com/dp/B0CJHWGZYF?maas=maas_adg_3D8873ABA7D50C8B8D9E95ECC82A19D9_afap_abs&ref_=aa_maas&tag=maas"
 								class="nav-link" target="_blank">
-								Amazon
+								Buy Now&nbsp
+								{{ partial "icon-link.html" . }}
 							</a>
 						</li>
 
@@ -125,8 +124,7 @@
 				</nav>
 			</div>
 		</div>
-		<div class="css-7wqyX"
-			style="--theme-button-color--primary:#ffffff; --theme-primary-color--100:#430082; --theme-primary-color--200:#430082; --theme-primary-color--300:#430082; --theme-primary-color--400:#430082; --theme-accent-color:#ffcc33; --theme-link-color:#ffcc33; --theme-link-color--active:#ffcc33; --base-font-color:#ffffff; --theme-odd-section-tint:linear-gradient(180deg, #3a1143 2%, rgba(17, 39, 61, 0.6) 50%, #430082 99%); --theme-even-section-tint:linear-gradient(180deg, #430082 3%, rgba(21, 28, 38, 0.6) 45%, #3a1143 87%);">
+		<div class="css-7wqyX colors">
 			<h1 class="css-TiYdz">Krieg Eterna</h1>
 			<div
 				style="background-image:url(/images/background.jpg);background-attachment:fixed;background-position:center;background-size:cover;">
@@ -140,7 +138,7 @@
 			</div>
 
 			{{ block "footer" . }}
-			<footer>
+			<footer class="css-BvWFW">
 				<div class="css-GkPj">
 					<div class="css-FIhpz css-HKbxF css-J8dLz">
 						<div class="css-s6s3f">
@@ -175,7 +173,7 @@
 							Privacy Policy
 						</a>
 						<div class="css--v7lt">
-							© 2023 Krieg Eterna LLC | All Rights Reserved.
+							© {{ time.Now.Year }} Krieg Eterna LLC | All Rights Reserved.
 						</div>
 
 					</div>

@@ -4,8 +4,9 @@
 {{ define "main" -}}
 {{ .Content }}
 <section class="gradient even-gradient">
+	<div class="css-0ErxL css-0vG6H css-kEe4h">
 	<div class="title-wrapper">
-		<h1 id="tag_{{ .Title }}">{{.Title}}</h1>
+		<h2 id="tag_{{ .Title }}">{{.Title}}</h2>
 		</br>
 		</br>
 
@@ -73,7 +74,7 @@
 		</script>
 		<ul id="list" class="list">
 			{{- range.Pages }}
-			<li class="tag enlarge-on-hover" data-tags="{{.Page.Params.tags}}">
+			<li class="tag" data-tags="{{.Page.Params.tags}}">
 				<a href="{{ .RelPermalink }}">
 					{{partial "cardflip" (dict "Params" (dict "big" "true" "front" .Params.code "back" .Params.back
 					"disallowFlip" "true"))}}
@@ -81,6 +82,7 @@
 			</li>
 			{{- end }}
 		</ul>
+	</div>
 	</div>
 </section>
 {{- end }}
