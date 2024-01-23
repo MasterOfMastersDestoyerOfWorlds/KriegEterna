@@ -74,7 +74,7 @@
 		</script>
 		<ul id="list" class="list">
 			{{- range.Pages }}
-			<li class="tag" data-tags="{{.Page.Params.tags}}">
+			<li class="tag enlarge-on-hover" data-tags="{{.Page.Params.tags}}">
 				<a href="{{ .RelPermalink }}">
 					{{partial "cardflip" (dict "Params" (dict "big" "true" "front" .Params.code "back" .Params.back
 					"disallowFlip" "true"))}}

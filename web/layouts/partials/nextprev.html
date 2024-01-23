@@ -1,6 +1,6 @@
-{{ if or .Next .Prev -}}
+{{ if or .NextInSection .PrevInSection -}}
 <div id="nextprev" class="nextprev">
-    {{- with .Next -}}
+    {{- with .NextInSection -}}
     <a href="{{ .RelPermalink}}">
         <div class="nextart">
             <div class="nextprev-title">← Previous</div>
@@ -8,7 +8,7 @@
             "disallowFlip" "true"))}}</div>
     </a>
     {{ end -}}
-    {{- with .Prev }}
+    {{- with .PrevInSection }}
     <a href="{{ .RelPermalink}}">
         <div class="prevart">
             <div class="nextprev-title">Next →</div>

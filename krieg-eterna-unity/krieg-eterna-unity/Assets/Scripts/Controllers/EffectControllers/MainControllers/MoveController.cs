@@ -8,7 +8,7 @@ public class MoveController : EffectControllerInterface
         Deck deck = Game.activeDeck;
         c.moveRemain--;
         Debug.Log("MOVING " + c.cardReturnType);
-        if (c.cardReturnType == CardReturnType.Move)
+        if (c.cardReturnType == CardReturnType.Move || c.cardReturnType == CardReturnType.MoveSameSide)
         {
             deck.addCardToHand(deck.getRowByType(c.moveRow), targetRow.uniqueType, c.moveCard);
         }
@@ -35,6 +35,12 @@ public class MoveController : EffectControllerInterface
         RowEffected row = CardModel.getRowFromSide(player, c.rowEffected);
         if (c.cardReturnType == CardReturnType.Move)
         {
+            deck.activateRowsByTypeExclude(true, false, false, row, new List<RowEffected> { c.moveRow });
+        }
+        else if (c.cardReturnType == CardReturnType.MoveSameSide)
+        {
+            row = CardModel.getRowFromSide(CardModel.getPlayerFromRow(c.moveCard.currentRow), RowEffected.PlayerPlayable);
+            
             deck.activateRowsByTypeExclude(true, false, false, row, new List<RowEffected> { c.moveRow });
         }
         else if (c.cardReturnType == CardReturnType.MoveWeather)

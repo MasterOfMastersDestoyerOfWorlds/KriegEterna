@@ -38,8 +38,8 @@ namespace KriegTests
                 testName = "JesterReturnAttachment",
                 playerHandCount = 1,
                 clicks = new List<Click>{
-                    new Click("Feast2", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerHand, true),
-                    new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerMelee, true),
+                    new Click("Feast2", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
+                    new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerMelee, RowEffected.PlayerHand, true),
                     new Click("Jester", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
                     new Click("Knight", RowEffected.PlayerMelee, RowEffected.UnitGraveyard, RowEffected.UnitGraveyard, true),
                     new Click("Knight3", RowEffected.PlayerMelee, RowEffected.PlayerHand, RowEffected.PlayerHand, true)
@@ -54,7 +54,7 @@ namespace KriegTests
                     new Click("Retreat", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
                     new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerSetAside, RowEffected.PlayerSetAside, true),
                     new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerSetAside, true),
-                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerSetAside, true),
+                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, true),
                 }
             },
 
@@ -67,7 +67,7 @@ namespace KriegTests
                     new Click("Retreat", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerSetAside, RowEffected.PlayerMelee, true),
                     new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerRanged, true),
-                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerRanged, true),
+                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.UnitGraveyard, true),
                     new ClickRow("Pass", RowEffected.Pass),
                 }
             },
@@ -93,7 +93,6 @@ namespace KriegTests
                 clicks = new List<Click>{
                     new Click("Retreat", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerSetAside, RowEffected.PlayerMelee, true),
-                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerRanged, true),
                     new ClickRow("Pass", RowEffected.Pass),
                 }
             },
@@ -126,7 +125,7 @@ namespace KriegTests
                     new Click("Shipwreck", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
                     new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerSetAside, RowEffected.PlayerSetAside, true),
                     new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerSetAside, true),
-                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerSetAside, true),
+                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, true),
                 }
             },
 
@@ -140,7 +139,7 @@ namespace KriegTests
                     new Click("Shipwreck", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerSetAside, RowEffected.PlayerMelee, true),
                     new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerRanged, true),
-                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerRanged, true),
+                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.UnitGraveyard, false),
                     new ClickRow("Pass", RowEffected.Pass),
                 }
             },
@@ -165,7 +164,6 @@ namespace KriegTests
                 clicks = new List<Click>{
                     new Click("Shipwreck", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerSetAside, RowEffected.PlayerMelee, true),
-                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerRanged, true),
                     new ClickRow("Pass", RowEffected.Pass),
                 }
             },
@@ -178,7 +176,7 @@ namespace KriegTests
                     new Click("Feint", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PlayerMelee, true),
                     new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerSetAside, RowEffected.PlayerSetAside, true),
                     new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerSetAside, true),
-                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerSetAside, true),
+                    new Click("Soldier2", RowEffected.PlayerRanged, RowEffected.PlayerRanged, RowEffected.PlayerRanged, true),
                 }
             },
 
@@ -215,7 +213,6 @@ namespace KriegTests
                 clicks = new List<Click>{
                     new Click("Feint", RowEffected.PlayerHand, RowEffected.PlayerHand, RowEffected.PowerGraveyard, true),
                     new Click("Knight", RowEffected.PlayerMelee, RowEffected.PlayerSetAside, RowEffected.PlayerMelee, true),
-                    new Click("Soldier", RowEffected.PlayerRanged, RowEffected.PlayerSetAside, RowEffected.PlayerRanged, true),
                     new ClickRow("Pass", RowEffected.Pass),
                 }
             },
