@@ -1,7 +1,7 @@
 @font-face {
-    font-family: Gargouille;
-    src: url('/fonts/GargouilleBold.otf');
-    descent-override: 30%;
+    font-family: 'GargouilleBold';
+    src: url('fonts/gargouillebold.woff') format('woff'),
+    url('fonts/GargouilleBold.woff2') format('woff2');
 }
 
 :root {
@@ -27,7 +27,7 @@
     --base-font-size: 20px;
     --base-word-spacing: 1px;
     --strong-font-family:
-        "Gargouille", Arial, serif;
+        "GargouilleBold", Arial, serif;
     --html-background: var(--black);
     --max-site-width: 1920;
     --default-max-content-width: 1440px;
@@ -282,7 +282,6 @@ h3 {
     --theme-primary-color--200: #080808;
     --theme-primary-color--300: #1a1a1a;
     --theme-primary-color--400: #ffffff;
-    background: linear-gradient(to top, #f00, #f6ff00);
     --shout-out-color: #FFFFFF;
     --inner-wrap-background: #000000;
     --theme-accent-color: #ffcc33;
