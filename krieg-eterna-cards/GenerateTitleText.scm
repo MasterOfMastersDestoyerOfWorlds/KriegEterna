@@ -216,8 +216,6 @@
 		
 		(set! layer   (car (gimp-image-merge-visible-layers image 1) ) )
 		(plug-in-autocrop 0 image layer)
-		(gimp-xcf-save 1 image layer (string-append (string-append out-folder "/xcf/") (string-append out-file ".xcf")) (string-append (string-append out-folder "/xcf/unmerged/") (string-append out-file ".xcf")))
-
 
 		(file-png-save 1 image layer (string-append (string-append out-folder "/png/") (string-append out-file ".png")) (string-append (string-append out-folder "/png/") (string-append out-file ".png")) 0 0 1 0 0 1 1)
 		(list image layer text)

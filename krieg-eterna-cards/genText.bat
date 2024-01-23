@@ -1,7 +1,7 @@
 SET WSPACE=%~dp0
 SET "WSPACE=%WSPACE:\=\\%"
-SET TYPE="Ranged"
-SET TEXT="REE"
+SET TYPE="Siege"
+SET TEXT="Pass"
 setlocal EnableDelayedExpansion
 
 
@@ -22,4 +22,4 @@ if %TYPE%=="Ranged" (
 ) else if %TYPE%=="Weather" (
 	SET outlinedark=FALSE
 )
-gimp-console-2.10.exe -i -b "(script-fu-gen-text \"%TEXT%\"  \"%TYPE%-Title\"  \"%WSPACE%text\" \"%TEXT%\" \"!outlinedark!\")" -b "(gimp-quit 0)"
+gimp-console-2.10.exe -i -b "(script-fu-gen-text \"%TEXT%\"  \"%TYPE%-Title\"  \"%WSPACE%text\" \"%TEXT%%TYPE%\" \"!outlinedark!\")" -b "(gimp-quit 0)"
