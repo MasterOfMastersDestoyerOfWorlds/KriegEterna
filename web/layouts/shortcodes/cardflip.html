@@ -1,6 +1,6 @@
 <!--
-	font: image on the front of the card
+	front: image on the front of the card
 	back: image on the back of the card
 -->
 
-{{partial "cardflip" (dict "Params" (dict "big" .Params.big "front" .Params.front "back" .Params.back "allowFlip" .Params.disallowFlip))}}
+{{partial "cardflip" (dict "Params" (dict "big" .Params.big "front" .Params.front "back" .Params.back "disallowFlip" .Params.disallowFlip "disallowScale" .Params.disallowScale))}}

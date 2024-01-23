@@ -6,9 +6,10 @@ layout: card
 ---
 
 <section class="gradient even-gradient">
+<div class="css-0ErxL css-0vG6H css-kEe4h">
 <div class="css-pjOS5 css-P-g66 css-EiWA- css-ysAew">
 <div class="title-wrapper">
-    <h3>Cognitive Overload in Games</h2>
+    <h2>Cognitive Overload in Games</h2>
 </div>
     {{< vid  "https://www.youtube.com/embed/qI6uy1OmIxw?si=BuVPwlTpNSprmSrm">}}
     <p class="rule-paragraph">
@@ -47,5 +48,6 @@ layout: card
     <p class="rule-paragraph">
         Anyway, Happy Holidays and play games! 
     </p>
+</div>
 </div>
 </section>

@@ -4,13 +4,13 @@
 {{ define "main" -}}
 {{ .Content }}
 <section class="gradient even-gradient">
+	<div class="css-0ErxL css-0vG6H css-kEe4h">
 	<div class="title-wrapper">
-		<h1 id="tag_{{ .Title }}">{{.Title}}</h1>
+		<h2 id="tag_{{ .Title }}">{{.Title}}</h2>
 		</br>
 		</br>
-
 		<div class="search">
-			<input type="text" id="search" placeholder="Search cards by name or type">
+			<input type="text" id="search" placeholder="Search">
 			<button id="clear-search">
 				<svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
 					<title>Backspace</title>
@@ -75,12 +75,15 @@
 			{{- range.Pages }}
 			<li class="tag" data-tags="{{.Page.Params.tags}}">
 				<a href="{{ .RelPermalink }}">
+					<img {{ with .Params.code }} src="/essay-thumbnails/{{.}}.webp" {{ end -}} style="border-radius: 4% / 3%;">
+					<div style="margin-top: 0.75em; font-weight: 600">
 					{{.Page.Title}}
-					<img {{ with .Params.code }} src="/essay-thumbnails/{{.}}.webp" {{ end -}}>
+					</div>
 				</a>
 			</li>
 			{{- end }}
 		</ul>
+	</div>
 	</div>
 </section>
 {{- end }}
