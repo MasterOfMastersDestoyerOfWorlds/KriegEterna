@@ -5,4 +5,8 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Knight', 'Unit', 'Melee']
 ---
-{{<card-detail-page title="Knight" artwork="God Speed! by Edmund Leighton (1900)" />}}
+{{<card-detail-page title="Knight" artwork="God Speed! by Edmund Leighton (1900)" >}}
+<p class="rule-paragraph">
+The card's text is from the tale of Orpheus and Eurydice from Greek myth. In the story, Orpheus loses his wife Eurydice to the bite of a viper and must travel to the underworld to reclaim her soul. When Orpheus arrives at the court of Hades, Orpheus plays a song on his lyre that warms the cold god's heart. Hades gives Orpheus a condition to save Eurydice, he must walk out of the underworld with her and must not look back at her. Orpheus agrees and begins his journey out of hell. As he approaches the door to the land of the living, he has not heard a word from Eurydice and believes he has been tricked by Hades. Orpheus looks back at Eurydice and never sees her alive again as she had not yet crossed out of the underworld.
+</p>
+{{</card-detail-page>}}
