@@ -7,7 +7,7 @@ tags: ['Base Set', 'Demise', 'Power', 'Hex']
 ---
 {{<card-detail-page title="EmperorDemise" artwork="Battle of Lutzen by Carl Wahlbom (1855)" >}}
 <p class="rule-paragraph">
-This card depicts the death of Gustavus Adolphus, the King of Sweden and one of the main figures in the Thirty Years War (see also {{<cardlink name="Lion" code="lion-king">}}), at the Battle of Lutzen. This battle occurred two years after Swedish intervention in the Thirty Years War and led to the middling result for the Swedish Crown. After Gustavus's death many of Sweden's German allies began to fight battles in pursuit of their individual territorial goals rather of focusing on winning the war in totality. Sweden's new High Chancellor and military commander, Axel Oxenstierna, would not reach the same military heights as Gustavus had, despite being a much more skilled diplomat and administrator.
+This card depicts the death of Gustavus Adolphus, the King of Sweden and one of the main figures in the Thirty Years War (see also {{<cardlink name="Lion King" code="lion-king">}}), at the Battle of Lutzen. This battle occurred two years after Swedish intervention in the Thirty Years War and led to the middling result for the Swedish Crown. After Gustavus's death many of Sweden's German allies began to fight battles in pursuit of their individual territorial goals rather of focusing on winning the war in totality. Sweden's new High Chancellor and military commander, Axel Oxenstierna, would not reach the same military heights as Gustavus had, despite being a much more skilled diplomat and administrator.
 </p>
 {{</card-detail-page>}}
 
