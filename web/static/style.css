@@ -2046,6 +2046,17 @@ html[lang=zh-Hant] .css-4zJQw {
     transform:scale(1.05);
 }
 
+.card-scale-desktop-only {
+    transition: transform 0.2s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    /* only allow for desktop */
+    .card-scale-desktop-only:hover {
+        transform:scale(1.05);
+    }
+}
+
 .landscape-gif {
     border-radius: var(--card-border-radius);
     -webkit-tap-highlight-color: transparent;
@@ -2216,8 +2227,6 @@ html[lang=zh-Hant] .css-4zJQw {
     transition-property: transform;
     box-sizing: content-box;
     justify-content: space-between;
-    /* justify-content: flex-start;
-    align-items: flex-end; */
     flex-direction: row;
     transform: translateZ(0);
 }

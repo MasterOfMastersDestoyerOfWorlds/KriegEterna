@@ -102,11 +102,11 @@ layout: single
             </div>
             <div class="css-fTdGr">
                 {{< card-scroll-gallery >}}
-                    {{< cardflip front="TraitorKing" back="FlagKing" big="false">}}
-                    {{< cardflip front="Calvary" back="Flag" big="false">}}
-                    {{< cardflip front="Smuggler" back="FlagPower" big="false">}}
-                    {{< cardflip front="Cannon2" back="Flag" big="false">}}
-                    {{< cardflip front="Ruin" back="FlagPower" big="false">}}
+                    {{< cardflip front="TraitorKing" back="FlagKing" disallowScale="mobile" >}}
+                    {{< cardflip front="Calvary" back="Flag" disallowScale="mobile" >}}
+                    {{< cardflip front="Smuggler" back="FlagPower" disallowScale="mobile" >}}
+                    {{< cardflip front="Cannon2" back="Flag" disallowScale="mobile" >}}
+                    {{< cardflip front="Ruin" back="FlagPower" disallowScale="mobile" >}}
                 {{</ card-scroll-gallery >}}
             </div>
         </div>

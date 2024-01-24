@@ -3,12 +3,13 @@
 	back: image on the back of the card
 	big: use big version of card (else small)
 	disallowFlip: turn off card flip on click
-	disallowScale: turn off card scaling on hover
+	disallowScale: turn off card scaling on hover, or set to "mobile" to turn off only on mobile
 	reversed: if true, card will initial be lying face down on the page
 -->
 {{$big := eq .Params.big "true"}}
 {{$disallowFlip := eq .Params.disallowFlip "true"}}
 {{$disallowScale := eq .Params.disallowScale "true"}}
+{{$noScaleMobile := eq .Params.disallowScale "mobile"}}
 {{$reversed := eq .Params.reversed "true"}}
 {{if $big}}
 <div class="swiper-slide-rules card-big">
@@ -16,7 +17,7 @@
 <div class="swiper-slide-rules card-small">
 {{end}}
 	<figure>
-		<div class="{{if not $disallowFlip}}card-flip{{end}} {{if not $disallowScale}}card-scale{{end}}">
+		<div class="{{$noScaleMobile}} {{if not $disallowFlip}}card-flip{{end}} {{if not $disallowScale}}{{if $noScaleMobile}}card-scale-desktop-only{{else}}card-scale{{end}}{{end}}">
 				<div tabindex="0" class="card-flip-inner">
 				<div class="{{if not $reversed}}card-front{{else}}card-back{{end}}">
 					<img {{ with .Params.front }} src="/card-images/{{.}}.webp" {{ end -}} alt="" class="card-image" unselectable="on">

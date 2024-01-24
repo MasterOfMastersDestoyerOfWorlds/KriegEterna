@@ -81,9 +81,9 @@ layout: single
         different <span class="rule-word">card types</span>, indicated by the symbol in the upper-right corner of a card.
     </p>
     {{< card-scroll-gallery-rules >}}
-        {{< cardflip front="Crusader" back="Flag" reversed="true" >}}
-        {{< cardflip front="Shipwreck" back="FlagPower" reversed="true" >}}
-        {{< cardflip front="TerrorKing" back="FlagKing" reversed="true" >}}
+        {{< cardflip front="Crusader" back="Flag" reversed="true" disallowScale="mobile" >}}
+        {{< cardflip front="Shipwreck" back="FlagPower" reversed="true" disallowScale="mobile" >}}
+        {{< cardflip front="TerrorKing" back="FlagKing" reversed="true" disallowScale="mobile" >}}
     {{</ card-scroll-gallery-rules >}}
     <div class="title-wrapper rule-title">
         <h3>Units</h3>
@@ -95,9 +95,9 @@ layout: single
         strength using the effects of other cards.
     </p>
     {{< card-scroll-gallery-rules >}}
-        {{< cardflip front="Landsknecht" back="Flag" >}}
-        {{< cardflip front="Grenadier" back="Flag" >}}
-        {{< cardflip front="Cannon3" back="Flag" >}}
+        {{< cardflip front="Landsknecht" back="Flag" disallowScale="mobile" >}}
+        {{< cardflip front="Grenadier" back="Flag" disallowScale="mobile" >}}
+        {{< cardflip front="Cannon3" back="Flag" disallowScale="mobile" >}}
     {{</ card-scroll-gallery-rules >}}
     {{< icon-paragraph icon="Melee" text="Melee units go in the front row, closest to your opponent." >}}
     {{< icon-paragraph icon="Ranged" text="Ranged units go in the middle row." >}}
@@ -111,10 +111,10 @@ layout: single
         (not in the Melee, Range, or Siege rows) and immediately go to the graveyard after use.
     </p>
     {{< card-scroll-gallery-rules >}}
-        {{< cardflip front="Frost" back="FlagPower" >}}
-        {{< cardflip front="Saboteur" back="FlagPower" >}}
-        {{< cardflip front="Retreat" back="FlagPower" >}}
-        {{< cardflip front="Styx" back="FlagPower" >}}
+        {{< cardflip front="Frost" back="FlagPower" disallowScale="mobile" >}}
+        {{< cardflip front="Saboteur" back="FlagPower" disallowScale="mobile" >}}
+        {{< cardflip front="Retreat" back="FlagPower" disallowScale="mobile" >}}
+        {{< cardflip front="Styx" back="FlagPower" disallowScale="mobile" >}}
     {{</ card-scroll-gallery-rules >}}
     {{< icon-paragraph icon="Weather" text="Weather cards affect the total strength of one of the rows, for all players. Within the affected row, Weather applies individually to each unit; always round unit strength down when dividing, with a minimum strength of one per unit. Keep Weather cards on the field until their effects end." >}}
     <img src="/gif/WeatherEx.gif" alt="" class="landscape-gif" unselectable="on" loading="lazy">
@@ -130,7 +130,7 @@ layout: single
         does not return to your hand each round). King cards are <span class="rule-word">not affected</span> by other cards, unless
         specifically mentioned.
     </p>
-    {{< cardflip front="LionKing" back="FlagKing" >}}
+    {{< cardflip front="LionKing" back="FlagKing" disallowScale="mobile" >}}
     {{< icon-paragraph icon="King" text="King cards allow you to double the strength of one of your rows, as well as having a choice between other unique effects. A King only doubles the row while it remains on the field." >}}
     <div class="title-wrapper rule-title">
         <h3>Adjacency</h3>
