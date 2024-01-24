@@ -120,7 +120,7 @@ layout: single
     <img src="/gif/WeatherEx.gif" alt="" class="landscape-gif" unselectable="on" loading="lazy">
     {{< icon-paragraph icon="Spy" text="Spy cards allow you to draw cards, but are played as units on your opponent's side of the field, thereby adding to your opponent's total strength. At the end of the round, most Spys go directly to the hand of the player whose side of the field they are on, allowing your opponent to turn your Spys against you." >}}
     {{< icon-paragraph icon="Jester" text="Jester cards can return cards on the field back to your hand, or set them aside for the next round. Use them to deceive your opponent." >}}
-    {{< icon-paragraph icon="Power" text="Hex cards allow for drawing cards, sending cards to the graveyard, or other useful effects. Hex cards attached to a specific unit follow with that unit, e.g. to the graveyard, another row, or even a player's hand." >}}
+    {{< icon-paragraph icon="Hex" text="Hex cards allow for drawing cards, sending cards to the graveyard, or other useful effects. Hex cards attached to a specific unit follow with that unit, e.g. to the graveyard, another row, or even a player's hand." >}}
     <div class="title-wrapper rule-title">
         <h3>Kings</h3>
     </div>
