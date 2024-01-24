@@ -55,16 +55,24 @@
         {{partial "cardflip" (dict "Params" (dict "big" "true" "front" $title "back" $cardback))}}
 
         <h3 class="card-detail-title {{lower (index $data 4)}}">{{(index $data 1)}}</h3>
+
+        <!-- taglist -->
         {{ partial "taglist.html" .Page }}
+
+        <!-- strength -->
         {{$strength := (index $data 5)}}
         {{if gt (len $strength) 0}}
         <p class="rule-paragraph">
             <span class="rule-word">Strength:</span> {{$strength}}
         </p>
         {{end}}
+
+        <!-- type -->
         <p class="rule-paragraph">
             <span class="rule-word">Type:</span> {{$typedesc}}
         </p>
+
+        <!-- effect -->
         {{$effect := (index $data 2)}}
         {{$effect = (replace $effect "^" "")}}
         {{$effect = (replace $effect "\\`" "\"")}}
@@ -74,6 +82,24 @@
             <span class="rule-word">Effect Text:</span> {{$effect}}
         </p>
         {{end}}
+
+        <!-- flavor -->
+        {{$flavor := (index $data 3)}}
+        {{$flavor = (replace $flavor "^" "")}}
+        {{$flavor = (replace $flavor "\\`" "\"")}}
+        {{$flavor = (replace $flavor "\\r" " ")}}
+        <p class="rule-paragraph">
+            <span class="rule-word">Flavor Text:</span> {{$flavor}}
+        </p>
+
+        <!-- artwork -->
+        {{if (isset .Params "artwork")}}
+        <p class="rule-paragraph">
+            <span class="rule-word">Artwork:</span> {{.Params.artwork}}
+        </p>
+        {{end}}
+
+        <!-- strategy -->
         {{$stratDesc := (index $data 6)}}
         {{$stratDesc := (lower $stratDesc)}}
         {{if gt (len $stratDesc) 1}}
@@ -82,18 +108,7 @@
         </p>
         {{end}}
 
-        {{$flavor := (index $data 3)}}
-        {{$flavor = (replace $flavor "^" "")}}
-        {{$flavor = (replace $flavor "\\`" "\"")}}
-        {{$flavor = (replace $flavor "\\r" " ")}}
-        <p class="rule-paragraph">
-            <span class="rule-word">Flavor Text:</span> {{$flavor}}
-        </p>
-        {{if (isset .Params "artwork")}}
-        <p class="rule-paragraph">
-            <span class="rule-word">Artwork:</span> {{.Params.artwork}}
-        </p>
-        {{end}}
+        <!-- about -->
         {{ with .Inner }}
             <p class="rule-paragraph" style="margin-bottom: 0">
                 <span class="rule-word">About the card:</span>
@@ -102,6 +117,7 @@
         {{ else }}
             <!-- nothing -->
         {{ end }}
+
         </br>
         {{ partial "nextprev.html" .Page }}
     </div>
