@@ -87,7 +87,8 @@ layout: single
             <div class="title-wrapper">
                 <h2>Meet Your Army</h2>
             </div>
-            <p class="css-tg8OC">Your units do the fighting, and your King and power cards make the
+            <p class="css-tg8OC">
+                Your units do the fighting, and your King and power cards make the
                 round interesting! You’ll have to learn how to use them together in order to win.
                 With over <a href="/compendium">100 unique cards</a>, the possibilities are endless!
             </p>
@@ -100,14 +101,13 @@ layout: single
                 </div>
             </div>
             <div class="css-fTdGr">
-                        {{< card-scroll-gallery >}}
-                            {{< cardflip front="Traitor" back="FlagKing" big="false">}}
-                            {{< cardflip front="Knight4" back="Flag" big="false">}}
-                            {{< cardflip front="Assassin" back="FlagPower" big="false">}}
-                            {{< cardflip front="Cannon2" back="Flag" big="false">}}
-                            {{< cardflip front="Ruin" back="FlagPower" big="false">}}
-                        {{</ card-scroll-gallery >}}
-                <div id="how-to-play"></div>
+                {{< card-scroll-gallery >}}
+                    {{< cardflip front="TraitorKing" back="FlagKing" big="false">}}
+                    {{< cardflip front="Calvary" back="Flag" big="false">}}
+                    {{< cardflip front="Smuggler" back="FlagPower" big="false">}}
+                    {{< cardflip front="Cannon2" back="Flag" big="false">}}
+                    {{< cardflip front="Ruin" back="FlagPower" big="false">}}
+                {{</ card-scroll-gallery >}}
             </div>
         </div>
     </div>

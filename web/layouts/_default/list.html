@@ -76,8 +76,7 @@
 			{{- range.Pages }}
 			<li class="tag" data-tags="{{.Page.Params.tags}}">
 				<a href="{{ .RelPermalink }}">
-					{{partial "cardflip" (dict "Params" (dict "big" "true" "front" .Params.code "back" .Params.back
-					"disallowFlip" "true"))}}
+					{{partial "cardflip" (dict "Params" (dict "front" .Params.code "back" .Params.back "big" "true" "disallowFlip" "true"))}}
 				</a>
 			</li>
 			{{- end }}

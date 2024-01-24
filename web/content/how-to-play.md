@@ -81,9 +81,9 @@ layout: single
         different <span class="rule-word">card types</span>, indicated by the symbol in the upper-right corner of a card.
     </p>
     {{< card-scroll-gallery-rules >}}
-        {{< cardflip front="Flag" back="Crusader" >}}
-        {{< cardflip front="FlagPower" back="Shipwreck" >}}
-        {{< cardflip front="FlagKing" back="Terror" >}}
+        {{< cardflip front="Crusader" back="Flag" reversed="true" >}}
+        {{< cardflip front="Shipwreck" back="FlagPower" reversed="true" >}}
+        {{< cardflip front="TerrorKing" back="FlagKing" reversed="true" >}}
     {{</ card-scroll-gallery-rules >}}
     <div class="title-wrapper rule-title">
         <h3>Units</h3>
@@ -130,7 +130,7 @@ layout: single
         does not return to your hand each round). King cards are <span class="rule-word">not affected</span> by other cards, unless
         specifically mentioned.
     </p>
-    {{< cardflip front="Lion" back="FlagKing" >}}
+    {{< cardflip front="LionKing" back="FlagKing" >}}
     {{< icon-paragraph icon="King" text="King cards allow you to double the strength of one of your rows, as well as having a choice between other unique effects. A King only doubles the row while it remains on the field." >}}
     <div class="title-wrapper rule-title">
         <h3>Adjacency</h3>
