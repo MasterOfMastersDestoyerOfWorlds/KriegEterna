@@ -80,11 +80,13 @@ layout: single
         own <span class="rule-word">graveyard</span>, in which discarded cards are placed face up. Within each deck there are
         different <span class="rule-word">card types</span>, indicated by the symbol in the upper-right corner of a card.
     </p>
+    </div>
     {{< card-scroll-gallery-rules >}}
         {{< cardflip front="Crusader" back="Flag" reversed="true" disallowScale="mobile" >}}
         {{< cardflip front="Shipwreck" back="FlagPower" reversed="true" disallowScale="mobile" >}}
         {{< cardflip front="TerrorKing" back="FlagKing" reversed="true" disallowScale="mobile" >}}
     {{</ card-scroll-gallery-rules >}}
+    <div class="css-pjOS5 css-P-g66 css-EiWA- css-ysAew">
     <div class="title-wrapper rule-title">
         <h3>Units</h3>
     </div>
@@ -94,11 +96,13 @@ layout: single
         end of a round. The total strength of a unit can be increased or decreased beyond the base
         strength using the effects of other cards.
     </p>
+    </div>
     {{< card-scroll-gallery-rules >}}
         {{< cardflip front="Landsknecht" back="Flag" disallowScale="mobile" >}}
         {{< cardflip front="Grenadier" back="Flag" disallowScale="mobile" >}}
         {{< cardflip front="Cannon3" back="Flag" disallowScale="mobile" >}}
     {{</ card-scroll-gallery-rules >}}
+    <div class="css-pjOS5 css-P-g66 css-EiWA- css-ysAew">
     {{< icon-paragraph icon="Melee" text="Melee units go in the front row, closest to your opponent." >}}
     {{< icon-paragraph icon="Ranged" text="Ranged units go in the middle row." >}}
     {{< icon-paragraph icon="Siege" text="Siege units go in the back row, closest to you." >}}
@@ -110,12 +114,14 @@ layout: single
         granting unique abilities. Unless otherwise indicated, these cards are played to the side
         (not in the Melee, Range, or Siege rows) and immediately go to the graveyard after use.
     </p>
+    </div>
     {{< card-scroll-gallery-rules >}}
         {{< cardflip front="Frost" back="FlagPower" disallowScale="mobile" >}}
         {{< cardflip front="Saboteur" back="FlagPower" disallowScale="mobile" >}}
         {{< cardflip front="Retreat" back="FlagPower" disallowScale="mobile" >}}
         {{< cardflip front="Styx" back="FlagPower" disallowScale="mobile" >}}
     {{</ card-scroll-gallery-rules >}}
+    <div class="css-pjOS5 css-P-g66 css-EiWA- css-ysAew">
     {{< icon-paragraph icon="Weather" text="Weather cards affect the total strength of one of the rows, for all players. Within the affected row, Weather applies individually to each unit; always round unit strength down when dividing, with a minimum strength of one per unit. Keep Weather cards on the field until their effects end." >}}
     <img src="/gif/WeatherEx.gif" alt="" class="landscape-gif" unselectable="on" loading="lazy">
     {{< icon-paragraph icon="Spy" text="Spy cards allow you to draw cards, but are played as units on your opponent's side of the field, thereby adding to your opponent's total strength. At the end of the round, most Spys go directly to the hand of the player whose side of the field they are on, allowing your opponent to turn your Spys against you." >}}

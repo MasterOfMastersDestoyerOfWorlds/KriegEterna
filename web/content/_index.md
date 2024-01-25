@@ -80,7 +80,6 @@ layout: single
 <section class="gradient odd-gradient">
     {{< news-letter-signup >}}
 </section>
-
 <section id="new-cards-showcase" class="gradient even-gradient">
     <div class="css-0ErxL css-0vG6H css-kEe4h">
         <div class="css-pjOS5 css-P-g66 css-EiWA- css-ysAew">
@@ -96,11 +95,6 @@ layout: single
         <div class="css-0ErxL css-XorOV" style="--container-flex-direction:column-reverse;">
             <div class="css-JEZym" style="--intersection-offset:0;">
             </div>
-            <div class="css-2ieoz">
-                <div class="css-DjW9O" style="opacity: 1;">
-                </div>
-            </div>
-            <div class="css-fTdGr">
                 {{< card-scroll-gallery >}}
                     {{< cardflip front="TraitorKing" back="FlagKing" disallowScale="mobile" >}}
                     {{< cardflip front="Calvary" back="Flag" disallowScale="mobile" >}}
@@ -108,7 +102,6 @@ layout: single
                     {{< cardflip front="Cannon2" back="Flag" disallowScale="mobile" >}}
                     {{< cardflip front="Ruin" back="FlagPower" disallowScale="mobile" >}}
                 {{</ card-scroll-gallery >}}
-            </div>
         </div>
     </div>
 </section>

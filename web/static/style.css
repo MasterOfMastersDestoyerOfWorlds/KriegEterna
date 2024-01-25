@@ -1325,29 +1325,30 @@ img {
 }
 
 @media(max-width:750px) {
-    .product-scroll-box {
+    .card-scroll-box {
         padding-bottom: 1em;
         overflow-x: scroll;
         overflow-y: hidden;
         max-width: 100%;
+        touch-action: pan-y;
     }
 
     .product-box {
         max-width: 200px;
     }
 
-    .product-scroll-box::-webkit-scrollbar {
+    .card-scroll-box::-webkit-scrollbar {
         width: 0em;
 
     }
 
-    .product-scroll-box::-webkit-scrollbar-track {
+    .card-scroll-box::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
         max-width: 100%;
 
     }
 
-    .product-scroll-box::-webkit-scrollbar-thumb {
+    .card-scroll-box::-webkit-scrollbar-thumb {
         background-color: #000000;
     }
 }
@@ -2042,9 +2043,7 @@ html[lang=zh-Hant] .css-4zJQw {
     transition: transform 0.2s;
 }
 
-.card-scale:hover {
-    transform:scale(1.05);
-}
+
 
 .card-scale-desktop-only {
     transition: transform 0.2s;
@@ -2135,6 +2134,7 @@ html[lang=zh-Hant] .css-4zJQw {
     }
 }
 
+
 .card-flip-inner {
     padding-bottom: 136.5%;
     cursor: pointer;
@@ -2216,6 +2216,7 @@ html[lang=zh-Hant] .css-4zJQw {
     justify-content: flex-start;
     align-items: flex-end;
     flex-direction: row;
+    touch-action: pan-x;
     transform: translateZ(0)
 }
 
@@ -2228,7 +2229,15 @@ html[lang=zh-Hant] .css-4zJQw {
     box-sizing: content-box;
     justify-content: space-between;
     flex-direction: row;
+    touch-action: pan-x;
     transform: translateZ(0);
+}
+
+@media screen and (max-width:750px) {
+    .swiper-wrapper-rules {    
+         justify-content: flex-start;
+
+    }
 }
 
 @media screen and (min-width:1200px) {
