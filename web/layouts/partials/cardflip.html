@@ -17,7 +17,7 @@
 <div class="swiper-slide-rules card-small">
 {{end}}
 	<figure>
-		<div class="{{$noScaleMobile}} {{if not $disallowFlip}}card-flip{{end}} {{if not $disallowScale}}{{if $noScaleMobile}}card-scale-desktop-only{{else}}card-scale{{end}}{{end}}">
+		<div class="{{if not $disallowFlip}}card-flip{{end}} {{if not $disallowScale}}{{if $noScaleMobile}}card-scale-desktop-only{{else}}card-scale{{end}}{{end}}">
 				<div tabindex="0" class="card-flip-inner">
 				<div class="{{if not $reversed}}card-front{{else}}card-back{{end}}">
 					<img {{ with .Params.front }} src="/card-images/{{.}}.webp" {{ end -}} alt="" class="card-image" unselectable="on">

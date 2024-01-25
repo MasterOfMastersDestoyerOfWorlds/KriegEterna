@@ -2043,7 +2043,9 @@ html[lang=zh-Hant] .css-4zJQw {
     transition: transform 0.2s;
 }
 
-
+.card-scale:hover {
+    transform:scale(1.05);
+}
 
 .card-scale-desktop-only {
     transition: transform 0.2s;
