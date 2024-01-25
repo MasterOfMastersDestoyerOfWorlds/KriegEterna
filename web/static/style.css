@@ -1330,7 +1330,6 @@ img {
         overflow-x: scroll;
         overflow-y: hidden;
         max-width: 100%;
-        touch-action: pan-y;
     }
 
     .product-box {
@@ -2218,7 +2217,6 @@ html[lang=zh-Hant] .css-4zJQw {
     justify-content: flex-start;
     align-items: flex-end;
     flex-direction: row;
-    touch-action: pan-x;
     transform: translateZ(0)
 }
 
@@ -2231,7 +2229,6 @@ html[lang=zh-Hant] .css-4zJQw {
     box-sizing: content-box;
     justify-content: space-between;
     flex-direction: row;
-    touch-action: pan-x;
     transform: translateZ(0);
 }
 
