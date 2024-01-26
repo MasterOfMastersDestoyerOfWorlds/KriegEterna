@@ -49,7 +49,7 @@ layout: single
     <picture>
         <source srcset="/images/LayoutRender.png?fm=webp" type="image/webp"> <img
             src="/images/DeluxeDeckRender.png" alt="" width="548" height="433" loading="lazy"
-            class="css-u6Ex featured-image">
+            class="css-u6Ex">
     </picture>
     <p class="rule-paragraph">
         At the <b>start of the game</b>, each player draws <b>9 unit</b> cards, <b>4 power</b> cards, and <b>1 King</b> card.
@@ -70,7 +70,7 @@ layout: single
     <picture>
         <source srcset="/images/PlayingField.png?fm=webp" type="image/webp"> <img
             src="/images/PlayingField.png" alt="" width="548" height="433" loading="lazy"
-            class="css-u6Ex featured-image">
+            class="css-u6Ex">
     </picture>
     <div class="title-wrapper rule-title">
         <h3>Cards</h3>

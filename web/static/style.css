@@ -526,22 +526,6 @@ img {
     background: var(--theme-even-section-tint)
 }
 
-.cap-title {
-    /* font-size: 60px; */
-}
-
-@media screen and (min-width:320px) {
-    .cap-title {
-        font-size: calc(34.5px+ .46875vw)
-    }
-}
-
-@media screen and (min-width:1600px) {
-    .cap-title {
-        font-size: 42px
-    }
-}
-
 .css-TiYdz {
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
@@ -1217,12 +1201,6 @@ img {
     }
 }
 
-@media(min-width:1250px) {
-    .video-background {
-        --wrap-padding: var(--wrap-padding--lg, var(--wrap-padding--md));
-    }
-}
-
 .video-background2 {
     padding: var(--wrap-padding);
 }
@@ -1298,7 +1276,7 @@ img {
 
 .css-cW5DV {
     margin: auto auto auto;
-    padding-top: 5px
+    padding-top: 1em
 }
 
 @media(min-width:768px) {
@@ -1489,24 +1467,6 @@ html[lang=zh-Hant] .css-lV1Vi {
 
 .card-scroll-box::-webkit-scrollbar-thumb {
     background-color: #000000;
-}
-
-.card-title.card-title {
-    text-align: center;
-    max-width: 1024px;
-    font-size: 4em;
-}
-
-@media screen and (min-width:320px) {
-    .card-title.card-title {
-        font-size: calc(19.5px+ 1.40625vw)
-    }
-}
-
-@media screen and (min-width:1600px) {
-    .card-title.card-title {
-        font-size: 2em
-    }
 }
 
 .css-tg8OC {
