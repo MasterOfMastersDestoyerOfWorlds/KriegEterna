@@ -113,6 +113,18 @@ h1, h2, h3 {
     align-items: center;
 }
 
+h1 {
+    font-size: 6em
+}
+
+h2 {
+    font-size: 4em
+}
+
+h3 {
+    font-size: 2.5em
+}
+
 .ranged {
     background: linear-gradient(to top, #371b00, #f27100, #efc096);;
     background-clip: text;
@@ -159,19 +171,6 @@ h1, h2, h3 {
     background: linear-gradient(to top, #8e7733, #cbb044, #d2ab17, #f8da2f, #b48c04, #a78722);
     background-clip: text;
     -webkit-background-clip: text;
-}
-
-
-h1 {
-    font-size: 6em
-}
-
-h2 {
-    font-size: 4em
-}
-
-h3 {
-    font-size: 2.5em
 }
 
 .tilting {
@@ -287,6 +286,16 @@ h3 {
     --base-font-color: #ffffff;
     --theme-odd-section-tint: linear-gradient(180deg, #001c2c  5%, rgba(0, 0, 0, 0.6) 50%, #001c2c  95%);
     --theme-even-section-tint: linear-gradient(180deg, #001c2c  5%, rgba(0, 0, 0, 0.6) 50%, #001c2c  95%);
+}
+
+.site-background {
+    background-image: url('/images/background.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
 }
 
 .original {
