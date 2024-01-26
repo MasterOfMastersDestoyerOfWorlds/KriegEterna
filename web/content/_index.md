@@ -61,6 +61,15 @@ layout: single
                                                 </span>
                                             </button>
                                         </a>
+                <!-- Beginning of Buy With Prime Widget --
+        <script async fetchpriority='high' src='https://code.buywithprime.amazon.com/bwp.v1.js'></script>
+        <div
+            id="amzn-buy-now"
+            data-site-id="zm37qpw6y6"
+            data-widget-id="w-J5EhprFtkk1J9d75bFUCK3"
+            data-sku="QU-B39T-6LQM"
+        ></div>
+        !-- End of Buy With Prime Widget -->
                                     </div>
                                 </div>
                             </div>
