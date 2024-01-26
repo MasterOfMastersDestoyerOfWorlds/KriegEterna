@@ -13,6 +13,6 @@ Unit’s cry of “Now, my boys, Scotland forever!” as they charged.  Consider
 Copies of the painting, one of a few military paintings by a woman painter, were given to Tsar Nicholas II of Russia and Kaiser Wilhelm II of Germany.  During World War I the Germans used the image for propaganda purposes, turning the soldiers into Prussians.
 </p>
 <p class="rule-paragraph">
-Attributed to King Jan III Sobieski after the Polish victory over the Ottoman at the Battle of Vienna 1683.
+Attributed to King Jan III Sobieski after the Polish victory over the Ottoman at the Battle of Vienna 1683 (see also {{<cardlink name="Siege" code="siege2">}}).
 </p>
 {{</card-detail-page>}}
