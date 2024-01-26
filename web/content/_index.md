@@ -5,7 +5,7 @@ layout: single
 ---
 
 <section class="gradient odd-gradient">
-    <div class="css-0ErxL css-0vG6H css-kEe4h" style="padding-top: 20px">
+    <div class="main-section" style="padding-top: 20px">
         <div class="title-wrapper css-UDQ10">
             <div class="css-tqeem">
                 <div class="css-UZpTh" style="padding-top:65%;">
@@ -27,8 +27,8 @@ layout: single
 </section>
 
 <section class="gradient even-gradient">
-    <div class="css-0ErxL css-0vG6H css-kEe4h">
-        <div class="css-pjOS5 css-P-g66 css-EiWA- css-ysAew">
+    <div class="main-section">
+        <div class="sub-section">
             <div class="title-wrapper">
                 <h2>Products</h2>
             </div>
@@ -81,8 +81,8 @@ layout: single
     {{< news-letter-signup >}}
 </section>
 <section id="new-cards-showcase" class="gradient even-gradient">
-    <div class="css-0ErxL css-0vG6H css-kEe4h">
-        <div class="css-pjOS5 css-P-g66 css-EiWA- css-ysAew">
+    <div class="main-section">
+        <div class="sub-section">
             <div class="title-wrapper">
                 <h2>Meet Your Army</h2>
             </div>
@@ -92,7 +92,7 @@ layout: single
                 With over <a href="/compendium">100 unique cards</a>, the possibilities are endless!
             </p>
         </div>
-        <div class="css-0ErxL css-XorOV" style="--container-flex-direction:column-reverse;">
+        <div class="css-XorOV" style="--container-flex-direction:column-reverse;">
             <div class="css-JEZym" style="--intersection-offset:0;">
             </div>
                 {{< card-scroll-gallery >}}

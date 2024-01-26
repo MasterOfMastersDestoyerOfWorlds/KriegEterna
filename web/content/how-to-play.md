@@ -4,8 +4,8 @@ description: 'Krieg Eterna How To Play'
 layout: single
 ---
 <section class="gradient even-gradient">
-    <div class="css-0ErxL css-0vG6H css-kEe4h">
-    <div class="css-pjOS5 css-P-g66 css-EiWA- css-ysAew">
+    <div class="main-section">
+    <div class="sub-section">
     <div class="title-wrapper">
         <h2>How To Play</h2>
     </div>
@@ -27,8 +27,8 @@ layout: single
     </div>
 </section>
 <section class="gradient even-gradient">
-    <div class="css-0ErxL css-0vG6H css-kEe4h">
-    <div class="css-pjOS5 css-P-g66 css-EiWA- css-ysAew">
+    <div class="main-section">
+    <div class="sub-section">
     <div class="title-wrapper">
         <h2>Rulebook</h2>
     </div>
@@ -86,7 +86,7 @@ layout: single
         {{< cardflip front="Shipwreck" back="FlagPower" reversed="true" disallowScale="mobile" >}}
         {{< cardflip front="TerrorKing" back="FlagKing" reversed="true" disallowScale="mobile" >}}
     {{</ card-scroll-gallery-rules >}}
-    <div class="css-pjOS5 css-P-g66 css-EiWA- css-ysAew">
+    <div class="sub-section">
     <div class="title-wrapper rule-title">
         <h3>Units</h3>
     </div>
@@ -102,7 +102,7 @@ layout: single
         {{< cardflip front="Grenadier" back="Flag" disallowScale="mobile" >}}
         {{< cardflip front="Cannon3" back="Flag" disallowScale="mobile" >}}
     {{</ card-scroll-gallery-rules >}}
-    <div class="css-pjOS5 css-P-g66 css-EiWA- css-ysAew">
+    <div class="sub-section">
     {{< icon-paragraph icon="Melee" text="Melee units go in the front row, closest to your opponent." >}}
     {{< icon-paragraph icon="Ranged" text="Ranged units go in the middle row." >}}
     {{< icon-paragraph icon="Siege" text="Siege units go in the back row, closest to you." >}}
@@ -121,7 +121,7 @@ layout: single
         {{< cardflip front="Retreat" back="FlagPower" disallowScale="mobile" >}}
         {{< cardflip front="Styx" back="FlagPower" disallowScale="mobile" >}}
     {{</ card-scroll-gallery-rules >}}
-    <div class="css-pjOS5 css-P-g66 css-EiWA- css-ysAew">
+    <div class="sub-section">
     {{< icon-paragraph icon="Weather" text="Weather cards affect the total strength of one of the rows, for all players. Within the affected row, Weather applies individually to each unit; always round unit strength down when dividing, with a minimum strength of one per unit. Keep Weather cards on the field until their effects end." >}}
     <img src="/gif/WeatherEx.gif" alt="" class="landscape-gif" unselectable="on" loading="lazy">
     {{< icon-paragraph icon="Spy" text="Spy cards allow you to draw cards, but are played as units on your opponent's side of the field, thereby adding to your opponent's total strength. At the end of the round, most Spys go directly to the hand of the player whose side of the field they are on, allowing your opponent to turn your Spys against you." >}}

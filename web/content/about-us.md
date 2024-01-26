@@ -4,8 +4,8 @@ description: 'Krieg Eterna About Us'
 layout: single
 ---
 <section class="gradient even-gradient">
-<div class="css-0ErxL css-0vG6H css-kEe4h">
-<div class="css-pjOS5 css-P-g66 css-EiWA- css-ysAew">
+<div class="main-section">
+<div class="sub-section">
 <div class="title-wrapper">
     <h2>About Us</h2>
 </div>
