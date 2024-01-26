@@ -40,7 +40,7 @@ layout: single
                         <picture>
                             <source srcset="/images/DeluxeDeckRender.png?fm=webp" type="image/webp">
                             <img src="/images/DeluxeDeckRender.png" alt="" width="400" height="433"
-                                loading="lazy" class="css-u6Ex">
+                                loading="lazy">
                         </picture>
                         <div>
                             <h4 class="product-title" data-text="Standard Edition">Krieg Eterna<h4>
