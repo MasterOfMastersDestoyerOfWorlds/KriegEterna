@@ -324,16 +324,6 @@ img {
     max-width: 100%;
 }
 
-.li-pad {
-    margin: 0 0 1em;
-}
-
-@media (max-width: 750px) {
-    .li-pad {
-        max-width: 90%;
-    }
-}
-
 .product-box-outer {
     overflow: visible !important;
     overflow: var(--swiper-overflow, visible) !important;
@@ -452,7 +442,7 @@ img {
 
 .nav-list {
     list-style: none;
-    padding: 0 1.5em
+    padding: 0 1.2em
 }
 
 .nav-list,
@@ -651,8 +641,17 @@ img {
     }
 }
 
-.rule-word { /* highlight a word in the rules */
-    font-weight: bold;
+.rule-paragraph li {
+    margin: 0 0 1em;
+}
+
+@media (max-width: 750px) {
+    .rule-paragraph li {
+        max-width: 90%;
+    }
+}
+
+.rule-paragraph b { /* highlight a word in the rules */
     color: var(--theme-accent-color);
 }
 

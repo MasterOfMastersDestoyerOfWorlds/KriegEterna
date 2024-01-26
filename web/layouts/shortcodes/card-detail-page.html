@@ -63,13 +63,13 @@
         {{$strength := (index $data 5)}}
         {{if gt (len $strength) 0}}
         <p class="rule-paragraph">
-            <span class="rule-word">Strength:</span> {{$strength}}
+            <b>Strength:</b> {{$strength}}
         </p>
         {{end}}
 
         <!-- type -->
         <p class="rule-paragraph">
-            <span class="rule-word">Type:</span> {{$typedesc}}
+            <b>Type:</b> {{$typedesc}}
         </p>
 
         <!-- effect -->
@@ -79,7 +79,7 @@
         {{$effect = (replace $effect "\\r" " ")}}
         {{if gt (len $effect) 1}}
         <p class="rule-paragraph">
-            <span class="rule-word">Effect Text:</span> {{$effect}}
+            <b>Effect Text:</b> {{$effect}}
         </p>
         {{end}}
 
@@ -89,13 +89,13 @@
         {{$flavor = (replace $flavor "\\`" "\"")}}
         {{$flavor = (replace $flavor "\\r" " ")}}
         <p class="rule-paragraph">
-            <span class="rule-word">Flavor Text:</span> {{$flavor}}
+            <b>Flavor Text:</b> {{$flavor}}
         </p>
 
         <!-- artwork -->
         {{if (isset .Params "artwork")}}
         <p class="rule-paragraph">
-            <span class="rule-word">Artwork:</span> {{.Params.artwork}}
+            <b>Artwork:</b> {{.Params.artwork}}
         </p>
         {{end}}
 
@@ -104,14 +104,14 @@
         {{$stratDesc := (lower $stratDesc)}}
         {{if gt (len $stratDesc) 1}}
         <p class="rule-paragraph">
-            <span class="rule-word">Strategy:</span> {{partial (printf "strategy-descriptions/%s.html" $stratDesc) .}}
+            <b>Strategy:</b> {{partial (printf "strategy-descriptions/%s.html" $stratDesc) .}}
         </p>
         {{end}}
 
         <!-- about -->
         {{ with .Inner }}
             <p class="rule-paragraph" style="margin-bottom: 0">
-                <span class="rule-word">About the card:</span>
+                <b>About the card:</b>
             </p>
             {{ . }}
         {{ else }}
