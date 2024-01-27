@@ -1,8 +1,7 @@
 <div class="main-section">
-<div class="sub-section">
-
+<div class="sub-section subscribe-form-box">
 	<div class="title-wrapper">
-		<h2 data-text="A Battle For The Ages"><span>Subscribe to Our Newsletter</span></h2>
+		<h4>Subscribe to Our Newsletter</h4>
 	</div>
 	<script type="text/javascript">
 		window.addEventListener("load", function () {
@@ -22,21 +21,16 @@
 			});
 		});
 	</script>
-	<div class="subscribe-form__heading">Join our mailing list for exclusive content!</div>
+	<div class="subscribe-form__heading">Join our mailing list for information about future releases!</div>
 	<form method="POST"
 		action="https://script.google.com/macros/s/AKfycbzgiQuUJLFDArvmmRCag_RHvCqlRJ8uuBrashzeFPiX-dWlHZIjjRPwfRspMQY2HRLieg/exec"
 		id="myform" class="subscribe-form__inputs">
 		<div class="input-wrapper">
-			<label class="subscribe-form__label" for="footer_mailinglist_email">Email
-				address</label>
-			<input type="email" required class="subscribe-form__email required" value="" id="footer_mailinglist_email"
-				name="Email">
+			<label class="subscribe-form__label" for="footer_mailinglist_email">Email address</label>
+			<input type="email" required class="subscribe-form__email required" value="" id="footer_mailinglist_email" name="Email">
 		</div>
 		<button class="btn btn--secondary subscribe-form__submit" type="submit">
-			<span>
-				{{ partial "icon-mail.html" . }}
-				Sign up
-			</span>
+			{{ partial "icon-mail.html" . }}&nbspSign up
 		</button>
 	</form>
 </div>

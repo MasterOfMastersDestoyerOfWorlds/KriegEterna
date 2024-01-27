@@ -22,12 +22,10 @@
     --system-font-family:
         -apple-system, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --base-font-color: var(--white);
-    --base-font-family:
-        "Open Sans", Arial, sans-serif;
+    --base-font-family: "Open Sans", Arial, sans-serif;
     --base-font-size: 20px;
     --base-word-spacing: 1px;
-    --strong-font-family:
-        "GargouilleBold", Arial, serif;
+    --strong-font-family: "GargouilleBold", Arial, serif;
     --html-background: var(--black);
     --max-site-width: 1920;
     --default-max-content-width: 1440px;
@@ -113,6 +111,14 @@ h1, h2, h3 {
     align-items: center;
 }
 
+h4 {
+    color: var(--base-font-color);
+    font-family: var(--base-font-family, Arial, sans-serif);
+    font-weight: 800;
+    text-transform: uppercase;
+    text-align: center;
+}
+
 h1 {
     font-size: 6em
 }
@@ -123,6 +129,10 @@ h2 {
 
 h3 {
     font-size: 2.5em
+}
+
+h4 {
+    font-size: 1.25em
 }
 
 .ranged {
@@ -274,8 +284,8 @@ h3 {
     --white-alpha90: hsla(0, 0%, 100%, 0.9);
     --swiper-theme-color: #007aff;
     --theme-button-color--primary: #ffffff;
-    --theme-primary-color--100: #000000;
-    --theme-primary-color--200: #080808;
+    --theme-primary-color--100: #001c2c;
+    --theme-primary-color--200: #003873;
     --theme-primary-color--300: #1a1a1a;
     --theme-primary-color--400: #ffffff;
     --shout-out-color: #FFFFFF;
@@ -284,8 +294,9 @@ h3 {
     --theme-link-color: #ffcc33;
     --theme-link-color--active: #ffcc33;
     --base-font-color: #ffffff;
-    --theme-odd-section-tint: linear-gradient(180deg, #001c2c  5%, rgba(0, 0, 0, 0.6) 50%, #001c2c  95%);
-    --theme-even-section-tint: linear-gradient(180deg, #001c2c  5%, rgba(0, 0, 0, 0.6) 50%, #001c2c  95%);
+    --theme-odd-section-tint: linear-gradient(180deg, var(--theme-primary-color--100)  5%, rgba(0, 0, 0, 0.6) 50%, var(--theme-primary-color--100)  95%);
+    --theme-even-section-tint: linear-gradient(180deg, var(--theme-primary-color--100)  5%, rgba(0, 0, 0, 0.6) 50%, var(--theme-primary-color--100)  95%);
+    --theme-small-section-tint: var(--theme-primary-color--100);
 }
 
 .site-background {
@@ -524,6 +535,10 @@ img {
 
 .gradient.even-gradient {
     background: var(--theme-even-section-tint)
+}
+
+.no-gradient {
+    background: var(--theme-small-section-tint)
 }
 
 .css-TiYdz {
@@ -1193,9 +1208,9 @@ img {
 }
 
 .product-box {
-    margin: 0 1%;
+    margin: 0 10px;
     display: flex;
-    max-width: 30%;
+    max-width: 400px;
     position: relative;
     text-align: center;
     justify-content: flex-end;
@@ -1225,25 +1240,7 @@ img {
 }
 
 .product-title {
-    color: var(--base-font-color);
-    font-family: inherit;
-    font-size: 1.25em;
-    font-weight: 800;
-    text-transform: uppercase;
     margin: 1.25em 0 0;
-    text-align: center;
-}
-
-@media screen and (min-width:320px) {
-    .product-title {
-        font-size: calc(18.75px+ .39063vw)
-    }
-}
-
-@media screen and (min-width:1600px) {
-    .product-title {
-        font-size: 25px
-    }
 }
 
 .product-desc {
@@ -1301,7 +1298,7 @@ img {
     }
 
     .product-box {
-        max-width: 275px;
+        max-width: min(90vw, 400px);
     }
 
     .card-scroll-box::-webkit-scrollbar {
@@ -2093,10 +2090,6 @@ html[lang=zh-Hant] .css-4zJQw {
     transform: rotateY(180deg)
 }
 
-:root {
-    --swiper-theme-color: #007aff
-}
-
 .product-box-outer {
     margin-left: auto;
     margin-right: auto;
@@ -2190,16 +2183,25 @@ html[lang=zh-Hant] .css-4zJQw {
 }
 
 .subscribe-form__inputs {
-    width: 75%;
+    width: 90%;
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 1em;
+    column-gap: 1em;
 }
 
-
 .input-wrapper {
+    flex-grow: 1;
     position: relative;
     border: 1px solid #c8bfd4;
-    border-radius: 8px;
+    border-radius: 0;
+}
+
+@media(max-width:540px) {
+    .subscribe-form__inputs {
+        justify-content: center;
+    }
 }
 
 .input-wrapper label {
@@ -2273,6 +2275,7 @@ html[lang=zh-Hant] .css-4zJQw {
 .subscribe-form__text {
     margin-top: 1.5em;
     margin-bottom: 2.5em;
+    text-align: center;
 }
 
 .subscribe-form__inputs .input-wrapper {
@@ -2282,11 +2285,6 @@ html[lang=zh-Hant] .css-4zJQw {
     border-bottom: 3px solid rgba(255, 255, 255, 0.3);
     border-radius: 0;
     padding-left: 0;
-    margin-right: 10px;
-}
-
-.input-wrapper {
-    width: 60%;
 }
 
 .subscribe-form__inputs .input-wrapper label {
@@ -2317,6 +2315,15 @@ html[lang=zh-Hant] .css-4zJQw {
 .subscribe-form__response {
     display: flex;
     justify-content: center;
+}
+
+.subscribe-form-box {
+    max-width: min(800px, 90vw);
+    margin: 0 auto;
+    padding: 2em;
+    background-color: var(--theme-primary-color--200);
+    border-radius: 1.25rem;
+    box-shadow: 0em 0em 1em var(--black);
 }
 
 button,
@@ -2371,12 +2378,9 @@ input[type=submit].btn--secondary,
 input[type=submit].btn--quicklook,
 .btn.btn--secondary,
 .btn.btn--quicklook {
-    box-shadow: 0 0 0 3px #000000;
-    background-color: var(--theme-accent-color);
-    color: #000000;
-    /* margin: 1em 0 0;
-    height: 2em;
-    padding: 0.5em 1em; */
+    box-shadow: 0 0 0 2px var(--white);
+    background-color: var(--black);
+    color: var(--white);
 }
 
 button.btn--secondary:hover,
@@ -2385,7 +2389,7 @@ input[type=submit].btn--secondary:hover,
 input[type=submit].btn--quicklook:hover,
 .btn.btn--secondary:hover,
 .btn.btn--quicklook:hover {
-    box-shadow: 0 0 0 3px var(--theme-accent-color);
+    box-shadow: 0px 0 0 2px var(--theme-accent-color);
     background-color: #000000;
     color: var(--theme-accent-color);
 }
@@ -2410,6 +2414,12 @@ input[type=submit].btn--subtle-hover:hover,
 
 .btn--quicklook {
     margin-top: 30px;
+}
+
+@media (max-width: 540px) {
+    .btn.btn--secondary.subscribe-form__submit {
+        width: 100%;     
+    }
 }
 
 .input-wrapper textarea {

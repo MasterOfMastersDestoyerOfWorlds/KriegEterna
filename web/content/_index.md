@@ -74,7 +74,7 @@ layout: single
     </div>
 </section>
 
-<section class="gradient odd-gradient">
+<section class="no-gradient">
     {{< news-letter-signup >}}
 </section>
 <section id="new-cards-showcase" class="gradient even-gradient">
