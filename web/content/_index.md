@@ -101,6 +101,8 @@ layout: single
                     {{< cardflip front="Smuggler" back="FlagPower" disallowScale="mobile" >}}
                     {{< cardflip front="Cannon2" back="Flag" disallowScale="mobile" >}}
                     {{< cardflip front="Ruin" back="FlagPower" disallowScale="mobile" >}}
+                    {{< cardflip front="Privateer3" back="Flag" disallowScale="mobile" >}}
+                    {{< cardflip front="Fortress" back="Flag" disallowScale="mobile" >}}
                 {{</ card-scroll-gallery >}}
         </div>
     </div>
