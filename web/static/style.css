@@ -776,6 +776,11 @@ img {
     object-fit: cover
 }
 
+.icon-link {
+    width: 1em;
+    height: auto;
+}
+
 .button-highlight {
     --wrap-display: inline-flex;
     --wrap-padding--base: 0.5em 1.5em;
@@ -831,10 +836,6 @@ img {
     text-decoration: none;
 }
 
-.css-xeO6M {
-    width: 1em;
-}
-
 .css-nrWL3 {
     width: var(--leading-asset-size);
     height: var(--leading-asset-size)
@@ -851,7 +852,9 @@ img {
     color: var(--label-color);
     line-height: 1;
     white-space: nowrap;
-    font-size: 1rem
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
 }
 
 @media screen and (min-width:320px) {

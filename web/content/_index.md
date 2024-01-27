@@ -56,9 +56,7 @@ layout: single
                                         <a href="https://www.amazon.com/dp/B0CJHWGZYF?maas=maas_adg_3D8873ABA7D50C8B8D9E95ECC82A19D9_afap_abs&ref_=aa_maas&tag=maas"
                                             target="_blank" rel="noopener">
                                             <button class="css-lV1Vi buy-product-button css-ExOVn">
-                                                <span>
-                                                    Buy Now&nbsp{{< icon-link >}}
-                                                </span>
+                                                Buy Now&nbsp{{< icon-link >}}
                                             </button>
                                         </a>
                                     </div>
