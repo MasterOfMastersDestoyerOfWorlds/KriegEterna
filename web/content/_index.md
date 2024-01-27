@@ -27,7 +27,7 @@ layout: single
 </section>
 
 <section class="gradient even-gradient">
-    <div class="main-section">
+    <div class="main-section" id="product">
         <div class="sub-section">
             <div class="title-wrapper">
                 <h2>Products</h2>
@@ -39,8 +39,7 @@ layout: single
                     <div class="swiper-slide product-box swiper-slide-next">
                         <picture>
                             <source srcset="/images/DeluxeDeckRender.png?fm=webp" type="image/webp">
-                            <img src="/images/DeluxeDeckRender.png" alt="" width="400" height="433"
-                                loading="lazy">
+                            <img src="/images/DeluxeDeckRender.png" alt="" width="400" height="433" loading="lazy">
                         </picture>
                         <div>
                             <h4 class="product-title" data-text="Standard Edition">Krieg Eterna<h4>
