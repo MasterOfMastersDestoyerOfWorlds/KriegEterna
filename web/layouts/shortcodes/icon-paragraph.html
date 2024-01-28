@@ -2,7 +2,7 @@
 	icon: icon image from the card
 	text: paragraph text
 -->
-<table class="rule-paragraph">
+<table>
 	<tr>
 		<td>
 			<source {{ with .Get "icon" }} srcset="/images/{{.}}.png?fm=webp" type="image/webp"> <img
@@ -11,7 +11,7 @@
 		</td>
 		<td class="table-paragraph">
 			{{ with .Get "text" }}
-			{{.}}
+			{{. | markdownify}}
 			{{ end}}
 		</td>
 	</tr>

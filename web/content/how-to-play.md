@@ -103,9 +103,11 @@ layout: single
         {{< cardflip front="Cannon3" back="Flag" disallowScale="mobile" >}}
     {{</ card-scroll-gallery-rules >}}
     <div class="sub-section">
-    {{< icon-paragraph icon="Melee" text="Melee units go in the front row, closest to your opponent." >}}
-    {{< icon-paragraph icon="Ranged" text="Ranged units go in the middle row." >}}
-    {{< icon-paragraph icon="Siege" text="Siege units go in the back row, closest to you." >}}
+        <div class="rule-box">
+            {{< icon-paragraph icon="Melee" text="<b>Melee units</b> go in the front row, closest to your opponent." >}}
+            {{< icon-paragraph icon="Ranged" text="<b>Ranged units</b> go in the middle row." >}}
+            {{< icon-paragraph icon="Siege" text="<b>Siege units</b> go in the back row, closest to you." >}}
+        </div>
     <div class="title-wrapper rule-title">
         <h3>Powers</h3>
     </div>
@@ -122,11 +124,19 @@ layout: single
         {{< cardflip front="Styx" back="FlagPower" disallowScale="mobile" >}}
     {{</ card-scroll-gallery-rules >}}
     <div class="sub-section">
-    {{< icon-paragraph icon="Weather" text="Weather cards affect the total strength of one of the rows, for all players. Within the affected row, Weather applies individually to each unit; always round unit strength down when dividing, with a minimum strength of one per unit. Keep Weather cards on the field until their effects end." >}}
-    <img src="/gif/WeatherEx.gif" alt="" class="landscape-gif" unselectable="on" loading="lazy">
-    {{< icon-paragraph icon="Spy" text="Spy cards allow you to draw cards, but are played as units on your opponent's side of the field, thereby adding to your opponent's total strength. At the end of the round, most Spys go directly to the hand of the player whose side of the field they are on, allowing your opponent to turn your Spys against you." >}}
-    {{< icon-paragraph icon="Jester" text="Jester cards can return cards on the field back to your hand, or set them aside for the next round. Use them to deceive your opponent." >}}
-    {{< icon-paragraph icon="Hex" text="Hex cards allow for drawing cards, sending cards to the graveyard, or other useful effects. Hex cards attached to a specific unit follow with that unit, e.g. to the graveyard, another row, or even a player's hand." >}}
+        <div class="rule-box">
+            {{< icon-paragraph icon="Weather" text="<b>Weather cards</b> affect the total strength of one of the rows, for all players. Within the affected row, Weather applies individually to each unit; always round unit strength down when dividing, with a minimum strength of one per unit. Keep Weather cards on the field until their effects end." >}}
+            <img src="/gif/WeatherEx.gif" alt="" class="landscape-gif" unselectable="on" loading="lazy">
+        </div>
+        <div class="rule-box">
+            {{< icon-paragraph icon="Spy" text="<b>Spy cards</b> allow you to draw cards, but are played as units on your opponent's side of the field, thereby adding to your opponent's total strength. At the end of the round, most Spys go directly to the hand of the player whose side of the field they are on, allowing your opponent to turn your Spys against you." >}}
+        </div>
+        <div class="rule-box">
+            {{< icon-paragraph icon="Jester" text="<b>Jester cards</b> can return cards on the field back to your hand, or set them aside for the next round. Use them to deceive your opponent." >}}
+        </div>
+        <div class="rule-box">
+            {{< icon-paragraph icon="Hex" text="<b>Hex cards</b> allow for drawing cards, sending cards to the graveyard, or other useful effects. Hex cards attached to a specific unit follow with that unit, e.g. to the graveyard, another row, or even a player's hand." >}}
+        </div>
     <div class="title-wrapper rule-title">
         <h3>Kings</h3>
     </div>
@@ -137,7 +147,9 @@ layout: single
         specifically mentioned.
     </p>
     {{< cardflip front="LionKing" back="FlagKing" disallowScale="mobile" >}}
-    {{< icon-paragraph icon="King" text="King cards allow you to double the strength of one of your rows, as well as having a choice between other unique effects. A King only doubles the row while it remains on the field." >}}
+    <div class="rule-box" style="margin-top:2em">
+        {{< icon-paragraph icon="King" text="<b>King cards</b> allow you to double the strength of one of your rows, as well as having a choice between other unique effects. A King only doubles the row while it remains on the field." >}}
+    </div>
     <div class="title-wrapper rule-title">
         <h3>Adjacency</h3>
     </div>
@@ -148,17 +160,21 @@ layout: single
         on the field. Note that adjacency effects can be enabled or broken by power cards that
         modify a unit's strength.
     </p>
-    <p class="rule-paragraph">
-        <b><u>Example 1</u>:</b> A row has 3 units with base strength 2. Two units form an adjacent pair, but the
-        third does not get a bonus. The row's total score is: (2 × 2) + (2 × 2) + 2 = 10.
-    </p>
-    <img src="/gif/AdjacencyEx1.gif" alt="" class="landscape-gif" unselectable="on" loading="lazy">
-    <p class="rule-paragraph">
-        <b><u>Example 2</u>:</b> A row has 2 units with base strength 4. A certain power is then played to
-        subtract 1 strength from all units in that row. Both units now have strength 3, and so
-        receive an adjacency bonus. The row's total score is: ((4 - 1) × 2) + ((4 - 1) × 2) = 12.
-    </p>
-    <img src="/gif/AdjacencyEx2.gif" alt="" class="landscape-gif" unselectable="on" loading="lazy">
+    <div class="rule-box">
+        <h4>Example 1:</h4>
+        <p>     
+            A row has 3 units with base strength 2. Two units form an adjacent pair, but the
+            third does not get a bonus. The row's total score is: (2 × 2) + (2 × 2) + 2 = 10.
+        </p>
+        <img src="/gif/AdjacencyEx1.gif" alt="" class="landscape-gif" unselectable="on" loading="lazy">
+    </div>
+    <div class="rule-box">
+        <h4>Example 2:</h4>
+        <p>
+            A row has 2 units with base strength 4. A certain power is then played to subtract 1 strength from all units in that row. Both units now have strength 3, and so receive an adjacency bonus. The row's total score is: ((4 - 1) × 2) + ((4 - 1) × 2) = 12.
+        </p>
+        <img src="/gif/AdjacencyEx2.gif" alt="" class="landscape-gif" unselectable="on" loading="lazy">
+    </div>
     <div class="title-wrapper rule-title">
         <h3>Passing</h3>
     </div>
