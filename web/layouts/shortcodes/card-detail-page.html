@@ -52,7 +52,9 @@
         {{$cardback = "FlagKing"}}
         {{end}}
 
-        {{partial "cardflip" (dict "Params" (dict "front" $title "back" $cardback "big" "true" "disallowScale" "mobile"))}}
+        <div class="card-detail">
+            {{partial "cardflip" (dict "Params" (dict "front" $title "back" $cardback "big" "true" "disallowScale" "mobile"))}}
+        </div>
 
         <h3 class="card-detail-title {{lower (index $data 4)}}">{{(index $data 1)}}</h3>
 
