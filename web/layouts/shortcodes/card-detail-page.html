@@ -56,50 +56,53 @@
             {{partial "cardflip" (dict "Params" (dict "front" $title "back" $cardback "big" "true" "disallowScale" "mobile"))}}
         </div>
 
-        <h3 class="card-detail-title {{lower (index $data 4)}}">{{(index $data 1)}}</h3>
+        <div class="card-detail-box">
+            <h3 class="card-detail-title {{lower (index $data 4)}}">{{(index $data 1)}}</h3>
 
-        <!-- taglist -->
-        {{ partial "taglist.html" .Page }}
+            <!-- taglist -->
+            {{ partial "taglist.html" .Page }}
+            <hr>
 
-        <!-- strength -->
-        {{$strength := (index $data 5)}}
-        {{if gt (len $strength) 0}}
-        <p class="rule-paragraph">
-            <b>Strength:</b> {{$strength}}
-        </p>
-        {{end}}
+            <!-- strength -->
+            {{$strength := (index $data 5)}}
+            {{if gt (len $strength) 0}}
+            <p class="card-detail-paragraph">
+                <b>Strength:</b> {{$strength}}
+            </p>
+            {{end}}
 
-        <!-- type -->
-        <p class="rule-paragraph">
-            <b>Type:</b> {{$typedesc}}
-        </p>
+            <!-- type -->
+            <p class="card-detail-paragraph">
+                <b>Type:</b> {{$typedesc}}
+            </p>
 
-        <!-- effect -->
-        {{$effect := (index $data 2)}}
-        {{$effect = (replace $effect "^" "")}}
-        {{$effect = (replace $effect "\\`" "\"")}}
-        {{$effect = (replace $effect "\\r" " ")}}
-        {{if gt (len $effect) 1}}
-        <p class="rule-paragraph">
-            <b>Effect Text:</b> {{$effect}}
-        </p>
-        {{end}}
+            <!-- effect -->
+            {{$effect := (index $data 2)}}
+            {{$effect = (replace $effect "^" "")}}
+            {{$effect = (replace $effect "\\`" "\"")}}
+            {{$effect = (replace $effect "\\r" " ")}}
+            {{if gt (len $effect) 1}}
+            <p class="card-detail-paragraph">
+                <b>Effect Text:</b> {{$effect}}
+            </p>
+            {{end}}
 
-        <!-- flavor -->
-        {{$flavor := (index $data 3)}}
-        {{$flavor = (replace $flavor "^" "")}}
-        {{$flavor = (replace $flavor "\\`" "\"")}}
-        {{$flavor = (replace $flavor "\\r" " ")}}
-        <p class="rule-paragraph">
-            <b>Flavor Text:</b> {{$flavor}}
-        </p>
+            <!-- flavor -->
+            {{$flavor := (index $data 3)}}
+            {{$flavor = (replace $flavor "^" "")}}
+            {{$flavor = (replace $flavor "\\`" "\"")}}
+            {{$flavor = (replace $flavor "\\r" " ")}}
+            <p class="card-detail-paragraph">
+                <b>Flavor Text:</b> {{$flavor}}
+            </p>
 
-        <!-- artwork -->
-        {{if (isset .Params "artwork")}}
-        <p class="rule-paragraph">
-            <b>Artwork:</b> {{.Params.artwork}}
-        </p>
-        {{end}}
+            <!-- artwork -->
+            {{if (isset .Params "artwork")}}
+            <p class="card-detail-paragraph">
+                <b>Artwork:</b> {{.Params.artwork}}
+            </p>
+            {{end}}
+        </div>
 
         <!-- strategy -->
         {{$stratDesc := (index $data 6)}}

@@ -569,9 +569,9 @@ img {
 }
 
 .main-section {
-    --wrap-padding--base: 40px 0 60px;
-    --wrap-padding--sm: 60px 0 80px;
-    --wrap-padding--md: 70px 0 100px;
+    --wrap-padding--base: 2em 0 3em;
+    --wrap-padding--sm: 3em 0 4em;
+    --wrap-padding--md: 3em 0 4em;
     --wrap-padding: var(--wrap-padding--md);
     padding: var(--wrap-padding);
     overflow: hidden;
@@ -664,6 +664,10 @@ img {
 .css-aqU36 {
     margin: var(--link-margin);
     flex: var(--link-flex)
+}
+
+.rule-title {
+    margin: 1.5em 0 0;
 }
 
 .rule-paragraph {
@@ -1050,16 +1054,49 @@ img {
     }
 }
 
-.rule-title {
-    margin: 1.5em 0 0;
+.card-detail {
+    width: min(400px, 90%);
 }
 
 .card-detail-title {
-    margin: 0.5em 0 0.25em;
+    display: block;
+    margin: 0 auto;
 }
 
-.card-detail {
-    width: min(400px, 90%);
+.card-detail-taglist {
+    margin: 0.5em 0 0.5em
+}
+
+.card-detail-paragraph {
+    max-width: 100%;
+    display: block;
+    align-items: center;
+    text-align: justify;
+    margin: 1em 0em;
+}
+
+.card-detail-paragraph b { /* highlight a word in the rules */
+    color: var(--theme-accent-color);
+}
+
+.card-detail-box {
+    max-width: min(35em, 90vw);
+    margin: 2em auto 1em;
+    padding: 2em 2em 1em 2em;
+    background-color: var(--theme-primary-color--200);
+    border-radius: 1.25rem;
+    box-shadow: 0em 0em 1em var(--black);
+    text-align: center;
+}
+
+.card-detail-box hr {
+    display: block;
+    height: 3px;
+    border: 0;
+    border-top: 3px solid var(--theme-primary-color--300);
+    margin: 1em auto;
+    padding: 0;
+    max-width: 70%;
 }
 
 .video-background {
@@ -2673,10 +2710,6 @@ button#clear-search {
     color: #888;
     cursor: pointer;
     transition: color 180ms ease-in-out;
-}
-
-.taglist {
-    margin: 0 0 0.5em
 }
 
 .nextprev {
