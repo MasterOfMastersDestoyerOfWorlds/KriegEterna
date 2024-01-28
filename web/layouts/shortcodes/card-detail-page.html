@@ -1,6 +1,6 @@
 <section class="gradient even-gradient">
-    <div class="css-0ErxL css-0vG6H css-kEe4h">
-    <div class="css-pjOS5 css-P-g66 css-EiWA- css-ysAew">
+    <div class="main-section">
+    <div class="sub-section">
 
         {{$title := (index .Params "title")}}
 
@@ -52,66 +52,71 @@
         {{$cardback = "FlagKing"}}
         {{end}}
 
-        {{partial "cardflip" (dict "Params" (dict "front" $title "back" $cardback "big" "true" "disallowScale" "mobile"))}}
+        <div class="card-detail">
+            {{partial "cardflip" (dict "Params" (dict "front" $title "back" $cardback "big" "true" "disallowScale" "mobile"))}}
+        </div>
 
-        <h3 class="card-detail-title {{lower (index $data 4)}}">{{(index $data 1)}}</h3>
+        <div class="card-detail-box">
+            <h3 class="card-detail-title {{lower (index $data 4)}}">{{(index $data 1)}}</h3>
 
-        <!-- taglist -->
-        {{ partial "taglist.html" .Page }}
+            <!-- taglist -->
+            {{ partial "taglist.html" .Page }}
+            <hr>
 
-        <!-- strength -->
-        {{$strength := (index $data 5)}}
-        {{if gt (len $strength) 0}}
-        <p class="rule-paragraph">
-            <span class="rule-word">Strength:</span> {{$strength}}
-        </p>
-        {{end}}
+            <!-- strength -->
+            {{$strength := (index $data 5)}}
+            {{if gt (len $strength) 0}}
+            <p class="card-detail-paragraph">
+                <b>Strength:</b> {{$strength}}
+            </p>
+            {{end}}
 
-        <!-- type -->
-        <p class="rule-paragraph">
-            <span class="rule-word">Type:</span> {{$typedesc}}
-        </p>
+            <!-- type -->
+            <p class="card-detail-paragraph">
+                <b>Type:</b> {{$typedesc}}
+            </p>
 
-        <!-- effect -->
-        {{$effect := (index $data 2)}}
-        {{$effect = (replace $effect "^" "")}}
-        {{$effect = (replace $effect "\\`" "\"")}}
-        {{$effect = (replace $effect "\\r" " ")}}
-        {{if gt (len $effect) 1}}
-        <p class="rule-paragraph">
-            <span class="rule-word">Effect Text:</span> {{$effect}}
-        </p>
-        {{end}}
+            <!-- effect -->
+            {{$effect := (index $data 2)}}
+            {{$effect = (replace $effect "^" "")}}
+            {{$effect = (replace $effect "\\`" "\"")}}
+            {{$effect = (replace $effect "\\r" " ")}}
+            {{if gt (len $effect) 1}}
+            <p class="card-detail-paragraph">
+                <b>Effect Text:</b> {{$effect}}
+            </p>
+            {{end}}
 
-        <!-- flavor -->
-        {{$flavor := (index $data 3)}}
-        {{$flavor = (replace $flavor "^" "")}}
-        {{$flavor = (replace $flavor "\\`" "\"")}}
-        {{$flavor = (replace $flavor "\\r" " ")}}
-        <p class="rule-paragraph">
-            <span class="rule-word">Flavor Text:</span> {{$flavor}}
-        </p>
+            <!-- flavor -->
+            {{$flavor := (index $data 3)}}
+            {{$flavor = (replace $flavor "^" "")}}
+            {{$flavor = (replace $flavor "\\`" "\"")}}
+            {{$flavor = (replace $flavor "\\r" " ")}}
+            <p class="card-detail-paragraph">
+                <b>Flavor Text:</b> {{$flavor}}
+            </p>
 
-        <!-- artwork -->
-        {{if (isset .Params "artwork")}}
-        <p class="rule-paragraph">
-            <span class="rule-word">Artwork:</span> {{.Params.artwork}}
-        </p>
-        {{end}}
+            <!-- artwork -->
+            {{if (isset .Params "artwork")}}
+            <p class="card-detail-paragraph">
+                <b>Artwork:</b> {{.Params.artwork}}
+            </p>
+            {{end}}
+        </div>
 
         <!-- strategy -->
         {{$stratDesc := (index $data 6)}}
         {{$stratDesc := (lower $stratDesc)}}
         {{if gt (len $stratDesc) 1}}
         <p class="rule-paragraph">
-            <span class="rule-word">Strategy:</span> {{partial (printf "strategy-descriptions/%s.html" $stratDesc) .}}
+            <b>Strategy:</b> {{partial (printf "strategy-descriptions/%s.html" $stratDesc) .}}
         </p>
         {{end}}
 
         <!-- about -->
         {{ with .Inner }}
             <p class="rule-paragraph" style="margin-bottom: 0">
-                <span class="rule-word">About the card:</span>
+                <b>About the card:</b>
             </p>
             {{ . }}
         {{ else }}

@@ -79,13 +79,10 @@
 						<li class="permanent-nav"><a
 								href="https://www.amazon.com/dp/B0CJHWGZYF?maas=maas_adg_3D8873ABA7D50C8B8D9E95ECC82A19D9_afap_abs&ref_=aa_maas&tag=maas"
 								class="nav-link" target="_blank">
-								Buy Now&nbsp
-								{{ partial "icon-link.html" . }}
+								Buy Now&nbsp{{ partial "icon-link.html" . }}
 							</a>
 						</li>
-
 					</ul>
-
 				</nav>
 
 				<nav class="hamnav" role='navigation'>
@@ -126,14 +123,12 @@
 		</div>
 		<div class="css-7wqyX colors">
 			<h1 class="css-TiYdz">Krieg Eterna</h1>
-			<div
-				style="background-image:url(/images/background.jpg);background-attachment:fixed;background-position:center;background-size:cover;">
+			<div class="site-background">
 				<main>
 					{{ block "main" . }}
 					{{ .Content }}
 					{{ end }}
 					{{ if .Param "nextprev" }}{{ partial "nextprev.html" . -}}{{ end -}}
-
 				</main>
 			</div>
 
