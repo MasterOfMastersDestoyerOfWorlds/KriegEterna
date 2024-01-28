@@ -93,48 +93,6 @@ button {
     cursor: pointer
 }
 
-h1, h2, h3 {
-    font-family: var(--strong-font-family, "Gargouille", Arial, serif);
-    font-kerning: normal;
-    letter-spacing: normal;
-    background: linear-gradient(to top, #ff1e00, #ffd900);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    z-index: 1;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
-    display: inline;
-    justify-self: center;
-    text-align: center;
-    vertical-align: baseline;
-    align-items: center;
-}
-
-h4 {
-    color: var(--base-font-color);
-    font-family: var(--base-font-family, Arial, sans-serif);
-    font-weight: 800;
-    text-transform: uppercase;
-    text-align: center;
-}
-
-h1 {
-    font-size: 6em
-}
-
-h2 {
-    font-size: 4em
-}
-
-h3 {
-    font-size: 2.5em
-}
-
-h4 {
-    font-size: 1.25em
-}
-
 .ranged {
     background: linear-gradient(to top, #371b00, #f27100, #efc096);;
     background-clip: text;
@@ -268,6 +226,7 @@ h4 {
 }
 
 .colors {
+    /* color ref: https://coolors.co/ffcc33-f2e63d-d44b06-001c2c-0a2331-1a3442-334d5b-6c8c9d */
     --black: #000;
     --black-alpha0: transparent;
     --black-alpha10: rgba(0, 0, 0, 0.1);
@@ -282,21 +241,94 @@ h4 {
     --white-alpha50: hsla(0, 0%, 100%, 0.5);
     --white-alpha75: hsla(0, 0%, 100%, 0.75);
     --white-alpha90: hsla(0, 0%, 100%, 0.9);
-    --swiper-theme-color: #007aff;
+    --swiper-theme-color: #000000;
     --theme-button-color--primary: #ffffff;
     --theme-primary-color--100: #001c2c;
-    --theme-primary-color--200: #003873;
-    --theme-primary-color--300: #1a1a1a;
-    --theme-primary-color--400: #ffffff;
+    --theme-primary-color--100: #0a2331;
+    --theme-primary-color--200: #1a3442;
+    --theme-primary-color--200: #334D5B;
+    --theme-primary-color--300: #6C8C9D;
+    --theme-primary-color--400: #f2e63d;
+    --theme-primary-color--410: #d44b06;
+    --theme-primary-color--420: #b1942e;
     --shout-out-color: #FFFFFF;
     --inner-wrap-background: #000000;
     --theme-accent-color: #ffcc33;
     --theme-link-color: #ffcc33;
     --theme-link-color--active: #ffcc33;
+    --theme-nav-link-color: #fff;
     --base-font-color: #ffffff;
     --theme-odd-section-tint: linear-gradient(180deg, var(--theme-primary-color--100)  5%, rgba(0, 0, 0, 0.6) 50%, var(--theme-primary-color--100)  95%);
     --theme-even-section-tint: linear-gradient(180deg, var(--theme-primary-color--100)  5%, rgba(0, 0, 0, 0.6) 50%, var(--theme-primary-color--100)  95%);
     --theme-small-section-tint: var(--theme-primary-color--100);
+    --theme-header-color: #000;
+    --theme-footer-color: #000;
+    --theme-menu-color: #404040;
+    /* color ref: https://coolors.co/ffcc33-f0e43b-c4a200-003452-1a4a74-6794cb */
+    /* --theme-button-color--primary: #ffffff;
+    --theme-primary-color--100: #001c2c;
+    --theme-primary-color--200: #003873;
+    --theme-primary-color--300: #b1942e;
+    --theme-primary-color--400: #f2e76e;
+    --theme-primary-color--500: ;
+    --shout-out-color: #FFFFFF;
+    --inner-wrap-background: #000000;
+    --theme-accent-color: #ffcc33;
+    --theme-link-color: #ffcc33;
+    --theme-link-color--active: #ffcc33;
+    --theme-nav-link-color: #fff;
+    --base-font-color: #ffffff;
+    --theme-odd-section-tint: linear-gradient(180deg, var(--theme-primary-color--100)  5%, rgba(0, 0, 0, 0.6) 50%, var(--theme-primary-color--100)  95%);
+    --theme-even-section-tint: linear-gradient(180deg, var(--theme-primary-color--100)  5%, rgba(0, 0, 0, 0.6) 50%, var(--theme-primary-color--100)  95%);
+    --theme-small-section-tint: var(--theme-primary-color--100);
+    --theme-header-color: #000;
+    --theme-footer-color: #000;
+    --theme-menu-color: #848484; */
+}
+
+h1, h2, h3 {
+    font-family: var(--strong-font-family, "Gargouille", Arial, serif);
+    font-kerning: normal;
+    letter-spacing: normal;
+    --color1: var(--theme-primary-color--410);
+    --color2: var(--theme-primary-color--400);
+    --repeat-percent: 60%; /* modify this to change how quickly the gradient repeats */
+    background: repeating-linear-gradient(0deg, var(--color1), var(--color2) var(--repeat-percent), var(--color1) calc(2*var(--repeat-percent)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    z-index: 1;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    display: inline;
+    justify-self: center;
+    text-align: center;
+    vertical-align: baseline;
+    align-items: center;
+}
+
+h4 {
+    color: var(--base-font-color);
+    font-family: var(--base-font-family, Arial, sans-serif);
+    font-weight: 800;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+h1 {
+    font-size: 6em
+}
+
+h2 {
+    font-size: 4em
+}
+
+h3 {
+    font-size: 2.5em
+}
+
+h4 {
+    font-size: 1.25em
 }
 
 .site-background {
@@ -392,7 +424,7 @@ img {
 
 .header-left {
     --logo-width: 110px;
-    --bar-bg-color: #000000;
+    --bar-bg-color: var(--theme-header-color);
     --bar-padding: 0 15px;
     --bar-justify: center;
     --bar-links-display: none;
@@ -473,7 +505,7 @@ img {
 .nav-list .nav-link {
     background: transparent;
     border: none;
-    color: var(--white);
+    color: var(--theme-nav-link-color);
     font-size: 17.5px;
     font-weight: 700;
     text-transform: uppercase;
@@ -833,9 +865,9 @@ img {
 
 .css-2dGqW {
     cursor: pointer;
-    background: #000;
+    background: var(--black);
     border: var(--wrap-border);
-    border-color: #000;
+    border-color: var(--black);
     border-radius: var(--wrap-border-radius);
     color: var(--label-color);
     display: var(--wrap-display);
@@ -846,7 +878,7 @@ img {
 .css-2dGqW:focus,
 .css-2dGqW:hover {
     color: var(--label-color--hover);
-    background: var(--wrap-background--hover);
+    background: var(--theme-primary-color--420);
     filter: var(--wrap-filter--hover);
     text-decoration: none;
 }
@@ -1210,7 +1242,7 @@ img {
 .product-box {
     margin: 0 10px;
     display: flex;
-    max-width: 400px;
+    max-width: 350px;
     position: relative;
     text-align: center;
     justify-content: flex-end;
@@ -1395,6 +1427,7 @@ html[lang=zh-Hant] .css-lV1Vi {
 .buy-product-button:focus,
 .buy-product-button:hover {
     color: var(--theme-accent-color);
+    border: 2px solid var(--button-border-color);
 }
 
 .buy-product-button:active {
@@ -1766,7 +1799,7 @@ html[lang=zh-Hant] .css-4zJQw {
 }
 
 .css-BvWFW {
-    background-color: var(--theme-primary-color--200);
+    background-color: var(--theme-footer-color);
     color: var(--white)
 }
 
@@ -1933,6 +1966,20 @@ html[lang=zh-Hant] .css-4zJQw {
     justify-content: center;
     align-items: center;
     height: 50px
+}
+
+.essay-image {
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 0 !important;
+    width: 100% !important;
+    height: auto !important
+}
+
+.essay-title {
+    margin-top: 0.75em;
+    font-weight: 600;
+    text-align: center;
 }
 
 .card-image {
@@ -2350,8 +2397,8 @@ input[type=submit],
     border: 0;
     letter-spacing: inherit;
     white-space: normal;
-    box-shadow: 0 0 0 1px #420081;
-    background-color: #420081;
+    border: 2px solid var(--black);
+    background-color: var(--white);
     color: #ffffff;
     transition: background-color 0.25s, color 0.25s, box-shadow 0.25s;
 }
@@ -2361,8 +2408,7 @@ input[type=submit]:hover,
 .btn:hover,
 .btn--primary:hover {
     background-color: #ffffff;
-    box-shadow: 0 0 0 1px rgba(35, 0, 81, 0.25);
-    color: #230051;
+    color: var(--theme-link-color--active);
 }
 
 button[disabled],
@@ -2378,8 +2424,8 @@ input[type=submit].btn--secondary,
 input[type=submit].btn--quicklook,
 .btn.btn--secondary,
 .btn.btn--quicklook {
-    box-shadow: 0 0 0 2px var(--white);
-    background-color: var(--black);
+    border: 2px solid var(--white);
+    background-color: var(--theme-primary-color--300);
     color: var(--white);
 }
 
@@ -2389,9 +2435,8 @@ input[type=submit].btn--secondary:hover,
 input[type=submit].btn--quicklook:hover,
 .btn.btn--secondary:hover,
 .btn.btn--quicklook:hover {
-    box-shadow: 0px 0 0 2px var(--theme-accent-color);
-    background-color: #000000;
-    color: var(--theme-accent-color);
+    background-color: var(--theme-primary-color--100);
+    color: var(--white);
 }
 
 button.btn--subtle-hover:hover,
@@ -2736,13 +2781,13 @@ input[type=submit].btn--subtle-hover:hover,
     width: 400px;
     max-width: 80vw;
     position: relative;
-    margin: 0.5em auto 2.5em;
+    margin: 2em auto 2.5em;
     display: flex;
 }
 
 input#search {
     all: unset;
-    background: #222;
+    background: #343434;
     color: #fff;
     padding: 0.7em 1em;
     border-radius: 0.25em;
@@ -2917,7 +2962,7 @@ body{
   padding-top: 125px;
   right: -38%;
   height: 200vh;
-  background: var(--theme-primary-color--300);
+  background: var(--theme-menu-color);
   -webkit-font-smoothing: antialiased;
   /* to stop flickering of text in safari */
     display: none;
@@ -2933,6 +2978,15 @@ body{
   font-weight: 700;
   text-transform: uppercase;
   overflow-x: hidden;
+}
+
+#menu a {
+    color: var(--theme-nav-link-color);
+}
+
+#menu a:hover {
+    color: var(--theme-link-color--active);
+    text-decoration: none;
 }
 
 /*
