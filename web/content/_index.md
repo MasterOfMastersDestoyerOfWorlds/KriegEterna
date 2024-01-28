@@ -97,9 +97,12 @@ layout: single
     </div>
 </section>
 
-<section class="gradient even-gradient">
-    <div class="main-section">
-        <div class="sub-section">
+<section class="no-gradient">
+    <div class="main-section" style="padding-bottom: 1em;">
+        <div class="sub-section video-box">
+            <div class="title-wrapper">
+                <h4>Watch the trailer</h4>
+            </div>
             {{< vid  "https://www.youtube.com/embed/yg5-dz9aM1E?si=bkm7HJy2CCnukqN-&autoplay=0&origin=http://example.com">}}
         </div>
     </div>

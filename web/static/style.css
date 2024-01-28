@@ -249,6 +249,7 @@ button {
     --theme-primary-color--100: #0a2331;
     --theme-primary-color--110: #1a3442;
     --theme-primary-color--200: #334D5B;
+    --theme-primary-color--210: #506D7C;
     --theme-primary-color--300: #6C8C9D;
     --theme-primary-color--400: #f2e63d;
     --theme-primary-color--410: #d44b06;
@@ -1086,9 +1087,13 @@ img {
     padding: var(--wrap-padding);
 }
 
-.css-lIRLd {
-    /* text-align: center; */
-    margin-bottom: 1em
+.video-box {
+    max-width: min(800px, 90vw);
+    margin: 0 auto;
+    padding: 2em 0 0 0;
+    background-color: var(--theme-primary-color--200);
+    border-radius: 1.25rem;
+    box-shadow: 0em 0em 1em var(--black);
 }
 
 .product-scroll-box {
@@ -2472,11 +2477,12 @@ input[type=submit].btn--subtle-hover:hover,
     width: 560px;
     height: auto;
     aspect-ratio: 16 / 9;
+    border-radius: 15px;
 }
 
 @media (max-width: 768px) {
     .frame {
-        max-width: 90vw;
+        max-width: 90%;
     }
 }
 
