@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'GargouilleBold';
     src: url('fonts/gargouillebold.woff') format('woff'),
-    url('fonts/GargouilleBold.woff2') format('woff2');
+        url('fonts/GargouilleBold.woff2') format('woff2');
 }
 
 :root {
@@ -84,6 +84,7 @@ html {
 :before {
     box-sizing: border-box;
     margin: 0;
+    position: relative;
 }
 
 [role=button],
@@ -94,7 +95,8 @@ button {
 }
 
 .ranged {
-    background: linear-gradient(to top, #371b00, #f27100, #efc096);;
+    background: linear-gradient(to top, #371b00, #f27100, #efc096);
+    ;
     background-clip: text;
     -webkit-background-clip: text;
 }
@@ -124,7 +126,7 @@ button {
 }
 
 .spy {
-    background: linear-gradient(to top, #232323, #999999, #dcdcdc);
+    background: linear-gradient(to top, #181818, #2b2b2b, #dcdcdc);
     background-clip: text;
     -webkit-background-clip: text;
 }
@@ -248,6 +250,7 @@ button {
     --theme-primary-color--000: #001c2c;
     --theme-primary-color--100: #0a2331;
     --theme-primary-color--110: #1a3442;
+    --theme-primary-color--111: #dce4e8;
     --theme-primary-color--200: #334D5B;
     --theme-primary-color--210: #506D7C;
     --theme-primary-color--300: #6C8C9D;
@@ -262,21 +265,24 @@ button {
     --theme-link-color--active: #ffcc33;
     --theme-nav-link-color: #fff;
     --base-font-color: #ffffff;
-    --theme-odd-section-tint: linear-gradient(180deg, var(--theme-primary-color--100)  5%, rgba(0, 0, 0, 0.6) 50%, var(--theme-primary-color--100)  95%);
-    --theme-even-section-tint: linear-gradient(180deg, var(--theme-primary-color--100)  5%, rgba(0, 0, 0, 0.6) 50%, var(--theme-primary-color--100)  95%);
+    --theme-odd-section-tint: linear-gradient(180deg, var(--theme-primary-color--100) 5%, rgba(0, 0, 0, 0.6) 50%, var(--theme-primary-color--100) 95%);
+    --theme-even-section-tint: linear-gradient(180deg, var(--theme-primary-color--100) 5%, rgba(0, 0, 0, 0.6) 50%, var(--theme-primary-color--100) 95%);
     --theme-small-section-tint: var(--theme-primary-color--100);
     --theme-header-color: #000;
     --theme-footer-color: #000;
     --theme-menu-color: #404040;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-family: var(--strong-font-family, "Gargouille", Arial, serif);
     font-kerning: normal;
     letter-spacing: normal;
     --color1: var(--theme-primary-color--410);
     --color2: var(--theme-primary-color--400);
-    --repeat-percent: 60%; /* modify this to change how quickly the gradient repeats */
+    --repeat-percent: 60%;
+    /* modify this to change how quickly the gradient repeats */
     background: repeating-linear-gradient(0deg, var(--color1), var(--color2) var(--repeat-percent), var(--color1) calc(2*var(--repeat-percent)));
     -webkit-background-clip: text;
     background-clip: text;
@@ -289,6 +295,41 @@ h1, h2, h3 {
     text-align: center;
     vertical-align: baseline;
     align-items: center;
+    position: relative;
+}
+
+.text-box{
+    margin: auto;
+    width: 100%;
+    height: 100%;
+}
+#titleshadow {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    --color: var(--theme-primary-color--110);
+    fill: transparent;
+    font-family: var(--strong-font-family, "Gargouille", Arial, serif);
+    text-shadow: var(--color) 2px 0px 0px, var(--color) 1.75517px 0.958851px 0px, var(--color) 1.0806px 1.68294px 0px, var(--color) 0.141474px 1.99499px 0px, var(--color) -0.832294px 1.81859px 0px, var(--color) -1.60229px 1.19694px 0px, var(--color) -1.97998px 0.28224px 0px, var(--color) -1.87291px -0.701566px 0px, var(--color) -1.30729px -1.5136px 0px, var(--color) -0.421592px -1.95506px 0px, var(--color) 0.567324px -1.91785px 0px, var(--color) 1.41734px -1.41108px 0px, var(--color) 1.92034px -0.558831px 0px;
+    display: inline;
+    justify-self: center;
+    text-align: center;
+    vertical-align: baseline;
+    align-items: center;
+    color: transparent;
+}
+
+#titleshadow.lightshadow{
+    --color: var(--theme-primary-color--111);
+}
+
+.card-detail-title {
+   display: block;
+   margin: auto;
+   font-size: 400%;
+   text-align: center;
 }
 
 h4 {
@@ -314,6 +355,9 @@ h3 {
 h4 {
     font-size: 1.25em
 }
+
+
+
 
 .site-background {
     background-image: url('/images/background.jpg');
@@ -577,7 +621,6 @@ img {
     overflow: hidden;
     z-index: 0;
     position: relative
-
 }
 
 @media(max-width:1024px) {
@@ -695,7 +738,8 @@ img {
     }
 }
 
-.rule-paragraph b { /* highlight a word in the rules */
+.rule-paragraph b {
+    /* highlight a word in the rules */
     color: var(--theme-accent-color);
 }
 
@@ -1058,11 +1102,6 @@ img {
     width: min(400px, 90%);
 }
 
-.card-detail-title {
-    display: block;
-    margin: 0 auto;
-}
-
 .card-detail-taglist {
     margin: 0.5em 0 0.5em
 }
@@ -1075,7 +1114,8 @@ img {
     margin: 1em 0em;
 }
 
-.card-detail-paragraph b { /* highlight a word in the rules */
+.card-detail-paragraph b {
+    /* highlight a word in the rules */
     color: var(--theme-accent-color);
 }
 
@@ -1350,7 +1390,7 @@ html[lang=zh-Hant] .css-lV1Vi {
     --card-padding: var(--card-flip-padding) 0 18px;
     overflow: hidden;
     z-index: 0;
-    position: relative;    
+    position: relative;
 }
 
 .css-fTdGr {
@@ -1909,7 +1949,7 @@ html[lang=zh-Hant] .css-4zJQw {
 }
 
 .card-scale:hover {
-    transform:scale(1.05);
+    transform: scale(1.05);
 }
 
 .card-scale-desktop-only {
@@ -1917,9 +1957,10 @@ html[lang=zh-Hant] .css-4zJQw {
 }
 
 @media (hover: hover) and (pointer: fine) {
+
     /* only allow for desktop */
     .card-scale-desktop-only:hover {
-        transform:scale(1.05);
+        transform: scale(1.05);
     }
 }
 
@@ -2000,6 +2041,7 @@ html[lang=zh-Hant] .css-4zJQw {
 }
 
 @media (hover: hover) and (pointer: fine) {
+
     /* only allow flip for desktop */
     .card-flip:active .card-flip-inner {
         transform: rotateY(180deg)
@@ -2100,8 +2142,8 @@ html[lang=zh-Hant] .css-4zJQw {
 }
 
 @media screen and (max-width:768px) {
-    .swiper-wrapper-rules {    
-         justify-content: flex-start;
+    .swiper-wrapper-rules {
+        justify-content: flex-start;
 
     }
 }
@@ -2366,7 +2408,7 @@ input[type=submit].btn--subtle-hover:hover,
 
 @media (max-width: 540px) {
     .btn.btn--secondary.subscribe-form__submit {
-        width: 100%;     
+        width: 100%;
     }
 }
 
@@ -2744,7 +2786,7 @@ button#clear-search {
 .prevart {
     float: left;
     text-align: left;
-    margin-right:10px
+    margin-right: 10px
 }
 
 .nextart,
@@ -2754,136 +2796,126 @@ button#clear-search {
 }
 
 
-body{
+body {
     z-index: 1;
 }
 
-.hiddenMenu
-{
-  text-decoration: none;
-  color: #232323;
-  
-  transition: color 0.3s ease;
+.hiddenMenu {
+    text-decoration: none;
+    color: #232323;
+
+    transition: color 0.3s ease;
 }
 
-.hiddenMenu:hover
-{
-  color: tomato;
+.hiddenMenu:hover {
+    color: tomato;
 }
 
-#menuToggle
-{
-  display: block;
-  position: relative;
-  top: -15px;
-  /* right: 50px; */
-  z-index: 1;
-  -webkit-user-select: none;
-  user-select: none;
+#menuToggle {
+    display: block;
+    position: relative;
+    top: -15px;
+    /* right: 50px; */
+    z-index: 1;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
-#menuToggle input
-{
-  display: block;
-  width: 40px;
-  height: 32px;
-  position: relative;
-  top: 28px;
-  left: -4px;
-  cursor: pointer;
-  opacity: 0; /* hide this */
-  z-index: 2; /* and place it over the hamburger */
-  -webkit-touch-callout: none;
+#menuToggle input {
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: relative;
+    top: 28px;
+    left: -4px;
+    cursor: pointer;
+    opacity: 0;
+    /* hide this */
+    z-index: 2;
+    /* and place it over the hamburger */
+    -webkit-touch-callout: none;
 }
 
 /*
  * Just a quick hamburger
  */
-#menuToggle span
-{
-  display: block;
-  width: 33px;
-  height: 4px;
-  margin-bottom: 5px;
-  position: relative;
-  background: #cdcdcd;
-  border-radius: 3px;
-  z-index: 1;
-  transform-origin: 4px 0px;
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-              opacity 0.55s ease;
+#menuToggle span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    background: #cdcdcd;
+    border-radius: 3px;
+    z-index: 1;
+    transform-origin: 4px 0px;
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+        background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+        opacity 0.55s ease;
 }
 
-#menuToggle span:first-child
-{
-  transform-origin: 0% 0%;
+#menuToggle span:first-child {
+    transform-origin: 0% 0%;
 }
 
-#menuToggle span:nth-last-child(2)
-{
-  transform-origin: 0% 100%;
+#menuToggle span:nth-last-child(2) {
+    transform-origin: 0% 100%;
 }
 
 /* 
  * Transform all the slices of hamburger
  * into a crossmark.
  */
-#menuToggle input:checked ~ span
-{
-  opacity: 1;
-  transform: rotate(45deg) translate(-2px, -1px);
-  background: #cdcdcd;
+#menuToggle input:checked~span {
+    opacity: 1;
+    transform: rotate(45deg) translate(-2px, -1px);
+    background: #cdcdcd;
 }
 
 /*
  * But let's hide the middle one.
  */
-#menuToggle input:checked ~ span:nth-last-child(3)
-{
-  opacity: 0;
-  transform: rotate(0deg) scale(0.2, 0.2);
+#menuToggle input:checked~span:nth-last-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
 }
 
 /*
  * Ohyeah and the last one should go the other direction
  */
-#menuToggle input:checked ~ span:nth-last-child(2)
-{
-  opacity: 1;
-  transform: rotate(-45deg) translate(0, -1px);
+#menuToggle input:checked~span:nth-last-child(2) {
+    opacity: 1;
+    transform: rotate(-45deg) translate(0, -1px);
 }
 
 /*
  * Make this absolute positioned
  * at the top left of the screen
  */
-#menu
-{
-  overflow-x: hidden;
-  position: absolute;
-  width: 250px;
-  margin: -100px 0 0 0;
-  padding: 50px;
-  padding-top: 125px;
-  right: -38%;
-  height: 200vh;
-  background: var(--theme-menu-color);
-  -webkit-font-smoothing: antialiased;
-  /* to stop flickering of text in safari */
+#menu {
+    overflow-x: hidden;
+    position: absolute;
+    width: 250px;
+    margin: -100px 0 0 0;
+    padding: 50px;
+    padding-top: 125px;
+    right: -38%;
+    height: 200vh;
+    background: var(--theme-menu-color);
+    -webkit-font-smoothing: antialiased;
+    /* to stop flickering of text in safari */
     display: none;
     transform: none;
     opacity: 0;
-    transition: opacity 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+    transition: opacity 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
 }
 
-#menu li
-{
-  padding: 0.75em 0;
-  font-size: 1rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  overflow-x: hidden;
+#menu li {
+    padding: 0.75em 0;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    overflow-x: hidden;
 }
 
 #menu a {
@@ -2898,55 +2930,58 @@ body{
 /*
  * And let's fade it in from the left
  */
-#menuToggle input:checked ~ ul
-{
-  transform: none;
-  display: block;
-  transition: opacity 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-  opacity: 1;
+#menuToggle input:checked~ul {
+    transform: none;
+    display: block;
+    transition: opacity 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+    opacity: 1;
 }
 
 @media screen and (max-width: 768px) {
-  #menu {
-  }
+    #menu {}
 }
 
 /* Making the navbar responsive by CSS Media Queries */
 @media (max-width: 768px) {
-  .menu-button-container {
-    display: flex;
-  }
-  .menu {
-    position: relative;
-    top: 0;
-    margin-top: 50px;
-    left: 0;
-    flex-direction: column;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-  }
-  #menu-toggle ~ .menu li {
-    height: 0;
-    margin: 0;
-    padding: 0;
-    border: 0;
-  }
-  #menu-toggle:checked ~ .menu li {
-    border: 1px solid #9f9a9a;
-    height: 2.5em;
-    padding: 0.5em;
-  }
-  .menu > li {
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    padding: 0.5em 0;
-    width: 100%;
-    color: black;
-    background-color: #E8E8E8;
-  }
-  .menu > li:not(:last-child) {
-    border-bottom: 1px solid #444;
-  }
+    .menu-button-container {
+        display: flex;
+    }
+
+    .menu {
+        position: relative;
+        top: 0;
+        margin-top: 50px;
+        left: 0;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #menu-toggle~.menu li {
+        height: 0;
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+
+    #menu-toggle:checked~.menu li {
+        border: 1px solid #9f9a9a;
+        height: 2.5em;
+        padding: 0.5em;
+    }
+
+    .menu>li {
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        padding: 0.5em 0;
+        width: 100%;
+        color: black;
+        background-color: #E8E8E8;
+    }
+
+    .menu>li:not(:last-child) {
+        border-bottom: 1px solid #444;
+    }
 }
