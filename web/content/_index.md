@@ -74,9 +74,6 @@ layout: single
     </div>
 </section>
 
-<section class="no-gradient">
-    {{< news-letter-signup >}}
-</section>
 <section id="new-cards-showcase" class="gradient even-gradient">
     <div class="main-section">
         <div class="sub-section">
@@ -93,14 +90,17 @@ layout: single
             <div class="css-JEZym" style="--intersection-offset:0;">
             </div>
                 {{< card-scroll-gallery >}}
-                    {{< cardflip front="TraitorKing" back="FlagKing" disallowScale="mobile" >}}
                     {{< cardflip front="Calvary" back="Flag" disallowScale="mobile" >}}
-                    {{< cardflip front="Smuggler" back="FlagPower" disallowScale="mobile" >}}
-                    {{< cardflip front="Cannon2" back="Flag" disallowScale="mobile" >}}
+                    {{< cardflip front="TraitorKing" back="FlagKing" disallowScale="mobile" >}}
+                    {{< cardflip front="Armada" back="Flag" disallowScale="mobile" >}}
                     {{< cardflip front="Ruin" back="FlagPower" disallowScale="mobile" >}}
-                    {{< cardflip front="Privateer3" back="Flag" disallowScale="mobile" >}}
+                    {{< cardflip front="Saboteur" back="FlagPower" disallowScale="mobile" >}}
                     {{< cardflip front="Fortress" back="Flag" disallowScale="mobile" >}}
                 {{</ card-scroll-gallery >}}
         </div>
     </div>
+</section>
+
+<section class="no-gradient">
+    {{< news-letter-signup >}}
 </section>
