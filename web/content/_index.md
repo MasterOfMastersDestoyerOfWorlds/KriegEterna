@@ -4,22 +4,23 @@ description: 'Krieg Eterna'
 layout: single
 ---
 
-<section class="gradient odd-gradient">
-    <div class="main-section" style="padding-top: 20px">
-        <div class="title-wrapper css-UDQ10">
-            <div class="css-tqeem">
-                <div class="css-UZpTh" style="padding-top:65%;">
+<section class="no-gradient">
+    <div class="main-section" style="padding-top: 0">
+        <div class="top-flex">
+            <picture>
+                <img src="/images/battle-1600x1080-100.jpg" class="top-img">
+            </picture>
+            <div class="top-slanted">
+                <div class="top-info-box">
                     <picture>
-                        <img src="/images/Title.png?w=660" alt="" class="css-EzJAk">
+                        <img src="/images/Title.png">
                     </picture>
-                </div>
-                <h3 data-text="A Battle For The Ages" class="top-title"><span>A Battle For The
-                        Ages</span></h3>
-                <div class="top-paragraph">
-                    <p>Kings and Armies assemble in the fields of Europe. Whether it be for God,
-                        glory, or gold the Continent marches to war – will you give it to them?
-                        If you want to win it will take cunning strategy and a little luck!
-                        Prepare for battle and bring some friends!</p>
+                    <div class="title-wrapper">
+                        <h4 class="top-title">A Battle For The Ages</h4>
+                    </div>
+                    <div class="top-paragraph">
+                        <p>Kings and Armies assemble in the fields of Europe. Whether it be for God, glory or gold, the Continent marches to war!</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -72,7 +73,7 @@ layout: single
                             <h4 class="product-title" data-text="Standard Edition">Krieg Eterna<h4>
                         </div>
                         <div class="product-desc">
-                            <p>A fast-paced strategy card game set during the Thirty Years' War. Victory on the battlefield will require deception, skill, and a little luck!
+                            <p>A fast-paced strategic card game set during the Thirty Years' War. Victory on the battlefield will require deception, skill, and a little luck!
                             </p>
                         </div>
                         <div class="css-cW5DV">
