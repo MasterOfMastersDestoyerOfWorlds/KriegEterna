@@ -26,6 +26,33 @@ layout: single
     </div>
 </section>
 
+<section id="new-cards-showcase" class="gradient even-gradient">
+    <div class="main-section">
+        <div class="sub-section">
+            <div class="title-wrapper">
+                <h2>Meet Your Army</h2>
+            </div>
+            <p class="css-tg8OC">
+                Your units do the fighting, and your King and power cards make the
+                round interesting! You’ll have to learn how to use them together in order to win.
+                With over <a href="/compendium">100 unique cards</a>, the possibilities are endless!
+            </p>
+        </div>
+        <div class="css-XorOV" style="--container-flex-direction:column-reverse;">
+            <div class="css-JEZym" style="--intersection-offset:0;">
+            </div>
+                {{< card-scroll-gallery >}}
+                    {{< cardflip front="Calvary" back="Flag" disallowScale="mobile" >}}
+                    {{< cardflip front="TraitorKing" back="FlagKing" disallowScale="mobile" >}}
+                    {{< cardflip front="Armada" back="Flag" disallowScale="mobile" >}}
+                    {{< cardflip front="Saboteur" back="FlagPower" disallowScale="mobile" >}}
+                    {{< cardflip front="Ruin" back="FlagPower" disallowScale="mobile" >}}
+                    {{< cardflip front="Fortress" back="Flag" disallowScale="mobile" >}}
+                {{</ card-scroll-gallery >}}
+        </div>
+    </div>
+</section>
+
 <section class="gradient even-gradient">
     <div class="main-section" id="product">
         <div class="sub-section">
@@ -66,37 +93,13 @@ layout: single
                 </div>
             </div>
         </div>
-        </br>
-        </br>
-        </br>
-        </br>
-        {{< vid  "https://www.youtube.com/embed/yg5-dz9aM1E?si=bkm7HJy2CCnukqN-&autoplay=0&origin=http://example.com">}}
     </div>
 </section>
 
-<section id="new-cards-showcase" class="gradient even-gradient">
+<section class="gradient even-gradient">
     <div class="main-section">
         <div class="sub-section">
-            <div class="title-wrapper">
-                <h2>Meet Your Army</h2>
-            </div>
-            <p class="css-tg8OC">
-                Your units do the fighting, and your King and power cards make the
-                round interesting! You’ll have to learn how to use them together in order to win.
-                With over <a href="/compendium">100 unique cards</a>, the possibilities are endless!
-            </p>
-        </div>
-        <div class="css-XorOV" style="--container-flex-direction:column-reverse;">
-            <div class="css-JEZym" style="--intersection-offset:0;">
-            </div>
-                {{< card-scroll-gallery >}}
-                    {{< cardflip front="Calvary" back="Flag" disallowScale="mobile" >}}
-                    {{< cardflip front="TraitorKing" back="FlagKing" disallowScale="mobile" >}}
-                    {{< cardflip front="Armada" back="Flag" disallowScale="mobile" >}}
-                    {{< cardflip front="Ruin" back="FlagPower" disallowScale="mobile" >}}
-                    {{< cardflip front="Saboteur" back="FlagPower" disallowScale="mobile" >}}
-                    {{< cardflip front="Fortress" back="Flag" disallowScale="mobile" >}}
-                {{</ card-scroll-gallery >}}
+            {{< vid  "https://www.youtube.com/embed/yg5-dz9aM1E?si=bkm7HJy2CCnukqN-&autoplay=0&origin=http://example.com">}}
         </div>
     </div>
 </section>
