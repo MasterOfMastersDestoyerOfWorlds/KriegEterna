@@ -298,40 +298,6 @@ h3 {
     position: relative;
 }
 
-.text-box{
-    margin: auto;
-    width: 100%;
-    height: 100%;
-}
-#titleshadow {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    --color: var(--theme-primary-color--110);
-    fill: transparent;
-    font-family: var(--strong-font-family, "Gargouille", Arial, serif);
-    text-shadow: var(--color) 2px 0px 0px, var(--color) 1.75517px 0.958851px 0px, var(--color) 1.0806px 1.68294px 0px, var(--color) 0.141474px 1.99499px 0px, var(--color) -0.832294px 1.81859px 0px, var(--color) -1.60229px 1.19694px 0px, var(--color) -1.97998px 0.28224px 0px, var(--color) -1.87291px -0.701566px 0px, var(--color) -1.30729px -1.5136px 0px, var(--color) -0.421592px -1.95506px 0px, var(--color) 0.567324px -1.91785px 0px, var(--color) 1.41734px -1.41108px 0px, var(--color) 1.92034px -0.558831px 0px;
-    display: inline;
-    justify-self: center;
-    text-align: center;
-    vertical-align: baseline;
-    align-items: center;
-    color: transparent;
-}
-
-#titleshadow.lightshadow{
-    --color: var(--theme-primary-color--111);
-}
-
-.card-detail-title {
-   display: block;
-   margin: auto;
-   font-size: 400%;
-   text-align: center;
-}
-
 h4 {
     color: var(--base-font-color);
     font-family: var(--base-font-family, Arial, sans-serif);
@@ -356,8 +322,33 @@ h4 {
     font-size: 1.25em
 }
 
+.text-box{
+    margin: auto;
+    width: 100%;
+    height: 100%;
+}
 
+#titleshadow {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    --color: var(--theme-primary-color--110);
+    fill: transparent;
+    font-family: var(--strong-font-family, "Gargouille", Arial, serif);
+    text-shadow: var(--color) 2px 0px 0px, var(--color) 1.75517px 0.958851px 0px, var(--color) 1.0806px 1.68294px 0px, var(--color) 0.141474px 1.99499px 0px, var(--color) -0.832294px 1.81859px 0px, var(--color) -1.60229px 1.19694px 0px, var(--color) -1.97998px 0.28224px 0px, var(--color) -1.87291px -0.701566px 0px, var(--color) -1.30729px -1.5136px 0px, var(--color) -0.421592px -1.95506px 0px, var(--color) 0.567324px -1.91785px 0px, var(--color) 1.41734px -1.41108px 0px, var(--color) 1.92034px -0.558831px 0px;
+    display: inline;
+    justify-self: center;
+    text-align: center;
+    vertical-align: baseline;
+    align-items: center;
+    color: transparent;
+}
 
+#titleshadow.lightshadow{
+    --color: var(--theme-primary-color--111);
+}
 
 .site-background {
     background-image: url('/images/background.jpg');
@@ -1106,27 +1097,34 @@ img {
     margin: 0.5em 0 0.5em
 }
 
-.card-detail-paragraph {
-    max-width: 100%;
+.card-detail-title {
     display: block;
-    align-items: center;
-    text-align: justify;
-    margin: 1em 0em;
-}
-
-.card-detail-paragraph b {
-    /* highlight a word in the rules */
-    color: var(--theme-accent-color);
-}
+    margin: auto;
+    font-size: 4em;
+    text-align: center;
+ }
 
 .card-detail-box {
     max-width: min(35em, 90vw);
-    margin: 2em auto 1em;
+    margin: 2em auto 0;
     padding: 2em 2em 1em 2em;
     background-color: var(--theme-primary-color--200);
     border-radius: 1.25rem;
     box-shadow: 0em 0em 1em var(--black);
     text-align: center;
+}
+
+.card-detail-box p {
+    max-width: 100%;
+    display: block;
+    align-items: center;
+    text-align: left;
+    margin: 1em 0em;
+}
+
+.card-detail-box b {
+    /* highlight a word in the rules */
+    color: var(--theme-accent-color);
 }
 
 .card-detail-box hr {
@@ -1137,6 +1135,28 @@ img {
     margin: 1em auto;
     padding: 0;
     max-width: 70%;
+}
+
+.card-detail-about b {
+    /* highlight a word */
+    color: var(--theme-accent-color);
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.card-detail-about p {
+    max-width: min(35em, 90vw);
+    display: block;
+    align-items: center;
+    text-align: justify;
+    margin: 1em 0em;
+}
+
+.card-detail-about img {
+    max-width: min(35em, 90vw);
+    display: block;
+    margin: 1.5em auto;
+    border-radius: 15px;
 }
 
 .video-background {
@@ -1378,10 +1398,16 @@ html[lang=zh-Hant] .css-lV1Vi {
     transform: translateY(1px)
 }
 
-.css-3RZZr {
+.icon-mail {
     width: 1.2em;
     margin-right: .1em;
     margin-bottom: -2px;
+}
+
+.icon-download {
+    width: 0.95em;
+    margin-bottom: -0.1em;
+    height: auto;
 }
 
 .css-XorOV {

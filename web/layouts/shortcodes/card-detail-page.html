@@ -69,13 +69,13 @@
             <!-- strength -->
             {{$strength := (index $data 5)}}
             {{if gt (len $strength) 0}}
-            <p class="card-detail-paragraph">
+            <p>
                 <b>Strength:</b> {{$strength}}
             </p>
             {{end}}
 
             <!-- type -->
-            <p class="card-detail-paragraph">
+            <p>
                 <b>Type:</b> {{$typedesc}}
             </p>
 
@@ -85,7 +85,7 @@
             {{$effect = (replace $effect "\\`" "\"")}}
             {{$effect = (replace $effect "\\r" " ")}}
             {{if gt (len $effect) 1}}
-            <p class="card-detail-paragraph">
+            <p>
                 <b>Effect Text:</b> {{$effect}}
             </p>
             {{end}}
@@ -95,38 +95,41 @@
             {{$flavor = (replace $flavor "^" "")}}
             {{$flavor = (replace $flavor "\\`" "\"")}}
             {{$flavor = (replace $flavor "\\r" " ")}}
-            <p class="card-detail-paragraph">
+            <p>
                 <b>Flavor Text:</b> {{$flavor}}
             </p>
 
             <!-- artwork -->
             {{if (isset .Params "artwork")}}
-            <p class="card-detail-paragraph">
+            <p>
                 <b>Artwork:</b> {{.Params.artwork}}
             </p>
             {{end}}
         </div>
 
-        <!-- strategy -->
-        {{$stratDesc := (index $data 6)}}
-        {{$stratDesc := (lower $stratDesc)}}
-        {{if gt (len $stratDesc) 1}}
-        <p class="rule-paragraph">
-            <b>Strategy:</b> {{partial (printf "strategy-descriptions/%s.html" $stratDesc) .}}
-        </p>
-        {{end}}
-
-        <!-- about -->
-        {{ with .Inner }}
-            <p class="rule-paragraph" style="margin-bottom: 0">
-                <b>About the card:</b>
+        <div class="card-detail-about">
+            <!-- strategy -->
+            {{$stratDesc := (index $data 6)}}
+            {{$stratDesc := (lower $stratDesc)}}
+            {{if gt (len $stratDesc) 1}}
+            <p style="margin-top: 2em">
+                <b>Strategy:</b>
             </p>
-            {{ . }}
-        {{ else }}
-            <!-- nothing -->
-        {{ end }}
+            <p>
+                {{partial (printf "strategy-descriptions/%s.html" $stratDesc) .}}
+            </p>
+            {{end}}
 
-        </br>
+            <!-- about -->
+            {{ with .Inner }}
+                <p style="margin-top: 2em">
+                    <b>About the card:</b>
+                </p>
+                {{ . }}
+            {{ else }}
+                <!-- nothing -->
+            {{ end }}
+        </div>
         {{ partial "nextprev.html" .Page }}
     </div>
     </div>

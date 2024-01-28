@@ -16,7 +16,7 @@ layout: single
                 <a href="/assets/Rules.pdf" download>
                     <button class="css-lV1Vi buy-product-button css-ExOVn">
                         <span>
-                            Rulebook Download {{< icon-download >}}
+                            Rulebook Download&nbsp&nbsp{{< icon-download >}}
                         </span>
                     </button>
                 </a>
