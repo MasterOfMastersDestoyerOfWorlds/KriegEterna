@@ -6,7 +6,7 @@ layout: card
 tags: ['Base Set', 'Frost', 'Power', 'Weather']
 ---
 {{<card-detail-page title="Frost" artwork="To Build a Fire Magazine Illustration by F. E. Schoonover (1908)">}}
-<p class="rule-paragraph">
+<p>
 "The proper function of man is to live, not to exist. I shall not waste my days in trying to prolong them. I shall use my time." 
 </br>
 </br>

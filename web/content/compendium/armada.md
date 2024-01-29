@@ -6,9 +6,9 @@ layout: card
 tags: ['Base Set', 'Armada', 'Unit', 'Siege']
 ---
 {{<card-detail-page title="Armada" artwork="The Battle of Terheide by Jan Abrahamsz Beerstraaten (1653)">}}
-<p class="rule-paragraph">
+<p>
 Jan Abrahamsz Beerstraten was a Dutch painter specializing in marine art and works depicting the First Anglo-Dutch war and the Dutch-Swedish war.  
 </p>
-<p class="rule-paragraph">
+<p>
 In this painting, he shows the final battle of the first Dutch war (July 31, 1653), in which the Dutch lost 15 ships and their leader Maarten Tromp was killed.  The battle was a disaster for the Dutch – although it ended the English blockade of the Dutch coast, the Dutch armada was so damaged that it couldn’t recover and the war was effectively ended.</p>
 {{</card-detail-page>}}
