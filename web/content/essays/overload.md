@@ -9,7 +9,7 @@ layout: card
 <div class="main-section">
 <div class="sub-section">
 <div class="title-wrapper">
-    <h2>Cognitive Overload in Games</h2>
+    {{< outlined-title title="Cognitive Overload in Games" h="h2" class="main-title">}}
 </div>
     {{< vid  "https://www.youtube.com/embed/qI6uy1OmIxw?si=BuVPwlTpNSprmSrm">}}
     <p class="rule-paragraph">

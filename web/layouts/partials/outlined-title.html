@@ -1,2 +1,12 @@
-<h3 class="card-detail-title {{if (eq "true" .light)}}lightshadow{{end}}" id="titleshadow">{{.title}}</h3>
-<h3 class="card-detail-title {{.type}}">{{.title}}</h3>
+<!-- NOTE:
+    - set .type to add additional styling for the main title (but not for the shadow)
+    - set .shadow to add additional styling for the default "titleshadow"
+-->
+
+{{ if eq .h "h2" }}
+    <h2 class="{{.class}} {{.shadow}}" id="titleshadow">{{.title}}</h2>
+    <h2 class="{{.class}} {{.type}}">{{.title}}</h2>
+{{ else }}
+    <h3 class="{{.class}} {{.shadow}}" id="titleshadow">{{.title}}</h3>
+    <h3 class="{{.class}} {{.type}}">{{.title}}</h3>
+{{ end }}

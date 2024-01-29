@@ -31,7 +31,7 @@ layout: single
     <div class="main-section">
         <div class="sub-section">
             <div class="title-wrapper">
-                <h2>Meet Your Army</h2>
+                {{< outlined-title title="Meet Your Army" h="h2" class="main-title">}}
             </div>
             <p class="css-tg8OC">
                 Your units do the fighting, and your King and power cards make the
@@ -58,7 +58,7 @@ layout: single
     <div class="main-section" id="product">
         <div class="sub-section">
             <div class="title-wrapper">
-                <h2>Products</h2>
+                {{< outlined-title title="Products" h="h2" class="main-title">}}
             </div>
         </div>
         <div class="css-3c0LG product-scroll-box" style="--container-max-width:1200px;">

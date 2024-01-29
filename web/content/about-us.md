@@ -7,7 +7,7 @@ layout: single
 <div class="main-section">
 <div class="sub-section">
 <div class="title-wrapper">
-    <h2>About Us</h2>
+    {{< outlined-title title="About Us" h="h2" class="main-title">}}
 </div>
     <p class="rule-paragraph">
         Thanks for playing our game <b><i>Krieg Eterna!</i></b>
