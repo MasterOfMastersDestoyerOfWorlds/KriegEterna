@@ -257,6 +257,7 @@ button {
     --theme-primary-color--400: #f2e63d;
     --theme-primary-color--410: #d44b06;
     --theme-primary-color--420: #b1942e;
+    --theme-primary-color--430: #1a1a1a;
 
     --shout-out-color: #FFFFFF;
     --inner-wrap-background: #000000;
@@ -388,13 +389,18 @@ h4 {
     height: 100%;
 }
 
+.main-title {
+    margin: 0 auto;
+    display: block;
+}
+
 #titleshadow {
     position: absolute;
     left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    --color: var(--theme-primary-color--110);
+    --color: var(--theme-primary-color--430);
     fill: transparent;
     font-family: var(--strong-font-family, "Gargouille", Arial, serif);
     text-shadow: var(--color) 2px 0px 0px, var(--color) 1.75517px 0.958851px 0px, var(--color) 1.0806px 1.68294px 0px, var(--color) 0.141474px 1.99499px 0px, var(--color) -0.832294px 1.81859px 0px, var(--color) -1.60229px 1.19694px 0px, var(--color) -1.97998px 0.28224px 0px, var(--color) -1.87291px -0.701566px 0px, var(--color) -1.30729px -1.5136px 0px, var(--color) -0.421592px -1.95506px 0px, var(--color) 0.567324px -1.91785px 0px, var(--color) 1.41734px -1.41108px 0px, var(--color) 1.92034px -0.558831px 0px;
@@ -406,8 +412,12 @@ h4 {
     color: transparent;
 }
 
-#titleshadow.lightshadow{
+#titleshadow.light {
     --color: var(--theme-primary-color--111);
+}
+
+#titleshadow.carddetail {
+    --color: var(--theme-primary-color--110);
 }
 
 .site-background {
@@ -792,7 +802,8 @@ img {
 }
 
 .rule-title {
-    margin: 1.5em 0 0;
+    margin: 1.5rem 0 0;
+    display: block;
 }
 
 .rule-paragraph {
@@ -1130,7 +1141,6 @@ img {
 .card-detail-title {
     display: block;
     margin: auto;
-    font-size: 4em;
     text-align: center;
  }
 

@@ -15,7 +15,7 @@
         {{$type := (index $data 4)}}
         {{$typedesc := $type}}
         {{$cardback := "Flag"}}
-        {{$light := "false"}}
+        {{$shadow := "carddetail"}}
 
         {{ if eq $type "Ranged" }}
         {{$typedesc = "Ranged Unit"}}
@@ -32,7 +32,7 @@
         {{ if eq $type "Power" }}
         {{$typedesc = "Hex Power"}}
         {{$cardback = "FlagPower"}}
-        {{$light = "true"}}
+        {{$shadow = "light"}}
         {{end}}
 
         {{ if eq $type "Decoy" }}
@@ -43,13 +43,13 @@
         {{ if eq $type "Spy" }}
         {{$typedesc = "Spy Power"}}
         {{$cardback = "FlagPower"}}
-        {{$light = "true"}}
+        {{$shadow = "light"}}
         {{end}}
 
         {{ if eq $type "Weather" }}
         {{$typedesc = "Weather Power"}}
         {{$cardback = "FlagPower"}}
-        {{$light = "true"}}
+        {{$shadow = "light"}}
         {{end}}
 
         {{ if eq $type "King" }}
@@ -61,7 +61,9 @@
         </div>
 
         <div class="card-detail-box">
-                {{partial "outlined-title" (dict "title" (index $data 1) "type" (lower $type) "light" $light)}}
+                
+            {{partial "outlined-title" (dict "h" "h2" "title" (index $data 1) "class" "card-detail-title" "shadow" $shadow "type" (lower $type))}}
+
             <!-- taglist -->
             {{ partial "taglist.html" .Page }}
             <hr>

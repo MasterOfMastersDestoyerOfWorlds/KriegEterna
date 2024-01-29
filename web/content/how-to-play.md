@@ -7,7 +7,7 @@ layout: single
     <div class="main-section">
     <div class="sub-section">
     <div class="title-wrapper">
-        <h2>How To Play</h2>
+        {{< outlined-title title="How To Play" h="h2" class="main-title">}}
     </div>
         {{< vid  "https://www.youtube.com/embed/zam0XP3T0UM?si=GVfCjiTFEX7I50vP">}}
     <div class="css-cW5DV">
@@ -30,15 +30,15 @@ layout: single
     <div class="main-section">
     <div class="sub-section">
     <div class="title-wrapper">
-        <h2>Rulebook</h2>
+        {{< outlined-title title="Rulebook" h="h2" class="main-title">}}
     </div>
     <p class="rule-paragraph">
         <i>Krieg Eterna</i> is a game of strategizing and bluffing your way to victory across a series of
         battles against your opponent. Command your army in the field to attack with precision,
         deceive enemy officers, and overrun opposing regiments!
     </p>
-    <div class="title-wrapper rule-title">
-        <h3>Gameplay</h3>
+    <div class="title-wrapper">
+        {{< outlined-title title="Gameplay" h="h3" class="rule-title">}}
     </div>
     <p class="rule-paragraph">
         A game of Krieg Eterna is divided into <b>three separate rounds</b> of play, where your ultimate
@@ -59,8 +59,8 @@ layout: single
         the field, discard all cards on the field to the <b>graveyards</b> (face up), and start the next
         round.
     </p>
-    <div class="title-wrapper rule-title">
-        <h3>Playing Field</h3>
+    <div class="title-wrapper">
+        {{< outlined-title title="Playing Field" h="h3" class="rule-title">}}
     </div>
     <p class="rule-paragraph">
         Next is a diagram showing the layout of the <b>playing field</b>. Each player's side of
@@ -72,8 +72,8 @@ layout: single
             src="/images/PlayingField.png" alt="" width="548" height="433" loading="lazy"
             class="css-u6Ex">
     </picture>
-    <div class="title-wrapper rule-title">
-        <h3>Cards</h3>
+    <div class="title-wrapper">
+        {{< outlined-title title="Cards" h="h3" class="rule-title">}}
     </div>
     <p class="rule-paragraph">
         There are <b>three separate decks</b> of cards shared between all players: the <b>unit</b> deck, <b>power</b> deck, and <b>King</b> deck -- each with a different colored card-backing. Each deck also has its
@@ -87,8 +87,8 @@ layout: single
         {{< cardflip front="TerrorKing" back="FlagKing" reversed="true" disallowScale="mobile" >}}
     {{</ card-scroll-gallery-rules >}}
     <div class="sub-section">
-    <div class="title-wrapper rule-title">
-        <h3>Units</h3>
+    <div class="title-wrapper">
+        {{< outlined-title title="Units" h="h3" class="rule-title">}}
     </div>
     <p class="rule-paragraph">
         The <b>unit deck</b> consists of Melee, Ranged, and Siege cards. All unit cards have a <b>base
@@ -108,8 +108,8 @@ layout: single
             {{< icon-paragraph icon="Ranged" text="<b>Ranged units</b> go in the middle row." >}}
             {{< icon-paragraph icon="Siege" text="<b>Siege units</b> go in the back row, closest to you." >}}
         </div>
-    <div class="title-wrapper rule-title">
-        <h3>Powers</h3>
+    <div class="title-wrapper">
+        {{< outlined-title title="Powers" h="h3" class="rule-title">}}
     </div>
     <p class="rule-paragraph">
         The <b>power deck</b> consists of Weather, Spy, Jester, and Hex cards, each with a <b>card effect</b>
@@ -137,8 +137,8 @@ layout: single
         <div class="rule-box">
             {{< icon-paragraph icon="Hex" text="<b>Hex cards</b> allow for drawing cards, sending cards to the graveyard, or other useful effects. Hex cards attached to a specific unit follow with that unit, e.g. to the graveyard, another row, or even a player's hand." >}}
         </div>
-    <div class="title-wrapper rule-title">
-        <h3>Kings</h3>
+    <div class="title-wrapper">
+        {{< outlined-title title="Kings" h="h3" class="rule-title">}}
     </div>
     <p class="rule-paragraph">
         The <b>King deck</b> contains all King cards, and each player should choose one at random at the
@@ -150,8 +150,8 @@ layout: single
     <div class="rule-box" style="margin-top:2em">
         {{< icon-paragraph icon="King" text="<b>King cards</b> allow you to double the strength of one of your rows, as well as having a choice between other unique effects. A King only doubles the row while it remains on the field." >}}
     </div>
-    <div class="title-wrapper rule-title">
-        <h3>Adjacency</h3>
+    <div class="title-wrapper">
+        {{< outlined-title title="Adjacency" h="h3" class="rule-title">}}
     </div>
     <p class="rule-paragraph">
         If two units with the same strength are in the same row, they get an <b>adjacency bonus</b> which
@@ -175,8 +175,8 @@ layout: single
         </p>
         <img src="/gif/AdjacencyEx2.gif" alt="" class="landscape-gif" unselectable="on" loading="lazy">
     </div>
-    <div class="title-wrapper rule-title">
-        <h3>Passing</h3>
+    <div class="title-wrapper">
+        {{< outlined-title title="Passing" h="h3" class="rule-title">}}
     </div>
     <p class="rule-paragraph">
         Before playing any cards on your turn, you may say <b>"pass"</b> to signal you are ready to end
@@ -184,8 +184,8 @@ layout: single
         Other players may continue to play cards, taking as many turns as desired before eventually
         passing themselves. After all players have passed, the round is scored.
     </p>
-    <div class="title-wrapper rule-title">
-        <h3>Scoring The Round</h3>
+    <div class="title-wrapper">
+        {{< outlined-title title="Scoring The Round" h="h3" class="rule-title">}}
     </div>
     <p class="rule-paragraph">
         Each of your units on the field contributes its <b>total strength</b> to your score for the round
@@ -198,8 +198,8 @@ layout: single
             <li>If there are <b>adjacency bonuses</b> at this point, double the strength of units forming adjacent pairs.</li>
             <li>Apply all row multipliers (keywords: <b>double</b> or <b>halve</b> strength) from <b>weather effects</b> and <b>King bonuses</b> to each unit. Always round down if dividing, with a <b>minimum strength</b> of one per unit.</li>
         </ol>
-    <div class="title-wrapper rule-title">
-        <h3>Winning</h3>
+    <div class="title-wrapper">
+        {{< outlined-title title="Winning" h="h3" class="rule-title">}}
     </div>
     <p class="rule-paragraph">
         After adding all units' total strengths together, the player with the <b>highest number wins</b>
@@ -209,8 +209,8 @@ layout: single
         The first player to <b>win two rounds</b> wins the game. If no player has won two rounds and no
         player can play any cards, the game is a draw.
     </p>
-    <div class="title-wrapper rule-title">
-        <h3>Final Details</h3>
+    <div class="title-wrapper">
+        {{< outlined-title title="Final Details" h="h3" class="rule-title">}}
     </div>
     <ul class="rule-paragraph">
         <li><b>Going first:</b> In the first round, the player who dealt the unit deck (or won the last game)
@@ -227,8 +227,8 @@ layout: single
         unusable/undesired power cards.</li>
         <li>Players may <b>never skip</b> their turn. They must always either play a card, or "pass" the rest of the round.</li>
     </ul>
-    <div class="title-wrapper rule-title">
-        <h3>Additional Players</h3>
+    <div class="title-wrapper">
+        {{< outlined-title title="Additional Players" h="h3" class="rule-title">}}
     </div>
     <p class="rule-paragraph">
         When playing <i>Krieg Eterna</i> with more than two players, you can choose to either play in teams

@@ -2,11 +2,12 @@
 {{ .Title | title }}
 {{- end }}
 {{ define "main" -}}
+{{ partial "amazonbanner.html" . }}
 {{ .Content }}
 <section class="gradient even-gradient">
 	<div class="main-section">
 		<div class="title-wrapper">
-			<h2 id="tag_{{ .Title }}">{{.Title}}</h2>
+			{{ partial "outlined-title" (dict "title" .Title "h" "h2" "class" "main-title") }}
 			<div class="search">
 				<input type="text" id="search" placeholder="Search cards by name or type">
 				<button id="clear-search">
