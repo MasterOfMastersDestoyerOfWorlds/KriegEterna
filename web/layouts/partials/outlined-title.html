@@ -4,9 +4,9 @@
 -->
 
 {{ if eq .h "h2" }}
-    <h2 class="{{.class}} {{.shadow}}" id="titleshadow">{{.title}}</h2>
+    <h2 class="{{.class}} {{.shadow}}" id="titleshadow" aria-hidden="true">{{.title}}</h2>
     <h2 class="{{.class}} {{.type}}">{{.title}}</h2>
 {{ else }}
-    <h3 class="{{.class}} {{.shadow}}" id="titleshadow">{{.title}}</h3>
+    <h3 class="{{.class}} {{.shadow}}" id="titleshadow" aria-hidden="true">{{.title}}</h3>
     <h3 class="{{.class}} {{.type}}">{{.title}}</h3>
 {{ end }}
