@@ -1058,13 +1058,43 @@ img {
 }
 
 .top-img {
-    min-height: 60vh;
     object-fit: cover;
 }
 
-@media(max-width:768px) {
+@media(min-width:1024px) {
     .top-img {
-        min-height: 30vh;
+        min-height: 60vh;
+    }
+}
+
+@media(max-width:1024px)  and (min-width:768px){
+    .top-img {
+        aspect-ratio: 1023/600;
+        max-height: 50vh;
+        min-width: 100vw;
+        object-fit: cover;
+        -o-object-fit: cover;
+    }
+}
+
+@media(max-width:768px)  and (min-width:570px) {
+    .top-img {
+        aspect-ratio: 767/601;
+        max-height: 40vh;
+        min-width: 100vw;
+        object-fit: cover;
+        -o-object-fit: cover;
+    }
+}
+
+@media(max-width:570px) {
+    .top-img {
+        aspect-ratio: 575/701;
+        margin: 0!important;
+        -o-object-fit: cover;
+        object-fit: cover;
+        max-height: 45vh;
+        min-width: 100vw;
     }
 }
 

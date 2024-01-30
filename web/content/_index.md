@@ -8,7 +8,11 @@ layout: single
     <div class="main-section" style="padding-top: 0">
         <div class="top-flex">
             <picture>
-                <img src="/images/battle-1600x1080-100.jpg" class="top-img">
+            <source srcset="/images/battle-1600x1080-100.jpg" media="(min-width: 1024px)">
+            <source srcset="/images/battle-1023x600-100.jpg" media="(min-width: 768px)">
+            <source srcset="/images/battle-767x600-100.jpg" media="(min-width: 576px)">
+            <source srcset="/images/battle-575x700-100.jpg"> 
+            <img src="/images/battle-1600x1080-100.jpg" class="top-img">
             </picture>
             <div class="top-slanted">
                 <div class="top-info-box">
