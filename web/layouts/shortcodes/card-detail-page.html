@@ -66,7 +66,9 @@
 
             <!-- taglist -->
             {{ partial "taglist.html" .Page }}
+
             <hr>
+            {{ partial "nextprev-text.html" .Page }}
 
             <!-- strength -->
             {{$strength := (index $data 5)}}
@@ -132,7 +134,7 @@
                 <!-- nothing -->
             {{ end }}
         </div>
-        {{ partial "nextprev.html" .Page }}
+        {{ partial "nextprev-card-art.html" .Page }}
     </div>
     </div>
 </section>
