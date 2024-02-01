@@ -1,0 +1,19 @@
+{{ if .prev}}
+{{- if .Page.NextInSection -}}
+<a href="{{ .Page.NextInSection.RelPermalink}}" class="nextprev-arrow">
+    <div class="nextprev-title">←</div>
+</a>
+{{else}}
+<div class="nextprev-arrow"> </div>
+{{ end -}}
+{{ end -}}
+
+{{ if .next}}
+{{- if .Page.PrevInSection }}
+<a href="{{ .Page.PrevInSection.RelPermalink}}" class="nextprev-arrow">
+    <div class="nextprev-title">→</div>
+</a>
+{{else}}
+<div class="nextprev-arrow"> </div>
+{{ end -}}
+{{ end -}}

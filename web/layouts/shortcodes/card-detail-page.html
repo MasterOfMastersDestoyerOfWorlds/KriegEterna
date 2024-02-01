@@ -1,140 +1,144 @@
 <section class="gradient even-gradient">
     <div class="main-section">
-    <div class="sub-section">
+        <div class="sub-section">
 
-        {{$title := (index .Params "title")}}
+            {{$title := (index .Params "title")}}
 
-        {{$data := 0}}
-        {{ range $i, $r := getCSV "\t" "data/CardSheet.tsv" }}
-        {{ $c := (index . 0) }}
-        {{ if eq $c $title }}
-        {{$data = .}}
-        {{end}}
-        {{ end }}
+            {{$data := 0}}
+            {{ range $i, $r := getCSV "\t" "data/CardSheet.tsv" }}
+            {{ $c := (index . 0) }}
+            {{ if eq $c $title }}
+            {{$data = .}}
+            {{end}}
+            {{ end }}
 
-        {{$type := (index $data 4)}}
-        {{$typedesc := $type}}
-        {{$cardback := "Flag"}}
-        {{$shadow := "carddetail"}}
+            {{$type := (index $data 4)}}
+            {{$typedesc := $type}}
+            {{$cardback := "Flag"}}
+            {{$shadow := "carddetail"}}
 
-        {{ if eq $type "Ranged" }}
-        {{$typedesc = "Ranged Unit"}}
-        {{end}}
-
-        {{ if eq $type "Melee" }}
-        {{$typedesc = "Melee Unit"}}
-        {{end}}
-
-        {{ if eq $type "Siege" }}
-        {{$typedesc = "Siege Unit"}}
-        {{end}}
-
-        {{ if eq $type "Power" }}
-        {{$typedesc = "Hex Power"}}
-        {{$cardback = "FlagPower"}}
-        {{$shadow = "light"}}
-        {{end}}
-
-        {{ if eq $type "Decoy" }}
-        {{$typedesc = "Jester Power"}}
-        {{$cardback = "FlagPower"}}
-        {{end}}
-
-        {{ if eq $type "Spy" }}
-        {{$typedesc = "Spy Power"}}
-        {{$cardback = "FlagPower"}}
-        {{$shadow = "light"}}
-        {{end}}
-
-        {{ if eq $type "Weather" }}
-        {{$typedesc = "Weather Power"}}
-        {{$cardback = "FlagPower"}}
-        {{$shadow = "light"}}
-        {{end}}
-
-        {{ if eq $type "King" }}
-        {{$cardback = "FlagKing"}}
-        {{end}}
-
-        <div class="card-detail">
-            {{partial "cardflip" (dict "Params" (dict "front" $title "back" $cardback "big" "true" "disallowScale" "mobile"))}}
-        </div>
-
-        <div class="card-detail-box">
-                
-            {{partial "outlined-title" (dict "h" "h2" "title" (index $data 1) "class" "card-detail-title" "shadow" $shadow "type" (lower $type))}}
-
-            <!-- taglist -->
-            {{ partial "taglist.html" .Page }}
-
-            <hr>
-            {{ partial "nextprev-text.html" .Page }}
-
-            <!-- strength -->
-            {{$strength := (index $data 5)}}
-            {{if gt (len $strength) 0}}
-            <p>
-                <b>Strength:</b> {{$strength}}
-            </p>
+            {{ if eq $type "Ranged" }}
+            {{$typedesc = "Ranged Unit"}}
             {{end}}
 
-            <!-- type -->
-            <p>
-                <b>Type:</b> {{$typedesc}}
-            </p>
-
-            <!-- effect -->
-            {{$effect := (index $data 2)}}
-            {{$effect = (replace $effect "^" "")}}
-            {{$effect = (replace $effect "\\`" "\"")}}
-            {{$effect = (replace $effect "\\r" " ")}}
-            {{if gt (len $effect) 1}}
-            <p>
-                <b>Effect Text:</b> {{$effect}}
-            </p>
+            {{ if eq $type "Melee" }}
+            {{$typedesc = "Melee Unit"}}
             {{end}}
 
-            <!-- flavor -->
-            {{$flavor := (index $data 3)}}
-            {{$flavor = (replace $flavor "^" "")}}
-            {{$flavor = (replace $flavor "\\`" "\"")}}
-            {{$flavor = (replace $flavor "\\r" " ")}}
-            <p>
-                <b>Flavor Text:</b> {{$flavor}}
-            </p>
-
-            <!-- artwork -->
-            {{if (isset .Params "artwork")}}
-            <p>
-                <b>Artwork:</b> {{.Params.artwork}}
-            </p>
-            {{end}}
-        </div>
-
-        <div class="card-detail-about">
-            <!-- strategy -->
-            {{$stratDesc := (index $data 6)}}
-            {{$stratDesc := (lower $stratDesc)}}
-            {{if gt (len $stratDesc) 1}}
-            <p style="margin-top: 2em">
-                <b>Strategy:</b>
-            </p>
-            <p>
-                {{partial (printf "strategy-descriptions/%s.html" $stratDesc) .}}
-            </p>
+            {{ if eq $type "Siege" }}
+            {{$typedesc = "Siege Unit"}}
             {{end}}
 
-            <!-- about -->
-            {{ with .Inner }}
+            {{ if eq $type "Power" }}
+            {{$typedesc = "Hex Power"}}
+            {{$cardback = "FlagPower"}}
+            {{$shadow = "light"}}
+            {{end}}
+
+            {{ if eq $type "Decoy" }}
+            {{$typedesc = "Jester Power"}}
+            {{$cardback = "FlagPower"}}
+            {{end}}
+
+            {{ if eq $type "Spy" }}
+            {{$typedesc = "Spy Power"}}
+            {{$cardback = "FlagPower"}}
+            {{$shadow = "light"}}
+            {{end}}
+
+            {{ if eq $type "Weather" }}
+            {{$typedesc = "Weather Power"}}
+            {{$cardback = "FlagPower"}}
+            {{$shadow = "light"}}
+            {{end}}
+
+            {{ if eq $type "King" }}
+            {{$cardback = "FlagKing"}}
+            {{end}}
+
+            <div class="card-detail">
+                {{partial "cardflip" (dict "Params" (dict "front" $title "back" $cardback "big" "true" "disallowScale"
+                "mobile"))}}
+            </div>
+
+            <div class="card-detail-box">
+
+                <div style="display: flex;" class="card-detail-taglist">
+                {{partial "nextprev-arrow" (dict "prev" "true" "Page" .Page)}} 
+                {{partial "outlined-title" (dict "h" "h2" "title" (index $data 1) "class" "card-detail-title" "shadow"
+                $shadow "type" (lower $type))}}
+                {{partial "nextprev-arrow" (dict "next" "true" "Page" .Page)}} 
+                </div>
+                <!-- taglist -->
+                {{ partial "taglist.html" .Page }}
+
+                <hr>
+
+                <!-- strength -->
+                {{$strength := (index $data 5)}}
+                {{if gt (len $strength) 0}}
+                <p>
+                    <b>Strength:</b> {{$strength}}
+                </p>
+                {{end}}
+
+                <!-- type -->
+                <p>
+                    <b>Type:</b> {{$typedesc}}
+                </p>
+
+                <!-- effect -->
+                {{$effect := (index $data 2)}}
+                {{$effect = (replace $effect "^" "")}}
+                {{$effect = (replace $effect "\\`" "\"")}}
+                {{$effect = (replace $effect "\\r" " ")}}
+                {{if gt (len $effect) 1}}
+                <p>
+                    <b>Effect Text:</b> {{$effect}}
+                </p>
+                {{end}}
+
+                <!-- flavor -->
+                {{$flavor := (index $data 3)}}
+                {{$flavor = (replace $flavor "^" "")}}
+                {{$flavor = (replace $flavor "\\`" "\"")}}
+                {{$flavor = (replace $flavor "\\r" " ")}}
+                <p>
+                    <b>Flavor Text:</b> {{$flavor}}
+                </p>
+
+                <!-- artwork -->
+                {{if (isset .Params "artwork")}}
+                <p>
+                    <b>Artwork:</b> {{.Params.artwork}}
+                </p>
+                {{end}}
+            </div>
+
+            <div class="card-detail-about">
+                <!-- strategy -->
+                {{$stratDesc := (index $data 6)}}
+                {{$stratDesc := (lower $stratDesc)}}
+                {{if gt (len $stratDesc) 1}}
+                <p style="margin-top: 2em">
+                    <b>Strategy:</b>
+                </p>
+                <p>
+                    {{partial (printf "strategy-descriptions/%s.html" $stratDesc) .}}
+                </p>
+                {{end}}
+
+                <!-- about -->
+                {{ with .Inner }}
                 <p style="margin-top: 2em">
                     <b>About the card:</b>
                 </p>
                 {{ . }}
-            {{ else }}
+                {{ else }}
                 <!-- nothing -->
-            {{ end }}
+                {{ end }}
+            </div>
+            {{ partial "nextprev-card-art.html" .Page }}
         </div>
-        {{ partial "nextprev-card-art.html" .Page }}
-    </div>
     </div>
 </section>
