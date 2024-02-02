@@ -11,6 +11,6 @@ Ivan IV The Terrible was the first Tsar of Russia and his reign would serve as t
 </p>
 {{<card-detail-image file="oprichniki.jpg">}}
 <p>
-During his reign Ivan would conquer the Kazan and Astrakhan Khanates (present day southren Russia) increasing the territory of Russia by roughly a third. However, his costly attempts to conquer Livonia (present day Estonia and Latvia) in order to gain a port on the Baltic would prove costly and unsuccessful. His rule was that of the autocrat, where personal allegience and frendship to the Tsar was much more important than any other political or economic power (see also {{<cardlink name="Wrath">}}).
+During his reign Ivan would conquer the Kazan and Astrakhan Khanates (present day southern Russia) increasing the territory of Russia by roughly a third. However, his costly attempts to conquer Livonia (present day Estonia and Latvia) in order to gain a port on the Baltic would prove costly and unsuccessful. His rule was that of the autocrat, where personal allegiance and friendship to the Tsar was much more important than any other political or economic power (see also {{<cardlink name="Wrath">}}).
 </p>
 {{</card-detail-page>}}
