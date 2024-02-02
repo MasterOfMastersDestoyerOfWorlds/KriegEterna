@@ -19,7 +19,7 @@ tags: ['Base Set', 'Archer', 'Unit', 'Ranged']
     member of the Royal Company of Archers and a Fellow of the Fellow of the Royal Society, the
     most prestigious scientific institution in Britian.
 </p>
-<img src="/card-images/description-images/quagga.jpg">
+{{<card-detail-image file="quagga.jpg">}}
 <p>
     Douglas was probably best know for trying to breed a hybrid of a horse and a quagga, a now
     exctinct subspecies of Zebra native to South Africa. He apparrently did breed a horse with

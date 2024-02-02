@@ -1163,6 +1163,9 @@ img {
 .card-detail {
     width: min(400px, 90%);
 }
+.card-detail-image {
+    max-height:50vh;
+}
 
 .card-detail-taglist {
     margin: 0.5em 0 0.5em
@@ -1306,6 +1309,13 @@ img {
 
 .product-title {
     margin: 1.25em 0 0;
+}
+
+.product-price {
+    margin: 1em 0 0;
+    color: var(--theme-link-color);
+    font-size: 20px;
+    font-weight: 800 !important
 }
 
 .product-desc {

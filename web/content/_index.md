@@ -76,7 +76,12 @@ layout: single
                         <div>
                             <h4 class="product-title" data-text="Standard Edition">Krieg Eterna<h4>
                         </div>
+                        <div class="product-price">
+                            <p>$29.99
+                            </p>
+                        </div>
                         <div class="product-desc">
+                        <hr>
                             <p>A fast-paced strategic card game set during the Thirty Years' War. Victory on the battlefield will require deception, skill, and a little luck!
                             </p>
                         </div>
