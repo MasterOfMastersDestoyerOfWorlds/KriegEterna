@@ -7,7 +7,7 @@ tags: ['Base Set', 'Wrath', 'Power', 'Hex']
 ---
 {{<card-detail-page title="Wrath" artwork="Ivan the Terrible and His Son Ivan by Ilya Repin (1885)">}}
 <p>
-This card depicts the Death of Ivan the Terrible's Son Ivan (see also {{<cardlink name="Terror King" code="terror-king">}}). After an argument about the Tsar's wife, in which he beat her and possibly caused a miscarriage, Ivan the Terrible struck his son with his cane causing a hemorage and his death four days later. This painting is set after Ivan's son has already died and in contrast to many other depicitons of the Tsar, where he appears formidable and menacing, here he is shown as fearful and gaunt revealing his weakness as a human.
+This card depicts the Death of Ivan the Terrible's Son Ivan (see also {{<cardlink name="Terror King" code="terror-king">}}). After an argument about the Tsar's wife, in which he beat her and possibly caused a miscarriage, Ivan the Terrible struck his son with his cane causing a hemorrhage and his death four days later. This painting is set after Ivan's son has already died and in contrast to many other depictions of the Tsar, where he appears formidable and menacing, here he is shown as fearful and gaunt revealing his weakness as a human.
 </p>
 <p>
 This card's flavor text is from a passage in the novel <i>Crime and Punishment</i> by Fyodor Dostoevsky  (see also {{<cardlink name="Offering">}} or {{<cardlink name="Void">}}).
