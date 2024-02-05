@@ -85,11 +85,10 @@
 					</ul>
 
 				</nav>
-
 				<nav class="nav permanent-nav">
 					<ul class="nav-links nav-list">
 						<li class="permanent-nav"><a
-								href="https://www.amazon.com/dp/B0CJHWGZYF?maas=maas_adg_3D8873ABA7D50C8B8D9E95ECC82A19D9_afap_abs&ref_=aa_maas&tag=maas"
+								{{ partial "tracking-code" . | safeHTMLAttr }}
 								class="nav-link" target="_blank">
 								Buy Now&nbsp{{ partial "icon-link.html" . }}
 							</a>

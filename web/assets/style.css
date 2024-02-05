@@ -1159,6 +1159,32 @@ img {
         min-width: 90%;
     }
 }
+.review {
+    align-items: center;
+    display: block;
+}
+.review-text{
+    align-items: center;
+    margin: auto;
+    text-align: center;
+    font-size: 25px;
+    display: block;
+}
+.review-name{
+    align-items: center;
+    margin: auto;
+    text-align: right;
+    font-size: 25px;
+    display: block;
+}
+.stars {
+    color: var(--theme-accent-color);
+    width: 30vw;
+    height: 15vh;
+    margin: auto;
+    margin-top: -7vh;
+    display: block;
+}
 
 .card-detail {
     width: min(400px, 90%);
