@@ -7,10 +7,10 @@ tags: ['Base Set', 'Officer', 'Unit', 'Melee']
 ---
 {{<card-detail-page title="Officer" artwork="Horse Artillery of the Imperial Guard by Édouard Detaille (1870)">}}
 <p>
-From <a href="https://www.eighteenthcenturypoetry.org/works/o4986-w0150.shtml#"><i>Death a Peotical Essay</i></a> by Belby Porteus in 1759. Excerpt reproduced below:
+From <i>Death a Peotical Essay</i> by Belby Porteus in 1759. Excerpt reproduced below:
 </p>
 <p>
-{{<card-detail-image file="leonardo.jpg">}}
+{{<card-detail-image file="leonardo.jpg" caption="Leonardo Da Vinci's Gun">}}
 To sate the lust of power; more horrid still,
 <br>
 The foulest stain and scandal of our nature

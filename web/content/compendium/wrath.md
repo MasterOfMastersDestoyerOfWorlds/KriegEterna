@@ -12,6 +12,7 @@ This card depicts the Death of Ivan the Terrible's Son Ivan (see also {{<cardlin
 <p>
 This card's flavor text is from a passage in the novel <i>Crime and Punishment</i> by Fyodor Dostoevsky  (see also {{<cardlink name="Offering">}} or {{<cardlink name="Void">}}).
 </p>
+{{<card-detail-image file="unexpected-visitor.jpg" caption="They Did Not Expect Him by Ilya Repin (1884)">}}
 <p>
 "It was dark in the corridor, they were standing near the lamp. For a minute they were looking at one another in silence. Razumihin remembered that minute all his life. Raskolnikov’s burning and intent eyes grew more penetrating every moment, piercing into his soul, into his consciousness. Suddenly Razumihin started. Something strange, as it were, passed between them.... Some idea, some hint, as it were, slipped, something awful, hideous, and suddenly understood on both sides.... Razumihin turned pale."
 </p>

@@ -9,6 +9,7 @@ tags: ['Base Set', 'Usury', 'Power', 'Hex']
 <p>
 The painting shows a Dutch banker and his wife counting their profits. The wife looks away from her prayerbook in order to better understand their wealth, signifying the corrupting nature of money. Amsterdam would quickly rise to become one of the most important financial centers in Europe during the early modern period. Empire and commerce were inherently linked in the Netherlands as excess capital from foreign ventures fueled more investment. The Dutch would often extend loans to warring monarchs and when they inevitably could not pay them back, would seize assets in their home countries. With the advent of the Amsterdam Stock Exchange came new opportunities for investment including the VOC or Dutch East India Company. At one point the VOC traded five times the goods and slaves and had twice as many ships as their nearest competitor the British East India Company.
 </p>
+{{<card-detail-image file="stock-exchange.jpg" caption="The courtyard of the Beurs in Amsterdam by Emanuel de Witte (1653)">}}
 <p>
 The flavor text is attributed to Lorenzo de Medici (also known as "The Magnificent") who was Ruler of Florence and Head of the Medici Bank. After his death the Medici family would seize power; permanently becoming Dukes of Florence (see also {{<cardlink name="Pike" code="pike">}}). Power and Money, Money and Power.
 </p>

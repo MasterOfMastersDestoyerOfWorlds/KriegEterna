@@ -9,6 +9,7 @@ tags: ['Base Set', 'Square', 'Unit', 'Melee']
 <p>
 The square was a Napoleonic Era infantry formation used to counter cavalry. The infantry would make a square with a hollow center aiming outward with their rifles and bayonets. Since horses would not charge into the square, the cavalrymen would circle around it, shooting at the square from the hip and feigning charges to break up undisciplined units  (see also {{<cardlink name="Cavalry">}}). The square played a similar role to that of the Spanish tercio in the 16th and early 17th centuries (which was a similar concept, except the riflemen were replaced with a combination of pikes and arquebuses or muskets) or the {{<cardlink name="Landsknecht" code="landsknecht">}} pike squares of the 15th and early 16th centuries (which mostly included pikes, swords and arquebuses or crossbows).
 </p>
+{{<card-detail-image file="quatre-bras.jpg" caption="The 28th Regiment at Quatre Bras by Elizabeth Thompson (1875)">}}
 <p>
 This painting depicts the Black Watch, a Scottish Royal regiment, forming square to fend off the French cavalry at the Battle of Quatre-Bras. Just two days later the British and French would meet again at the decisive Battle of Waterloo  (see also {{<cardlink name="Grenadier">}}).
 </p>

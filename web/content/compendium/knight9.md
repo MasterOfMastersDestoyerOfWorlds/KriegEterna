@@ -13,7 +13,7 @@ The flavor text of this card is from the St. Crispin's Day speech in Shakespeare
 By the early 1400's many of the gains the English had made in the previous five decades had eroded, so  Henry V the newly crowned king went to war. Shakespeare's play is concluded at the battle of Agincourt where the English longbow men decimated the French heavy cavalry and supposedly King Henry V gave the St. Crispin's Day speech to rouse his troops for the battle. After the battle, Henry was welcomed home as a hero and thought that victory over the French was assured. Ending the play here is probably a good idea if your protagonist is the English King as the next forty years would be marred by defeat at the hands of the Charles VII and Joan of Arc (see also {{<cardlink name="Pyre" code="pyre">}}).
 </p>
 
-{{<card-detail-image file="crispin.jpg">}}
+{{<card-detail-image file="crispin.jpg" caption="Henry V (1989)">}}
 <p>
 If you want to see the play, I highly recommend the 1989 film release as it is one of the best adaptations of Shakespeare to the silver screen. Instead of transposing the time period and theme to world war II as Richard III (1995) did, or to action figures in the 1920's as Titus (1999) did, or 1990's L.A. as Romeo and Juliet(1996) did, Henry V is set in the time and place in which it was written. However, I would read up on some English history before watching, as the movie is hard to follow without knowing the main plot and characters since it is in the original Elizabethan English.
 </p>

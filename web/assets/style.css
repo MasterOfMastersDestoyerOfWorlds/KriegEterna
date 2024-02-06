@@ -1189,6 +1189,11 @@ img {
 .card-detail {
     width: min(400px, 90%);
 }
+
+.caption {
+    font-size: small;
+    text-align: center;
+}
 .card-detail-image {
     max-height:50vh;
 }

@@ -12,7 +12,7 @@ Janvier Suchodolski was a Polish painter and army officer who lived and worked i
 <p>
 In Assault on Saragossa, Suchodolski depicts the French army attacking the city of Saragossa (also known as Zaragoza), part of the siege of Saragossa during the Peninsular War 1807 - 1814.  Part of the Napoleonic era wars, the Peninsular War pitted the Spanish, British and Portuguese against the French Napoleonic forces.  Saragossa was a fortified city protected by two medieval walls and two rivers, with narrow lanes within the city that were easily blockaded.  Although the French succeeded in breaching the city in several places, they were ultimately repulsed by the Spanish and due to significant casualties, retreated.  The battle is also known for the bravery and ultimate misuse of the Polish army allied with France (see also {{<cardlink name="Retreat">}}).
 </p>
-{{<card-detail-image file="firing-squad.jpg">}}
+{{<card-detail-image file="firing-squad.jpg" caption="The Third of May by Francisco Goya (1814)">}}
 <p>
 "A brave man dies but once, A coward daily." is a common paraphrase of the quote “A coward dies a thousand times before his death, but the valiant taste of death but once. It seems to me most strange that men should fear, seeing that death, a necessary end, will come when it will come.” William Shakespeare, Julius Caesar.
 </p>
