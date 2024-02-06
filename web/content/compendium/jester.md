@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Power', 'Jester']
 ---
-{{<card-detail-page title="Jester" artwork="Stańczyk by Jan Matejko (1862)" >}}
+{{<card-detail-page title="Jester" artwork="Stańczyk by Jan Matejko (1862)" attr="Edgar Allen Poe">}}
 <p>
 "The wall was now nearly upon a level with my breast. Unsheathing my rapier, I began to grope with it about the recess"
 </p>

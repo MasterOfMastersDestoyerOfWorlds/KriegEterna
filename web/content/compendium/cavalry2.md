@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Cavalry', 'Unit', 'Melee']
 ---
-{{<card-detail-page title="Calvary2" artwork="Vive L'Empereur! - Charge of the 4th Hussars at the battle of Friedland by Édouard Detaille  (1891)">}}
+{{<card-detail-page title="Calvary2" artwork="Vive L'Empereur! - Charge of the 4th Hussars at the battle of Friedland by Édouard Detaille  (1891)" book="Revalations 8:6">}}
 <p>
 The battle of Friedland, near Pravdinsk, Russia, was a decisive victory for the Napoleonic French army over the Tsarist Russian army.  Initially a Russian attack on a smaller French unit of reserves, the Russian forces were forced to flee across the Alle river when Napoleon reinforced his men with 80,000 troops.  The Russians lost over 40% of their forces, and the defeat ultimately led to the Treaty of Tilsit, the creation of the Kingdom of Westphalia and the height of Napoleon’s empire (see also  {{<cardlink name="Feint">}}).
 </p>

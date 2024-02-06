@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Assault', 'Unit', 'Siege']
 ---
-{{<card-detail-page title="Assault2" artwork="Assault on Saragossa by January Suchodolski (1845)">}}
+{{<card-detail-page title="Assault2" artwork="Assault on Saragossa by January Suchodolski (1845)"  attr="William Shakespeare" book="Julius Caesar">}}
 <p>
 Janvier Suchodolski was a Polish painter and army officer who lived and worked in Poland, Rome, St Petersburg and Paris.  His works are largely military scenes and battles.  
 </p>

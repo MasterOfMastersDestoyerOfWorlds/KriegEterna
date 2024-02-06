@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Cavalry', 'Unit', 'Melee']
 ---
-{{<card-detail-page title="Calvary" artwork="Scotland Forever! by Elizabeth Thompson (1881)" >}}
+{{<card-detail-page title="Calvary" artwork="Scotland Forever! by Elizabeth Thompson (1881)" attr="King Jan III Sobieski of Poland">}}
 <p>
 Unit’s cry of “Now, my boys, Scotland forever!” as they charged at the Battle of Waterloo.  Considered a turning point of the battle, the cavalry charged the French despite an order from Wellington to remain in place until he gave order.  They likely saved the British line, but in the process sustained significant casualties to both men and horses. A later French cavalry charge led by marshal Ney would end in disaster, as the English responded by forming {{<cardlink name="squares" code="square">}} making it impossible for the cavalry to do much damage.
 </p>

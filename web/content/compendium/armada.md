@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Armada', 'Unit', 'Siege']
 ---
-{{<card-detail-page title="Armada" artwork="The Battle of Terheide by Jan Abrahamsz Beerstraaten (1653)">}}
+{{<card-detail-page title="Armada" artwork="The Battle of Terheide by Jan Abrahamsz Beerstraaten (1653)" book="Ezekiel 26:21">}}
 <p>
 Jan Abrahamsz Beerstraten was a Dutch painter specializing in marine art and works depicting the First Anglo-Dutch war and the Dutch-Swedish war.  
 </p>

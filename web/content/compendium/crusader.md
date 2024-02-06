@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Crusader', 'Unit', 'Melee']
 ---
-{{<card-detail-page title="Crusader" artwork="Hugues de Payens, first Grand Master of the Order of the Temple by Henri Lehmann (1841)" >}}
+{{<card-detail-page title="Crusader" artwork="Hugues de Payens, first Grand Master of the Order of the Temple by Henri Lehmann (1841)" attr="Nachmanides">}}
 <p>
 Hugues de Payens was the first Grand Master of the Knights Templar, a military and financial institution that served to protect pilgrims en route to the Holy Land during the crusades (see also {{<cardlink name="Siege" code="Siege">}}). The Knights Templar later became Europe's first bank-like organization and one of the largest landowners in Europe. As with many banks of the medieval period Kings would often get into large debts to fight wars and then refuse to pay their debtors (see also {{<cardlink name="Usury" code="Usury">}}). A similar situation led to the order's dissolution.  The King of France was heavily indebted to the Templars and used accusations of heresy and fraud to destroy the order and burn some knights at the stake after false confessions made under torture. 
 </p>

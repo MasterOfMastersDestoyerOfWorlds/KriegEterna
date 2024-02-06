@@ -5,9 +5,9 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Officer', 'Unit', 'Melee']
 ---
-{{<card-detail-page title="Officer" artwork="Horse Artillery of the Imperial Guard by Édouard Detaille (1870)">}}
+{{<card-detail-page title="Officer" artwork="Horse Artillery of the Imperial Guard by Édouard Detaille (1870)" attr="Belby Porteus" book="Death a Poetical Essay">}}
 <p>
-From <i>Death a Peotical Essay</i> by Belby Porteus in 1759. Excerpt reproduced below:
+From <i>Death a Poetical Essay</i> by Belby Porteus in 1759. Excerpt reproduced below:
 </p>
 <p>
 {{<card-detail-image file="leonardo.jpg" caption="Leonardo Da Vinci's Gun">}}

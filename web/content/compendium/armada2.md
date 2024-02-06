@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Armada', 'Unit', 'Siege']
 ---
-{{<card-detail-page title="Armada2" artwork="Spanish Armada by Philip James de Loutherbourg (1796)" >}}
+{{<card-detail-page title="Armada2" artwork="Spanish Armada by Philip James de Loutherbourg (1796)">}}
 <p>
 Philip James de Loutherbourg was a French-born British painter known for large naval works and elaborate set designs. 
 </p>

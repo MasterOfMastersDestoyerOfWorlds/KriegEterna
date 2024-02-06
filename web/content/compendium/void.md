@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Void', 'Power', 'Hex']
 ---
-{{<card-detail-page title="Void" artwork="Portrait of Fyodor Dostoevsky by Vasily Perov (1872)">}}
+{{<card-detail-page title="Void" artwork="Portrait of Fyodor Dostoevsky by Vasily Perov (1872)" attr="Fyodor Dostoevsky" book="The Idiot">}}
 <p>
 From Dostoevsky's <i>The Idiot</i> in which his character undergoes a mock execution, but the order is recalled at the last second before he was shot (see also {{<cardlink name="Offering">}} or {{<cardlink name="Wrath">}}). This actually happened to Dostoevsky, he and the group of writers that he was working with were sentenced to death by the Tsar for the socialist nature of their works and distributing socialist literature, at the last second before the firing squad fired and officer rode up with a stay of execution from the Tsar. Dostoevsky would spend the next four years in prison in Siberia.
 </p>

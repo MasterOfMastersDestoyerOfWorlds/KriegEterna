@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Knight', 'Unit', 'Melee']
 ---
-{{<card-detail-page title="Knight9" artwork="Portrait of a Man in Armor by Titan (1567)" >}}
+{{<card-detail-page title="Knight9" artwork="Portrait of a Man in Armor by Titan (1567)" attr="William Shakespeare" book="Henry V" >}}
 <p>
 The flavor text of this card is from the St. Crispin's Day speech in Shakespeare's Henry V. The play chronicles the life and times of the English King Henry V and his exploits in the Hundred Years War against France. The English Kings claimed the French throne as their own, but were mostly fighting the war in order to maintain their French holdings in Normandy and Aquitaine. As in many feudal societies, the kings of one country could be dukes or counts in another making their allegiances multifaceted and suspect by the reigning kings and nobles in countries where they held lesser titles. For this reason the French kings wished to expel the English monarchs from interfering in their country and the Hundred Years War allowed them to do so. 
 </p>

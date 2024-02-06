@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Assault', 'Unit', 'Siege']
 ---
-{{<card-detail-page title="Assault" artwork="Assault on the village of Gimry by Franz Alekseevich Roubaud (1891)" >}}
+{{<card-detail-page title="Assault" artwork="Assault on the village of Gimry by Franz Alekseevich Roubaud (1891)"  attr="Wolfgang Amadeus Mozart" >}}
 <p>
 The painting depicts Russian troops storming the village of Aul Gimry during the Caucasian War 1817 - 1864.  The Caucasian War was actually a series of wars, as Tsarist Russia invaded and subjugated parts of the Caucasus between the Black and Caspian Seas.  Russian troops were resisted by Muslim forces under several leaders, including Imam Shamil.  The Russian writer Leo Tolstoy took part in the war, which then provided background for his famous novel, War and Peace.  
 </p>

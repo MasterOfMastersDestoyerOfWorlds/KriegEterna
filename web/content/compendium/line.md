@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Line', 'Unit', 'Melee']
 ---
-{{<card-detail-page title="MusketLine" artwork="Attack of Prussian Infantry by Carl Röchling (1913)" >}}
+{{<card-detail-page title="MusketLine" artwork="Attack of Prussian Infantry by Carl Röchling (1913)" attr="Voltaire, Count Mirabeau, various">}}
 <p>
 War is probably the most expensive project any society can embark on and then more expensive. The Thirty Years War was a conflict in which the lack of pay available to soldiers and their colonels was a defining aspect of the war. Often territory would be ceded to military leaders directly in lieu of pay or as collateral for bankrupt monarchs, and the expenses of armies routinely doubled or tripled the annual tax base of the states that recruited them. A prominent example would be the Duke of Bavaria, Maximilian I, who used his military victories and support of the Emperor as leverage to take the Electorship of the Palatinate once Frederick V was outlawed (see also {{<cardlink name="Winter King" code="winter-king">}}). Another example would be Albrecht von Wallenstein, the Emperor's principle general and recruiter, who wrote off 4,750,000 florins of debt to the imperial treasury, in exchange he was elevated into an imperial prince and received the Duchy of Mecklenburg.
 </p>

@@ -64,10 +64,11 @@
             <div class="card-detail-box">
 
                 <div style="display: flex;" class="card-detail-taglist">
-                {{partial "nextprev-arrow" (dict "prev" "true" "Page" .Page)}} 
-                {{partial "outlined-title" (dict "h" "h2" "title" (index $data 1) "class" "card-detail-title" "shadow"
-                $shadow "type" (lower $type))}}
-                {{partial "nextprev-arrow" (dict "next" "true" "Page" .Page)}} 
+                    {{partial "nextprev-arrow" (dict "prev" "true" "Page" .Page)}}
+                    {{partial "outlined-title" (dict "h" "h2" "title" (index $data 1) "class" "card-detail-title"
+                    "shadow"
+                    $shadow "type" (lower $type))}}
+                    {{partial "nextprev-arrow" (dict "next" "true" "Page" .Page)}}
                 </div>
                 <!-- taglist -->
                 {{ partial "taglist.html" .Page }}
@@ -105,6 +106,19 @@
                 {{$flavor = (replace $flavor "\\r" " ")}}
                 <p>
                     <b>Flavor Text:</b> {{$flavor}}
+                </p>
+
+                <p>
+                    {{if (or (isset .Params "attr") (isset .Params "book"))}}
+                    <b>Flavor Source:</b> {{if (isset .Params "attr")}}
+                    {{.Params.attr}}{{if (isset .Params "book")}}, <i>{{.Params.book}}</i>
+                    {{end}}
+                    {{else}}
+                                           {{if (isset .Params "book")}}
+                    <i>{{.Params.book}}</i>
+                    {{end}} 
+                    {{end}}
+                    {{end}}
                 </p>
 
                 <!-- artwork -->

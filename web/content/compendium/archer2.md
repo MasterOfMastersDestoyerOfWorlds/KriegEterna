@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Archer', 'Unit', 'Ranged']
 ---
-{{<card-detail-page title="Archer2" artwork="George Douglas, 16th Earl of Morton by Sir William Beechey (18th to 19th Century)">}}
+{{<card-detail-page title="Archer2" artwork="George Douglas, 16th Earl of Morton by Sir William Beechey (18th to 19th Century)" attr="Robin Hood">}}
 <p>
     William Beechey was one of the most prominent portrait artists of the Enlightenment
     painting the British Royals from "Mad King George" George the Third to Queen Victoria

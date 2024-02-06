@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Terror King', 'King']
 ---
-{{<card-detail-page title="TerrorKing" artwork="Tsar Ivan The Terrible by Viktor Vasnetsov (1897)">}}
+{{<card-detail-page title="TerrorKing" artwork="Tsar Ivan The Terrible by Viktor Vasnetsov (1897)" attr="Leo Tolstoy" book="The Death of Ivan Ilych">}}
 <p>
 Ivan IV The Terrible was the first Tsar of Russia and his reign would serve as the model for Russian rulers until the present day. All of the elements are there: greatly increasing the size of the army, the formation of the first Russian secret police, and a series of costly wars to expand toward the Baltic, the Caspian and the Black seas. These goals and methods would rise time and time again in Russia from the rule of Peter to Catherine to Stalin.
 </p>

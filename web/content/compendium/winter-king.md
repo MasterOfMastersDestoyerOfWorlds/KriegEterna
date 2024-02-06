@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Winter King', 'King']
 ---
-{{<card-detail-page title="WinterKing" artwork="Portrait of Frederick V Elector Palatine by Michiel Jansz. van Mierevelt (1632)" >}}
+{{<card-detail-page title="WinterKing" artwork="Portrait of Frederick V Elector Palatine by Michiel Jansz. van Mierevelt (1632)" attr="Lord Byron" book="Ozymandias">}}
 <p>
 Frederick V of the Palatinate was invited to take the crown of Bohemia after the Second Defenestration of Prague (see also {{<cardlink name="Zealot" code="zealot">}}), the previous King of Bohemia was Matthias Hapsburg of Austria, the Holy Roman Emperor. On his death Matthias' successor Ferdinand II should have inherited Bohemia, and with the imperial army at his command it would be likely he could enforce his claim, but the Bohemian Estates thought that Ferdinand would support the Counter Reformation in Bohemia and so they revolted and unnamed him as King. With little support from across the Protestant parts of the Empire, Frederick V of the Palatinate attempted to raise an army using what little money the Bohemian estates had in order to fight the Emperor and defend his crown.
 </p> 

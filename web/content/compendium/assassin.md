@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Power', 'Assassin', 'Spy']
 ---
-{{<card-detail-page title="Assassin">}}
+{{<card-detail-page title="Assassin" attr="William Shakespeare" book="Julius Caesar">}}
 <p>
 After defying the senate and crossing into Italy with the full force of his army (see also {{<cardlink name="Fate">}}), Julius Caesar would change Rome forever. Defeating the opposition armies and proclaiming himself Emperor in a protracted civil war, Caesar would find himself with unlimited power and would use it to make social reforms making him extremely popular with the general public. 
 </p>
