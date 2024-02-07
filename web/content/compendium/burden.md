@@ -12,6 +12,8 @@ This painting depicts the Titan Atlas of Greek mythology, condemned by Zeus to h
 <p>
 The painting was one of a pair commissioned by Lorenzo de’ Medici as a posthumous tribute to Galileo Galilei (see also  {{<cardlink name="Telescope">}}).
 </p>
+
+{{<card-detail-image file="trial.jpg" caption="Trial of George Jacobs, August 5, 1692 by Thomkins H. Matteson (1855)">}}
 <p>
 Words uttered by Giles Corey in 1692 as he was being pressed to death with stones after refusing to stand trial for witchcraft.  Caught up in the infamous Salem Witch Trials, Corey is the only person in the United States to be pressed to death, a sentence which was illegal even at the time.  
 </p>
