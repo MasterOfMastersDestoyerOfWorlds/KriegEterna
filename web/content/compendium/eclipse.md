@@ -8,7 +8,7 @@ tags: ['Base Set', 'Eclipse', 'Power', 'Weather']
 {{<card-detail-page title="Eclipse" artwork="Eclipse as seen from the Moon by Lucien Rudaux  (1947)">}}
 
 <p>
-Eclipses have often been seen as ill omens or linked to the divine (see also {{<cardlink name="Omen" code="omen">}}). In the final battle between the Medes and the Lydians in Ancient Anatolia: "just as the battle was growing warm, day was on a sudden changed into night...when they observed the change, ceased fighting, and were alike anxious to have terms of peace agreed on." 
+Eclipses have often been seen as ill omens or linked to the divine (see also {{<cardlink name="Omen" code="omen">}} or {{<cardlink name="Ruin">}}). In the final battle between the Medes and the Lydians in Ancient Anatolia: "just as the battle was growing warm, day was on a sudden changed into night...when they observed the change, ceased fighting, and were alike anxious to have terms of peace agreed on." 
 </p>
 {{<card-detail-image file="eclipse.jpg" caption="Total Solar eclipse in France by Luc Viatour (1999)">}}
 <p>

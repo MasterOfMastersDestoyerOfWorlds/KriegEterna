@@ -9,6 +9,7 @@ tags: ['Base Set', 'Gale', 'Power', 'Weather']
 <p>
 Venus, the Roman goddess of love and beauty, emerges from the sea on the island of Cyprus, where she is met by symbols of spring.  In Roman mythology, Venus is the mother of the Roman people, and Julius Caesar claimed her as an ancestor.  The painting was likely done for the Medici family and hung in their Villa di Castello. 
 </p>
+{{<card-detail-image file="ophelia.jpg" caption="Ophelia by John Everett Millais (1851)">}}
 <p>
 The flavor text is a quote from William Shakespeare’s “Hamlet”, Hamlet declares his love for Ophelia.
 </p>
