@@ -1,0 +1,10 @@
+{{if (isset .Params "noImage")}}
+{{else}}
+<p class="rule-paragraph"> 
+{{partial "cardflip" (dict "Params" (dict "front" .Params.imageCode "back" "FlagPower" "big" "" "disallowFlip" "" "disallowScale" "mobile" "reversed" ""))}}
+
+</p>
+{{end}}
+<p class="rule-paragraph"> 
+    {{partial (printf "strategy-descriptions/%s.html" .Params.stratName) .}}
+</p>

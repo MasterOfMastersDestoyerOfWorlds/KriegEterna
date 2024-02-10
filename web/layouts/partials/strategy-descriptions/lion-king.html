@@ -1,4 +1,7 @@
+{{if (isset .Params "noBase")}}
+{{else}}
 {{(partial "strategy-descriptions/king.html")}}
-The {{partial "carddeadlink.html" (dict "name" .Page.Title)}}’s unique powers give you access to a weather effect,
+{{end}}
+The {{partial "carddeadlink.html"  . }}’s unique powers give you access to a weather effect,
 or forcing your opponent to set aside units (usually choose the strongest cards, cards with attachments, or break
 adjacency).

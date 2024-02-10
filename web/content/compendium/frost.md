@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Frost', 'Power', 'Weather']
 ---
-{{<card-detail-page title="Frost" artwork="To Build a Fire Magazine Illustration by F. E. Schoonover (1908)" attr="Jack London" book="To Build a Fire">}}
+{{<card-detail-page code="Frost" artwork="To Build a Fire Magazine Illustration by F. E. Schoonover (1908)" attr="Jack London" book="To Build a Fire">}}
 <p>
 "The proper function of man is to live, not to exist. I shall not waste my days in trying to prolong them. I shall use my time." 
 </p>

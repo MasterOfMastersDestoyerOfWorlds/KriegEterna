@@ -5,4 +5,4 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Officer', 'Unit', 'Siege']
 ---
-{{<card-detail-page title="Officer4" artwork="A Mounted Officer by Édouard Detaille (1877)" />}}
+{{<card-detail-page code="Officer4" artwork="A Mounted Officer by Édouard Detaille (1877)" />}}

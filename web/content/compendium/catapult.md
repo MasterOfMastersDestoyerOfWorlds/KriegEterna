@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Catapult', 'Unit', 'Siege']
 ---
-{{<card-detail-page title="Catapult" artwork="Catapulta by Edward Poynter (1868)" attr="Polybius or Scipio Aemilianus">}}
+{{<card-detail-page code="Catapult" artwork="Catapulta by Edward Poynter (1868)" attr="Polybius or Scipio Aemilianus">}}
 <p>
 Roman soldiers operate a siege engine during their attack on the walls of Carthage in 146 BCE(the third Punic War). The words on the catapult read “Delenda est Carthago (Carthage must be Destroyed)”, attributed to  Cato the Elder, a Roman senator and historian who, at the end of every speech he made in the senate, would repeat this maxim.  The siege ended in the destruction of Carthage.  
 </p>

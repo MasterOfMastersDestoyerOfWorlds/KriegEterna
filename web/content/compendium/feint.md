@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Feint', 'Power', 'Jester']
 ---
-{{<card-detail-page title="Feint" artwork="The Battle of Austerlitz by François Gérard (1810)" attr="Sun Tsu" book="The Art of War">}}
+{{<card-detail-page code="Feint" artwork="The Battle of Austerlitz by François Gérard (1810)" attr="Sun Tsu" book="The Art of War">}}
 <p>
 Austerlitz or "The Battle of the Three Emperors" is considered by many to be Napoleon's masterstroke putting him in the same league as Hannibal or Caesar and is featured prominently in Leo Tolstoy's <i>War and Peace</i>. For days before the battle, Napoleon feigned weakness by calling for an armistice and retreating from the Austerlitz heights. When the Austrian and Russian forces found out that they outnumbered the French army they went on the offensive. Unknown to the Allies, this was part of Napoleon's plan and his army was similar in size to the Allies.
 </p>

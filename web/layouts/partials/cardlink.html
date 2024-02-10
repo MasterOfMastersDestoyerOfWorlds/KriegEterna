@@ -1,7 +1,1 @@
-<a href="/compendium/
-{{ if .code}}
-{{lower .code}}
-{{else}}
-{{lower .name}}
-{{end}}
-">{{ .name }}</a>
+<a href="/compendium/{{ if .code}}{{lower .code}}{{else}}{{lower .name}}{{end}}">{{ .name }}</a>

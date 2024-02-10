@@ -5,4 +5,4 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Juggernaut', 'Unit', 'Melee']
 ---
-{{<card-detail-page title="Juggernaut" artwork="Leonidas at Thermopylae by Jacques-Louis David (1814)" attr="Plutarch" book="De garrulitate"/>}}
+{{<card-detail-page code="Juggernaut" artwork="Leonidas at Thermopylae by Jacques-Louis David (1814)" attr="Plutarch" book="De garrulitate"/>}}

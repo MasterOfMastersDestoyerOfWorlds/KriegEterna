@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Omen', 'Power', 'Weather']
 ---
-{{<card-detail-page title="Omen" artwork="The Torture of Prometheus by Salvator Rosa (1648)" >}}
+{{<card-detail-page code="Omen" artwork="The Torture of Prometheus by Salvator Rosa (1648)" >}}
 <p>
 What things are better left unknown and unseen? Kai Bird's <i>American Prometheus</i> might be one answer to this question. In the 2005 biography of Robert Oppenheimer, Bird paints a picture of atomic bombs as the new fire that will consume the world and Oppenheimer as the new Prometheus, emotionally tortured and publicly pilloried for his hand in creating the Bomb during World War II. But knowledge, once disseminated, is impossible to contain again. After all what leader, once given the power to destroy the world with the press of a button, would readily give up that power? Should they if it leads to a more peaceful world? This might be why Prometheus who was tortured by the Gods of Olympus for giving fire to humanity is often associated with Pandora.
 </p>

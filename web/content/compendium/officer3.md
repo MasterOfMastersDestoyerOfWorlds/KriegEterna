@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Officer', 'Unit', 'Siege']
 ---
-{{<card-detail-page title="Officer3" artwork="Officers from a Cuirassier Regiment in front of a Country House by Édouard Detaille (1897)"  attr="Thomas Paine" book="The Crisis">}}
+{{<card-detail-page code="Officer3" artwork="Officers from a Cuirassier Regiment in front of a Country House by Édouard Detaille (1897)"  attr="Thomas Paine" book="The Crisis">}}
 <p>
 Thomas Paine is perhaps the most important writer of the American Revolution, in his pamphlet <i>Common Sense</i> he convinced the American Colonists to go to war for their independence and in his later work, <i>The Crisis</i>, inspired the army's resolve.
 </p>

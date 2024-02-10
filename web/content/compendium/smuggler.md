@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Power', 'Smuggler', 'Spy']
 ---
-{{<card-detail-page title="Smuggler" artwork="The moneylender (The antique dealer) by Domenico Induno  (1853)">}}
+{{<card-detail-page code="Smuggler" artwork="The moneylender (The antique dealer) by Domenico Induno  (1853)">}}
 <p>
 Much of colonial and exploration history can be summed up in this one thought: "Go east and bring back spices and silk". In our modern globalized world this is hard to understand, as spices are relatively cheap compared to most things you'd want to buy. But in the 1400s, a pound of ginger could cost as much as twelve days labor of a master carpenter.
 </p>

@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Grenadier', 'Unit', 'Ranged']
 ---
-{{<card-detail-page title="Grenadier" artwork="Le Grenadier by Édouard Detaille (1912)" attr="Pierre Cambronne">}}
+{{<card-detail-page code="Grenadier" artwork="Le Grenadier by Édouard Detaille (1912)" attr="Pierre Cambronne">}}
 <p>
 The flavor text is attributed to General Cambronne, one of Napoleon's generals, during the Battle of Waterloo in 1815. Cambronne replied with this quote when asked to surrender by the Duke of Wellington after the battle had clearly been lost.
 </p> 

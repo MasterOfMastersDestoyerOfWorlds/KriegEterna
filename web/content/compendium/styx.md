@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Styx', 'Power', 'Hex']
 ---
-{{<card-detail-page title="Styx" artwork="Dante and Virgil in Hell by William-Adolphe Bouguereau (1850)" attr="Dante Alighieri" book="Inferno">}}
+{{<card-detail-page code="Styx" artwork="Dante and Virgil in Hell by William-Adolphe Bouguereau (1850)" attr="Dante Alighieri" book="Inferno">}}
 <p>
 Why journey into the depths of hell? for Orpheus it was to reclaim his love from the king of the dead (see also {{<cardlink name="Knight">}}), for Heracles it was to wrestle Cerberus as his 12th and final labor of his repentance, and for Dante it was to cleanse his soul and to ascend to heaven. Even in the Greek interpretation, where the underworld was not a place of constant suffering for all, it was not a place to tread lightly, as you might be tricked into becoming a permanent resident. So it is interesting that our greatest heroes often find themselves entering the Great Pit. Maybe it's a writers get out of jail free card when they've killed off a fan favorite, or maybe we see ourselves in the hero stepping over the rotten dead souls and our enemies in the doomed and damned. 
 </p>

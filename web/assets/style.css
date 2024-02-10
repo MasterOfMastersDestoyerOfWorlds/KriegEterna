@@ -814,6 +814,13 @@ img {
     text-align: justify;
     margin: 1em 0em;
 }
+.link-list {
+    max-width: 70%;
+    display: block;
+    align-items: center;
+    text-align: justify;
+    margin: 1em 0em;
+}
 
 @media(max-width:768px) {
     .rule-paragraph {

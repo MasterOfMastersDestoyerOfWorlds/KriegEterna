@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Pyre', 'Power', 'Hex']
 ---
-{{<card-detail-page title="Resurrection" artwork="Joan of Arc by John Everett Millais (1865)" attr="Tertullian" book="Apologeticus">}}
+{{<card-detail-page code="Resurrection" artwork="Joan of Arc by John Everett Millais (1865)" attr="Tertullian" book="Apologeticus">}}
 <p>
 Joan of Arc was a peasant girl who, after having visions of French success in the Hundred Years War against the English, was sent by the French King Charles VII to support the army (see also {{<cardlink name="Knight" code="knight9">}}). Her appearance at some of the largest French victories of the war won her fame, adoration, and even a role in the military as a leader at a time when this was unheard of for women. After a few failed sieges which stained her reputation at court, she organized the relief of Compiègne but was captured by her Burgundian and English enemies in the process. 
 </p>

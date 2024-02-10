@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Solstice', 'Power', 'Weather']
 ---
-{{<card-detail-page title="Solstice" artwork="The Feast of Saint John by Jules Breton (1875)">}}
+{{<card-detail-page code="Solstice" artwork="The Feast of Saint John by Jules Breton (1875)">}}
 <p>
 Since the times of the Vikings, men have gone into the Arctic in order to find fame and fortune. Wether it be the search for the Northwest passage (a fabled route across the northern edge of Canada that could take trade ships to Asia), gold miners in the Yukon, or the race to reach the North Pole, the Arctic has served as a beacon for adventurers and misanthropes who wanted to strike it big and prove themselves against the unforgiving elements. Because the Arctic Circle is vast and underpopulated, there are resources in this desolate waste (gold, furs, oil, etc.) that far outmatch the lands where people have mined and exploited nature since before written records. But just as the potential rewards are immense, the risks are even greater (see also {{<cardlink name="Frost" code="frost">}}).
 </p>

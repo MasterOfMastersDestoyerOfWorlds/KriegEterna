@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Death', 'Power', 'Hex']
 ---
-{{<card-detail-page title="Death2" artwork="Juno's arrival in Hades by Jan Brueghel the Younger (1678)">}}
+{{<card-detail-page code="Death2" artwork="Juno's arrival in Hades by Jan Brueghel the Younger (1678)">}}
 <p>
 When he is in the very prime of his glory sitting in his triumphal
 chariot, even then he is admonished to know himself a man, by

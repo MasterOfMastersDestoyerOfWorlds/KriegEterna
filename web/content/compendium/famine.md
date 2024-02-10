@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Famine', 'Power', 'Hex']
 ---
-{{<card-detail-page title="Famine" artwork="Saturn Devouring his Son by Francisco de Goya (1823)" attr="Hesiod" book="The Theogony">}}
+{{<card-detail-page code="Famine" artwork="Saturn Devouring his Son by Francisco de Goya (1823)" attr="Hesiod" book="The Theogony">}}
 <p>
 Saturn Devouring his Son is part of a series of 14 paintings known as the Black Paintings, which Goya painted directly on the walls of his house. Goya would paint in the middle of the night with a crown of candles attached to his head for light. The painting depicts the Titan Saturn (named Kronos in Greek), who, according to legend, ate his children after it was prophesied that his children would murder him. 
 </p>

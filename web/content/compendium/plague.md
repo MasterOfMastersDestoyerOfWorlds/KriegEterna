@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Plague', 'Power', 'Weather']
 ---
-{{<card-detail-page title="Plague" artwork="Human Fragility by Salvator Rosa (17th century)" attr="Agnolo di Tura" book="Cronica Senese">}}
+{{<card-detail-page code="Plague" artwork="Human Fragility by Salvator Rosa (17th century)" attr="Agnolo di Tura" book="Cronica Senese">}}
 <p>
 After one of the most deadly plagues in history, Salvator Rosa painted this card art in Naples. During the plague, he lost many of his family members including his brother, sister, and son. The death toll would reach 1.25 million across southern Italy and in some cities the population was a half or a third compared to pre-plague totals. The flavor text for this card comes from another plague three centuries earlier in Siena. The full quotation is as follows: 
 </p>

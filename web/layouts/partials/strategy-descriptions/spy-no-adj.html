@@ -1,2 +1,6 @@
+{{if (isset .Params "noBase")}}
+{{else}}
 {{(partial "strategy-descriptions/spy.html")}}
-Unlike most spies, the {{partial "carddeadlink.html" (dict "name" .Page.Title)}} card doesn’t come with the risk of creating adjacency for your opponent.
+{{end}}
+Similar to other spies, {{partial "carddeadlink.html"  . }} comes with the risk of creating adjacency for your opponent, so it is safer to
+play after your opponent has passed.

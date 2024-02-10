@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: single
 tags: ['Base Set', 'Power', 'Zealot', 'Spy']
 ---
-{{<card-detail-page title="Zealot" artwork="The Defenestration by Václav Brožík (1890)" >}}
+{{<card-detail-page code="Zealot" artwork="The Defenestration by Václav Brožík (1890)" >}}
 <p>
     This card depicts the 1618 Defenestration of Prague, in which three Catholic nobles were thrown out of a window at Prague Castle after a dispute over the right to build Protestant churches. All three survived the fall, but as the situation devolved into open revolt, the Emperor and the Bohemians prepared for war (see also {{<cardlink name="Winter King" code="winter-king">}}).
 </p>

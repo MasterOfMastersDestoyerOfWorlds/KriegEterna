@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Redemption', 'Power', 'Hex']
 ---
-{{<card-detail-page title="Redemption" artwork="The Crowning with Thorns by Caravaggio (1602)" book="Luke 23:42">}}
+{{<card-detail-page code="Redemption" artwork="The Crowning with Thorns by Caravaggio (1602)" book="Luke 23:42">}}
 <p>
 Painted by the great Italian painter Caravaggio, the painting depicts the moment when Christ, having been interrogated by Pontius Pilate, is crowned with thorns and derided as the “King of the Jews.”  Caravaggio’s distinctive painting style is shown here, with the use of foreshortening, the extreme light source and incision to outline the contours of the painting.
 </p>

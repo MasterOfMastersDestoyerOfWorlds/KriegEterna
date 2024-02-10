@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Burden', 'Power', 'Hex']
 ---
-{{<card-detail-page title="Burden" artwork="Atlas holding up the celestial globe by Guercino (1646)" attr="Giles Corey">}}
+{{<card-detail-page code="Burden" artwork="Atlas holding up the celestial globe by Guercino (1646)" attr="Giles Corey">}}
 <p>
 This painting depicts the Titan Atlas of Greek mythology, condemned by Zeus to hold the heavens on his shoulders for all eternity because of his part in leading the Titans against the gods of Olympus.  Atlas was considered to be the father of many constellations, the founder of astronomy, and his name was given to the Atlantic ocean.  
 </p>

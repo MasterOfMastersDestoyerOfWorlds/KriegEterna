@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Epiphany', 'Power', 'Hex']
 ---
-{{<card-detail-page title="Enlightenment" artwork="The Orrery of Lutzen by Joseph Wright of Derby (1766)"  attr="Blaise Pascal">}}
+{{<card-detail-page code="Enlightenment" artwork="The Orrery of Lutzen by Joseph Wright of Derby (1766)"  attr="Blaise Pascal">}}
 <p>
 Three young boys look at the solar system as it is explained by an old philosopher. The flavor text is attributed to Blaise Pascal's essay <i>Of the Geometrical Spirit</i> in which he explains some of his thoughts regarding proofs and definitions and how they relate to the underlying truth of the world. In the essay, Pascal describes how we must make assumptions of the true nature of the world and then build from those assumptions and how many things can only be defined self-referentially. 
 </p>

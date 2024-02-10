@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Privateer', 'Unit', 'Ranged']
 ---
-{{<card-detail-page title="Privateer4" artwork="A Galley of Malta by Lorenzo Castro (1680)" >}}
+{{<card-detail-page code="Privateer4" artwork="A Galley of Malta by Lorenzo Castro (1680)" >}}
 <p>
 The Order of Malta, or the Knights Hospitaller, is a Catholic religious order that traces its roots back to the 11th century, when a group of merchants from Amalfi built a hospital in Jerusalem to care for pilgrims. The hospital was dedicated to St. John the Baptist, and the monks who ran it became known as the Hospitallers of St. John. In 1113, Pope Paschal II recognized the Hospitallers as a sovereign order, granting them the right to elect their own leaders and operate independently from other authorities. 
 </p>

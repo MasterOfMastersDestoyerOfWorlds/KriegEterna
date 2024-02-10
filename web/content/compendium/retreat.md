@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Retreat', 'Power', 'Jester']
 ---
-{{<card-detail-page title="Retreat" artwork="Napoleon and his staff are retuning from Soissons after the battle of Laon by Jean-Louis-Ernest Meissonier (1864)" attr="Napoleon" >}}
+{{<card-detail-page code="Retreat" artwork="Napoleon and his staff are retuning from Soissons after the battle of Laon by Jean-Louis-Ernest Meissonier (1864)" attr="Napoleon" >}}
 <p>
 The retreat from the Battle of Laon signified the beginning of the end for Napoleon's first reign. Often outnumbered by Coalition forces in France, as much of his forces were tied down in French-Occupied Iberia fighting Spanish rebels (see also {{<cardlink name="Assault" code="assault2">}}), Napoleon realized he either had to make peace or rally troops throughout the French country side. Napoleon decided on the latter, but while he was moving his army south Paris fell to the Coalition army. The French Senate soon deposed him as Emperor and Napoleon's generals would not take back Paris fearing the destruction of the city.
 </p>

@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Feast', 'Power', 'Hex']
 ---
-{{<card-detail-page title="Feast3" artwork="Feast of Herod with the Beheading of St John the Baptist by Bartlomiej Strobel (1643)" >}}
+{{<card-detail-page code="Feast3" artwork="Feast of Herod with the Beheading of St John the Baptist by Bartlomiej Strobel (1643)" >}}
 <p>
 The painting contains a double meaning about the nature of war and the heads of state that cause it. Painted at near the end of the thirty years war, one of the most brutal and protracted conflicts in the history of Europe, the painting depicts the story of the Feast of Herod from the Bible. In the story, Herod is the King of Galilee and at his birthday banquet his daughter, Salome, performs a dance so beautiful that Herod promises her anything within his power to grant. Salome asks her mother what she should ask the king for and her mother, Herodias, replies that she wants the head of John the Baptist who had previously condemned her incestuous marriage. King Herod complies and serves John's head on a silver platter to Salome.
 </p> 

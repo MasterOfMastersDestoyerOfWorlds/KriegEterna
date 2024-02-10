@@ -1,4 +1,7 @@
+{{if (isset .Params "noBase")}}
+{{else}}
 {{(partial "strategy-descriptions/king.html")}}
-The {{partial "carddeadlink.html" (dict "name" .Page.Title)}}’s unique powers give you access to a weather effect (see
+{{end}}
+The {{partial "carddeadlink.html"  . }}’s unique powers give you access to a weather effect (see
 strategies for {{partial "cardlink.html" (dict "name" "Storm")}}), or sending any unit to the graveyard (see strategies
 for {{partial "cardlink.html" (dict "name" "Death")}}).

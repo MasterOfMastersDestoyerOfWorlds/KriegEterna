@@ -1,1 +1,2 @@
-<a>{{ .name }}</a>
+<a {{if (eq .Params.title .Page.Title)}} {{else}}
+href="/compendium/{{ if .Params.code}}{{lower .Params.code}}{{else}}{{lower .Params.title}}{{end}}"{{end}}>{{ .Params.title }}</a>

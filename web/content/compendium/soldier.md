@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Unit', 'Soldier', "Ranged"]
 ---
-{{<card-detail-page title="Soldier" artwork="Zouave by Paul Louis Narcisse Grolleron (1870)" attr="Leo Tolstoy" book="War and Peace">}}
+{{<card-detail-page code="Soldier" artwork="Zouave by Paul Louis Narcisse Grolleron (1870)" attr="Leo Tolstoy" book="War and Peace">}}
 <p>
 The flavor text is from Leo Tolstoy's <i>War and Peace</i> espoused by Prince Andrei Bolkonsky after his return from the battle of Austerlitz (see also {{<cardlink name="Feint">}}). Andrei had taken his life and wife for granted and had abandoned her in her pregnancy to seek glory in the Napoleonic Wars. This quotation signifies the beginning of his transformation from a selfish and cynical man into a humble and hopeful one. After Andrei is injured in the Battle of Borodino, he gains a new outlook on life and learns to forgive those who've wronged him.
 </p>

@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Ruin', 'Power', 'Hex']
 ---
-{{<card-detail-page title="Ruin" artwork="After Igor Svyatoslavich's fighting with the Cumans by Viktor Vasnetsov (1880)">}}
+{{<card-detail-page code="Ruin" artwork="After Igor Svyatoslavich's fighting with the Cumans by Viktor Vasnetsov (1880)">}}
 <p>
 The swirling mass of horse archers, who were more used to the gallop than walking with their own feet, were a constant threat to settled societies since antiquity. The emperors of China, Persia, and Rome alike spent much time and effort fighting, appeasing, and bribing the tribes of the Tartary, and if they were good at their jobs, they would make sure that no one tribe amassed too much power.
 </p>

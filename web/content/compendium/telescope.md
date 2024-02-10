@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Telescope', 'Unit', 'Ranged']
 ---
-{{<card-detail-page title="Telescope" artwork="Still life with telescopes and an astrolabe, an hour glass, a book and a quill by Philippe Rousseau (1887)" attr="Galileo Galilei" book="Dialogue Concerning the two Chief World Systems">}}
+{{<card-detail-page code="Telescope" artwork="Still life with telescopes and an astrolabe, an hour glass, a book and a quill by Philippe Rousseau (1887)" attr="Galileo Galilei" book="Dialogue Concerning the two Chief World Systems">}}
 <p>
 Galileo Galilei was one of the first astronomers to use the telescope. After hearing about a 1608 patent filed in the Netherlands Galileo soon replicated the result and produced a telescope with 20 times magnification. This allowed him to be the first person to witness the orbit of the Galilean Moons around Jupiter. These four: Io, Europa, Ganymede, and Callisto are Jupiter's largest moons and were the only ones that Galileo could readily see. Until the 1900's they were thought to be the only moons, but with modern optics we now know there are at least 95 moons of Jupiter.
 </p>

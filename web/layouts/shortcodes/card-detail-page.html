@@ -2,15 +2,23 @@
     <div class="main-section">
         <div class="sub-section">
 
-            {{$title := (index .Params "title")}}
+            {{$code := .Params.code}}
 
             {{$data := 0}}
             {{ range $i, $r := getCSV "\t" "data/CardSheet.tsv" }}
             {{ $c := (index . 0) }}
-            {{ if eq $c $title }}
+            {{ if eq $c $code }}
             {{$data = .}}
             {{end}}
             {{ end }}
+
+            
+            {{$title := ""}}
+            {{if (isset .Params "title")}}
+            {{$title = .Params.title}}
+            {{else}}
+            {{$title = (index $data 1)}}
+            {{end}}
 
             {{$type := (index $data 4)}}
             {{$typedesc := $type}}
@@ -57,7 +65,7 @@
             {{end}}
 
             <div class="card-detail">
-                {{partial "cardflip" (dict "Params" (dict "front" $title "back" $cardback "big" "true" "disallowScale"
+                {{partial "cardflip" (dict "Params" (dict "front" $code "back" $cardback "big" "true" "disallowScale"
                 "mobile"))}}
             </div>
 
@@ -65,7 +73,7 @@
 
                 <div style="display: flex;" class="card-detail-taglist">
                     {{partial "nextprev-arrow" (dict "prev" "true" "Page" .Page)}}
-                    {{partial "outlined-title" (dict "h" "h2" "title" (index $data 1) "class" "card-detail-title"
+                    {{partial "outlined-title" (dict "h" "h2" "title" $title "class" "card-detail-title"
                     "shadow"
                     $shadow "type" (lower $type))}}
                     {{partial "nextprev-arrow" (dict "next" "true" "Page" .Page)}}
@@ -138,7 +146,7 @@
                     <b>Strategy:</b>
                 </p>
                 <p>
-                    {{partial (printf "strategy-descriptions/%s.html" $stratDesc) .}}
+                    {{partial (printf "strategy-descriptions/%s.html" $stratDesc) (dict "Params" (dict "title" $title) "Page" .Page)}}
                 </p>
                 {{end}}
 

@@ -1,3 +1,6 @@
+{{if (isset .Params "noBase")}}
+{{else}}
 {{(partial "strategy-descriptions/king.html")}}
-The {{partial "carddeadlink.html" (dict "name" .Page.Title)}}’s unique powers give you access to the same weather
+{{end}}
+The {{partial "carddeadlink.html"  . }}’s unique powers give you access to the same weather
 effect as {{partial "cardlink.html" (dict "name" "Gale")}}, or drawing a card.

@@ -5,7 +5,7 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Sun King', 'King']
 ---
-{{<card-detail-page title="SunKing" artwork="King Louis XIV by Justus van Egmont (1654)" attr="Pierre-Édouard Lémontey" book="Essay on the Monarchical Establishment of Louis XIV and on the Alterations He Underwent During the Life of that Prince">}}
+{{<card-detail-page code="SunKing" title="Sun King" artwork="King Louis XIV by Justus van Egmont (1654)" attr="Pierre-Édouard Lémontey" book="Essay on the Monarchical Establishment of Louis XIV and on the Alterations He Underwent During the Life of that Prince">}}
 <p>
 By the time of King Louis XIV's reign, France was the most centralized that it had ever been. The French Kings since the times of Charlemagne were plagued by strong dukes who often wrestled for control with the monarchy and often were quite successful. Some of these nobles, like the Kings of England (see also  {{<cardlink name="Knight" code="knight9">}}), held their own domains outside of France making it difficult for the French Kings to assert any real control on their more powerful subjects. The Huguenot Protestants were one such group who had successfully fought and won against the Monarchy in the past in order to attain rights and privileges. Under the rule of Louis XIV's father, Louis XIII, and his minister Cardinal Richelieu, the Huguenots had largely been defeated, many of their privileges were revoked, and their fortresses destroyed (see also  {{<cardlink name="Traitor King" code="traitor-king">}}).
 </p>

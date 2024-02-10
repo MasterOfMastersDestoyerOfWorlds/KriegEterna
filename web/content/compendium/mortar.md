@@ -5,4 +5,4 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Mortar', 'Unit', 'Siege']
 ---
-{{<card-detail-page title="Mortar" artwork="Monster Mortar by Thomas Mann Baynes (1833)" />}}
+{{<card-detail-page code="Mortar" artwork="Monster Mortar by Thomas Mann Baynes (1833)" />}}
