@@ -20,10 +20,10 @@
 		<div class="{{if not $disallowFlip}}card-flip{{end}} {{if not $disallowScale}}{{if $noScaleMobile}}card-scale-desktop-only{{else}}card-scale{{end}}{{end}}">
 				<div tabindex="0" class="card-flip-inner">
 				<div class="{{if not $reversed}}card-front{{else}}card-back{{end}}">
-					<img {{ with .Params.front }} src="/card-images/{{.}}.webp" {{ end -}} alt="" class="card-image" unselectable="on">
+					<img {{if not (eq .Params.id nil)}}id="{{.Params.id}}-front"{{end}} {{ with .Params.front }}  src="/card-images/{{.}}.webp" {{ end -}} alt="" class="card-image" unselectable="on">
 				</div>
 				<div class="{{if not $reversed}}card-back{{else}}card-front{{end}}">
-					<img {{ with .Params.back }} src="/card-images/{{.}}.webp" {{ end -}} alt="" class="card-image" unselectable="on">
+					<img {{if not (eq .Params.id nil)}}id="{{.Params.id}}-back"{{end}} {{ with .Params.back }} src="/card-images/{{.}}.webp" {{ end -}} alt="" class="card-image" unselectable="on">
 				</div>
 			</div>
 		</div>

@@ -73,7 +73,7 @@
 
                 <div style="display: flex;" class="card-detail-taglist">
                     {{partial "nextprev-arrow" (dict "prev" "true" "Page" .Page)}}
-                    {{partial "outlined-title" (dict "h" "h2" "title" $title "class" "card-detail-title"
+                    {{partial "outlined-title" (dict "h" "h2" "title" (index $data 1) "class" "card-detail-title"
                     "shadow"
                     $shadow "type" (lower $type))}}
                     {{partial "nextprev-arrow" (dict "next" "true" "Page" .Page)}}

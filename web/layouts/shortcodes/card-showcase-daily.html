@@ -1,0 +1,37 @@
+<section class="no-gradient" >
+    <div class="main-section" style="padding-bottom: 1em;">
+
+        <div class="sub-section video-box">
+
+            <div class="title-wrapper">
+                <h4>Explore a Card</h4>
+            </div>
+            <a href="#" class="card-link" id="card-link">
+                <div class="card-link-image">
+                    {{partial "cardflip" (dict "Params" (dict "front" "Fortress" "back" "Flag" "disallowScale" "mobile" "disallowFlip" "true" "id" "explore"))}}
+                </div></a>
+        </div>
+        <script>
+            var sites = [
+            {{$pages := (where .Site.Pages "Section" "compendium")}}
+            {{$len := (len $pages)}}
+            {{ range $i, $e := (where .Site.Pages "Section" "compendium") }}
+            {{if not (eq .RelPermalink "/compendium/")}}
+            {{.RelPermalink}}{{ if (lt $i (sub $len 1) )}}, {{ end }} {{ end }} 
+            {{ end }}
+            ];
+            var images = [
+            {{$pages := (where .Site.Pages "Section" "compendium")}}
+            {{$len := (len $pages)}}
+            {{ range $i, $e := (where .Site.Pages "Section" "compendium") }}
+            {{if not (eq .RelPermalink "/compendium/")}}
+            {{.Params.code}}{{ if (lt $i (sub $len 1) )}}, {{ end }} 
+            {{end}}
+            {{ end }}
+            ];
+            var i = parseInt(Math.random(0) * sites.length);
+            document.getElementById("card-link").href = sites[i];
+            document.getElementById("explore-front").src = "/card-images/" + images[i] + ".webp";
+        </script>
+    </div>
+</section>

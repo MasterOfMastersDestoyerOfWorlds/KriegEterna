@@ -21,6 +21,10 @@ layout: single
     </div>
 </section>
 
+
+
+{{<card-showcase-daily>}}
+
 <section class="no-gradient">
     {{< news-letter-signup >}}
 </section>
