@@ -6,10 +6,12 @@
             <div class="title-wrapper">
                 <h4>Explore a Card</h4>
             </div>
+            <div class="card-link-description">
+                Click the card below to learn more about the strategy, artwork, and history behind the card.
+            </div>
             <a href="#" class="card-link" id="card-link">
-                <div class="card-link-image">
-                    {{partial "cardflip" (dict "Params" (dict "front" "Fortress" "back" "Flag" "disallowScale" "mobile" "disallowFlip" "true" "id" "explore"))}}
-                </div></a>
+                {{partial "cardflip" (dict "Params" (dict "front" "Fortress" "back" "Flag" "big" "true" "disallowScale" "mobile" "disallowFlip" "true" "id" "explore"))}}
+            </a>
         </div>
         <script>
             var sites = [

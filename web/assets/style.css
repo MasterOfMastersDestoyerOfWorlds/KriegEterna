@@ -814,21 +814,6 @@ img {
     text-align: justify;
     margin: 1em 0em;
 }
-.link-list {
-    max-width: 70%;
-    display: block;
-    align-items: center;
-    text-align: justify;
-    margin: 1em 0em;
-}
-
-
-.card-link-image{
-    min-width: 275px;
-    min-height: 375px;
-    margin: 20px;
-    flex: auto;
-}
 
 @media(max-width:768px) {
     .rule-paragraph {
@@ -1279,7 +1264,7 @@ img {
 }
 
 .video-background {
-    --wrap-padding--base: 20px 0 20px;
+    --wrap-padding--base: 20px 0 min(20px, 5%);
     --wrap-padding--sm: 30px 0 30px;
     --wrap-padding--md: 40px 0 40px;
     --wrap-padding: var(--wrap-padding--base);
@@ -1310,6 +1295,28 @@ img {
     background-color: var(--theme-primary-color--200);
     border-radius: 1.25rem;
     box-shadow: 0em 0em 1em var(--black);
+}
+
+.link-list {
+    max-width: 70%;
+    display: block;
+    align-items: center;
+    text-align: justify;
+    margin: 1em 0em;
+}
+
+.card-link {
+    width: min(275px, 90%);
+    padding: 2em 0 min(2em, 7.5%);
+    flex: auto;
+}
+
+.card-link-description {
+    max-width: min(25em, 80%);
+    display: block;
+    align-items: center;
+    text-align: center;
+    margin: 1em auto 0;
 }
 
 .product-scroll-box {
