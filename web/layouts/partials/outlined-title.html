@@ -4,9 +4,13 @@
 -->
 
 {{ if eq .h "h2" }}
-    <h2 class="{{.class}} {{.shadow}}" id="titleshadow" aria-hidden="true">{{.title}}</h2>
-    <h2 class="{{.class}} {{.type}}" {{if not (eq .id nil)}}id="{{.id}}"{{end}}>{{.title}}</h2>
+    <div>
+        <h2 class="{{.class}} {{.shadow}}" id="titleshadow" aria-hidden="true">{{.title}}</h2>
+        <h2 class="{{.class}} {{.type}}" {{if not (eq .id nil)}}id="{{.id}}"{{end}}>{{.title}}</h2>
+    </div>
 {{ else }}
-    <h3 class="{{.class}} {{.shadow}}" id="titleshadow" aria-hidden="true">{{.title}}</h3>
-    <h3 class="{{.class}} {{.type}}" {{if not (eq .id nil)}}id="{{.id}}"{{end}}>{{.title}}</h3>
+    <div>
+        <h3 class="{{.class}} {{.shadow}}" id="titleshadow" aria-hidden="true">{{.title}}</h3>
+        <h3 class="{{.class}} {{.type}}" {{if not (eq .id nil)}}id="{{.id}}"{{end}}>{{.title}}</h3>
+    </div>
 {{ end }}
