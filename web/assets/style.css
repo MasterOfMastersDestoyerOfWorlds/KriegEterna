@@ -1206,7 +1206,7 @@ img {
  }
 
 .card-detail-box {
-    max-width: min(35em, 90vw);
+    width: min(35em, 90vw);
     margin: 2em auto 0;
     padding: 2em 2em 1em 2em;
     background-color: var(--theme-primary-color--200);
