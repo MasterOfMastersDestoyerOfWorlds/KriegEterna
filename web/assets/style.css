@@ -1202,6 +1202,7 @@ img {
     display: block;
     margin: auto;
     text-align: center;
+    padding: 0.1em; /* need padding so that lettering isn't clipped" */
  }
 
 .card-detail-box {
@@ -2929,18 +2930,24 @@ button#clear-search {
     align-items: flex-end;
 }
 
-
-
-.nextprev-arrow {
-    z-index: 2;
-    min-width: 40px;
-    width:50px;
-    margin: auto;
-}
-
 @media (max-width:768px) {
     .nextprev {
         min-width: 90%;
+    }
+}
+
+.nextprev-arrow {
+    z-index: 2;
+    min-width: 70px;
+    margin: auto 0;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 1em;
+}
+
+@media (max-width:768px) {
+    .nextprev-arrow {
+        min-width: 30px;
     }
 }
 
@@ -2968,7 +2975,6 @@ button#clear-search {
     width: min(200px, 40vw);
     min-width: 33%;
 }
-
 
 body {
     z-index: 1;

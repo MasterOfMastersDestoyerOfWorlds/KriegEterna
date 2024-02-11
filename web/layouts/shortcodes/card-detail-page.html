@@ -71,7 +71,7 @@
 
             <div class="card-detail-box">
 
-                <div style="display: flex;" class="card-detail-taglist">
+                <div style="display: flex; justify-content: space-between;" class="card-detail-taglist">
                     {{partial "nextprev-arrow" (dict "prev" "true" "Page" .Page)}}
                     {{partial "outlined-title" (dict "h" "h2" "title" (index $data 1) "class" "card-detail-title"
                     "shadow"
