@@ -1159,10 +1159,12 @@ img {
         min-width: 90%;
     }
 }
+
 .review {
     align-items: center;
     display: block;
 }
+
 .review-text{
     align-items: center;
     margin: auto;
@@ -1170,6 +1172,7 @@ img {
     font-size: 25px;
     display: block;
 }
+
 .review-name{
     align-items: center;
     margin: auto;
@@ -1177,6 +1180,7 @@ img {
     font-size: 25px;
     display: block;
 }
+
 .stars {
     color: var(--theme-accent-color);
     width: 30vw;
@@ -1188,14 +1192,6 @@ img {
 
 .card-detail {
     width: min(400px, 90%);
-}
-
-.caption {
-    font-size: small;
-    text-align: center;
-}
-.card-detail-image {
-    max-height:50vh;
 }
 
 .card-detail-taglist {
@@ -1241,6 +1237,10 @@ img {
     max-width: 70%;
 }
 
+.card-detail-about {
+    max-width: min(35em, 90vw);
+}
+
 .card-detail-about b {
     /* highlight a word */
     color: var(--theme-accent-color);
@@ -1249,7 +1249,6 @@ img {
 }
 
 .card-detail-about p {
-    max-width: min(35em, 90vw);
     display: block;
     align-items: center;
     text-align: justify;
@@ -1257,10 +1256,15 @@ img {
 }
 
 .card-detail-about img {
-    max-width: min(35em, 90vw);
+    max-height: 50vh;
     display: block;
     margin: 1.5em auto;
     border-radius: 15px;
+}
+
+.card-detail-about figcaption {
+    font-size: small;
+    text-align: center;
 }
 
 .video-background {
