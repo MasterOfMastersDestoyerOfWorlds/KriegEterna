@@ -99,48 +99,56 @@ button {
     ;
     background-clip: text;
     -webkit-background-clip: text;
+    padding: 0 0.1em;
 }
 
 .melee {
     background: linear-gradient(to top, #320101, #e20001, #ffbbbc);
     background-clip: text;
     -webkit-background-clip: text;
+    padding: 0 0.1em;
 }
 
 .siege {
     background: linear-gradient(to top, #5a4200, #fbc00d, #f4ecb4);
     background-clip: text;
     -webkit-background-clip: text;
+    padding: 0 0.1em;
 }
 
 .power {
     background: linear-gradient(to top, #22004a, #7712fb, #d2b4f7);
     background-clip: text;
     -webkit-background-clip: text;
+    padding: 0 0.1em;
 }
 
 .decoy {
     background: linear-gradient(to top, #102f11, #00d303, #bef1bd);
     background-clip: text;
     -webkit-background-clip: text;
+    padding: 0 0.1em;
 }
 
 .spy {
     background: linear-gradient(to top, #181818, #2b2b2b, #dcdcdc);
     background-clip: text;
     -webkit-background-clip: text;
+    padding: 0 0.1em;
 }
 
 .weather {
     background: linear-gradient(to top, #13368c, #2024ec, #9bbdeb);
     background-clip: text;
     -webkit-background-clip: text;
+    padding: 0 0.1em;
 }
 
 .king {
     background: linear-gradient(to top, #8e7733, #cbb044, #d2ab17, #f8da2f, #b48c04, #a78722);
     background-clip: text;
     -webkit-background-clip: text;
+    padding: 0 0.1em;
 }
 
 .tilting {
@@ -814,21 +822,6 @@ img {
     text-align: justify;
     margin: 1em 0em;
 }
-.link-list {
-    max-width: 70%;
-    display: block;
-    align-items: center;
-    text-align: justify;
-    margin: 1em 0em;
-}
-
-
-.card-link-image{
-    min-width: 275px;
-    min-height: 375px;
-    margin: 20px;
-    flex: auto;
-}
 
 @media(max-width:768px) {
     .rule-paragraph {
@@ -1174,10 +1167,12 @@ img {
         min-width: 90%;
     }
 }
+
 .review {
     align-items: center;
     display: block;
 }
+
 .review-text{
     align-items: center;
     margin: auto;
@@ -1185,6 +1180,7 @@ img {
     font-size: 25px;
     display: block;
 }
+
 .review-name{
     align-items: center;
     margin: auto;
@@ -1192,6 +1188,7 @@ img {
     font-size: 25px;
     display: block;
 }
+
 .stars {
     color: var(--theme-accent-color);
     width: 30vw;
@@ -1205,14 +1202,6 @@ img {
     width: min(400px, 90%);
 }
 
-.caption {
-    font-size: small;
-    text-align: center;
-}
-.card-detail-image {
-    max-height:50vh;
-}
-
 .card-detail-taglist {
     margin: 0.5em 0 0.5em
 }
@@ -1224,7 +1213,7 @@ img {
  }
 
 .card-detail-box {
-    max-width: min(35em, 90vw);
+    width: min(35em, 90vw);
     margin: 2em auto 0;
     padding: 2em 2em 1em 2em;
     background-color: var(--theme-primary-color--200);
@@ -1256,6 +1245,10 @@ img {
     max-width: 70%;
 }
 
+.card-detail-about {
+    max-width: min(35em, 90vw);
+}
+
 .card-detail-about b {
     /* highlight a word */
     color: var(--theme-accent-color);
@@ -1264,7 +1257,6 @@ img {
 }
 
 .card-detail-about p {
-    max-width: min(35em, 90vw);
     display: block;
     align-items: center;
     text-align: justify;
@@ -1272,14 +1264,19 @@ img {
 }
 
 .card-detail-about img {
-    max-width: min(35em, 90vw);
+    max-height: 50vh;
     display: block;
     margin: 1.5em auto;
     border-radius: 15px;
 }
 
+.card-detail-about figcaption {
+    font-size: small;
+    text-align: center;
+}
+
 .video-background {
-    --wrap-padding--base: 20px 0 20px;
+    --wrap-padding--base: 20px 0 min(20px, 5%);
     --wrap-padding--sm: 30px 0 30px;
     --wrap-padding--md: 40px 0 40px;
     --wrap-padding: var(--wrap-padding--base);
@@ -1310,6 +1307,28 @@ img {
     background-color: var(--theme-primary-color--200);
     border-radius: 1.25rem;
     box-shadow: 0em 0em 1em var(--black);
+}
+
+.link-list {
+    max-width: 70%;
+    display: block;
+    align-items: center;
+    text-align: justify;
+    margin: 1em 0em;
+}
+
+.card-link {
+    width: min(275px, 90%);
+    padding: 2em 0 min(2em, 7.5%);
+    flex: auto;
+}
+
+.card-link-description {
+    max-width: min(25em, 80%);
+    display: block;
+    align-items: center;
+    text-align: center;
+    margin: 1em auto 0;
 }
 
 .product-scroll-box {
@@ -1353,20 +1372,29 @@ img {
     object-fit: contain;
 }
 
+.product-box hr {
+    display: block;
+    height: 3px;
+    border: 0;
+    border-top: 3px solid;
+    margin: 1em auto;
+    padding: 0;
+    max-width: 60%;
+}
+
 .product-title {
     margin: 1.25em 0 0;
 }
 
 .product-price {
-    margin: 1em 0 0;
+    margin: 0.5em 0 0;
     color: var(--theme-link-color);
-    font-size: 20px;
     font-weight: 800 !important
 }
 
 .product-desc {
     line-height: 1.5em;
-    margin: 1em 0;
+    margin: 0 0 1em;
     width: 100%;
     text-align: inherit
 }
@@ -1487,7 +1515,7 @@ html[lang=zh-Hant] .css-lV1Vi {
 
 .buy-product-button {
     background-color: var(--button-bg-color);
-    border: 2px solid var(--button-border-color);
+    border: 3px solid var(--button-border-color);
     border-radius: var(--button-border-radius);
     color: var(--theme-button-color);
     font-family: var(--button-font-family);
@@ -1516,7 +1544,7 @@ html[lang=zh-Hant] .css-lV1Vi {
 .buy-product-button:focus,
 .buy-product-button:hover {
     color: var(--theme-accent-color);
-    border: 2px solid var(--button-border-color);
+    border: 3px solid var(--button-border-color);
 }
 
 .buy-product-button:active {
@@ -2487,7 +2515,7 @@ input[type=submit],
     border: 0;
     letter-spacing: inherit;
     white-space: normal;
-    border: 2px solid var(--black);
+    border: 3px solid var(--black);
     background-color: var(--white);
     color: #ffffff;
     transition: background-color 0.25s, color 0.25s, box-shadow 0.25s;
@@ -2514,7 +2542,7 @@ input[type=submit].btn--secondary,
 input[type=submit].btn--quicklook,
 .btn.btn--secondary,
 .btn.btn--quicklook {
-    border: 2px solid var(--white);
+    border: 3px solid var(--white);
     background-color: var(--theme-primary-color--300);
     color: var(--white);
 }
@@ -2909,18 +2937,24 @@ button#clear-search {
     align-items: flex-end;
 }
 
-
-
-.nextprev-arrow {
-    z-index: 2;
-    min-width: 40px;
-    width:50px;
-    margin: auto;
-}
-
 @media (max-width:768px) {
     .nextprev {
         min-width: 90%;
+    }
+}
+
+.nextprev-arrow {
+    z-index: 2;
+    min-width: 70px;
+    margin: auto 0;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 1em;
+}
+
+@media (max-width:768px) {
+    .nextprev-arrow {
+        min-width: 30px;
     }
 }
 
@@ -2948,7 +2982,6 @@ button#clear-search {
     width: min(200px, 40vw);
     min-width: 33%;
 }
-
 
 body {
     z-index: 1;
