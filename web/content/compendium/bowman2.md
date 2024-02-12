@@ -9,4 +9,5 @@ tags: ['Base Set', 'Bowman', 'Unit', 'Ranged']
 <p>
 Auguste Serrure was a Belgian painter, famous for his genre (or everyday life) scenes of citizens of Antwerp.  Working around the same time as the French Impressionists, he is yet considered a realistic painter.
 </p>
+{{<card-detail-image file="serrure.jpg" caption="The Charming Adversary by Auguste Serrure (1871)">}}
 {{</card-detail-page>}}
