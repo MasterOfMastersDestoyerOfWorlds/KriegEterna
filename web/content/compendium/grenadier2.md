@@ -11,6 +11,6 @@ The French march to democracy was a long and sordid affair with much bloodshed a
 </p>
 {{<card-detail-image file="revolution.jpg" caption="Lamartine in front of the Town Hall of Paris rejects the red flag by Henri Félix Emmanuel Philippoteaux">}}
 <p>
-The French had no such luxury as the monarchy was powerful and entrenched in society. So when Napoleon led France to dominate Europe, or the most extreme revolutionaries led the country bleed itself dry in the Reign of Terror, there were vivid examples of the failures of revolution and democracy (see also {{<cardlink name="Feint">}}). We should remember, that while revolution is often necessary, it comes at a high price and little guarantee of liberty or a just government after a revolution's success.
+The French had no such luxury as the monarchy was powerful and entrenched in society. So when Napoleon led France to dominate Europe, or the most extreme revolutionaries led the country bleed itself dry in the Reign of Terror, there were vivid examples of the failures of revolution and democracy (see also {{<cardlink name="Feint">}}).  We should remember, that while revolution is often necessary, it comes at a high price and with little guarantee of liberty or a just government after it's success "for one change always leaves the toothing for another" - Machiavelli, <i>The Prince</i>.
 </p>
 {{</card-detail-page>}}
