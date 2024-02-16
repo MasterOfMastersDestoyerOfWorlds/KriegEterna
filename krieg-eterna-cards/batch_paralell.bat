@@ -35,7 +35,7 @@ set "maxProc=5"
   set launch=1
   SET WSPACE=%~dp0
   SET "WSPACE=%WSPACE:\=\\%"
-  for /F "tokens=1-6 delims=	" %%A in (CardSheet.tsv) do (
+  for /F "tokens=1-8 delims=	" %%A in (CardSheet.tsv) do (
   
 	if "%%E"=="Ranged" (
 		SET outlinedark=TRUE
@@ -66,7 +66,7 @@ set "maxProc=5"
     2>nul del %lock%!nextProc!
     %= Redirect the lock handle to the lock file. The CMD process will     =%
     %= maintain an exclusive lock on the lock file until the process ends. =%
-    start /b "" cmd /c %lockHandle%^>"%lock%!nextProc!" 2^>^&1 gimp-console-2.10.exe -i -b "(script-fu-compile-card \"%%B\" \"%%C\" \"%%D\" \"%%E\" \"%%E-Title\" \"%%F\" \"%WSPACE%cropped\\%%A.xcf\" \"%WSPACE%icons\\embossed\\%%E.xcf\" \"%WSPACE%out\" \"%%A\" \"!outlinedark!\")" -b "(gimp-quit 0)""
+    start /b "" cmd /c %lockHandle%^>"%lock%!nextProc!" 2^>^&1 gimp-console-2.10.exe -i -b "(script-fu-compile-card \"%%B\" \"%%C\" \"%%D\" %%H \"%%E\" \"%%E-Title\" \"%%F\" \"%WSPACE%cropped\\%%A.xcf\" \"%WSPACE%icons\\embossed\\%%E.xcf\" \"%WSPACE%out\" \"%%A\" \"!outlinedark!\")" -b "(gimp-quit 0)""
   )
   set "launch="
 

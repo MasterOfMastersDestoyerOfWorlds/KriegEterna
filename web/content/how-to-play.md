@@ -126,7 +126,7 @@ layout: single
     <div class="sub-section">
         <div class="rule-box">
             {{< icon-paragraph icon="Weather" text="<b>Weather cards</b> affect the total strength of one of the rows, for all players. Within the affected row, Weather applies individually to each unit; always round unit strength down when dividing, with a minimum strength of one per unit. Keep Weather cards on the field until their effects end." >}}
-            <img src="/gif/WeatherEx.gif" alt="" class="landscape-gif" unselectable="on" loading="lazy">
+            <img src="/gif/WeatherEx-400.gif" alt="" class="landscape-gif" unselectable="on" loading="lazy">
         </div>
         <div class="rule-box">
             {{< icon-paragraph icon="Spy" text="<b>Spy cards</b> allow you to draw cards, but are played as units on your opponent's side of the field, thereby adding to your opponent's total strength. At the end of the round, most Spys go directly to the hand of the player whose side of the field they are on, allowing your opponent to turn your Spys against you." >}}
@@ -166,14 +166,14 @@ layout: single
             A row has 3 units with base strength 2. Two units form an adjacent pair, but the
             third does not get a bonus. The row's total score is: (2 × 2) + (2 × 2) + 2 = 10.
         </p>
-        <img src="/gif/AdjacencyEx1.gif" alt="" class="landscape-gif" unselectable="on" loading="lazy">
+        <img src="/gif/AdjacencyEx1-400.gif" alt="" class="landscape-gif" unselectable="on" loading="lazy">
     </div>
     <div class="rule-box">
         <h4>Example 2:</h4>
         <p>
             A row has 2 units with base strength 4. A certain power is then played to subtract 1 strength from all units in that row. Both units now have strength 3, and so receive an adjacency bonus. The row's total score is: ((4 - 1) × 2) + ((4 - 1) × 2) = 12.
         </p>
-        <img src="/gif/AdjacencyEx2.gif" alt="" class="landscape-gif" unselectable="on" loading="lazy">
+        <img src="/gif/AdjacencyEx2-400.gif" alt="" class="landscape-gif" unselectable="on" loading="lazy">
     </div>
     <div class="title-wrapper">
         {{< outlined-title title="Passing" h="h3" class="rule-title">}}

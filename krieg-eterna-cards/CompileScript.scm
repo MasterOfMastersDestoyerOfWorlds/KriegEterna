@@ -12,8 +12,9 @@
     SF-STRING      "Text"          "Frost"   					;titleText 		need
 	SF-STRING      "Text"          "effect desc"   				;effect	    	need
 	SF-STRING      "Text"          "flavor text"  				;flavor			need
+    SF-ADJUSTMENT  "Font size"     '(50 1 1000 1 10 0 1) 		;back-opacity 	need
 	SF-GRADIENT    "Gradient" 	   "Weather"					;gradient		need
-	SF-GRADIENT    "Gradient" 	   "Weather"					;title-gradient		need
+	SF-GRADIENT    "Gradient" 	   "Weather"					;title-gradient	need
 	SF-STRING  	   "Text" 	   	   "0"							;strength		need
 	SF-FILENAME    "FILENAME"     (string-append "C:\\Users\\Drew\\Documents\\Gimp\\cropped\\" "Frost.xcf") ;file
 	SF-FILENAME    "FILENAME"     (string-append "C:\\Users\\Drew\\Documents\\Gimp\\icons\\" "Weather.xcf") ;icon-file
@@ -26,7 +27,7 @@
   (script-fu-menu-register "script-fu-compile-card" "<Image>/File/Create/Text")
 
   
-  (define (script-fu-compile-card titleText effect flavor gradient title-gradient strength file icon-file out-folder out-file outline-dark)
+  (define (script-fu-compile-card titleText effect flavor back-opacity gradient title-gradient strength file icon-file out-folder out-file outline-dark)
     (let*
       (
         ; define our local variables
@@ -42,7 +43,6 @@
 		(real-effect-height 0)
 		(strength-width 10)
 		(strength-height 10)
-		(back-opacity 80); was 70
 		(flavor-width 10)
 		(flavor-height 10)
 		(real-flavor-height 0)
@@ -353,7 +353,7 @@
 		
 	  (gimp-message "Strength")
 		;;Strength  formatting
-		(if (>= (string-length strength) 1) (begin
+		(if (>= (string-length (string-trim strength)) 1) (begin
 		  (set! strength-size (/ image-width 6)) 
 		  (set! strength-text
 						(car
