@@ -1,11 +1,12 @@
-<div class="review">
+
+		<div class="sub-section  review-box ">
+			<div class="review">
 	{{partial "icon-stars" .}}
 	<p class="review-text">
-		{{ safe.HTML .Inner}}
+		{{safe.HTML .Params.text}}
 	</p>
-	<br>
-	<br>
 	<p class="review-name">
 		- {{.Params.name}}
 	</p>
+</div>
 </div>

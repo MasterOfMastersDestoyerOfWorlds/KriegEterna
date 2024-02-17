@@ -1169,8 +1169,10 @@ img {
 }
 
 .review {
-    align-items: center;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 300px;
 }
 
 .review-text{
@@ -1185,13 +1187,25 @@ img {
     align-items: center;
     margin: auto;
     text-align: right;
+
     font-size: 25px;
     display: block;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.review-box {
+    width: fit-content;
+    margin: 0 auto;
+    margin-right: 30px;
+    padding: 2em;
+    background-color: var(--theme-primary-color--200);
+    border-radius: 1.25rem;
+    box-shadow: 0em 0em 1em var(--black);
 }
 
 .stars {
     color: var(--theme-accent-color);
-    width: 30vw;
     height: 15vh;
     margin: auto;
     margin-top: -7vh;
@@ -2490,6 +2504,7 @@ html[lang=zh-Hant] .css-4zJQw {
     border-radius: 1.25rem;
     box-shadow: 0em 0em 1em var(--black);
 }
+
 
 button,
 input[type=submit],

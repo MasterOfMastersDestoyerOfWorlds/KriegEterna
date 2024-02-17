@@ -10,6 +10,8 @@ layout: single
 
 {{<product-showcase-section>}}
 
+{{<review-showcase-section>}}
+
 <section class="no-gradient">
     <div class="main-section" style="padding-bottom: 1em;">
         <div class="sub-section video-box">
