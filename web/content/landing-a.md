@@ -10,9 +10,7 @@ trackingCode: "https://www.amazon.com/dp/B0CJHWGZYF?maas=maas_adg_A496CD4726DD0C
 
 {{<card-gallery-section>}}
 
-{{<review name= "Owen" text="So many ways to play this game! After hours of gameplay I’m still coming up with new strategies and ways to win, definitely recommend if you want a unique and exciting card game.">}}
-So many ways to play this game! After hours of gameplay I’m still coming up with new strategies and ways to win, definitely recommend if you want a unique and exciting card game.
-{{</review>}}
+{{<review-showcase-section>}}
 
 {{<slanted-section>}}
 <section class="no-gradient">
@@ -25,9 +23,6 @@ So many ways to play this game! After hours of gameplay I’m still coming up wi
         </div>
     </div>
 </section>
-{{<review name= "Andrew">}}
-Fun quick games with lots of variety between sessions. <br> Would recommend!
-{{</review>}}
 
 <section class="no-gradient">
     {{< news-letter-signup >}}
