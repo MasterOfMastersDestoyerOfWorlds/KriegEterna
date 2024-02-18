@@ -784,7 +784,7 @@ img {
     padding: .5em 2em;
     background-color: var(--theme-primary-color--200);
     border-radius: 1.25rem;
-    box-shadow: 0em 0em 1em var(--black);
+    box-shadow: 0em 0em 1em var(--black-alpha75);
     text-align: left;
 }
 
@@ -1171,42 +1171,47 @@ img {
 .review {
     display: flex;
     flex-direction: column;
-    font-size: larger;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
     width: min(400px, 60vw);
-    height: min(300px,80vw);
+    height: 250px;
 }
 
-.review-text{
-    align-items: center;
-    margin: auto;
-    text-align: center;
+.review-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 1em auto 0;
+}
+
+.review-text {
+    font-size: 0.9em;
+    font-style: italic;
+    margin: 1em auto;
     display: block;
 }
 
-.review-name{
-    align-items: center;
-    margin: auto;
+.review-name {
+    margin: 0 1em 0 auto;
     text-align: right;
     display: block;
-    margin-bottom: 10px;
-    margin-right: 10px;
+    font-weight: bold;
 }
 
 .review-box {
     width: fit-content;
     margin: 0 auto;
-    margin-right: 30px;
+    margin-right: 1em;
     padding: 2em;
     background-color: var(--theme-primary-color--200);
     border-radius: 1.25rem;
-    box-shadow: 0em 0em 1em var(--black);
+    box-shadow: 0em 0em 1em var(--black-alpha75);
 }
 
 .stars {
     color: var(--theme-accent-color);
-    height: 15vh;
-    margin: auto;
-    margin-top: -7vh;
+    height: 1.75em;
+    margin: 0 auto;
     display: block;
 }
 
@@ -1230,7 +1235,7 @@ img {
     padding: 2em 2em 1em 2em;
     background-color: var(--theme-primary-color--200);
     border-radius: 1.25rem;
-    box-shadow: 0em 0em 1em var(--black);
+    box-shadow: 0em 0em 1em var(--black-alpha75);
     text-align: center;
 }
 
@@ -1318,7 +1323,7 @@ img {
     padding: 2em 0 0 0;
     background-color: var(--theme-primary-color--200);
     border-radius: 1.25rem;
-    box-shadow: 0em 0em 1em var(--black);
+    box-shadow: 0em 0em 1em var(--black-alpha75);
 }
 
 .link-list {
@@ -2129,7 +2134,8 @@ html[lang=zh-Hant] .css-4zJQw {
     overflow: hidden;
     margin: 0 !important;
     width: 100% !important;
-    height: auto !important
+    height: auto !important;
+    box-shadow: 0 0 0.5em 0 var(--black-alpha75);
 }
 
 .card-image:focus {
