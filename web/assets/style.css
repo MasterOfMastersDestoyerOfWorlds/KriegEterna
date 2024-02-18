@@ -784,7 +784,7 @@ img {
     padding: .5em 2em;
     background-color: var(--theme-primary-color--200);
     border-radius: 1.25rem;
-    box-shadow: 0em 0em 1em var(--black);
+    box-shadow: 0em 0em 1em var(--black-alpha75);
     text-align: left;
 }
 
@@ -1199,7 +1199,7 @@ img {
     padding: 2em;
     background-color: var(--theme-primary-color--200);
     border-radius: 1.25rem;
-    box-shadow: 0em 0em 1em var(--black);
+    box-shadow: 0em 0em 1em var(--black-alpha75);
 }
 
 .stars {
@@ -1230,7 +1230,7 @@ img {
     padding: 2em 2em 1em 2em;
     background-color: var(--theme-primary-color--200);
     border-radius: 1.25rem;
-    box-shadow: 0em 0em 1em var(--black);
+    box-shadow: 0em 0em 1em var(--black-alpha75);
     text-align: center;
 }
 
@@ -1318,7 +1318,7 @@ img {
     padding: 2em 0 0 0;
     background-color: var(--theme-primary-color--200);
     border-radius: 1.25rem;
-    box-shadow: 0em 0em 1em var(--black);
+    box-shadow: 0em 0em 1em var(--black-alpha75);
 }
 
 .link-list {
@@ -2129,7 +2129,8 @@ html[lang=zh-Hant] .css-4zJQw {
     overflow: hidden;
     margin: 0 !important;
     width: 100% !important;
-    height: auto !important
+    height: auto !important;
+    box-shadow: 0 0 0.5em 0 var(--black-alpha75);
 }
 
 .card-image:focus {
