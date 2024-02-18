@@ -1,12 +1,16 @@
-
-		<div class="sub-section  review-box ">
-			<div class="review">
-	{{partial "icon-stars" .}}
-	<p class="review-text">
-		{{safe.HTML .Params.text}}
-	</p>
-	<p class="review-name">
-		- {{.Params.name}}
-	</p>
-</div>
+<div class="sub-section  review-box ">
+	<div class="review">
+		<div>
+			{{partial "icon-stars" .}}
+			<p class="review-title">
+				{{ .Params.title}}
+			</p>
+		</div>
+		<p class="review-text">
+			{{safe.HTML .Params.text}}
+		</p>
+		<p class="review-name">
+			- {{.Params.name}}
+		</p>
+	</div>
 </div>
