@@ -41,6 +41,8 @@
 		(effect-width 10)
 		(effect-height 10)
 		(real-effect-height 0)
+		(effect-back-height 10)
+		(effect-back-width 10)
 		(strength-width 10)
 		(strength-height 10)
 		(flavor-width 10)
@@ -602,7 +604,7 @@
 
 		(if (> (string-length effect) 1)
 			(set! effect-back-layer (car (gimp-layer-new image (- (- image-width (+ buffer buffer)) (+ buffer buffer)) (+ (* 2 buffer) real-flavor-height real-effect-height) 1 "desc background" back-opacity 0)))
-			(set! effect-back-layer (car (gimp-layer-new image (- (- image-width (+ buffer buffer)) (+ buffer buffer)) (* 4 buffer) 1 "desc background" back-opacity 0)))
+			(set! effect-back-layer (car (gimp-layer-new image (- (- image-width (+ buffer buffer)) (+ buffer buffer)) (* 4 buffer) 1 "effect-desc-background" back-opacity 0)))
 		
 		)		
 
@@ -612,14 +614,17 @@
 		
 		(gimp-layer-set-offsets effect-back-layer (+ buffer buffer)( - image-height (/ image-height 2.9)))
 		
-		
+		(set! effect-back-width   (car (gimp-drawable-width  effect-back-layer) ) )
+		(set! effect-back-height   (car (gimp-drawable-height  effect-back-layer) ) )
+		(gimp-message (number->string effect-back-height))
+		(gimp-message (number->string (+ (* -0.0324675324675 effect-back-height) 44.025974025974)))
 		
 		(gimp-selection-all image)
 		(gimp-drawable-edit-fill effect-back-layer 1)
 		(gimp-selection-layer-alpha effect-back-layer)
 		(gimp-image-select-item image 2 effect-back-layer)
 		(gimp-drawable-edit-fill effect-back-layer 3)
-		(script-fu-selection-rounded-rectangle image effect-back-layer 30 FALSE)
+		(script-fu-selection-rounded-rectangle image effect-back-layer (+ (* -0.0324675324675 effect-back-height) 44.025974025974) FALSE)
 		(gimp-drawable-edit-gradient-fill effect-back-layer GRADIENT-SHAPEBURST-SPHERICAL 90 FALSE 0 0 TRUE 0 0 100 100)
 		(gimp-drawable-brightness-contrast effect-back-layer -0.5 0)
 		(script-fu-drop-shadow image effect-back-layer 12 12 4 '(0 0 0) 70 0)
