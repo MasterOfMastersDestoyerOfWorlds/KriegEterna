@@ -49,7 +49,7 @@
 		(flavor-height 10)
 		(real-flavor-height 0)
 		(black-border-text FALSE)
-		(titleFont 	"Gargouille")
+		(titleFont 	"GargouilleBold")
 		(strengthFont 	"Highlander Ultra-Heavy")
 		(descFont  	"Open Sans Semi-Bold")
 		(flavorFont "Open Sans Semi-Bold Italic")
@@ -236,7 +236,7 @@
 		(set! title-width  (+ title-width  buffer buffer) )
 		(gimp-layer-resize layer title-width title-height 0 0)
 		(gimp-layer-set-offsets text (* 2.35 buffer) (* 2.25 buffer))
-		(gimp-text-layer-set-letter-spacing text 10)
+		(gimp-text-layer-set-letter-spacing text 2) ;; Needs to be 10 for Gargouille, or 2 for GargouilleBold
 		
 		(script-fu-drop-shadow image text 12 12 4 '(0 0 0) 0 0)
 		(gimp-floating-sel-to-layer text)

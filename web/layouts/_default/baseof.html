@@ -5,7 +5,7 @@
 	<title>{{ if not .IsHome }}{{ .Title | title }} | {{ end }}{{ .Site.Title }}</title>
 	<link rel="canonical" href="{{ .Site.BaseURL }}">
 	<link rel='alternate' type='application/rss+xml' title="{{ .Site.Title }} RSS" href='/index.xml'>
-	
+
 	{{ $options := (dict "targetPath" "/style.css" "outputStyle" "compressed") }}
 	{{ $styles := resources.Get "/style.css" | fingerprint }}
 	<link rel='stylesheet' type='text/css' href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}">
@@ -39,15 +39,44 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="index, follow">
 	<meta charset="utf-8">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1LX69N8DV5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-1LX69N8DV5"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
 
-  gtag('config', 'G-1LX69N8DV5');
-</script>
+		gtag('config', 'G-1LX69N8DV5');
+	</script>
+
+	<script>
+		// @license magnet:?xt=urn:btih:5ac446d35272cc2e4e85e4325b146d0b7ca8f50c&dn=unlicense.txt Unlicense
+		function showTooltip(e) {
+
+			var tooltiplink = e.target.closest(".tooltiplink");
+			var tooltip = tooltiplink.classList.contains("tooltip")
+				? tooltiplink
+				: tooltiplink.querySelector(":scope .tooltip");
+			var rect = tooltiplink.getBoundingClientRect();
+			tooltip.style.left = (e.clientX + tooltip.clientWidth + 10 < document.body.clientWidth)
+				? (e.clientX - rect.left + 10 + "px")
+				: (document.body.clientWidth + 5 - tooltip.clientWidth - rect.left + "px");
+			tooltip.style.top =
+				(e.clientY + tooltip.clientHeight + 10 < document.body.clientHeight)
+					? (e.clientY - rect.top + 10 + "px")
+					: (document.body.clientHeight + 5 - tooltip.clientHeight - rect.top + "px");
+		}
+		
+		document.addEventListener("DOMContentLoaded", () => {
+			var tooltips = document.querySelectorAll('.tooltiplink');
+			for (var i = 0; i < tooltips.length; i++) {
+				tooltips[i].addEventListener('mouseover', showTooltip);
+				tooltips[i].addEventListener('mousemove', showTooltip);
+			}
+		})
+		// @license-end
+
+	</script>
 </head>
 
 <body>
@@ -59,8 +88,8 @@
 					<a {{ with .GetPage "/" }} href="{{ .RelPermalink }}" {{ end }}>
 						<picture>
 							<source srcset="/images/krieg-eterna-simple-logo.png?fm=webp" type="image/webp"> <img
-								src="/images/krieg-eterna-simple-logo.png" alt="Krieg Eterna Logo"
-								loading="lazy" class="css-tWFgq">
+								src="/images/krieg-eterna-simple-logo.png" alt="Krieg Eterna Logo" loading="lazy"
+								class="css-tWFgq">
 						</picture>
 					</a>
 				</div>
@@ -87,9 +116,8 @@
 				</nav>
 				<nav class="nav permanent-nav">
 					<ul class="nav-links nav-list">
-						<li class="permanent-nav"><a
-								{{ partial "tracking-code" . | safeHTMLAttr }}
-								class="nav-link" target="_blank">
+						<li class="permanent-nav"><a {{ partial "tracking-code" . | safeHTMLAttr }} class="nav-link"
+								target="_blank">
 								Buy Now&nbsp{{ partial "icon-link.html" . }}
 							</a>
 						</li>
@@ -122,8 +150,7 @@
 									About Us
 								</a>
 							</li>
-							<li><a {{ with .GetPage "/essays" }} href="{{ .RelPermalink }}" {{ end }}
-									class="nav-link">
+							<li><a {{ with .GetPage "/essays" }} href="{{ .RelPermalink }}" {{ end }} class="nav-link">
 									Essays
 								</a>
 							</li>

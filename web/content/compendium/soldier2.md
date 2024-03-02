@@ -5,4 +5,6 @@ description: 'Krieg Eterna'
 layout: card
 tags: ['Base Set', 'Unit', 'Soldier', "Ranged"]
 ---
-{{<card-detail-page code="Soldier2" artwork="Wachposten by Paul Louis Narcisse Grolleron (1901)" attr="Leo Tolstoy" book="War and Peace"/>}}
+{{<card-detail-page code="Soldier2" artwork="Wachposten by Paul Louis Narcisse Grolleron (1901)" attr="Leo Tolstoy" book="War and Peace">}}
+{{<card-detail-image file="ball.jpeg" caption="Natasha Rostova's first ball by Leonid Pasternak (1893)">}}
+{{</card-detail-page>}}

@@ -11,21 +11,81 @@
 {{$disallowScale := eq .Params.disallowScale "true"}}
 {{$noScaleMobile := eq .Params.disallowScale "mobile"}}
 {{$reversed := eq .Params.reversed "true"}}
+{{$tooltip := eq .Params.tooltip "true"}}
 {{if $big}}
-<div class="swiper-slide-rules card-big">
-{{else}}
-<div class="swiper-slide-rules card-small">
-{{end}}
-	<figure>
-		<div class="{{if not $disallowFlip}}card-flip{{end}} {{if not $disallowScale}}{{if $noScaleMobile}}card-scale-desktop-only{{else}}card-scale{{end}}{{end}}">
+<div class="swiper-slide-rules card-big {{if $tooltip}} tooltiplink{{end}}">
+	{{else}}
+	<div class="swiper-slide-rules card-small {{if $tooltip}} tooltiplink{{end}}">
+		{{end}}
+		{{if $tooltip}}
+		{{$data := 0}}
+		{{$code := .Params.front }}
+		{{ range $i, $r := getCSV "\t" "data/CardSheet.tsv" }}
+		{{ $c := (index . 0) }}
+		{{ if eq $c $code }}
+		{{$data = .}}
+		{{end}}
+		{{ end }}
+		{{$title := (index $data 1)}}
+
+		{{$type := (index $data 4)}}
+		{{$typedesc := $type}}
+
+		{{ if eq $type "Ranged" }}
+		{{$typedesc = "Ranged Unit"}}
+		{{end}}
+
+		{{ if eq $type "Melee" }}
+		{{$typedesc = "Melee Unit"}}
+		{{end}}
+
+		{{ if eq $type "Siege" }}
+		{{$typedesc = "Siege Unit"}}
+		{{end}}
+
+		{{ if eq $type "Power" }}
+		{{$typedesc = "Hex Power"}}
+		{{end}}
+
+		{{ if eq $type "Decoy" }}
+		{{$typedesc = "Jester Power"}}
+		{{end}}
+
+		{{ if eq $type "Spy" }}
+		{{$typedesc = "Spy Power"}}
+		{{end}}
+
+		{{ if eq $type "Weather" }}
+		{{$typedesc = "Weather Power"}}
+		{{end}}
+		{{$strength := (index $data 5)}}
+
+		<span class="tooltip">
+			Name: <b>{{$title}}</b>
+			<br>
+			Type: <b>{{$typedesc}} </b>
+			<br> 
+			{{if gt (len $strength) 0}}
+			Strength: <b> {{$strength}} </b>
+			{{end}}
+			<br> 
+			Click to learn more! <br>
+		</span>
+		{{end}}
+		<figure>
+			<div
+				class="{{if not $disallowFlip}}card-flip{{end}} {{if not $disallowScale}}{{if $noScaleMobile}}card-scale-desktop-only{{else}}card-scale{{end}}{{end}}">
 				<div tabindex="0" class="card-flip-inner">
-				<div class="{{if not $reversed}}card-front{{else}}card-back{{end}}">
-					<img {{if not (eq .Params.id nil)}}id="{{.Params.id}}-front"{{end}} {{ with .Params.front }}  src="/card-images/{{.}}.webp" {{ end -}} alt="" class="card-image" unselectable="on">
-				</div>
-				<div class="{{if not $reversed}}card-back{{else}}card-front{{end}}">
-					<img {{if not (eq .Params.id nil)}}id="{{.Params.id}}-back"{{end}} {{ with .Params.back }} src="/card-images/{{.}}.webp" {{ end -}} alt="" class="card-image" unselectable="on">
+					<div class="{{if not $reversed}}card-front{{else}}card-back{{end}}">
+						<img {{if not (eq .Params.id nil)}}id="{{.Params.id}}-front" {{end}} {{ with .Params.front }}
+							src="/card-images/{{.}}.webp" {{ end -}} alt="" class="card-image" unselectable="on">
+
+					</div>
+					<div class="{{if not $reversed}}card-back{{else}}card-front{{end}}">
+						<img {{if not (eq .Params.id nil)}}id="{{.Params.id}}-back" {{end}} {{ with .Params.back }}
+							src="/card-images/{{.}}.webp" {{ end -}} alt="" class="card-image" unselectable="on">
+					</div>
 				</div>
 			</div>
-		</div>
-	</figure>
-</div>
+		</figure>
+	</div>

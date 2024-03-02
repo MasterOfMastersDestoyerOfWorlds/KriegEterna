@@ -151,6 +151,39 @@ button {
     padding: 0 0.1em;
 }
 
+
+.tooltiplink:hover .tooltip {
+    display: block;
+
+}
+
+
+.tooltip {
+    position: absolute;
+    white-space: nowrap;
+    display: none;
+    padding: 1.25em 1.25em 1.25em 1.25em;
+    background-color: var(--theme-primary-color--200);
+    border-radius: 1.25rem;
+    box-shadow: 0em 0em 1em var(--black-alpha75);
+    text-align: left;
+    color: var(--base-font-color);
+    z-index: 1000;
+}
+
+.tooltip p {
+    max-width: 100%;
+    display: block;
+    align-items: center;
+    text-align: left;
+    margin: 1em 0em;
+}
+
+.tooltip b {
+    /* highlight a word in the rules */
+    color: var(--theme-accent-color);
+}
+
 .tilting {
     word-spacing: var(--base-word-spacing);
     -webkit-text-size-adjust: 100%;

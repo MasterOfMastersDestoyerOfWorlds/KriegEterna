@@ -26,7 +26,6 @@
 		</div>
 		<script>
 			// @license magnet:?xt=urn:btih:5ac446d35272cc2e4e85e4325b146d0b7ca8f50c&dn=unlicense.txt Unlicense
-
 			document.addEventListener("DOMContentLoaded", () => {
 				for (e of document.getElementsByClassName("js-only")) {
 					e.classList.remove("js-only");
@@ -69,12 +68,15 @@
 				})
 			})
 			// @license-end
+
 		</script>
+
 		<ul id="list" class="list">
 			{{- range.Pages }}
 			<li class="tag" data-tags="{{.Page.Params.tags}}">
 				<a href="{{ .RelPermalink }}">
-					{{partial "cardflip" (dict "Params" (dict "front" .Params.code "back" .Params.back "big" "true" "disallowFlip" "true"))}}
+					{{partial "cardflip" (dict "Params" (dict "front" .Params.code "back" .Params.back "big" "true"
+					"disallowFlip" "true" "tooltip" "true"))}}
 				</a>
 			</li>
 			{{- end }}

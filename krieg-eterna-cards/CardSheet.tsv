@@ -1,3 +1,4 @@
+Crusader	Crusader	 	The more holy the city the greater the desolation.\rJerusalem is the most desolate of all.	Melee	2	 	90
 Feint	Feint	Set aside up to two of your units on the field\runtil the start of the next round.	Let your plans be dark and impenetrable as the\rnight. When you move, fall like a thunderbolt.	Decoy	 	set-aside-decoy	80
 Fortress	Fortress	Attach to any unit on the field. Its strength is\rhalved this round. This unit remains on the field\rto fight in the next round at full strength. This\runit cannot be moved or sent to the graveyard.	Crash against our walls and recede like waves.	Decoy	 	fortress	80
 Jester	Jester	Send one of your units on the field to the\rgraveyard. Take any unit on either side of the\rfield, and add that card to your hand (send all\rof its attachments to the graveyard).	I have become insane, with long interludes of\rhorrible sanity.	Decoy	 	steal-decoy	80
@@ -9,28 +10,27 @@ SunKing	Sun	Double the strength of one of your rows.\rThen clear all active weat
 TerrorKing	Terror	Double the strength of one of your rows.\rThen halve the strength of all Siege rows this\rround, Or send any unit to the graveyard.	A life most simple and most ordinary and therefore\rmost terrible.	King	 	terror-king	90
 TraitorKing	Traitor	Double the strength of one of your rows.\rThen swap one unit on the field with your\ropponent, Or draw a card.	\`It will have blood, they say. Blood will have blood.\`	King	 	traitor-king	90
 WinterKing	Winter	Double the strength of one of your rows.\rThen halve the strength of all Melee rows this\rround, Or send any unit to the graveyard.	\`Look on my Works, ye Mighty, and despair^!\`	King	 	winter-king	90
-Calvary	Cavalry	 	It is a victory which past centuries have never heard,\rinestimable riches have fallen into our hands and\rcountless of the enemy lie slain.	Melee	4		80
-Calvary2	Cavalry	 	Seven trumpets will sound before the end of the age\rand we will be chosen^!	Melee	4		80
-Calvary3	Cavalry	 	Fall in love dear maiden, while your lips are red,\rbefore you are cold, for there will be no tomorrow.	Melee	4		80
-Crusader	Crusader	 	The more holy the city the greater the desolation.\rJerusalem is the most desolate of all.	Melee	2		90
+Calvary	Cavalry	 	It is a victory which past centuries have never heard,\rinestimable riches have fallen into our hands and\rcountless of the enemy lie slain.	Melee	4	 	80
+Calvary2	Cavalry	 	Seven trumpets will sound before the end of the age\rand we will be chosen^!	Melee	4	 	80
+Calvary3	Cavalry	 	Fall in love dear maiden, while your lips are red,\rbefore you are cold, for there will be no tomorrow.	Melee	4	 	80
 Juggernaut	Juggernaut	This unit can also be played in the Range row.	\`If I enter Sparta, you will be destroyed, never to\rrise again.\`\r\`If.\`	Melee	2	juggernaut	80
-Knight	Knight	 	Before I am lost, hell must open like a red rose,\rfor the dead to pass.	Melee	2		80
-Knight10	Knight	 	Is it so wrong to kill a tryant? Better to be hanged a\rtraitor than to live half a man.	Melee	2		80
-Knight11	Knight	 	If it be a sin to covet honour, I am the most\roffending soul alive.	Melee	2		80
-Knight12	Knight	 	We bleed, we tremble; we forget, we smile.\rThe mind turns fool, before the cheek is dry.	Melee	2		80
-Knight3	Knight	 	The folly of man is to pray for what he can obtain of\rhis own deeds.	Melee	2		80
-Knight4	Knight	 	He took up the grim tool and lopped off the Green\rKnight's head. It rolled to its owner and spoke:\r\`One year hence Gawain^! a blow for a blow^!\`	Melee	2		80
-Knight5	Knight	 	Seed, Flower, Petal, Dirt.\rLife springs anew.	Melee	2		80
-Knight6	Knight	 	The freedom to choose, that no man can take away;\rnot Caesar, not Commodus, not God himself.	Melee	2		90
-Knight7	Knight	 	\`You're a gentleman,\` they used to say.\r\`You shouldn't hack men down with an axe;\rthat's not a gentleman's work.\`	Melee	2		80
-Knight9	Knight	 	\`We few, we happy few, we band of brothers;\rHe that sheds his blood with me shall be my brother;\rFrom this day to the ending of the world.\`	Melee	2		90
-MusketLine	Line	 	Where some states have an army,\rthe Prussian Army has a state.	Melee	5		80
+Knight	Knight	 	Before I am lost, hell must open like a red rose,\rfor the dead to pass.	Melee	2	 	80
+Knight10	Knight	 	Is it so wrong to kill a tryant? Better to be hanged a\rtraitor than to live half a man.	Melee	2	 	80
+Knight11	Knight	 	If it be a sin to covet honour, I am the most\roffending soul alive.	Melee	2	 	80
+Knight12	Knight	 	We bleed, we tremble; we forget, we smile.\rThe mind turns fool, before the cheek is dry.	Melee	2	 	80
+Knight3	Knight	 	The folly of man is to pray for what he can obtain of\rhis own deeds.	Melee	2	 	80
+Knight4	Knight	 	He took up the grim tool and lopped off the Green\rKnight's head. It rolled to its owner and spoke:\r\`One year hence Gawain^! a blow for a blow^!\`	Melee	2	 	80
+Knight5	Knight	 	Seed, Flower, Petal, Dirt.\rLife springs anew.	Melee	2	 	80
+Knight6	Knight	 	The freedom to choose, that no man can take away;\rnot Caesar, not Commodus, not God himself.	Melee	2	 	90
+Knight7	Knight	 	\`You're a gentleman,\` they used to say.\r\`You shouldn't hack men down with an axe;\rthat's not a gentleman's work.\`	Melee	2	 	80
+Knight9	Knight	 	\`We few, we happy few, we band of brothers;\rHe that sheds his blood with me shall be my brother;\rFrom this day to the ending of the world.\`	Melee	2	 	90
+MusketLine	Line	 	Where some states have an army,\rthe Prussian Army has a state.	Melee	5	 	80
 Officer	Officer	This unit can also be played in the Siege row.	One murder makes a villain,\rMillions a hero.	Melee	3	officer	80
 Officer2	Officer	This unit can also be played in the Range row.	Men's ambition and innards strewn on the field,\rWe imagine ourselves a watchmaker and not a\rwatch.	Melee	3	officer	80
-Halberdier	Pike	 	A man is an empty vase, a putrid vessel full of dregs\rand terror.	Melee	2		80
-Landsknecht	Pike	 	\`Landsknecht LandSTRIKE^!\`	Melee	2		80
+Halberdier	Pike	 	A man is an empty vase, a putrid vessel full of dregs\rand terror.	Melee	2	 	80
+Landsknecht	Pike	 	\`Landsknecht LandSTRIKE^!\`	Melee	2	 	80
 Scout	Scout	Add one base strength to up to two other units in\rthis row.	If you know the enemy and know yourself,\ryou need not fear the result of a hundred battles.	Melee	1	scout	90
-Square	Square	 	The walls of Sparta were its men, and its borders\rthe points of their spears.	Melee	3		80
+Square	Square	 	The walls of Sparta were its men, and its borders\rthe points of their spears.	Melee	3	 	80
 Burden	Burden	At the end of the round, double the strength\rof your opponent's strongest row. At the end of\rthe next round, double your strongest row.	\`More weight^!\` His captors hoisted another stone\ronto his buckling ribs.\r\`More weight^!\`	Power	 	burden	80
 Crusade	Crusade	Send your highest total strength unit(s) in your\rstrongest row to the graveyard. All other players\rthen do the same.	Deus Vult^!	Power	 	crusade	80
 Death	Death	Send any unit on the field to the graveyard.	The dream fades, the curtain falls;\rthe first act as distant as the last.	Power	 	death	90
@@ -53,41 +53,41 @@ Usury	Usury	Set aside three units from your hand to play at\rthe start of the ne
 Void	Void	The round ends after your next turn ends.	He wished they would shoot him quickly and have\rit done with.	Power	 	Void	80
 War	War	Send any number of your units on the field to the\rgraveyard. All other players then send the same\rnumber of units to the graveyard.	Only iron can save us, And only blood can redeem\rFrom the heavy chains of sin, From the arrogance\rof evil.	Power	 	War	80
 Wrath	Wrath	Send one of your units on the field and two of\ryour opponent's units to the graveyard.	Something awful, hideous, and suddenly\runderstood... Razumihin turned pale.	Power	 	Wrath	90
-Archer	Archer	 	\`Please just a little more^! This dream is too sweet for\rwaking^!\` Didn't you know all dreams end?	Ranged	2		80
-Archer2	Archer	 	\`He was a good outlaw, and did poor men much\rgood.\`	Ranged	2		80
-Bowman	Bowman	 	They said he could hit an apple off her head,\rbut she was rude and he was peckish.	Ranged	2		80
-Bowman2	Bowman	 	Tick Tick Tick, Clunk, Thwap, Bullseye^!	Ranged	2		80
-Waterworks	Breach	 	Behold, divine water rises and becomes an \roverflowing flood.	Ranged	5		80
-Grenadier	Grenadier	 	\`The guard die, but do not surrender^!\`	Ranged	4		80
-Grenadier2	Grenadier	 	We are sleeping on a volcano. Can't you hear how\rthe earth shakes? The winds of revolt blow,\rthe storm is on the horizon.	Ranged	4		80
-Militia	Militia	 	A well placed shot can change the course of nations.	Ranged	2		80
-Musketeer	Musketeer	 	What dire fate could be ours if we have no fear of\rdeath?	Ranged	3		80
-Musketeer2	Musketeer	 	All for one and one for all,\runited we stand divided we fall.	Ranged	3		80
-Musketeer3	Musketeer	 	He shall cease to live, or I shall die.\rMine shall be a splendid funeral^!	Ranged	3		80
-Privateer	Privateer	 	Beware the phantom dutchman, its crew and its\rcaptain; Beware ye reckless sailor, Beware the\rceaseless jailor^!	Ranged	4		80
-Privateer2	Privateer	 	\`Hearts of oak are our ships,\rHearts of oak are our men.\`	Ranged	4		80
-Privateer3	Privateer	 	\`Soon may the Wellerman come; To bring us sugar\rand tea and rum. One day, when the tonguing is\rdone; We'll take our leave and go^!\`	Ranged	4		80
-Privateer4	Privateer	 	We sail for Jerusalem for gold and glory;\rLeave faith to the Pope.	Ranged	4		80
-Riflemen	Riflemen	 	The cannonshot rang all around, but we stood firm\rfor an empire of richer men.	Ranged	3		80
-Soldier	Soldier	 	\`Let the dead bury their dead, but while I have a life,\rI must live.\`	Ranged	2		80
-Soldier2	Soldier	 	If no one fought except on his own conviction,\rthere would be no wars.	Ranged	2		80
+Archer	Archer	 	\`Please just a little more^! This dream is too sweet for\rwaking^!\` Didn't you know all dreams end?	Ranged	2	 	80
+Archer2	Archer	 	\`He was a good outlaw, and did poor men much\rgood.\`	Ranged	2	 	80
+Bowman	Bowman	 	They said he could hit an apple off her head,\rbut she was rude and he was peckish.	Ranged	2	 	80
+Bowman2	Bowman	 	Tick Tick Tick, Clunk, Thwap, Bullseye^!	Ranged	2	 	80
+Waterworks	Breach	 	Behold, divine water rises and becomes an \roverflowing flood.	Ranged	5	 	80
+Grenadier	Grenadier	 	\`The guard die, but do not surrender^!\`	Ranged	4	 	80
+Grenadier2	Grenadier	 	We are sleeping on a volcano. Can't you hear how\rthe earth shakes? The winds of revolt blow,\rthe storm is on the horizon.	Ranged	4	 	80
+Militia	Militia	 	A well placed shot can change the course of nations.	Ranged	2	 	80
+Musketeer	Musketeer	 	What dire fate could be ours if we have no fear of\rdeath?	Ranged	3	 	80
+Musketeer2	Musketeer	 	All for one and one for all,\runited we stand divided we fall.	Ranged	3	 	80
+Musketeer3	Musketeer	 	He shall cease to live, or I shall die.\rMine shall be a splendid funeral^!	Ranged	3	 	80
+Privateer	Privateer	 	Beware the phantom dutchman, its crew and its\rcaptain; Beware ye reckless sailor, Beware the\rceaseless jailor^!	Ranged	4	 	80
+Privateer2	Privateer	 	\`Hearts of oak are our ships,\rHearts of oak are our men.\`	Ranged	4	 	80
+Privateer3	Privateer	 	\`Soon may the Wellerman come; To bring us sugar\rand tea and rum. One day, when the tonguing is\rdone; We'll take our leave and go^!\`	Ranged	4	 	80
+Privateer4	Privateer	 	We sail for Jerusalem for gold and glory;\rLeave faith to the Pope.	Ranged	4	 	80
+Riflemen	Riflemen	 	The cannonshot rang all around, but we stood firm\rfor an empire of richer men.	Ranged	3	 	80
+Soldier	Soldier	 	\`Let the dead bury their dead, but while I have a life,\rI must live.\`	Ranged	2	 	80
+Soldier2	Soldier	 	If no one fought except on his own conviction,\rthere would be no wars.	Ranged	2	 	80
 Telescope	Telescope	Add one base strength to up to two other units in\rthis row.	All truths are easy to understand once discovered;\rthe point is to discover them.	Ranged	1	scout	80
-Armada	Armada	 	I will make thee a terror, and thou shall be no more:\rthough sought for, thou shall never be found again.	Siege	5		80
-Armada2	Armada	 	\`And they called it a fleet... Ha^! Nothing more than\ra heap of ash and squandered silver.\`	Siege	5		80
-Assault	Assault	 	Doomed to flames of woe;\rOur lady of sorrows.	Siege	3		80
-Assault2	Assault	 	A brave man dies but once,\rA coward daily.	Siege	3		80
-Assault3	Assault	 	The Kingdom of Heaven is spread out over the earth,\rand men cannot see it.	Siege	3		80
-Cannon	Cannon	 	Truth is ever to be found in simplicity, and not in\rthe multiplicity and confusion of things.	Siege	4		80
-Cannon2	Cannon	 	Dynamite will sooner lead to peace than a thousand\rworld conventions.	Siege	4		80
-Cannon3	Cannon	 	\`All the guns of Orban could not match our\rfirepower^!\`	Siege	4		80
-Cannon4	Cannon	 	If they want peace, nations should avoid the\rpin-pricks that precede cannon shots.	Siege	4		80
-Catapult	Catapult	 	Scipio wept for Carthage.\r\`A day will come when sacred Troy shall perish,\r And Priam and his people shall be slain.\`	Siege	3		90
-Mortar	Mortar	 	Too big to be called a gun.\rMore like a large hunk of iron.	Siege	6		80
+Armada	Armada	 	I will make thee a terror, and thou shall be no more:\rthough sought for, thou shall never be found again.	Siege	5	 	80
+Armada2	Armada	 	\`And they called it a fleet... Ha^! Nothing more than\ra heap of ash and squandered silver.\`	Siege	5	 	80
+Assault	Assault	 	Doomed to flames of woe;\rOur lady of sorrows.	Siege	3	 	80
+Assault2	Assault	 	A brave man dies but once,\rA coward daily.	Siege	3	 	80
+Assault3	Assault	 	The Kingdom of Heaven is spread out over the earth,\rand men cannot see it.	Siege	3	 	80
+Cannon	Cannon	 	Truth is ever to be found in simplicity, and not in\rthe multiplicity and confusion of things.	Siege	4	 	80
+Cannon2	Cannon	 	Dynamite will sooner lead to peace than a thousand\rworld conventions.	Siege	4	 	80
+Cannon3	Cannon	 	\`All the guns of Orban could not match our\rfirepower^!\`	Siege	4	 	80
+Cannon4	Cannon	 	If they want peace, nations should avoid the\rpin-pricks that precede cannon shots.	Siege	4	 	80
+Catapult	Catapult	 	Scipio wept for Carthage.\r\`A day will come when sacred Troy shall perish,\r And Priam and his people shall be slain.\`	Siege	3	 	90
+Mortar	Mortar	 	Too big to be called a gun.\rMore like a large hunk of iron.	Siege	6	 	80
 Officer3	Officer	This unit can also be played in the Melee row.	If there must be war, let it be in my day,\rthat my children might have peace.	Siege	3	officer	80
 Officer4	Officer	This unit can also be played in the Range row.	They will know us by the roar of our cannons,\rand the fear they find in their hearts.	Siege	3	officer	80
-Siege	Siege	 	All my life will be obscured by the doleful addition:\r'In his time, Constantinople was taken and\rplundered.'	Siege	2		80
-Siege2	Siege	 	Their guns sounded from dusk till dawn;\rbut we repelled them all.	Siege	2		80
-Siege3	Siege	 	\`A horse, A horse. My kingdom for a horse^!\`	Siege	2		80
+Siege	Siege	 	All my life will be obscured by the doleful addition:\r'In his time, Constantinople was taken and\rplundered.'	Siege	2	 	80
+Siege2	Siege	 	Their guns sounded from dusk till dawn;\rbut we repelled them all.	Siege	2	 	80
+Siege3	Siege	 	\`A horse, A horse. My kingdom for a horse^!\`	Siege	2	 	80
 Tower	Tower	Add one base strength to up to two other units in\rthis row.	\`It is said if a man ascended the tower, he could\rbathe in the dew of heaven.\rHere is what remains of their arrogance.\`	Siege	1	scout	80
 Assassin	Assassin	Play in any of your opponent's rows, then draw\rtwo cards. At the end of the round, this unit\rreturns to the player's hand whose side of the\rfield it is on.	\`Et tu brute?\`	Spy	5	spy-no-adj	80
 Minister	Minister	Play in your opponent's Siege row, then draw\rtwo cards. At the end of the round, this unit\rreturns to the player's hand whose side of the\rfield it is on.	Though I did wish him dead, I hate the murd'rer,\rlove him murdered.	Spy	3	spy-adj	90
