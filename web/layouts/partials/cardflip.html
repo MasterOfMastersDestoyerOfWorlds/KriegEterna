@@ -19,18 +19,19 @@
 		{{end}}
 		{{if $tooltip}}
 		{{$data := 0}}
-		{{$code := .Params.front }}
+		{{$code := .Params.front}}
 		{{ range $i, $r := getCSV "\t" "data/CardSheet.tsv" }}
-		{{ $c := (index . 0) }}
-		{{ if eq $c $code }}
-		{{$data = .}}
-		{{end}}
+			{{ $c := (index . 0) }}
+			{{ if eq $c $code }}
+				{{$data = .}}
+			{{end}}
 		{{ end }}
+		{{if eq $data 0}}
+			Render Error
+		{{else}}
 		{{$title := (index $data 1)}}
-
 		{{$type := (index $data 4)}}
 		{{$typedesc := $type}}
-
 		{{ if eq $type "Ranged" }}
 		{{$typedesc = "Ranged Unit"}}
 		{{end}}
@@ -71,6 +72,7 @@
 			<br> 
 			Click to learn more! <br>
 		</span>
+		{{end}}
 		{{end}}
 		<figure>
 			<div

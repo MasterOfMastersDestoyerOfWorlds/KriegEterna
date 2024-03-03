@@ -24,7 +24,7 @@
 				</button>
 			</div>
 			<p class="rule-paragraph" style="text-align: center; margin-left: auto; margin-right: auto;">
-			Click on a card to learn more!
+			<b>Click on a card to learn more!</b>
 			</p>
 		</div>
 		<script>
@@ -78,8 +78,7 @@
 			{{- range.Pages }}
 			<li class="tag" data-tags="{{.Page.Params.tags}}">
 				<a href="{{ .RelPermalink }}">
-					{{partial "cardflip" (dict "Params" (dict "front" .Params.code "back" .Params.back "big" "true"
-					"disallowFlip" "true" "tooltip" "true"))}}
+					{{partial "cardflip" (dict "Params" (dict "front" .Params.code "back" .Params.back "big" "true" "disallowFlip" "true" "tooltip" "true"))}}
 				</a>
 			</li>
 			{{- end }}
