@@ -151,11 +151,14 @@ button {
     padding: 0 0.1em;
 }
 
+@media (pointer:fine) {
 
 .tooltiplink:hover .tooltip {
     display: block;
 
 }
+}
+
 
 
 .tooltip {
