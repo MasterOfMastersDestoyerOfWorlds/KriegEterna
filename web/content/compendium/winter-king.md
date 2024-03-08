@@ -11,6 +11,6 @@ Frederick V of the Palatinate was invited to take the crown of Bohemia after the
 </p> 
 {{<card-detail-image file="bohemia.jpg" caption="Portrait of Frederick V as King of Bohemia by Gerard van Honthorst (1634)">}}
 <p>
-After the rebel army was sorely defeated at the Battle of White Mountain, Frederick fled Bohemia for Silesia and later the Netherlands and the Bohemian revolt was put down. Many of the lands of the Protestant nobles were redistributed and Frederick was later declared an outlaw in the empire with his lands and title of Elector being handed over to Maximilian I, the Duke of Bavaria. The consequences for Frederick's Bohemian coronation would be devastating for Europe: thirty years of war, plague, and famine awaited the continent. 
+After the rebel army was sorely defeated at the Battle of White Mountain, Frederick fled Bohemia for Silesia and later the Netherlands and the Bohemian revolt was put down. Many of the lands of the Protestant nobles were redistributed and Frederick was later declared an outlaw in the empire with his lands and title of Elector being handed over to Maximilian I, the Duke of Bavaria. The consequences of Frederick's Bohemian coronation would be devastating for Europe: thirty years of war, plague, and famine awaited the continent. 
 </p>
 {{</card-detail-page>}}

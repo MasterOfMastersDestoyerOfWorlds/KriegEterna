@@ -11,7 +11,7 @@ This card depicts the death of Gustavus Adolphus, the King of Sweden and one of 
 </p>
 {{<card-detail-image file="lutzen.jpg" caption="Finding the body of Gustavus Adolphus after the Battle of Lützen by Carl Wahlbom (1855)">}}
 <p>
-Sweden lost its central role in the alliance and France became the alliance's senior partner (see also {{<cardlink name="Minister" code="minister">}}). Sweden's new High Chancellor and military commander, Axel Oxenstierna, would not reach the same military heights as Gustavus had, despite being a much more skilled diplomat and administrator.
+Sweden lost its central role in the alliance and France became the alliance's senior partner and many of the war's religious aspects would be sidelined (see also {{<cardlink name="Minister" code="minister">}}). Sweden's new High Chancellor and military commander, Axel Oxenstierna, would not reach the same military heights as Gustavus had, despite being a much more skilled diplomat and administrator.
 </p>
 {{</card-detail-page>}}
 
