@@ -7,7 +7,7 @@ tags: ['Base Set', 'Knight', 'Unit', 'Melee']
 ---
 {{<card-detail-page code="Knight10" artwork="Man in Armor by Rembrant (17th century)" >}}
 <p>
-Tyrannicide is unique in history in being near universally beloved (Benjamin Franklin once said "Rebellion to Tyrants is Obedience to God"), yet largely ineffectual or counter-productive in their results. For example, when Caesar was killed by Brutus it did not engender the return to the Republic as Brutus had wished (see also {{<cardlink name="Assassin" code="assassin">}}). Even though the Senate was still nominally in charge, Caesar's nephew Octavian used the dead dictator's estate, political connections, and army to build political and military power in Rome and become Emperor within 15 years of Caesar's death.
+Tyrannicide is unique in history in being near universally beloved (Benjamin Franklin once said "Rebellion to Tyrants is Obedience to God"), yet largely ineffectual or counter-productive in its results. For example, when Caesar was killed by Brutus it did not engender the return to the Republic as Brutus had wished (see also {{<cardlink name="Assassin" code="assassin">}}). Even though the Senate was still nominally in charge, Caesar's nephew Octavian used the dead dictator's estate, political connections, and army to build political and military power in Rome and become Emperor within 15 years of Caesar's death.
 </p>
 {{<card-detail-image file="thermidor.JPG" caption="Morning of 10 Thermidor An 2 by Lucien-Étienne Mélingue (1877)">}}
 <p>
