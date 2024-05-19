@@ -5,50 +5,18 @@
                 {{ partial "outlined-title" (dict "title" "Products" "h" "h2" "class" "main-title")}}
             </div>
         </div>
-        <div class="css-3c0LG product-scroll-box" style="--container-max-width:1200px;">
-            <div class="product-box-outer">
-                <div class="product-box-wrapper">
-                    <div class="swiper-slide product-box swiper-slide-next">
-                        <picture>
-                            <source srcset="/images/DeluxeDeckRender.png?fm=webp" type="image/webp">
-                            <img src="/images/DeluxeDeckRender.png" alt="" width="400" height="433" loading="lazy">
-                        </picture>
-                        <div>
-                            <h4 class="product-title" data-text="Standard Edition">Krieg Eterna<h4>
-                        </div>
-                        <div class="product-price">
-                            <p>$29.99
-                            </p>
-                        </div>
-                        <div class="product-desc">
-                        <hr>
-                            <p>A fast-paced strategic card game set during the Thirty Years' War. Victory on the battlefield will require deception, skill, and a little luck!
-                            </p>
-                        </div>
-                        <div class="css-cW5DV">
-                            <div class="css-nd7IL">
-                                <div>
-                                    <div class="css-AX10X">
-                                        <a {{ partial "tracking-code" .Page | safeHTMLAttr }} target="_blank" rel="noopener">
-                                            <button class="css-lV1Vi buy-product-button css-ExOVn">
-                                                Buy Now&nbsp{{partial "icon-link"}}
-                                            </button>
-                                        </a>
-                <!-- Beginning of Buy With Prime Widget --
-        <script async fetchpriority='high' src='https://code.buywithprime.amazon.com/bwp.v1.js'></script>
-        <div
-            id="amzn-buy-now"
-            data-site-id="zm37qpw6y6"
-            data-widget-id="w-J5EhprFtkk1J9d75bFUCK3"
-            data-sku="QU-B39T-6LQM"
-        ></div>
-        !-- End of Buy With Prime Widget -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="swiper">
+            <div class="swiper-wrapper-rules card-scroll-box">
+
+                <!-- Krieg Eterna (base game) -->
+                {{ partial "product" (dict "Params" (dict "title" "Krieg Eterna" "price" "$29.99" "image" "/images/DeluxeDeckRender.png" "description" "A fast-paced strategic card game set during the Thirty Years' War. Victory on the battlefield will require deception, skill, and a little luck!"))}}
+
+                <!-- Krieg Eterna (lands expansion) -->
+                {{ partial "product" (dict "Params" (dict "title" "Krieg Eterna: Battlefields" "price" "Early 2025" "image" "/images/product-lands.webp" "description" "This mini-expansion adds a new deck containing over 40 battlefield cards! At each location, you'll experience a unique twist for the round." "trackingCode" "none"))}}
+
+                <!-- Krieg Eterna Valtyr -->
+                {{ partial "product" (dict "Params" (dict "title" "Krieg Eterna: Valytr" "price" "Late 2025" "image" "/images/product-valtyr.webp" "description" "Set during the Viking Age, this expansion adds over 100 new cards and dozens of mechanics. Play stand-alone, or combine with the base game." "trackingCode" "none"))}}
+
             </div>
         </div>
     </div>
