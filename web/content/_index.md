@@ -14,12 +14,9 @@ layout: single
     <div class="main-section" style="padding-bottom: 1em;">
         <div class="sub-section video-box">
             <div class="title-wrapper">
-                <h4>How to Play in 60 Seconds</h4>
+                <h4>How to Play</h4>
             </div>
             {{< vid  "https://www.youtube.com/embed/WhEswOBJipI?si=ZvpUGGMZKIbF7woh&autoplay=0&origin=http://example.com">}}  
-            <p class="rule-paragraph" style="text-align:center;"> 
-            For more detail see our <a href="/how-to-play/">How to Play</a> page.
-            </p>
         </div>
     </div>
 </section>
