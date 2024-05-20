@@ -302,6 +302,7 @@ button {
     --theme-primary-color--410: #d44b06;
     --theme-primary-color--420: #b1942e;
     --theme-primary-color--430: #1a1a1a;
+    --theme-primary-color--440: #d7b437;
 
     --shout-out-color: #FFFFFF;
     --inner-wrap-background: #000000;
@@ -310,8 +311,8 @@ button {
     --theme-link-color--active: #ffcc33;
     --theme-nav-link-color: #fff;
     --base-font-color: #ffffff;
-    --theme-odd-section-tint: linear-gradient(180deg, var(--theme-primary-color--100) 5%, rgba(0, 0, 0, 0.6) 50%, var(--theme-primary-color--100) 95%);
-    --theme-even-section-tint: linear-gradient(180deg, var(--theme-primary-color--100) 5%, rgba(0, 0, 0, 0.6) 50%, var(--theme-primary-color--100) 95%);
+    --theme-odd-section-tint:  linear-gradient(180deg, var(--theme-primary-color--100) 0%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 0.2) 60%, var(--theme-primary-color--100) 100%);
+    --theme-even-section-tint: linear-gradient(180deg, var(--theme-primary-color--100) 5%, rgba(0, 0, 0, 0.5) 50%, var(--theme-primary-color--100) 95%);
     --theme-small-section-tint: var(--theme-primary-color--100);
     --theme-header-color: #000;
     --theme-footer-color: #000;
@@ -709,9 +710,9 @@ img {
 }
 
 .main-section {
-    --wrap-padding--base: 2em 0 3em;
-    --wrap-padding--sm: 3em 0 4em;
-    --wrap-padding--md: 3em 0 4em;
+    --wrap-padding--base: 2em 0;
+    --wrap-padding--sm: 3em 0;
+    --wrap-padding--md: 3em 0;
     --wrap-padding: var(--wrap-padding--md);
     padding: var(--wrap-padding);
     overflow: hidden;
@@ -1363,34 +1364,14 @@ img {
 }
 
 .video-background {
-    --wrap-padding--base: 20px 0 min(20px, 5%);
-    --wrap-padding--sm: 30px 0 30px;
-    --wrap-padding--md: 40px 0 40px;
-    --wrap-padding: var(--wrap-padding--base);
-    margin: 0 auto;
+    padding: 2em 0 0;
     text-align: center;
 }
 
-@media(min-width:768px) {
-    .video-background {
-        --wrap-padding: var(--wrap-padding--sm, var(--wrap-padding--base));
-    }
-}
-
-@media(min-width:1024px) {
-    .video-background {
-        --wrap-padding: var(--wrap-padding--md, var(--wrap-padding--sm));
-    }
-}
-
-.video-background2 {
-    padding: var(--wrap-padding);
-}
-
 .video-box {
-    max-width: min(800px, 90vw);
+    max-width: min(calc(600px + 4em), 90vw);
     margin: 0 auto;
-    padding: 2em 0 0 0;
+    padding: 2em 0 min(2em, 5%) 0;
     background-color: var(--theme-primary-color--200);
     border-radius: 1.25rem;
     box-shadow: 0em 0em 1em var(--black-alpha75);
@@ -1441,6 +1422,7 @@ img {
     object-fit: contain;
     max-height: 300px;
     border-radius: 1em;
+    filter: drop-shadow(0 0 0.25em var(--black-alpha50));
 }
 
 .product-box hr {
@@ -1469,12 +1451,12 @@ img {
     padding: 0 1em;
     width: 100%;
     text-align: inherit;
-    font-size: 0.85em;
+    font-size: 0.9em;
 }
 
 .css-cW5DV {
     margin: auto auto 0;
-    padding-top: 0.5em
+    padding: 0.5em 0
 }
 
 @media(min-width:768px) {
@@ -2476,13 +2458,13 @@ html[lang=zh-Hant] .css-4zJQw {
     border-top-color: transparent;
     border-left: 0;
     border-right: 0;
-    border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 3px solid rgba(255, 255, 255, 0.75);
     border-radius: 0;
     padding-left: 0;
 }
 
 .subscribe-form__inputs .input-wrapper label {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.75);
 }
 
 .subscribe-form__inputs .subscribe-form__email {
@@ -2512,14 +2494,16 @@ html[lang=zh-Hant] .css-4zJQw {
 }
 
 .subscribe-form-box {
-    max-width: min(800px, 90vw);
+    max-width: min(calc(600px + 4em), 90vw);
     margin: 0 auto;
     padding: 2em;
-    background-color: var(--theme-primary-color--200);
     border-radius: 1.25rem;
     box-shadow: 0em 0em 1em var(--black);
+    background-image: linear-gradient(rgba(97, 97, 97, 0.8),rgba(23, 23, 23, 0.8)), url("./images/battle-1023x600-100.jpg");
+    background-size: cover;
+    background-position: 40% 10%;
+    text-shadow: 0px 0px 4px var(--black-alpha75);
 }
-
 
 button,
 input[type=submit],
@@ -2573,7 +2557,7 @@ input[type=submit].btn--quicklook,
 .btn.btn--secondary,
 .btn.btn--quicklook {
     border: 3px solid var(--white);
-    background-color: var(--theme-primary-color--300);
+    background-color: var(--theme-primary-color--440);
     color: var(--white);
     box-shadow: none;
 }
@@ -2584,7 +2568,7 @@ input[type=submit].btn--secondary:hover,
 input[type=submit].btn--quicklook:hover,
 .btn.btn--secondary:hover,
 .btn.btn--quicklook:hover {
-    background-color: var(--theme-primary-color--100);
+    background-color: var(--theme-primary-color--420);
     color: var(--white);
 }
 
@@ -2757,7 +2741,7 @@ input[type=submit].btn--subtle-hover:hover,
 }
 
 .frame {
-    width: 560px;
+    width: 600px;
     height: auto;
     aspect-ratio: 16 / 9;
     border-radius: 15px;
