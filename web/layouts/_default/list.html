@@ -7,17 +7,30 @@
 <section class="gradient even-gradient">
 	<div class="main-section">
 		<div class="title-wrapper">
+
+			<!-- heading -->
 			{{ partial "outlined-title" (dict "title" .Title "h" "h2" "class" "main-title") }}
 			<div class="rule-paragraph" style="text-align: center; margin-left: auto; margin-right: auto;">
 				Click on a card to learn more about its strategy, artwork, and history!
 			</div>
+
+			<!-- random card button -->
+			<a href="#" id="random-card-button">
+				<button class="btn btn--primary" style="margin-top: 0.5em">
+					{{ partial "icon-random" }}&nbsp;&nbsp;Random card
+				</button>
+			</a>
+
+			<!-- search -->
 			<div class="search">
 				<input type="text" id="search" placeholder="Search cards by name or type">
 				<button id="clear-search">
 					{{ partial "icon-backspace.html" . }}
 				</button>
 			</div>
+
 		</div>
+		
 		<script>
 			// @license magnet:?xt=urn:btih:5ac446d35272cc2e4e85e4325b146d0b7ca8f50c&dn=unlicense.txt Unlicense
 			document.addEventListener("DOMContentLoaded", () => {
@@ -63,6 +76,20 @@
 			})
 			// @license-end
 
+		</script>
+
+		<!-- random card generator -->
+		<script>
+			var sites = [
+			{{$pages := (where .Site.Pages "Section" "compendium")}}
+			{{$len := (len $pages)}}
+			{{ range $i, $e := (where .Site.Pages "Section" "compendium") }}
+			{{if not (eq .RelPermalink "/compendium/")}}
+			{{.RelPermalink}}{{ if (lt $i (sub $len 1) )}}, {{ end }} {{ end }} 
+			{{ end }}
+			];
+			var i = parseInt(Math.random(0) * sites.length);
+			document.getElementById("random-card-button").href = sites[i];
 		</script>
 
 		<ul id="list" class="list">

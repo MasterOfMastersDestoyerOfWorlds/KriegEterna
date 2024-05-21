@@ -67,10 +67,12 @@
 		<ul id="list" class="list">
 			{{- range.Pages }}
 			<li class="tag" data-tags="{{.Page.Params.tags}}">
-				<a href="{{ .Page.Params.link }}">
+				<a href="{{ .Page.Params.link }}" target="_blank" rel="noopener">
 					<img {{ with .Params.code }} src="/store-thumbnails/{{.}}.webp" {{ end -}} class="essay-image">
 					<div class="essay-title">
-						{{.Page.Title}}
+						{{ .Page.Title }}
+						<br>
+						({{ .Page.Params.location }})
 					</div>
 				</a>
 			</li>

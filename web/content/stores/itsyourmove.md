@@ -1,7 +1,6 @@
 ---
-title: "It's Your Move Games (Oakland CA)"
+title: "It's Your Move Games"
+location: "Oakland, CA"
 code: "itsyourmove"
-description: 'Krieg Eterna'
-layout: card
 link: "https://www.itsyourmoveoakland.com/"
 ---

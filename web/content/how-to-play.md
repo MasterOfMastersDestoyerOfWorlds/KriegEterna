@@ -9,9 +9,13 @@ layout: single
     <div class="title-wrapper">
         {{< outlined-title title="How To Play" h="h2" class="main-title">}}
     </div>
-    {{< vid  "https://www.youtube.com/embed/WhEswOBJipI?si=ZvpUGGMZKIbF7woh&autoplay=0">}}
-        {{< vid  "https://www.youtube.com/embed/zam0XP3T0UM?si=GVfCjiTFEX7I50vP">}}
-    <div class="css-cW5DV">
+    <div class="video-background-alt">
+        {{< vid "https://www.youtube.com/embed/WhEswOBJipI?si=ZvpUGGMZKIbF7woh&autoplay=0">}}
+    </div>
+    <div class="video-background-alt">
+        {{< vid "https://www.youtube.com/embed/zam0XP3T0UM?si=GVfCjiTFEX7I50vP" >}}
+    </div>
+    <div class="css-cW5DV" style="padding-top: 3em">
         <div class="css-nd7IL">
             <div class="css-AX10X">
                 <a href="/assets/Rules.pdf" download>
