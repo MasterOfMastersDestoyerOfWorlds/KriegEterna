@@ -99,87 +99,87 @@ button {
     ;
     background-clip: text;
     -webkit-background-clip: text;
-    padding: 0.1em;
 }
 
 .melee {
     background: linear-gradient(to top, #320101, #e20001, #ffbbbc);
     background-clip: text;
     -webkit-background-clip: text;
-    padding: 0.1em;
 }
 
 .siege {
     background: linear-gradient(to top, #5a4200, #fbc00d, #f4ecb4);
     background-clip: text;
     -webkit-background-clip: text;
-    padding: 0.1em;
 }
 
 .power {
     background: linear-gradient(to top, #22004a, #7712fb, #d2b4f7);
     background-clip: text;
     -webkit-background-clip: text;
-    padding: 0.1em;
 }
 
 .decoy {
     background: linear-gradient(to top, #102f11, #00d303, #bef1bd);
     background-clip: text;
     -webkit-background-clip: text;
-    padding: 0.1em;
 }
 
 .spy {
     background: linear-gradient(to top, #181818, #2b2b2b, #dcdcdc);
     background-clip: text;
     -webkit-background-clip: text;
-    padding: 0.1em;
 }
 
 .weather {
     background: linear-gradient(to top, #13368c, #2024ec, #9bbdeb);
     background-clip: text;
     -webkit-background-clip: text;
-    padding: 0.1em;
 }
 
 .king {
     background: linear-gradient(to top, #8e7733, #cbb044, #d2ab17, #f8da2f, #b48c04, #a78722);
     background-clip: text;
     -webkit-background-clip: text;
-    padding: 0.1em;
 }
 
 @media (pointer:fine) {
     .tooltiplink:hover .tooltip {
         display: block;
+        opacity: 1;
+        visibility: visible;
+        animation: tooltipkeys 1s 1;
+    }
+}
+
+@-webkit-keyframes tooltipkeys {
+    0% {
+      opacity: 0;
+    }
+    75% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
     }
 }
 
 .tooltip {
     position: absolute;
+    font-size: 0.7em;
     white-space: nowrap;
     display: none;
-    padding: 1.25em 1.25em 1.25em 1.25em;
-    background-color: var(--theme-primary-color--200);
-    border-radius: 1.25rem;
+    padding: 0.5em;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 0.5em;
     box-shadow: 0em 0em 1em var(--black-alpha75);
     text-align: left;
     color: var(--base-font-color);
     z-index: 1000;
-}
-
-.tooltip p {
-    max-width: 100%;
-    display: block;
-    align-items: center;
-    text-align: left;
-    margin: 1em 0em;
+    opacity: 1;
 }
 
 .tooltip b {
-    /* highlight a word in the rules */
     color: var(--theme-accent-color);
 }
 
@@ -413,11 +413,14 @@ h1 {
 }
 
 h2 {
-    font-size: 4em
+    font-size: 4em;
+    padding: 0.05em; /* need to add padding for garguoille text and titleshadows */
 }
 
 h3 {
-    font-size: 2.5em
+    font-size: 2.5em;
+    padding: 0.05em; /* need to add padding for garguoille text and titleshadows */
+
 }
 
 h4 {
@@ -439,6 +442,7 @@ h4 {
     position: absolute;
     left: 0;
     right: 0;
+    padding: 0;
     margin-left: auto;
     margin-right: auto;
     --color: var(--theme-primary-color--430);
@@ -706,9 +710,9 @@ img {
 }
 
 .main-section {
-    --wrap-padding--base: 2em 0;
-    --wrap-padding--sm: 3em 0;
-    --wrap-padding--md: 3em 0;
+    --wrap-padding--base: 1em 0;
+    --wrap-padding--sm: 2em 0;
+    --wrap-padding--md: 2em 0;
     --wrap-padding: var(--wrap-padding--md);
     padding: var(--wrap-padding);
     overflow: hidden;
@@ -831,6 +835,26 @@ img {
     align-items: center;
     text-align: left;
     margin: 1em 0em;
+}
+
+.warning-box {
+    font-size: 0.8em;
+    color: var(--black);
+    background-color: var(--theme-accent-color);
+    border: 5px solid var(--white-alpha75);
+    display: flex;
+    justify-content: space-between;
+    margin: 3em 0 0;
+
+    p {
+        padding-left: 1.5em;
+    }
+}
+
+.warning-box:hover, .warning-box:active, .warning-box:focus {
+    background-color: #bebebe;
+    color: var(--black);
+    text-decoration: none;
 }
 
 .rule-title {
@@ -973,7 +997,7 @@ img {
 
 .icon-random {
     width: 1.4em;
-    margin: -0.25em 0;
+    margin: -0.275em 0;
     height: auto;
 }
 
@@ -1641,6 +1665,12 @@ html[lang=zh-Hant] .css-lV1Vi {
     width: 0.95em;
     margin-bottom: -0.1em;
     height: auto;
+}
+
+.icon-warning {
+    width: 3em;
+    height: auto;
+    flex: none;
 }
 
 .css-XorOV {

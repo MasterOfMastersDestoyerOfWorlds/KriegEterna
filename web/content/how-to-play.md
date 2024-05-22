@@ -28,6 +28,11 @@ layout: single
             </div>
         </div>
     </div>
+    <a href="#additional-players" class="rule-box warning-box">
+        {{< icon-warning >}}
+        <p style="text-decoration: none"> We have updated the <b>3- and 4-player versions</b> of the game from the original rulebook. Please refer to the <b>additional players section</b> below.
+        </p>
+    </a>
     </div>
     </div>
 </section>
@@ -232,7 +237,7 @@ layout: single
         unusable/undesired power cards.</li>
         <li>Players may <b>never skip</b> their turn. They must always either play a card, or "pass" the rest of the round.</li>
     </ul>
-    <div class="title-wrapper">
+    <div class="title-wrapper" id="additional-players">
         {{< outlined-title title="Additional Players" h="h3" class="rule-title">}}
     </div>
     <p class="rule-paragraph">
