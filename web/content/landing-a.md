@@ -15,7 +15,9 @@ trackingCode: "https://www.amazon.com/dp/B0CJHWGZYF?maas=maas_adg_A496CD4726DD0C
             <div class="title-wrapper">
                 <h4>How to Play in 60 Seconds</h4>
             </div>
-            {{< vid  "https://www.youtube.com/embed/WhEswOBJipI?si=ZvpUGGMZKIbF7woh&autoplay=0&origin=http://example.com">}}  
+            <div class="video-background-alt">
+                {{ partial "vid" "https://www.youtube.com/embed/WhEswOBJipI?si=ZvpUGGMZKIbF7woh&autoplay=0&origin=http://example.com"}}
+            </div>
         </div>
     </div>
 </section>

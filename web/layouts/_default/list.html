@@ -7,26 +7,30 @@
 <section class="gradient even-gradient">
 	<div class="main-section">
 		<div class="title-wrapper">
+
+			<!-- heading -->
 			{{ partial "outlined-title" (dict "title" .Title "h" "h2" "class" "main-title") }}
+			<div class="rule-paragraph" style="text-align: center; margin-left: auto; margin-right: auto;">
+				Click on a card to learn more about its strategy, artwork, and history!
+			</div>
+
+			<!-- random card button -->
+			<a href="#" id="random-card-button">
+				<button class="btn btn--primary" style="margin-top: 0.5em">
+					{{ partial "icon-random" }}&nbsp;&nbsp;Random card
+				</button>
+			</a>
+
+			<!-- search -->
 			<div class="search">
 				<input type="text" id="search" placeholder="Search cards by name or type">
 				<button id="clear-search">
-					<svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
-						<title>Backspace</title>
-						<path
-							d="M135.19 390.14a28.79 28.79 0 0021.68 9.86h246.26A29 29 0 00432 371.13V140.87A29 29 0 00403.13 112H156.87a28.84 28.84 0 00-21.67 9.84v0L46.33 256l88.86 134.11z"
-							fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"></path>
-						<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-							stroke-width="32"
-							d="M336.67 192.33L206.66 322.34M336.67 322.34L206.66 192.33M336.67 192.33L206.66 322.34M336.67 322.34L206.66 192.33">
-						</path>
-					</svg>
+					{{ partial "icon-backspace.html" . }}
 				</button>
 			</div>
-			<p class="rule-paragraph" style="text-align: center; margin-left: auto; margin-right: auto;">
-			<b>Click on a card to learn more!</b>
-			</p>
+
 		</div>
+		
 		<script>
 			// @license magnet:?xt=urn:btih:5ac446d35272cc2e4e85e4325b146d0b7ca8f50c&dn=unlicense.txt Unlicense
 			document.addEventListener("DOMContentLoaded", () => {
@@ -72,6 +76,20 @@
 			})
 			// @license-end
 
+		</script>
+
+		<!-- random card generator -->
+		<script>
+			var sites = [
+			{{$pages := (where .Site.Pages "Section" "compendium")}}
+			{{$len := (len $pages)}}
+			{{ range $i, $e := (where .Site.Pages "Section" "compendium") }}
+			{{if not (eq .RelPermalink "/compendium/")}}
+			{{.RelPermalink}}{{ if (lt $i (sub $len 1) )}}, {{ end }} {{ end }} 
+			{{ end }}
+			];
+			var i = parseInt(Math.random(0) * sites.length);
+			document.getElementById("random-card-button").href = sites[i];
 		</script>
 
 		<ul id="list" class="list">

@@ -8,8 +8,11 @@
 	<div class="main-section">
 		<div class="title-wrapper">
 			{{ partial "outlined-title" (dict "title" .Title "h" "h2" "class" "main-title") }}
+			<div class="rule-paragraph" style="text-align: center; margin-left: auto; margin-right: auto;">
+				<i>Krieg Eterna</i> is proud to be featured in the following local gaming stores. If you are a retailer interested in carrying our products, please contact us.
+			</div>
 			<div class="search">
-				<input type="text" id="search" placeholder="Search">
+				<input type="text" id="search" placeholder="Search stores">
 				<button id="clear-search">
 					{{ partial "icon-backspace.html" . }}
 				</button>
@@ -64,10 +67,12 @@
 		<ul id="list" class="list">
 			{{- range.Pages }}
 			<li class="tag" data-tags="{{.Page.Params.tags}}">
-				<a href="{{ .RelPermalink }}">
-					<img {{ with .Params.code }} src="/essay-thumbnails/{{.}}.webp" {{ end -}} class="essay-image">
+				<a href="{{ .Page.Params.link }}" target="_blank" rel="noopener">
+					<img {{ with .Params.code }} src="/store-thumbnails/{{.}}.webp" {{ end -}} class="essay-image">
 					<div class="essay-title">
-						{{.Page.Title}}
+						{{ .Page.Title }}
+						<br>
+						({{ .Page.Params.location }})
 					</div>
 				</a>
 			</li>

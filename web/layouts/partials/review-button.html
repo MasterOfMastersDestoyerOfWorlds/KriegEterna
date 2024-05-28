@@ -1,0 +1,7 @@
+<a {{ partial "tracking-code" . | safeHTMLAttr }} target="_blank" rel="noopener" class="review-button">
+    <img src="{{ .Params.icon }}" class="review-button-icon">
+    <div style="display: flex; flex-direction: column; align-items: flex-end;">
+        <p class="review-button-number"><span style="padding: 0 0.2em">{{ .Params.rating_numerator }}</span>/<span style="padding: 0 0.4em 0 0.2em">{{ .Params.rating_denominator }}</span><span style="color: var(--white); height: 1em">{{ partial "icon-link" . }}</span></p>
+        <p class="review-button-ratings">{{ .Params.n_ratings }}+ ratings</p>
+    </div>
+</a>

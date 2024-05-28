@@ -11,7 +11,9 @@ layout: card
 <div class="title-wrapper">
     {{< outlined-title title="Cognitive Overload in Games" h="h2" class="main-title">}}
 </div>
-    {{< vid  "https://www.youtube.com/embed/qI6uy1OmIxw?si=BuVPwlTpNSprmSrm">}}
+    <div class="video-background">
+        {{< vid "https://www.youtube.com/embed/qI6uy1OmIxw?si=BuVPwlTpNSprmSrm">}}
+    </div>
     <p class="rule-paragraph">
         It is important to understand that the right level of game complexity does not exist for all players. Many people are not interested in playing games much more complex than yahtzee and this is ok. Complexity itself does not make a game  “better”. Complex games simply fit a certain, often more hardcore, audience. But I personally have an odd relationship with complexity: I like extremely complex video games (e.g., EU4, Civilization, Factorio) with lots of rules and depth, but have bounced off similarly complex board games that, at least on the surface, should be right up my alley.
     </p>

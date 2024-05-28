@@ -145,7 +145,7 @@
                 <p style="margin-top: 2em">
                     <b>Strategy:</b>
                 </p>
-                <p>
+                <p class="card-detail-strategy">
                     {{partial (printf "strategy-descriptions/%s.html" $stratDesc) (dict "Params" (dict "title" $title) "Page" .Page)}}
                 </p>
                 {{end}}
@@ -155,7 +155,9 @@
                 <p style="margin-top: 2em">
                     <b>About the card:</b>
                 </p>
+                <div class="card-detail-about-flavor">
                 {{ . }}
+                </div>
                 {{ else }}
                 <!-- nothing -->
                 {{ end }}

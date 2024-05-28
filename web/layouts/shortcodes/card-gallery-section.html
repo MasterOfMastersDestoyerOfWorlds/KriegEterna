@@ -10,21 +10,17 @@
                 With over <a href="/compendium">100 unique cards</a>, the possibilities are endless!
             </p>
         </div>
-        <div class="css-XorOV" style="--container-flex-direction:column-reverse;">
-            <div class="css-JEZym" style="--intersection-offset:0;">
-            </div>
-            <div class="">
-                <div class="swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
-                    <div class="swiper-wrapper card-scroll-box">
-                        {{partial "cardflip" (dict "Params" (dict "front" "Calvary" "back" "Flag" "disallowScale"
-                        "mobile" ))}}
-                        {{partial "cardflip" (dict "Params" (dict "front" "TraitorKing" "back" "FlagKing" "disallowScale" "mobile" ))}}
-                        {{partial "cardflip" (dict "Params" (dict "front" "Armada" "back" "Flag" "disallowScale" "mobile" ))}}
-                        {{partial "cardflip" (dict "Params" (dict "front" "Saboteur" "back" "FlagPower" "disallowScale" "mobile" ))}}
-                        {{partial "cardflip" (dict "Params" (dict "front" "Ruin" "back" "FlagPower" "disallowScale" "mobile" ))}}
-                        {{partial "cardflip" (dict "Params" (dict "front" "Fortress" "back" "FlagPower" "disallowScale" "mobile" ))}}
+        <div class="css-XorOV">
+            <div class="swiper swiper-backface-hidden">
+                <div class="swiper-wrapper card-scroll-box">
+                    {{partial "cardflip" (dict "Params" (dict "front" "Calvary" "back" "Flag" "disallowScale"
+                    "mobile" ))}}
+                    {{partial "cardflip" (dict "Params" (dict "front" "TraitorKing" "back" "FlagKing" "disallowScale" "mobile" ))}}
+                    {{partial "cardflip" (dict "Params" (dict "front" "Armada" "back" "Flag" "disallowScale" "mobile" ))}}
+                    {{partial "cardflip" (dict "Params" (dict "front" "Saboteur" "back" "FlagPower" "disallowScale" "mobile" ))}}
+                    {{partial "cardflip" (dict "Params" (dict "front" "Ruin" "back" "FlagPower" "disallowScale" "mobile" ))}}
+                    {{partial "cardflip" (dict "Params" (dict "front" "Fortress" "back" "FlagPower" "disallowScale" "mobile" ))}}
 
-                    </div>
                 </div>
             </div>
         </div>

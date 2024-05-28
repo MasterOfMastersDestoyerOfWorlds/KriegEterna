@@ -12,7 +12,9 @@ The painting depicts Russian troops storming the village of Aul Gimry during the
 <p>
 The Russian artist Franz Roubaud is known for large scale panoramic paintings, including 360-degree paintings of battles that required their own pavilion for exhibition.  In Sturm Aul Gimry, he portrays not only the confusion but also the emotional impact of battle.
 </p>
-{{<vid  "https://www.youtube.com/embed/Vl2kOqy_Uc4?si=Xjjqo0MoMz9Ym9ra">}}
+<div class="video-background">
+    {{< vid "https://www.youtube.com/embed/Vl2kOqy_Uc4?si=Xjjqo0MoMz9Ym9ra">}}
+</div>
 <p>
 "Doomed to flames of woe; Our lady of sorrows." is from the Dies irae (Day of Wrath), a medieval Latin poem depicting the Last Judgement and used in the Roman Catholic Requiem Mass (Mass for the Dead). The poem was also used as the lyrics for Mozart’s Requiem in D minor, probably one of his most famous works.
 </p>

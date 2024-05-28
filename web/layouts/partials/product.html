@@ -1,0 +1,43 @@
+<!-- Inputs: title, price, image, description, trackingCode -->
+
+<div class="swiper-slide product-box">
+    <picture>
+        <img src="{{ .Params.image }}" alt="" width="400" height="433" loading="lazy">
+    </picture>
+    <div>
+        <h4 class="product-title" data-text="Standard Edition">{{ .Params.title }}<h4>
+    </div>
+    <div class="product-price">
+        <p>{{ .Params.price }}</p>
+    </div>
+    <div class="product-desc">
+        <hr>
+        <p>{{ .Params.description }}</p>
+    </div>
+    <div class="css-cW5DV">
+        <div class="css-nd7IL">
+            <div class="css-AX10X">
+                {{ if ne .Params.trackingCode "none" }}
+                    <a {{ partial "tracking-code" . | safeHTMLAttr }} target="_blank" rel="noopener">
+                        <button class="css-lV1Vi buy-product-button css-ExOVn">
+                            Buy Now&nbsp{{partial "icon-link"}}
+                        </button>
+                    </a>
+                {{ else }}
+                    <button class="css-lV1Vi buy-product-button css-ExOVn buy-product-button-disabled">
+                        Coming Soon
+                    </button>
+                {{ end }}
+                <!-- Beginning of Buy With Prime Widget --
+                <script async fetchpriority='high' src='https://code.buywithprime.amazon.com/bwp.v1.js'></script>
+                <div
+                id="amzn-buy-now"
+                data-site-id="zm37qpw6y6"
+                data-widget-id="w-J5EhprFtkk1J9d75bFUCK3"
+                data-sku="QU-B39T-6LQM"
+                ></div>
+                !-- End of Buy With Prime Widget -->
+            </div>
+        </div>
+    </div>
+</div>
