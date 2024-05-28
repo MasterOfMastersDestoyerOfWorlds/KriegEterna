@@ -68,6 +68,10 @@
                         body = doc.querySelector('.card-detail-strategy')
                     }
 
+                    if(body == null){
+                        body = doc.querySelector('.card-detail-flavor-text')
+                    }
+
                     // Replace my empty element with the retrieved content
                     document.getElementById("card-showcase-text").innerHTML = body.innerHTML;
                 });

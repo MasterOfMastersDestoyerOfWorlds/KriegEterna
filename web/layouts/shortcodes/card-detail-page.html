@@ -113,7 +113,10 @@
                 {{$flavor = (replace $flavor "\\`" "\"")}}
                 {{$flavor = (replace $flavor "\\r" " ")}}
                 <p>
-                    <b>Flavor Text:</b> {{$flavor}}
+                    <b>Flavor Text:</b> 
+                    <span class="card-detail-flavor-text">
+                    {{$flavor}}
+                    </span>
                 </p>
 
                 <p>
