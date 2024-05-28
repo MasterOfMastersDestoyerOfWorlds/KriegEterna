@@ -1436,6 +1436,13 @@ img {
     grid-auto-flow: row;
 }
 
+.card-showcase-text img {
+    max-height: 50vh;
+    display: block;
+    margin: 1.5em auto;
+    border-radius: 15px;
+}
+
 .card-showcase-text {
     aspect-ratio: 3 / 4.1;
     background-color: var(--theme-primary-color--210);
@@ -1448,7 +1455,7 @@ img {
     flex-direction: column;
     justify-content: space-between;
 
-    p {
+    div {
         overflow-y: hidden;
         font-size: 0.75em;
         color: var(--base-font-color);
@@ -1479,7 +1486,7 @@ img {
         aspect-ratio: 3 / 2.05;
         border-radius: 4% / 6%;
     }
-    .card-showcase-text b, .card-showcase-text p {
+    .card-showcase-text b, .card-showcase-text div {
         font-size: 0.9em;
     }
 }
