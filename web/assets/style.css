@@ -22,9 +22,10 @@
     --system-font-family:
         -apple-system, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --base-font-color: var(--white);
-    --base-font-family: "Open Sans", Arial, sans-serif;
+    --base-font-family: Arial, sans-serif;
     --base-font-size: 20px;
     --base-word-spacing: 1px;
+    --medium-font-family: "Arial Black", Arial, sans-serif;
     --strong-font-family: "GargouilleBold", Arial, serif;
     --html-background: var(--black);
     --max-site-width: 1920;
@@ -62,7 +63,7 @@ html {
     background: var(--html-background, #000);
     box-sizing: border-box;
     color: var(--white, #fff);
-    font-family: var(--base-font-family, "Open Sans", Arial, sans-serif);
+    font-family: var(--base-font-family, Arial, sans-serif);
     font-size: var(--base-font-size, 16px);
     word-spacing: var(--base-word-spacing, 1px);
     -ms-text-size-adjust: 100%;
@@ -402,7 +403,7 @@ h3 {
 
 h4 {
     color: var(--base-font-color);
-    font-family: var(--base-font-family, Arial, sans-serif);
+    font-family: 'Arial Black', var(--base-font-family), Arial, sans-serif;
     font-weight: 800;
     text-transform: uppercase;
     text-align: center;
@@ -443,8 +444,8 @@ h4 {
     left: 0;
     right: 0;
     padding: 0;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 0.05em;
+    margin-right: 0.05em;
     --color: var(--theme-primary-color--430);
     fill: transparent;
     font-family: var(--strong-font-family, "Gargouille", Arial, serif);
@@ -554,7 +555,7 @@ img {
     --logo-width: 110px;
     --bar-bg-color: var(--theme-header-color);
     --bar-padding: 0 15px;
-    --bar-justify: center;
+    --bar-justify: space-between;
     --bar-links-display: none;
     --bar-link-gap: 20px;
     --bar-link-color: var(--white);
@@ -567,9 +568,8 @@ img {
     --drawer-top-padding: var(--site-header-height)
 }
 
-@media(min-width:1050px) {
+@media(min-width:1100px) {
     .header-left {
-        --bar-justify: flex-start;
         --bar-links-display: block;
         --burger-display: none;
         --nav-display: block;
@@ -605,7 +605,8 @@ img {
     padding: var(--bar-padding);
     position: relative;
     max-width: calc(var(--default-max-content-width)+ 30px);
-    margin: 0 auto
+    margin: 0 auto;
+    overflow-x: clip;
 }
 
 .permanent-nav {
@@ -614,6 +615,13 @@ img {
     margin-right: 0;
     z-index: 3;
     margin-left: auto;
+}
+
+@media(max-width: 375px) {
+    /* at very narrow widths, there isn't enough room for anything except the logo and hamnav */
+    .permanent-nav {
+        display: none;
+    }
 }
 
 .nav-links {
@@ -824,7 +832,6 @@ img {
     color: var(--theme-accent-color);
     text-transform: uppercase;
     font-size: 1em;
-    font-weight: 800;
     text-align: left;
     margin: 1em auto 0
 }
@@ -1001,6 +1008,18 @@ img {
     height: auto;
 }
 
+.icon-arrow {
+    width: 1.5em;
+    margin: -0.3em 0;
+    height: auto;
+    filter: drop-shadow(0 0 2px var(--black-alpha50));
+    color: var(--theme-primary-color--300)
+}
+
+.icon-arrow:hover {
+    color: var(--white-alpha75)
+}
+
 .button-highlight {
     --wrap-display: inline-flex;
     --wrap-padding--base: 0.4em 1em;
@@ -1074,7 +1093,7 @@ img {
 }
 
 .css-zML4P {
-    font-family: inherit;
+    font-family: var(--medium-font-family);
     font-weight: var(--label-font-weight);
     color: var(--label-color);
     line-height: 1;
@@ -1082,18 +1101,6 @@ img {
     font-size: 17.5px;
     display: inline-flex;
     align-items: center;
-}
-
-@media screen and (min-width:320px) {
-    .css-zML4P {
-        font-size: calc(15.5px+ .15625vw)
-    }
-}
-
-@media screen and (min-width:1600px) {
-    .css-zML4P {
-        font-size: 18px
-    }
 }
 
 .css-2dGqW:focus .css-zML4P,
@@ -1119,7 +1126,7 @@ img {
 
 @media(min-width:1024px) {
     .top-img {
-        min-height: 60vh;
+        min-height: 100%;
     }
 }
 
@@ -1301,7 +1308,7 @@ img {
 }
 
 .review-button-number {
-    font-weight: 900;
+    font-weight: 800;
     line-height: 1;
     display: inline-flex;
     align-items: center;
@@ -1369,6 +1376,12 @@ img {
     color: var(--theme-accent-color);
     text-transform: uppercase;
     font-weight: 800;
+}
+
+.card-detail-about h4 {
+    color: var(--theme-accent-color);
+    text-align: left;
+    font-size: 1em;
 }
 
 .card-detail-about p {
@@ -1462,10 +1475,8 @@ img {
         -webkit-mask-image: linear-gradient(180deg, #000 80%, transparent);
     }
 
-    b { 
+    h4 { 
         color: var(--theme-accent-color);
-        text-transform: uppercase;
-        font-weight: 800;
         font-size: 0.75em;
     }
 }
@@ -1534,7 +1545,8 @@ img {
 .product-price {
     margin: 0.5em 0 0;
     color: var(--theme-link-color);
-    font-weight: 800 !important
+    font-weight: 800;
+    font-family: var(--medium-font-family);
 }
 
 .product-desc {
@@ -2600,7 +2612,7 @@ html[lang=zh-Hant] .css-4zJQw {
     background-image: linear-gradient(rgba(97, 97, 97, 0.8),rgba(23, 23, 23, 0.8)), url("./images/battle-1023x600-100.jpg");
     background-size: cover;
     background-position: 40% 10%;
-    text-shadow: 0px 0px 4px var(--black-alpha75);
+    text-shadow: 0px 0px 5px var(--black-alpha75);
 }
 
 button,
@@ -2851,125 +2863,6 @@ input[type=submit].btn--subtle-hover:hover,
     }
 }
 
-/*
-
-.nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  overflow: hidden;
-  background-color: #000;
-}
-
-.nav li a {
-  display: block;
-  padding: 20px 20px;
-  border-right: 1px solid #f4f4f4;
-  text-decoration: none;
-}
-
-.nav li a:hover,
-.nav .menu-btn:hover {
-  background-color: #f4f4f4;
-}
-
-.nav .logo {
-  display: block;
-  float: left;
-  font-size: 2em;
-  padding: 10px 20px;
-  text-decoration: none;
-}
-
-.nav .menu {
-  clear: both;
-  max-height: 0;
-  transition: max-height .2s ease-out;
-}
-
-
-.nav .menu-icon {
-  cursor: pointer;
-  display: inline-block;
-  float: right;
-  padding: 28px 20px;
-  position: relative;
-  user-select: none;
-}
-
-.nav .menu-icon .navicon {
-  background: #333;
-  display: block;
-  height: 2px;
-  position: relative;
-  transition: background .2s ease-out;
-  width: 18px;
-}
-
-.nav .menu-icon .navicon:before,
-.nav .menu-icon .navicon:after {
-  background: #fff;
-  content: '';
-  display: block;
-  height: 100%;
-  position: absolute;
-  transition: all .2s ease-out;
-  width: 100%;
-}
-
-.nav .menu-icon .navicon:before {
-  top: 5px;
-}
-
-.nav .menu-icon .navicon:after {
-  top: -5px;
-}
-
-
-.nav .menu-btn {
-  display: none;
-}
-
-.nav .menu-btn:checked ~ .menu {
-  max-height: 240px;
-}
-
-.nav .menu-btn:checked ~ .menu-icon .navicon {
-  background: transparent;
-}
-
-.nav .menu-btn:checked ~ .menu-icon .navicon:before {
-  transform: rotate(-45deg);
-}
-
-.nav .menu-btn:checked ~ .menu-icon .navicon:after {
-  transform: rotate(45deg);
-}
-
-.nav .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
-.nav .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
-  top: 0;
-}
-
-/* 48em = 768px */
-/*
-@media (min-width: 48em) {
-  .nav li {
-    float: right;
-  }
-  .nav li a {
-    padding: 20px 30px;
-  }
-  .nav .menu {
-    clear: none;
-    float: right;
-    max-height: none;
-  }
-  .nav .menu-icon {
-    display: none;
-  }
-}*/
-
 .list {
     -webkit-text-fill-color: inherit;
     padding-inline-start: 0px;
@@ -3022,7 +2915,7 @@ input#search {
     background: #343434;
     border: 3px solid var(--white-alpha25);
     color: #fff;
-    padding: 0.7em 1em;
+    padding: 0.7em 2.25em 0.7em 1em;
     border-radius: 0.25em;
     width: 100%;
     justify-content: left;
@@ -3033,7 +2926,7 @@ button#clear-search {
     all: unset;
     position: absolute;
     right: 0.5em;
-    top: 0.5em;
+    top: 0.65em;
     height: 1.5em;
     width: 1.5em;
     color: #888;
@@ -3077,6 +2970,7 @@ button#clear-search {
     text-transform: uppercase;
     font-weight: 800;
     font-size: 1em;
+    font-family: var(--medium-font-family);
 }
 
 .nextart {
@@ -3115,8 +3009,8 @@ body {
 #menuToggle {
     display: block;
     position: relative;
-    top: -15px;
-    /* right: 50px; */
+    top: -14px;
+    /* right: -4px; */
     z-index: 1;
     -webkit-user-select: none;
     user-select: none;

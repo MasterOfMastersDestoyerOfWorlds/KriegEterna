@@ -146,7 +146,7 @@
                 {{$stratDesc := (lower $stratDesc)}}
                 {{if gt (len $stratDesc) 1}}
                 <p style="margin-top: 2em">
-                    <b>Strategy:</b>
+                    <h4>Strategy:</h4>
                 </p>
                 <p class="card-detail-strategy">
                     {{partial (printf "strategy-descriptions/%s.html" $stratDesc) (dict "Params" (dict "title" $title) "Page" .Page)}}
@@ -156,7 +156,7 @@
                 <!-- about -->
                 {{ with .Inner }}
                 <p style="margin-top: 2em">
-                    <b>About the card:</b>
+                    <h4>About the card:</h4>
                 </p>
                 <div class="card-detail-about-flavor">
                 {{ . }}

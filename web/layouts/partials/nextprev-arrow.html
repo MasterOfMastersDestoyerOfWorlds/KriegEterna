@@ -1,6 +1,6 @@
 {{ if .prev}}
 {{- if .Page.NextInSection -}}
-<a href="{{ .Page.NextInSection.RelPermalink}}" class="nextprev-arrow">←</a>
+<a href="{{ .Page.NextInSection.RelPermalink}}" class="nextprev-arrow" style="transform: scaleX(-1);">{{ partial "icon-arrow" . }}</a>
 {{else}}
 <div class="nextprev-arrow"> </div>
 {{ end -}}
@@ -8,7 +8,7 @@
 
 {{ if .next}}
 {{- if .Page.PrevInSection }}
-<a href="{{ .Page.PrevInSection.RelPermalink}}" class="nextprev-arrow">→</a>
+<a href="{{ .Page.PrevInSection.RelPermalink}}" class="nextprev-arrow">{{ partial "icon-arrow" . }}</a>
 {{else}}
 <div class="nextprev-arrow"> </div>
 {{ end -}}
