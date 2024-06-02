@@ -1126,14 +1126,14 @@ img {
 
 @media(min-width:1024px) {
     .top-img {
-        min-height: 100%;
+        min-height: 60svh;
     }
 }
 
 @media(max-width:1024px)  and (min-width:768px){
     .top-img {
         aspect-ratio: 1023/600;
-        max-height: 50vh;
+        max-height: 50svh;
         min-width: 100vw;
         object-fit: cover;
         -o-object-fit: cover;
@@ -1143,7 +1143,7 @@ img {
 @media(max-width:768px)  and (min-width:570px) {
     .top-img {
         aspect-ratio: 767/601;
-        max-height: 40vh;
+        max-height: 40svh;
         min-width: 100vw;
         object-fit: cover;
         -o-object-fit: cover;
@@ -1156,7 +1156,7 @@ img {
         margin: 0!important;
         -o-object-fit: cover;
         object-fit: cover;
-        max-height: 45vh;
+        max-height: 45svh;
         min-width: 100vw;
     }
 }
@@ -1392,7 +1392,7 @@ img {
 }
 
 .card-detail-about img {
-    max-height: 50vh;
+    max-height: 50svh;
     display: block;
     margin: 1.5em auto;
     border-radius: 15px;
@@ -1450,7 +1450,7 @@ img {
 }
 
 .card-showcase-text img {
-    max-height: 50vh;
+    max-height: 50svh;
     display: block;
     margin: 1.5em auto;
     border-radius: 15px;
@@ -3095,7 +3095,7 @@ body {
     padding: 50px;
     padding-top: 125px;
     right: -38%;
-    height: 200vh;
+    height: 200svh;
     background: var(--theme-menu-color);
     -webkit-font-smoothing: antialiased;
     /* to stop flickering of text in safari */
