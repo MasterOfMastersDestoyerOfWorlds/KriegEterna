@@ -241,17 +241,34 @@ layout: single
         {{< outlined-title title="Additional Players" h="h3" class="rule-title">}}
     </div>
     <p class="rule-paragraph">
-        When playing <i>Krieg Eterna</i> with more than two players, you can choose to either play in teams
-        or a free-for-all:
+        When playing <i>Krieg Eterna</i> with more than two players, the setup and gameplay should be modified as follows:
     </p>
-    <ul class="rule-paragraph">
-        <li>Players should not show their hands to teammates.</li>
-        <li>Each player has their own separate set of rows (e.g. teammates do not share rows, adjacency, or Kings).</li>
-        <li>Turn order should alternate between teams.</li>
-        <li>Teammates can never play on your turn for you, even if you have already passed.</li>
-        <li><b>Scoring:</b> In free-for-all, award points based on a player's ranking within each round. In a
-        team game, the team with the highest combined total strength wins the round.</li>
-    </ul>
+    <div class="rule-box">
+        <h4>3 Players:</h4>
+        <p>
+            With three players, <i>Krieg Eterna</i> becomes a free-for-all where your objective is to earn the most <b>rank points</b> across three rounds. Unlike the two-player version, all three rounds are always played before determining the winner.
+        </p>
+        <ul>
+            <li><b>Setup:</b> Each player should draw 9 unit cards, 4 power cards and 1 King card. After review, players must discard 3 of their cards before play begins.</li>
+            <li><b>Field:</b> Each player has their own separate set of rows (e.g. players should not share rows, adjacency, or Kings).</li>
+            <li><b>Turns:</b> Turn order should proceed clockwise. As usual, the player who won the previous round starts the next.</li>
+            <li><b>Scoring:</b> At the end of each round, determine the total strength of each player's field and award <b>rank points</b> based on their position. For example, the player with the highest total strength earns two points, the next player earns one point, and the last player earns no points.</li>
+            <li><b>Winning:</b> The player with the most rank points added up across all three rounds wins the game. In the event of a tie, the player who most recently won a round takes the advantage.</li>
+        </ul>
+    </div>
+    <div class="rule-box">
+        <h4>4 Players:</h4>
+        <p>
+            With four players, <i>Krieg Eterna</i> becomes a team battle of two versus two.  As usual, each team tries to win the best of three rounds. During setup and gameplay, players should never show their hands to teammates; however, teams may openly strategize as long as all opposing players also have access to the communication.
+        </p>
+        <ul>
+            <li><b>Setup:</b> Each player draws 6 unit and 3 power cards, then must discard 2 cards after review. Next, without revealing their hands, each team chooses only one of their players to draw a King card.</li>
+            <li><b>Field:</b> Players on each team share their side of the field (e.g. teammates share rows, adjacency, and Kings). This means that teammates work together to build a single army.</li>
+            <li><b>Turns:</b> Turn order should alternate between individual players on opposing teams. Teammates can never play on your turn for you, even if you have already passed. After you pass, your teammate stays in the round until they separately decide to pass.</li>
+            <li><b>Scoring:</b> The team with the highest combined total strength wins the round, similar to the two-player version.</li>
+            <li><b>Winning:</b> The first team to win two rounds wins the game.</li>
+        </ul>
+    </div>
 </div>
 </div>
 </section>

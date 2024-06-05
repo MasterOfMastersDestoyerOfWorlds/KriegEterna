@@ -26,9 +26,9 @@
                     {{partial "cardflip" (dict "Params" (dict "front" "Fortress" "back" "Flag" "big" "true" "disallowFlip" "true" "id" "explore"))}}
                 </a>
                 <a href="#" class="card-showcase-text" id="card-showcase-link2">
-                    <b style="padding-bottom: 0.5em">About the card:</b>
+                    <h4 style="text-align: left; padding-bottom: 0.5em">About the card:</h4>
                     <div id="card-showcase-text" style="margin: 0 0 auto"></div>
-                    <b style="text-align: right; padding-top: 0.5em">Read more...</b>
+                    <h4 style="text-align: right; padding-top: 0.5em">Read more...</h4>
                 </a>
             </div>
         </div>
@@ -80,9 +80,6 @@
             document.getElementById("card-showcase-link").href = sites[i];
             document.getElementById("card-showcase-link2").href = sites[i];
             document.getElementById("explore-front").src = "/card-images/" + images[i] + ".webp";
-            document.getElementById("card-showcase-text").innerText = "Hendrick Joseph Dillens was a Belgian painter in the early 19th century.  This oil painting, Archer the Winner is a genre painting, intended to show scenes of everyday life.  In this moment, the archer has won his competition and is being celebrated by the townspeople.  The archer is the only figure looking out of the painting directly at the viewer, as if to let us know that we are included in the celebration. Douglas was probably best know for trying to breed a hybrid of a horse and a quagga, a now exctinct subspecies of Zebra native to South Africa. He did manage breed a horse with stripes on its hind legs and neck (pictured above) and this fact was later cited in Charles Darwin's On The Origin of Species as an example of telegony, where two male's can impart their gene's in a single offspring. This was later found to be false and it is likely that Douglas' horse had those stripes by coincidence.";
-
-            
             file_get_contents(sites[i]);
 
         </script>

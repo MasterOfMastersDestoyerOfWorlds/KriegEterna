@@ -84,6 +84,8 @@
 	<div class="css-wvKZk colors">
 		<div class="header-left site-header">
 			<div class="logo">
+
+				<!-- left navs -->
 				<div class="css-8oEOo">
 					<a {{ with .GetPage "/" }} href="{{ .RelPermalink }}" {{ end }}>
 						<picture>
@@ -112,8 +114,9 @@
 							</a>
 						</li>
 					</ul>
-
 				</nav>
+
+				<!-- right navs -->
 				<nav class="nav permanent-nav">
 					<ul class="nav-links nav-list">
 						<li class="permanent-nav"><a {{ partial "tracking-code" . | safeHTMLAttr }} class="nav-link"
@@ -123,7 +126,6 @@
 						</li>
 					</ul>
 				</nav>
-
 				<nav class="hamnav" role='navigation'>
 					<div id="menuToggle">
 						<input type="checkbox" />
