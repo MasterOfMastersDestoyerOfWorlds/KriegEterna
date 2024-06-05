@@ -511,6 +511,10 @@ img {
     max-width: 100%;
 }
 
+ul {
+    padding-inline-start: 2em;
+}
+
 .css-wvKZk {
     max-width: var(--max-site-width);
     margin: 0 auto;
@@ -822,6 +826,18 @@ img {
     border-radius: 1.25rem;
     box-shadow: 0em 0em 1em var(--black-alpha75);
     text-align: left;
+
+    b {
+        color: var(--theme-accent-color);
+    }
+
+    ul {
+        padding-inline-start: 1em;
+    }
+
+    li {
+        margin: 0 0 1em;
+    }
 }
 
 .rule-box table {
@@ -855,6 +871,10 @@ img {
 
     p {
         padding-left: 1.5em;
+    }
+
+    b {
+        color: var(--black);
     }
 }
 
