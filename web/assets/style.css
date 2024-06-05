@@ -610,7 +610,6 @@ ul {
     position: relative;
     max-width: calc(var(--default-max-content-width)+ 30px);
     margin: 0 auto;
-    overflow-x: clip;
 }
 
 .permanent-nav {
@@ -1146,7 +1145,7 @@ ul {
 
 @media(min-width:1024px) {
     .top-img {
-        min-height: 60svh;
+        min-height: max(60svh, 550px);
     }
 }
 
