@@ -3,7 +3,7 @@
     {{- with .NextInSection -}}
     <a href="{{ .RelPermalink}}">
         <div class="prevart">
-            <div class="nextprev-title">← Previous</div>
+            <div class="nextprev-title">←&nbsp;Previous</div>
             {{partial "cardflip" (dict "Params" (dict "big" "true" "front" .Params.code "back" .Params.back
             "disallowFlip" "true"))}}</div>
     </a>
@@ -11,7 +11,7 @@
     {{- with .PrevInSection }}
     <a href="{{ .RelPermalink}}">
         <div class="nextart">
-            <div class="nextprev-title">Next →</div>
+            <div class="nextprev-title">Next&nbsp;→</div>
             {{partial "cardflip" (dict "Params" (dict "big" "true" "front" .Params.code "back" .Params.back
             "disallowFlip" "true"))}}</div>
     </a>
