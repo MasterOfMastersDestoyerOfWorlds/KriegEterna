@@ -55,6 +55,8 @@ set "maxProc=5"
 		SET outlinedark=FALSE
 	) else if "%%E"=="Scry" (
 		SET outlinedark=TRUE
+	) else if "%%E"=="Bank" (
+		SET outlinedark=TRUE
 	)
 	
     if !startCount! lss %maxProc% (

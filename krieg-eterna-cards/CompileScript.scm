@@ -79,6 +79,9 @@
 		(effect-layer-group)
 		(merge-layer)
 		(effect-back-layer)
+		(icon-ratio)
+		(icon-width)
+		(icon-height)
 		(icon-layer)
 		(icon-back-layer)
 		(strength-layer)
@@ -174,11 +177,18 @@
 
 	(set! buffer inBufferAmount)
 
+	(gimp-message "z")
+	(gimp-message (number->string (car (gimp-drawable-width icon-layer))))
+	(set! icon-ratio   (/ (car (gimp-drawable-width icon-layer)) (car (gimp-drawable-height icon-layer) )) ) 
+	(gimp-message "a")
+	(set! icon-height (/ image-width 5.5))
+	(gimp-message "b")
+	(set! icon-width (* icon-ratio icon-height))
 	;;Icon Formatting
 
-	(gimp-layer-scale icon-layer (/ image-width 5.5) (/ image-width 5.5) TRUE)
+	(gimp-layer-scale icon-layer icon-width icon-height TRUE)
 
-	(gimp-layer-set-offsets icon-layer (- (- image-width (/ image-width 5.5))  (* 2 buffer)) (* 2 buffer))
+	(gimp-layer-set-offsets icon-layer (- (- image-width icon-width)  (* 2 buffer)) (* 2 buffer))
 	(gimp-selection-none image)
 	(gimp-image-select-item image 0 icon-layer)
 	;(gimp-image-raise-item-to-top image text)
@@ -191,17 +201,17 @@
 	;
 	
 			
-	(set! icon-back-layer (car (gimp-layer-new image (/ image-width 5.5) (/ image-width 5.5) 1 "icon background" back-opacity 0)))
+	(set! icon-back-layer (car (gimp-layer-new image icon-width icon-height 1 "icon background" back-opacity 0)))
 	
 	(gimp-image-insert-layer image icon-back-layer 0 (car (gimp-image-get-item-position image layer)))
 	(gimp-image-set-active-layer image icon-back-layer)
-	(gimp-layer-set-offsets icon-back-layer (- (- image-width (/ image-width 5.5))  (* 2 buffer)) (* 2 buffer))
+	(gimp-layer-set-offsets icon-back-layer (- (- image-width icon-width)  (* 2 buffer)) (* 2 buffer))
 	(gimp-selection-all image)
 	(gimp-drawable-edit-fill icon-back-layer 1)
 	(gimp-selection-layer-alpha icon-back-layer)
 	(gimp-image-select-item image 2 icon-back-layer)
 	(gimp-drawable-edit-fill icon-back-layer 3)
-	(gimp-image-select-ellipse image 2 (- (- image-width (/ image-width 5.5))  (* 2 buffer)) (* 2 buffer) (/ image-width 5.5) (/ image-width 5.5))
+	(gimp-image-select-ellipse image 2 (- (- image-width (+ (/ icon-width 2) (/ icon-height 2)))  (* 2 buffer)) (* 2 buffer) icon-height icon-height)
 	(gimp-context-set-gradient gradient)
 	(gimp-drawable-edit-gradient-fill icon-back-layer GRADIENT-SHAPEBURST-SPHERICAL 85 FALSE 0 0 TRUE 0 0 100 100)
 	(gimp-drawable-brightness-contrast icon-back-layer -0.5 0)

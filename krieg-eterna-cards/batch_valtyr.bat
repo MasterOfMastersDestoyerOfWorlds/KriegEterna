@@ -22,6 +22,8 @@ for /F "tokens=1-8 delims=	" %%A in (CardSheetValtyr.tsv) do (
 		SET outlinedark=FALSE
 	) else if "%%E"=="Scry" (
 		SET outlinedark=TRUE
+	) else if "%%E"=="Bank" (
+		SET outlinedark=TRUE
 	)
 	gimp-console-2.10.exe -i -b "(script-fu-compile-card \"%%B\" \"%%C\" \"%%D\" %%H \"%%E\" \"%%E-Title\" \"%%F\" \"%WSPACE%cropped\\%%A.xcf\" \"%WSPACE%icons\\embossed\\%%E.xcf\" \"%WSPACE%out\" \"%%A\" \"!outlinedark!\")" -b "(gimp-quit 0)"
 )
