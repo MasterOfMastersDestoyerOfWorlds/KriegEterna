@@ -5,6 +5,7 @@
 	<title>{{ if not .IsHome }}{{ .Title | title }} | {{ end }}{{ .Site.Title }}</title>
 	<link rel="canonical" href="{{ .Site.BaseURL }}">
 	<link rel='alternate' type='application/rss+xml' title="{{ .Site.Title }} RSS" href='/index.xml'>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap" rel="stylesheet">
 
 	{{ $options := (dict "targetPath" "/style.css" "outputStyle" "compressed") }}
 	{{ $styles := resources.Get "/style.css" | fingerprint }}
@@ -88,11 +89,7 @@
 				<!-- left navs -->
 				<div class="css-8oEOo">
 					<a {{ with .GetPage "/" }} href="{{ .RelPermalink }}" {{ end }}>
-						<picture>
-							<source srcset="/images/krieg-eterna-simple-logo.png?fm=webp" type="image/webp"> <img
-								src="/images/krieg-eterna-simple-logo.png" alt="Krieg Eterna Logo" loading="lazy"
-								class="css-tWFgq">
-						</picture>
+						<img src="/images/logo-simple.svg" alt="Krieg Eterna Logo" loading="lazy" class="nav-logo">
 					</a>
 				</div>
 				<nav class="nav">

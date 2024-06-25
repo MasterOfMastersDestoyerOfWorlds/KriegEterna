@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'GargouilleBold';
-    src: url('fonts/gargouillebold.woff') format('woff'),
+    src: url('fonts/GargouilleBold.woff') format('woff'),
         url('fonts/GargouilleBold.woff2') format('woff2');
 }
 
@@ -25,7 +25,7 @@
     --base-font-family: Arial, sans-serif;
     --base-font-size: 20px;
     --base-word-spacing: 1px;
-    --medium-font-family: "Arial Black", Arial, sans-serif;
+    --medium-font-family: "Open Sans", Arial, sans-serif;
     --strong-font-family: "GargouilleBold", Arial, serif;
     --html-background: var(--black);
     --max-site-width: 1920;
@@ -403,7 +403,7 @@ h3 {
 
 h4 {
     color: var(--base-font-color);
-    font-family: 'Arial Black', var(--base-font-family), Arial, sans-serif;
+    font-family:  var(--medium-font-family);
     font-weight: 800;
     text-transform: uppercase;
     text-align: center;
@@ -572,7 +572,7 @@ ul {
     --drawer-top-padding: var(--site-header-height)
 }
 
-@media(min-width:1100px) {
+@media(min-width:1050px) {
     .header-left {
         --bar-links-display: block;
         --burger-display: none;
@@ -634,7 +634,7 @@ ul {
 
 .nav-list {
     list-style: none;
-    padding: 0 1.2em
+    padding: 0;
 }
 
 .nav-list,
@@ -670,12 +670,13 @@ ul {
 
 .css-8oEOo {
     width: var(--logo-width);
-    flex: 0 0 auto
+    flex: 0 0 auto;
+    margin: 0 1.2em 0 0;
 }
 
-.css-tWFgq {
+.nav-logo {
     width: 100%;
-    height: auto
+    height: auto;
 }
 
 .css-SUdY8 {
@@ -1145,7 +1146,7 @@ ul {
 
 @media(min-width:1024px) {
     .top-img {
-        min-height: max(60svh, 550px);
+        min-height: max(60svh, 675px);
     }
 }
 
@@ -1161,7 +1162,7 @@ ul {
 
 @media(max-width:768px)  and (min-width:570px) {
     .top-img {
-        aspect-ratio: 767/601;
+        aspect-ratio: 767/600;
         max-height: 40svh;
         min-width: 100vw;
         object-fit: cover;
@@ -1171,7 +1172,7 @@ ul {
 
 @media(max-width:570px) {
     .top-img {
-        aspect-ratio: 575/701;
+        aspect-ratio: 575/700;
         margin: 0!important;
         -o-object-fit: cover;
         object-fit: cover;
@@ -1188,7 +1189,7 @@ ul {
 
 .top-slanted,
 .top-slanted:before {
-    background: var(--theme-primary-color--000, var(--black, #000))
+    background: var(--theme-primary-color--200, var(--black, #000))
 }
 
 .top-slanted:before {
@@ -1220,12 +1221,13 @@ ul {
 
 .top-info-box img {
     max-width: min(400px, 90vw);
+    filter: drop-shadow(0px 0px 2px var(--black-alpha25));
 }
 
 .top-title {
     text-align: var(--text-aligment);
     max-width: 100%;
-    margin: 1em auto 0
+    margin: 0.5em auto 0
 }
 
 .top-paragraph {
@@ -1327,6 +1329,7 @@ ul {
 }
 
 .review-button-number {
+    font-family: var(--medium-font-family);
     font-weight: 800;
     line-height: 1;
     display: inline-flex;
@@ -1564,8 +1567,8 @@ ul {
 .product-price {
     margin: 0.5em 0 0;
     color: var(--theme-link-color);
-    font-weight: 800;
     font-family: var(--medium-font-family);
+    font-weight: 800;
 }
 
 .product-desc {
@@ -1642,8 +1645,8 @@ ul {
     --button-bg-color: var(--black);
     --button-border-color: var(--white);
     --button-border-radius: 1rem/75%;
-    --button-font-family: var(--base-font-family);
-    --button-font-size: 1rem;
+    --button-font-family: var(--medium-font-family);
+    --button-font-size: 1em;
     --button-font-weight: 700;
     --button-text-transform: uppercase;
     --button-padding: 0.5em 1em 0.5em
@@ -1803,19 +1806,6 @@ html[lang=zh-Hant] .css-lV1Vi {
 .css-Es3J {
     text-align: center;
     margin-bottom: 1em
-}
-
-.css-Bf1O {
-    color: var(--theme-accent-color);
-    font-family: var(--strong-font-family);
-    font-size: 24px;
-    font-weight: 700;
-    margin: 1em auto
-}
-
-
-.css-Bf1O {
-    text-align: center
 }
 
 .css-TpTpw {
@@ -2628,7 +2618,7 @@ html[lang=zh-Hant] .css-4zJQw {
     padding: 2em;
     border-radius: 1.25rem;
     box-shadow: 0em 0em 1em var(--black);
-    background-image: linear-gradient(rgba(97, 97, 97, 0.8),rgba(23, 23, 23, 0.8)), url("./images/battle-1023x600-100.jpg");
+    background-image: linear-gradient(rgba(97, 97, 97, 0.8),rgba(23, 23, 23, 0.8)), url("./images/battle-1023x600-100.webp");
     background-size: cover;
     background-position: 40% 10%;
     text-shadow: 0px 0px 5px var(--black-alpha75);
@@ -2647,8 +2637,9 @@ input[type=submit],
     appearance: none;
     display: inline-block;
     font-size: 1rem;
-    font-weight: 700;
-    padding: 0.5em 1em;
+    font-weight: 800;
+    font-family: var(--medium-font-family);
+    padding: 0.4em 1em;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
@@ -3023,6 +3014,10 @@ body {
 
 .hiddenMenu:hover {
     color: tomato;
+}
+
+.hamnav {
+    padding: 0 0 0 1.2em;
 }
 
 #menuToggle {
