@@ -23,7 +23,7 @@
         -apple-system, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --base-font-color: var(--white);
     --base-font-family: Arial, sans-serif;
-    --base-font-size: 20px;
+    --base-font-size: 16px;
     --base-word-spacing: 1px;
     --medium-font-family: "Open Sans", Arial, sans-serif;
     --strong-font-family: "GargouilleBold", Arial, serif;
@@ -74,9 +74,9 @@ html {
     scroll-behavior: smooth;
 }
 
-@media(max-width:768px) {
+@media(min-width:768px) {
     html {
-        font-size: 16px;
+        font-size: 20px;
     }
 }
 
@@ -726,23 +726,23 @@ ul {
     --wrap-padding--base: 1em 0;
     --wrap-padding--sm: 2em 0;
     --wrap-padding--md: 2em 0;
-    --wrap-padding: var(--wrap-padding--md);
+    --wrap-padding: var(--wrap-padding--base);
     padding: var(--wrap-padding);
     overflow: hidden;
     z-index: 0;
     position: relative
 }
 
-@media(max-width:1024px) {
+@media(min-width:768px) {
     .main-section {
         --wrap-padding: var(--wrap-padding--sm);
         padding: var(--wrap-padding)
     }
 }
 
-@media(max-width:768px) {
+@media(min-width:1024px) {
     .main-section {
-        --wrap-padding: var(--wrap-padding--base);
+        --wrap-padding: var(--wrap-padding--md);
         padding: var(--wrap-padding)
     }
 }
@@ -891,28 +891,22 @@ ul {
 }
 
 .rule-paragraph {
-    width: 35em;
-    max-width: 70%;
+    width: 90%;
     display: block;
     align-items: center;
     text-align: justify;
     margin: 1em 0em;
 }
 
-@media(max-width:768px) {
+@media(min-width:768px) {
     .rule-paragraph {
-        min-width: 90%;
+        width: 35em;
+        max-width: 70%;
     }
 }
 
 .rule-paragraph li {
     margin: 0 0 1em;
-}
-
-@media (max-width: 768px) {
-    .rule-paragraph li {
-        max-width: 90%;
-    }
 }
 
 .rule-paragraph b {
@@ -1104,12 +1098,13 @@ ul {
 
 .css-qEffi {
     font-family: var(--text-container-font-family);
-    margin-left: var(--text-container-margin-left)
+    margin-left: var(--text-container-margin-left);
+    display: none;
 }
 
-@media(max-width:768px) {
+@media(min-width:768px) {
     .css-qEffi {
-        display: none;
+        display: block;
     }
 }
 
@@ -1142,43 +1137,31 @@ ul {
 }
 
 .top-img {
+    max-height: 45svh;
+    min-width: 100vw;
     object-fit: cover;
+    -o-object-fit: cover;
+}
+
+@media(min-width:575px) {
+    .top-img {
+        max-height: 40svh;
+        min-width: 100vw;
+    }
+}
+
+@media(min-width:768px) {
+    .top-img {
+        max-height: 50svh;
+        min-width: 100vw;
+    }
 }
 
 @media(min-width:1024px) {
     .top-img {
+        max-height: unset;
+        min-width: unset;
         min-height: max(60svh, 675px);
-    }
-}
-
-@media(max-width:1024px)  and (min-width:768px){
-    .top-img {
-        aspect-ratio: 1023/600;
-        max-height: 50svh;
-        min-width: 100vw;
-        object-fit: cover;
-        -o-object-fit: cover;
-    }
-}
-
-@media(max-width:768px)  and (min-width:570px) {
-    .top-img {
-        aspect-ratio: 767/600;
-        max-height: 40svh;
-        min-width: 100vw;
-        object-fit: cover;
-        -o-object-fit: cover;
-    }
-}
-
-@media(max-width:570px) {
-    .top-img {
-        aspect-ratio: 575/700;
-        margin: 0!important;
-        -o-object-fit: cover;
-        object-fit: cover;
-        max-height: 45svh;
-        min-width: 100vw;
     }
 }
 
@@ -1239,12 +1222,6 @@ ul {
     margin: 1em auto 1.5em
 }
 
-@media(max-width:768px) {
-    .top-paragraph {
-        min-width: 90%;
-    }
-}
-
 .review {
     display: flex;
     flex-direction: column;
@@ -1252,12 +1229,12 @@ ul {
     align-items: center;
     text-align: center;
     width: min(300px, 60vw);
-    height: 200px;
+    height: 175px;
 }
 
-@media(max-width:768px) {
+@media(min-width:768px) {
     .review {
-        height: 175px;
+        height: 200px;
     }
 }
 
@@ -1529,16 +1506,16 @@ ul {
     margin-right: 1.5em;
     height: auto;
     display: flex;
-    max-width: 300px;
+    max-width: min(70vw, 300px);
     position: relative;
     text-align: center;
     align-items: center;
     flex-direction: column;
 }
 
-@media(max-width:768px) {
+@media(min-width:768px) {
     .product-box {
-        max-width: min(70vw, 300px);
+        max-width: 300px;
     }
 }
 
@@ -1770,14 +1747,14 @@ html[lang=zh-Hant] .css-lV1Vi {
 }
 
 .css-tg8OC {
-    max-width: 720px;
+    max-width: 90%;
     text-align: center;
     margin: 1em auto 0;
 }
 
-@media(max-width:768px) {
+@media(min-width:768px) {
     .css-tg8OC {
-        max-width: 90%;
+        max-width: 720px;
     }
 }
 
@@ -2439,19 +2416,19 @@ html[lang=zh-Hant] .css-4zJQw {
     display: flex;
     transition-property: transform;
     box-sizing: content-box;
-    justify-content: space-around;
+    justify-content: flex-start;
     flex-direction: row;
     transform: translateZ(0);
 }
 
-@media screen and (max-width:768px) {
+@media(min-width:768px) {
     .swiper-wrapper-rules {
-        justify-content: flex-start;
+        justify-content: space-around;
 
     }
 }
 
-@media screen and (min-width:1200px) {
+@media(min-width:1200px) {
     .swiper-wrapper-rules {
         justify-content: center;
     }
@@ -2482,7 +2459,7 @@ html[lang=zh-Hant] .css-4zJQw {
     width: 90%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     row-gap: 1em;
     column-gap: 1em;
 }
@@ -2494,9 +2471,9 @@ html[lang=zh-Hant] .css-4zJQw {
     border-radius: 0;
 }
 
-@media(max-width:540px) {
+@media(min-width:540px) {
     .subscribe-form__inputs {
-        justify-content: center;
+        justify-content: space-between;
     }
 }
 
@@ -2715,7 +2692,7 @@ input[type=submit].btn--subtle-hover:hover,
     margin-top: 30px;
 }
 
-@media (max-width: 540px) {
+@media(max-width:540px) {
     .btn.btn--secondary.subscribe-form__submit {
         width: 100%;
     }
@@ -2863,14 +2840,15 @@ input[type=submit].btn--subtle-hover:hover,
 
 .frame {
     width: 600px;
+    max-width: 90%;
     height: auto;
     aspect-ratio: 16 / 9;
     border-radius: 15px;
 }
 
-@media (max-width: 768px) {
+@media(min-width:768px) {
     .frame {
-        max-width: 90%;
+        max-width: none;
     }
 }
 
@@ -2892,19 +2870,19 @@ input[type=submit].btn--subtle-hover:hover,
     list-style-type: none
 }
 
-@media screen and (max-width: 1250px) {
+@media(max-width:1250px) {
     .list {
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }
 
-@media screen and (max-width: 1024px) {
+@media(max-width:1024px) {
     .list {
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
 
-@media screen and (max-width: 768px) {
+@media(max-width:768px) {
     .list {
         margin: 0 10px;
         grid-column-gap: 10px;
@@ -2947,32 +2925,32 @@ button#clear-search {
 
 .nextprev {
     margin-top: 2em;
-    width: 35em;
-    max-width: 70%;
+    width: 90%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
 }
 
-@media (max-width:768px) {
+@media(min-width:768px) {
     .nextprev {
-        min-width: 90%;
+        width: 35em;
+        max-width: 70%;
     }
 }
 
 .nextprev-arrow {
     z-index: 2;
-    min-width: 70px;
+    min-width: 30px;
     margin: auto 0;
     text-transform: uppercase;
     font-weight: 800;
     font-size: 1em;
 }
 
-@media (max-width:768px) {
+@media(min-width:768px) {
     .nextprev-arrow {
-        min-width: 30px;
+        min-width: 70px;
     }
 }
 
@@ -3147,12 +3125,8 @@ body {
     opacity: 1;
 }
 
-@media screen and (max-width: 768px) {
-    #menu {}
-}
-
 /* Making the navbar responsive by CSS Media Queries */
-@media (max-width: 768px) {
+@media(max-width:768px) {
     .menu-button-container {
         display: flex;
     }
