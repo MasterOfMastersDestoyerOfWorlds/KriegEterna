@@ -380,6 +380,7 @@ h1,
 h2,
 h3 {
     font-family: var(--strong-font-family, "Gargouille", Arial, serif);
+    font-weight: 800;
     font-kerning: normal;
     letter-spacing: normal;
     --color1: var(--theme-primary-color--410);
