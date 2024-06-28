@@ -584,7 +584,7 @@
 		(set! flavor-width  (+ flavor-width  buffer buffer) )
 		(if (> (string-length effect) 1)
 			(gimp-layer-set-offsets flavor-text (* 1.2 (+ buffer buffer)) (+ (+ buffer real-effect-height)  (- image-height (/ image-height 3))))
-			(gimp-layer-set-offsets flavor-text (* 1.2 (+ buffer buffer))  (+ (- image-height (/ image-height 2.9)) (/ (- (* buffer 4) real-flavor-height) 2)))
+			(gimp-layer-set-offsets flavor-text (* 1.2 (+ buffer buffer))  (+ (- image-height (/ image-height 2.9)) (/ (- (max (* 4 buffer) (+ buffer real-flavor-height)) real-flavor-height) 2)))
 		)		
 
 		(gimp-text-layer-set-color flavor-text '(255 255 255))
@@ -614,7 +614,7 @@
 
 		(if (> (string-length effect) 1)
 			(set! effect-back-layer (car (gimp-layer-new image (- (- image-width (+ buffer buffer)) (+ buffer buffer)) (+ (* 2 buffer) real-flavor-height real-effect-height) 1 "desc background" back-opacity 0)))
-			(set! effect-back-layer (car (gimp-layer-new image (- (- image-width (+ buffer buffer)) (+ buffer buffer)) (* 4 buffer) 1 "effect-desc-background" back-opacity 0)))
+			(set! effect-back-layer (car (gimp-layer-new image (- (- image-width (+ buffer buffer)) (+ buffer buffer)) (max (* 4 buffer) (+ buffer real-flavor-height)) 1 "effect-desc-background" back-opacity 0)))
 		
 		)		
 

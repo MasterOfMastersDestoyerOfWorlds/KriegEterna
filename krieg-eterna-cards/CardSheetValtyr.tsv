@@ -1,12 +1,13 @@
-Thor	Thor	 	That stout-hearted Jötun, whose head was all of stone;\rYet I made him fall and sink before me.	Bank	 	 	85
-Odin	Truth	 	Down the well fell the eye of truth,\rand up the sun rose, do not stare,\rknowledge is blinding	Bank	 	 	85
+Musketeer4	Musketeer	 	The thoughts of others were light and fleeting,\rOf lovers' meeting or luck or fame.\rMine were of trouble, and mine were steady;\rSo I was ready when trouble came.	Ranged	3	 	90
+Thor	Thor	Attach to any unit on the field. Add the number\rof units in its row to its base strength.	That stout-hearted Jotun, whose head was all of\rstone; Yet I made him fall and sink before me.	Power	 	 	85
+Odin	Truth	Attach to any unit on the field. Add the number\rof units in its row to its base strength.	Down the well fell the eye of truth, and up the sun\rrose. Do not stare, for knowledge is blinding.	Power	 	 	85
 Raid	Raid	Crash the market. You have first and last choice\rin the bankruptcy	The Northmen came to Lindisfarne, laid everything\rto waste with grievous plundering and seized all the\rtreasures of the holy church.	Bank	 	 	80
 Explorer	Explorer	Draw three cards and choose one to add to your\rhand, discard the rest.	Come, wander with me, for the moonbeams are\rbright. On river and forest, o'er mountain and sea.	Scry	 	 	90
 Ragnarok	Ragnarok	Send three of your units on the field to the\rgraveyard, then choose a row. Set all units in\rthat row to one base strength, for all players.	Nine fated steps.\rThe Hammer fell, and so did Thunder.	Weather	 	 	90
-Knight13	Knight	 	Its hammer is rot and its anvil greed. It will be the\rend of you, boy, and it will be the end of all things.\rThe cancer that grows in the hearts of men.	Melee	2	 	95
+Knight13	Knight	 	\`Its hammer is rot and its anvil greed. It will be the\rend of you, boy, and it will be the end of all things.\rThe cancer that grows in the hearts of men.\`	Melee	2	 	95
 Knight14	Knight	 	An axe-age, a sword-age, shields shall be cloven;\rA wind-age, a wolf-age, ere the world totters.	Melee	2	 	90
 Knight16	Knight	 	A time to kill and a time to heal; Throw stones into\rthe sea and watch as they wash ashore;\ra little lighter, a little worn.	Melee	2	 	95
-Knight20	Knight	 	There are more things in heaven and earth, Horatio,\rThan are dreamt of in your philosophy.	Melee	2	 	80
+Knight20	Knight	 	\`There are more things in heaven and earth, Horatio,\rThan are dreamt of in your philosophy.\`	Melee	2	 	80
 Cannon5	Cannon	 	Once more upon the waters, yet once more^!\rAnd the waves bound beneath me as a steed\rThat knows his rider^!	Siege	4	 	80
 Soldier3	Soldier	 	Age shall not grant him the gift of peace,\rThough spears may spare his life.	Ranged	2	 	90
 Guard	Guard	 	But who will guard the guards themselves?	Melee	2	 	95
@@ -17,24 +18,24 @@ Cavalier2	Cavalier	 	He would, without hesitation, have broken any trust,\ror do
 Sacrifice	Sacrifice	Return all set aside cards to the field, for all\rplayers. Or set aside one unit on the field\runtil the start of the next round.	Out of Ymir's flesh was fashioned the earth,\rAnd the mountains were made of his bones.	Decoy	 	 	90
 Manfred	Shrine	Draw three units, then discard any three cards\rfrom your hand.	To understand is to forgive.	Scry	 	 	80
 Infinity	Infinity	Draw two cards, then discard any two cards\rfrom your hand.	What I miss most in the woods is somewhere\rbetween quiet and solitude, what I miss most is\rstillness.	Scry	 	 	90
-Assault4	Assault	 	Yggdrasil shakes and the giant is loose.\rWe will not know peace for the rest of our lives.	Siege	3	 	90
-Ambush	Ambush	 	Give me back my legions^!	Ranged	3	 	80
+Assault4	Assault	 	Yggdrasil shakes and the giant is loose.\rWe shall never know peace again.	Siege	3	 	90
+Ambush	Ambush	 	\`Give me back my legions^!\`	Ranged	3	 	80
 Corruption	Corruption	Swap any two of your units on the field with two\rof your opponent's units.	Where once was a saint now lay a rotting mass of\rskin and bone. How could one so godly smell so foul?	Decoy	 	 	90
 Alchemist	Alchemist	Attach to any unit on the field. Set its base\rstrength to any number between one and six.	To turn silver to gold and the hearts of men foul.	Power	 	 	95
 WildHunt	Wild Hunt	Choose a row. At the end of the round, all players\rmust set aside two units in that row until the\rstart of the next round.	Still shall last the dreadful chase, Till time itself shall\rhave an end; At midnight's witching hour, ascend.	Weather	 	 	90
 Fenrir	Wolf	Choose a row. At the end of the round, all players\rmust set aside two units in that row until the\rstart of the next round.	What shall live of mankind, When at last there \rcomes, The mighty winter to men?	Weather	 	 	80
 Shadow	Shadow	 	It followed till my cheeks grew sallow and my mind\rgrew ragged. I asked the spectre its name and it\rreturned to me my own.	Decoy	 	 	80
-TwoCrowns	Prince	 	A day will come when princes and paupers will bow\rto the Slain God. When sons are wiser than\rtheir fathers.	King	 	 	80
-Arthur	Arthur	 	giejrghiuehrg	King	 	 	80
+TwoCrowns	Prince	Any card from the King's row that would be sent\rto the graveyard is instead sent to another row	A day will come when princes and paupers will bow\rto the Slain God. When sons are wiser than\rtheir fathers.	King	 	 	90
+Arthur	Arthur	Double the strength of one of your rows. Then\rchoose any power card from the Market and add\rit to your hand.	Reason is the test of ridicule,\rnot ridicule the test of truth	King	 	 	80
 Funeral	Funeral	Add any card from the unit graveyard to your\rhand.	Only the Dead have seen the end of War.	Power	 	 	90
 Nymph	Nymph	Move any two units to one row on their side\rof the field.	Nature is ever at work building and pulling down,\rkeeping everything whirling and flowing, out of one\rbeautiful form into another.	Decoy	 	 	90
-Cellar	Cellar	Attach to any unit on the field, then set it aside\runtil the next round. Double its base\rstrength when it returns to the field.	A fine vintage^! (nevermind the stench of mice\rdown here)	Power	 	 	80
+Cellar	Cellar	Attach to any unit on the field, then set it aside\runtil the next round. Double its base\rstrength when it returns to the field.	\`A fine vintage^!\` (Nevermind the stench of mice\rdown here.)	Power	 	 	85
 Court	Court	 	giejrghiuehrg	King	 	 	80
 Joust	Joust	Send one of your units on the field to the\rgraveyard. Attach to any unit on the field and set\rits base strength to nine.	Steel against Steel, Muscle charging Muscle.\rThe victor shines; the flower of youth.	Power	 	 	95
-Saint	Saint	 	giejrghiuehrg	King	 	 	80
+Saint	Saint	 	For thirty pieces of eight a man can sell his soul,\rbut how will he eat his fill when\rbread turns to ash in his mouth?	King	 	 	80
 BonePile	Bone Pile	Send two of your units on the field to the\rgraveyard. The round ends.	No man's life should be considered a happy one,\runtil it is over.	Power	 	 	95
-Grunwald	Warrior	 	giejrghiuehrg	King	 	 	80
-Musketeer4	Musketeer	 	giejrghiuehrg	Ranged	3	 	80
+Grunwald	Warrior	Double the strength of one of your rows.\rAdjacency bonuses are doubled in the King's row.	giejrghiuehrg	King	 	 	80
 Armada3	Armada	 	Harald dyed the vultures with bloody specks;\rAnd where he raided, the wolves were well fed.	Siege	5	 	90
-Trader	Trader	Add two cards to the Market, and add three\rto your starting bid during the Auction Phase.	A merchant is not a citizen of any country except\rthat of his most profitable customers	Bank	 	 	95
+Trader	Trader	Add two cards to the Market, and add three\rto your starting bid during the Auction Phase.	A merchant is not a citizen of any country except\rthat of his most profitable customers.	Bank	 	 	95
 Siegfried	Horn	Take a unit of your choice from the Market.	To battle the gods are called; by the ancient Gjallar-\rhorn. Loud blows Heimdall, his sound is in the air.	Bank	 	 	85
+Knight22	Knight	 	\`Let us rest and drink from the river.\`\r\`You will not drink until you quench your thirst in\rParadise.\`	Melee	2	 	85
