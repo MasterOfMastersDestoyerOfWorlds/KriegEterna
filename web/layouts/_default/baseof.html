@@ -5,6 +5,7 @@
 	<title>{{ if not .IsHome }}{{ .Title | title }} | {{ end }}{{ .Site.Title }}</title>
 	<link rel="canonical" href="{{ .Site.BaseURL }}">
 	<link rel='alternate' type='application/rss+xml' title="{{ .Site.Title }} RSS" href='/index.xml'>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap" rel="stylesheet">
 
 	{{ $options := (dict "targetPath" "/style.css" "outputStyle" "compressed") }}
 	{{ $styles := resources.Get "/style.css" | fingerprint }}
@@ -13,32 +14,38 @@
 	<link rel="icon" href="/assets/favicon.ico">
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 	{{ end -}}
-	<meta data-n-head="ssr" charset="utf-8">
+
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta data-n-head="ssr" data-hid="i18n-og" property="og:locale" content="en_US">
 	<meta data-n-head="ssr" data-hid="description" name="description"
-		content="The fight for Europe starts now! Will you be cunning enough to win? Krieg Eterna is now available on Amazon.">
+		content="A fast-paced strategic card game set during the Thirty Years' War! Victory on the battlefield will require deception, skill, and a little luck.">
 	{{ if isset .Params "tags" }}
 	<meta name="keywords" content="{{ with .Params.tags }}{{ delimit . " , " }}{{ end }}">
 	{{ end -}}
+
 	<meta data-n-head="ssr" data-hid="og:title" property="og:title" content="Krieg Eterna">
 	<meta data-n-head="ssr" data-hid="og:description" property="og:description"
-		content="The fight for Europe starts now! Will you be cunning enough to win? Krieg Eterna is now available on Amazon.">
-	<meta data-n-head="ssr" data-hid="og:image" property="og:image" content="/images/Title.jpg">
-	<meta data-n-head="ssr" data-hid="twitter:card" property="twitter:card" content="summary_large_image">
-	<meta data-n-head="ssr" data-hid="twitter:title" property="twitter:title" content="Kreig Eterna">
-	<meta data-n-head="ssr" data-hid="twitter:description" property="twitter:description"
-		content="The fight for Europe starts now! Will you be cunning enough to win? Krieg Eterna is now available on Amazon.">
-	<meta data-n-head="ssr" data-hid="twitter:image" property="twitter:image" content="/images/Title.jpg">
+		content="A fast-paced strategic card game set during the Thirty Years' War! Victory on the battlefield will require deception, skill, and a little luck.">
+	<meta data-n-head="ssr" data-hid="og:image" property="og:image"
+		content="https://www.kriegeterna.com/images/og-image.png">
 	<meta data-n-head="ssr" data-hid="og:type" property="og:type" content="website">
 	<meta data-n-head="ssr" data-hid="og:url" property="og:url" content="https://kriegeterna.com">
 	<meta data-n-head="ssr" data-hid="og:site_name" property="og:site_name" content="KRIEG ETERNA">
+
+	<meta data-n-head="ssr" data-hid="twitter:card" property="twitter:card" content="summary_large_image">
+	<meta data-n-head="ssr" data-hid="twitter:title" property="twitter:title" content="Krieg Eterna">
+	<meta data-n-head="ssr" data-hid="twitter:description" property="twitter:description"
+		content="A fast-paced strategic card game set during the Thirty Years' War! Victory on the battlefield will require deception, skill, and a little luck.">
+	<meta data-n-head="ssr" data-hid="twitter:image" property="twitter:image"
+		content="https://www.kriegeterna.com/images/og-image.png">
+
 	<link data-n-head="ssr" rel="icon" type="image/x-icon" href="/assets/favicon.ico">
 	<link data-n-head="ssr" data-hid="i18n-alt-en" rel="alternate" href="https://kriegeterna.com" hreflang="en">
 	<link data-n-head="ssr" data-hid="i18n-can" rel="canonical" href="https://kriegeterna.com">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<meta name="robots" content="index, follow">
-	<meta charset="utf-8">
+
 	<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-1LX69N8DV5"></script>
 	<script>
@@ -66,7 +73,7 @@
 					? (e.clientY - rect.top + 10 + "px")
 					: (document.body.clientHeight + 5 - tooltip.clientHeight - rect.top + "px");
 		}
-		
+
 		document.addEventListener("DOMContentLoaded", () => {
 			var tooltips = document.querySelectorAll('.tooltiplink');
 			for (var i = 0; i < tooltips.length; i++) {
@@ -77,6 +84,25 @@
 		// @license-end
 
 	</script>
+	<!-- Meta Pixel Code -->
+	<script>
+		!function (f, b, e, v, n, t, s) {
+			if (f.fbq) return; n = f.fbq = function () {
+				n.callMethod ?
+				n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+			};
+			if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+			n.queue = []; t = b.createElement(e); t.async = !0;
+			t.src = v; s = b.getElementsByTagName(e)[0];
+			s.parentNode.insertBefore(t, s)
+		}(window, document, 'script',
+			'https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '1599142100663963');
+		fbq('track', 'PageView');
+	</script>
+	<noscript><img height="1" width="1" style="display:none"
+			src="https://www.facebook.com/tr?id=1599142100663963&ev=PageView&noscript=1" /></noscript>
+	<!-- End Meta Pixel Code -->
 </head>
 
 <body>
@@ -88,11 +114,7 @@
 				<!-- left navs -->
 				<div class="css-8oEOo">
 					<a {{ with .GetPage "/" }} href="{{ .RelPermalink }}" {{ end }}>
-						<picture>
-							<source srcset="/images/krieg-eterna-simple-logo.png?fm=webp" type="image/webp"> <img
-								src="/images/krieg-eterna-simple-logo.png" alt="Krieg Eterna Logo" loading="lazy"
-								class="css-tWFgq">
-						</picture>
+						<img src="/images/logo-simple.svg" alt="Krieg Eterna Logo" loading="lazy" class="nav-logo">
 					</a>
 				</div>
 				<nav class="nav">
