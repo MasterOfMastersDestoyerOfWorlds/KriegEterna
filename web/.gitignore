@@ -5,7 +5,6 @@
 /resources/_gen/
 /assets/jsconfig.json
 hugo_stats.json
-/static/card-images/*
 /static/gif/*
 /isableFastRender/*
 # Temporary lock file while building
